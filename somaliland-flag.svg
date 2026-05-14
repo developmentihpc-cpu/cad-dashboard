@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 450">
+  <!-- Green band with Shahada -->
+  <rect width="900" height="150" fill="#007A3D"/>
+  <text x="450" y="116" text-anchor="middle" fill="white"
+        font-family="Georgia, 'Times New Roman', serif" font-size="66"
+        direction="rtl" unicode-bidi="embed">
+    لا إله إلا الله محمد رسول الله
+  </text>
+  <!-- White band with black star -->
+  <rect y="150" width="900" height="150" fill="#FFFFFF"/>
+  <!-- 5-pointed star centred at (450, 225), outer r=45, inner r=18 -->
+  <polygon fill="#000000" points="
+    450,180
+    460.6,210.4
+    492.8,211.1
+    467.1,230.6
+    476.4,261.4
+    450,243
+    423.6,261.4
+    432.9,230.6
+    407.2,211.1
+    439.4,210.4
+  "/>
+  <!-- Red band -->
+  <rect y="300" width="900" height="150" fill="#CE1126"/>
+</svg>

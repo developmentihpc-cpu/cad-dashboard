@@ -13,6 +13,15 @@ agent_outputs/
 *_context.json
 digest_preview.html
 __pycache__/
+
+# ──────────────────────────────────────────────────────
+# Map-rendering skill (17 MB — bundled boundary data + flags)
+# Tracked separately; ships into Cloud Run via Dockerfile if needed.
+# ──────────────────────────────────────────────────────
+country_brief_skill/
+
+# Extracted design reference (regeneratable from Claude Design)
+design/
 *.pyc
 *.pyo
 

@@ -22,6 +22,27 @@ def build_context():
         "lng":      40.4897,
         "subtitle": "Federal Democratic Republic of Ethiopia · Horn of Africa · 130M people",
 
+        # ─── Map: choropleth heatmap of admin-1 regions ───
+        # Categories map to severity colors: escalating > re-escalating > high
+        # > stable > improving. Region names must match Natural Earth's admin-1
+        # spelling (see skill output if you change them).
+        # Note: Sidama (carved out of SNNPR in 2020) and South West Ethiopia
+        # (2021) aren't in Natural Earth 1:50m yet — they roll into SNNPR.
+        "map": {"type": "choropleth"},
+        "subnational_indicators": {
+            "Tigray":                                    "re-escalating", # post-Pretoria fragile peace
+            "Amhara":                                    "escalating",    # Fano insurgency
+            "Oromiya":                                   "high",          # OLA conflict pockets
+            "Afar":                                      "high",          # drought + displacement
+            "Somali":                                    "high",          # drought-driven need
+            "Addis Ababa":                               "stable",        # capital, calmer
+            "Southern Nations, Nationalities and Peoples":"stable",       # SNNPR (incl. Sidama post-2020)
+            "Gambela Peoples":                           "stable",
+            "Benshangul-Gumaz":                          "stable",
+            "Harari People":                             "improving",
+            "Dire Dawa":                                 "improving",
+        },
+
         "snapshot": {
             "capital":   "Addis Ababa · 5.2M",
             "currency":  "Ethiopian Birr (ETB)",

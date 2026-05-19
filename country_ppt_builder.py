@@ -115,8 +115,10 @@ STATUS_COLORS = {
     "severe":     NEG,
 }
 
-# python-pptx uses Calibri as fallback; PowerPoint substitutes DM Sans if installed
-FONT  = "DM Sans"
+# Use Calibri by default — installed everywhere, no PowerPoint substitution warning.
+# Was previously "DM Sans" but caused PowerPoint "repair" warnings on systems
+# without it installed. Override with `FONT = "DM Sans"` after install if desired.
+FONT  = "Calibri"
 FONT_FALLBACK = "Calibri"
 
 # 16:9 widescreen at 13.333" × 7.5" (matches design's 1920×1080 ratio)
@@ -135,7 +137,44 @@ def add_rect(slide, x, y, w, h, fill, line=None, line_w_pt=0.5):
     else:
         s.line.color.rgb = line
         s.line.width = Pt(line_w_pt)
-    s.shadow.inherit = False
+    # Note: `s.shadow.inherit = False` removed — it added <a:effectLst/> which
+    # PowerPoint's strict validator flagged as repair-worthy. Shapes now inherit
+    # the slide-master shadow (which is "no shadow" in the default layout).
+    return s
+
+
+def add_segment(slide, x1, y1, x2, y2, color, *, weight_pt=1.5):
+    """Draw a line segment between two points as a rotated rectangle.
+
+    Replaces the previous `add_connector(STRAIGHT,...)` approach because
+    PowerPoint's strict validator flagged connector shapes as repair-worthy.
+    A thin rotated rectangle with the same start/end points renders identically
+    and produces clean XML.
+    """
+    import math
+    dx = x2 - x1
+    dy = y2 - y1
+    length = math.sqrt(dx * dx + dy * dy)
+    if length == 0:
+        return None
+    angle_deg = math.degrees(math.atan2(dy, dx))
+    # Thickness in EMU (1 pt = 12700 EMU)
+    thickness = int(weight_pt * 12700)
+    cx_mid = (x1 + x2) / 2
+    cy_mid = (y1 + y2) / 2
+    # Position the rectangle centered on the midpoint, with the given length
+    # along the X axis, then rotate to the segment's angle.
+    s = slide.shapes.add_shape(
+        MSO_SHAPE.RECTANGLE,
+        int(cx_mid - length / 2),
+        int(cy_mid - thickness / 2),
+        int(length),
+        thickness,
+    )
+    s.fill.solid()
+    s.fill.fore_color.rgb = color
+    s.line.fill.background()
+    s.rotation = angle_deg
     return s
 
 
@@ -147,25 +186,23 @@ def add_oval(slide, x, y, w, h, fill, line=None):
         s.line.fill.background()
     else:
         s.line.color.rgb = line
-    s.shadow.inherit = False
     return s
 
 
 def add_line(slide, x, y, w, h, color, *, weight_pt=0.5, dashed=False):
-    if dashed:
-        ln = slide.shapes.add_connector(MSO_CONNECTOR_TYPE.STRAIGHT,
-                                        x, y, x + w, y + h)
-        ln.line.color.rgb = color
-        ln.line.width = Pt(weight_pt)
-        lnPr = ln.line._get_or_add_ln()
-        prstDash = etree.SubElement(lnPr, qn('a:prstDash'))
-        prstDash.set('val', 'dash')
-        return ln
+    """Draw a thin separator line as a rectangle.
+
+    The `dashed` parameter is accepted for backward compatibility but no
+    longer changes the visual output. The previous dashed-connector
+    implementation produced XML PowerPoint's strict validator flagged as
+    repair-worthy (degenerate connector geometry + prstDash placement),
+    so all separator lines now render as solid rectangles. At 0.5 pt thin,
+    the visual difference is negligible.
+    """
     s = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, x, y, w, h)
     s.fill.solid()
     s.fill.fore_color.rgb = color
     s.line.fill.background()
-    s.shadow.inherit = False
     return s
 
 
@@ -188,9 +225,11 @@ def add_text(slide, x, y, w, h, text, *,
     r.font.bold = bold
     r.font.italic = italic
     r.font.color.rgb = color
-    if char_spacing is not None:
-        rPr = r._r.get_or_add_rPr()
-        rPr.set('spc', str(int(char_spacing * 100)))
+    # NOTE: char_spacing parameter retained for back-compat but no longer
+    # applies the rPr `spc` attribute. PowerPoint's strict validator was
+    # flagging files with that attribute as repair-worthy; visual difference
+    # was minimal so removing the attribute is the cleanest fix.
+    _ = char_spacing  # silence unused-param linters
     return tb
 
 
@@ -214,9 +253,9 @@ def add_runs(slide, x, y, w, h, runs, *, align=PP_ALIGN.LEFT,
         r.font.italic = r_def.get("italic", False)
         if "color" in r_def:
             r.font.color.rgb = r_def["color"]
-        if "spc" in r_def:
-            rPr = r._r.get_or_add_rPr()
-            rPr.set('spc', str(int(r_def["spc"] * 100)))
+        # NOTE: r_def["spc"] retained for back-compat but no longer applied —
+        # see add_text() for rationale.
+        _ = r_def.get("spc")
     return tb
 
 
@@ -417,14 +456,8 @@ def add_bar_line_chart(slide, x, y, w, h, *, title, x_labels, bar_vals,
         cy = chart_y + chart_h * (1 - v / y_max)
         pts.append((cx, cy))
     for i in range(len(pts) - 1):
-        # short rotated rectangle as connector
-        from math import atan2, degrees, hypot
         x1, y1 = pts[i]; x2, y2 = pts[i + 1]
-        # use straight connector for simplicity
-        ln = slide.shapes.add_connector(MSO_CONNECTOR_TYPE.STRAIGHT,
-                                        x1, y1, x2, y2)
-        ln.line.color.rgb = NEG
-        ln.line.width = Pt(2.5)
+        add_segment(slide, x1, y1, x2, y2, NEG, weight_pt=2.5)
     for cx, cy in pts:
         add_oval(slide, cx - Inches(0.08), cy - Inches(0.08),
                  Inches(0.16), Inches(0.16), NEG)
@@ -519,13 +552,8 @@ def add_line_chart(slide, x, y, w, h, *, title, x_labels, series,
             pts.append((cx, cy))
         for i in range(len(pts) - 1):
             x1, y1 = pts[i]; x2, y2 = pts[i + 1]
-            ln = slide.shapes.add_connector(MSO_CONNECTOR_TYPE.STRAIGHT,
-                                            x1, y1, x2, y2)
-            ln.line.color.rgb = s["color"]
-            ln.line.width = Pt(2.5)
-            if s.get("dashed"):
-                lnPr = ln.line._get_or_add_ln()
-                etree.SubElement(lnPr, qn('a:prstDash')).set('val', 'dash')
+            add_segment(slide, x1, y1, x2, y2, s["color"], weight_pt=2.5)
+            # `dashed` styling dropped — see add_line()'s comment for rationale.
         for cx, cy in pts:
             add_oval(slide, cx - Inches(0.07), cy - Inches(0.07),
                      Inches(0.14), Inches(0.14), s["color"])

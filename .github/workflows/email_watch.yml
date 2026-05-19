@@ -1,0 +1,32 @@
+name: CAD — Email Watch (Report Pipeline)
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'   # every 5 minutes
+  workflow_dispatch:          # allow manual trigger from GitHub UI
+
+jobs:
+  check-email:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Check inbox for RUN triggers
+        run: python agents_pipeline.py --once
+        env:
+          GMAIL_SENDER:        ${{ secrets.GMAIL_SENDER }}
+          GMAIL_APP_PASSWORD:  ${{ secrets.GMAIL_APP_PASSWORD }}
+          DIGEST_RECIPIENT:    ${{ secrets.DIGEST_RECIPIENT }}
+          ANTHROPIC_API_KEY:   ${{ secrets.ANTHROPIC_API_KEY }}

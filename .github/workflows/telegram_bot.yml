@@ -1,0 +1,35 @@
+name: CAD — Telegram Bot (fallback polling)
+# Fallback only — Cloud Run webhook handles instant responses.
+# This runs every 5 min as a safety net if Cloud Run is cold or unreachable.
+
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+
+jobs:
+  telegram:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Process Telegram messages
+        run: python telegram_agent.py
+        env:
+          TELEGRAM_BOT_TOKEN:     ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_ALLOWED_CHATS: ${{ secrets.TELEGRAM_ALLOWED_CHATS }}
+          ANTHROPIC_API_KEY:      ${{ secrets.ANTHROPIC_API_KEY }}
+          DIGEST_RECIPIENT:       ${{ secrets.DIGEST_RECIPIENT }}
+          GITHUB_REPO:            developmentihpc-cpu/cad-dashboard

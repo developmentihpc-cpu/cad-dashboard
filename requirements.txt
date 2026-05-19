@@ -1,0 +1,11 @@
+anthropic>=0.100.0
+python-pptx>=1.0.0
+requests>=2.31.0
+flask>=3.0.0
+gunicorn>=21.0.0
+# Map renderer (country_map_renderer.py)
+geopandas>=1.0
+matplotlib>=3.8
+shapely>=2.0
+pyogrio>=0.7
+pyproj>=3.6

@@ -1,0 +1,66 @@
+name: CAD — Deploy Telegram Bot to Cloud Run
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'telegram_webhook.py'
+      - 'telegram_agent.py'
+      - 'Dockerfile'
+      - 'requirements.txt'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Deploy to Cloud Run
+        uses: google-github-actions/deploy-cloudrun@v2
+        with:
+          service: cad-telegram-bot
+          source:  .
+          region:  us-central1
+          env_vars: |
+            TELEGRAM_BOT_TOKEN=${{ secrets.TELEGRAM_BOT_TOKEN }}
+            TELEGRAM_ALLOWED_CHATS=${{ secrets.TELEGRAM_ALLOWED_CHATS }}
+            TELEGRAM_WEBHOOK_SECRET=${{ secrets.TELEGRAM_WEBHOOK_SECRET }}
+            ANTHROPIC_API_KEY=${{ secrets.ANTHROPIC_API_KEY }}
+            DIGEST_RECIPIENT=${{ secrets.DIGEST_RECIPIENT }}
+            GITHUB_REPO=developmentihpc-cpu/cad-dashboard
+          flags: |
+            --allow-unauthenticated
+            --min-instances=0
+            --max-instances=1
+            --memory=1Gi
+            --cpu=1
+            --timeout=120
+
+      - name: Set Telegram webhook (with secret token)
+        env:
+          TG_TOKEN:  ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TG_SECRET: ${{ secrets.TELEGRAM_WEBHOOK_SECRET }}
+        run: |
+          if [ -z "$TG_SECRET" ]; then
+            echo "::error::TELEGRAM_WEBHOOK_SECRET secret is empty. Generate one with:"
+            echo "::error::   python -c \"import secrets; print(secrets.token_urlsafe(32))\""
+            echo "::error::and add it to repo Settings > Secrets > Actions."
+            exit 1
+          fi
+          URL=$(gcloud run services describe cad-telegram-bot \
+            --region us-central1 --format 'value(status.url)')
+          # secret_token is sent back by Telegram in X-Telegram-Bot-Api-Secret-Token
+          curl -s -G "https://api.telegram.org/bot${TG_TOKEN}/setWebhook" \
+               --data-urlencode "url=${URL}/webhook" \
+               --data-urlencode "secret_token=${TG_SECRET}" \
+               --data-urlencode "drop_pending_updates=true"
+          echo ""
+          echo "Webhook set to: ${URL}/webhook  (with secret_token)"

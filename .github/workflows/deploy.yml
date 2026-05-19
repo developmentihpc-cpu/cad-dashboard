@@ -1,0 +1,36 @@
+# Auto-deploys the agent to Fly.io on every push to main.
+# Required GitHub secret: FLY_API_TOKEN  (generate at fly.io → Tokens)
+
+name: Deploy to Fly.io
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'docs/**'             # dashboard changes are served by Pages, no Fly redeploy needed
+      - '*.md'
+      - '.gitignore'
+      - 'pipeline-state.json'
+
+  # Allow manual trigger from the Actions tab
+  workflow_dispatch:
+
+concurrency:
+  group: deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Fly CLI
+        uses: superfly/flyctl-actions/setup-flyctl@master
+
+      - name: Deploy
+        run: flyctl deploy --remote-only
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}

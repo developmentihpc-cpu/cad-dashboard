@@ -1,0 +1,35 @@
+# Files that should NOT be baked into the Fly.io image
+__pycache__/
+*.pyc
+*.pyo
+.env
+.git/
+.github/
+.vscode/
+.idea/
+
+# Local outputs and state — never go to the cloud
+agent_outputs/
+pipeline-state.json
+*.pptx
+*_context.json
+digest_preview.html
+
+# Local-only batch scripts and dev files
+*.bat
+node_modules/
+package-lock.json
+package.json
+
+# Documentation (keep these local for reference)
+SETUP-*.md
+REPORT_TRIGGERS.md
+CLAUDE.md
+*.zip
+
+# One-pager + map preview HTML are not part of the agent runtime
+project-review-*.html
+project-review-*.pptx
+popdens-*.html
+command-key.html
+build-1pager-pptx.js

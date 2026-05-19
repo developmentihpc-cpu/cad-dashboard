@@ -1,0 +1,31 @@
+name: CAD — Weekly Pipeline Digest
+
+on:
+  schedule:
+    - cron: '0 4 * * 1'     # every Monday at 04:00 UTC = 08:00 UAE (UTC+4)
+  workflow_dispatch:          # allow manual trigger from GitHub UI
+
+jobs:
+  send-digest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Send pipeline digest email
+        run: python digest_agent.py
+        env:
+          GMAIL_SENDER:        ${{ secrets.GMAIL_SENDER }}
+          GMAIL_APP_PASSWORD:  ${{ secrets.GMAIL_APP_PASSWORD }}
+          DIGEST_RECIPIENT:    ${{ secrets.DIGEST_RECIPIENT }}

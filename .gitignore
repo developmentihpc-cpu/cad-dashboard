@@ -1,0 +1,52 @@
+# ──────────────────────────────────────────────────────
+# Secrets — NEVER commit
+# ──────────────────────────────────────────────────────
+.env
+.env.local
+*.key
+*credentials*.json
+
+# ──────────────────────────────────────────────────────
+# Local runtime state and outputs
+# ──────────────────────────────────────────────────────
+agent_outputs/
+*_context.json
+digest_preview.html
+__pycache__/
+*.pyc
+*.pyo
+
+# ──────────────────────────────────────────────────────
+# Local-only utilities
+# ──────────────────────────────────────────────────────
+*.bat
+node_modules/
+package-lock.json
+package.json
+
+# ──────────────────────────────────────────────────────
+# Old (root-level) dashboard files — now live in docs/
+# ──────────────────────────────────────────────────────
+/index.html
+/logo.png
+/somaliland-flag.svg
+
+# ──────────────────────────────────────────────────────
+# One-off deliverables / previews that aren't part of the runtime
+# ──────────────────────────────────────────────────────
+project-review-*.html
+project-review-*.pptx
+popdens-*.html
+command-key.html
+build-1pager-pptx.js
+*.pptx
+*.zip
+
+# ──────────────────────────────────────────────────────
+# OS / editor junk
+# ──────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+.claude/

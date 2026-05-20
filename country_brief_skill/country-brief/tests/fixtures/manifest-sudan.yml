@@ -1,0 +1,34 @@
+# Sudan country brief manifest
+# Context: state-collapse / active conflict / humanitarian emergency
+# Module selection: minimal — crisis-context briefs strip back to spine + humanitarian + sanctions + diaspora
+
+country: Sudan
+home_country: UAE
+brief_type: crisis
+
+modules:
+  # Spine — always true
+  country_snapshot: true
+  political_context: true
+  economic_conditions: true
+  security_stability: true
+  governance_rule_of_law: true
+  social_human_development: true
+  outlook: true
+
+  # Bilateral
+  bilateral_relations: true
+
+  # Optional modules — crisis-context selection
+  development_project: false   # no active development project to discuss
+  humanitarian: true           # dominant analytical lens
+  macro_stress: partial        # data limitations
+  climate: false               # not the lens
+  elections: false             # no cycle
+  civil_society_media: true
+  diaspora: true
+  sanctions: true              # central to the bilateral question
+  market_entry: false          # market closed
+  regulatory: false            # premature
+  project_operating: false     # premature
+  comparative: true            # Sudan vs Yemen / Libya / South Sudan useful

@@ -1,0 +1,45 @@
+# Fiji country brief manifest
+# Context: Pacific climate + Indo-Pacific geopolitics + post-Bainimarama political transition
+# Bilateral lens: UAE — climate-mediated (COP28 legacy, SIDS diplomacy); thin direct economic ties
+# Module selection: standard spine + climate/humanitarian + diaspora + infrastructure + comparative
+
+country: Fiji
+home_country: UAE
+brief_type: pacific-climate-geopolitical
+
+modules:
+  # Spine — always true
+  country_snapshot: true
+  political_context: true
+  economic_conditions: true
+  security_stability: true
+  governance_rule_of_law: true
+  social_human_development: true
+  outlook: true
+
+  # Bilateral (UAE) — honest about thinness
+  bilateral_relations: true
+
+  # Optional modules — Fiji selection
+  development_project: false
+  humanitarian: true           # climate-driven; cyclone-season operations + SLR adaptation
+  macro_stress: false          # rolled into economic_conditions
+  climate: false               # rolled into humanitarian (Section 8)
+  elections: false             # near election but detail covered in political_context
+  civil_society_media: false   # covered in governance and political_context
+  diaspora: true               # 250-300K diaspora; PALM-driven remittances 10% of GDP
+  sanctions: false             # no exposure
+  market_entry: false          # market is open; not a re-entry case
+  regulatory: false            # rolled into governance
+  project_operating: true      # infrastructure pipeline; renewable energy target
+  comparative: true            # Pacific Islands + SIDS comparators
+
+vintage_note: |
+  Brief dated May 16, 2026. Vuvale Union (Australia-Fiji, May 8, 2026) is recent;
+  treaty text not yet public. Election window June 2026–February 2027. Climate
+  season Nov 2026–April 2027 introduces stochastic risk.
+
+confidence_note: |
+  Moderate-high confidence on most judgments. The 2026-2027 election outcome is
+  genuinely uncertain across five plausible scenarios. Climate trajectory is
+  high-confidence on direction, uncertain on near-term timing.

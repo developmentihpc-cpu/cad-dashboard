@@ -1,0 +1,24 @@
+# Test manifest with deliberate inconsistencies vs. the Sudan brief.
+# Used by the smoke test to verify validate_manifest_against_markdown
+# catches each category of mismatch.
+
+country: Sudan
+home_country: UAE
+
+modules:
+  # Section 7 isn't in the Sudan brief (no active dev project), but
+  # this manifest declares it true → should warn.
+  development_project: true
+
+  # Section 8 (humanitarian) IS in the Sudan brief, but this manifest
+  # says false → should warn.
+  humanitarian: false
+
+  # Typo in key — should warn with a suggestion.
+  macro_stres: true
+
+  # Invalid state value — should warn.
+  climate: maybe
+
+  # Section 14 (sanctions) IS in the Sudan brief but not declared at all
+  # in this manifest → should warn ("present in markdown but not declared").

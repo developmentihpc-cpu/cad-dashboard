@@ -18,6 +18,10 @@ COPY country_ppt_builder.py .
 COPY agent_to_builder_ctx.py .
 COPY country_map_renderer.py .
 COPY map_data/ ./map_data/
+# Country-brief map skill (Natural Earth admin-1 polygons + flag assets).
+# Required for choropleth heatmaps — without this folder the renderer
+# returns None and the PPT ships placeholder rectangles.
+COPY country_brief_skill/ ./country_brief_skill/
 
 # Cloud Run injects PORT
 ENV PORT=8080

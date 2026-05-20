@@ -1,0 +1,45 @@
+# Iran country brief manifest
+# Context: 2026 Iran war — active conflict, fragile ceasefire, regime succession
+# Bilateral lens: UAE — Iran is UAE's #2-3 trade partner with critical Dubai-Iran corridor
+# Module selection: comprehensive wartime brief; reframes investment-focused sections as scenarios
+
+country: Iran
+home_country: UAE
+brief_type: wartime-active-conflict
+
+modules:
+  # Spine — always true
+  country_snapshot: true
+  political_context: true
+  economic_conditions: true
+  security_stability: true
+  governance_rule_of_law: true
+  social_human_development: true
+  outlook: true
+
+  # Bilateral (UAE)
+  bilateral_relations: true
+
+  # Optional modules — wartime brief selection
+  development_project: false
+  humanitarian: true
+  macro_stress: false
+  climate: false
+  elections: false
+  civil_society_media: false
+  diaspora: true
+  sanctions: true
+  market_entry: true
+  regulatory: true
+  project_operating: true
+  comparative: true
+
+vintage_note: |
+  Brief written under active wartime conditions. Sources span March 2026 to May 13, 2026.
+  Re-validation should be triggered by ceasefire collapse/formalization, succession
+  developments, or major sanctions architecture changes.
+
+confidence_note: |
+  Analytical confidence is lower than for any other brief in the series due to wartime
+  volatility, regime opacity, and pace of change. Section 19 scenario framework reflects
+  this honestly.

@@ -1,0 +1,34 @@
+# Syria country brief manifest
+# Context: post-conflict transition / rapid international rehabilitation / reconstruction
+# Module selection: between Sudan (minimal) and Morocco (full) — sanctions / market-entry are analytically loaded
+
+country: Syria
+home_country: UAE
+brief_type: post-conflict
+
+modules:
+  # Spine — always true
+  country_snapshot: true
+  political_context: true
+  economic_conditions: true
+  security_stability: true
+  governance_rule_of_law: true
+  social_human_development: true
+  outlook: true
+
+  # Bilateral
+  bilateral_relations: true
+
+  # Optional modules — post-conflict-transition selection
+  development_project: true    # reconstruction is dominant economic story
+  humanitarian: true           # still acute despite improving access
+  macro_stress: true           # reconstruction financing, sanctions phasedown
+  climate: false               # not the lens; conflict legacy eclipses
+  elections: false             # transitional governance, not elections
+  civil_society_media: true    # major question under new government
+  diaspora: true               # massive diaspora; return dynamics central
+  sanctions: true              # full fit — most analytically loaded
+  market_entry: partial        # reopening
+  regulatory: false            # too early
+  project_operating: false     # too early
+  comparative: true            # Syria vs Iraq / Libya / Yemen / Lebanon

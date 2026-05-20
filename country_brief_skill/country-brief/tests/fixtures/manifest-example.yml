@@ -1,0 +1,45 @@
+# Country brief manifest — declares which modules fire and validates
+# against the actual markdown content. This file is OPTIONAL — if
+# absent, the renderer infers module selection from section headers
+# in the markdown. If present, the validator cross-checks the two and
+# warns on inconsistency.
+#
+# Format: YAML. Module values are one of:
+#   true      — module fires fully (a corresponding section is required)
+#   false     — module is intentionally omitted (no section should appear)
+#   partial   — module fires partially (section present but with limited coverage)
+#   stub      — section present but explicitly a stub (placeholder content)
+#
+# Example for Sudan (state-collapse context — minimal module set):
+
+country: Sudan
+home_country: UAE
+date: May 2026
+brief_type: crisis  # one of: commercial, crisis, post-conflict, reform
+
+modules:
+  # Spine sections — always required
+  country_snapshot: true        # Section 1
+  political_context: true       # Section 2
+  economic_conditions: true     # Section 3
+  security_stability: true      # Section 4
+  governance_rule_of_law: true  # Section 5
+  social_human_development: true # Section 6
+  outlook: true                 # Section 19
+
+  # Bilateral (optional but typically fires for UAE briefs)
+  bilateral_relations: true     # Section 1.5
+
+  # Optional modules — declare intent for each
+  development_project: false    # Section 7  — no active dev project to discuss
+  humanitarian: true            # Section 8  — fires fully (crisis context)
+  macro_stress: partial         # Section 9  — fires but with limited data
+  climate: false                # Section 10 — not the analytical lens
+  elections: false              # Section 11 — no election cycle
+  civil_society_media: true     # Section 12
+  diaspora: true                # Section 13
+  sanctions: true               # Section 14
+  market_entry: false           # Section 15 — market closed
+  regulatory: false             # Section 16 — premature
+  project_operating: false      # Section 17 — premature
+  comparative: true             # Section 18

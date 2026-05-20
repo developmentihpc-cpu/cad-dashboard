@@ -1,0 +1,2064 @@
+<!DOCTYPE html>
+<html lang="{{LANG}}" dir="{{DIR}}">
+<head>
+<meta charset="UTF-8">
+<title>{{TITLE}}</title>
+<style>
+  /* ============================================================
+     COUNTRY BRIEF PRINT STYLESHEET
+     Optimized for A4 PDF rendering via WeasyPrint or wkhtmltopdf.
+     Design goals: serious institutional look, comfortable read,
+     clean Chicago footnotes, clear section hierarchy, print-safe
+     colors that degrade gracefully to grayscale.
+  ============================================================ */
+
+  @page {
+    size: A4;
+    margin: 2.2cm 2cm 2.5cm 2cm;
+    @bottom-center {
+      content: counter(page) "{{PAGE_OF_SEP}}" counter(pages);
+      font-family: 'Georgia', serif;
+      font-size: 9pt;
+      color: #555;
+    }
+    @top-right {
+      content: "{{HEADER_RUNNING_TITLE}}";
+      font-family: 'Georgia', serif;
+      font-size: 8.5pt;
+      color: #666;
+      font-style: italic;
+    }
+  }
+
+  @page :first {
+    @top-right { content: ""; }
+    @bottom-center { content: ""; }
+  }
+
+  /* === Base typography === */
+  body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    font-size: 10.5pt;
+    line-height: 1.5;
+    color: #1a1a1a;
+    margin: 0;
+    padding: 0;
+    text-rendering: geometricPrecision;
+  }
+
+  /* === Cover page === */
+  @page cover {
+    margin: 0;
+    background: #1a3a52;
+    @bottom-center { content: ""; }
+    @top-right { content: ""; }
+  }
+
+  .cover {
+    page: cover;
+    padding: 5cm 2.5cm 2.5cm 2.5cm;
+    box-sizing: border-box;
+    page-break-after: always;
+    background: #1a3a52;
+    color: #ffffff;
+    min-height: 24cm;
+    position: relative;
+  }
+
+  .cover .label {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 10pt;
+    letter-spacing: 4pt;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 1.5cm;
+  }
+
+  .cover h1 {
+    font-size: 38pt;
+    font-weight: normal;
+    line-height: 1.1;
+    margin: 0 0 0.8cm 0;
+    color: #ffffff;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    padding-bottom: 0.5cm;
+  }
+
+  .cover .subtitle {
+    font-style: italic;
+    font-size: 15pt;
+    color: rgba(255,255,255,0.9);
+    margin-top: 0.5cm;
+    margin-bottom: 3cm;
+    line-height: 1.4;
+  }
+
+  /* Country flag on the cover. Sized at 5cm wide (3.3cm tall at 3:2 aspect)
+     so it registers as a clear focal point without competing with the
+     38pt country name above. Centered horizontally with margins that give
+     it breathing room from both title and subtitle. The thin white border
+     handles flags with dark or navy elements (e.g., UK, US, Norway, Greece)
+     that would otherwise bleed into the navy cover background. Block-level
+     so it sits on its own line. */
+  .cover-flag {
+    display: block;
+    width: 5cm;
+    height: auto;
+    margin: 0.6cm auto 1cm auto;
+    border: 1.5px solid rgba(255,255,255,0.6);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  }
+
+  .cover .meta {
+    /* margin-top reduced from 12cm to 7cm to give back the ~5cm of vertical
+       space the cover-flag block occupies (3.3cm flag + 1.6cm margins).
+       Without this adjustment, the flag pushes the disclaimer onto page 2. */
+    margin-top: 7cm;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 10pt;
+    border-top: 1px solid rgba(255,255,255,0.3);
+    padding-top: 1cm;
+    color: rgba(255,255,255,0.85);
+  }
+
+  .cover .meta .row {
+    margin-bottom: 0.3cm;
+  }
+
+  .cover .meta .label-sm {
+    display: inline-block;
+    width: 4cm;
+    color: rgba(255,255,255,0.55);
+    text-transform: uppercase;
+    letter-spacing: 1pt;
+    font-size: 8.5pt;
+  }
+
+  /* Cover-page disclaimer. Sits below the meta block at the bottom of
+     the cover. Styled smaller and more muted than the meta so it reads
+     as disclosure rather than primary content, but still legible at
+     normal reading distance. The thin border above separates it from
+     the meta block. */
+  .cover-disclaimer {
+    margin-top: 1.5cm;
+    padding-top: 0.6cm;
+    border-top: 1px solid rgba(255,255,255,0.18);
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 8pt;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.55);
+    font-style: italic;
+    max-width: 14cm;
+  }
+
+  /* ============================================================
+     Table of contents (optional, opt-in via --toc CLI flag)
+     ============================================================
+     Standard institutional-document conventions: serif title,
+     navy accent, leader dots between section title and page number.
+     Page numbers are resolved automatically by WeasyPrint's
+     target-counter() mechanism — the CSS reads the href of each
+     toc-link and looks up the page where the target element renders.
+     The whole block sits on its own page (page-break-after: always)
+     between the cover and the executive summary. */
+  .toc {
+    page-break-after: always;
+    padding-top: 1.5cm;
+  }
+
+  .toc-title {
+    font-family: 'Georgia', serif;
+    font-size: 20pt;
+    font-weight: normal;
+    color: #1a3a52;
+    border-bottom: 1.5px solid #1a3a52;
+    padding-bottom: 0.2cm;
+    margin-bottom: 0.8cm;
+    /* Override the default h2 (numbered heading) styling */
+    margin-top: 0;
+  }
+
+  .toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .toc-entry {
+    margin: 0;
+    padding: 0.14cm 0;
+    border-bottom: 0.5px dotted #cbd5e0;
+  }
+
+  .toc-entry:last-child {
+    border-bottom: none;
+  }
+
+  /* Visual hierarchy for sections.
+     Earlier iteration tried to mute module entries (lighter color, etc.)
+     but the differentiation was too subtle at print size and felt like
+     module entries were being demoted. Final approach: all entries
+     render in the same navy color and weight. The "OPTIONAL MODULES"
+     group header alone — paired with a thin horizontal rule above it —
+     does all the work signaling the structural transition. */
+  .toc-entry.toc-spine .toc-title-text,
+  .toc-entry.toc-frontmatter .toc-title-text,
+  .toc-entry.toc-backmatter .toc-title-text,
+  .toc-entry.toc-module .toc-title-text {
+    color: #1a3a52;
+    font-weight: normal;
+  }
+
+  .toc-entry.toc-module .toc-link {
+    color: #1a1a1a;
+  }
+
+  /* "Optional modules" group header. Strong visual treatment so it
+     actually reads as a structural divider:
+     - Navy color (same as section titles) and bolder weight
+     - Slightly larger font than the muted earlier version
+     - Thin horizontal rule above for clear separation
+     - Tight bottom margin so the first module entry sits close beneath
+     The transition back to spine at Section 19 is signaled by the
+     reader noting "no more group headers ahead" rather than a closing
+     label, which avoids the visual repetition of two "Core" markers. */
+  .toc-group-header {
+    list-style: none;
+    margin: 0.45cm 0 0.15cm 0;
+    padding: 0.25cm 0 0.05cm 0;
+    border-top: 1px solid #94a3b8;
+    border-bottom: none;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 9.5pt;
+    font-weight: bold;
+    letter-spacing: 2pt;
+    text-transform: uppercase;
+    color: #1a3a52;
+  }
+
+  .toc-link {
+    display: flex;
+    align-items: baseline;
+    text-decoration: none;
+    color: #1a1a1a;
+    font-size: 11pt;
+    line-height: 1.4;
+  }
+
+  .toc-link:hover {
+    color: #1a3a52;
+  }
+
+  .toc-title-text {
+    /* The section title sits at the left */
+    color: #1a3a52;
+    flex-shrink: 0;
+  }
+
+  .toc-leader {
+    /* Dotted leader fills the space between title and page number */
+    flex: 1;
+    margin: 0 0.2cm;
+    border-bottom: 0.5px dotted #94a3b8;
+    transform: translateY(-0.15em);
+  }
+
+  .toc-page-num {
+    /* Auto-filled by target-counter; right-aligned */
+    flex-shrink: 0;
+    color: #555;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 10pt;
+    min-width: 1.5em;
+    text-align: right;
+  }
+
+  /* WeasyPrint resolves target-counter() to the page number of the
+     element identified by the href anchor on the same link.
+     The content is set on the link itself (which has the href),
+     not the inner span, because target-counter needs the URL attribute. */
+  .toc-link::after {
+    content: target-counter(attr(href url), page);
+    flex-shrink: 0;
+    color: #555;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 10pt;
+    min-width: 1.5em;
+    text-align: right;
+    margin-left: 0.2cm;
+  }
+
+  /* ============================================================
+     Charts (line, bar, stacked-bar, scatter)
+     ============================================================
+     Charts are rendered server-side via matplotlib and embedded
+     as inline SVG. The container provides margin, centered layout,
+     and a source caption below the chart.
+
+     SVG inside the container is sized to fill the available width;
+     matplotlib's tight_layout() handles the chart's internal margins. */
+  .chart {
+    margin: 0.6cm 0;
+    text-align: center;
+    page-break-inside: avoid;
+  }
+
+  .chart img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .chart-source {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 7.5pt;
+    color: #6b7280;
+    margin-top: 0.1cm;
+    text-align: right;
+    padding-right: 0.5cm;
+    font-style: italic;
+  }
+
+  .chart-error {
+    background: #fef2f2;
+    border-left: 3px solid #b91c1c;
+    padding: 0.3cm 0.5cm;
+    margin: 0.4cm 0;
+    font-size: 9pt;
+    color: #7f1d1d;
+  }
+
+  /* ============================================================
+     Maps (choropleth, sub-national)
+     ============================================================
+     Maps share styling conventions with charts: container margin,
+     centered layout, source caption, page-break-inside avoidance.
+     Maps are rendered server-side via matplotlib + geopandas.
+     The legend appears bottom-left of the map; the title sits above. */
+  .map {
+    margin: 0.6cm 0;
+    text-align: center;
+    page-break-inside: avoid;
+    /* Without "break-inside: avoid" alongside the legacy alias, WeasyPrint
+       sometimes splits the title from the image; both properties are needed
+       for cross-engine reliability. */
+    break-inside: avoid;
+  }
+
+  .map-title {
+    font-family: 'Georgia', serif;
+    font-size: 12pt;
+    font-weight: normal;
+    color: #1a3a52;
+    text-align: left;
+    margin: 0 0 0.3cm 0;
+    padding: 0;
+    /* Title must stay with the image that follows it. */
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  [dir="rtl"] .map-title {
+    font-family: 'Amiri', 'Noto Naskh Arabic', serif;
+    text-align: right;
+  }
+
+  .chart-title {
+    font-family: 'Georgia', serif;
+    font-size: 11pt;
+    font-weight: normal;
+    color: #1a3a52;
+    text-align: left;
+    margin: 0 0 0.3cm 0;
+    padding: 0;
+    /* Title must stay with the image that follows it. */
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  [dir="rtl"] .chart-title {
+    font-family: 'Amiri', 'Noto Naskh Arabic', serif;
+    text-align: right;
+  }
+
+  .map img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .map-source {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 7.5pt;
+    color: #6b7280;
+    margin-top: 0.1cm;
+    text-align: right;
+    padding-right: 0.5cm;
+    font-style: italic;
+  }
+
+  .map-error {
+    background: #fef2f2;
+    border-left: 3px solid #b91c1c;
+    padding: 0.3cm 0.5cm;
+    margin: 0.4cm 0;
+    font-size: 9pt;
+    color: #7f1d1d;
+  }
+
+  /* === Section headings === */
+  h1 {
+    font-family: 'Georgia', serif;
+    font-size: 20pt;
+    font-weight: normal;
+    color: #1a3a52;
+    margin-top: 0;
+    margin-bottom: 0.3cm;
+    page-break-after: avoid;
+  }
+
+  h2 {
+    font-family: 'Georgia', serif;
+    font-size: 15pt;
+    font-weight: normal;
+    color: #1a3a52;
+    margin-top: 1.2cm;
+    margin-bottom: 0.4cm;
+    border-bottom: 1.5px solid #1a3a52;
+    padding-bottom: 0.15cm;
+    page-break-after: avoid;
+    page-break-before: auto;
+  }
+
+  h3 {
+    font-family: 'Georgia', serif;
+    font-size: 12pt;
+    font-weight: bold;
+    color: #2c5282;
+    margin-top: 0.8cm;
+    margin-bottom: 0.2cm;
+    page-break-after: avoid;
+  }
+
+  h4 {
+    font-family: 'Georgia', serif;
+    font-size: 11pt;
+    font-style: italic;
+    color: #333;
+    margin-top: 0.5cm;
+    margin-bottom: 0.15cm;
+    page-break-after: avoid;
+  }
+
+  /* === Paragraphs and lists === */
+  p {
+    margin: 0 0 0.35cm 0;
+    text-align: justify;
+    hyphens: auto;
+    orphans: 3;
+    widows: 3;
+  }
+
+  ul, ol {
+    margin: 0 0 0.4cm 0;
+    padding-left: 0.8cm;
+  }
+
+  li {
+    margin-bottom: 0.15cm;
+    text-align: justify;
+  }
+
+  strong { font-weight: bold; }
+  em { font-style: italic; }
+
+  /* === Executive summary box ===
+     Note: deliberately NOT using `page-break-inside: avoid` because the
+     exec summary is typically 1.5–2 pages and forcing it onto a single
+     page produces large whitespace gaps. Individual visual elements
+     (verdict strip, risk matrix) keep their own page-break-inside rules.
+     Also no `page-break-after: always` — letting Section 1 flow naturally
+     into the remaining space when Recommendations ends mid-page avoids
+     orphan whitespace pages. */
+  .exec-summary {
+    background: #f4f7fa;
+    border-left: 4px solid #1a3a52;
+    padding: 0.5cm 0.7cm;
+    margin: 0.3cm 0 0.6cm 0;
+  }
+
+  .exec-summary h2 {
+    margin-top: 0;
+    margin-bottom: 0.3cm;
+    border-bottom: none;
+    color: #1a3a52;
+    font-size: 14pt;
+  }
+
+  .exec-summary p {
+    margin: 0 0 0.25cm 0;
+  }
+
+  .exec-summary ul, .exec-summary ol {
+    margin: 0 0 0.3cm 0;
+    padding-left: 0.7cm;
+  }
+
+  .exec-summary li {
+    margin-bottom: 0.1cm;
+    line-height: 1.4;
+  }
+
+  .bottom-line {
+    font-size: 10.5pt;
+    font-style: italic;
+    color: #1a3a52;
+    margin-bottom: 0.35cm;
+    padding-bottom: 0.25cm;
+    border-bottom: 1px dotted #94a3b8;
+  }
+
+  /* Headline thesis — sits above the verdict strip as a high-density
+     directional statement. Slightly larger than body, navy serif italic
+     for visual weight without shouting. */
+  .thesis {
+    font-family: 'Georgia', serif;
+    font-size: 11.5pt;
+    font-style: italic;
+    color: #0f172a;
+    line-height: 1.45;
+    margin: 0.15cm 0 0.5cm 0;
+    padding: 0.3cm 0.4cm;
+    background: #ffffff;
+    border-left: 3px solid #d97706;
+  }
+
+  /* Counterfactual block — sits after key judgments. Smaller text,
+     left-bordered in a contrasting amber/orange so it visually marks
+     itself as "the case against" rather than affirmative content. */
+  .counterfactual {
+    font-size: 9.5pt;
+    color: #1a1a1a;
+    margin: 0.3cm 0 0.4cm 0;
+    padding: 0.3cm 0.4cm;
+    background: #fffbeb;
+    border-left: 3px solid #d97706;
+    line-height: 1.4;
+  }
+
+  .counterfactual strong {
+    color: #1a3a52;
+    display: block;
+    margin-bottom: 0.15cm;
+    font-size: 10pt;
+  }
+
+  .counterfactual ul {
+    margin: 0;
+    padding-left: 0.6cm;
+  }
+
+  .counterfactual li {
+    margin-bottom: 0.08cm;
+  }
+
+  /* Known-unknowns block — sits at the bottom of exec summary. Same
+     compact treatment as counterfactual but with a different left-border
+     color (slate) to mark it as analyst-uncertainty rather than counter-case. */
+  .known-unknowns {
+    font-size: 9.5pt;
+    color: #1a1a1a;
+    margin: 0.3cm 0 0.1cm 0;
+    padding: 0.3cm 0.4cm;
+    background: #f1f5f9;
+    border-left: 3px solid #64748b;
+    line-height: 1.4;
+  }
+
+  .known-unknowns strong {
+    color: #1a3a52;
+    display: block;
+    margin-bottom: 0.15cm;
+    font-size: 10pt;
+  }
+
+  .known-unknowns ul {
+    margin: 0;
+    padding-left: 0.6cm;
+  }
+
+  .known-unknowns li {
+    margin-bottom: 0.08cm;
+  }
+
+  /* ============================================================
+     Decision-implication callout
+     ============================================================
+     Used at the end of every section to give the senior reader an
+     explicit "so what for the portfolio" block that stands out from
+     prose. The visual treatment intentionally mirrors the IMF Article
+     IV "Box" pattern: tinted background, left-border accent, small
+     header label, body text in slightly smaller serif.
+
+     Color choice: navy left-border (matches verdict-strip "green/macro"
+     and snapshot accents) with a very pale tint so the block reads as
+     "from the same family" as the brief's other navy elements. */
+  .decision-implication {
+    background: #f0f7fb;
+    border-left: 4px solid #1a3a52;
+    padding: 0.35cm 0.5cm 0.3cm 0.5cm;
+    margin: 0.4cm 0 0.5cm 0;
+    page-break-inside: avoid;
+  }
+
+  .decision-implication-header {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 8.5pt;
+    font-weight: 600;
+    letter-spacing: 1pt;
+    text-transform: uppercase;
+    color: #1a3a52;
+    margin-bottom: 0.15cm;
+  }
+
+  .decision-implication-body p {
+    font-size: 10pt;
+    line-height: 1.45;
+    color: #1a1a1a;
+    margin: 0 0 0.2cm 0;
+  }
+
+  .decision-implication-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* === Tables (compact, print-safe) === */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.4cm 0;
+    font-size: 9.5pt;
+    page-break-inside: avoid;
+  }
+
+  th {
+    background: #1a3a52;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: left;
+    padding: 0.2cm 0.3cm;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 9pt;
+  }
+
+  td {
+    padding: 0.2cm 0.3cm;
+    border-bottom: 0.5px solid #cbd5e0;
+    vertical-align: top;
+  }
+
+  tr:nth-child(even) td {
+    background: #f7fafc;
+  }
+
+  /* === Comparative table specifics === */
+  .compare-table td:first-child {
+    font-weight: bold;
+    color: #1a3a52;
+  }
+
+  .compare-table .country-header {
+    text-align: center;
+  }
+
+  .compare-table .lead {
+    background: #e8f0e8;
+  }
+
+  .compare-table .lag {
+    background: #f5e8e8;
+  }
+
+  /* === Risk indicators (used sparingly) === */
+  .risk-high { color: #8b1a1a; font-weight: bold; }
+  .risk-med  { color: #8b6914; font-weight: bold; }
+  .risk-low  { color: #2d5a3d; font-weight: bold; }
+
+  /* === Key judgments / callouts === */
+  .key-judgment {
+    background: #fefce8;
+    border-left: 3px solid #b8860b;
+    padding: 0.3cm 0.5cm;
+    margin: 0.4cm 0;
+    font-size: 10pt;
+    page-break-inside: avoid;
+  }
+
+  /* === Footnotes (Chicago notes-and-bibliography style) === */
+  .footnote-ref {
+    font-size: 7.5pt;
+    vertical-align: super;
+    line-height: 0;
+    color: #1a3a52;
+    text-decoration: none;
+    margin-left: 1px;
+  }
+
+  /* Separator inserted between truly-adjacent footnote refs by the
+     renderer. Matches footnote-ref styling so the comma sits at the
+     same vertical position. */
+  .footnote-sep {
+    font-size: 7.5pt;
+    vertical-align: super;
+    line-height: 0;
+    color: #1a3a52;
+    margin: 0 1px;
+  }
+
+  /* === Shared metadata-block typography ===
+     Single source of truth for the visual register used by all end-matter
+     sections: Notes (footnotes), Methodological back-matter, and
+     Bibliography. Smaller font, denser line-height, muted text color —
+     signals "this is metadata, not analytical argument." Each section
+     extends this base with its specific layout rules below. */
+  .metadata-block {
+    font-size: 9pt;
+    line-height: 1.35;
+    color: #333;
+  }
+
+  /* === Footnotes (Chicago notes-and-bibliography style) === */
+  .footnotes {
+    margin-top: 1cm;
+    padding-top: 0.4cm;
+    border-top: 0.5px solid #cbd5e0;
+  }
+
+  .footnotes ol {
+    padding-left: 0.6cm;
+  }
+
+  .footnotes li {
+    margin-bottom: 0.15cm;
+    text-align: left;
+  }
+
+  /* === Methodological back-matter ===
+     Sits between Notes and Bibliography. Same metadata-tier typography as
+     Notes; flowing paragraphs (no list structure). The heading is rendered
+     as part of the markdown and remains styled by the body h2 rules. */
+  .methodological {
+    margin-top: 0.8cm;
+    padding-top: 0.4cm;
+    border-top: 0.5px solid #cbd5e0;
+  }
+
+  .methodological h2 {
+    font-size: 12pt;
+    margin-top: 0;
+    margin-bottom: 0.3cm;
+  }
+
+  .methodological p {
+    margin-bottom: 0.2cm;
+    text-align: left;
+  }
+
+  /* === Bibliography === */
+  .bibliography {
+    page-break-before: always;
+  }
+
+  .bibliography h2 {
+    font-size: 12pt;
+    margin-top: 0;
+  }
+
+  .bibliography ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  /* Auto-numbered bibliography: ol.bibliography-list is emitted by the
+     renderer's _normalize_bibliography post-pass. The marker (number) sits
+     inside the list-item box so the hanging-indent rules below apply to
+     both marker and text. The left padding is tuned to give roughly the
+     same visual indent as the unnumbered ul case. */
+  .bibliography ol.bibliography-list {
+    list-style-position: inside;
+    padding-left: 0;
+    margin-left: 0;
+  }
+
+  .bibliography li {
+    padding-left: 1cm;
+    text-indent: -1cm;
+    margin-bottom: 0.2cm;
+    text-align: left;
+  }
+
+  /* === Page break helpers === */
+  .page-break { page-break-after: always; }
+  .no-break { page-break-inside: avoid; }
+
+  /* === Snapshot box (2x2 grid of sub-blocks) === */
+  .snapshot {
+    border: 1px solid #cbd5e0;
+    border-radius: 4px;
+    padding: 0.5cm 0.7cm;
+    margin: 0.4cm 0;
+    font-size: 10pt;
+    page-break-inside: avoid;
+  }
+
+  .snapshot-blocks {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.4cm 1cm;
+  }
+
+  .snapshot-block {
+    /* Each sub-block holds a header + a vertical list of items. */
+    min-width: 0;
+  }
+
+  .snapshot-block-header {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 8.5pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.2pt;
+    color: #1a3a52;
+    border-bottom: 1.5px solid #1a3a52;
+    padding-bottom: 0.1cm;
+    margin-bottom: 0.2cm;
+  }
+
+  .snapshot-item {
+    padding: 0.08cm 0;
+    border-bottom: 0.5px dotted #e2e8f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.3cm;
+    font-size: 9.5pt;
+    line-height: 1.35;
+  }
+
+  .snapshot-item:last-child {
+    border-bottom: none;
+  }
+
+  .snapshot-item .key {
+    color: #555;
+    flex-shrink: 0;
+    /* Cap the key width so very long indicator names don't squeeze
+       the value space. */
+    max-width: 50%;
+  }
+
+  .snapshot-item .val {
+    font-weight: 600;
+    text-align: right;
+    color: #1a1a1a;
+    /* Allow long values to wrap; the right-edge anchor stays clean
+       because each line individually right-aligns. min-width: 0 lets
+       flex actually allow wrapping rather than forcing a wide row. */
+    min-width: 0;
+    flex: 1;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  /* Trend arrow inside a snapshot value */
+  .snapshot-trend {
+    font-weight: bold;
+    margin-left: 0.15cm;
+    font-size: 10pt;
+  }
+
+  /* Bumped prominence when the same arrow span lives inside a table cell
+     (e.g. the macro indicators table in Section 3) — the smaller table
+     font would otherwise make the arrows too subtle to read at a glance. */
+  td .snapshot-trend {
+    font-size: 13pt;
+    margin-left: 0;
+    line-height: 1;
+  }
+
+  /* Center-align any table cell whose only content is a trend arrow.
+     Targets the last <td> of a row in the macro indicators table.
+     The `:has` selector is supported by WeasyPrint and modern browsers. */
+  td:has(> .snapshot-trend:only-child) {
+    text-align: center;
+  }
+
+  .snapshot-trend.up        { color: #2d8659; }
+  .snapshot-trend.down      { color: #a83232; }
+  .snapshot-trend.stable    { color: #94a3b8; }
+  /* If a brief wants ⇅ on a snapshot indicator (rare), reuse this */
+  .snapshot-trend.volatile  { color: #d4a017; }
+
+  /* "Last reviewed" line, sits between the grid and the source line */
+  .snapshot-reviewed {
+    margin-top: 0.4cm;
+    padding-top: 0.25cm;
+    border-top: 0.5px solid #cbd5e0;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 8pt;
+    text-transform: uppercase;
+    letter-spacing: 0.8pt;
+    color: #555;
+  }
+
+  .snapshot-reviewed strong {
+    color: #1a3a52;
+    font-weight: bold;
+  }
+
+  /* Source line at the bottom of the snapshot box */
+  .snapshot-source {
+    margin-top: 0.15cm;
+    font-size: 8.5pt;
+    line-height: 1.4;
+    color: #555;
+    font-style: italic;
+  }
+
+  .snapshot-source strong {
+    font-style: normal;
+    font-weight: bold;
+    color: #1a3a52;
+  }
+
+  /* === Outlook section accent === */
+  .outlook {
+    border-top: 2px solid #1a3a52;
+    margin-top: 1cm;
+    padding-top: 0.5cm;
+  }
+
+  .scenario {
+    margin: 0.3cm 0;
+    padding: 0.3cm 0.5cm;
+    background: #f4f7fa;
+    border-left: 3px solid #94a3b8;
+  }
+
+  .scenario-label {
+    font-weight: bold;
+    color: #1a3a52;
+    text-transform: uppercase;
+    font-size: 9pt;
+    letter-spacing: 1pt;
+  }
+
+  /* === Disclaimer === */
+  .disclaimer {
+    font-size: 8pt;
+    color: #666;
+    font-style: italic;
+    margin-top: 1cm;
+    padding-top: 0.3cm;
+    border-top: 0.5px solid #cbd5e0;
+  }
+
+  /* ============================================================
+     Executive summary visuals — verdict strip, trajectory arrows,
+     and risk matrix. Print-safe, no external dependencies.
+  ============================================================ */
+
+  /* === Verdict strip ===
+     Four dimensions in a row, each with a colored dot, a label,
+     and a one-line caption. Sits at the top of the exec summary. */
+  .verdict-strip {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.3cm;
+    margin: 0.2cm 0 0.5cm 0;
+    padding: 0.3cm 0.4cm;
+    background: #ffffff;
+    border: 0.5px solid #cbd5e0;
+    border-radius: 3px;
+    page-break-inside: avoid;
+  }
+
+  .verdict-cell {
+    flex: 1;
+    min-width: 0;  /* allow flex children to shrink */
+    padding: 0 0.2cm;
+    border-right: 0.5px solid #e2e8f0;
+  }
+
+  .verdict-cell:last-child {
+    border-right: none;
+  }
+
+  .verdict-label {
+    display: flex;
+    align-items: center;
+    gap: 0.15cm;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 8.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.5pt;
+    color: #1a3a52;
+    font-weight: bold;
+    margin-bottom: 0.1cm;
+  }
+
+  .verdict-dot {
+    display: inline-block;
+    width: 0.32cm;
+    height: 0.32cm;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .verdict-dot.green  { background: #2d8659; }   /* favorable */
+  .verdict-dot.amber  { background: #d4a017; }   /* material concern */
+  .verdict-dot.red    { background: #a83232; }   /* acute concern */
+
+  .verdict-caption {
+    font-size: 8.5pt;
+    line-height: 1.3;
+    color: #333;
+    text-align: left;
+  }
+
+  /* === Trajectory arrows on key judgments ===
+     Inline marker preceding each bold judgment. Slightly larger
+     than body text so it reads as a visual anchor without dominating. */
+  .traj-arrow {
+    display: inline-block;
+    font-size: 12pt;
+    font-weight: bold;
+    margin-right: 0.15cm;
+    vertical-align: -1px;
+    line-height: 1;
+  }
+
+  .traj-up        { color: #2d8659; }  /* improving */
+  .traj-down      { color: #a83232; }  /* deteriorating */
+  .traj-stable    { color: #555;    }  /* stable */
+  .traj-volatile  { color: #d4a017; }  /* volatile / contested */
+
+  /* === Risk matrix ===
+     A 2x2 plotted Likelihood x Impact display. Markers are positioned
+     by inline style attributes generated by the render script. */
+  .risk-matrix-wrapper {
+    margin: 0.4cm 0;
+    page-break-inside: avoid;
+  }
+
+  .risk-matrix-title {
+    font-weight: bold;
+    color: #1a3a52;
+    font-size: 10.5pt;
+    margin-bottom: 0.2cm;
+  }
+
+  .risk-matrix {
+    display: grid;
+    grid-template-columns: 1.2cm 1fr;
+    grid-template-rows: 1fr 1.2cm;
+    gap: 0;
+    height: 6cm;
+    max-width: 13cm;
+  }
+
+  .risk-y-axis {
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-right: 0.15cm;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 7.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.5pt;
+    color: #555;
+  }
+
+  .risk-y-axis .axis-title {
+    font-size: 8pt;
+    font-weight: bold;
+    color: #1a3a52;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    text-align: center;
+    align-self: center;
+    margin-bottom: 0.2cm;
+  }
+
+  .risk-plot {
+    grid-column: 2;
+    grid-row: 1;
+    position: relative;
+    border: 1px solid #94a3b8;
+    background:
+      linear-gradient(to right,  rgba(220,230,240,0.5), rgba(220,230,240,0.5)) ,
+      linear-gradient(to bottom, rgba(255,255,255,1),   rgba(255,255,255,1));
+  }
+
+  /* Quadrant lines */
+  .risk-plot::before,
+  .risk-plot::after {
+    content: "";
+    position: absolute;
+    background: #cbd5e0;
+  }
+  .risk-plot::before {  /* vertical mid line */
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 0.5px;
+  }
+  .risk-plot::after {   /* horizontal mid line */
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 0.5px;
+  }
+
+  /* Quadrant background shading — higher-risk top-right slightly tinted */
+  .risk-quad {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+  }
+  .risk-quad.q-hh { right: 0; top: 0;    background: rgba(168, 50, 50, 0.08); }
+  .risk-quad.q-hm { right: 0; top: 50%;  background: rgba(212, 160, 23, 0.06); }
+  .risk-quad.q-mh { left:  0; top: 0;    background: rgba(212, 160, 23, 0.06); }
+
+  /* Risk marker */
+  .risk-marker {
+    position: absolute;
+    transform: translate(-50%, 50%);
+    display: flex;
+    align-items: center;
+    gap: 0.1cm;
+  }
+
+  .risk-marker-dot {
+    width: 0.5cm;
+    height: 0.5cm;
+    border-radius: 50%;
+    background: #1a3a52;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 9pt;
+    font-weight: bold;
+    flex-shrink: 0;
+    border: 2px solid #ffffff;
+    box-shadow: 0 0 0 0.5px #1a3a52;
+  }
+
+  .risk-marker-label {
+    font-size: 8.5pt;
+    color: #1a3a52;
+    line-height: 1.2;
+    background: rgba(255,255,255,0.85);
+    padding: 0 0.1cm;
+    border-radius: 2px;
+    max-width: 4.5cm;
+  }
+
+  /* Annotation that appears after a risk label when the analyst used the
+     extended vocabulary (very high, critical) instead of the canonical
+     three tiers. The annotation flags the higher severity in the key list
+     without changing the marker position on the 3x3 visual grid. */
+  .risk-annotation {
+    font-style: italic;
+    color: #b91c1c;
+    font-size: 8pt;
+    font-weight: normal;
+  }
+
+  .risk-x-axis {
+    grid-column: 2;
+    grid-row: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 0.1cm;
+  }
+
+  .risk-x-axis .axis-labels {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 7.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.5pt;
+    color: #555;
+  }
+
+  .risk-x-axis .axis-title {
+    font-size: 8pt;
+    font-weight: bold;
+    color: #1a3a52;
+    margin-top: 0.1cm;
+  }
+
+  .risk-marker-list {
+    margin-top: 0.2cm;
+    font-size: 8.5pt;
+    color: #555;
+    line-height: 1.4;
+  }
+
+  .risk-marker-list .marker-key {
+    display: inline-block;
+    width: 0.4cm;
+    height: 0.4cm;
+    border-radius: 50%;
+    background: #1a3a52;
+    color: #ffffff;
+    text-align: center;
+    line-height: 0.4cm;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 7.5pt;
+    font-weight: bold;
+    margin-right: 0.1cm;
+    vertical-align: middle;
+  }
+  /* === Leader cards === */
+  /* Visual roster of country political leaders, bilateral counterparts, or
+     project signing principals. Each card has a square photo (or stylized
+     initial-letter placeholder when no photo URL is provided) plus name,
+     role, and affiliation. Grid wraps; typically 3-per-row at brief width.
+     Uses explicit dimensions instead of aspect-ratio since WeasyPrint does
+     not implement the aspect-ratio property reliably. */
+  .leader-cards-container {
+    margin: 0.5cm 0;
+    page-break-inside: avoid;
+  }
+
+  .leader-cards-title {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 8.5pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.2pt;
+    color: #1a3a52;
+    border-bottom: 1.5px solid #1a3a52;
+    padding-bottom: 0.1cm;
+    margin-bottom: 0.35cm;
+  }
+
+  .leader-cards-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3cm;
+    /* Center the cards row so 2-card and 3-card layouts don't cluster
+       to the left of a full-width section. Empty space distributes
+       symmetrically on both sides. */
+    justify-content: center;
+  }
+
+  .leader-card {
+    width: 5cm;
+    /* box-sizing: border-box makes the 5cm width inclusive of padding
+       and border. Without this, padding adds on top of width and 3
+       cards (3 × 5cm + 2 × 0.3cm gap = 15.6cm) would actually take
+       3 × 5.5cm + 0.6cm = 17.1cm and wrap to the next row. */
+    box-sizing: border-box;
+    border: 0.5px solid #cbd5e0;
+    border-radius: 3px;
+    padding: 0.25cm;
+    background: #ffffff;
+    page-break-inside: avoid;
+  }
+
+  .leader-photo {
+    /* Photo dimensions match the card's inner content area (5cm card
+       width minus 0.5cm total padding = 4.5cm wide), so the photo
+       sits flush with the inner edges of the card border. */
+    width: 4.5cm;
+    height: 4.5cm;
+    margin-bottom: 0.2cm;
+    border-radius: 2px;
+    overflow: hidden;
+    background: #f7fafc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .leader-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .leader-photo-placeholder {
+    /* background-color is set inline per-card to give each leader a
+       distinct but deterministic color when no photo URL is provided */
+  }
+
+  .leader-monogram {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    color: #ffffff;
+    font-size: 26pt;
+    font-weight: bold;
+    letter-spacing: 1pt;
+  }
+
+  .leader-card-text {
+    /* No flex needed; default block layout works fine in WeasyPrint */
+  }
+
+  .leader-name {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 9pt;
+    font-weight: bold;
+    color: #1a3a52;
+    line-height: 1.25;
+    margin-bottom: 0.1cm;
+  }
+
+  .leader-role {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 8pt;
+    color: #4a5568;
+    line-height: 1.3;
+    margin-bottom: 0.05cm;
+  }
+
+  .leader-affiliation {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 7.5pt;
+    font-style: italic;
+    color: #718096;
+    line-height: 1.3;
+  }
+
+  /* === Faction box === */
+  .faction-box {
+    border: 0.5px solid #cbd5e0;
+    border-radius: 3px;
+    margin: 0.5cm 0;
+    padding: 0.4cm 0.5cm;
+    background: #ffffff;
+    page-break-inside: avoid;
+  }
+
+  /* === Delta summary (what's changed since prior brief) === */
+  .delta-summary {
+    border-left: 3px solid #1a3a52;
+    background: #f8fafc;
+    margin: 0.5cm 0;
+    padding: 0.4cm 0.5cm;
+    page-break-inside: avoid;
+  }
+
+  .delta-summary-title {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 8.5pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.2pt;
+    color: #1a3a52;
+    margin-bottom: 0.25cm;
+  }
+
+  .delta-row {
+    font-size: 9pt;
+    line-height: 1.45;
+    padding: 0.12cm 0;
+    border-bottom: 0.5px dotted #e2e8f0;
+  }
+
+  .delta-row:last-child { border-bottom: none; }
+
+  .delta-arrow {
+    display: inline-block;
+    font-weight: bold;
+    font-size: 11pt;
+    width: 0.5cm;
+    text-align: center;
+    margin-right: 0.2cm;
+    vertical-align: middle;
+  }
+
+  .delta-text {
+    display: inline;
+  }
+
+  /* === Scoring summary (quantitative dimensions table) === */
+  .scoring-summary {
+    border: 0.5px solid #cbd5e0;
+    border-radius: 3px;
+    margin: 0.5cm 0;
+    padding: 0.4cm 0.5cm;
+    background: #ffffff;
+    page-break-inside: avoid;
+  }
+
+  .scoring-summary-title {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 8.5pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.2pt;
+    color: #1a3a52;
+    border-bottom: 1.5px solid #1a3a52;
+    padding-bottom: 0.1cm;
+    margin-bottom: 0.25cm;
+  }
+
+  .scoring-header {
+    display: flex;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 7.5pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.8pt;
+    color: #475569;
+    padding: 0.15cm 0;
+    border-bottom: 0.5px solid #cbd5e0;
+    align-items: center;
+  }
+
+  .scoring-row {
+    display: flex;
+    font-size: 9pt;
+    line-height: 1.4;
+    padding: 0.15cm 0;
+    border-bottom: 0.5px dotted #e2e8f0;
+    align-items: center;
+  }
+
+  .scoring-row:last-child { border-bottom: none; }
+
+  .scoring-dimension {
+    flex: 0 0 4cm;
+    font-weight: bold;
+    color: #1a3a52;
+    padding-right: 0.3cm;
+  }
+
+  .scoring-bar-container {
+    flex: 0 0 4cm;
+    position: relative;
+    height: 0.45cm;
+    background: #f1f5f9;
+    border-radius: 1px;
+    overflow: visible;
+    margin-right: 0.3cm;
+  }
+
+  .scoring-bar {
+    height: 100%;
+    border-radius: 1px;
+  }
+
+  .scoring-value {
+    position: absolute;
+    right: -0.7cm;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 8.5pt;
+    font-weight: bold;
+    color: #1a3a52;
+  }
+
+  .scoring-trend {
+    flex: 0 0 1cm;
+    font-weight: bold;
+    font-size: 11pt;
+    text-align: center;
+    margin-right: 0.3cm;
+  }
+
+  .scoring-justification {
+    flex: 1 1 auto;
+    color: #475569;
+    font-size: 8.5pt;
+    line-height: 1.35;
+  }
+
+  .faction-box-title {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 8.5pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.2pt;
+    color: #1a3a52;
+    border-bottom: 1.5px solid #1a3a52;
+    padding-bottom: 0.1cm;
+    margin-bottom: 0.25cm;
+  }
+
+  .faction-row {
+    padding: 0.15cm 0;
+    border-bottom: 0.5px dotted #e2e8f0;
+    font-size: 9pt;
+    line-height: 1.4;
+  }
+
+  .faction-row:last-child { border-bottom: none; }
+
+  .faction-name {
+    font-weight: bold;
+    color: #1a3a52;
+  }
+
+  .faction-position {
+    display: inline-block;
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 7.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.5pt;
+    padding: 0.05cm 0.2cm;
+    border-radius: 2px;
+    margin-left: 0.2cm;
+    vertical-align: middle;
+  }
+
+  /* Color-code positions */
+  .faction-position.ruling      { background: #d4e4d6; color: #2d5a3d; }
+  .faction-position.opposition  { background: #e5dce0; color: #8b3a4d; }
+  .faction-position.insurgent   { background: #f0d8d8; color: #8b1a1a; }
+  .faction-position.mixed       { background: #f0e5d0; color: #8b6914; }
+  /* Military as political-economic actor — visually distinct from
+     civilian parties. Olive/khaki conveys "armed institution" without
+     evoking active conflict (which is what .insurgent's red signals). */
+  .faction-position.military    { background: #d9dac4; color: #4a4a1f; }
+  /* Religious authority as independent power center — deep purple
+     reads as "ecclesiastical / clerical" and is visually distinct from
+     both civilian and military categories. */
+  .faction-position.religious-authority { background: #dcd0e0; color: #4a2d5c; }
+  .faction-position.other       { background: #e2e8f0; color: #475569; }
+
+  /* Severity variants — used for sub-national conflict severity in
+     security & stability section. Same color logic as political-position
+     classes but with severity-oriented semantics. */
+  .faction-position.severe      { background: #f0d8d8; color: #8b1a1a; }
+  .faction-position.high        { background: #f0e0d2; color: #8b4a14; }
+  .faction-position.medium      { background: #f0e5d0; color: #8b6914; }
+  .faction-position.contained   { background: #d4e4d6; color: #2d5a3d; }
+  .faction-position.stable      { background: #d4e4d6; color: #2d5a3d; }
+
+  .faction-stance {
+    color: #333;
+    margin-top: 0.05cm;
+  }
+  .timeline-title {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 8.5pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1.2pt;
+    color: #1a3a52;
+    margin-bottom: 0.4cm;
+  }
+
+  .timeline-strip {
+    position: relative;
+    height: 4cm;          /* taller to accommodate above + below stacking */
+    margin: 0.4cm 0;
+  }
+
+  /* Horizontal axis line sits at the vertical middle of the strip */
+  .timeline-line {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: #1a3a52;
+    transform: translateY(-50%);
+  }
+
+  /* Each event is a vertical stack: label + date + dot (or reversed). */
+  .timeline-event {
+    position: absolute;
+    transform: translateX(-50%);
+    width: 3.2cm;
+    text-align: center;
+  }
+
+  /* Events below the line: dot at top, then date, then label */
+  .timeline-event.below {
+    top: 50%;
+    padding-top: 0.1cm;
+  }
+  .timeline-event.below .dot   { margin: 0 auto 0.1cm auto; }
+  .timeline-event.below .date  { margin-bottom: 0.05cm; }
+
+  /* Events above the line: label at top, then date, then dot.
+     We anchor with bottom rather than top to grow upward from the axis. */
+  .timeline-event.above {
+    bottom: 50%;
+    padding-bottom: 0.1cm;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;  /* push content toward the line */
+    align-items: center;
+  }
+  .timeline-event.above .label { order: 1; margin-bottom: 0.05cm; }
+  .timeline-event.above .date  { order: 2; margin-bottom: 0.05cm; }
+  .timeline-event.above .dot   { order: 3; margin: 0 auto; }
+
+  .timeline-event .dot {
+    width: 0.4cm;
+    height: 0.4cm;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    box-shadow: 0 0 0 1px #1a3a52;
+    flex-shrink: 0;
+  }
+
+  .timeline-event.past .dot       { background: #94a3b8; }
+  .timeline-event.upcoming .dot   { background: #1a3a52; }
+  .timeline-event.critical .dot   { background: #a83232; width: 0.55cm; height: 0.55cm; }
+
+  .timeline-event .date {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 7.5pt;
+    color: #1a3a52;
+    font-weight: bold;
+  }
+
+  .timeline-event .label {
+    font-size: 8pt;
+    color: #333;
+    line-height: 1.2;
+  }
+
+  .timeline-event.critical .label {
+    font-weight: bold;
+    color: #a83232;
+  }
+  /* ============================================================
+     Home-country bilateral relations section (section 1.5)
+  ============================================================ */
+
+  /* === Generic stats strip ===
+     Four headline numbers in a horizontal strip. Used at the top of
+     section 1.5 (bilateral), section 4 (security), section 8 (humanitarian),
+     and any future section that needs a 4-tile summary.
+     `.bilateral-stats` is kept as an alias for backwards compatibility
+     with existing briefs. */
+  .stats-strip,
+  .bilateral-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 0.2cm;
+    margin: 0.3cm 0 0.5cm 0;
+    padding: 0.3cm 0.4cm;
+    background: #f4f7fa;
+    border-left: 4px solid #1a3a52;
+    border-radius: 3px;
+    page-break-inside: avoid;
+  }
+
+  .stats-tile,
+  .bilateral-stat {
+    padding: 0 0.2cm;
+    border-right: 0.5px solid #cbd5e0;
+    text-align: center;
+  }
+
+  .stats-tile:last-child,
+  .bilateral-stat:last-child { border-right: none; }
+
+  .stats-tile .value,
+  .bilateral-stat .value {
+    font-family: 'Georgia', serif;
+    font-size: 14pt;
+    font-weight: bold;
+    color: #1a3a52;
+    line-height: 1.1;
+  }
+
+  .stats-tile .label,
+  .bilateral-stat .label {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 7.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.6pt;
+    color: #555;
+    margin-top: 0.1cm;
+    line-height: 1.25;
+  }
+
+  .stats-tile .footnote,
+  .bilateral-stat .footnote {
+    font-size: 7pt;
+    color: #94a3b8;
+    font-style: italic;
+    margin-top: 0.05cm;
+  }
+
+  /* "As of" line below the stats strip — kept under old class for
+     backwards compatibility */
+  .bilateral-as-of {
+    font-family: 'Helvetica', 'Arial', sans-serif;
+    font-size: 8pt;
+    color: #555;
+    font-style: italic;
+    text-align: right;
+    margin-top: -0.3cm;
+    margin-bottom: 0.4cm;
+  }
+
+  /* ============================================================
+     ARABIC / RTL OVERRIDES
+     Activate only when <html dir="rtl">. The base styles above
+     remain the default LTR behavior; these overrides swap fonts,
+     mirror component layouts, and reposition borders/markers.
+  ============================================================ */
+
+  [dir="rtl"] body {
+    font-family: 'Amiri', 'Noto Naskh Arabic', 'Scheherazade New', 'Traditional Arabic', serif;
+    /* Slightly larger size — Arabic glyphs have more interior detail
+       and benefit from a bit more space than serif Latin */
+    font-size: 11pt;
+    line-height: 1.7;
+  }
+
+  [dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, [dir="rtl"] h4 {
+    font-family: 'Amiri', 'Noto Naskh Arabic', 'Scheherazade New', serif;
+  }
+
+  [dir="rtl"] .verdict-strip,
+  [dir="rtl"] .stats-strip,
+  [dir="rtl"] .scoring-summary-title,
+  [dir="rtl"] .delta-summary-title,
+  [dir="rtl"] .faction-box-title,
+  [dir="rtl"] .severity-title,
+  [dir="rtl"] .leader-cards-title,
+  [dir="rtl"] .scoring-header,
+  [dir="rtl"] .stat-label,
+  [dir="rtl"] .stat-value,
+  [dir="rtl"] .label, [dir="rtl"] .label-sm {
+    font-family: 'Cairo', 'Noto Sans Arabic', 'Helvetica', 'Arial', sans-serif;
+  }
+
+  /* Cover: center alignment works in both directions; meta rows
+     should flow naturally RTL with the label on the right */
+  [dir="rtl"] .cover .row {
+    text-align: right;
+  }
+
+  /* Decision-implication border moves from left to right in RTL */
+  [dir="rtl"] .decision-implication {
+    border-left: none;
+    border-right: 4px solid #1a3a52;
+    padding-left: 0.4cm;
+    padding-right: 0.6cm;
+  }
+
+  /* Scenario boxes: same border-side mirror */
+  [dir="rtl"] .scenario {
+    border-left: none;
+    border-right: 3px solid #d97706;
+    padding-left: 0.4cm;
+    padding-right: 0.5cm;
+  }
+
+  /* Counterfactual: same */
+  [dir="rtl"] .counterfactual {
+    border-left: none;
+    border-right: 3px solid #475569;
+    padding-left: 0.4cm;
+    padding-right: 0.5cm;
+  }
+
+  /* Delta summary: same */
+  [dir="rtl"] .delta-summary {
+    border-left: none;
+    border-right: 3px solid #1a3a52;
+  }
+
+  /* Verdict strip: flip direction so first tile appears on the right */
+  [dir="rtl"] .verdict-strip {
+    direction: rtl;
+  }
+
+  /* Stats strip: same */
+  [dir="rtl"] .stats-strip {
+    direction: rtl;
+  }
+
+  /* Leader cards grid: cards flow right-to-left */
+  [dir="rtl"] .leader-cards-grid {
+    direction: rtl;
+  }
+
+  /* Scoring summary rows: dimension label is on the right side in RTL */
+  [dir="rtl"] .scoring-row,
+  [dir="rtl"] .scoring-header {
+    direction: rtl;
+  }
+
+  /* Scoring bar should still fill from the start of its container
+     in the reading direction (right edge in RTL). The flexbox
+     direction handles this automatically. */
+  [dir="rtl"] .scoring-bar {
+    /* Bar visually grows from the right edge */
+  }
+
+  [dir="rtl"] .scoring-value {
+    /* Re-anchor: in LTR the value is on the right of the bar;
+       in RTL it appears on the left */
+    right: auto;
+    left: -0.7cm;
+  }
+
+  /* Faction-box: name is on the right */
+  [dir="rtl"] .faction-row {
+    direction: rtl;
+    text-align: right;
+  }
+
+  /* Severity-box: same */
+  [dir="rtl"] .severity-row {
+    direction: rtl;
+    text-align: right;
+  }
+
+  /* Footnotes: marker positioning for RTL */
+  [dir="rtl"] .footnote {
+    direction: rtl;
+    text-align: right;
+  }
+
+  /* Footnote definitions section ("Notes" auto-generated by pandoc).
+     The base .footnotes li rule forces text-align: left, which is wrong
+     in an RTL doc — Arabic footnote paragraphs should align right with
+     their list markers also on the right. The base .footnotes ol rule
+     uses padding-left for the marker column; flip to padding-right. */
+  [dir="rtl"] .footnotes {
+    direction: rtl;
+    text-align: right;
+  }
+  [dir="rtl"] .footnotes ol {
+    padding-left: 0;
+    padding-right: 0.6cm;
+  }
+  [dir="rtl"] .footnotes li {
+    text-align: right;
+  }
+
+  /* Methodological back-matter: same RTL alignment principle. The base
+     .methodological p forces text-align: left; flip it for RTL docs. */
+  [dir="rtl"] .methodological p {
+    text-align: right;
+  }
+  [dir="rtl"] .methodological h2 {
+    text-align: right;
+  }
+
+  /* Bibliography: the base li uses padding-left + negative text-indent
+     for hanging indent, plus text-align: left. Mirror for RTL: padding
+     and text-indent on the right; text-align: right. */
+  [dir="rtl"] .bibliography li {
+    padding-left: 0;
+    padding-right: 1cm;
+    text-indent: -1cm;
+    text-align: right;
+  }
+  [dir="rtl"] .bibliography h2 {
+    text-align: right;
+  }
+
+  /* Tables: column ordering reverses in RTL */
+  [dir="rtl"] table {
+    direction: rtl;
+  }
+
+  /* Bullet lists: bullets on the right side */
+  [dir="rtl"] ul, [dir="rtl"] ol {
+    padding-right: 1.5em;
+    padding-left: 0;
+  }
+
+  /* Block quotes: border on right */
+  [dir="rtl"] blockquote {
+    border-left: none;
+    border-right: 3px solid #cbd5e0;
+    padding-left: 0;
+    padding-right: 1em;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  /* Letter-spacing override: Arabic doesn't use letter-spacing
+     (it breaks word shaping and ligatures). All uppercase-Latin-style
+     letter-spacing rules need to be neutralized for Arabic. */
+  [dir="rtl"] .cover .label,
+  [dir="rtl"] .label, [dir="rtl"] .label-sm,
+  [dir="rtl"] .scenario-label,
+  [dir="rtl"] .verdict-label,
+  [dir="rtl"] .delta-summary-title,
+  [dir="rtl"] .scoring-summary-title,
+  [dir="rtl"] .scoring-header,
+  [dir="rtl"] .faction-box-title,
+  [dir="rtl"] .severity-title,
+  [dir="rtl"] .leader-cards-title,
+  [dir="rtl"] .stat-label {
+    letter-spacing: 0 !important;
+    text-transform: none !important;  /* Arabic has no case; uppercase is meaningless */
+  }
+
+  /* Sizing tweak for Arabic eyebrow label: Arabic glyphs render
+     smaller at the same point size as Latin, so the eyebrow label
+     benefits from a slight size bump for visual parity */
+  [dir="rtl"] .cover .label {
+    font-size: 12pt;
+  }
+
+  /* ============================================================
+     RTL accent-border and alignment fixes (Tier 1-4 audit)
+     ============================================================
+     The base CSS sets navy/gold/slate accent borders on the LEFT side
+     of several boxes (exec-summary, stats-strip, key-judgment, known-
+     unknowns) and aligns several elements toward the left. In an RTL
+     document, the start-of-block edge is the RIGHT, so all of these
+     need explicit mirroring. */
+
+  /* Stats-strip and bilateral-stats: accent border flips right */
+  [dir="rtl"] .stats-strip,
+  [dir="rtl"] .bilateral-stats {
+    border-left: none;
+    border-right: 4px solid #1a3a52;
+  }
+
+  /* Stats-tile separators reverse with RTL grid order: the visual
+     order of tiles flips, so the separator that was on the right of
+     each tile (between tile N and N+1) now needs to be on the left. */
+  [dir="rtl"] .stats-tile,
+  [dir="rtl"] .bilateral-stat {
+    border-right: none;
+    border-left: 0.5px solid #cbd5e0;
+  }
+  [dir="rtl"] .stats-tile:last-child,
+  [dir="rtl"] .bilateral-stat:last-child {
+    border-left: none;
+  }
+  /* The first child in DOM is now the rightmost in visual order; it
+     needs no left-border (because nothing sits to its right). Override
+     the base :last-child reset doesn't cover this. */
+  [dir="rtl"] .stats-tile:first-child,
+  [dir="rtl"] .bilateral-stat:first-child {
+    /* Keep the left-border — first DOM child is visually rightmost,
+       and the separator belongs between it and the next tile to its
+       left. No change needed here; this rule documents intent. */
+  }
+
+  /* Exec-summary: accent border flips right */
+  [dir="rtl"] .exec-summary {
+    border-left: none;
+    border-right: 4px solid #1a3a52;
+  }
+
+  /* Key-judgment: gold accent flips right */
+  [dir="rtl"] .key-judgment {
+    border-left: none;
+    border-right: 3px solid #b8860b;
+  }
+
+  /* Known-unknowns: slate accent flips right */
+  [dir="rtl"] .known-unknowns {
+    border-left: none;
+    border-right: 3px solid #64748b;
+  }
+
+  /* Scenario border: the existing [dir=rtl] .scenario override (line
+     ~1761) used the wrong color (amber #d97706, copy-pasted from
+     counterfactual). The LTR .scenario is gray #94a3b8. Correct it
+     here. The earlier override stays in place for the padding flip;
+     this override layers on top with the correct color. */
+  [dir="rtl"] .scenario {
+    border-right-color: #94a3b8;
+  }
+
+  /* Table headers: RTL Arabic tables need right-aligned th text to
+     match the cell content flow. The base th rule sets text-align: left. */
+  [dir="rtl"] th {
+    text-align: right;
+  }
+  /* Tables in RTL with explicit cell text-align: tds also benefit
+     from start-aligned text by default. */
+  [dir="rtl"] td {
+    text-align: right;
+  }
+
+  /* Chart-source and map-source captions in RTL: in Arabic institutional
+     publications (IMF Arabic editions, Brookings Doha) the source caption
+     trails the figure on the LEFT (which is the end-of-paragraph edge in
+     RTL). The base rules set text-align: right + padding-right which is
+     wrong for RTL — flip to left and use padding-left for inset spacing. */
+  [dir="rtl"] .chart-source,
+  [dir="rtl"] .map-source {
+    text-align: left;
+    padding-right: 0;
+    padding-left: 0.5cm;
+  }
+
+  /* TOC page numbers: trailing edge in RTL is the left side. The base
+     .toc-page-num and .toc-link::after rules set text-align: right plus
+     margin-left on the ::after, which is correct in LTR (number sits to
+     the right of the dotted leader) but wrong in RTL. Flip both. */
+  [dir="rtl"] .toc-page-num {
+    text-align: left;
+  }
+  [dir="rtl"] .toc-link::after {
+    text-align: left;
+    margin-left: 0;
+    margin-right: 0.2cm;
+  }
+
+  /* List-indent magnitude consistency: the generic [dir=rtl] ul/ol rule
+     above sets padding-right: 1.5em, but several specific list containers
+     (exec-summary, counterfactual, known-unknowns) use 0.6-0.7cm in their
+     LTR rules. Re-apply the LTR magnitudes mirrored to padding-right so
+     RTL briefs match the LTR visual indent. */
+  [dir="rtl"] .exec-summary ul,
+  [dir="rtl"] .exec-summary ol {
+    padding-left: 0;
+    padding-right: 0.7cm;
+  }
+  [dir="rtl"] .counterfactual ul,
+  [dir="rtl"] .counterfactual ol,
+  [dir="rtl"] .known-unknowns ul,
+  [dir="rtl"] .known-unknowns ol {
+    padding-left: 0;
+    padding-right: 0.6cm;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================ COVER ============================ -->
+<div class="cover">
+  <div class="label">{{COVER_LABEL}}</div>
+  <h1>{{COUNTRY}}</h1>
+  {{FLAG_BLOCK}}
+  {{SUBTITLE_BLOCK}}
+  <div class="meta">
+    <div class="row"><span class="label-sm">{{DATE_LABEL}}</span> {{DATE}}</div>
+    {{AUDIENCE_ROW}}
+    {{ANGLE_ROW}}
+    {{AUTHOR_ROW}}
+  </div>
+  {{DISCLAIMER_BLOCK}}
+</div>
+
+<!-- ============================ BODY ============================ -->
+<!-- The render script injects the body content (executive summary,
+     numbered sections, footnotes, bibliography) into this region. -->
+
+{{BODY}}
+
+</body>
+</html>

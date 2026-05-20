@@ -15,10 +15,12 @@ digest_preview.html
 __pycache__/
 
 # ──────────────────────────────────────────────────────
-# Map-rendering skill (17 MB — bundled boundary data + flags)
-# Tracked separately; ships into Cloud Run via Dockerfile if needed.
+# Map-rendering skill (~18 MB — bundled boundary data + flags)
+# Committed to the repo so Cloud Run gets it on deploy. The skill is large
+# but it's the only way the headless container can resolve admin-1 polygons
+# at render time. Without this folder in the container, /generate-ppt
+# returns X-Map-Status: skipped and ships placeholder rectangles.
 # ──────────────────────────────────────────────────────
-country_brief_skill/
 
 # Extracted design reference (regeneratable from Claude Design)
 design/

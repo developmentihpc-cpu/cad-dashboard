@@ -1,0 +1,36 @@
+# Sri Lanka country brief manifest
+# Context: post-default IMF recovery + first-ever left-government + cyclone overhang
+# Bilateral lens: UAE — UAE-Sri Lanka relations have entered active acceleration phase
+# (BIT signed Feb 2025; 2nd Joint Commission Nov 2025; Abu Dhabi Ports interest May 2026)
+# Module selection: most-comprehensive after Morocco; spans the full distressed-debt → recovery analytical surface
+
+country: Sri Lanka
+home_country: UAE
+brief_type: post-default-recovery
+
+modules:
+  # Spine — always true
+  country_snapshot: true
+  political_context: true
+  economic_conditions: true
+  security_stability: true
+  governance_rule_of_law: true
+  social_human_development: true
+  outlook: true
+
+  # Bilateral (with India — the first non-UAE bilateral test)
+  bilateral_relations: true
+
+  # Optional modules — post-default-recovery selection
+  development_project: false   # no single anchor project; portfolio context
+  humanitarian: true           # cyclone-driven (Ditwah Nov-Dec 2025)
+  macro_stress: true           # central story — post-default + IMF EFF
+  climate: false               # touched in cyclone humanitarian; no dedicated section
+  elections: true              # provincial council deferral is key political variable
+  civil_society_media: true    # reconciliation lens central
+  diaspora: true               # 8B+ remittances; Tamil diaspora analytically loaded
+  sanctions: false             # no exposure
+  market_entry: true           # Adani lessons analytically loaded
+  regulatory: false            # rolled into market_entry section
+  project_operating: false     # premature for new commercial entrants
+  comparative: true            # vs Pakistan / Bangladesh / Egypt / Ghana

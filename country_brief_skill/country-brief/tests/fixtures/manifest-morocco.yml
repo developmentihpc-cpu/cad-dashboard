@@ -1,0 +1,34 @@
+# Morocco country brief manifest
+# Context: commercial / stable middle-income / IMF-anchored
+# Module selection: most-comprehensive — operational/regulatory modules fire as natural center of gravity
+
+country: Morocco
+home_country: UAE
+brief_type: commercial
+
+modules:
+  # Spine — always true
+  country_snapshot: true
+  political_context: true
+  economic_conditions: true
+  security_stability: true
+  governance_rule_of_law: true
+  social_human_development: true
+  outlook: true
+
+  # Bilateral
+  bilateral_relations: true
+
+  # Optional modules — commercial-context selection
+  development_project: true    # multilateral programs active
+  humanitarian: false          # not a humanitarian context
+  macro_stress: true           # real story (IMF FCL, sovereign rating pathway)
+  climate: true                # water stress, desalination strategy
+  elections: partial           # next legislative election Sept 2026
+  civil_society_media: true    # press freedom dimension genuine
+  diaspora: true               # 5M+ abroad, 8% GDP remittances
+  sanctions: false             # no meaningful exposure
+  market_entry: true           # natural center of gravity
+  regulatory: true             # active regulatory architecture
+  project_operating: true      # functional baseline
+  comparative: true            # vs Egypt / Tunisia / Jordan

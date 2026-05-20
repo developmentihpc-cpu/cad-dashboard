@@ -1,0 +1,14 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Smoke-test artifacts. The test runner overwrites these on each run;
+# no value in committing them. Re-generate with `python tests/run_smoke_tests.py`.
+tests/output/
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+*.swp
+*~

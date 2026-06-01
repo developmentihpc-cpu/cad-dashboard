@@ -1,0 +1,41 @@
+name: CAD — Refresh Indicator Snapshot
+
+on:
+  schedule:
+    - cron: '0 3 1 * *'      # 03:00 UTC on the 1st of each month
+  workflow_dispatch:          # allow manual trigger from GitHub UI
+
+permissions:
+  contents: write             # needed to commit the refreshed JSON back
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Rebuild indicator snapshot from World Bank API
+        run: python build_indicators.py
+
+      - name: Commit refreshed snapshot if changed
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- docs/data/indicators.json; then
+            echo "No change in indicator snapshot."
+          else
+            git add docs/data/indicators.json
+            git commit -m "chore: refresh World Bank indicator snapshot"
+            git push
+          fi

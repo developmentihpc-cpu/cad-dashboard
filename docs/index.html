@@ -2489,7 +2489,7 @@ function cdRenderOverview() {
   const tx = t();
   const iso = ca_getIso(cdCountry);
   const data = countryDataCache[cdCountry] || {};
-  const loading = !data || data.__loading || Object.keys(data).filter(k=>!k.startsWith('__')).length === 0;
+  const loading = !data || data.__loading || Object.keys(data).length === 0;
 
   // Key overview indicators to show
   const keyInds = [
@@ -2565,7 +2565,7 @@ function cdRenderOverview() {
 function cdRenderIndicators() {
   if (!cdCountry) return;
   const data = countryDataCache[cdCountry] || {};
-  const loading = !data || data.__loading || Object.keys(data).filter(k=>!k.startsWith('__')).length === 0;
+  const loading = !data || data.__loading || Object.keys(data).length === 0;
 
   const tabsHtml = CA_TABS.map(tab => {
     const label = (CA_TAB_LABELS[lang] || CA_TAB_LABELS.en)[tab];
@@ -6725,12 +6725,64 @@ async function ca_fetchIndicator(iso, indicatorId) {
   } catch(e) { return null; }
 }
 
-async function ca_loadCountryData(country) {
-  if (countryDataCache[country] && Object.keys(countryDataCache[country]).length > 0) return;
-  const iso = ca_getIso(country);
-  countryDataCache[country] = { __loading: true };
+// Static snapshot baked by build_indicators.py (docs/data/indicators.json).
+// Loaded once at startup; serves indicator data instantly and works offline / in
+// restricted networks. A live background refresh (when reachable) overwrites it
+// with fresher values. This is the "A+ Hybrid" data strategy.
+let prebakedIndicators = {};
+let prebakedLoaded = false;
+let _prebakedPromise = null;
 
-  // Collect all unique WB indicator IDs
+function loadPrebakedIndicators() {
+  if (_prebakedPromise) return _prebakedPromise;
+  _prebakedPromise = (async () => {
+    try {
+      const resp = await fetch('data/indicators.json', { cache: 'no-cache' });
+      if (resp.ok) {
+        const json = await resp.json();
+        delete json._meta;
+        prebakedIndicators = json;
+      }
+    } catch (e) { /* no snapshot reachable — live fetch will cover */ }
+    prebakedLoaded = true;
+  })();
+  return _prebakedPromise;
+}
+
+function ca_rerenderIfOpen(country) {
+  // Re-render project detail section if this country is open
+  if (selectedRequest && selectedRequest.country === country) {
+    const mountEl = document.getElementById('ca-section-mount');
+    if (mountEl) ca_renderSection(country);
+  }
+  // Re-render country drawer overview/indicators if the drawer is open for this country
+  if (cdCountry === country && document.getElementById('drawer')?.classList.contains('open')) {
+    if (cdActiveTab === 'overview') cdRenderOverview();
+    else if (cdActiveTab === 'indicators') cdRenderIndicators();
+  }
+}
+
+async function ca_loadCountryData(country) {
+  // Make sure the baked snapshot is available before we decide how to seed.
+  if (!prebakedLoaded) await loadPrebakedIndicators();
+
+  // Already resolved this session (baked or live) → done.
+  const existing = countryDataCache[country];
+  if (existing && !existing.__loading &&
+      Object.keys(existing).filter(k => !k.startsWith('__')).length > 0) return;
+
+  // 1) Seed instantly from the baked snapshot, if present.
+  const baked = prebakedIndicators[country];
+  const hasBaked = baked && Object.keys(baked).length > 0;
+  if (hasBaked) {
+    countryDataCache[country] = { ...baked, __source: 'baked' };
+  } else {
+    countryDataCache[country] = { __loading: true };
+  }
+  ca_rerenderIfOpen(country);
+
+  // 2) Live background refresh — failures are silent; baked data is kept.
+  const iso = ca_getIso(country);
   const allIds = new Set();
   for (const tab of CA_TABS) {
     for (const ind of CA_INDICATORS[tab] || []) {
@@ -6738,25 +6790,22 @@ async function ca_loadCountryData(country) {
     }
   }
 
-  const results = { __loading: false };
+  const results = {};
   await Promise.all([...allIds].map(async id => {
     const res = await ca_fetchIndicator(iso, id);
     if (res) results[id] = res;
   }));
 
-  countryDataCache[country] = results;
-
-  // Re-render project detail section if this country is open
-  if (selectedRequest && selectedRequest.country === country) {
-    const mountEl = document.getElementById('ca-section-mount');
-    if (mountEl) ca_renderSection(country);
+  if (Object.keys(results).length > 0) {
+    // Live wins where present; keep baked values for anything the API dropped.
+    countryDataCache[country] = { ...(baked || {}), ...results, __source: 'live' };
+  } else if (!hasBaked) {
+    // No live data and no baked data → mark done so the UI shows "—", not a spinner.
+    countryDataCache[country] = { __loaded: true };
   }
+  // else: live empty but baked present → keep the baked cache already set.
 
-  // Re-render country drawer overview/indicators if the drawer is open for this country
-  if (cdCountry === country && document.getElementById('drawer')?.classList.contains('open')) {
-    if (cdActiveTab === 'overview') cdRenderOverview();
-    else if (cdActiveTab === 'indicators') cdRenderIndicators();
-  }
+  ca_rerenderIfOpen(country);
 }
 
 function ca_formatValue(raw, ind) {
@@ -6786,7 +6835,7 @@ function ca_formatValue(raw, ind) {
 function ca_renderTabContent(country, tabKey) {
   const inds    = CA_INDICATORS[tabKey] || [];
   const data    = countryDataCache[country] || {};
-  const loading = !data || data.__loading || Object.keys(data).length <= 1;
+  const loading = !data || data.__loading || Object.keys(data).length === 0;
   const iso     = ca_getIso(country);
   const oecUrl  = `https://oec.world/en/profile/country/${iso.toLowerCase()}`;
 
@@ -7003,6 +7052,7 @@ const COUNTRY_ISO2 = {
 
 // ── Init ──────────────────────────────────────────────────────────────────
 applyTranslations();
+loadPrebakedIndicators();   // hydrate the static WB indicator snapshot (non-blocking)
 renderBudgetBars(); renderStatsBar();
 renderPipeline();
 renderSettings('general');

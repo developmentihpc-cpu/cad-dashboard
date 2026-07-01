@@ -1,43 +1,43 @@
 {
  "_meta": {
-  "generated": "2026-06-01T07:20:44+00:00",
+  "generated": "2026-07-01T12:57:11+00:00",
   "source": "World Bank Open Data API (api.worldbank.org)",
   "countries": 85,
   "indicators": 65,
-  "datapoints": 4400
+  "datapoints": 4471
  },
  "Afghanistan": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 2.26694373649188,
-   "year": "2023"
+   "value": 1.87319280045979,
+   "year": "2024"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 2201.72290691677,
    "year": "2023"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": -6.60118564073725,
+   "value": -6.60118564073726,
    "year": "2024"
-  },
-  "BN.CAB.XOKA.GD.ZS": {
-   "value": -15.7183027911684,
-   "year": "2020"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 13.351,
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 42647492,
-   "year": "2024"
+   "value": 43844111,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 63.5585008355948,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 82.7768483158234,
+  "SP.DYN.LE00.IN": {
+   "value": 66.289,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 81.7735722442193,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 53,
@@ -100,8 +100,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 34.7432471445174,
-   "year": "2023"
+   "value": 34.2931004992905,
+   "year": "2024"
   },
   "AG.LND.ARBL.ZS": {
    "value": 12.0294987964368,
@@ -120,16 +120,16 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 74.2992647363812,
-   "year": "2024"
+   "value": 74.0598355300102,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 91271896894.46,
    "year": "2023"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 67.5846651516385,
-   "year": "2023"
+   "value": 83.763025087768,
+   "year": "2024"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
    "value": 0.144466946606861,
@@ -179,10 +179,6 @@
    "value": 41.0575140034026,
    "year": "2024"
   },
-  "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.01,
-   "year": "2019"
-  },
   "IT.MLT.MAIN.P2": {
    "value": 0.438943551019387,
    "year": "2023"
@@ -196,54 +192,58 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 46.0870936659706,
-   "year": "2020"
+   "value": 37.9483109911724,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 1031379,
    "year": "2023"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 25.7007352636188,
-   "year": "2024"
+   "value": 25.9401644699898,
+   "year": "2025"
   }
  },
  "Albania": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 4.04592845095348,
-   "year": "2024"
+   "value": 3.78893836241024,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 26701.6749563776,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 2.21587375089991,
-   "year": "2024"
+   "value": 2.14618551167388,
+   "year": "2025"
   },
   "GC.DOD.TOTL.GD.ZS": {
    "value": 49.9643490499689,
    "year": "2024"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": -2.39554639266203,
-   "year": "2024"
+   "value": -0.526880926102827,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 10.926,
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 2377128,
-   "year": "2024"
+   "value": 2349580,
+   "year": "2025"
   },
   "EN.POP.DNST": {
-   "value": 88.1056569343066,
+   "value": 88.0167153284672,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 50.9742938346485,
+  "SP.DYN.LE00.IN": {
+   "value": 79.776,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 52.0410467729505,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 9.2,
@@ -306,11 +306,11 @@
    "year": "2021"
   },
   "EG.USE.PCAP.KG.OE": {
-   "value": 888.463855695385,
+   "value": 889.361655638963,
    "year": "2023"
   },
   "EG.USE.ELEC.KH.PC": {
-   "value": 2888.86725667383,
+   "value": 2891.78648050428,
    "year": "2023"
   },
   "EG.CFT.ACCS.ZS": {
@@ -318,8 +318,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 15.4519031294331,
-   "year": "2024"
+   "value": 14.7972607481894,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 21.5583941605839,
@@ -338,19 +338,19 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 41.4536365956445,
-   "year": "2024"
+   "value": 41.128525668933,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 63473299185.7041,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 79.4546360752224,
-   "year": "2024"
+   "value": 79.5328146239161,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 6.32349466068578,
+   "value": 6.32558905401363,
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
@@ -398,8 +398,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.01,
-   "year": "2022"
+   "value": 0.07,
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 5.92385104047081,
@@ -414,34 +414,34 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 15.7070036417042,
-   "year": "2020"
+   "value": 15.5141032036885,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 374800,
    "year": "2023"
   },
   "IS.SHP.GOOD.TU": {
-   "value": 145762,
-   "year": "2019"
+   "value": 184017,
+   "year": "2023"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 58.5463634043555,
-   "year": "2024"
+   "value": 58.871474331067,
+   "year": "2025"
   }
  },
  "Algeria": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 3.69999999907979,
-   "year": "2024"
+   "value": 3.815543719231,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 17620.7423956126,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 4.04611455313434,
-   "year": "2024"
+   "value": 1.41835151429016,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": -1.0224994485325,
@@ -452,16 +452,20 @@
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 46814308,
-   "year": "2024"
+   "value": 47435312,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 19.3825602290762,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 58.5067834220209,
+  "SP.DYN.LE00.IN": {
+   "value": 76.475,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 58.0563649914135,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 21.6,
@@ -524,8 +528,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 13.9597061505767,
-   "year": "2024"
+   "value": 14.5120041000651,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 3.16197401899452,
@@ -544,16 +548,16 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 24.7207092809382,
-   "year": "2024"
+   "value": 24.1812641930123,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 824902861696.865,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 40.1345741170703,
-   "year": "2024"
+   "value": 38.9789440161631,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
    "value": 0.455370730483787,
@@ -616,54 +620,58 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 25.5526558310447,
-   "year": "2020"
+   "value": 16.5394687279881,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 7160662.35,
    "year": "2023"
   },
   "IS.SHP.GOOD.TU": {
-   "value": 1541273,
-   "year": "2020"
+   "value": 1827788,
+   "year": "2024"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 75.2792907190618,
-   "year": "2024"
+   "value": 75.8187358069877,
+   "year": "2025"
   }
  },
  "Angola": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 4.42390664406875,
-   "year": "2024"
+   "value": 3.13353542450008,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 10118.6089945408,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 28.2404948915772,
-   "year": "2024"
+   "value": 20.1620197572331,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": 6.24744044837087,
-   "year": "2024"
+   "value": 0.438853402848038,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 14.108,
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 37885849,
-   "year": "2024"
+   "value": 39040039,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 29.4777460495709,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 89.4060806363382,
+  "SP.DYN.LE00.IN": {
+   "value": 64.805,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 88.6557825017491,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 49,
@@ -738,8 +746,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 22.0693262844667,
-   "year": "2024"
+   "value": 25.2409853888143,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 4.31940322451271,
@@ -758,23 +766,23 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 29.3448620963565,
-   "year": "2024"
+   "value": 28.5384084823915,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 383352092457.214,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 50.8422305562091,
-   "year": "2024"
+   "value": 34.6466403704517,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": -1.0986881170909,
+   "value": -1.07650107199669,
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
-   "value": 7.7443637441998,
+   "value": 7.58797309525612,
    "year": "2024"
   },
   "SH.H2O.BASW.ZS": {
@@ -814,8 +822,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.02,
-   "year": "2022"
+   "value": 0.05,
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 0.21186538541079,
@@ -830,26 +838,26 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 25.1452381976267,
-   "year": "2020"
+   "value": 19.9075690536367,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 1321412,
    "year": "2023"
   },
   "IS.SHP.GOOD.TU": {
-   "value": 654590,
-   "year": "2022"
+   "value": 709221,
+   "year": "2024"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 70.6551379036435,
-   "year": "2024"
+   "value": 71.4615915176085,
+   "year": "2025"
   }
  },
  "Argentina": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": -1.34293072157739,
-   "year": "2024"
+   "value": 4.36733330217022,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 30431.1931223693,
@@ -860,24 +868,28 @@
    "year": "2024"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": 0.893118418089374,
-   "year": "2024"
+   "value": -1.10988825977293,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 7.145,
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 45696159,
-   "year": "2024"
+   "value": 45851378,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 16.6399559321662,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 51.5609570038159,
+  "SP.DYN.LE00.IN": {
+   "value": 77.543,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 50.7162339547915,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 9.5,
@@ -952,8 +964,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 5.80601710915959,
-   "year": "2024"
+   "value": 5.53265388071299,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 14.7577340144481,
@@ -972,16 +984,16 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 7.7257684027048,
-   "year": "2024"
+   "value": 7.64807783848271,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 1390588639479.49,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 27.929760849367,
-   "year": "2024"
+   "value": 30.364633685192,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
    "value": 1.82409522925391,
@@ -1020,8 +1032,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.03,
-   "year": "2022"
+   "value": 0.02,
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 14.0529010326667,
@@ -1036,58 +1048,62 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 14.9081737974407,
-   "year": "2020"
+   "value": 14.3465949932455,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 21057811,
    "year": "2023"
   },
   "IS.SHP.GOOD.TU": {
-   "value": 1667161,
-   "year": "2022"
+   "value": 1471434,
+   "year": "2024"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 92.2742315972952,
-   "year": "2024"
+   "value": 92.3519221615173,
+   "year": "2025"
   }
  },
  "Armenia": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 5.90000000046228,
-   "year": "2024"
+   "value": 7.2,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 22823.1795255693,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 0.269511978259125,
-   "year": "2024"
+   "value": 3.30693341072904,
+   "year": "2025"
   },
   "GC.DOD.TOTL.GD.ZS": {
    "value": 47.8813384886388,
    "year": "2024"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": -4.60216691099963,
-   "year": "2024"
+   "value": -7.21847140363209,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 12.871,
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 3033500,
-   "year": "2024"
+   "value": 3086700,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 105.119108748259,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 49.1198808417762,
+  "SP.DYN.LE00.IN": {
+   "value": 78.319512195122,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 50.2187800971675,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 9.6,
@@ -1162,8 +1178,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 7.80588621754673,
-   "year": "2024"
+   "value": 7.93468177320685,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 15.6598854445336,
@@ -1182,16 +1198,16 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 34.1886328550099,
-   "year": "2024"
+   "value": 34.0712984410128,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 69234115090.8145,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 150.064726588742,
-   "year": "2024"
+   "value": 101.705936395702,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
    "value": 0.506878336560983,
@@ -1254,8 +1270,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 9.78,
-   "year": "2022"
+   "value": 8.28,
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 9.99811691281306,
@@ -1270,50 +1286,54 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 30.5796334750125,
-   "year": "2020"
+   "value": 28.5532304553511,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 1311506,
    "year": "2023"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 65.8113671449901,
-   "year": "2024"
+   "value": 65.9287015589872,
+   "year": "2025"
   }
  },
  "Azerbaijan": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 4.07140205008956,
-   "year": "2024"
+   "value": 1.44985591122698,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 25088.9993757134,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 2.21217188919901,
-   "year": "2024"
+   "value": 5.62208788068338,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": 6.2854774135843,
-   "year": "2024"
+   "value": 4.57619393620153,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 5.457,
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 10202830,
-   "year": "2024"
+   "value": 10246996,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 122.854906231095,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 43.6108909062656,
+  "SP.DYN.LE00.IN": {
+   "value": 74.576,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 43.6138885770503,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 17.9,
@@ -1392,8 +1412,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 5.65717090005303,
-   "year": "2024"
+   "value": 5.92521728352983,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 25.307924984876,
@@ -1412,24 +1432,24 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 41.426204162283,
-   "year": "2024"
+   "value": 41.3628975718825,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 255978795500.51,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 82.6898691594703,
-   "year": "2024"
+   "value": 79.8295815452306,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 0.311206693209432,
+   "value": 0.310746244591944,
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
-   "value": 17.7860607300996,
-   "year": "2023"
+   "value": 17.3014403568645,
+   "year": "2024"
   },
   "SH.H2O.SMDW.ZS": {
    "value": 57.8118283196096,
@@ -1476,8 +1496,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.07,
-   "year": "2022"
+   "value": 0.04,
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 12.8228619590412,
@@ -1492,50 +1512,54 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 21.7269999756599,
-   "year": "2020"
+   "value": 23.7138875571912,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 2581841,
    "year": "2023"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 58.573795837717,
-   "year": "2024"
+   "value": 58.6371024281175,
+   "year": "2025"
   }
  },
  "Bangladesh": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 4.22325911250161,
-   "year": "2024"
+   "value": 3.48990671836833,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 9646.76984383255,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 10.4657482763412,
-   "year": "2024"
+   "value": 8.7687628116114,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": -0.669466607987832,
-   "year": "2024"
+   "value": -0.0524732355435052,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 3.778,
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 173562364,
-   "year": "2024"
+   "value": 175686899,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 1319.17979689183,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 52.6423780619832,
+  "SP.DYN.LE00.IN": {
+   "value": 74.93,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 52.2398280353678,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 30.5,
@@ -1614,8 +1638,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 11.1648014276903,
-   "year": "2024"
+   "value": 11.4240222467121,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 60.6277888905986,
@@ -1634,16 +1658,16 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 67.3216803676693,
-   "year": "2024"
+   "value": 66.7604152956025,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 1674316179059.49,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 26.7780758040478,
-   "year": "2024"
+   "value": 27.9505840425563,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
    "value": 0.283870773350074,
@@ -1718,54 +1742,58 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 42.3813762359965,
-   "year": "2020"
+   "value": 69.2525518340174,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 6628497,
    "year": "2023"
   },
   "IS.SHP.GOOD.TU": {
-   "value": 3200236,
-   "year": "2022"
+   "value": 3353732,
+   "year": "2024"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 32.6783196323307,
-   "year": "2024"
+   "value": 33.2395847043975,
+   "year": "2025"
   }
  },
  "Bolivia": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": -1.12335595517212,
-   "year": "2024"
+   "value": -1.58237567348246,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 12877.6351184372,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 5.09976568317427,
-   "year": "2024"
+   "value": 19.517120804733,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": -2.37784777133423,
-   "year": "2024"
+   "value": -1.87992802763714,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 2.967,
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 12413315,
-   "year": "2024"
+   "value": 12581843,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 11.3026483891812,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 54.8659781441531,
+  "SP.DYN.LE00.IN": {
+   "value": 68.739,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 54.2742478853241,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 15.7,
@@ -1856,8 +1884,8 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 28.7638546226012,
-   "year": "2024"
+   "value": 28.4368962734131,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 159854141180.224,
@@ -1916,8 +1944,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.03,
-   "year": "2022"
+   "value": 0.09,
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 2.97201835287351,
@@ -1932,37 +1960,37 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 22.879459074231,
-   "year": "2020"
+   "value": 28.1374394437756,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 5601302.305,
    "year": "2023"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 71.2361453773988,
-   "year": "2024"
+   "value": 71.5631037265869,
+   "year": "2025"
   }
  },
  "Botswana": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": -2.98986879467928,
-   "year": "2024"
+   "value": -0.733898323852287,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 20538.1320178889,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 2.81835131676251,
-   "year": "2024"
+   "value": 2.6597506179431,
+   "year": "2025"
   },
   "GC.DOD.TOTL.GD.ZS": {
-   "value": 19.6161332466694,
-   "year": "2020"
+   "value": 19.7464546226653,
+   "year": "2023"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": -4.23221726436584,
+   "value": -4.25763140157322,
    "year": "2024"
   },
   "SL.UEM.TOTL.ZS": {
@@ -1970,16 +1998,20 @@
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 2521139,
-   "year": "2024"
+   "value": 2562122,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 4.37641204806522,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 56.655146530662,
+  "SP.DYN.LE00.IN": {
+   "value": 69.293,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 56.3467509263192,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 33.3,
@@ -2042,8 +2074,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 1.71216219230959,
-   "year": "2024"
+   "value": 1.78116253805865,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 0.458772254865633,
@@ -2062,24 +2094,24 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 32.5376462161582,
-   "year": "2024"
+   "value": 32.0440438467898,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 51779485617.4484,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 71.1052579052124,
-   "year": "2024"
+   "value": 69.5446677858652,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 2.40833479893043,
+   "value": 2.42279666305462,
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
-   "value": 22.4882379305614,
-   "year": "2024"
+   "value": 22.4198951581769,
+   "year": "2023"
   },
   "SH.H2O.SMDW.ZS": {
    "value": 63.2910412393649,
@@ -2118,8 +2150,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.16,
-   "year": "2022"
+   "value": 0.33,
+   "year": "2023"
   },
   "IT.MLT.MAIN.P2": {
    "value": 3.2993817476942,
@@ -2134,54 +2166,58 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 18.9057549925814,
-   "year": "2020"
+   "value": 13.2435593608353,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 172720,
    "year": "2023"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 67.4623537838418,
-   "year": "2024"
+   "value": 67.9559561532102,
+   "year": "2025"
   }
  },
  "Burkina Faso": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 4.79980951667159,
-   "year": "2024"
+   "value": 5.29461839319283,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 2895.89152033665,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 4.19081721344523,
-   "year": "2024"
+   "value": -0.586235316330579,
+   "year": "2025"
   },
   "GC.DOD.TOTL.GD.ZS": {
-   "value": 61.9320439111455,
-   "year": "2023"
+   "value": 64.1848911988902,
+   "year": "2024"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": -5.05747162530599,
-   "year": "2023"
+   "value": -3.96877055984497,
+   "year": "2024"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 3.477,
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 23548781,
-   "year": "2024"
+   "value": 24074580,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 84.1585380116959,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 80.0303169928442,
+  "SP.DYN.LE00.IN": {
+   "value": 61.292,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 78.1075218541557,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 74.9,
@@ -2260,8 +2296,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 20.9326147949123,
-   "year": "2024"
+   "value": 19.9429410767908,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 28.9012744883041,
@@ -2280,24 +2316,24 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 71.6647485103338,
-   "year": "2024"
+   "value": 71.0773639280915,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 68194715212.1648,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 60.5024222912348,
-   "year": "2024"
+   "value": 65.0029506969427,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 0.358681465803854,
+   "value": -0.874048616893636,
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
-   "value": 18.5514879945332,
-   "year": "2023"
+   "value": 18.6826372667856,
+   "year": "2024"
   },
   "SI.POV.GINI": {
    "value": 37.4,
@@ -2349,7 +2385,7 @@
   },
   "TX.VAL.ICTG.ZS.UN": {
    "value": 0.01,
-   "year": "2021"
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 0.347015839163819,
@@ -2364,50 +2400,54 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 58.4706762025055,
-   "year": "2020"
+   "value": 37.3246424541393,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 103592,
    "year": "2023"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 28.3352514896662,
-   "year": "2024"
+   "value": 28.9226360719085,
+   "year": "2025"
   }
  },
  "Burundi": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 4.11227376264944,
-   "year": "2024"
+   "value": 4.24010529884178,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 1194.94681370387,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 20.2124925027847,
-   "year": "2024"
+   "value": 34.1339985744832,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": -15.409441689843,
-   "year": "2024"
+   "value": -13.7148163176015,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 0.922,
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 14047786,
-   "year": "2024"
+   "value": 14390003,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 533.078271028037,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 89.5041466801602,
+  "SP.DYN.LE00.IN": {
+   "value": 63.818,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 87.018537835051,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 47.1,
@@ -2470,8 +2510,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 34.9089728751407,
-   "year": "2024"
+   "value": 34.289723106363,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 51.4488629283489,
@@ -2490,19 +2530,19 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 75.1697161348975,
-   "year": "2024"
+   "value": 74.3129815318337,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 16786357120.2939,
    "year": "2024"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 1.08105925624791,
+   "value": 1.0970222856868,
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
-   "value": 12.6333374587306,
+   "value": 12.6719556010603,
    "year": "2021"
   },
   "SH.H2O.BASW.ZS": {
@@ -2538,8 +2578,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.1,
-   "year": "2022"
+   "value": 0.05,
+   "year": "2023"
   },
   "IT.MLT.MAIN.P2": {
    "value": 0.10492021228026,
@@ -2554,50 +2594,54 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 29.6541345084659,
-   "year": "2020"
+   "value": 35.6918123934643,
+   "year": "2023"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 24.8302838651025,
-   "year": "2024"
+   "value": 25.6870184681663,
+   "year": "2025"
   }
  },
  "Cambodia": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 5.97510939607335,
-   "year": "2024"
+   "value": 5.34932084572877,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 7966.87352428705,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 0.808042016536654,
-   "year": "2024"
+   "value": 2.35127105896507,
+   "year": "2025"
   },
   "GC.DOD.TOTL.GD.ZS": {
    "value": 50.3420177209934,
    "year": "2023"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": 0.492098922813661,
-   "year": "2024"
+   "value": -3.6418344436232,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 0.263,
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 17638801,
-   "year": "2024"
+   "value": 17847982,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 98.7076818490823,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 56.1447301469383,
+  "SP.DYN.LE00.IN": {
+   "value": 70.817,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 55.9439537843445,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 18.4,
@@ -2672,8 +2716,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 16.576872609135,
-   "year": "2024"
+   "value": 16.1106828275296,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 23.3409228416044,
@@ -2692,16 +2736,16 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 59.1272966747271,
-   "year": "2024"
+   "value": 58.89438060599,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 140526096687.068,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 143.447009703011,
-   "year": "2024"
+   "value": 136.089748673383,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
    "value": 9.48089832015712,
@@ -2756,8 +2800,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 2.53,
-   "year": "2021"
+   "value": 1.46,
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 0.164863813589144,
@@ -2772,34 +2816,34 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 24.1436022803452,
-   "year": "2020"
+   "value": 19.4262068786841,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 675283,
    "year": "2023"
   },
   "IS.SHP.GOOD.TU": {
-   "value": 732387,
-   "year": "2021"
+   "value": 1030000,
+   "year": "2024"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 40.8727033252729,
-   "year": "2024"
+   "value": 41.10561939401,
+   "year": "2025"
   }
  },
  "Cameroon": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 3.52472308052245,
-   "year": "2024"
+   "value": 3.20000015616144,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 5588.98645861945,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 4.53331349711606,
-   "year": "2024"
+   "value": 3.40373458279055,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": -3.28354247246706,
@@ -2810,16 +2854,20 @@
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 29123744,
-   "year": "2024"
+   "value": 29879337,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 60.0213386642973,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 79.3304617054918,
+  "SP.DYN.LE00.IN": {
+   "value": 63.968,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 78.3643636318919,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 64.8,
@@ -2882,8 +2930,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 18.4619478775351,
-   "year": "2024"
+   "value": 16.8466307383509,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 13.1158638488714,
@@ -2902,16 +2950,16 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 44.5968251390922,
-   "year": "2024"
+   "value": 44.3307958338677,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 162772210840.299,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 34.4031785915423,
-   "year": "2024"
+   "value": 33.3842706629963,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
    "value": 1.66655391243674,
@@ -2966,8 +3014,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.17,
-   "year": "2018"
+   "value": 0.02,
+   "year": "2023"
   },
   "IT.MLT.MAIN.P2": {
    "value": 0.231793686965522,
@@ -2982,50 +3030,54 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 39.8126251004519,
-   "year": "2020"
+   "value": 55.603592684544,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 331025,
    "year": "2023"
   },
   "IS.SHP.GOOD.TU": {
-   "value": 366667,
-   "year": "2020"
+   "value": 350000,
+   "year": "2024"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 55.4031748609078,
-   "year": "2024"
+   "value": 55.6692041661323,
+   "year": "2025"
   }
  },
  "Chad": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 4.19925854085865,
-   "year": "2024"
+   "value": 5.58988021765651,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 2742.65952183613,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 8.89950732263754,
-   "year": "2024"
+   "value": -3.9119812440659,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 1.057,
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 20299123,
-   "year": "2024"
+   "value": 21003705,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 15.342331639136,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 92.9204543197374,
+  "SP.DYN.LE00.IN": {
+   "value": 55.238,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 92.6061106803711,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 97.3,
@@ -3092,8 +3144,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 37.6986952016608,
-   "year": "2024"
+   "value": 36.3366564080775,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 4.20902160101652,
@@ -3112,19 +3164,19 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 73.0684707610503,
-   "year": "2024"
+   "value": 72.4341213663135,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 55673582980.8728,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 47.8679892951699,
-   "year": "2024"
+   "value": 46.1321498031281,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 5.2230945466515,
+   "value": 5.12132130084841,
    "year": "2024"
   },
   "SI.POV.GINI": {
@@ -3192,50 +3244,54 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 49.1388484128027,
-   "year": "2020"
+   "value": 42.9595249298994,
+   "year": "2023"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 26.9315292389497,
-   "year": "2024"
+   "value": 27.5658786336865,
+   "year": "2025"
   }
  },
  "Colombia": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 1.5983315366523,
-   "year": "2024"
+   "value": 2.64201548985928,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 22349.436440123,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 6.60908593728228,
-   "year": "2024"
+   "value": 5.14222911946201,
+   "year": "2025"
   },
   "GC.DOD.TOTL.GD.ZS": {
-   "value": 71.4831261616001,
+   "value": 71.1965371181288,
    "year": "2024"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": -1.67431987455953,
-   "year": "2024"
+   "value": -2.37924247045499,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 8.29,
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 52886363,
-   "year": "2024"
+   "value": 53425635,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 47.1574150518251,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 42.9603769785689,
+  "SP.DYN.LE00.IN": {
+   "value": 77.913,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 43.2521594151681,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 11.5,
@@ -3306,8 +3362,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 9.28279635992211,
-   "year": "2024"
+   "value": 9.94576430260876,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 2.29770166741776,
@@ -3326,23 +3382,23 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 21.4789188133885,
-   "year": "2024"
+   "value": 21.2172085248849,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 1181980408417.77,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 37.0254687077888,
-   "year": "2024"
+   "value": 35.3689564685036,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 3.26725954832527,
+   "value": 3.25416050189283,
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
-   "value": 15.2812370353891,
+   "value": 15.2199717362872,
    "year": "2024"
   },
   "SI.POV.GINI": {
@@ -3398,8 +3454,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.29,
-   "year": "2021"
+   "value": 0.35,
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 11.9425247676797,
@@ -3414,26 +3470,26 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 14.1832514905064,
-   "year": "2020"
+   "value": 18.3566187713727,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 42399044,
    "year": "2023"
   },
   "IS.SHP.GOOD.TU": {
-   "value": 4480670,
-   "year": "2022"
+   "value": 5188127,
+   "year": "2024"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 78.5210811866115,
-   "year": "2024"
+   "value": 78.7827914751151,
+   "year": "2025"
   }
  },
  "Congo, Dem. Rep.": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 6.12675551779212,
-   "year": "2024"
+   "value": 5.75924471639999,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 1821.04868718058,
@@ -3444,24 +3500,28 @@
    "year": "2022"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": -3.83224740625142,
-   "year": "2024"
+   "value": -4.33288123454985,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 4.434,
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 109276265,
-   "year": "2024"
+   "value": 112832473,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 46.6640484329856,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 96.4966566644987,
+  "SP.DYN.LE00.IN": {
+   "value": 62.074,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 96.2079825806326,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 89.7,
@@ -3532,8 +3592,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 9.63547904603754,
-   "year": "2024"
+   "value": 8.92986514046357,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 6.571475618094,
@@ -3552,19 +3612,19 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 55.2544195591247,
-   "year": "2024"
+   "value": 54.8864366957849,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 198997398918.247,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 100.554088317275,
-   "year": "2024"
+   "value": 87.3342878785207,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 4.10789956662809,
+   "value": 3.84997694352814,
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
@@ -3617,7 +3677,7 @@
   },
   "TX.VAL.ICTG.ZS.UN": {
    "value": 0.01,
-   "year": "2021"
+   "year": "2023"
   },
   "IT.MLT.MAIN.P2": {
    "value": 0,
@@ -3632,34 +3692,30 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 26.6494833206385,
-   "year": "2020"
+   "value": 35.8125021813766,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 1150169.673,
    "year": "2023"
   },
-  "IS.SHP.GOOD.TU": {
-   "value": 42211,
-   "year": "2019"
-  },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 44.7455804408753,
-   "year": "2024"
+   "value": 45.1135633042151,
+   "year": "2025"
   }
  },
  "Côte d'Ivoire": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 6.01953461940062,
-   "year": "2024"
+   "value": 6.4999999999999,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 7669.23195715687,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 3.45053028131018,
-   "year": "2024"
+   "value": 0.125038772593104,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": -4.46811097764034,
@@ -3670,16 +3726,20 @@
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 31934230,
-   "year": "2024"
+   "value": 32711547,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 98.0052012578616,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 76.9295481519821,
+  "SP.DYN.LE00.IN": {
+   "value": 62.11,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 75.774285110462,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 64.5,
@@ -3754,8 +3814,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 15.8594343780948,
-   "year": "2024"
+   "value": 16.7636825512357,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 15.1038040880503,
@@ -3774,16 +3834,16 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 46.0266886059858,
-   "year": "2024"
+   "value": 45.4510498549239,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 244911017243.198,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 51.2640379409119,
-   "year": "2024"
+   "value": 54.5579069336573,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
    "value": 3.58346670744132,
@@ -3846,8 +3906,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.03,
-   "year": "2020"
+   "value": 0.26,
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 0.766268671579055,
@@ -3862,54 +3922,58 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 49.4977827339493,
-   "year": "2020"
+   "value": 20.3873194822538,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 716233,
    "year": "2023"
   },
   "IS.SHP.GOOD.TU": {
-   "value": 1042418,
-   "year": "2021"
+   "value": 1802000,
+   "year": "2024"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 53.9733113940142,
-   "year": "2024"
+   "value": 54.5489501450761,
+   "year": "2025"
   }
  },
  "Ecuador": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": -2.00125476341026,
-   "year": "2024"
+   "value": 3.72594857272087,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 15840.2668567412,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 1.54732515615369,
-   "year": "2024"
+   "value": 0.710469324989076,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": 5.65042910612946,
-   "year": "2024"
+   "value": 5.90700735541175,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 3.308,
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 18135478,
-   "year": "2024"
+   "value": 18289896,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 72.3952448059269,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 48.8091845545471,
+  "SP.DYN.LE00.IN": {
+   "value": 77.579,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 48.1380745343627,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 12.9,
@@ -3988,8 +4052,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 9.47610095074641,
-   "year": "2024"
+   "value": 9.70295482246867,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 4.13915284264777,
@@ -4008,19 +4072,19 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 36.7623067602398,
-   "year": "2024"
+   "value": 36.6081810941738,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 287270811094.559,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 57.2031395531255,
-   "year": "2024"
+   "value": 59.3567812036511,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 0.355365031150455,
+   "value": 0.360313100049938,
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
@@ -4080,8 +4144,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.04,
-   "year": "2021"
+   "value": 0.05,
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 6.71806941068771,
@@ -4096,54 +4160,58 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 16.6570210758922,
-   "year": "2020"
+   "value": 18.6084478897872,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 4567423,
    "year": "2023"
   },
   "IS.SHP.GOOD.TU": {
-   "value": 2682600,
-   "year": "2022"
+   "value": 2567040,
+   "year": "2024"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 63.2376932397602,
-   "year": "2024"
+   "value": 63.3918189058262,
+   "year": "2025"
   }
  },
  "Egypt": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 2.3991692678251,
-   "year": "2024"
+   "value": 4.39201068570188,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 19094.1449444111,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 28.2705899322082,
-   "year": "2024"
+   "value": 14.0735136645934,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": -5.68596233493642,
-   "year": "2024"
+   "value": -3.81547628555514,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 6.781,
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 116538258,
-   "year": "2024"
+   "value": 118365995,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 115.059291777588,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 59.0101954565221,
+  "SP.DYN.LE00.IN": {
+   "value": 71.806,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 58.2966196543545,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 22.4,
@@ -4218,8 +4286,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 13.7121128792805,
-   "year": "2024"
+   "value": 16.551922508574,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 3.11718318348486,
@@ -4238,19 +4306,19 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 57.1995636061596,
-   "year": "2024"
+   "value": 57.0956795074752,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 2225198389821.18,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 39.6007520873733,
-   "year": "2024"
+   "value": 51.334347878828,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 11.9719350883142,
+   "value": 11.9719351009449,
    "year": "2024"
   },
   "SI.POV.GINI": {
@@ -4306,8 +4374,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 2.38,
-   "year": "2022"
+   "value": 2.27,
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 11.3698035541255,
@@ -4322,58 +4390,62 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 54.8587056496436,
-   "year": "2020"
+   "value": 43.1460553382462,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 16672111.302,
    "year": "2023"
   },
   "IS.SHP.GOOD.TU": {
-   "value": 7765482,
-   "year": "2022"
+   "value": 8581339,
+   "year": "2024"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 42.8004363938404,
-   "year": "2024"
+   "value": 42.9043204925248,
+   "year": "2025"
   }
  },
  "El Salvador": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 2.60202016121069,
-   "year": "2024"
+   "value": 3.90594189242583,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 13264.027090968,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 0.853782292567288,
-   "year": "2024"
+   "value": 0.257570528307203,
+   "year": "2025"
   },
   "GC.DOD.TOTL.GD.ZS": {
-   "value": 105.804728748456,
+   "value": 107.276633162011,
    "year": "2024"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": -1.78863112269138,
-   "year": "2024"
+   "value": -3.54162941770512,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 3.303,
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 6338193,
-   "year": "2024"
+   "value": 6365503,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 304.518532818533,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 49.152974332256,
+  "SP.DYN.LE00.IN": {
+   "value": 72.302,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 48.5738966604908,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 10,
@@ -4452,8 +4524,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 4.38040930910144,
-   "year": "2024"
+   "value": 4.40281452790678,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 34.7972972972973,
@@ -4472,23 +4544,23 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 24.9325094897801,
-   "year": "2024"
+   "value": 24.4762876790049,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 84069963659.7839,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 84.6596461582312,
-   "year": "2024"
+   "value": 88.1580664327311,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 2.61241857793703,
+   "value": 3.01317166597907,
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
-   "value": 21.4969845858726,
+   "value": 21.7960402789815,
    "year": "2024"
   },
   "SI.POV.GINI": {
@@ -4540,8 +4612,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.4,
-   "year": "2022"
+   "value": 0.44,
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 13.9645637171352,
@@ -4556,20 +4628,20 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 20.0287144500145,
-   "year": "2020"
+   "value": 29.5862475987305,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 3263923,
    "year": "2023"
   },
   "IS.SHP.GOOD.TU": {
-   "value": 242307,
-   "year": "2022"
+   "value": 255017,
+   "year": "2024"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 75.0674905102199,
-   "year": "2024"
+   "value": 75.5237123209951,
+   "year": "2025"
   }
  },
  "Eritrea": {
@@ -4578,16 +4650,20 @@
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 3535603,
-   "year": "2024"
+   "value": 3607003,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 28.638732049164,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 73.4301367632134,
+  "SP.DYN.LE00.IN": {
+   "value": 68.893,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 71.9650482641175,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 34.3,
@@ -4662,8 +4738,8 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 65.4634475708008,
-   "year": "2024"
+   "value": 65.4595495744784,
+   "year": "2025"
   },
   "IT.NET.BBND.P2": {
    "value": 0.165393390775689,
@@ -4690,37 +4766,33 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 32.3515206386852,
-   "year": "2020"
+   "value": 33.6567997168068,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 45104.031,
    "year": "2020"
   },
-  "IS.SHP.GOOD.TU": {
-   "value": 27452.8,
-   "year": "2019"
-  },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 34.5365524291992,
-   "year": "2024"
+   "value": 34.5404504255216,
+   "year": "2025"
   }
  },
  "Ethiopia": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 7.61277447511073,
-   "year": "2024"
+   "value": 9.7715182202934,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 3287.53492158893,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 21.037746057771,
-   "year": "2024"
+   "value": 13.2296432836809,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": -2.53176480494864,
+   "value": -2.53176480495898,
    "year": "2024"
   },
   "SL.UEM.TOTL.ZS": {
@@ -4728,16 +4800,20 @@
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 132059767,
-   "year": "2024"
+   "value": 135472051,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 114.037952012,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 73.2798951679715,
+  "SP.DYN.LE00.IN": {
+   "value": 67.603,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 72.6383993060212,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 44.5,
@@ -4800,8 +4876,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 34.7737782043855,
-   "year": "2024"
+   "value": 32.8186147009719,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 14.5325559938566,
@@ -4820,23 +4896,23 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 76.3777160644531,
-   "year": "2024"
+   "value": 75.8903047911054,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 434151095749.397,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 17.4004358583187,
-   "year": "2024"
+   "value": 33.4597826561314,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 2.68582028016447,
+   "value": 2.68582028017543,
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
-   "value": 3.39819259731172,
+   "value": 3.39819259732558,
    "year": "2024"
   },
   "SI.POV.GINI": {
@@ -4892,8 +4968,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.71,
-   "year": "2021"
+   "value": 0.06,
+   "year": "2023"
   },
   "IT.MLT.MAIN.P2": {
    "value": 0.579763252194743,
@@ -4908,50 +4984,54 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 27.3053276470482,
-   "year": "2020"
+   "value": 23.8032820424199,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 15273254,
    "year": "2023"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 23.6222839355469,
-   "year": "2024"
+   "value": 24.1096952088946,
+   "year": "2025"
   }
  },
  "Ghana": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 5.59045469593266,
-   "year": "2024"
+   "value": 5.95441714756899,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 8019.99702389611,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 22.8483281157842,
-   "year": "2024"
+   "value": 14.2046755548989,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": 2.04180009736218,
-   "year": "2024"
+   "value": 8.22096928515243,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 2.979,
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 34427414,
-   "year": "2024"
+   "value": 35064272,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 148.49676310689,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 65.3615857268255,
+  "SP.DYN.LE00.IN": {
+   "value": 65.695,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 64.5206917510292,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 35.9,
@@ -5026,8 +5106,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 20.8867457674884,
-   "year": "2024"
+   "value": 21.2758634417128,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 20.6998545265961,
@@ -5046,23 +5126,23 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 41.6345131961419,
-   "year": "2024"
+   "value": 41.0753138526875,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 276107757820.439,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 69.7884227390592,
+   "value": 68.9668717609486,
    "year": "2024"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 2.14505298599888,
+   "value": 2.11980137105215,
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
-   "value": 12.3930984567288,
+   "value": 12.393098457103,
    "year": "2023"
   },
   "SH.H2O.SMDW.ZS": {
@@ -5110,8 +5190,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.02,
-   "year": "2019"
+   "value": 0.06,
+   "year": "2023"
   },
   "IT.MLT.MAIN.P2": {
    "value": 0.782388128251515,
@@ -5126,37 +5206,37 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 54.2427873097724,
-   "year": "2020"
+   "value": 28.143601284493,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 440680,
    "year": "2023"
   },
   "IS.SHP.GOOD.TU": {
-   "value": 1244245,
-   "year": "2022"
+   "value": 1701246,
+   "year": "2024"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 58.3654868038581,
-   "year": "2024"
+   "value": 58.9246861473125,
+   "year": "2025"
   }
  },
  "Guatemala": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 3.65186382894819,
-   "year": "2024"
+   "value": 4.28003207921405,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 14368.6605681815,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 2.86992752918294,
-   "year": "2024"
+   "value": 1.48841591086169,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": 2.88715534683158,
+   "value": 2.88674747767197,
    "year": "2024"
   },
   "SL.UEM.TOTL.ZS": {
@@ -5164,16 +5244,20 @@
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 18406359,
-   "year": "2024"
+   "value": 18687881,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 169.138092571855,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 57.2981463861187,
+  "SP.DYN.LE00.IN": {
+   "value": 72.746,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 56.2237303919704,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 20.5,
@@ -5252,8 +5336,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 9.7799315643005,
-   "year": "2024"
+   "value": 9.55178298050142,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 14.501679731243,
@@ -5272,23 +5356,23 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 44.0452972725237,
-   "year": "2024"
+   "value": 43.7027966986001,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 264474724767.092,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 47.344196760267,
-   "year": "2024"
+   "value": 46.527609355823,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 1.63251851384265,
+   "value": 1.63228788754296,
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
-   "value": 11.631601330964,
+   "value": 11.6299581317282,
    "year": "2024"
   },
   "SI.POV.GINI": {
@@ -5336,8 +5420,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.26,
-   "year": "2022"
+   "value": 0.2,
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 10.774939247898,
@@ -5352,37 +5436,37 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 21.6357355920496,
-   "year": "2020"
+   "value": 29.6792763049113,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 221478,
    "year": "2023"
   },
   "IS.SHP.GOOD.TU": {
-   "value": 1660504,
-   "year": "2022"
+   "value": 2010490,
+   "year": "2024"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 55.9547027274763,
-   "year": "2024"
+   "value": 56.2972033013999,
+   "year": "2025"
   }
  },
  "Guinea": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 5.35004659051708,
-   "year": "2024"
+   "value": 7.44709668357611,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 4565.3007888456,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 8.12313914948596,
-   "year": "2024"
+   "value": 3.54630163142885,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": -1.56673613616467,
+   "value": -1.56673613616474,
    "year": "2024"
   },
   "SL.UEM.TOTL.ZS": {
@@ -5390,16 +5474,20 @@
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 14754785,
-   "year": "2024"
+   "value": 15099727,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 58.6255412664822,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 79.7147834280458,
+  "SP.DYN.LE00.IN": {
+   "value": 60.904,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 78.6396897717819,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 92.1,
@@ -5442,8 +5530,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 30.9605751418076,
-   "year": "2024"
+   "value": 31.2924827047092,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 24.4184071300667,
@@ -5462,19 +5550,19 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 61.9286963311345,
-   "year": "2024"
+   "value": 61.4834665533438,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 67360031599.7472,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 97.7778177312748,
-   "year": "2024"
+   "value": 103.678013340369,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 5.60537419672227,
+   "value": 5.60537419672253,
    "year": "2024"
   },
   "SH.H2O.BASW.ZS": {
@@ -5526,33 +5614,33 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 43.7674450148382,
-   "year": "2020"
+   "value": 27.2639917651602,
+   "year": "2023"
   },
   "IS.SHP.GOOD.TU": {
-   "value": 250000,
-   "year": "2020"
+   "value": 286286,
+   "year": "2023"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 38.0713036688655,
-   "year": "2024"
+   "value": 38.5165334466562,
+   "year": "2025"
   }
  },
  "Haiti": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": -4.16963395808132,
-   "year": "2024"
+   "value": -2.71291075761471,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 3193.67136419915,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 26.9490564091987,
-   "year": "2024"
+   "value": 28.6427976686095,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": -0.575392767938853,
+   "value": -0.598367468302653,
    "year": "2024"
   },
   "SL.UEM.TOTL.ZS": {
@@ -5560,16 +5648,20 @@
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 11772557,
-   "year": "2024"
+   "value": 11906095,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 422.256821480406,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 55.9912955357223,
+  "SP.DYN.LE00.IN": {
+   "value": 65.119,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 55.2283478651774,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 52.8,
@@ -5624,8 +5716,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 15.8601607482058,
-   "year": "2024"
+   "value": 15.8072127258079,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 36.4658925979681,
@@ -5644,19 +5736,19 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 44.9627347518998,
-   "year": "2024"
+   "value": 44.3851144140058,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 37597678174.3023,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 22.2478853726107,
-   "year": "2024"
+   "value": 15.8854793452678,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 0.0792936453462934,
+   "value": 0.0824597396111034,
    "year": "2024"
   },
   "SH.H2O.BASW.ZS": {
@@ -5708,54 +5800,58 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 21.3502554448061,
-   "year": "2020"
+   "value": 15.8127594459366,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 74542,
    "year": "2023"
   },
   "IS.SHP.GOOD.TU": {
-   "value": 177042.75,
-   "year": "2020"
+   "value": 201514,
+   "year": "2024"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 55.0372652481002,
-   "year": "2024"
+   "value": 55.6148855859942,
+   "year": "2025"
   }
  },
  "Honduras": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 3.55397003296669,
-   "year": "2024"
+   "value": 3.75143102801252,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 7486.01869616445,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 4.60621098127107,
-   "year": "2024"
+   "value": 4.59657982325258,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": -4.45338023050688,
-   "year": "2024"
+   "value": 2.36278673646188,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 4.92,
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 10825703,
-   "year": "2024"
+   "value": 11005850,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 95.1367503798373,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 53.9383402159092,
+  "SP.DYN.LE00.IN": {
+   "value": 73.044,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 53.3854167029602,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 15,
@@ -5830,8 +5926,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 11.2186537185053,
-   "year": "2024"
+   "value": 13.3192833947532,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 9.09822146751274,
@@ -5850,19 +5946,19 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 41.2149271895171,
-   "year": "2024"
+   "value": 40.7482924099341,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 81041415057.1236,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 91.1101585856976,
-   "year": "2024"
+   "value": 91.507337541504,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 3.52903749551745,
+   "value": 1.29157460831069,
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
@@ -5918,8 +6014,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.33,
-   "year": "2021"
+   "value": 0.19,
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 4.24748397401998,
@@ -5934,54 +6030,58 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 20.3136833896573,
-   "year": "2020"
+   "value": 30.7188969730187,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 428443,
    "year": "2023"
   },
   "IS.SHP.GOOD.TU": {
-   "value": 923321,
-   "year": "2022"
+   "value": 905497,
+   "year": "2024"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 58.7850728104829,
-   "year": "2024"
+   "value": 59.2517075900659,
+   "year": "2025"
   }
  },
  "India": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 6.49476552383821,
-   "year": "2024"
+   "value": 7.56666179284244,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 11159.9856476091,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 4.95303550973656,
-   "year": "2024"
+   "value": 2.39884954182294,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": -0.818831370412112,
-   "year": "2024"
+   "value": -0.416854153498652,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 4.219,
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 1450935791,
-   "year": "2024"
+   "value": 1463865525,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 483.679010086809,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 46.5639973059355,
+  "SP.DYN.LE00.IN": {
+   "value": 72.235,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 46.1386620179175,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 26.6,
@@ -6060,8 +6160,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 16.2854335605917,
-   "year": "2024"
+   "value": 16.2342483910129,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 51.752057554344,
@@ -6080,23 +6180,23 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 64.6211027631611,
-   "year": "2024"
+   "value": 64.310844227604,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 16192422603162.4,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 44.6492935069676,
-   "year": "2024"
+   "value": 46.2682006859907,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 0.694133152879562,
+   "value": 0.721648483526777,
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
-   "value": 6.73444285965496,
+   "value": 6.93372148022965,
    "year": "2022"
   },
   "SI.POV.GINI": {
@@ -6152,8 +6252,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 2.77,
-   "year": "2022"
+   "value": 5.71,
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 2.70417879573832,
@@ -6168,54 +6268,58 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 48.3948115195574,
-   "year": "2020"
+   "value": 54.0522242217331,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 180415784.228,
    "year": "2023"
   },
   "IS.SHP.GOOD.TU": {
-   "value": 19717168,
-   "year": "2022"
+   "value": 23898000,
+   "year": "2024"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 35.3788972368389,
-   "year": "2024"
+   "value": 35.689155772396,
+   "year": "2025"
   }
  },
  "Indonesia": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 5.03034469419038,
-   "year": "2024"
+   "value": 5.10808904438025,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 16448.2755179559,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 2.18151273615189,
-   "year": "2024"
+   "value": 1.9133344329508,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": -0.614730822956647,
-   "year": "2024"
+   "value": -0.105263812011573,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 3.237,
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 283487931,
-   "year": "2024"
+   "value": 285721236,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 148.57692229227,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 46.8135550051726,
+  "SP.DYN.LE00.IN": {
+   "value": 71.288,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 46.6061121871889,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 17.7,
@@ -6294,8 +6398,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 12.6086658797584,
-   "year": "2024"
+   "value": 13.0995463199278,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 9.3962387268892,
@@ -6314,19 +6418,19 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 41.2490364612003,
-   "year": "2024"
+   "value": 40.6070936030016,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 4662887595103.26,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 42.572647301834,
-   "year": "2024"
+   "value": 43.3912070511204,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 1.73855500774354,
+   "value": 1.73855290316368,
    "year": "2024"
   },
   "SI.POV.GINI": {
@@ -6378,8 +6482,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 2.92,
-   "year": "2021"
+   "value": 2.66,
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 1.64194256297987,
@@ -6394,34 +6498,34 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 17.8814994983985,
-   "year": "2020"
+   "value": 20.8444642120249,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 97045784.754,
    "year": "2023"
   },
   "IS.SHP.GOOD.TU": {
-   "value": 12380584,
-   "year": "2022"
+   "value": 14709550,
+   "year": "2024"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 58.7509635387997,
-   "year": "2024"
+   "value": 59.3929063969984,
+   "year": "2025"
   }
  },
  "Iraq": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": -1.54525198318304,
-   "year": "2024"
+   "value": -2.15574219066178,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 14464.3186928173,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": -12.2969837587007,
-   "year": "2024"
+   "value": 0.303454715219382,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": 2.99186896502489,
@@ -6432,16 +6536,20 @@
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 46042015,
-   "year": "2024"
+   "value": 47020774,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 103.826155759795,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 66.6548244604985,
+  "SP.DYN.LE00.IN": {
+   "value": 72.424,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 65.2242230039068,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 21.8,
@@ -6492,8 +6600,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 3.39457505861722,
-   "year": "2024"
+   "value": 3.41368848141125,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 11.4458802662797,
@@ -6512,15 +6620,15 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 30.1138505891087,
-   "year": "2024"
+   "value": 30.0603260531895,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 665966378219.474,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 70.7087434748943,
+   "value": 77.1389393108395,
    "year": "2024"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
@@ -6592,41 +6700,37 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 38.1750699787954,
-   "year": "2020"
+   "value": 49.4713662187955,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 3756178,
    "year": "2023"
   },
-  "IS.SHP.GOOD.TU": {
-   "value": 932728.6,
-   "year": "2019"
-  },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 69.8861494108913,
-   "year": "2024"
+   "value": 69.9396739468105,
+   "year": "2025"
   }
  },
  "Jordan": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 2.48889409603647,
-   "year": "2024"
+   "value": 2.82660839845745,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 10821.4909765317,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 1.55659611283953,
-   "year": "2024"
+   "value": 1.76646490894206,
+   "year": "2025"
   },
   "GC.DOD.TOTL.GD.ZS": {
-   "value": 102.847276112668,
+   "value": 93.6205554347008,
    "year": "2023"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": -5.8601178450158,
+   "value": -5.33366328480029,
    "year": "2024"
   },
   "SL.UEM.TOTL.ZS": {
@@ -6634,16 +6738,20 @@
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 11552876,
-   "year": "2024"
+   "value": 11520684,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 128.828670856139,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 54.3009741648251,
+  "SP.DYN.LE00.IN": {
+   "value": 77.981,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 53.7274152854704,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 12.9,
@@ -6722,8 +6830,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 5.06726012545217,
-   "year": "2024"
+   "value": 5.56169367394688,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 2.29745253057639,
@@ -6742,23 +6850,19 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 7.0498606235714,
-   "year": "2024"
+   "value": 6.7914849880449,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 125019343386.99,
    "year": "2024"
   },
-  "NE.TRD.GNFS.ZS": {
-   "value": 99.6794477365724,
-   "year": "2024"
-  },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 3.06387579665258,
+   "value": 2.78862682935517,
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
-   "value": 17.0491301941353,
+   "value": 15.5196043957928,
    "year": "2023"
   },
   "SH.H2O.SMDW.ZS": {
@@ -6802,8 +6906,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.68,
-   "year": "2022"
+   "value": 0.34,
+   "year": "2023"
   },
   "IT.MLT.MAIN.P2": {
    "value": 4.20612148870982,
@@ -6818,58 +6922,62 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 28.7737639174179,
-   "year": "2020"
+   "value": 32.6320116469358,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 3731345,
    "year": "2023"
   },
   "IS.SHP.GOOD.TU": {
-   "value": 765662,
-   "year": "2021"
+   "value": 824199,
+   "year": "2024"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 92.9501393764286,
-   "year": "2024"
+   "value": 93.2085150119551,
+   "year": "2025"
   }
  },
  "Kazakhstan": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 4.99999999996936,
-   "year": "2024"
+   "value": 6.5,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 40890.9317694408,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 8.69082156104494,
-   "year": "2024"
+   "value": 11.3879454675914,
+   "year": "2025"
   },
   "GC.DOD.TOTL.GD.ZS": {
    "value": 20.8858497183933,
    "year": "2023"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": -2.72248099369069,
-   "year": "2024"
+   "value": -4.06579066364776,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 4.771,
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 20592571,
-   "year": "2024"
+   "value": 20843754,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 7.53050487091158,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 61.3593284528818,
+  "SP.DYN.LE00.IN": {
+   "value": 74.531,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 61.6556043520026,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 9.4,
@@ -6936,8 +7044,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 3.88229151651226,
-   "year": "2024"
+   "value": 3.7437914177142,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 10.9899988887654,
@@ -6956,8 +7064,8 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 37.927468415838,
-   "year": "2024"
+   "value": 37.6144430492013,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 842049415718.366,
@@ -6968,7 +7076,7 @@
    "year": "2024"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 0.678943746848058,
+   "value": 0.71809281452939,
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
@@ -7020,8 +7128,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 1.85,
-   "year": "2022"
+   "value": 0.87,
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 11.8649584843,
@@ -7036,33 +7144,33 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 20.0278724259165,
-   "year": "2020"
+   "value": 19.5961413356991,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 11884241.039,
    "year": "2023"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 62.072531584162,
-   "year": "2024"
+   "value": 62.3855569507987,
+   "year": "2025"
   }
  },
  "Kenya": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 4.72473994710138,
-   "year": "2024"
+   "value": 4.63261093844984,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 6644.13093243895,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 4.48978854243448,
-   "year": "2024"
+   "value": 4.06912878540729,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": -1.28786467215559,
+   "value": -1.28724447407872,
    "year": "2024"
   },
   "SL.UEM.TOTL.ZS": {
@@ -7070,16 +7178,20 @@
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 56432944,
-   "year": "2024"
+   "value": 57532493,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 95.2681371231706,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 66.1190997974295,
+  "SP.DYN.LE00.IN": {
+   "value": 63.834,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 64.6869771994706,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 38.8,
@@ -7146,8 +7258,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 22.4728462758555,
-   "year": "2024"
+   "value": 23.1599874772131,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 11.4175064467254,
@@ -7166,19 +7278,19 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 68.1062168278401,
-   "year": "2024"
+   "value": 67.7878807128255,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 374947868838.995,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 40.1860139968756,
-   "year": "2024"
+   "value": 37.5210445911226,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 0.385110027210407,
+   "value": 0.384924569449646,
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
@@ -7234,8 +7346,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.29,
-   "year": "2021"
+   "value": 0.37,
+   "year": "2023"
   },
   "IT.MLT.MAIN.P2": {
    "value": 0.101034955752087,
@@ -7250,69 +7362,73 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 24.3917906517518,
-   "year": "2020"
+   "value": 20.252365609383,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 5138290,
    "year": "2023"
   },
   "IS.SHP.GOOD.TU": {
-   "value": 1450000,
-   "year": "2022"
+   "value": 2005076,
+   "year": "2024"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 31.8937831721599,
-   "year": "2024"
+   "value": 32.2121192871745,
+   "year": "2025"
   }
  },
  "Kosovo": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 4.5730971681166,
-   "year": "2024"
+   "value": 3.59217142544483,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 17864.4160145118,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 1.61944994559476,
-   "year": "2024"
+   "value": 3.85953869869506,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": -8.32777389320408,
-   "year": "2024"
+   "value": -8.09995878318881,
+   "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 1594353,
+   "value": 1576876,
+   "year": "2025"
+  },
+  "SP.DYN.LE00.IN": {
+   "value": 78.222,
    "year": "2024"
   },
   "SP.POP.DPND": {
-   "value": 44.4772784115005,
-   "year": "2024"
+   "value": 43.8774253297262,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 8.7,
    "year": "2024"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 7.33520637426488,
-   "year": "2024"
+   "value": 7.36156167634088,
+   "year": "2025"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 49.6785556061006,
-   "year": "2024"
+   "value": 49.0739028349602,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 28482185265.9849,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 113.789651964133,
-   "year": "2024"
+   "value": 118.190884160552,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 7.67877491657097,
+   "value": 7.67480496325567,
    "year": "2024"
   },
   "SI.POV.GINI": {
@@ -7332,46 +7448,50 @@
    "year": "2022"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 50.3214443938994,
-   "year": "2024"
+   "value": 50.9260971650398,
+   "year": "2025"
   }
  },
  "Kyrgyzstan": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 9.04013556120012,
-   "year": "2024"
+   "value": 11.0960203357132,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 8012.45464442194,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 4.99760701207323,
-   "year": "2024"
+   "value": 8.21496013406325,
+   "year": "2025"
   },
   "GC.DOD.TOTL.GD.ZS": {
-   "value": 40.2318478859281,
+   "value": 38.7180366994573,
    "year": "2024"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": -42.683633961771,
-   "year": "2022"
+   "value": -22.6410105179248,
+   "year": "2024"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 3.526,
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 7221868,
-   "year": "2024"
+   "value": 7343064,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 37.0164233576642,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 61.3514807542057,
+  "SP.DYN.LE00.IN": {
+   "value": 72.4,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 60.9626371776391,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 16.8,
@@ -7442,8 +7562,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 8.60760362906387,
-   "year": "2024"
+   "value": 7.99943573872639,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 6.70690823774765,
@@ -7462,23 +7582,23 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 65.2780022134063,
-   "year": "2024"
+   "value": 65.2536462738943,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 57864889798.0022,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 127.650577802859,
-   "year": "2024"
+   "value": 92.4074476416439,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 4.03548948093475,
+   "value": 1.40593817941355,
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
-   "value": 20.3821894991439,
+   "value": 19.6152650825459,
    "year": "2024"
   },
   "SI.POV.GINI": {
@@ -7534,8 +7654,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 4.67,
-   "year": "2022"
+   "value": 2.76,
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 2.18059843788117,
@@ -7550,30 +7670,30 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 24.3817252281764,
-   "year": "2020"
+   "value": 20.1239014514257,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 804478.2,
    "year": "2023"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 34.7219977865937,
-   "year": "2024"
+   "value": 34.7463537261057,
+   "year": "2025"
   }
  },
  "Laos": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 4.13019264436937,
-   "year": "2024"
+   "value": 4.53760564766725,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 9775.82817381023,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 23.1305695942588,
-   "year": "2024"
+   "value": 7.74226936553695,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": 3.21986797869176,
@@ -7584,16 +7704,20 @@
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 7769819,
-   "year": "2024"
+   "value": 7873046,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 33.2105415944541,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 53.5253966955507,
+  "SP.DYN.LE00.IN": {
+   "value": 69.225,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 53.0168515795744,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 29.4,
@@ -7672,8 +7796,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 16.771883812878,
-   "year": "2024"
+   "value": 16.6175844045764,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 5.30329289428076,
@@ -7692,8 +7816,8 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 60.4447845598594,
-   "year": "2024"
+   "value": 59.6870164959299,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 75956415485.6061,
@@ -7756,8 +7880,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 2.98,
-   "year": "2021"
+   "value": 2.62,
+   "year": "2023"
   },
   "IT.MLT.MAIN.P2": {
    "value": 16.0963878244899,
@@ -7772,30 +7896,30 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 22.3176670505669,
-   "year": "2020"
+   "value": 25.9762899979383,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 842280.306,
    "year": "2023"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 39.5552154401406,
-   "year": "2024"
+   "value": 40.3129835040701,
+   "year": "2025"
   }
  },
  "Lebanon": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": -0.760584470257314,
-   "year": "2023"
+   "value": -7.07989192861814,
+   "year": "2024"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 12574.8329116403,
    "year": "2023"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 45.2430422716718,
-   "year": "2024"
+   "value": 14.597595869611,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": -28.103669636709,
@@ -7806,16 +7930,20 @@
    "year": "2023"
   },
   "SP.POP.TOTL": {
-   "value": 5805962,
-   "year": "2024"
+   "value": 5849421,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 564.368817204301,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 57.0475892933219,
+  "SP.DYN.LE00.IN": {
+   "value": 77.945,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 56.3249314841515,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 17.6,
@@ -7882,8 +8010,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 0.966455367369224,
-   "year": "2023"
+   "value": 1.04505447197468,
+   "year": "2024"
   },
   "AG.LND.ARBL.ZS": {
    "value": 13.1196285434995,
@@ -7902,20 +8030,20 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 9.296304215446,
-   "year": "2024"
+   "value": 9.0397685736956,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 72600709791.5249,
    "year": "2023"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 104.206410069182,
-   "year": "2023"
+   "value": 82.2323604617121,
+   "year": "2024"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 3.26435467389127,
-   "year": "2023"
+   "value": 7.09437049742925,
+   "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
    "value": 11.1389424540703,
@@ -7970,8 +8098,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.96,
-   "year": "2022"
+   "value": 0.5,
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 16.0930067060795,
@@ -7986,37 +8114,37 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 19.2310172881236,
-   "year": "2020"
+   "value": 26.6948532836253,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 2693218,
    "year": "2023"
   },
   "IS.SHP.GOOD.TU": {
-   "value": 675077,
-   "year": "2021"
+   "value": 762062,
+   "year": "2024"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 90.703695784554,
-   "year": "2024"
+   "value": 90.9602314263044,
+   "year": "2025"
   }
  },
  "Liberia": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 4.02185464964835,
-   "year": "2024"
+   "value": 5.01656107992214,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 1871.04406164262,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 8.21497439118964,
-   "year": "2024"
+   "value": 8.31564329402952,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": 2.5063227720412,
+   "value": 2.50632277204121,
    "year": "2024"
   },
   "SL.UEM.TOTL.ZS": {
@@ -8024,16 +8152,20 @@
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 5612817,
-   "year": "2024"
+   "value": 5731206,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 57.0289763289037,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 74.930982144805,
+  "SP.DYN.LE00.IN": {
+   "value": 62.324,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 73.6572273170483,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 86.4,
@@ -8084,8 +8216,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 33.8327272928139,
-   "year": "2024"
+   "value": 32.6538305659641,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 5.19102990033223,
@@ -8104,8 +8236,8 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 44.4612013345032,
-   "year": "2024"
+   "value": 43.9180252840662,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 10501827916.9368,
@@ -8151,6 +8283,10 @@
    "value": 13.0059469246904,
    "year": "2024"
   },
+  "TX.VAL.ICTG.ZS.UN": {
+   "value": 0,
+   "year": "2023"
+  },
   "IT.MLT.MAIN.P2": {
    "value": 0.116390430153273,
    "year": "2022"
@@ -8164,30 +8300,26 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 42.3616590279287,
-   "year": "2020"
-  },
-  "IS.SHP.GOOD.TU": {
-   "value": 91453.84,
-   "year": "2019"
+   "value": 17.9178293051068,
+   "year": "2023"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 55.5387986654968,
-   "year": "2024"
+   "value": 56.0819747159338,
+   "year": "2025"
   }
  },
  "Libya": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 1.89995052025442,
-   "year": "2024"
+   "value": 13.3717080516958,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 14303.8087736988,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 2.12615766885025,
-   "year": "2024"
+   "value": 1.84166666666702,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": 4.23506448409627,
@@ -8198,16 +8330,20 @@
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 7381023,
-   "year": "2024"
+   "value": 7458555,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 4.15202780272117,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 47.9982306839978,
+  "SP.DYN.LE00.IN": {
+   "value": 71.121,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 47.1427373654177,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 9.8,
@@ -8250,8 +8386,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 2.39197609901835,
-   "year": "2024"
+   "value": 1.50083505042772,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 0.977528217602328,
@@ -8270,16 +8406,16 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 12.1145933892251,
-   "year": "2024"
+   "value": 12.0887586984779,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 105576741546.273,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 128.816175842936,
-   "year": "2024"
+   "value": 137.658573201308,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
    "value": 1.80500147243983,
@@ -8325,10 +8461,6 @@
    "value": 388.564024255174,
    "year": "2024"
   },
-  "TX.VAL.ICTG.ZS.UN": {
-   "value": 0,
-   "year": "2019"
-  },
   "IT.MLT.MAIN.P2": {
    "value": 16.8634120107063,
    "year": "2022"
@@ -8342,37 +8474,37 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 32.9707065002742,
-   "year": "2020"
+   "value": 20.014492731108,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 1094579.418,
    "year": "2023"
   },
   "IS.SHP.GOOD.TU": {
-   "value": 271230.6,
-   "year": "2019"
+   "value": 465168,
+   "year": "2023"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 87.8854066107749,
-   "year": "2024"
+   "value": 87.9112413015221,
+   "year": "2025"
   }
  },
  "Madagascar": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 4.19999999988647,
-   "year": "2024"
+   "value": 3.002568866856,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 1883.5374311384,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 7.61335784313723,
-   "year": "2024"
+   "value": 8.05052431791227,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": -4.2996171419784,
+   "value": -4.25750009236745,
    "year": "2024"
   },
   "SL.UEM.TOTL.ZS": {
@@ -8380,16 +8512,20 @@
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 31964956,
-   "year": "2024"
+   "value": 32740678,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 53.6196837401169,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 74.4044379155376,
+  "SP.DYN.LE00.IN": {
+   "value": 63.835,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 73.6429466863019,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 62.4,
@@ -8464,8 +8600,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 22.4578773705892,
-   "year": "2024"
+   "value": 21.702530751089,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 5.15641113784806,
@@ -8484,23 +8620,23 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 67.5660106660156,
-   "year": "2024"
+   "value": 67.0982929163102,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 60207191110.6919,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 54.9795881437152,
-   "year": "2024"
+   "value": 54.2413796011714,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 3.47985819890072,
+   "value": 3.44577112659577,
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
-   "value": 11.0529442897808,
+   "value": 10.9446747862351,
    "year": "2024"
   },
   "SI.POV.GINI": {
@@ -8556,8 +8692,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.03,
-   "year": "2021"
+   "value": 0.04,
+   "year": "2023"
   },
   "IT.MLT.MAIN.P2": {
    "value": 0.0109405290407736,
@@ -8572,41 +8708,37 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 12.7535199510191,
-   "year": "2020"
+   "value": 12.3865755564591,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 313313,
    "year": "2023"
   },
-  "IS.SHP.GOOD.TU": {
-   "value": 199712.5,
-   "year": "2019"
-  },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 32.4339893339844,
-   "year": "2024"
+   "value": 32.9017070836898,
+   "year": "2025"
   }
  },
  "Malawi": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 1.6734340852915,
-   "year": "2024"
+   "value": 1.88518707821663,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 1857.61756950305,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 32.1796504225025,
-   "year": "2024"
+   "value": 28.3702565330281,
+   "year": "2025"
   },
   "GC.DOD.TOTL.GD.ZS": {
-   "value": 55.5992119991912,
-   "year": "2022"
+   "value": 61.8124167800324,
+   "year": "2023"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": -18.7805214567386,
+   "value": -18.7878927787052,
    "year": "2024"
   },
   "SL.UEM.TOTL.ZS": {
@@ -8614,16 +8746,20 @@
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 21655286,
-   "year": "2024"
+   "value": 22216120,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 223.84898175647,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 76.3409449778756,
+  "SP.DYN.LE00.IN": {
+   "value": 67.561,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 74.5659369447606,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 48.8,
@@ -8690,8 +8826,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 31.774775046638,
-   "year": "2024"
+   "value": 30.0312624526817,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 42.4268137462877,
@@ -8710,24 +8846,24 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 82.731496468787,
-   "year": "2024"
+   "value": 82.4050131613683,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 40227239746.2133,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 42.4376683990967,
-   "year": "2023"
+   "value": 39.3994694717291,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 2.27963607830505,
+   "value": 2.28053083149593,
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
-   "value": 13.5038573942269,
-   "year": "2022"
+   "value": 15.5978477117661,
+   "year": "2024"
   },
   "SH.H2O.SMDW.ZS": {
    "value": 18.1816539742083,
@@ -8774,8 +8910,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.23,
-   "year": "2021"
+   "value": 0.14,
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 0.0224841177345799,
@@ -8790,33 +8926,33 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 23.6983194353464,
-   "year": "2020"
+   "value": 16.7211601349048,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 3506.999,
    "year": "2023"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 17.268503531213,
-   "year": "2024"
+   "value": 17.5949868386317,
+   "year": "2025"
   }
  },
  "Mali": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 4.99226917482922,
-   "year": "2024"
+   "value": 5.59946842896643,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 3314.77332231959,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 3.2063986409966,
-   "year": "2024"
+   "value": 3.27823540357584,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": -4.32433474076126,
+   "value": -4.32974251221221,
    "year": "2024"
   },
   "SL.UEM.TOTL.ZS": {
@@ -8824,16 +8960,20 @@
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 24478595,
-   "year": "2024"
+   "value": 25198821,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 19.4798572353486,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 94.2739621678949,
+  "SP.DYN.LE00.IN": {
+   "value": 60.675,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 92.8900095064012,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 73,
@@ -8896,8 +9036,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 33.2515839930836,
-   "year": "2024"
+   "value": 33.0195835270972,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 6.83582065088224,
@@ -8916,19 +9056,19 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 68.3924378817775,
-   "year": "2024"
+   "value": 67.7872862816011,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 81140993673.8658,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 49.8960414309506,
-   "year": "2024"
+   "value": 48.7722026619492,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 3.43740692659041,
+   "value": 3.44170555566452,
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
@@ -8985,7 +9125,7 @@
   },
   "TX.VAL.ICTG.ZS.UN": {
    "value": 0.09,
-   "year": "2019"
+   "year": "2023"
   },
   "IT.MLT.MAIN.P2": {
    "value": 1.33014687526005,
@@ -9000,29 +9140,29 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 56.7830489222988,
-   "year": "2020"
+   "value": 35.5240450338273,
+   "year": "2023"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 31.6075621182225,
-   "year": "2024"
+   "value": 32.2127137183989,
+   "year": "2025"
   }
  },
  "Mauritania": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 6.30760213290844,
-   "year": "2024"
+   "value": 4.02891976567948,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 7368.75275290214,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 2.49164347481972,
-   "year": "2024"
+   "value": 1.54796926167072,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": -9.52858140186957,
+   "value": -9.55383541959404,
    "year": "2024"
   },
   "SL.UEM.TOTL.ZS": {
@@ -9030,16 +9170,20 @@
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 5169395,
-   "year": "2024"
+   "value": 5315065,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 4.87284466867178,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 84.978354637561,
+  "SP.DYN.LE00.IN": {
+   "value": 68.713,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 83.9294038095587,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 36.9,
@@ -9094,8 +9238,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 19.3310648282597,
-   "year": "2024"
+   "value": 19.9526937998331,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 0.436596487823809,
@@ -9114,19 +9258,19 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 39.3931413588171,
-   "year": "2024"
+   "value": 38.5111809462304,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 38091993637.0885,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 93.5988355881472,
-   "year": "2024"
+   "value": 94.0242632380265,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 13.2039338372346,
+   "value": 13.2389288029166,
    "year": "2024"
   },
   "SH.H2O.BASW.ZS": {
@@ -9166,8 +9310,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 0,
-   "year": "2021"
+   "value": 0.01,
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 0.309455942136362,
@@ -9182,58 +9326,58 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 70.8224442103687,
-   "year": "2020"
+   "value": 46.5013986975929,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 328992,
    "year": "2023"
   },
-  "IS.SHP.GOOD.TU": {
-   "value": 84457.99,
-   "year": "2019"
-  },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 60.6068586411829,
-   "year": "2024"
+   "value": 61.4888190537696,
+   "year": "2025"
   }
  },
  "Mexico": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 1.42742769080466,
-   "year": "2024"
+   "value": 0.561683456144578,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 26185.3564713253,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 4.72225588452932,
-   "year": "2024"
+   "value": 3.80668650726485,
+   "year": "2025"
   },
   "GC.DOD.TOTL.GD.ZS": {
-   "value": 49.5702123720928,
+   "value": 50.270950655733,
    "year": "2024"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": -0.899378006983485,
-   "year": "2024"
+   "value": -0.447421048798837,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 2.673,
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 130861007,
-   "year": "2024"
+   "value": 131946900,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 66.7402757272564,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 48.7167150891959,
+  "SP.DYN.LE00.IN": {
+   "value": 75.264,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 48.3954637764632,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 13.1,
@@ -9312,8 +9456,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 3.72451065844835,
-   "year": "2024"
+   "value": 3.88408341898948,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 10.3004679132694,
@@ -9332,23 +9476,23 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 20.2461194023882,
-   "year": "2024"
+   "value": 19.9591069370277,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 3426642116491.59,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 74.5889079825143,
-   "year": "2024"
+   "value": 79.9239525815655,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 2.44966474077028,
+   "value": 2.48429388161511,
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
-   "value": 14.6174740066842,
+   "value": 14.8241106773063,
    "year": "2024"
   },
   "SI.POV.GINI": {
@@ -9404,8 +9548,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 13.72,
-   "year": "2022"
+   "value": 12.45,
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 22.5576706741986,
@@ -9420,58 +9564,62 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 14.9923440243315,
-   "year": "2020"
+   "value": 16.6099613756465,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 78763320,
    "year": "2023"
   },
   "IS.SHP.GOOD.TU": {
-   "value": 8307884,
-   "year": "2022"
+   "value": 9284170,
+   "year": "2024"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 79.7538805976118,
-   "year": "2024"
+   "value": 80.0408930629723,
+   "year": "2025"
   }
  },
  "Moldova": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 0.103059364371205,
-   "year": "2024"
+   "value": 2.41649734575068,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 18614.9880691203,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 4.67773516007052,
-   "year": "2024"
+   "value": 7.75904124001159,
+   "year": "2025"
   },
   "GC.DOD.TOTL.GD.ZS": {
    "value": 34.261803411132,
    "year": "2023"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": -16.5529874400431,
-   "year": "2024"
+   "value": -19.6440561573093,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 1.505,
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 2402306,
-   "year": "2024"
+   "value": 2360527,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 85.437584732506,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 56.2505935075156,
+  "SP.DYN.LE00.IN": {
+   "value": 71.332,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 57.2129306739199,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 16.5,
@@ -9538,8 +9686,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 7.10653748230631,
-   "year": "2024"
+   "value": 7.37632402548248,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 56.8174916489523,
@@ -9558,19 +9706,19 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 56.483528137207,
-   "year": "2024"
+   "value": 56.2663759595455,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 44718897528.3762,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 88.6661154286831,
-   "year": "2024"
+   "value": 92.6661727857921,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 2.51844626798863,
+   "value": 2.51754698286646,
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
@@ -9622,8 +9770,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.27,
-   "year": "2022"
+   "value": 0.58,
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 24.1914805495029,
@@ -9638,34 +9786,30 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 14.7583463021422,
-   "year": "2020"
+   "value": 14.9450916480619,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 827604.333,
    "year": "2023"
   },
-  "IS.SHP.GOOD.TU": {
-   "value": 818,
-   "year": "2019"
-  },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 43.516471862793,
-   "year": "2024"
+   "value": 43.7336240404545,
+   "year": "2025"
   }
  },
  "Mongolia": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 5.12204539122661,
-   "year": "2024"
+   "value": 6.84391415938607,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 19144.7261368498,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 6.1977990165842,
-   "year": "2024"
+   "value": 8.60536487369695,
+   "year": "2025"
   },
   "GC.DOD.TOTL.GD.ZS": {
    "value": 43.3447191804482,
@@ -9680,16 +9824,20 @@
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 3524788,
-   "year": "2024"
+   "value": 3568978,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 2.23365125312889,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 59.5684105260823,
+  "SP.DYN.LE00.IN": {
+   "value": 72.3980487804878,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 58.7082165471123,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 13.4,
@@ -9768,8 +9916,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 7.2909521026131,
-   "year": "2024"
+   "value": 8.93883278645661,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 0.733569879360895,
@@ -9788,16 +9936,16 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 29.0433959960938,
-   "year": "2024"
+   "value": 28.8549280873877,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 67481100950.4545,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 138.448379141249,
-   "year": "2024"
+   "value": 130.707440813275,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
    "value": 11.6924984371367,
@@ -9861,7 +10009,7 @@
   },
   "TX.VAL.ICTG.ZS.UN": {
    "value": 0.01,
-   "year": "2021"
+   "year": "2023"
   },
   "IT.MLT.MAIN.P2": {
    "value": 14.9377938392307,
@@ -9876,50 +10024,54 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 29.6547866481682,
-   "year": "2020"
+   "value": 42.6916874423772,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 773702,
    "year": "2023"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 70.9566040039062,
-   "year": "2024"
+   "value": 71.1450719126123,
+   "year": "2025"
   }
  },
  "Morocco": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 3.79336515978963,
-   "year": "2024"
+   "value": 4.59524349182247,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 10415.1240234375,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 0.985256592004507,
-   "year": "2024"
+   "value": 0.701902154839545,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": -1.16354070328466,
-   "year": "2024"
+   "value": -2.49808221535456,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 9,
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 38081173,
-   "year": "2024"
+   "value": 38430770,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 84.5003473000224,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 50.9925352190748,
+  "SP.DYN.LE00.IN": {
+   "value": 75.493,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 50.7154014206338,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 15.7,
@@ -9986,8 +10138,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 10.5673287621047,
-   "year": "2024"
+   "value": 10.5468998514808,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 15.4023118978266,
@@ -10006,19 +10158,19 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 37.2001875981803,
-   "year": "2024"
+   "value": 36.8721387739731,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 402770325749.156,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 92.1872446062404,
-   "year": "2024"
+   "value": 93.1016567989424,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 1.02047789871899,
+   "value": 1.08850441035779,
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
@@ -10066,8 +10218,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 2.36,
-   "year": "2022"
+   "value": 2.97,
+   "year": "2023"
   },
   "IT.MLT.MAIN.P2": {
    "value": 7.97506946542849,
@@ -10082,41 +10234,41 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 21.3212642117301,
-   "year": "2020"
+   "value": 18.7206508843713,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 9354197,
    "year": "2023"
   },
   "IS.SHP.GOOD.TU": {
-   "value": 8835181,
-   "year": "2022"
+   "value": 11789130,
+   "year": "2024"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 62.7998124018197,
-   "year": "2024"
+   "value": 63.1278612260269,
+   "year": "2025"
   }
  },
  "Mozambique": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 2.14854964610538,
-   "year": "2024"
+   "value": -0.523485382072337,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 1705.37919520416,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 4.07856834812022,
-   "year": "2024"
+   "value": 4.3684695014615,
+   "year": "2025"
   },
   "GC.DOD.TOTL.GD.ZS": {
-   "value": 71.7932488373315,
+   "value": 71.7714670511801,
    "year": "2024"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": -10.9610583800383,
+   "value": -10.9577328385216,
    "year": "2024"
   },
   "SL.UEM.TOTL.ZS": {
@@ -10124,16 +10276,20 @@
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 34631766,
-   "year": "2024"
+   "value": 35631653,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 42.7721457819375,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 89.5117827853714,
+  "SP.DYN.LE00.IN": {
+   "value": 63.797,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 88.3324550531064,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 59.4,
@@ -10204,8 +10360,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 25.1764811733064,
-   "year": "2024"
+   "value": 25.570048653436,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 7.18482158752766,
@@ -10224,23 +10380,23 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 63.5667662552763,
-   "year": "2024"
+   "value": 62.7922055072811,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 59060293229.5788,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 95.659420351194,
-   "year": "2024"
+   "value": 97.1038097628682,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 15.4256916399298,
+   "value": 15.4210115464394,
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
-   "value": 21.8525035930356,
+   "value": 21.8458736303603,
    "year": "2024"
   },
   "SI.POV.GINI": {
@@ -10296,8 +10452,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.03,
-   "year": "2022"
+   "value": 0.02,
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 0.0818006220069747,
@@ -10312,26 +10468,26 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 20.0802484321177,
-   "year": "2020"
+   "value": 13.7216828951578,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 680108,
    "year": "2023"
   },
   "IS.SHP.GOOD.TU": {
-   "value": 420500,
-   "year": "2022"
+   "value": 489000,
+   "year": "2023"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 36.4332337447237,
-   "year": "2024"
+   "value": 37.2077944927189,
+   "year": "2025"
   }
  },
  "Myanmar": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": -0.97204641363362,
-   "year": "2024"
+   "value": -2.01184475795665,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 5997.46516323715,
@@ -10342,16 +10498,20 @@
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 54500091,
-   "year": "2024"
+   "value": 54850648,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 82.9420656687147,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 46.2094250408467,
+  "SP.DYN.LE00.IN": {
+   "value": 67.095,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 46.2006615921466,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 36.9,
@@ -10406,8 +10566,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 20.8341766680744,
-   "year": "2024"
+   "value": 25.3,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 16.8650803622045,
@@ -10426,8 +10586,8 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 69.5500915925864,
-   "year": "2024"
+   "value": 69.4163084523233,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 326862397165.755,
@@ -10478,8 +10638,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.17,
-   "year": "2022"
+   "value": 0.97,
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 1.02508269206376,
@@ -10494,37 +10654,37 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 32.3150340028667,
-   "year": "2020"
+   "value": 35.0665284656219,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 3541244,
    "year": "2023"
   },
   "IS.SHP.GOOD.TU": {
-   "value": 846426,
-   "year": "2022"
+   "value": 782951,
+   "year": "2024"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 30.4499084074136,
-   "year": "2024"
+   "value": 30.5836915476767,
+   "year": "2025"
   }
  },
  "Namibia": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 3.71154502416731,
-   "year": "2024"
+   "value": 1.73018153842335,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 11686.6020661881,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 4.23903922877036,
-   "year": "2024"
+   "value": 3.51074539609587,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": -13.682605665227,
+   "value": -13.4129533004201,
    "year": "2024"
   },
   "SL.UEM.TOTL.ZS": {
@@ -10532,16 +10692,20 @@
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 3030131,
-   "year": "2024"
+   "value": 3092816,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 3.59909023551847,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 68.4996560642518,
+  "SP.DYN.LE00.IN": {
+   "value": 67.516,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 67.9083284336799,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 39.5,
@@ -10612,8 +10776,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 7.29120638562693,
-   "year": "2024"
+   "value": 6.98913188447704,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 0.971711061715799,
@@ -10632,24 +10796,24 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 49.5911969747845,
-   "year": "2024"
+   "value": 49.1333015600674,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 35411935205.4205,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 109.628509818932,
-   "year": "2024"
+   "value": 108.580501173828,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 14.4696554951116,
+   "value": 14.1844922069439,
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
-   "value": 32.962902094721,
-   "year": "2023"
+   "value": 33.8715291719611,
+   "year": "2024"
   },
   "SH.H2O.BASW.ZS": {
    "value": 86.5087378352127,
@@ -10684,8 +10848,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.21,
-   "year": "2022"
+   "value": 0.08,
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 2.55401499143106,
@@ -10700,41 +10864,41 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 19.9945355710926,
-   "year": "2020"
+   "value": 14.2253008498779,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 60304,
    "year": "2023"
   },
   "IS.SHP.GOOD.TU": {
-   "value": 160368,
-   "year": "2022"
+   "value": 171151,
+   "year": "2024"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 50.4088030252155,
-   "year": "2024"
+   "value": 50.8666984399326,
+   "year": "2025"
   }
  },
  "Nepal": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 3.66537430744967,
-   "year": "2024"
+   "value": 4.43073194983359,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 5736.62134332704,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 4.6850965426577,
-   "year": "2024"
+   "value": 2.65334269811436,
+   "year": "2025"
   },
   "GC.DOD.TOTL.GD.ZS": {
    "value": 39.9222686422289,
    "year": "2021"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": 3.91279159341445,
+   "value": 3.87803253239857,
    "year": "2024"
   },
   "SL.UEM.TOTL.ZS": {
@@ -10742,16 +10906,20 @@
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 29651054,
-   "year": "2024"
+   "value": 29618118,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 207.147638646669,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 53.6868554776039,
+  "SP.DYN.LE00.IN": {
+   "value": 70.636,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 53.0834685604877,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 25.1,
@@ -10822,8 +10990,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 21.8720119555441,
-   "year": "2024"
+   "value": 21.5578137957376,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 12.5831880013952,
@@ -10842,23 +11010,23 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 33.227656836971,
-   "year": "2024"
+   "value": 33.000575115141,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 170096869228.542,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 40.5298226771909,
-   "year": "2024"
+   "value": 42.5520448428369,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 0.132590416512966,
+   "value": 0.131412557108071,
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
-   "value": 13.9448572557035,
+   "value": 13.9448572556808,
    "year": "2023"
   },
   "SI.POV.GINI": {
@@ -10914,8 +11082,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.21,
-   "year": "2021"
+   "value": 0.04,
+   "year": "2022"
   },
   "IT.MLT.MAIN.P2": {
    "value": 1.37575210648498,
@@ -10930,33 +11098,33 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 45.7207706412594,
-   "year": "2020"
+   "value": 53.2003436952498,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 4289298,
    "year": "2023"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 66.772343163029,
-   "year": "2024"
+   "value": 66.999424884859,
+   "year": "2025"
   }
  },
  "Nicaragua": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 3.5878302292345,
-   "year": "2024"
+   "value": 4.92352556770889,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 8708.79983051626,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 4.62473841057141,
-   "year": "2024"
+   "value": 2.08132127098376,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": 4.1516146905653,
+   "value": 4.1511238055786,
    "year": "2024"
   },
   "SL.UEM.TOTL.ZS": {
@@ -10964,16 +11132,20 @@
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 6916140,
-   "year": "2024"
+   "value": 7007502,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 56.702783779292,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 52.1895509332864,
+  "SP.DYN.LE00.IN": {
+   "value": 75.1,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 51.538589293453,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 11.2,
@@ -11036,8 +11208,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 14.411507510728,
-   "year": "2024"
+   "value": 14.4770158430143,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 12.4896127638358,
@@ -11056,23 +11228,23 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 40.7371597290039,
-   "year": "2024"
+   "value": 40.5564107042668,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 60231278859.8267,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 98.5258377100159,
-   "year": "2024"
+   "value": 96.4496947305229,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 6.86656428120852,
+   "value": 6.86575238184716,
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
-   "value": 20.0924375352281,
+   "value": 20.0900618147754,
    "year": "2024"
   },
   "SN.ITK.DEFC.ZS": {
@@ -11096,8 +11268,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.03,
-   "year": "2022"
+   "value": 0.05,
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 3.5400093115524,
@@ -11112,33 +11284,33 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 16.809772538789,
-   "year": "2020"
+   "value": 20.4180839334698,
+   "year": "2023"
   },
   "IS.SHP.GOOD.TU": {
-   "value": 153390,
-   "year": "2022"
+   "value": 167682,
+   "year": "2024"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 59.2628402709961,
-   "year": "2024"
+   "value": 59.4435892957332,
+   "year": "2025"
   }
  },
  "Niger": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 10.3000000007793,
-   "year": "2024"
+   "value": 7.00782960149,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 2049.93305251019,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 9.07151997725013,
-   "year": "2024"
+   "value": -4.45470804102568,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": -6.04461946595567,
+   "value": -6.08945443545425,
    "year": "2024"
   },
   "SL.UEM.TOTL.ZS": {
@@ -11146,16 +11318,20 @@
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 27032412,
-   "year": "2024"
+   "value": 27917831,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 20.6519831057077,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 96.8325672256489,
+  "SP.DYN.LE00.IN": {
+   "value": 61.433,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 95.4818820710142,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 110.7,
@@ -11230,8 +11406,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 34.4620899774356,
-   "year": "2024"
+   "value": 47.5890198987744,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 13.9733164916713,
@@ -11250,19 +11426,19 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 81.9502601549197,
-   "year": "2024"
+   "value": 81.6259302804531,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 55414634847.873,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 49.9759837351389,
-   "year": "2024"
+   "value": 33.9056863589743,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 1.80157547660986,
+   "value": 1.81493836603542,
    "year": "2024"
   },
   "SI.POV.GINI": {
@@ -11314,8 +11490,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.14,
-   "year": "2022"
+   "value": 0.01,
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 0.434896449491817,
@@ -11330,50 +11506,54 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 85.1223455605238,
-   "year": "2020"
+   "value": 65.2302894952218,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 5775,
    "year": "2023"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 18.0497398450803,
-   "year": "2024"
+   "value": 18.3740697195469,
+   "year": "2025"
   }
  },
  "Nigeria": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 4.06236408888319,
-   "year": "2024"
+   "value": 4.01336180700973,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 9086.87550609627,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 33.2420966545406,
-   "year": "2024"
+   "value": 23.0101235833333,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": 6.82436415121879,
-   "year": "2024"
+   "value": 4.82784315736378,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 3.064,
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 232679478,
-   "year": "2024"
+   "value": 237527782,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 250.20910328623,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 78.7709744526654,
+  "SP.DYN.LE00.IN": {
+   "value": 54.635,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 77.2712069555623,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 115.6,
@@ -11440,8 +11620,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 25.8733343605401,
-   "year": "2024"
+   "value": 22.9790557916205,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 40.4844252665327,
@@ -11460,15 +11640,15 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 37.0244324426341,
-   "year": "2024"
+   "value": 36.2245819532128,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 2114329449409.47,
    "year": "2024"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 0.428249682662515,
+   "value": 0.639824358730627,
    "year": "2024"
   },
   "SI.POV.GINI": {
@@ -11524,8 +11704,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.09,
-   "year": "2021"
+   "value": 0,
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 0.0441439876360733,
@@ -11540,8 +11720,8 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 56.5313287289257,
-   "year": "2020"
+   "value": 65.740618883028,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 5269403.776,
@@ -11549,45 +11729,49 @@
   },
   "IS.SHP.GOOD.TU": {
    "value": 1566109,
-   "year": "2022"
+   "year": "2023"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 62.9755675573659,
-   "year": "2024"
+   "value": 63.7754180467872,
+   "year": "2025"
   }
  },
  "Pakistan": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 3.04898287335465,
-   "year": "2024"
+   "value": 3.69842668749033,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 6252.11543199559,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 12.6325318530452,
-   "year": "2024"
+   "value": 3.54555214890893,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": 0.133557216822667,
-   "year": "2024"
+   "value": -0.109990064562897,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 5.42,
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 251269164,
-   "year": "2024"
+   "value": 255219554,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 321.067474833956,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 69.3926431439163,
+  "SP.DYN.LE00.IN": {
+   "value": 67.799,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 68.3670728422197,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 56,
@@ -11662,8 +11846,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 23.7432862338836,
-   "year": "2024"
+   "value": 23.0212949096389,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 39.2538397675384,
@@ -11682,19 +11866,19 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 60.8265631639095,
-   "year": "2024"
+   "value": 60.4743989020394,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 1570963817829.03,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 27.5784683520695,
-   "year": "2024"
+   "value": 27.1935373787664,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 0.7166886452434,
+   "value": 0.716885239403099,
    "year": "2024"
   },
   "SI.POV.GINI": {
@@ -11746,8 +11930,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.08,
-   "year": "2021"
+   "value": 0.06,
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 1.01235183796767,
@@ -11762,54 +11946,58 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 42.9981734249878,
-   "year": "2020"
+   "value": 58.3745179541935,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 7153419,
    "year": "2023"
   },
   "IS.SHP.GOOD.TU": {
-   "value": 3383580,
-   "year": "2022"
+   "value": 3338000,
+   "year": "2024"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 39.1734368360905,
-   "year": "2024"
+   "value": 39.5256010979606,
+   "year": "2025"
   }
  },
  "Palestine": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": -26.5575264529877,
-   "year": "2024"
+   "value": 4.34444072337577,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 4371.11135857265,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 53.6691458303782,
-   "year": "2024"
+   "value": 9.80840118100493,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": -21.1437967691276,
-   "year": "2024"
+   "value": -15.8215746940007,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 24.42,
    "year": "2022"
   },
   "SP.POP.TOTL": {
-   "value": 5289152,
-   "year": "2024"
+   "value": 5413596,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 857.390041493776,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 72.0721491548406,
+  "SP.DYN.LE00.IN": {
+   "value": 69.213,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 70.7725051521058,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 37.9,
@@ -11872,8 +12060,8 @@
    "year": "2022"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 5.7037522621709,
-   "year": "2023"
+   "value": 5.52041905737065,
+   "year": "2024"
   },
   "AG.LND.ARBL.ZS": {
    "value": 6.95435684647303,
@@ -11892,19 +12080,19 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 12.8803985882996,
-   "year": "2024"
+   "value": 12.6181037036607,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 23119472384.4172,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 81.3136801569531,
-   "year": "2024"
+   "value": 74.7604429402753,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 1.18281329825606,
+   "value": 1.01253497329187,
    "year": "2024"
   },
   "SI.POV.GINI": {
@@ -11956,8 +12144,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.75,
-   "year": "2021"
+   "value": 0.87,
+   "year": "2023"
   },
   "IT.MLT.MAIN.P2": {
    "value": 7.09259887133074,
@@ -11972,33 +12160,33 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 26.3636264444046,
-   "year": "2020"
+   "value": 22.394098975674,
+   "year": "2023"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 87.1196014117004,
-   "year": "2024"
+   "value": 87.3818962963393,
+   "year": "2025"
   }
  },
  "Papua New Guinea": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 3.79979560086888,
-   "year": "2024"
+   "value": 5.63792052319458,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 4874.6899553589,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 0.602403921107917,
-   "year": "2024"
+   "value": 4.42141364166485,
+   "year": "2025"
   },
   "GC.DOD.TOTL.GD.ZS": {
-   "value": 52.3812606028215,
-   "year": "2023"
+   "value": 52.0067408156387,
+   "year": "2024"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": 14.991427158321,
+   "value": 15.4763748159171,
    "year": "2024"
   },
   "SL.UEM.TOTL.ZS": {
@@ -12006,16 +12194,20 @@
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 10576502,
-   "year": "2024"
+   "value": 10762817,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 22.9422669257607,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 58.5895021011812,
+  "SP.DYN.LE00.IN": {
+   "value": 66.256,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 58.0619655147954,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 39.4,
@@ -12078,8 +12270,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 16.9595908086069,
-   "year": "2023"
+   "value": 17.0217937024537,
+   "year": "2024"
   },
   "AG.LND.ARBL.ZS": {
    "value": 0.728702027116548,
@@ -12098,20 +12290,20 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 84.5938183596667,
-   "year": "2024"
+   "value": 84.2202551319724,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 51557168062.2333,
    "year": "2024"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": -0.6236311790975,
+   "value": -0.64380460730506,
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
-   "value": 15.9347989236971,
-   "year": "2023"
+   "value": 15.5435093385912,
+   "year": "2024"
   },
   "SH.H2O.BASW.ZS": {
    "value": 53.298484868619,
@@ -12153,6 +12345,10 @@
    "value": 88.1198717685677,
    "year": "2024"
   },
+  "TX.VAL.ICTG.ZS.UN": {
+   "value": 0.02,
+   "year": "2023"
+  },
   "IT.MLT.MAIN.P2": {
    "value": 1.6925231758878,
    "year": "2022"
@@ -12166,58 +12362,62 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 17.3105425567239,
-   "year": "2020"
+   "value": 14.1117516188413,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 1547502,
    "year": "2023"
   },
   "IS.SHP.GOOD.TU": {
-   "value": 204518,
-   "year": "2020"
+   "value": 200000,
+   "year": "2022"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 15.4061816403333,
-   "year": "2024"
+   "value": 15.7797448680276,
+   "year": "2025"
   }
  },
  "Peru": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 3.30394098171516,
-   "year": "2024"
+   "value": 3.43056395124466,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 17802.4182498972,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 2.00770739412712,
-   "year": "2024"
+   "value": 1.53125450314273,
+   "year": "2025"
   },
   "GC.DOD.TOTL.GD.ZS": {
-   "value": 35.2492265648321,
+   "value": 35.237190374692,
    "year": "2021"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": 2.2093667985816,
-   "year": "2024"
+   "value": 3.58499497152416,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 5.117,
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 34217848,
-   "year": "2024"
+   "value": 34576665,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 26.44188828125,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 49.6973010705299,
+  "SP.DYN.LE00.IN": {
+   "value": 77.941,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 49.4335606299582,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 12.9,
@@ -12288,7 +12488,7 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 7.3374218616047,
+   "value": 7.47121084291146,
    "year": "2024"
   },
   "AG.LND.ARBL.ZS": {
@@ -12308,23 +12508,23 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 14.8087270399645,
-   "year": "2024"
+   "value": 14.4036515154537,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 609160441707.41,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 51.4758878672647,
-   "year": "2024"
+   "value": 51.8154829678647,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 2.35092628744149,
+   "value": 2.29780708272736,
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
-   "value": 15.9243395237971,
+   "value": 15.9189020036855,
    "year": "2021"
   },
   "SI.POV.GINI": {
@@ -12376,8 +12576,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.06,
-   "year": "2021"
+   "value": 0.04,
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 4.08214157710912,
@@ -12392,54 +12592,58 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 27.0356284968814,
-   "year": "2020"
+   "value": 31.0938536450575,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 17717402.523,
    "year": "2023"
   },
   "IS.SHP.GOOD.TU": {
-   "value": 2865239,
-   "year": "2022"
+   "value": 3477011,
+   "year": "2024"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 85.1912729600355,
-   "year": "2024"
+   "value": 85.5963484845463,
+   "year": "2025"
   }
  },
  "Philippines": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 5.69201612823412,
-   "year": "2024"
+   "value": 4.40240158710621,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 11794.1375488492,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 3.21260487006347,
-   "year": "2024"
+   "value": 1.6587364525509,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": -4.02174631560296,
-   "year": "2024"
+   "value": -3.34449841700068,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 2.235,
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 115843670,
-   "year": "2024"
+   "value": 116786962,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 385.321122178623,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 50.0600272907847,
+  "SP.DYN.LE00.IN": {
+   "value": 69.946,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 48.9488685879186,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 26.5,
@@ -12518,8 +12722,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 9.08252678487007,
-   "year": "2024"
+   "value": 8.5917098442669,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 18.7476942683704,
@@ -12538,23 +12742,23 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 44.5479016784523,
-   "year": "2024"
+   "value": 44.2267092394668,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 1366276178143.49,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 65.8854725286968,
-   "year": "2024"
+   "value": 66.7936053314343,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 2.03595540906242,
+   "value": 2.03571882251572,
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
-   "value": 14.3713239990549,
+   "value": 14.369653991008,
    "year": "2024"
   },
   "SI.POV.GINI": {
@@ -12610,8 +12814,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 50.71,
-   "year": "2022"
+   "value": 43.57,
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 3.81753357779497,
@@ -12626,37 +12830,37 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 20.2887417122616,
-   "year": "2020"
+   "value": 22.2053003753671,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 41501834,
    "year": "2023"
   },
   "IS.SHP.GOOD.TU": {
-   "value": 9249451,
-   "year": "2022"
+   "value": 9216842,
+   "year": "2024"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 55.4520983215477,
-   "year": "2024"
+   "value": 55.7732907605332,
+   "year": "2025"
   }
  },
  "Rwanda": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 8.89065529573114,
-   "year": "2024"
+   "value": 9.37579834182446,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 3710.86040434596,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 1.77029240198635,
-   "year": "2024"
+   "value": 5.913000168826,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": -12.6832284185648,
+   "value": -11.9618864449723,
    "year": "2024"
   },
   "SL.UEM.TOTL.ZS": {
@@ -12664,16 +12868,20 @@
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 14256567,
-   "year": "2024"
+   "value": 14569341,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 565.645358735306,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 70.3196484501421,
+  "SP.DYN.LE00.IN": {
+   "value": 68.017,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 69.6169080663881,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 37.7,
@@ -12752,8 +12960,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 24.5807696089078,
-   "year": "2024"
+   "value": 20.3036785808482,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 46.9830158086745,
@@ -12772,23 +12980,23 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 70.1150285705917,
-   "year": "2024"
+   "value": 69.0866159071838,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 52904129982.2052,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 69.9544135680561,
-   "year": "2024"
+   "value": 56.673349749538,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 4.02009319742237,
+   "value": 3.79145567191588,
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
-   "value": 13.5080695457144,
+   "value": 13.0749257552592,
    "year": "2023"
   },
   "SI.POV.GINI": {
@@ -12852,30 +13060,30 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 31.2882654917538,
-   "year": "2020"
+   "value": 36.0064247681194,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 1537007.678,
    "year": "2023"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 29.8849714294083,
-   "year": "2024"
+   "value": 30.9133840928162,
+   "year": "2025"
   }
  },
  "Senegal": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 6.06055141198976,
-   "year": "2024"
+   "value": 6.68227744849194,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 5070.6486207418,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 0.804503298792438,
-   "year": "2024"
+   "value": 1.45900719841385,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": -19.7803402658787,
@@ -12886,16 +13094,20 @@
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 18501984,
-   "year": "2024"
+   "value": 18931966,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 93.8948371682335,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 71.8215628365833,
+  "SP.DYN.LE00.IN": {
+   "value": 68.924,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 70.6163540376813,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 36.5,
@@ -12974,8 +13186,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 16.6344112501138,
-   "year": "2024"
+   "value": 17.0838912567949,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 19.893003687737,
@@ -12994,19 +13206,19 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 44.7631830942696,
-   "year": "2024"
+   "value": 44.2327505544754,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 93817059650.5868,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 68.1405147656211,
-   "year": "2024"
+   "value": 71.0687063150657,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 6.1461393599949,
+   "value": 6.26804204995863,
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
@@ -13066,8 +13278,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.42,
-   "year": "2021"
+   "value": 0.24,
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 1.6054818769706,
@@ -13082,37 +13294,37 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 63.7402211262202,
-   "year": "2020"
+   "value": 41.6483649398667,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 1070960.665,
    "year": "2023"
   },
   "IS.SHP.GOOD.TU": {
-   "value": 738000,
-   "year": "2022"
+   "value": 881239,
+   "year": "2024"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 55.2368169057304,
-   "year": "2024"
+   "value": 55.7672494455246,
+   "year": "2025"
   }
  },
  "Sierra Leone": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 4.29322336690163,
-   "year": "2024"
+   "value": 4.60865077581276,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 3522.30588009119,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 28.6337500014115,
-   "year": "2024"
+   "value": 7.48750166612986,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": -14.119034977614,
+   "value": -14.1190349801252,
    "year": "2024"
   },
   "SL.UEM.TOTL.ZS": {
@@ -13120,16 +13332,20 @@
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 8642022,
-   "year": "2024"
+   "value": 8819794,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 117.214075921308,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 70.4490063510929,
+  "SP.DYN.LE00.IN": {
+   "value": 61.964,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 69.3031935896705,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 90.5,
@@ -13184,8 +13400,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 29.15848297879,
-   "year": "2024"
+   "value": 29.5399786679525,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 21.9451371571072,
@@ -13204,19 +13420,19 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 54.6373176843629,
-   "year": "2024"
+   "value": 54.0732218643319,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 30439844906.4775,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 40.5454450452166,
-   "year": "2024"
+   "value": 49.0960746822456,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 1.7469962843978,
+   "value": 1.74699628470852,
    "year": "2024"
   },
   "SH.H2O.SMDW.ZS": {
@@ -13263,10 +13479,6 @@
    "value": 11.339938731931,
    "year": "2024"
   },
-  "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.02,
-   "year": "2018"
-  },
   "IT.MLT.MAIN.P2": {
    "value": 0.00325004557917081,
    "year": "2022"
@@ -13280,22 +13492,18 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 43.2210935036927,
-   "year": "2020"
-  },
-  "IS.SHP.GOOD.TU": {
-   "value": 78413,
-   "year": "2019"
+   "value": 22.461260523478,
+   "year": "2023"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 45.3626823156371,
-   "year": "2024"
+   "value": 45.9267781356681,
+   "year": "2025"
   }
  },
  "Somalia": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 4.11139335779471,
-   "year": "2024"
+   "value": 2.99114404482197,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 1601.96466602339,
@@ -13310,16 +13518,20 @@
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 19009151,
-   "year": "2024"
+   "value": 19654739,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 29.2642187649441,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 96.7915743356176,
+  "SP.DYN.LE00.IN": {
+   "value": 58.967,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 96.7394370384369,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 101.1,
@@ -13390,16 +13602,16 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 45.3823534475479,
-   "year": "2024"
+   "value": 44.8600937127024,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 30451988233.1033,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 130.325060583271,
-   "year": "2024"
+   "value": 128.063438809135,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
    "value": 6.39257959388318,
@@ -13462,58 +13674,58 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 24.525108218562,
-   "year": "2020"
+   "value": 18.5402586086237,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 34065.5568461863,
    "year": "2019"
   },
-  "IS.SHP.GOOD.TU": {
-   "value": 92238,
-   "year": "2019"
-  },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 54.6176465524521,
-   "year": "2024"
+   "value": 55.1399062872976,
+   "year": "2025"
   }
  },
  "South Africa": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 0.534843531905139,
-   "year": "2024"
+   "value": 1.11462608103956,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 15456.1989933658,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 4.36115246518962,
-   "year": "2024"
+   "value": 3.20550474112603,
+   "year": "2025"
   },
   "GC.DOD.TOTL.GD.ZS": {
-   "value": 79.4469077095183,
-   "year": "2023"
+   "value": 82.7627080034486,
+   "year": "2024"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": -0.642799797075048,
-   "year": "2024"
+   "value": -0.422766754018983,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 32.391,
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 64007187,
-   "year": "2024"
+   "value": 64747319,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 52.1085690262058,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 48.3114173367099,
+  "SP.DYN.LE00.IN": {
+   "value": 66.312,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 48.3864805816276,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 35.1,
@@ -13584,8 +13796,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 2.81119526983539,
-   "year": "2024"
+   "value": 2.82763267053972,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 9.89209374407505,
@@ -13604,24 +13816,24 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 36.3082015141828,
-   "year": "2024"
+   "value": 36.1845988997478,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 989307819277.577,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 61.646770473025,
-   "year": "2024"
+   "value": 60.9110971393628,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
    "value": 0.580891709673066,
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
-   "value": 25.4004573724829,
-   "year": "2023"
+   "value": 25.8775949092475,
+   "year": "2024"
   },
   "SI.POV.GINI": {
    "value": 54.1,
@@ -13676,8 +13888,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.71,
-   "year": "2022"
+   "value": 0.89,
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 1.58269570571817,
@@ -13692,20 +13904,20 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 23.753069242361,
-   "year": "2020"
+   "value": 27.7247110277789,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 15454595.699,
    "year": "2023"
   },
   "IS.SHP.GOOD.TU": {
-   "value": 4053350,
-   "year": "2022"
+   "value": 4303682,
+   "year": "2024"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 63.6917984858172,
-   "year": "2024"
+   "value": 63.8154011002522,
+   "year": "2025"
   }
  },
  "South Sudan": {
@@ -13722,16 +13934,20 @@
    "year": "2023"
   },
   "SP.POP.TOTL": {
-   "value": 11943408,
-   "year": "2024"
+   "value": 12188788,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 18.1719082809805,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 72.1441308683101,
+  "SP.DYN.LE00.IN": {
+   "value": 57.738,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 69.6686858180737,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 96.7,
@@ -13798,8 +14014,8 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 78.6231809555094,
-   "year": "2024"
+   "value": 78.3156400982599,
+   "year": "2025"
   },
   "SH.H2O.BASW.ZS": {
    "value": 39.7494391327564,
@@ -13846,29 +14062,29 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 30.7373478613476,
-   "year": "2020"
+   "value": 23.674692498997,
+   "year": "2023"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 21.3768190444906,
-   "year": "2024"
+   "value": 21.6843599017401,
+   "year": "2025"
   }
  },
  "Sri Lanka": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 5.00871930957159,
-   "year": "2024"
+   "value": 4.9534339114043,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 15632.5924849848,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": -0.42936004906973,
-   "year": "2024"
+   "value": -4.76386036960983,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": 1.21846968715026,
+   "value": 1.21048332599166,
    "year": "2024"
   },
   "SL.UEM.TOTL.ZS": {
@@ -13876,16 +14092,20 @@
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 21916000,
-   "year": "2024"
+   "value": 21756000,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 356.239896540576,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 51.8239202756772,
+  "SP.DYN.LE00.IN": {
+   "value": 77.672,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 51.9191842450952,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 5.9,
@@ -13964,8 +14184,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 8.2996858332285,
-   "year": "2024"
+   "value": 8.36247166017662,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 22.1791141286777,
@@ -13984,23 +14204,23 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 79.7003002941314,
-   "year": "2024"
+   "value": 79.5498644832063,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 342603896900.927,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 42.3975008711047,
-   "year": "2024"
+   "value": 41.8090026525048,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 0.769118881748846,
+   "value": 0.764077754153862,
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
-   "value": 9.92189093189952,
+   "value": 9.87891768094967,
    "year": "2023"
   },
   "SH.H2O.SMDW.ZS": {
@@ -14044,8 +14264,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.19,
-   "year": "2022"
+   "value": 0.26,
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 6.84577899557925,
@@ -14060,26 +14280,26 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 19.9644408635608,
-   "year": "2020"
+   "value": 22.6820308390395,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 3866001,
    "year": "2023"
   },
   "IS.SHP.GOOD.TU": {
-   "value": 6860000,
-   "year": "2022"
+   "value": 7782776,
+   "year": "2024"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 20.2996997058686,
-   "year": "2024"
+   "value": 20.4501355167937,
+   "year": "2025"
   }
  },
  "Sudan": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": -13.9643375197179,
-   "year": "2024"
+   "value": 3.06427942935869,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 2115.81616210938,
@@ -14098,16 +14318,20 @@
    "year": "2022"
   },
   "SP.POP.TOTL": {
-   "value": 50448963,
-   "year": "2024"
+   "value": 51662147,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 26.7895026766595,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 77.8507021774661,
+  "SP.DYN.LE00.IN": {
+   "value": 66.521,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 77.3060775636206,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 61.6,
@@ -14150,8 +14374,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 22.1813816000123,
-   "year": "2024"
+   "value": 29.3570939629694,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 11.2392933618844,
@@ -14170,16 +14394,16 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 65.1326984489161,
-   "year": "2024"
+   "value": 65.0650555033395,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 106740734179.302,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 1.99541210225008,
-   "year": "2024"
+   "value": 2.38193028387697,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
    "value": 1.37399372870934,
@@ -14217,10 +14441,6 @@
    "value": 2.3984635719866,
    "year": "2024"
   },
-  "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.01,
-   "year": "2018"
-  },
   "IT.MLT.MAIN.P2": {
    "value": 0.315495025387709,
    "year": "2022"
@@ -14234,8 +14454,8 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 45.8349025581217,
-   "year": "2020"
+   "value": 37.6123871383607,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 911089.799,
@@ -14246,13 +14466,13 @@
    "year": "2021"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 34.8673015510839,
-   "year": "2024"
+   "value": 34.9349444966605,
+   "year": "2025"
   }
  },
  "Syria": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 0.732781301861365,
+   "value": -0.20247264200475,
    "year": "2022"
   },
   "NY.GDP.PCAP.PP.CD": {
@@ -14264,16 +14484,20 @@
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 24672760,
-   "year": "2024"
+   "value": 25620427,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 128.490023416653,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 51.2977156907185,
+  "SP.DYN.LE00.IN": {
+   "value": 72.56,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 49.8799108691544,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 18.4,
@@ -14340,7 +14564,7 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 43.0599878108777,
+   "value": 42.8517272820162,
    "year": "2022"
   },
   "AG.LND.ARBL.ZS": {
@@ -14360,15 +14584,15 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 27.9238654241746,
-   "year": "2024"
+   "value": 27.9163713791482,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 107199859817.267,
    "year": "2022"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 35.6094680799956,
+   "value": 35.4372421451582,
    "year": "2022"
   },
   "SI.POV.GINI": {
@@ -14420,8 +14644,8 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 24.7058382627422,
-   "year": "2020"
+   "value": 32.0552019474512,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 610744.721,
@@ -14432,38 +14656,42 @@
    "year": "2020"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 72.0761345758254,
-   "year": "2024"
+   "value": 72.0836286208518,
+   "year": "2025"
   }
  },
  "Tajikistan": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 8.39999980983981,
-   "year": "2024"
+   "value": 8.40000053390075,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 5405.98011619139,
    "year": "2024"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": 6.5233853848013,
-   "year": "2024"
+   "value": 17.0983293460641,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 6.931,
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 10590927,
-   "year": "2024"
+   "value": 10786734,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 74.8598530153469,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 66.9813440301354,
+  "SP.DYN.LE00.IN": {
+   "value": 71.927,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 66.4860952051687,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 28.1,
@@ -14530,8 +14758,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 22.8588621065173,
-   "year": "2023"
+   "value": 23.0548214545919,
+   "year": "2024"
   },
   "AG.LND.ARBL.ZS": {
    "value": 6.08401181641329,
@@ -14550,23 +14778,23 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 73.8211936348452,
-   "year": "2024"
+   "value": 73.83523729147,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 57254340774.0345,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 65.6347010367354,
-   "year": "2023"
+   "value": 59.0899316296485,
+   "year": "2024"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 2.05083616601343,
+   "value": 2.01948198566107,
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
-   "value": 10.877373974428,
+   "value": 10.7110753929,
    "year": "2024"
   },
   "SI.POV.GINI": {
@@ -14618,8 +14846,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.23,
-   "year": "2021"
+   "value": 2.55,
+   "year": "2023"
   },
   "IT.MLT.MAIN.P2": {
    "value": 2.21157310165481,
@@ -14634,33 +14862,33 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 37.0534062306267,
-   "year": "2020"
+   "value": 33.3455362132125,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 690677.377,
    "year": "2023"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 26.1788063651548,
-   "year": "2024"
+   "value": 26.16476270853,
+   "year": "2025"
   }
  },
  "Tanzania": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 5.5263138305945,
-   "year": "2024"
+   "value": 5.85286828692739,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 4220.79638671875,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 3.05694676312373,
-   "year": "2024"
+   "value": 3.32697361316105,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": -3.01833493415327,
+   "value": -3.00342879227062,
    "year": "2024"
   },
   "SL.UEM.TOTL.ZS": {
@@ -14668,16 +14896,20 @@
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 68560157,
-   "year": "2024"
+   "value": 70545865,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 75.2061481146986,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 83.7597146713438,
+  "SP.DYN.LE00.IN": {
+   "value": 67.212,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 83.0906817860939,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 37,
@@ -14756,8 +14988,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 23.3180780856465,
-   "year": "2024"
+   "value": 22.9094775894812,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 15.2432829081057,
@@ -14776,23 +15008,23 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 63.8315541137008,
-   "year": "2024"
+   "value": 63.1166884063357,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 280425918025.025,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 41.5131207208244,
-   "year": "2024"
+   "value": 38.9715711395739,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 2.17843632795407,
+   "value": 2.16767805172059,
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
-   "value": 12.8029080718189,
+   "value": 12.7396805065136,
    "year": "2024"
   },
   "SH.H2O.SMDW.ZS": {
@@ -14840,8 +15072,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.13,
-   "year": "2022"
+   "value": 0.1,
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 0.114204814320947,
@@ -14856,58 +15088,62 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 25.081431153535,
-   "year": "2020"
+   "value": 20.1699588964355,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 1911063,
    "year": "2023"
   },
   "IS.SHP.GOOD.TU": {
-   "value": 700000,
-   "year": "2022"
+   "value": 985000,
+   "year": "2024"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 36.1684458862992,
-   "year": "2024"
+   "value": 36.8833115936643,
+   "year": "2025"
   }
  },
  "Thailand": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 2.54182067735289,
-   "year": "2024"
+   "value": 2.44247444990198,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 24712.0658575135,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 1.36580540798037,
-   "year": "2024"
+   "value": -0.133634356480207,
+   "year": "2025"
   },
   "GC.DOD.TOTL.GD.ZS": {
-   "value": 62.1983655632713,
+   "value": 61.861415782411,
    "year": "2024"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": 2.20678307557905,
-   "year": "2024"
+   "value": 2.76290010089629,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 0.781,
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 71668011,
-   "year": "2024"
+   "value": 71619863,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 140.348088629646,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 43.0865648827834,
+  "SP.DYN.LE00.IN": {
+   "value": 76.564,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 43.7434423954487,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 9,
@@ -14986,8 +15222,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 8.7111266189882,
-   "year": "2024"
+   "value": 8.7468928716046,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 30.9953218892521,
@@ -15006,23 +15242,23 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 38.1310661608679,
-   "year": "2024"
+   "value": 37.2006622863704,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 1771064607709,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 136.747107022451,
-   "year": "2024"
+   "value": 138.413686011523,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 2.71636831286516,
+   "value": 2.70165281834265,
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
-   "value": 15.2576732486414,
+   "value": 15.1750172236637,
    "year": "2024"
   },
   "SI.POV.GINI": {
@@ -15074,8 +15310,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 16.12,
-   "year": "2021"
+   "value": 16.86,
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 5.44594435584378,
@@ -15090,54 +15326,58 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 31.0072016277159,
-   "year": "2020"
+   "value": 23.4870743016258,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 51920692,
    "year": "2023"
   },
   "IS.SHP.GOOD.TU": {
-   "value": 10497112,
-   "year": "2022"
+   "value": 11432626,
+   "year": "2024"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 61.8689338391321,
-   "year": "2024"
+   "value": 62.7993377136296,
+   "year": "2025"
   }
  },
  "Timor-Leste": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": -9.10069369772735,
-   "year": "2024"
+   "value": 6.97538939119629,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 4422.77882172399,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 2.06284153005468,
-   "year": "2024"
+   "value": 0.428322848346937,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": -31.4902137229965,
-   "year": "2024"
+   "value": -36.8713347686307,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 1.592,
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 1400638,
-   "year": "2024"
+   "value": 1418517,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 93.0925353059852,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 63.7629138391458,
+  "SP.DYN.LE00.IN": {
+   "value": 67.904,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 62.1911145260212,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 47.6,
@@ -15204,7 +15444,7 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 20.1605204711386,
+   "value": 20.1605211861233,
    "year": "2024"
   },
   "AG.LND.ARBL.ZS": {
@@ -15224,15 +15464,15 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 71.3358925820426,
-   "year": "2024"
+   "value": 71.2135681039065,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 6194712083.30184,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 95.4485021286221,
+   "value": 95.4485030105899,
    "year": "2024"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
@@ -15240,7 +15480,7 @@
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
-   "value": 21.6431379446424,
+   "value": 21.6431378705086,
    "year": "2022"
   },
   "SH.H2O.BASW.ZS": {
@@ -15279,6 +15519,10 @@
    "value": 264.879290723228,
    "year": "2024"
   },
+  "TX.VAL.ICTG.ZS.UN": {
+   "value": 0.05,
+   "year": "2023"
+  },
   "IT.MLT.MAIN.P2": {
    "value": 0.120730695583013,
    "year": "2024"
@@ -15292,50 +15536,46 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 17.4104661970888,
-   "year": "2020"
-  },
-  "IS.SHP.GOOD.TU": {
-   "value": 53289,
-   "year": "2019"
+   "value": 11.9874398587491,
+   "year": "2023"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 28.6641074179574,
-   "year": "2024"
+   "value": 28.7864318960935,
+   "year": "2025"
   }
  },
  "Togo": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 6.53204505563791,
-   "year": "2024"
+   "value": 6.31032671625633,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 3365.45809007306,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 2.86262074089801,
-   "year": "2024"
-  },
-  "BN.CAB.XOKA.GD.ZS": {
-   "value": -0.277018884474411,
-   "year": "2020"
+   "value": 0.433183451279109,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 1.995,
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 9515236,
-   "year": "2024"
+   "value": 8591626,
+   "year": "2025"
   },
   "EN.POP.DNST": {
-   "value": 171.067052767053,
+   "value": 151.201507630079,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 74.6397124343511,
+  "SP.DYN.LE00.IN": {
+   "value": 62.935,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 78.2600188932176,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 56.1,
@@ -15394,11 +15634,11 @@
    "year": "2021"
   },
   "EG.USE.PCAP.KG.OE": {
-   "value": 429.162601160928,
+   "value": 485.547945183566,
    "year": "2023"
   },
   "EG.USE.ELEC.KH.PC": {
-   "value": 217.210533109452,
+   "value": 245.748645707303,
    "year": "2023"
   },
   "EG.CFT.ACCS.ZS": {
@@ -15406,8 +15646,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 21.3288248148543,
-   "year": "2024"
+   "value": 20.3258949863422,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 48.7221915793344,
@@ -15426,23 +15666,23 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 56.1851508394004,
-   "year": "2024"
+   "value": 55.6050107925601,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 32023127975.1544,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 61.575092396894,
-   "year": "2022"
+   "value": 59.9291777017427,
+   "year": "2023"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 0.786342441379874,
+   "value": 0.786914262545951,
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
-   "value": 13.7896420900126,
+   "value": 13.9214440832607,
    "year": "2023"
   },
   "SI.POV.GINI": {
@@ -15494,12 +15734,12 @@
    "year": "2024"
   },
   "IT.NET.SECR.P6": {
-   "value": 90.0660792858947,
+   "value": 101.944220214742,
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.13,
-   "year": "2022"
+   "value": 0.12,
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 0.825791393928643,
@@ -15514,37 +15754,37 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 51.6661369398223,
-   "year": "2020"
+   "value": 34.3346739146749,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 2175165.332,
    "year": "2023"
   },
   "IS.SHP.GOOD.TU": {
-   "value": 1952879,
-   "year": "2022"
+   "value": 2006435,
+   "year": "2024"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 43.8148491605996,
-   "year": "2024"
+   "value": 44.3949892074399,
+   "year": "2025"
   }
  },
  "Tunisia": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 1.61444564976986,
-   "year": "2024"
+   "value": 2.49311010666248,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 14521.0080937638,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 7.20661657168794,
-   "year": "2024"
+   "value": 5.15100197572676,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": -1.51035573976696,
+   "value": -1.50801033952852,
    "year": "2024"
   },
   "SL.UEM.TOTL.ZS": {
@@ -15552,16 +15792,20 @@
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 12277109,
-   "year": "2024"
+   "value": 12348573,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 78.530065653965,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 50.531188748014,
+  "SP.DYN.LE00.IN": {
+   "value": 76.711,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 50.3725896202428,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 12.1,
@@ -15632,8 +15876,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 9.73863393101929,
-   "year": "2024"
+   "value": 10.2934775669857,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 18.2241246138002,
@@ -15652,19 +15896,19 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 29.6414644308045,
-   "year": "2024"
+   "value": 29.2970673990136,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 178275999157.021,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 106.298549204247,
-   "year": "2024"
+   "value": 101.446205451707,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 1.4797736580075,
+   "value": 1.47747574805229,
    "year": "2024"
   },
   "SI.POV.GINI": {
@@ -15720,8 +15964,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 4.26,
-   "year": "2021"
+   "value": 4.18,
+   "year": "2023"
   },
   "IT.MLT.MAIN.P2": {
    "value": 15.970030077928,
@@ -15736,34 +15980,34 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 24.1829826735327,
-   "year": "2020"
+   "value": 18.874792802061,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 4110265,
    "year": "2023"
   },
   "IS.SHP.GOOD.TU": {
-   "value": 464823,
-   "year": "2022"
+   "value": 491955,
+   "year": "2024"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 70.3585355691955,
-   "year": "2024"
+   "value": 70.7029326009864,
+   "year": "2025"
   }
  },
  "Turkey": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 3.3276230893799,
-   "year": "2024"
+   "value": 3.60462514082589,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 45639.0192735944,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 58.5064507300342,
-   "year": "2024"
+   "value": 34.8811629820306,
+   "year": "2025"
   },
   "GC.DOD.TOTL.GD.ZS": {
    "value": 26.6192344930079,
@@ -15778,16 +16022,20 @@
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 85518661,
-   "year": "2024"
+   "value": 85878556,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 110.866214934449,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 46.483848695231,
+  "SP.DYN.LE00.IN": {
+   "value": 77.421,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 46.1856736686322,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 9.6,
@@ -15862,8 +16110,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 5.82042467876951,
-   "year": "2024"
+   "value": 5.20951196750004,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 26.3464262047997,
@@ -15882,16 +16130,16 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 10.6556877126113,
-   "year": "2024"
+   "value": 10.505939997814,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 3902987817630.99,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 54.5988061195916,
-   "year": "2024"
+   "value": 49.9346783626928,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
    "value": 0.860701598247461,
@@ -15946,8 +16194,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.7,
-   "year": "2022"
+   "value": 0.69,
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 10.3188571710125,
@@ -15962,26 +16210,26 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 21.6120469179783,
-   "year": "2020"
+   "value": 26.4041601035213,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 125940241,
    "year": "2023"
   },
   "IS.SHP.GOOD.TU": {
-   "value": 12366172,
-   "year": "2022"
+   "value": 13507070,
+   "year": "2024"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 89.3443122873887,
-   "year": "2024"
+   "value": 89.494060002186,
+   "year": "2025"
   }
  },
  "Turkmenistan": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 6.2994265836889,
-   "year": "2024"
+   "value": 6.30000003697894,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 21213.0862501953,
@@ -15992,16 +16240,20 @@
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 7494498,
-   "year": "2024"
+   "value": 7618847,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 15.6713510522844,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 56.3406372282943,
+  "SP.DYN.LE00.IN": {
+   "value": 70.201,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 56.3142778182528,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 39,
@@ -16076,8 +16328,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 12.1667430789981,
-   "year": "2024"
+   "value": 12.3560088049428,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 3.38675802779137,
@@ -16096,19 +16348,19 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 52.9124746089706,
-   "year": "2024"
+   "value": 52.8946391746253,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 158981432475.916,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 28.7346076303052,
-   "year": "2024"
+   "value": 28.1660712907997,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 3.2007384018073,
+   "value": 3.71704110413,
    "year": "2024"
   },
   "SH.H2O.SMDW.ZS": {
@@ -16160,37 +16412,37 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 19.5997611438189,
-   "year": "2020"
+   "value": 31.2475628480692,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 1078118.391,
    "year": "2023"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 47.0875253910294,
-   "year": "2024"
+   "value": 47.1053608253747,
+   "year": "2025"
   }
  },
  "Uganda": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 6.05558075875589,
-   "year": "2024"
+   "value": 6.33181157677313,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 3273.2671741364,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 3.3233806708656,
-   "year": "2024"
+   "value": 3.58082784438067,
+   "year": "2025"
   },
   "GC.DOD.TOTL.GD.ZS": {
    "value": 54.4305525836671,
    "year": "2024"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": -7.77521513874795,
+   "value": -7.7752151397725,
    "year": "2024"
   },
   "SL.UEM.TOTL.ZS": {
@@ -16198,16 +16450,20 @@
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 50015092,
-   "year": "2024"
+   "value": 51384894,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 242.65210951526,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 84.2692386918341,
+  "SP.DYN.LE00.IN": {
+   "value": 68.487,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 82.9480166289537,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 48.7,
@@ -16266,8 +16522,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 24.618950598633,
-   "year": "2024"
+   "value": 26.1325416269988,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 34.4105326152005,
@@ -16286,19 +16542,19 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 68.7222301786443,
-   "year": "2024"
+   "value": 68.0600442463383,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 163712758855.012,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 42.6527889088562,
-   "year": "2024"
+   "value": 50.1990176084385,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 6.04170465829259,
+   "value": 6.04170465908871,
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
@@ -16350,8 +16606,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.15,
-   "year": "2020"
+   "value": 0.07,
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 0.391831729510765,
@@ -16366,37 +16622,37 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 33.8077192571642,
-   "year": "2020"
+   "value": 31.2148242708861,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 21650.2,
    "year": "2023"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 31.2777698213557,
-   "year": "2024"
+   "value": 31.9399557536617,
+   "year": "2025"
   }
  },
  "Ukraine": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 2.9138222142611,
-   "year": "2024"
+   "value": 1.82152376756284,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 18550.462890625,
+   "value": 18548.859375,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 6.50198464669254,
-   "year": "2024"
+   "value": 12.7303341026903,
+   "year": "2025"
   },
   "GC.DOD.TOTL.GD.ZS": {
    "value": 58.7161850732326,
    "year": "2020"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": -7.96419181025033,
+   "value": -7.96032840013333,
    "year": "2024"
   },
   "SL.UEM.TOTL.ZS": {
@@ -16404,16 +16660,20 @@
    "year": "2021"
   },
   "SP.POP.TOTL": {
-   "value": 37860221,
-   "year": "2024"
+   "value": 38980376,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 65.1239834311357,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 48.9225090613665,
+  "SP.DYN.LE00.IN": {
+   "value": 74.692,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 48.5136547806343,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 7.9,
@@ -16480,8 +16740,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 7.11116658934678,
-   "year": "2024"
+   "value": 7.57270528442222,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 56.8243010010356,
@@ -16500,23 +16760,23 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 30.4684356799852,
-   "year": "2024"
+   "value": 30.4045075354236,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 656527758178.686,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 77.7530113300514,
-   "year": "2024"
+   "value": 77.1802739924807,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 2.1065185105382,
+   "value": 2.10549664352154,
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
-   "value": 21.027968473332,
+   "value": 21.0177678568632,
    "year": "2024"
   },
   "SH.H2O.SMDW.ZS": {
@@ -16564,8 +16824,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.91,
-   "year": "2022"
+   "value": 0.7,
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 3.80110840330157,
@@ -16580,8 +16840,8 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 14.90010098879,
-   "year": "2020"
+   "value": 14.854701604932,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 452343.767,
@@ -16592,42 +16852,46 @@
    "year": "2021"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 69.5315643200148,
-   "year": "2024"
+   "value": 69.5954924645764,
+   "year": "2025"
   }
  },
  "Uzbekistan": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 6.49999999997677,
-   "year": "2024"
+   "value": 7.69962477932913,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 11878.5528706848,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 9.62825465956682,
-   "year": "2024"
+   "value": 8.79638847052461,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": -4.97812922686191,
-   "year": "2024"
+   "value": -3.93381123699979,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 4.622,
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 36361859,
-   "year": "2024"
+   "value": 37053428,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 80.9084466129581,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 58.6494292141216,
+  "SP.DYN.LE00.IN": {
+   "value": 72.528,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 59.6418459559503,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 13.4,
@@ -16706,8 +16970,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 18.325982693232,
-   "year": "2024"
+   "value": 16.5595763193311,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 9.14331101781459,
@@ -16726,23 +16990,23 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 49.0013313293457,
-   "year": "2024"
+   "value": 48.9826504915701,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 431926264607.887,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 60.7274403812997,
-   "year": "2024"
+   "value": 57.4005392040216,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 2.5972703195852,
+   "value": 2.45125129042312,
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
-   "value": 11.5296953002205,
+   "value": 11.0059302187391,
    "year": "2023"
   },
   "SI.POV.GINI": {
@@ -16798,8 +17062,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.53,
-   "year": "2022"
+   "value": 0.35,
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 17.3881126374754,
@@ -16814,38 +17078,42 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 31.9604294559849,
-   "year": "2020"
+   "value": 32.7713715610547,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 4849939,
    "year": "2023"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 50.9986686706543,
-   "year": "2024"
+   "value": 51.0173495084299,
+   "year": "2025"
   }
  },
  "Venezuela": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 5.29999999999984,
-   "year": "2024"
+   "value": 1.57068062827224,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 5.307,
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 28405543,
-   "year": "2024"
+   "value": 28516896,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 32.0853171588912,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 54.3357993626306,
+  "SP.DYN.LE00.IN": {
+   "value": 72.673,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 53.6906919485552,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 24.2,
@@ -16916,15 +17184,15 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 10.714140116799,
-   "year": "2024"
+   "value": 10.6780887701012,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 26.0811657596499,
-   "year": "2024"
+   "value": 25.0115313779011,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 1.36272366359347,
+   "value": 1.35409801107577,
    "year": "2024"
   },
   "SH.H2O.BASW.ZS": {
@@ -16976,37 +17244,37 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 15.2565796212874,
-   "year": "2020"
+   "value": 19.1983096563552,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 1783667,
    "year": "2023"
   },
   "IS.SHP.GOOD.TU": {
-   "value": 179529,
-   "year": "2019"
+   "value": 221801,
+   "year": "2021"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 89.285859883201,
-   "year": "2024"
+   "value": 89.3219112298988,
+   "year": "2025"
   }
  },
  "Vietnam": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 7.09118746633975,
-   "year": "2024"
+   "value": 8.01882998978245,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 16385.5065565458,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 3.62109273885843,
-   "year": "2024"
+   "value": 3.3099931421974,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": 6.33411954374758,
+   "value": 6.33496605552948,
    "year": "2024"
   },
   "SL.UEM.TOTL.ZS": {
@@ -17014,16 +17282,20 @@
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 100987686,
-   "year": "2024"
+   "value": 101598527,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 320.175197572656,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 47.6476510341859,
+  "SP.DYN.LE00.IN": {
+   "value": 74.736,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 47.8208691230641,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 17.3,
@@ -17098,8 +17370,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 11.8634906983546,
-   "year": "2024"
+   "value": 11.6440301326976,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 21.4673179571769,
@@ -17118,19 +17390,19 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 61.5099296569824,
-   "year": "2024"
+   "value": 61.1700839648706,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 1654734391083.39,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 173.862024782965,
-   "year": "2024"
+   "value": 190.336808817292,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 4.23394171325231,
+   "value": 4.23450755062236,
    "year": "2024"
   },
   "SI.POV.GINI": {
@@ -17186,8 +17458,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 38,
-   "year": "2021"
+   "value": 35.9,
+   "year": "2023"
   },
   "IT.MLT.MAIN.P2": {
    "value": 2.61816376305523,
@@ -17202,20 +17474,20 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 20.8010641731194,
-   "year": "2020"
+   "value": 24.7845479100313,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 55114832,
    "year": "2023"
   },
   "IS.SHP.GOOD.TU": {
-   "value": 20518926,
-   "year": "2022"
+   "value": 24423183,
+   "year": "2024"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 38.4900703430176,
-   "year": "2024"
+   "value": 38.8299160351294,
+   "year": "2025"
   }
  },
  "Yemen": {
@@ -17224,16 +17496,20 @@
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 40583164,
-   "year": "2024"
+   "value": 41773878,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 74.6080250771824,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 77.466898203994,
+  "SP.DYN.LE00.IN": {
+   "value": 69.439,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 77.1973485559311,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 38.1,
@@ -17300,8 +17576,8 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 63.1922482403406,
-   "year": "2024"
+   "value": 62.9663335392922,
+   "year": "2025"
   },
   "SH.H2O.BASW.ZS": {
    "value": 75.0357620960457,
@@ -17348,41 +17624,41 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 34.8323598356099,
-   "year": "2020"
+   "value": 46.8359781444582,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 618613.038,
    "year": "2023"
   },
   "IS.SHP.GOOD.TU": {
-   "value": 418711,
-   "year": "2021"
+   "value": 380000,
+   "year": "2024"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 36.8077517596594,
-   "year": "2024"
+   "value": 37.0336664607078,
+   "year": "2025"
   }
  },
  "Zambia": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 3.82004825518591,
-   "year": "2024"
+   "value": 3.75772836763902,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 4214.89277804799,
    "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
-   "value": 14.9856262747939,
-   "year": "2024"
+   "value": 13.9099095827735,
+   "year": "2025"
   },
   "GC.DOD.TOTL.GD.ZS": {
    "value": 71.4111761686383,
    "year": "2021"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": -4.41103708042777,
+   "value": -4.41103708042779,
    "year": "2024"
   },
   "SL.UEM.TOTL.ZS": {
@@ -17390,16 +17666,20 @@
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 21314956,
-   "year": "2024"
+   "value": 21913874,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 27.8776483407095,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 76.6912407389232,
+  "SP.DYN.LE00.IN": {
+   "value": 66.528,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 75.3495969672683,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 48.4,
@@ -17462,8 +17742,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 2.83370764465019,
-   "year": "2024"
+   "value": 4.10574926168725,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 5.11171794078478,
@@ -17482,8 +17762,8 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 54.5296161508721,
-   "year": "2024"
+   "value": 54.0828489838539,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 89840254108.8107,
@@ -17498,8 +17778,8 @@
    "year": "2024"
   },
   "GC.TAX.TOTL.GD.ZS": {
-   "value": 16.7804106778084,
-   "year": "2021"
+   "value": 18.8304899930412,
+   "year": "2024"
   },
   "SI.POV.GINI": {
    "value": 51.5,
@@ -17546,8 +17826,8 @@
    "year": "2024"
   },
   "TX.VAL.ICTG.ZS.UN": {
-   "value": 0.03,
-   "year": "2021"
+   "value": 0.06,
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 0.345710307823296,
@@ -17562,22 +17842,22 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 24.3085919008655,
-   "year": "2020"
+   "value": 20.2430489112714,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 321738.797,
    "year": "2023"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 45.4703838491279,
-   "year": "2024"
+   "value": 45.9171510161461,
+   "year": "2025"
   }
  },
  "Zimbabwe": {
   "NY.GDP.MKTP.KD.ZG": {
-   "value": 1.74239524880791,
-   "year": "2024"
+   "value": 8.10671343048909,
+   "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 5928.0806252756,
@@ -17588,7 +17868,7 @@
    "year": "2022"
   },
   "BN.CAB.XOKA.GD.ZS": {
-   "value": 1.20656684620507,
+   "value": 1.2070735013076,
    "year": "2024"
   },
   "SL.UEM.TOTL.ZS": {
@@ -17596,16 +17876,20 @@
    "year": "2025"
   },
   "SP.POP.TOTL": {
-   "value": 16634373,
-   "year": "2024"
+   "value": 16950795,
+   "year": "2025"
   },
   "EN.POP.DNST": {
    "value": 42.24071862479,
    "year": "2023"
   },
-  "SP.POP.DPND": {
-   "value": 80.1004117942445,
+  "SP.DYN.LE00.IN": {
+   "value": 63.064,
    "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 78.0787184480585,
+   "year": "2025"
   },
   "SH.DYN.MORT": {
    "value": 64.7,
@@ -17668,8 +17952,8 @@
    "year": "2023"
   },
   "NV.AGR.TOTL.ZS": {
-   "value": 8.68845082778603,
-   "year": "2024"
+   "value": 9.47197936700304,
+   "year": "2025"
   },
   "AG.LND.ARBL.ZS": {
    "value": 10.3926785575805,
@@ -17688,19 +17972,19 @@
    "year": "2022"
   },
   "SP.RUR.TOTL.ZS": {
-   "value": 60.1066283179304,
-   "year": "2024"
+   "value": 59.5048712568548,
+   "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
    "value": 98609904294.9076,
    "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
-   "value": 41.4865312656314,
+   "value": 41.5039527238816,
    "year": "2024"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 1.12046122708248,
+   "value": 1.12093172517355,
    "year": "2024"
   },
   "SH.H2O.SMDW.ZS": {
@@ -17749,7 +18033,7 @@
   },
   "TX.VAL.ICTG.ZS.UN": {
    "value": 0.02,
-   "year": "2022"
+   "year": "2024"
   },
   "IT.MLT.MAIN.P2": {
    "value": 1.79175373787759,
@@ -17764,16 +18048,16 @@
    "year": "2025"
   },
   "EN.ATM.PM25.MC.M3": {
-   "value": 19.4941796611344,
-   "year": "2020"
+   "value": 15.0254734850511,
+   "year": "2023"
   },
   "IS.AIR.PSGR": {
    "value": 92494.376,
    "year": "2023"
   },
   "SP.URB.TOTL.IN.ZS": {
-   "value": 39.8933716820696,
-   "year": "2024"
+   "value": 40.4951287431452,
+   "year": "2025"
   }
  }
 }

@@ -115,6 +115,15 @@ def _fmt_money(v, default="—"):
         return default
 
 
+def _fmt_num(v, default="—", decimals=1, suffix=""):
+    try:
+        f = float(v)
+        s = f"{f:,.0f}" if decimals == 0 else f"{f:,.{decimals}f}"
+        return f"{s}{suffix}"
+    except Exception:
+        return default
+
+
 def _status_for(v, weak, severe, *, inv=False):
     if v is None: return "developing"
     try: v = float(v)
@@ -238,11 +247,11 @@ def build_ctx_from_agent_run(agent_ctx: dict, agent_outputs: dict,
     aglance_insights = _extract_bullets(fact_check, 3) or \
                        _extract_bullets(analyst, 3)
 
-    def _sector_stub(label, neg_codes=(), source="World Bank"):
+    def _sector_stub(label, stats=None, source="World Bank"):
         return {
             "statement":     f"Indicators and analyst findings for {label}",
             "chart_title":   f"{label} Indicators",
-            "stats":         [],
+            "stats":         stats or [],
             "insights":      _extract_bullets(analyst, 3),
             "interventions": _extract_bullets(design, 3),
             "sources":       f"Sources: {source}",
@@ -262,8 +271,8 @@ def build_ctx_from_agent_run(agent_ctx: dict, agent_outputs: dict,
             "chart":         {
                 "title":      "GDP growth vs. inflation (latest)",
                 "x_labels":   ["Latest"],
-                "bar_values": [float(growth) if growth is not None else 0],
-                "line_values":[float(cpi) if cpi is not None else 0],
+                "bar_values": [round(float(growth), 1)] if growth is not None else [],
+                "line_values":[round(float(cpi), 1)] if cpi is not None else [],
                 "y_max":      40,
                 "bar_label":  "GDP growth (%)",
                 "line_label": "CPI inflation (%)",
@@ -279,38 +288,59 @@ def build_ctx_from_agent_run(agent_ctx: dict, agent_outputs: dict,
             "interventions": _extract_bullets(design, 3),
             "sources":       "Sources: World Bank · IMF · agent analysis",
         },
-        "health":         _sector_stub("Health",        source="WHO · UNICEF"),
-        "education":      _sector_stub("Education",     source="UNESCO UIS"),
-        "nutrition":      _sector_stub("Food Security", source="FEWS NET · IPC"),
-        "agriculture":    _sector_stub("Agriculture",   source="FAOSTAT"),
-        "infrastructure": _sector_stub("Infrastructure",source="World Bank · ITU"),
-        "climate":        _sector_stub("Environment & Climate", source="ND-GAIN"),
-        "humanitarian":   _sector_stub("Humanitarian",  source="OCHA · IOM DTM"),
+        "health": _sector_stub("Health", source="WHO · UNICEF · UN IGME", stats=[
+            {"val": _fmt_num(_ind(indicators,"SH.DYN.MORT"), suffix="/1k"),
+             "label":"Under-5 mortality", "neg":True},
+            {"val": _fmt_num(_ind(indicators,"SH.STA.MMRT"), decimals=0, suffix="/100k"),
+             "label":"Maternal mortality", "neg":True},
+            {"val": _fmt_num(_ind(indicators,"SP.DYN.LE00.IN"), suffix=" yrs"),
+             "label":"Life expectancy"},
+            {"val": _fmt_pct(_ind(indicators,"SH.IMM.MEAS")),
+             "label":"Measles immunization"},
+        ]),
+        "education": _sector_stub("Education", source="UNESCO UIS", stats=[
+            {"val": _fmt_pct(_ind(indicators,"SE.ADT.LITR.ZS")), "label":"Adult literacy"},
+            {"val": _fmt_pct(_ind(indicators,"SE.PRM.ENRR")),    "label":"Primary enrollment (GER)"},
+            {"val": _fmt_pct(_ind(indicators,"SE.SEC.ENRR")),    "label":"Secondary enrollment (GER)"},
+            {"val": _fmt_pct(_ind(indicators,"SE.ADT.1524.LT.ZS")), "label":"Youth literacy (15–24)"},
+        ]),
+        "nutrition": _sector_stub("Food Security", source="FEWS NET · IPC · FAO", stats=[
+            {"val": _fmt_pct(_ind(indicators,"SN.ITK.DEFC.ZS")), "label":"Undernourishment", "neg":True},
+            {"val": _fmt_pct(_ind(indicators,"SH.STA.STNT.ZS")), "label":"Child stunting", "neg":True},
+            {"val": _fmt_num(_ind(indicators,"AG.PRD.FOOD.XD"), decimals=0), "label":"Food production index"},
+        ]),
+        "agriculture": _sector_stub("Agriculture", source="FAOSTAT", stats=[
+            {"val": _fmt_pct(_ind(indicators,"NV.AGR.TOTL.ZS")), "label":"Agriculture % of GDP"},
+            {"val": _fmt_pct(_ind(indicators,"AG.LND.AGRI.ZS")), "label":"Agricultural land"},
+            {"val": _fmt_num(_ind(indicators,"AG.YLD.CREL.KG"), decimals=0, suffix=" kg/ha"), "label":"Cereal yield"},
+            {"val": _fmt_pct(_ind(indicators,"SP.RUR.TOTL.ZS")), "label":"Rural population"},
+        ]),
+        "infrastructure": _sector_stub("Infrastructure", source="World Bank · ITU", stats=[
+            {"val": _fmt_pct(_ind(indicators,"EG.ELC.ACCS.ZS")),  "label":"Electricity access"},
+            {"val": _fmt_pct(_ind(indicators,"SH.H2O.SMDW.ZS")),  "label":"Safely managed water"},
+            {"val": _fmt_pct(_ind(indicators,"SH.STA.SMSS.ZS")),  "label":"Safely managed sanitation"},
+            {"val": _fmt_pct(_ind(indicators,"IT.NET.USER.ZS")),  "label":"Internet users"},
+        ]),
+        "climate": _sector_stub("Environment & Climate", source="World Bank · ND-GAIN", stats=[
+            {"val": _fmt_pct(_ind(indicators,"AG.LND.FRST.ZS")),  "label":"Forest cover"},
+            {"val": _fmt_num(_ind(indicators,"EN.ATM.PM25.MC.M3"), suffix=" µg/m³"), "label":"PM2.5 air pollution", "neg":True},
+            {"val": _fmt_pct(_ind(indicators,"EG.FEC.RNEW.ZS")),  "label":"Renewable energy share"},
+            {"val": _fmt_pct(_ind(indicators,"ER.PTD.TOTL.ZS")),  "label":"Protected areas"},
+        ]),
+        "humanitarian": _sector_stub("Humanitarian", source="OCHA · IOM DTM · UNHCR", stats=[
+            {"val": _fmt_pct(_ind(indicators,"SI.POV.DDAY")), "label":"Poverty <$2.15/day", "neg":True},
+            {"val": _fmt_pop(_ind(indicators,"SP.POP.TOTL")), "label":"Total population"},
+            {"val": str(len(pipeline_raw)),                   "label":"CAD pipeline projects"},
+        ]),
     }
-    # Education needs grouped-bar shape
-    sectors["education"]["chart"] = {
-        "title": "Enrollment by Level & Gender",
-        "x_labels": ["Primary","Lower-Sec.","Upper-Sec.","Tertiary"],
-        "series_a": [90, 35, 20, 10],
-        "series_b": [85, 30, 17, 8],
-        "a_label": "Boys", "b_label": "Girls", "y_max": 100,
-    }
-    # Nutrition needs funnel
-    sectors["nutrition"]["funnel"] = []
-    # Infrastructure compare_rows
-    sectors["infrastructure"]["compare_rows"] = [
-        {"label":"Electricity",  "urban":80, "rural":20},
-        {"label":"Safe water",   "urban":75, "rural":45},
-        {"label":"Sanitation",   "urban":35, "rural":12},
-        {"label":"Internet",     "urban":45, "rural":8},
-    ]
-    # Climate line chart
-    sectors["climate"]["chart"] = {
-        "title": "Climate risk trend (illustrative)",
-        "x_labels": ["2000","2010","2020","2024"],
-        "series": [{"label":"Risk index", "values":[20,40,60,70], "color":[155,18,11]}],
-        "y_max": 100,
-    }
+    # GUARDRAIL: education / infrastructure / climate charts are intentionally
+    # left unpopulated. The dashboard snapshot carries no gender-split
+    # enrollment, urban/rural service split, or climate time-series, so any
+    # chart here would be fabricated (and was previously identical for every
+    # country). The builder renders an honest "data not available" placeholder
+    # for the missing viz; the real, country-specific figures appear in `stats`.
+    # The economy chart above is kept because it is built from live growth/CPI.
+    sectors["nutrition"]["funnel"] = []   # cascade funnel only if real data supplied
 
     # ─── Pipeline projects → priorities (slide 12) ───
     priority_cards = []
@@ -387,4 +417,8 @@ def build_ctx_from_agent_run(agent_ctx: dict, agent_outputs: dict,
                 "Sources: World Bank · IMF · OCHA · WHO · UNICEF · UNESCO UIS · UNHCR · IOM DTM    "
                 "CAD agent pipeline · dashboard export",
         },
+        # Optional political-context block — passed through from the dashboard
+        # JSON export when present. Skipped by builder when absent. Schema:
+        # see country_ppt_builder.py :: CONTEXT_SCHEMA -> politics.
+        "politics":  dash.get("politics"),
     }

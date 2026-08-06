@@ -1,10 +1,110 @@
 {
  "_meta": {
-  "generated": "2026-07-01T12:57:11+00:00",
+  "generated": "2026-08-06T07:56:51+00:00",
   "source": "World Bank Open Data API (api.worldbank.org)",
-  "countries": 85,
+  "countries": 86,
   "indicators": 65,
-  "datapoints": 4471
+  "datapoints": 4528
+ },
+ "_regions": {
+  "East Asia & Pacific": [
+   "Cambodia",
+   "Indonesia",
+   "Laos",
+   "Mongolia",
+   "Myanmar",
+   "Papua New Guinea",
+   "Philippines",
+   "Thailand",
+   "Timor-Leste",
+   "Vietnam"
+  ],
+  "Europe & Central Asia": [
+   "Albania",
+   "Armenia",
+   "Azerbaijan",
+   "Kazakhstan",
+   "Kosovo",
+   "Kyrgyzstan",
+   "Moldova",
+   "Tajikistan",
+   "Turkey",
+   "Turkmenistan",
+   "Ukraine",
+   "Uzbekistan"
+  ],
+  "Latin America & Caribbean": [
+   "Argentina",
+   "Bolivia",
+   "Colombia",
+   "Ecuador",
+   "El Salvador",
+   "Guatemala",
+   "Haiti",
+   "Honduras",
+   "Mexico",
+   "Nicaragua",
+   "Paraguay",
+   "Peru",
+   "Venezuela"
+  ],
+  "Middle East, North Africa, Afghanistan & Pakistan": [
+   "Afghanistan",
+   "Algeria",
+   "Egypt",
+   "Iraq",
+   "Jordan",
+   "Lebanon",
+   "Libya",
+   "Morocco",
+   "Pakistan",
+   "Palestine",
+   "Syria",
+   "Tunisia",
+   "Yemen"
+  ],
+  "South Asia": [
+   "Bangladesh",
+   "India",
+   "Nepal",
+   "Sri Lanka"
+  ],
+  "Sub-Saharan Africa": [
+   "Angola",
+   "Botswana",
+   "Burkina Faso",
+   "Burundi",
+   "Cameroon",
+   "Chad",
+   "Congo, Dem. Rep.",
+   "Côte d'Ivoire",
+   "Eritrea",
+   "Ethiopia",
+   "Ghana",
+   "Guinea",
+   "Kenya",
+   "Liberia",
+   "Madagascar",
+   "Malawi",
+   "Mali",
+   "Mauritania",
+   "Mozambique",
+   "Namibia",
+   "Niger",
+   "Nigeria",
+   "Rwanda",
+   "Senegal",
+   "Sierra Leone",
+   "Somalia",
+   "South Africa",
+   "South Sudan",
+   "Sudan",
+   "Tanzania",
+   "Togo",
+   "Uganda",
+   "Zambia",
+   "Zimbabwe"
+  ]
  },
  "Afghanistan": {
   "NY.GDP.MKTP.KD.ZG": {
@@ -12,8 +112,8 @@
    "year": "2024"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 2201.72290691677,
-   "year": "2023"
+   "value": 2236.19907311431,
+   "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
    "value": -6.60118564073726,
@@ -88,8 +188,8 @@
    "year": "2022"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 85.3,
-   "year": "2023"
+   "value": 87.8,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 20,
@@ -124,8 +224,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 91271896894.46,
-   "year": "2023"
+   "value": 95368282081.0498,
+   "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 83.763025087768,
@@ -210,8 +310,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 26701.6749563776,
-   "year": "2024"
+   "value": 28220.7950617158,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 2.14618551167388,
@@ -299,7 +399,7 @@
   },
   "EG.ELC.ACCS.ZS": {
    "value": 100,
-   "year": "2023"
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 41.9,
@@ -342,16 +442,16 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 63473299185.7041,
-   "year": "2024"
+   "value": 66307015661.1063,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 79.5328146239161,
    "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 6.32558905401363,
-   "year": "2024"
+   "value": 6.0631729079562,
+   "year": "2025"
   },
   "GC.TAX.TOTL.GD.ZS": {
    "value": 18.0152934113212,
@@ -436,8 +536,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 17620.7423956126,
-   "year": "2024"
+   "value": 18586.2607480579,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 1.41835151429016,
@@ -509,7 +609,7 @@
   },
   "EG.ELC.ACCS.ZS": {
    "value": 100,
-   "year": "2023"
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 0.1,
@@ -552,8 +652,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 824902861696.865,
-   "year": "2024"
+   "value": 881645077497.479,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 38.9789440161631,
@@ -642,8 +742,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 10118.6089945408,
-   "year": "2024"
+   "value": 10251.3457063657,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 20.1620197572331,
@@ -726,8 +826,8 @@
    "year": "2023"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 51.1,
-   "year": "2023"
+   "value": 55.5,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 52.9,
@@ -770,16 +870,16 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 383352092457.214,
-   "year": "2024"
+   "value": 400212936179,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 34.6466403704517,
    "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": -1.07650107199669,
-   "year": "2024"
+   "value": 0.940234642686515,
+   "year": "2025"
   },
   "GC.TAX.TOTL.GD.ZS": {
    "value": 7.58797309525612,
@@ -860,8 +960,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 30431.1931223693,
-   "year": "2024"
+   "value": 32586.6312086783,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 219.883929014578,
@@ -944,8 +1044,8 @@
    "year": "2020"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 100,
-   "year": "2023"
+   "value": 98.4,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 9.2,
@@ -988,16 +1088,16 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 1390588639479.49,
-   "year": "2024"
+   "value": 1494141945295.71,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 30.364633685192,
    "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 1.82409522925391,
-   "year": "2024"
+   "value": 0.458822968080686,
+   "year": "2025"
   },
   "GC.TAX.TOTL.GD.ZS": {
    "value": 10.4293148817726,
@@ -1070,8 +1170,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 22823.1795255693,
-   "year": "2024"
+   "value": 24754.2118320452,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 3.30693341072904,
@@ -1159,7 +1259,7 @@
   },
   "EG.ELC.ACCS.ZS": {
    "value": 100,
-   "year": "2023"
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 9.1,
@@ -1202,16 +1302,16 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 69234115090.8145,
-   "year": "2024"
+   "value": 76408825661.974,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 101.705936395702,
    "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 0.506878336560983,
-   "year": "2024"
+   "value": 2.06928849014455,
+   "year": "2025"
   },
   "GC.TAX.TOTL.GD.ZS": {
    "value": 22.3660356767883,
@@ -1304,8 +1404,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 25088.9993757134,
-   "year": "2024"
+   "value": 26112.5306828203,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 5.62208788068338,
@@ -1393,7 +1493,7 @@
   },
   "EG.ELC.ACCS.ZS": {
    "value": 100,
-   "year": "2023"
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 1.3,
@@ -1436,16 +1536,16 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 255978795500.51,
-   "year": "2024"
+   "value": 267574997456.737,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 79.8295815452306,
    "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 0.310746244591944,
-   "year": "2024"
+   "value": 0.492755588950687,
+   "year": "2025"
   },
   "GC.TAX.TOTL.GD.ZS": {
    "value": 17.3014403568645,
@@ -1530,8 +1630,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 9646.76984383255,
-   "year": "2024"
+   "value": 10153.7083791829,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 8.7687628116114,
@@ -1619,7 +1719,7 @@
   },
   "EG.ELC.ACCS.ZS": {
    "value": 99.5,
-   "year": "2023"
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 25,
@@ -1662,16 +1762,16 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 1674316179059.49,
-   "year": "2024"
+   "value": 1783873538488.96,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 27.9505840425563,
    "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 0.283870773350074,
-   "year": "2024"
+   "value": 0.404544313117544,
+   "year": "2025"
   },
   "GC.TAX.TOTL.GD.ZS": {
    "value": 7.64236301017901,
@@ -1764,8 +1864,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 12877.6351184372,
-   "year": "2024"
+   "value": 12873.0394876629,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 19.517120804733,
@@ -1844,8 +1944,8 @@
    "year": "2024"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 99.8,
-   "year": "2023"
+   "value": 96.6,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 12.8,
@@ -1888,16 +1988,16 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 159854141180.224,
-   "year": "2024"
+   "value": 161966561766.575,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 46.9778716148403,
    "year": "2024"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 0.652112801170427,
-   "year": "2024"
+   "value": 0.957783217657101,
+   "year": "2025"
   },
   "SI.POV.GINI": {
    "value": 40.9,
@@ -1978,8 +2078,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 20538.1320178889,
-   "year": "2024"
+   "value": 20697.9104661898,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 2.6597506179431,
@@ -2054,8 +2154,8 @@
    "year": "2022"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 76,
-   "year": "2023"
+   "value": 80.2,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 27.4,
@@ -2098,8 +2198,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 51779485617.4484,
-   "year": "2024"
+   "value": 53030571759.4552,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 69.5446677858652,
@@ -2184,8 +2284,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 2895.89152033665,
-   "year": "2024"
+   "value": 3071.62546744866,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": -0.586235316330579,
@@ -2276,8 +2376,8 @@
    "year": "2022"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 21.7,
-   "year": "2023"
+   "value": 34,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 71.4,
@@ -2320,8 +2420,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 68194715212.1648,
-   "year": "2024"
+   "value": 73948093046.1302,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 65.0029506969427,
@@ -2418,8 +2518,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 1194.94681370387,
-   "year": "2024"
+   "value": 1248.05425025467,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 34.1339985744832,
@@ -2498,8 +2598,8 @@
    "year": "2020"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 11.6,
-   "year": "2023"
+   "value": 20.1,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 83,
@@ -2534,12 +2634,12 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 16786357120.2939,
-   "year": "2024"
+   "value": 17959504405.3275,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 1.0970222856868,
-   "year": "2024"
+   "value": 1.04365754120843,
+   "year": "2025"
   },
   "GC.TAX.TOTL.GD.ZS": {
    "value": 12.6719556010603,
@@ -2608,8 +2708,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 7966.87352428705,
-   "year": "2024"
+   "value": 8542.6965378612,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 2.35127105896507,
@@ -2696,8 +2796,8 @@
    "year": "2023"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 95,
-   "year": "2023"
+   "value": 99.2,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 52.4,
@@ -2740,16 +2840,16 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 140526096687.068,
-   "year": "2024"
+   "value": 152469894039.209,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 136.089748673383,
    "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 9.48089832015712,
-   "year": "2024"
+   "value": 9.94609689113059,
+   "year": "2025"
   },
   "GC.TAX.TOTL.GD.ZS": {
    "value": 12.2035420550215,
@@ -2838,8 +2938,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 5588.98645861945,
-   "year": "2024"
+   "value": 5787.85440270861,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 3.40373458279055,
@@ -2911,7 +3011,7 @@
   },
   "EG.ELC.ACCS.ZS": {
    "value": 72,
-   "year": "2023"
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 79.2,
@@ -2954,8 +3054,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 162772210840.299,
-   "year": "2024"
+   "value": 172937252205.464,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 33.3842706629963,
@@ -3052,8 +3152,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 2742.65952183613,
-   "year": "2024"
+   "value": 2902.7406157583,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": -3.9119812440659,
@@ -3124,8 +3224,8 @@
    "year": "2021"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 12,
-   "year": "2023"
+   "value": 13.4,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 70,
@@ -3168,8 +3268,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 55673582980.8728,
-   "year": "2024"
+   "value": 60968307584.9057,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 46.1321498031281,
@@ -3258,8 +3358,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 22349.436440123,
-   "year": "2024"
+   "value": 22640.4224606513,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 5.14222911946201,
@@ -3342,8 +3442,8 @@
    "year": "2024"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 98.7,
-   "year": "2023"
+   "value": 98.9,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 29.7,
@@ -3386,16 +3486,16 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 1181980408417.77,
-   "year": "2024"
+   "value": 1209578946628.56,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 35.3689564685036,
    "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 3.25416050189283,
-   "year": "2024"
+   "value": 2.52970921188005,
+   "year": "2025"
   },
   "GC.TAX.TOTL.GD.ZS": {
    "value": 15.2199717362872,
@@ -3492,8 +3592,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 1821.04868718058,
-   "year": "2024"
+   "value": 1919.82250200565,
+   "year": "2025"
   },
   "GC.DOD.TOTL.GD.ZS": {
    "value": 14.9405246182608,
@@ -3572,8 +3672,8 @@
    "year": "2023"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 22.1,
-   "year": "2023"
+   "value": 22.5,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 96.3,
@@ -3616,16 +3716,16 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 198997398918.247,
-   "year": "2024"
+   "value": 216618320622.345,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 87.3342878785207,
    "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 3.84997694352814,
-   "year": "2024"
+   "value": 2.05275472591522,
+   "year": "2025"
   },
   "GC.TAX.TOTL.GD.ZS": {
    "value": 10.6622824647321,
@@ -3710,8 +3810,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 7669.23195715687,
-   "year": "2024"
+   "value": 8208.90898574972,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 0.125038772593104,
@@ -3794,8 +3894,8 @@
    "year": "2021"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 72.4,
-   "year": "2023"
+   "value": 72.9,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 58.2,
@@ -3838,8 +3938,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 244911017243.198,
-   "year": "2024"
+   "value": 268526112106.074,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 54.5579069336573,
@@ -3944,8 +4044,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 15840.2668567412,
-   "year": "2024"
+   "value": 16756.6539631307,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 0.710469324989076,
@@ -4032,8 +4132,8 @@
    "year": "2024"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 98.7,
-   "year": "2023"
+   "value": 98.5,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 18.9,
@@ -4076,16 +4176,16 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 287270811094.559,
-   "year": "2024"
+   "value": 306477458293.649,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 59.3567812036511,
    "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 0.360313100049938,
-   "year": "2024"
+   "value": 0.99695043238739,
+   "year": "2025"
   },
   "GC.TAX.TOTL.GD.ZS": {
    "value": 13.0891981784206,
@@ -4182,8 +4282,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 19094.1449444111,
-   "year": "2024"
+   "value": 20204.0130500153,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 14.0735136645934,
@@ -4267,7 +4367,7 @@
   },
   "EG.ELC.ACCS.ZS": {
    "value": 100,
-   "year": "2023"
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 6.1,
@@ -4310,16 +4410,16 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 2225198389821.18,
-   "year": "2024"
+   "value": 2391468107658.04,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 51.334347878828,
    "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 11.9719351009449,
-   "year": "2024"
+   "value": 4.23066505478546,
+   "year": "2025"
   },
   "SI.POV.GINI": {
    "value": 28.5,
@@ -4412,8 +4512,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 13264.027090968,
-   "year": "2024"
+   "value": 14101.1774819291,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 0.257570528307203,
@@ -4504,8 +4604,8 @@
    "year": "2024"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 98.3,
-   "year": "2023"
+   "value": 98.7,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 21.9,
@@ -4548,16 +4648,16 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 84069963659.7839,
-   "year": "2024"
+   "value": 89761087564.7524,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 88.1580664327311,
    "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 3.01317166597907,
-   "year": "2024"
+   "value": 2.08052874206816,
+   "year": "2025"
   },
   "GC.TAX.TOTL.GD.ZS": {
    "value": 21.7960402789815,
@@ -4702,8 +4802,8 @@
    "year": "2022"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 54.4,
-   "year": "2023"
+   "value": 55.3,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 80.7,
@@ -4784,8 +4884,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 3287.53492158893,
-   "year": "2024"
+   "value": 3621.67487597821,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 13.2296432836809,
@@ -4856,8 +4956,8 @@
    "year": "2022"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 55.4,
-   "year": "2023"
+   "value": 56.6,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 90.6,
@@ -4900,8 +5000,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 434151095749.397,
-   "year": "2024"
+   "value": 490635723503.939,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 33.4597826561314,
@@ -5002,8 +5102,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 8019.99702389611,
-   "year": "2024"
+   "value": 8610.2796922986,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 14.2046755548989,
@@ -5086,8 +5186,8 @@
    "year": "2021"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 89.5,
-   "year": "2023"
+   "value": 91.9,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 39,
@@ -5130,16 +5230,16 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 276107757820.439,
-   "year": "2024"
+   "value": 301913189126.834,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 68.9668717609486,
    "year": "2024"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 2.11980137105215,
-   "year": "2024"
+   "value": 1.6708218135385,
+   "year": "2025"
   },
   "GC.TAX.TOTL.GD.ZS": {
    "value": 12.393098457103,
@@ -5228,8 +5328,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 14368.6605681815,
-   "year": "2024"
+   "value": 15197.0831415082,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 1.48841591086169,
@@ -5316,8 +5416,8 @@
    "year": "2024"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 100,
-   "year": "2023"
+   "value": 90.9,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 62.1,
@@ -5360,8 +5460,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 264474724767.092,
-   "year": "2024"
+   "value": 284001281295.612,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 46.527609355823,
@@ -5458,8 +5558,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 4565.3007888456,
-   "year": "2024"
+   "value": 4934.65125959855,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 3.54630163142885,
@@ -5518,8 +5618,8 @@
    "year": "2023"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 51.1,
-   "year": "2023"
+   "value": 53.8,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 66.6,
@@ -5554,8 +5654,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 67360031599.7472,
-   "year": "2024"
+   "value": 74511886860.1443,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 103.678013340369,
@@ -5632,8 +5732,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 3193.67136419915,
-   "year": "2024"
+   "value": 3133.72347930529,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 28.6427976686095,
@@ -5696,8 +5796,8 @@
    "year": "2023"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 51.3,
-   "year": "2023"
+   "value": 53.9,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 76.7,
@@ -5740,8 +5840,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 37597678174.3023,
-   "year": "2024"
+   "value": 37310409448.3393,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 15.8854793452678,
@@ -5822,8 +5922,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 7486.01869616445,
-   "year": "2024"
+   "value": 7871.09129065536,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 4.59657982325258,
@@ -5906,8 +6006,8 @@
    "year": "2024"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 95.6,
-   "year": "2023"
+   "value": 95.5,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 45.9,
@@ -5950,16 +6050,16 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 81041415057.1236,
-   "year": "2024"
+   "value": 86628050081.2592,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 91.507337541504,
    "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 1.29157460831069,
-   "year": "2024"
+   "value": 3.52535439103993,
+   "year": "2025"
   },
   "GC.TAX.TOTL.GD.ZS": {
    "value": 15.066131552103,
@@ -6052,8 +6152,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 11159.9856476091,
-   "year": "2024"
+   "value": 11747.9160436011,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 2.39884954182294,
@@ -6140,8 +6240,8 @@
    "year": "2024"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 99.5,
-   "year": "2023"
+   "value": 99.9,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 34.9,
@@ -6184,16 +6284,16 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 16192422603162.4,
-   "year": "2024"
+   "value": 17197369286822,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 46.2682006859907,
    "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 0.721648483526777,
-   "year": "2024"
+   "value": 0.988285383995246,
+   "year": "2025"
   },
   "GC.TAX.TOTL.GD.ZS": {
    "value": 6.93372148022965,
@@ -6290,8 +6390,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 16448.2755179559,
-   "year": "2024"
+   "value": 17659.7921291587,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 1.9133344329508,
@@ -6378,8 +6478,8 @@
    "year": "2022"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 99.4,
-   "year": "2023"
+   "value": 99.9,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 20.2,
@@ -6422,16 +6522,16 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 4662887595103.26,
-   "year": "2024"
+   "value": 5045777634646.3,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 43.3912070511204,
    "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 1.73855290316368,
-   "year": "2024"
+   "value": 1.54140671670434,
+   "year": "2025"
   },
   "SI.POV.GINI": {
    "value": 34.4,
@@ -6520,8 +6620,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 14464.3186928173,
-   "year": "2024"
+   "value": 14266.7965348226,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 0.303454715219382,
@@ -6581,7 +6681,7 @@
   },
   "EG.ELC.ACCS.ZS": {
    "value": 100,
-   "year": "2023"
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 1.1,
@@ -6624,8 +6724,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 665966378219.474,
-   "year": "2024"
+   "value": 670835815567.878,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 77.1389393108395,
@@ -6718,8 +6818,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 10821.4909765317,
-   "year": "2024"
+   "value": 12631.6299394746,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 1.76646490894206,
@@ -6811,7 +6911,7 @@
   },
   "EG.ELC.ACCS.ZS": {
    "value": 100,
-   "year": "2023"
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 11.5,
@@ -6854,8 +6954,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 125019343386.99,
-   "year": "2024"
+   "value": 145525016937.626,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
    "value": 2.78862682935517,
@@ -6944,8 +7044,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 40890.9317694408,
-   "year": "2024"
+   "value": 44293.4839632441,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 11.3879454675914,
@@ -7025,7 +7125,7 @@
   },
   "EG.ELC.ACCS.ZS": {
    "value": 100,
-   "year": "2023"
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 2,
@@ -7068,16 +7168,16 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 842049415718.366,
-   "year": "2024"
+   "value": 923242483532.805,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 57.1613431963924,
    "year": "2024"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 0.71809281452939,
-   "year": "2024"
+   "value": -0.299243931188651,
+   "year": "2025"
   },
   "GC.TAX.TOTL.GD.ZS": {
    "value": 11.8924774148637,
@@ -7162,8 +7262,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 6644.13093243895,
-   "year": "2024"
+   "value": 7015.93578839722,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 4.06912878540729,
@@ -7238,8 +7338,8 @@
    "year": "2024"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 76.2,
-   "year": "2023"
+   "value": 77,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 67.7,
@@ -7282,8 +7382,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 374947868838.995,
-   "year": "2024"
+   "value": 403644276634.412,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 37.5210445911226,
@@ -7384,8 +7484,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 17864.4160145118,
-   "year": "2024"
+   "value": 19263.3268800963,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 3.85953869869506,
@@ -7420,16 +7520,16 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 28482185265.9849,
-   "year": "2024"
+   "value": 30375877837.3787,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 118.190884160552,
    "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 7.67480496325567,
-   "year": "2024"
+   "value": 10.0048592791683,
+   "year": "2025"
   },
   "SI.POV.GINI": {
    "value": 38.3,
@@ -7458,8 +7558,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 8012.45464442194,
-   "year": "2024"
+   "value": 9219.51443675205,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 8.21496013406325,
@@ -7543,7 +7643,7 @@
   },
   "EG.ELC.ACCS.ZS": {
    "value": 100,
-   "year": "2023"
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 27.6,
@@ -7586,8 +7686,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 57864889798.0022,
-   "year": "2024"
+   "value": 67699484557.9942,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 92.4074476416439,
@@ -7688,8 +7788,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 9775.82817381023,
-   "year": "2024"
+   "value": 10382.9990718948,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 7.74226936553695,
@@ -7777,7 +7877,7 @@
   },
   "EG.ELC.ACCS.ZS": {
    "value": 96.5,
-   "year": "2023"
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 49.2,
@@ -7820,8 +7920,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 75956415485.6061,
-   "year": "2024"
+   "value": 81745829310.985,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
    "value": 5.98958863567394,
@@ -7914,8 +8014,8 @@
    "year": "2024"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 12574.8329116403,
-   "year": "2023"
+   "value": 11917.4502960889,
+   "year": "2024"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 14.597595869611,
@@ -7995,7 +8095,7 @@
   },
   "EG.ELC.ACCS.ZS": {
    "value": 100,
-   "year": "2023"
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 6.8,
@@ -8034,8 +8134,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 72600709791.5249,
-   "year": "2023"
+   "value": 69192263555.9809,
+   "year": "2024"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 82.2323604617121,
@@ -8136,8 +8236,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 1871.04406164262,
-   "year": "2024"
+   "value": 1981.09483342188,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 8.31564329402952,
@@ -8204,8 +8304,8 @@
    "year": "2022"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 32.5,
-   "year": "2023"
+   "value": 34.9,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 92.8,
@@ -8240,8 +8340,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 10501827916.9368,
-   "year": "2024"
+   "value": 11354062595.8765,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
    "value": 9.86626133953545,
@@ -8314,8 +8414,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 14303.8087736988,
-   "year": "2024"
+   "value": 16521.3998152838,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 1.84166666666702,
@@ -8370,8 +8470,8 @@
    "year": "2022"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 73.2,
-   "year": "2023"
+   "value": 77.4,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 3.1,
@@ -8410,8 +8510,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 105576741546.273,
-   "year": "2024"
+   "value": 123225769199.284,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 137.658573201308,
@@ -8496,8 +8596,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 1883.5374311384,
-   "year": "2024"
+   "value": 1952.48426903369,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 8.05052431791227,
@@ -8580,8 +8680,8 @@
    "year": "2021"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 39.4,
-   "year": "2023"
+   "value": 42.5,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 83.1,
@@ -8624,8 +8724,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 60207191110.6919,
-   "year": "2024"
+   "value": 63925658752.4976,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 54.2413796011714,
@@ -8726,8 +8826,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 1857.61756950305,
-   "year": "2024"
+   "value": 1899.29166528127,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 28.3702565330281,
@@ -8815,7 +8915,7 @@
   },
   "EG.ELC.ACCS.ZS": {
    "value": 15.6,
-   "year": "2023"
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 62.9,
@@ -8850,8 +8950,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 40227239746.2133,
-   "year": "2024"
+   "value": 42194891550.8885,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 39.3994694717291,
@@ -8944,8 +9044,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 3314.77332231959,
-   "year": "2024"
+   "value": 3502.76132351788,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 3.27823540357584,
@@ -9024,8 +9124,8 @@
    "year": "2024"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 54.5,
-   "year": "2023"
+   "value": 49.5,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 71.1,
@@ -9060,8 +9160,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 81140993673.8658,
-   "year": "2024"
+   "value": 88265455597.0502,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 48.7722026619492,
@@ -9154,8 +9254,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 7368.75275290214,
-   "year": "2024"
+   "value": 7675.51996658445,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 1.54796926167072,
@@ -9226,8 +9326,8 @@
    "year": "2020"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 50.3,
-   "year": "2023"
+   "value": 52.2,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 19.6,
@@ -9262,8 +9362,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 38091993637.0885,
-   "year": "2024"
+   "value": 40795887531.1942,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 94.0242632380265,
@@ -9344,8 +9444,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 26185.3564713253,
-   "year": "2024"
+   "value": 25868.4787520629,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 3.80668650726485,
@@ -9436,8 +9536,8 @@
    "year": "2024"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 99.7,
-   "year": "2023"
+   "value": 99.8,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 13,
@@ -9480,16 +9580,16 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 3426642116491.59,
-   "year": "2024"
+   "value": 3413265579050.57,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 79.9239525815655,
    "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 2.48429388161511,
-   "year": "2024"
+   "value": 2.35098180233848,
+   "year": "2025"
   },
   "GC.TAX.TOTL.GD.ZS": {
    "value": 14.8241106773063,
@@ -9586,8 +9686,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 18614.9880691203,
-   "year": "2024"
+   "value": 19995.7590923995,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 7.75904124001159,
@@ -9667,7 +9767,7 @@
   },
   "EG.ELC.ACCS.ZS": {
    "value": 100,
-   "year": "2023"
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 21.4,
@@ -9710,16 +9810,16 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 44718897528.3762,
-   "year": "2024"
+   "value": 47200529223.1046,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 92.6661727857921,
    "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 2.51754698286646,
-   "year": "2024"
+   "value": 2.25785505605625,
+   "year": "2025"
   },
   "GC.TAX.TOTL.GD.ZS": {
    "value": 18.5850270257317,
@@ -9804,8 +9904,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 19144.7261368498,
-   "year": "2024"
+   "value": 20797.7652692242,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 8.60536487369695,
@@ -9896,8 +9996,8 @@
    "year": "2024"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 100,
-   "year": "2023"
+   "value": 99.1,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 3,
@@ -9940,8 +10040,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 67481100950.4545,
-   "year": "2024"
+   "value": 74226766695.0254,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 130.707440813275,
@@ -10042,8 +10142,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 10415.1240234375,
-   "year": "2024"
+   "value": 11111.7080078125,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 0.701902154839545,
@@ -10119,7 +10219,7 @@
   },
   "EG.ELC.ACCS.ZS": {
    "value": 100,
-   "year": "2023"
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 10.9,
@@ -10162,16 +10262,16 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 402770325749.156,
-   "year": "2024"
+   "value": 433708561693.044,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 93.1016567989424,
    "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 1.08850441035779,
-   "year": "2024"
+   "value": 1.81954513887835,
+   "year": "2025"
   },
   "GC.TAX.TOTL.GD.ZS": {
    "value": 20.7438772391509,
@@ -10256,8 +10356,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 1705.37919520416,
-   "year": "2024"
+   "value": 1697.94109338132,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 4.3684695014615,
@@ -10340,8 +10440,8 @@
    "year": "2022"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 36,
-   "year": "2023"
+   "value": 36.9,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 76.9,
@@ -10384,8 +10484,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 59060293229.5788,
-   "year": "2024"
+   "value": 60500447853.8037,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 97.1038097628682,
@@ -10490,8 +10590,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 5997.46516323715,
-   "year": "2024"
+   "value": 6011.53492175516,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 3.047,
@@ -10546,8 +10646,8 @@
    "year": "2020"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 76.8,
-   "year": "2023"
+   "value": 80.4,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 62.9,
@@ -10590,8 +10690,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 326862397165.755,
-   "year": "2024"
+   "value": 329736585932.9,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
    "value": 1.47879223317634,
@@ -10676,8 +10776,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 11686.6020661881,
-   "year": "2024"
+   "value": 11985.7200318677,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 3.51074539609587,
@@ -10756,8 +10856,8 @@
    "year": "2023"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 56.7,
-   "year": "2023"
+   "value": 59.3,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 30,
@@ -10800,8 +10900,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 35411935205.4205,
-   "year": "2024"
+   "value": 37069626686.0809,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 108.580501173828,
@@ -10886,8 +10986,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 5736.62134332704,
-   "year": "2024"
+   "value": 6175.15897150244,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 2.65334269811436,
@@ -10970,8 +11070,8 @@
    "year": "2025"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 94,
-   "year": "2023"
+   "value": 97.9,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 73.7,
@@ -11014,8 +11114,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 170096869228.542,
-   "year": "2024"
+   "value": 182896587086.718,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 42.5520448428369,
@@ -11116,8 +11216,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 8708.79983051626,
-   "year": "2024"
+   "value": 9283.92301511154,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 2.08132127098376,
@@ -11188,8 +11288,8 @@
    "year": "2022"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 88.3,
-   "year": "2023"
+   "value": 88.7,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 50.4,
@@ -11232,8 +11332,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 60231278859.8267,
-   "year": "2024"
+   "value": 65057109096.2401,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 96.4496947305229,
@@ -11302,8 +11402,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 2049.93305251019,
-   "year": "2024"
+   "value": 2177.25014417163,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": -4.45470804102568,
@@ -11386,8 +11486,8 @@
    "year": "2022"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 20.1,
-   "year": "2023"
+   "value": 21.3,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 79.6,
@@ -11430,8 +11530,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 55414634847.873,
-   "year": "2024"
+   "value": 60784101569.7092,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 33.9056863589743,
@@ -11524,8 +11624,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 9086.87550609627,
-   "year": "2024"
+   "value": 9531.61073275049,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 23.0101235833333,
@@ -11600,8 +11700,8 @@
    "year": "2024"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 61.2,
-   "year": "2023"
+   "value": 62.5,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 80.3,
@@ -11644,12 +11744,12 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 2114329449409.47,
-   "year": "2024"
+   "value": 2264022356237.62,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 0.639824358730627,
-   "year": "2024"
+   "value": 1.37738584935978,
+   "year": "2025"
   },
   "SI.POV.GINI": {
    "value": 33.9,
@@ -11742,8 +11842,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 6252.11543199559,
-   "year": "2024"
+   "value": 6573.41613369925,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 3.54555214890893,
@@ -11826,8 +11926,8 @@
    "year": "2021"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 95.6,
-   "year": "2023"
+   "value": 95.7,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 41.6,
@@ -11870,16 +11970,16 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 1570963817829.03,
-   "year": "2024"
+   "value": 1677664333899.13,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 27.1935373787664,
    "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 0.716885239403099,
-   "year": "2024"
+   "value": 0.454693640126553,
+   "year": "2025"
   },
   "SI.POV.GINI": {
    "value": 33.5,
@@ -11968,8 +12068,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 4371.11135857265,
-   "year": "2024"
+   "value": 4999.71301859773,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 9.80840118100493,
@@ -12053,7 +12153,7 @@
   },
   "EG.ELC.ACCS.ZS": {
    "value": 100,
-   "year": "2023"
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 15.4,
@@ -12084,16 +12184,16 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 23119472384.4172,
-   "year": "2024"
+   "value": 27066426398.6286,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 74.7604429402753,
    "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 1.01253497329187,
-   "year": "2024"
+   "value": 1.9212691698858,
+   "year": "2025"
   },
   "SI.POV.GINI": {
    "value": 36.4,
@@ -12174,8 +12274,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 4874.6899553589,
-   "year": "2024"
+   "value": 5214.768271628,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 4.42141364166485,
@@ -12258,8 +12358,8 @@
    "year": "2022"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 20.5,
-   "year": "2023"
+   "value": 43.3,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 54.6,
@@ -12294,8 +12394,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 51557168062.2333,
-   "year": "2024"
+   "value": 56125596604.9384,
+   "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
    "value": -0.64380460730506,
@@ -12378,14 +12478,244 @@
    "year": "2025"
   }
  },
+ "Paraguay": {
+  "NY.GDP.MKTP.KD.ZG": {
+   "value": 6.64262511156879,
+   "year": "2025"
+  },
+  "NY.GDP.PCAP.PP.CD": {
+   "value": 20181.4242826808,
+   "year": "2025"
+  },
+  "FP.CPI.TOTL.ZG": {
+   "value": 4.0380642333938,
+   "year": "2025"
+  },
+  "BN.CAB.XOKA.GD.ZS": {
+   "value": -3.18060668113463,
+   "year": "2025"
+  },
+  "SL.UEM.TOTL.ZS": {
+   "value": 4.803,
+   "year": "2025"
+  },
+  "SP.POP.TOTL": {
+   "value": 7013078,
+   "year": "2025"
+  },
+  "EN.POP.DNST": {
+   "value": 17.282671943072,
+   "year": "2023"
+  },
+  "SP.DYN.LE00.IN": {
+   "value": 73.982,
+   "year": "2024"
+  },
+  "SP.POP.DPND": {
+   "value": 54.0589789034059,
+   "year": "2025"
+  },
+  "SH.DYN.MORT": {
+   "value": 16.3,
+   "year": "2024"
+  },
+  "SH.STA.MMRT": {
+   "value": 58,
+   "year": "2023"
+  },
+  "SH.XPD.CHEX.GD.ZS": {
+   "value": 8.35731316,
+   "year": "2023"
+  },
+  "SH.MED.PHYS.ZS": {
+   "value": 3.893,
+   "year": "2022"
+  },
+  "SH.MED.BEDS.ZS": {
+   "value": 1.04,
+   "year": "2022"
+  },
+  "SH.IMM.MEAS": {
+   "value": 90,
+   "year": "2024"
+  },
+  "SE.PRM.ENRR": {
+   "value": 89.4386417386793,
+   "year": "2024"
+  },
+  "SE.SEC.ENRR": {
+   "value": 79.1305613911018,
+   "year": "2024"
+  },
+  "SE.ADT.LITR.ZS": {
+   "value": 94.8600006103516,
+   "year": "2024"
+  },
+  "SE.XPD.TOTL.GD.ZS": {
+   "value": 3.53410005569458,
+   "year": "2024"
+  },
+  "SE.PRM.CMPT.ZS": {
+   "value": 88.7082275386775,
+   "year": "2024"
+  },
+  "SE.ADT.1524.LT.ZS": {
+   "value": 98.620002746582,
+   "year": "2024"
+  },
+  "EG.ELC.ACCS.ZS": {
+   "value": 99.8,
+   "year": "2024"
+  },
+  "EG.FEC.RNEW.ZS": {
+   "value": 58.8,
+   "year": "2021"
+  },
+  "EG.USE.PCAP.KG.OE": {
+   "value": 1043.9548570783,
+   "year": "2023"
+  },
+  "EG.USE.ELEC.KH.PC": {
+   "value": 2388.61064623694,
+   "year": "2023"
+  },
+  "EG.CFT.ACCS.ZS": {
+   "value": 71.3,
+   "year": "2023"
+  },
+  "NV.AGR.TOTL.ZS": {
+   "value": 11.641125207277,
+   "year": "2025"
+  },
+  "AG.LND.ARBL.ZS": {
+   "value": 11.5173268852464,
+   "year": "2023"
+  },
+  "AG.LND.AGRI.ZS": {
+   "value": 54.1069421552674,
+   "year": "2023"
+  },
+  "AG.YLD.CREL.KG": {
+   "value": 4482.5,
+   "year": "2023"
+  },
+  "AG.PRD.FOOD.XD": {
+   "value": 85.44,
+   "year": "2022"
+  },
+  "SP.RUR.TOTL.ZS": {
+   "value": 29.6102360144136,
+   "year": "2025"
+  },
+  "NY.GDP.MKTP.PP.CD": {
+   "value": 141533902645.534,
+   "year": "2025"
+  },
+  "NE.TRD.GNFS.ZS": {
+   "value": 76.4780703309698,
+   "year": "2025"
+  },
+  "BX.KLT.DINV.WD.GD.ZS": {
+   "value": 2.39525418709854,
+   "year": "2025"
+  },
+  "GC.TAX.TOTL.GD.ZS": {
+   "value": 11.3333046408497,
+   "year": "2024"
+  },
+  "SI.POV.GINI": {
+   "value": 44.2,
+   "year": "2024"
+  },
+  "SI.POV.DDAY": {
+   "value": 2.1,
+   "year": "2024"
+  },
+  "SH.H2O.SMDW.ZS": {
+   "value": 64.3647197417661,
+   "year": "2024"
+  },
+  "SH.H2O.BASW.ZS": {
+   "value": 99.6035956651355,
+   "year": "2024"
+  },
+  "SH.STA.SMSS.ZS": {
+   "value": 58.5283334580355,
+   "year": "2024"
+  },
+  "SH.STA.BASS.ZS": {
+   "value": 95.9347586765151,
+   "year": "2024"
+  },
+  "SH.STA.ODFC.ZS": {
+   "value": 0.341820225590154,
+   "year": "2024"
+  },
+  "SH.STA.HYGN.ZS": {
+   "value": 80.1530636026409,
+   "year": "2020"
+  },
+  "SN.ITK.DEFC.ZS": {
+   "value": 5.2,
+   "year": "2023"
+  },
+  "IT.NET.USER.ZS": {
+   "value": 81.57806793,
+   "year": "2024"
+  },
+  "IT.NET.BBND.P2": {
+   "value": 12.8835504093571,
+   "year": "2023"
+  },
+  "IT.CEL.SETS.P2": {
+   "value": 126.605481531224,
+   "year": "2023"
+  },
+  "IT.NET.SECR.P6": {
+   "value": 775.275131029723,
+   "year": "2024"
+  },
+  "TX.VAL.ICTG.ZS.UN": {
+   "value": 0.07,
+   "year": "2024"
+  },
+  "IT.MLT.MAIN.P2": {
+   "value": 3.00272670980426,
+   "year": "2023"
+  },
+  "AG.LND.FRST.ZS": {
+   "value": 38.5449252640128,
+   "year": "2023"
+  },
+  "ER.PTD.TOTL.ZS": {
+   "value": 14.9,
+   "year": "2025"
+  },
+  "EN.ATM.PM25.MC.M3": {
+   "value": 15.327993717276,
+   "year": "2023"
+  },
+  "IS.AIR.PSGR": {
+   "value": 407865,
+   "year": "2023"
+  },
+  "IS.SHP.GOOD.TU": {
+   "value": 37901.25,
+   "year": "2020"
+  },
+  "SP.URB.TOTL.IN.ZS": {
+   "value": 70.3897639855864,
+   "year": "2025"
+  }
+ },
  "Peru": {
   "NY.GDP.MKTP.KD.ZG": {
    "value": 3.43056395124466,
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 17802.4182498972,
-   "year": "2024"
+   "value": 18816.1045522938,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 1.53125450314273,
@@ -12468,8 +12798,8 @@
    "year": "2024"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 96.2,
-   "year": "2023"
+   "value": 96.5,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 30.6,
@@ -12512,16 +12842,16 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 609160441707.41,
-   "year": "2024"
+   "value": 650598143709.638,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 51.8154829678647,
    "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 2.29780708272736,
-   "year": "2024"
+   "value": 3.09176833503603,
+   "year": "2025"
   },
   "GC.TAX.TOTL.GD.ZS": {
    "value": 15.9189020036855,
@@ -12614,8 +12944,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 11794.1375488492,
-   "year": "2024"
+   "value": 12576.9867435109,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 1.6587364525509,
@@ -12702,8 +13032,8 @@
    "year": "2022"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 98,
-   "year": "2023"
+   "value": 94.8,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 28,
@@ -12746,16 +13076,16 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 1366276178143.49,
-   "year": "2024"
+   "value": 1468828072888.91,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 66.7936053314343,
    "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 2.03571882251572,
-   "year": "2024"
+   "value": 1.59958262597666,
+   "year": "2025"
   },
   "GC.TAX.TOTL.GD.ZS": {
    "value": 14.369653991008,
@@ -12852,8 +13182,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 3710.86040434596,
-   "year": "2024"
+   "value": 4164.436605809,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 5.913000168826,
@@ -12940,8 +13270,8 @@
    "year": "2022"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 63.9,
-   "year": "2023"
+   "value": 72,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 79.9,
@@ -12984,8 +13314,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 52904129982.2052,
-   "year": "2024"
+   "value": 60673096982.9139,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 56.673349749538,
@@ -13078,8 +13408,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 5070.6486207418,
-   "year": "2024"
+   "value": 5463.21828561328,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 1.45900719841385,
@@ -13166,8 +13496,8 @@
    "year": "2023"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 74.2,
-   "year": "2023"
+   "value": 82.9,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 35.4,
@@ -13210,8 +13540,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 93817059650.5868,
-   "year": "2024"
+   "value": 103429462833.809,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 71.0687063150657,
@@ -13316,8 +13646,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 3522.30588009119,
-   "year": "2024"
+   "value": 3716.89410482498,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 7.48750166612986,
@@ -13388,8 +13718,8 @@
    "year": "2024"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 35.5,
-   "year": "2023"
+   "value": 39.2,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 71.6,
@@ -13424,8 +13754,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 30439844906.4775,
-   "year": "2024"
+   "value": 32782240324.3707,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 49.0960746822456,
@@ -13506,8 +13836,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 1601.96466602339,
-   "year": "2024"
+   "value": 1642.77032278186,
+   "year": "2025"
   },
   "GC.DOD.TOTL.GD.ZS": {
    "value": 12.6627391994652,
@@ -13574,8 +13904,8 @@
    "year": "2022"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 50.3,
-   "year": "2023"
+   "value": 54.4,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 95.4,
@@ -13606,8 +13936,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 30451988233.1033,
-   "year": "2024"
+   "value": 32288221931.2232,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 128.063438809135,
@@ -13692,8 +14022,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 15456.1989933658,
-   "year": "2024"
+   "value": 15905.6794419658,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 3.20550474112603,
@@ -13776,8 +14106,8 @@
    "year": "2024"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 87.7,
-   "year": "2023"
+   "value": 90.2,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 9.7,
@@ -13820,16 +14150,16 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 989307819277.577,
-   "year": "2024"
+   "value": 1029850100740.7,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 60.9110971393628,
    "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 0.580891709673066,
-   "year": "2024"
+   "value": -0.505823116244258,
+   "year": "2025"
   },
   "GC.TAX.TOTL.GD.ZS": {
    "value": 25.8775949092475,
@@ -13979,7 +14309,7 @@
   },
   "EG.ELC.ACCS.ZS": {
    "value": 5.4,
-   "year": "2023"
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 32.4,
@@ -14076,8 +14406,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 15632.5924849848,
-   "year": "2024"
+   "value": 17065.0298635432,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": -4.76386036960983,
@@ -14165,7 +14495,7 @@
   },
   "EG.ELC.ACCS.ZS": {
    "value": 100,
-   "year": "2023"
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 48.8,
@@ -14208,8 +14538,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 342603896900.927,
-   "year": "2024"
+   "value": 371266789711.246,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 41.8090026525048,
@@ -14302,8 +14632,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 2115.81616210938,
-   "year": "2024"
+   "value": 2192.27221679688,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 138.80846024176,
@@ -14355,7 +14685,7 @@
   },
   "EG.ELC.ACCS.ZS": {
    "value": 66,
-   "year": "2023"
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 61,
@@ -14398,8 +14728,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 106740734179.302,
-   "year": "2024"
+   "value": 113257494657.248,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 2.38193028387697,
@@ -14476,7 +14806,7 @@
    "year": "2022"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 4772.4616766716,
+   "value": 4905.15252202552,
    "year": "2022"
   },
   "SL.UEM.TOTL.ZS": {
@@ -14544,8 +14874,8 @@
    "year": "2021"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 88.4,
-   "year": "2023"
+   "value": 89.3,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 1.1,
@@ -14588,7 +14918,7 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 107199859817.267,
+   "value": 110180384541.124,
    "year": "2022"
   },
   "NE.TRD.GNFS.ZS": {
@@ -14666,8 +14996,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 5405.98011619139,
-   "year": "2024"
+   "value": 5923.47183321348,
+   "year": "2025"
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": 17.0983293460641,
@@ -14738,8 +15068,8 @@
    "year": "2023"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 100,
-   "year": "2023"
+   "value": 99.9,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 34.9,
@@ -14782,16 +15112,16 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 57254340774.0345,
-   "year": "2024"
+   "value": 63894915021.3661,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 59.0899316296485,
    "year": "2024"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 2.01948198566107,
-   "year": "2024"
+   "value": 0.486117105867933,
+   "year": "2025"
   },
   "GC.TAX.TOTL.GD.ZS": {
    "value": 10.7110753929,
@@ -14880,8 +15210,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 4220.79638671875,
-   "year": "2024"
+   "value": 4470.9541015625,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 3.32697361316105,
@@ -14968,8 +15298,8 @@
    "year": "2022"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 48.3,
-   "year": "2023"
+   "value": 52.4,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 78.3,
@@ -15012,8 +15342,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 280425918025.025,
-   "year": "2024"
+   "value": 305597202859.277,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 38.9715711395739,
@@ -15110,8 +15440,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 24712.0658575135,
-   "year": "2024"
+   "value": 26250.0723587304,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": -0.133634356480207,
@@ -15203,7 +15533,7 @@
   },
   "EG.ELC.ACCS.ZS": {
    "value": 100,
-   "year": "2023"
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 19,
@@ -15246,16 +15576,16 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 1771064607709,
-   "year": "2024"
+   "value": 1880026586072.36,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 138.413686011523,
    "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 2.70165281834265,
-   "year": "2024"
+   "value": 3.26524902878263,
+   "year": "2025"
   },
   "GC.TAX.TOTL.GD.ZS": {
    "value": 15.1750172236637,
@@ -15348,8 +15678,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 4422.77882172399,
-   "year": "2024"
+   "value": 4809.49016945191,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 0.428322848346937,
@@ -15432,8 +15762,8 @@
    "year": "2022"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 100,
-   "year": "2023"
+   "value": 94.3,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 11.4,
@@ -15468,16 +15798,16 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 6194712083.30184,
-   "year": "2024"
+   "value": 6822343566.70042,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 95.4485030105899,
    "year": "2024"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 12.0853687045097,
-   "year": "2024"
+   "value": 13.3130496450646,
+   "year": "2025"
   },
   "GC.TAX.TOTL.GD.ZS": {
    "value": 21.6431378705086,
@@ -15550,8 +15880,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 3365.45809007306,
-   "year": "2024"
+   "value": 4079.36376686718,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 0.433183451279109,
@@ -15626,8 +15956,8 @@
    "year": "2022"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 59.2,
-   "year": "2023"
+   "value": 61.1,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 75.1,
@@ -15670,8 +16000,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 32023127975.1544,
-   "year": "2024"
+   "value": 35048367802.874,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 59.9291777017427,
@@ -15776,8 +16106,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 14521.0080937638,
-   "year": "2024"
+   "value": 15233.4885842318,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 5.15100197572676,
@@ -15857,7 +16187,7 @@
   },
   "EG.ELC.ACCS.ZS": {
    "value": 100,
-   "year": "2023"
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 11.6,
@@ -15900,8 +16230,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 178275999157.021,
-   "year": "2024"
+   "value": 188111845827.052,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 101.446205451707,
@@ -16002,8 +16332,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 45639.0192735944,
-   "year": "2024"
+   "value": 45288.4750285273,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 34.8811629820306,
@@ -16091,7 +16421,7 @@
   },
   "EG.ELC.ACCS.ZS": {
    "value": 100,
-   "year": "2023"
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 12,
@@ -16134,8 +16464,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 3902987817630.99,
-   "year": "2024"
+   "value": 3889308838891.98,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 49.9346783626928,
@@ -16232,8 +16562,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 21213.0862501953,
-   "year": "2024"
+   "value": 22601.5518373128,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 4.267,
@@ -16309,7 +16639,7 @@
   },
   "EG.ELC.ACCS.ZS": {
    "value": 100,
-   "year": "2023"
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 0.1,
@@ -16352,8 +16682,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 158981432475.916,
-   "year": "2024"
+   "value": 172197765411.055,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 28.1660712907997,
@@ -16430,8 +16760,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 3273.2671741364,
-   "year": "2024"
+   "value": 3487.69797525182,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 3.58082784438067,
@@ -16502,8 +16832,8 @@
    "year": "2024"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 51.5,
-   "year": "2023"
+   "value": 55.3,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 90.9,
@@ -16546,8 +16876,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 163712758855.012,
-   "year": "2024"
+   "value": 179214990762.33,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 50.1990176084385,
@@ -16640,8 +16970,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 18548.859375,
-   "year": "2024"
+   "value": 18904.98046875,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 12.7303341026903,
@@ -16721,7 +17051,7 @@
   },
   "EG.ELC.ACCS.ZS": {
    "value": 100,
-   "year": "2023"
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 8.9,
@@ -16764,8 +17094,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 656527758178.686,
-   "year": "2024"
+   "value": 690445995589.257,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 77.1802739924807,
@@ -16862,8 +17192,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 11878.5528706848,
-   "year": "2024"
+   "value": 13601.2917473678,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 8.79638847052461,
@@ -16951,7 +17281,7 @@
   },
   "EG.ELC.ACCS.ZS": {
    "value": 100,
-   "year": "2023"
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 1,
@@ -16994,16 +17324,16 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 431926264607.887,
-   "year": "2024"
+   "value": 503974484468.086,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 57.4005392040216,
    "year": "2025"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 2.45125129042312,
-   "year": "2024"
+   "value": 2.99134974013705,
+   "year": "2025"
   },
   "GC.TAX.TOTL.GD.ZS": {
    "value": 11.0059302187391,
@@ -17149,7 +17479,7 @@
   },
   "EG.ELC.ACCS.ZS": {
    "value": 100,
-   "year": "2023"
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 33.7,
@@ -17266,8 +17596,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 16385.5065565458,
-   "year": "2024"
+   "value": 18088.491587163,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 3.3099931421974,
@@ -17350,8 +17680,8 @@
    "year": "2022"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 99.8,
-   "year": "2023"
+   "value": 100,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 24.2,
@@ -17394,8 +17724,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 1654734391083.39,
-   "year": "2024"
+   "value": 1837764100907.65,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 190.336808817292,
@@ -17540,8 +17870,8 @@
    "year": "2022"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 83.6,
-   "year": "2023"
+   "value": 86.3,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 3.7,
@@ -17646,8 +17976,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 4214.89277804799,
-   "year": "2024"
+   "value": 4379.26131013191,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 13.9099095827735,
@@ -17722,8 +18052,8 @@
    "year": "2024"
   },
   "EG.ELC.ACCS.ZS": {
-   "value": 51.1,
-   "year": "2023"
+   "value": 53.6,
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 83,
@@ -17766,8 +18096,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 89840254108.8107,
-   "year": "2024"
+   "value": 95966580563.3056,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 62.5348874064443,
@@ -17860,8 +18190,8 @@
    "year": "2025"
   },
   "NY.GDP.PCAP.PP.CD": {
-   "value": 5928.0806252756,
-   "year": "2024"
+   "value": 6470.41613223905,
+   "year": "2025"
   },
   "FP.CPI.TOTL.ZG": {
    "value": 104.705170628667,
@@ -17933,7 +18263,7 @@
   },
   "EG.ELC.ACCS.ZS": {
    "value": 62,
-   "year": "2023"
+   "year": "2024"
   },
   "EG.FEC.RNEW.ZS": {
    "value": 82.4,
@@ -17976,8 +18306,8 @@
    "year": "2025"
   },
   "NY.GDP.MKTP.PP.CD": {
-   "value": 98609904294.9076,
-   "year": "2024"
+   "value": 109678697422.277,
+   "year": "2025"
   },
   "NE.TRD.GNFS.ZS": {
    "value": 41.5039527238816,

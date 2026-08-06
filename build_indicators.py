@@ -119,6 +119,34 @@ def fetch_indicator_all_countries(indicator_id: str) -> dict:
     return {}
 
 
+def fetch_regions(country_iso: dict) -> dict:
+    """Return {region_name: [display names present]} from WB country metadata.
+
+    One request to /country gives each economy's World Bank region; aggregates
+    (region == 'Aggregates') are skipped. Matched back to our display names via ISO3.
+    """
+    iso3_to_name = {iso: name for name, iso in country_iso.items()}
+    try:
+        resp = requests.get(f"{WB_BASE}/country",
+                            params={"format": "json", "per_page": 400}, timeout=TIMEOUT)
+        resp.raise_for_status()
+        data = resp.json()
+    except Exception as e:  # noqa: BLE001
+        print(f"  ! regions: failed ({e})")
+        return {}
+    rows = data[1] if isinstance(data, list) and len(data) > 1 and data[1] else []
+    groups: dict = {}
+    for row in rows:
+        iso3 = row.get("id")
+        region = ((row.get("region") or {}).get("value") or "").strip()
+        if not iso3 or not region or region.lower() == "aggregates":
+            continue
+        name = iso3_to_name.get(iso3)
+        if name is not None:
+            groups.setdefault(region, []).append(name)
+    return {r: sorted(set(groups[r])) for r in sorted(groups)}
+
+
 def main() -> None:
     html = _read_index()
     country_iso = parse_country_iso(html)
@@ -141,6 +169,10 @@ def main() -> None:
                 filled += 1
         print(f"  [{n:>2}/{len(indicator_ids)}] {ind:<22} {hits} countries")
 
+    print("Fetching World Bank regions...")
+    regions = fetch_regions(country_iso)
+    print(f"  regions: {len(regions)} ({sum(len(v) for v in regions.values())} memberships)")
+
     out = {name: vals for name, vals in out.items()}
     payload = {
         "_meta": {
@@ -150,6 +182,7 @@ def main() -> None:
             "indicators": len(indicator_ids),
             "datapoints": filled,
         },
+        "_regions": regions,
         **out,
     }
 

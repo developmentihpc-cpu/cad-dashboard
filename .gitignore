@@ -13,6 +13,11 @@ agent_outputs/
 *_context.json
 digest_preview.html
 __pycache__/
+# Evaluator / deck runtime scratch & outputs (regenerated on demand)
+_deckdata_*.json
+_onepager.html
+pipeline-state.json
+*.log
 
 # ──────────────────────────────────────────────────────
 # Map-rendering skill (~18 MB — bundled boundary data + flags)
@@ -52,6 +57,13 @@ command-key.html
 build-1pager-pptx.js
 *.pptx
 *.zip
+
+# ──────────────────────────────────────────────────────
+# IHPC Project Tracker — local database (reseeded from tracker_seed.json)
+# ──────────────────────────────────────────────────────
+ihpc_tracker.db
+*.sqlite
+*.sqlite3
 
 # ──────────────────────────────────────────────────────
 # OS / editor junk

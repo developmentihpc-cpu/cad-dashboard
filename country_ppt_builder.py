@@ -412,6 +412,22 @@ def add_viz_frame(slide, x, y, w, h, title=None):
             w - Inches(0.40), h - Inches(0.70))
 
 
+def add_no_data_chart(slide, x, y, w, h, title=None,
+                      msg="Data not available for this country"):
+    """Honest placeholder shown when a sector's chart data was not supplied.
+
+    GUARDRAIL: the builder must NEVER fabricate numbers or fall back to another
+    country's values. When the caller omits a chart, render this muted notice
+    instead so a missing series can never silently display the wrong country's
+    data. The right-hand stat/insight column still renders the real figures.
+    """
+    inner_x, inner_y, inner_w, inner_h = add_viz_frame(slide, x, y, w, h, title)
+    add_text(slide, inner_x, inner_y + inner_h / 2 - Inches(0.30),
+             inner_w, Inches(0.60), msg,
+             size=12, italic=True, color=FG3,
+             align=PP_ALIGN.CENTER, anchor=MSO_ANCHOR.MIDDLE)
+
+
 def add_bar_line_chart(slide, x, y, w, h, *, title, x_labels, bar_vals,
                        line_vals, y_max=40, y_step=10, bar_label="GDP growth",
                        line_label="Inflation"):
@@ -900,6 +916,166 @@ def _sector_slide(prs, ctx, *, crumb, topic, statement, viz_renderer,
     return s
 
 
+def slide_political_context(prs, ctx):
+    """Optional country political & governance context slide.
+
+    Renders whenever ctx['politics'] is provided; skipped otherwise so it's
+    fully opt-in and doesn't disrupt sector numbering. Country-neutral schema
+    (see CONTEXT_SCHEMA / politics block at bottom of this file). All
+    subfields optional — degrades gracefully when data missing.
+
+    Positioned between the cover and the At-a-Glance sector overview so
+    readers frame the sectoral deck with political context. Crumb is
+    unnumbered ("POLITICAL CONTEXT") — the sector deck keeps its 02–12
+    numbering unchanged.
+    """
+    pol = ctx.get("politics")
+    if not pol:
+        return  # opt-in — no data, no slide
+
+    s = prs.slides.add_slide(prs.slide_layouts[6])
+    add_rect(s, 0, 0, SLIDE_W, SLIDE_H, BG)
+    country = ctx.get("country", "")
+
+    descriptor = (pol.get("descriptor") or "").strip()
+    continuity = (pol.get("continuity") or "").strip()
+    if pol.get("statement"):
+        stmt = pol["statement"]
+    elif descriptor and continuity:
+        stmt = f"A {descriptor} government under {continuity}."
+    elif descriptor:
+        stmt = f"A {descriptor} government."
+    elif continuity:
+        stmt = f"Government under {continuity}."
+    else:
+        stmt = f"{country} — political & governance context."
+
+    add_header(s,
+               pol.get("crumb", "POLITICAL CONTEXT"),
+               pol.get("topic", "Governance"),
+               stmt)
+
+    add_text(s, Inches(0.55), Inches(1.55), Inches(12.2), Inches(0.28),
+             pol.get("subhead",
+                     f"Actor-neutral read — {country}'s own public political record."),
+             size=11, italic=True, color=FG2)
+
+    col_y = Inches(1.95)
+    col_h = Inches(4.30)
+    lx = Inches(0.55); lw = Inches(6.05)
+    rx = Inches(6.75); rw = Inches(6.05)
+
+    _pol_column_header(s, lx, col_y, lw, "LEADERSHIP")
+    _pol_column_header(s, rx, col_y, rw, "INSTITUTIONS")
+
+    block_y = col_y + Inches(0.40)
+    block_h = (col_h - Inches(0.40) - Inches(0.30)) / 3
+    gap = Inches(0.15)
+
+    def _person(person_key):
+        p = pol.get(person_key) or {}
+        return (
+            _person_line(p),
+            p.get("since"),
+            p.get("note"),
+            p.get("source"),
+        )
+
+    hos_line, hos_since, hos_note, hos_source = _person("head_of_state")
+    hog_line, hog_since, hog_note, hog_source = _person("head_of_government")
+    left_blocks = [
+        ("SYSTEM", pol.get("system"), None, None, None),
+        ("HEAD OF STATE", hos_line, hos_since, hos_note, hos_source),
+        ("HEAD OF GOVERNMENT", hog_line, hog_since, hog_note, hog_source),
+    ]
+    y = block_y
+    for chip, headline, since, note, source in left_blocks:
+        _pol_block(s, lx, y, lw, block_h, chip, headline, since, note, source, NAVY)
+        y += block_h + gap
+
+    leg = pol.get("legislature") or {}
+    con = pol.get("constitution") or {}
+    right_blocks = [
+        ("LEGISLATURE", leg.get("headline"), None, leg.get("note"), leg.get("source")),
+        ("CONSTITUTION", con.get("headline"), None, con.get("note"), con.get("source")),
+    ]
+    civic = pol.get("civic_space")
+    if isinstance(civic, dict):
+        right_blocks.append(("CIVIC SPACE / RULE OF LAW",
+                             None, None,
+                             civic.get("note"), civic.get("source")))
+    elif isinstance(civic, str) and civic.strip():
+        right_blocks.append(("CIVIC SPACE / RULE OF LAW",
+                             None, None, civic, None))
+
+    y = block_y
+    for chip, headline, since, note, source in right_blocks[:3]:
+        _pol_block(s, rx, y, rw, block_h, chip, headline, since, note, source, NAVY)
+        y += block_h + gap
+
+    flag = pol.get("reconcile_flag") or {}
+    if flag.get("text") or flag.get("chip"):
+        fy = Inches(6.40)
+        fh = Inches(0.62)
+        add_rect(s, Inches(0.55), fy, Inches(12.20), fh,
+                 GOLD_PALE, line=GOLD, line_w_pt=1.0)
+        add_text(s, Inches(0.70), fy + Inches(0.06),
+                 Inches(4.00), Inches(0.24),
+                 flag.get("chip", "RECONCILE BEFORE BUILD"),
+                 size=10, bold=True, color=GOLD, char_spacing=2)
+        add_text(s, Inches(0.70), fy + Inches(0.30),
+                 Inches(11.95), Inches(0.30),
+                 flag.get("text", ""),
+                 size=9, color=FG)
+
+    add_footer(s, pol.get("sources_footer",
+                          "Sources: public political record"))
+
+
+def _person_line(person):
+    """Format 'Title Name' line for head-of-state / head-of-gov."""
+    if not isinstance(person, dict):
+        return None
+    title = (person.get("title") or "").strip()
+    name = (person.get("name") or "").strip()
+    if title and name:
+        return f"{title} {name}"
+    return name or title or None
+
+
+def _pol_column_header(slide, x, y, w, label):
+    add_rect(slide, x, y, Inches(0.06), Inches(0.30), NAVY)
+    add_text(slide, x + Inches(0.12), y, w - Inches(0.12), Inches(0.30),
+             label, size=11, bold=True, color=NAVY, char_spacing=2.5,
+             anchor=MSO_ANCHOR.MIDDLE)
+
+
+def _pol_block(slide, x, y, w, h, chip, headline, since, note, source, accent):
+    """One info card: chip / headline / body note / source tag."""
+    add_rect(slide, x, y, w, h, WHITE, line=BORDER)
+    add_rect(slide, x, y, Inches(0.06), h, accent)
+    add_text(slide, x + Inches(0.20), y + Inches(0.08),
+             w - Inches(0.30), Inches(0.24),
+             chip, size=9.5, bold=True, color=accent, char_spacing=2)
+    if headline:
+        head_text = headline + (f"  ·  {since}" if since else "")
+        add_text(slide, x + Inches(0.20), y + Inches(0.34),
+                 w - Inches(0.30), Inches(0.32),
+                 head_text, size=12.5, bold=True, color=FG)
+        note_y_off = Inches(0.70)
+    else:
+        note_y_off = Inches(0.36)
+    src_reserve = Inches(0.24) if source else Inches(0.06)
+    if note:
+        add_text(slide, x + Inches(0.20), y + note_y_off,
+                 w - Inches(0.30), h - note_y_off - src_reserve - Inches(0.06),
+                 note, size=10, color=FG2)
+    if source:
+        add_text(slide, x + Inches(0.20), y + h - Inches(0.28),
+                 w - Inches(0.30), Inches(0.22),
+                 f"Source: {source}", size=8, italic=True, color=FG3)
+
+
 def slide_2_at_a_glance(prs, ctx):
     sec = ctx.get("sectors", {}).get("at_a_glance", {})
     def viz(s, x, y, w, h):
@@ -921,12 +1097,18 @@ def slide_2_at_a_glance(prs, ctx):
 def slide_3_economy(prs, ctx):
     sec = ctx.get("sectors", {}).get("economy", {})
     chart = sec.get("chart", {})
+    bar_vals  = chart.get("bar_values")
+    line_vals = chart.get("line_values")
     def viz(s, x, y, w, h):
+        if not bar_vals or not line_vals:
+            add_no_data_chart(s, x, y, w, h, chart.get("title", "GDP vs Inflation"),
+                              "Economic indicators not available")
+            return
         add_bar_line_chart(s, x, y, w, h,
             title=chart.get("title", "GDP vs Inflation"),
-            x_labels=chart.get("x_labels", ["FY20","FY21","FY22","FY23","FY24"]),
-            bar_vals=chart.get("bar_values", [6.1,6.3,6.4,6.6,7.3]),
-            line_vals=chart.get("line_values", [14,16,24,28,26.6]),
+            x_labels=chart.get("x_labels") or [str(i + 1) for i in range(len(bar_vals))],
+            bar_vals=bar_vals,
+            line_vals=line_vals,
             y_max=chart.get("y_max", 40),
             bar_label=chart.get("bar_label", "GDP growth"),
             line_label=chart.get("line_label", "CPI inflation"))
@@ -963,14 +1145,21 @@ def slide_4_health(prs, ctx):
 def slide_5_education(prs, ctx):
     sec = ctx.get("sectors", {}).get("education", {})
     chart = sec.get("chart", {})
+    series_a = chart.get("series_a")
+    series_b = chart.get("series_b")
     def viz(s, x, y, w, h):
+        if not series_a or not series_b:
+            add_no_data_chart(s, x, y, w, h,
+                              chart.get("title", "Enrollment by Level & Gender"),
+                              "Enrollment data not available")
+            return
         add_grouped_bars(s, x, y, w, h,
             title=chart.get("title", "Enrollment by Level & Gender"),
-            x_labels=chart.get("x_labels", ["Primary","Secondary","Tertiary"]),
-            series_a=chart.get("series_a", [95, 32, 8]),
-            series_b=chart.get("series_b", [88, 28, 6]),
-            a_label=chart.get("a_label", "Boys"),
-            b_label=chart.get("b_label", "Girls"),
+            x_labels=chart.get("x_labels") or [str(i + 1) for i in range(len(series_a))],
+            series_a=series_a,
+            series_b=series_b,
+            a_label=chart.get("a_label", "Series A"),
+            b_label=chart.get("b_label", "Series B"),
             y_max=chart.get("y_max", 100))
     _sector_slide(prs, ctx,
         crumb="05 · EDUCATION",
@@ -1023,15 +1212,16 @@ def slide_7_agriculture(prs, ctx):
 
 def slide_8_infrastructure(prs, ctx):
     sec = ctx.get("sectors", {}).get("infrastructure", {})
+    rows = sec.get("compare_rows")
     def viz(s, x, y, w, h):
+        if not rows:
+            add_no_data_chart(s, x, y, w, h,
+                              sec.get("chart_title", "Service Access"),
+                              "Service-access data not available")
+            return
         add_compare_rows(s, x, y, w, h,
             title=sec.get("chart_title", "Service Access — Urban vs. Rural"),
-            rows=sec.get("compare_rows", [
-                {"label":"Electricity",    "urban":95, "rural":15},
-                {"label":"Safe water",     "urban":85, "rural":50},
-                {"label":"Improved sanit.","urban":35, "rural":12},
-                {"label":"Internet",       "urban":45, "rural":8},
-            ]))
+            rows=rows)
     _sector_slide(prs, ctx,
         crumb="08 · INFRASTRUCTURE & CONNECTIVITY",
         topic="Infrastructure",
@@ -1047,14 +1237,17 @@ def slide_8_infrastructure(prs, ctx):
 def slide_9_climate(prs, ctx):
     sec = ctx.get("sectors", {}).get("climate", {})
     chart = sec.get("chart", {})
+    series = chart.get("series")
     def viz(s, x, y, w, h):
+        if not series:
+            add_no_data_chart(s, x, y, w, h,
+                              chart.get("title", "Environment & Climate"),
+                              "Climate trend data not available")
+            return
         add_line_chart(s, x, y, w, h,
             title=chart.get("title", "Forest Cover Decline & Climate Risk"),
-            x_labels=chart.get("x_labels", ["2000","2005","2010","2015","2020","2024"]),
-            series=chart.get("series", [
-                {"label":"Forest cover (%)",       "values":[40,35,28,22,17,15], "color":DEEP_GREEN},
-                {"label":"Climate risk (ND-GAIN)", "values":[20,25,33,45,58,68], "color":NEG, "dashed":True},
-            ]),
+            x_labels=chart.get("x_labels") or [str(i + 1) for i in range(len(series[0].get("values", [])))],
+            series=series,
             y_max=chart.get("y_max", 100))
     _sector_slide(prs, ctx,
         crumb="09 · ENVIRONMENT & CLIMATE",
@@ -1272,6 +1465,7 @@ def build(context: dict, output=None):
     prs.slide_height = SLIDE_H
 
     slide_1_cover(prs, ctx)
+    slide_political_context(prs, ctx)   # opt-in — no-op unless ctx['politics'] set
     slide_2_at_a_glance(prs, ctx)
     slide_3_economy(prs, ctx)
     slide_4_health(prs, ctx)
@@ -1327,6 +1521,55 @@ context = {
       {"label":"Population","value":"130M","sublabel":"2nd in Africa  ·  UN DESA 2024"},
       {"label":"Land Area","value":"1.1M km²","sublabel":"12th in Africa  ·  landlocked"},
   ],
+
+  # OPTIONAL — political & governance context slide (inserted between cover and
+  # slide 2 whenever this block is present; skipped otherwise). All subfields
+  # optional; missing ones just don't render their card.
+  "politics": {
+      "descriptor": "post-transition civilian",     # goes into auto-headline
+      "continuity": "continued Déby-family leadership",
+      # OR skip descriptor/continuity and pass a ready statement:
+      # "statement": "A post-transition civilian government ...",
+      "topic": "Governance",                        # default "Governance"
+      "crumb": "POLITICAL CONTEXT",                 # default same
+      "subhead": "Actor-neutral read — Chad's own public political record.",
+
+      "system": "Republic. Strong presidency. Emerged in 2024 from four-year military transition.",
+
+      "head_of_state": {
+          "title": "President", "name": "Mahamat Idriss Déby Itno",
+          "since": "20 Apr 2021 · elected 6 May 2024",
+          "note":  "Won 2024 election with ~61% (first round). Inaugurated 23 May 2024.",
+          "source":"Al Jazeera May 2024 · Wikipedia",
+      },
+      "head_of_government": {
+          "title": "Prime Minister", "name": "Allamaye Halina",
+          "since": "23 May 2024",
+          "note":  "Former ambassador to China; technocrat aligned with the President.",
+          "source":"Al Jazeera · Wikipedia",
+      },
+      "legislature": {
+          "headline": "Dec 2024 elections",
+          "note":     "First in ~13 years. Ruling MPS + allies dominated; Les Transformateurs boycotted.",
+          "source":   "APA / Africanews",
+      },
+      "constitution": {
+          "headline": "Dec 2024 restoration",
+          "note":     "New constitution adopted Dec 2024 restoring civilian rule. 2023 referendum set a 5-year renewable presidential term.",
+          "source":   "Public record",
+      },
+      # Optional — either a dict {note, source} or a plain string
+      "civic_space": {
+          "note":   "Opposition leader Succès Masra sentenced Aug 2025; Supreme Court upheld May 2026.",
+          "source": "HRW · WAVN",
+      },
+      # Optional — gold warning box across the slide bottom
+      "reconcile_flag": {
+          "chip": "RECONCILE BEFORE BUILD",
+          "text": "Internal dossier claims Sept-2025 term extension (5→7yr) — not corroborated in public sources found. Verify before placing on a slide.",
+      },
+      "sources_footer": "Sources: Al Jazeera · Wikipedia · APA / Africanews · HRW · WAVN",
+  },
 
   "sector_status": [   # 7 rows on cover
       {"name":"Health","status":"severe","summary":"High maternal/child mortality"},

@@ -1,0 +1,1555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Evaluation — Office of Development Affairs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+<style>
+:root{
+  --ink:#1D252C; --ink-deep:#101820; --gold:#AD833B; --gold-soft:#F3ECDD;
+  --blue:#678CA5; --blue-deep:#2F586E; --navy:#333F64; --sky:#CBDCE6;
+  --bordeaux:#79242F; --teal:#2DB88A; --teal-deep:#1E7D5E;
+  --white:#FFFFFF; --wash:#F4F5F7; --divider:#E2E2E2; --muted:#6B7280;
+  --serif:'Lora',Georgia,serif; --sans:'Montserrat',-apple-system,Segoe UI,sans-serif;
+  --radius-pill:999px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:var(--sans);color:var(--ink);background:var(--wash);font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--serif);margin:0;font-weight:600;color:var(--ink)}
+button{font-family:var(--sans);cursor:pointer}
+input,textarea,select{font-family:var(--sans)}
+.rule-gold{width:56px;height:2px;background:var(--gold);border:0;margin:8px 0 0}
+
+header{background:var(--white);border-bottom:1px solid var(--divider);position:sticky;top:0;z-index:50}
+.hd-inner{max-width:1440px;margin:0 auto;padding:18px 28px;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.hd-title h1{font-size:26px;letter-spacing:.2px}
+.hd-eyebrow{font-size:10.5px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold)}
+.hd-stats{display:flex;gap:30px;align-items:flex-end}
+.stat{text-align:right}
+.stat .v{font-family:var(--serif);font-size:24px;font-weight:700;line-height:1;color:var(--ink)}
+.stat .v.bad{color:var(--bordeaux)} .stat .v.ok{color:var(--teal-deep)}
+.stat .l{font-size:9.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:5px}
+
+main{max-width:1440px;margin:0 auto;padding:20px 28px 80px}
+.section-kicker{font-size:10.5px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:2px}
+.section-title{font-size:18px;margin-bottom:0}
+.panel{background:var(--white);border:1px solid var(--divider);padding:22px 24px;margin-bottom:20px}
+.panel.gate{border-left:3px solid var(--gold)}
+.panel-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.ev-fields{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.ev-fields input{padding:7px 10px;border:1px solid var(--divider);font-size:12px;color:var(--ink)}
+.ev-fields .ev-lbl{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+
+.seg{display:inline-flex;border:1px solid var(--ink)}
+.seg button{border:0;background:var(--white);color:var(--ink);padding:9px 15px;font-size:12px;font-weight:600;letter-spacing:.3px;border-right:1px solid var(--ink)}
+.seg button:last-child{border-right:0}
+.seg button.active{background:var(--gold);color:var(--white)}
+.seg button.active.nv{background:var(--navy)}
+.gate-row{display:flex;gap:20px;align-items:center;flex-wrap:wrap;margin-top:14px}
+.gate-q{font-size:14px;color:var(--ink);font-weight:600;max-width:420px}
+.gate-weight{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold);padding:5px 10px;border-radius:var(--radius-pill)}
+.note{font-size:12px;color:var(--muted);background:var(--wash);border-left:3px solid var(--navy);padding:11px 14px;margin-top:14px;line-height:1.5}
+.note.gold{border-left-color:var(--gold);background:var(--gold-soft);color:#6f5320}
+.note.warn{border-left-color:var(--bordeaux);background:#FCF4F4;color:#79242F}
+.cl-grid{display:flex;gap:34px;flex-wrap:wrap;margin-top:14px}
+.cl-grid .cl{display:flex;flex-direction:column;gap:8px}
+.cl .cl-lbl{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:14px 0 0}
+.btn{border:1px solid var(--ink);background:var(--white);color:var(--ink);padding:9px 16px;font-size:12px;font-weight:600;letter-spacing:.3px;transition:all .2s}
+.btn:hover{background:var(--ink);color:var(--white)}
+.btn.primary{background:var(--gold);border-color:var(--gold);color:var(--white)}
+.btn.primary:hover{background:#946d2c;border-color:#946d2c}
+.btn.primary:disabled{background:#D9CDB4;border-color:#D9CDB4;color:#fff;cursor:not-allowed}
+.btn.ghost{border-color:var(--divider);color:var(--muted)}
+.btn.ghost:hover{background:var(--wash);color:var(--ink);border-color:var(--ink)}
+.btn.sm{padding:6px 11px;font-size:11px}
+.total-badge{margin-left:auto;font-family:var(--serif);font-size:15px;font-weight:700;padding:7px 16px;border:1px solid var(--divider);background:var(--wash)}
+.total-badge.ok{color:var(--teal-deep);border-color:var(--teal)}
+.total-badge.bad{color:var(--bordeaux);border-color:var(--bordeaux)}
+.srvdot{width:9px;height:9px;border-radius:50%;background:#C9CDD2;display:inline-block;margin-left:8px;flex-shrink:0}
+.srvdot.up{background:var(--teal)} .srvdot.down{background:var(--bordeaux)}
+.srvtxt{font-size:10px;color:var(--muted);font-weight:600;letter-spacing:.3px}
+.modehelp{font-size:11px;color:var(--muted);margin-top:10px;line-height:1.55}
+.modehelp strong{color:var(--ink)}
+
+.tabs{display:flex;gap:0;border-bottom:1px solid var(--divider);margin-bottom:16px}
+.tab{padding:9px 16px;font-size:12px;font-weight:600;color:var(--muted);border-bottom:2px solid transparent;background:none;border-top:0;border-left:0;border-right:0}
+.tab.active{color:var(--ink);border-bottom-color:var(--gold)}
+.meta-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
+.fld label{display:block;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.fld input,.fld textarea,.fld select{width:100%;padding:9px 11px;border:1px solid var(--divider);background:var(--white);font-size:13px;color:var(--ink);outline:none}
+.fld input:focus,.fld textarea:focus{border-color:var(--gold)}
+.lblhint{font-weight:600;letter-spacing:0;text-transform:none;color:var(--muted);font-size:9px}
+.msel{position:relative}
+.msel-head{position:relative;min-height:38px;width:100%;padding:6px 28px 6px 7px;border:1px solid var(--divider);background:var(--white);font-size:13px;color:var(--ink);cursor:pointer;display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+.msel-head:after{content:'';position:absolute;right:11px;top:16px;border:5px solid transparent;border-top-color:var(--muted)}
+.msel-head.open{border-color:var(--gold)}
+.msel-ph{color:var(--muted)}
+.msel-chip{display:inline-flex;align-items:center;gap:5px;background:var(--gold-soft);color:#6f5320;font-size:11px;font-weight:600;padding:3px 7px}
+.msel-chip b{cursor:pointer;font-weight:700;line-height:1}
+.msel-menu{position:absolute;z-index:40;left:0;right:0;top:calc(100% + 2px);background:var(--white);border:1px solid var(--divider);box-shadow:0 12px 32px rgba(0,0,0,.14);max-height:280px;flex-direction:column}
+.msel-search{margin:8px;padding:7px 9px;border:1px solid var(--divider);font-size:12px;width:auto}
+.msel-opts{overflow:auto;padding:0 4px 8px}
+.msel-opt{display:flex;align-items:center;gap:8px;padding:6px 8px;font-size:13px;cursor:pointer}
+.msel-opt:hover{background:var(--wash)}
+.msel-opt input{width:auto;margin:0}
+textarea#projText{min-height:140px;resize:vertical;line-height:1.55}
+.drop{border:1.5px dashed var(--divider);padding:24px;text-align:center;color:var(--muted);font-size:13px}
+.drop.drag{border-color:var(--gold);background:var(--gold-soft)}
+.assump{display:flex;gap:22px;flex-wrap:wrap;margin-top:14px;padding-top:14px;border-top:1px solid var(--divider)}
+.assump .fld{min-width:150px}
+.assump .fld input{width:120px}
+
+#summary{display:none} #summary.show{display:block}
+.sum-grid{display:grid;grid-template-columns:240px 1fr;gap:26px;align-items:center}
+.composite{text-align:center;padding:8px 0}
+.composite .lbl-os{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.composite .num{font-family:var(--serif);font-size:62px;font-weight:700;line-height:.95;color:var(--ink)}
+.composite .den{font-size:13px;color:var(--muted);margin-top:2px}
+.rec-badge{display:inline-block;margin-top:12px;padding:8px 18px;border-radius:var(--radius-pill);font-size:12.5px;font-weight:700;letter-spacing:.5px;line-height:1.3}
+.rec-approve{background:#E2F3EC;color:var(--teal-deep)}
+.rec-cond{background:var(--gold-soft);color:#7d5b1f}
+.rec-revise{background:#FBEEDD;color:#9a5a14}
+.rec-reject{background:#F6E1E2;color:var(--bordeaux)}
+.rec-hold{background:var(--sky);color:var(--blue-deep)}
+.scoredby{font-size:9.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-top:8px}
+.dimbars{display:flex;flex-direction:column;gap:7px}
+.dimbar{display:grid;grid-template-columns:200px 1fr 78px;gap:12px;align-items:center;font-size:11.5px}
+.dimbar .nm{color:var(--ink);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.track{height:9px;background:var(--wash);position:relative;border:1px solid var(--divider)}
+.fill{height:100%;background:var(--navy);position:absolute;left:0;top:0}
+.dimbar .pts{text-align:right;font-variant-numeric:tabular-nums;color:var(--muted)}
+.completeness{margin-top:16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.cmpbar{flex:1;min-width:200px;height:10px;background:var(--wash);border:1px solid var(--divider);position:relative;display:flex}
+.cmpbar .ev{background:var(--teal)} .cmpbar .es{background:var(--gold)} .cmpbar .un{background:#D7D7D7}
+.cmplabel{font-size:11.5px;color:var(--muted)}
+.cmplabel b{color:var(--ink)}
+.hl-rec{margin-top:18px;padding:14px 16px;border-left:3px solid var(--gold);background:var(--gold-soft)}
+.hl-rec .v{font-family:var(--serif);font-size:14px;font-weight:700;margin-bottom:4px;color:var(--ink)}
+.hl-rec p{margin:0;font-size:13px;color:var(--ink);line-height:1.5}
+.hl-rec ul{margin:8px 0 0;padding-left:18px;font-size:12.5px;color:var(--ink)} .hl-rec li{margin:3px 0}
+.flags{margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.flagbox h4{font-size:12px;letter-spacing:.3px;margin-bottom:8px}
+.flagbox ul{margin:0;padding-left:0;list-style:none}
+.flagbox li{font-size:12px;padding:6px 0 6px 16px;border-bottom:1px solid var(--divider);position:relative;color:var(--ink)}
+.flagbox li:before{content:"";position:absolute;left:0;top:12px;width:6px;height:6px;border-radius:50%}
+.redbox li:before{background:var(--bordeaux)} .rfibox li:before{background:var(--blue)}
+.flagbox .empty{font-size:12px;color:var(--muted);font-style:italic}
+
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+@media(max-width:1200px){.cards{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:680px){.cards{grid-template-columns:1fr}.sum-grid{grid-template-columns:1fr}}
+.card{background:var(--white);border:1px solid var(--divider);border-top:3px solid var(--navy);display:flex;flex-direction:column}
+.card-hd{padding:14px 16px 12px;border-bottom:1px solid var(--divider)}
+.card-hd .top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.card-hd h3{font-size:14.5px;line-height:1.25}
+.dimw{display:flex;align-items:center;gap:4px;flex-shrink:0}
+.dimw input{width:48px;padding:3px 5px;border:1px solid var(--divider);font-size:12px;font-weight:700;text-align:right;font-family:var(--serif);color:var(--ink)}
+.dimw .pct{font-size:11px;color:var(--muted);font-weight:700}
+.card-hd .dimscore{font-size:10.5px;font-weight:700;letter-spacing:.5px;color:var(--gold);margin-top:7px;text-transform:uppercase}
+.crit{padding:13px 16px;border-bottom:1px solid var(--divider);border-left:3px solid transparent}
+.crit:last-child{border-bottom:0}
+.crit.breach{border-left-color:var(--bordeaux);background:#FCF4F4}
+.crit.na{background:#FAFAFA}
+.crit.na .cname{color:var(--muted)}
+.ml-na{background:#ECECEC;color:#8A8A8A}
+.crit .row1{display:flex;gap:8px;align-items:baseline}
+.dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.dot.qual{background:var(--gold)} .dot.quant{background:var(--blue)}
+.crit .cname{font-size:12.5px;font-weight:700;color:var(--ink);flex:1}
+.crit .cw{display:flex;align-items:center;gap:3px}
+.crit .cw input{width:44px;padding:2px 4px;border:1px solid var(--divider);font-size:11px;text-align:right;font-weight:600}
+.crit .cw .pct{font-size:10px;color:var(--muted)}
+.crit .cdesc{font-size:11px;color:var(--muted);margin:3px 0 0 16px;line-height:1.4}
+.score-row{margin:9px 0 0 16px;display:flex;align-items:center;gap:10px}
+.score-row input[type=range]{flex:1;accent-color:var(--gold);height:3px}
+.score-num{width:50px;padding:4px 6px;border:1px solid var(--divider);font-size:12px;text-align:center;font-weight:700;font-family:var(--serif)}
+.score-num.unscored{color:#bbb}
+.riskanchor{margin:3px 0 0 16px;display:flex;justify-content:space-between;font-size:9px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--bordeaux)}
+.crit textarea.rationale{width:calc(100% - 16px);margin:8px 0 0 16px;min-height:38px;padding:6px 8px;border:1px solid var(--divider);font-size:11px;line-height:1.45;resize:vertical;color:var(--ink)}
+.crit .evid{width:calc(100% - 16px);margin:6px 0 0 16px;padding:5px 8px;border:1px solid var(--divider);font-size:10.5px;color:var(--muted)}
+.crit .ctags{margin:7px 0 0 16px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.minilabel{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:2px 7px;border-radius:var(--radius-pill)}
+.ml-qual{background:var(--gold-soft);color:#7d5b1f} .ml-quant{background:var(--sky);color:var(--blue-deep)}
+.ml-breach{background:var(--bordeaux);color:#fff}
+.conf{font-size:9.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--muted)}
+.th-ctrl{display:inline-flex;align-items:center;gap:4px;font-size:9px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:#6f5320}
+.th-ctrl input{width:36px;padding:1px 3px;border:1px solid var(--divider);font-size:10px;text-align:center}
+.chk{display:flex;align-items:center;gap:4px;font-size:10px;font-weight:600;color:var(--muted);cursor:pointer}
+.chk input{accent-color:var(--bordeaux)} .chk.rfi input{accent-color:var(--blue)}
+.chk.excl{margin-left:auto;color:var(--slate)} .chk.excl input{accent-color:var(--gold)}
+.chk.excl.off{color:var(--muted)}
+.lens-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0 4px}
+.lens{border:1px solid var(--divider);border-top:3px solid var(--slate);padding:12px 14px;text-align:center}
+.lens-l{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--muted)}
+.lens-n{font-family:var(--serif);font-size:34px;font-weight:700;color:var(--ink);line-height:1.1;margin:4px 0}
+.lens-v{font-size:11px;font-weight:700}
+.pblock{margin-top:16px}
+.pblock h4{font-size:13px;margin-bottom:6px;color:var(--ink)}
+.pblock p{font-size:12.5px;line-height:1.55;color:var(--ink);margin:0}
+.muted{color:var(--muted);font-weight:600}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.pcell{background:var(--wash);border-left:3px solid var(--slate);padding:9px 12px}
+.pk{font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.prisks{list-style:none;margin:0;padding:0}
+.prisks li{font-size:12.5px;padding:6px 0;border-bottom:1px solid var(--divider);line-height:1.5}
+.sev{display:inline-block;color:#fff;font-size:9px;font-weight:700;letter-spacing:.5px;padding:1px 6px;margin-right:4px;vertical-align:middle}
+.ptable{width:100%;border-collapse:collapse;font-size:12px;margin-top:4px}
+.ptable th{text-align:left;background:var(--ink);color:#fff;font-size:10px;letter-spacing:.5px;text-transform:uppercase;padding:7px 9px;font-weight:700}
+.ptable td{border:1px solid var(--divider);padding:7px 9px;vertical-align:top;line-height:1.45}
+.psources{margin:0;padding-left:18px;font-size:11.5px;line-height:1.5}
+.psources a{color:var(--slate)} .psources li{margin-bottom:3px}
+.pfactors{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+.pf{border-left:3px solid var(--slate);background:var(--wash);padding:8px 12px}
+.pf-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.pf-n{font-size:12px;font-weight:700;color:var(--ink)}
+.pf-s{font-family:var(--serif);font-size:15px;font-weight:700;color:var(--ink)}
+.pf-bar{height:5px;background:#E7E9EC;margin:5px 0 6px;position:relative}
+.pf-bar i{position:absolute;left:0;top:0;bottom:0;background:var(--slate);display:block}
+.pf-j{font-size:12px;line-height:1.5;color:var(--ink);margin:0}
+.prec{margin-top:16px;border-left:3px solid var(--gold);background:var(--gold-soft);padding:12px 16px;font-size:13px;line-height:1.55;color:#6f5320}
+.prec strong{color:#5c4a1c}
+.fopts-wrap{margin-top:18px;border-top:1px solid var(--divider);padding-top:14px}
+.fopts-h{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.fopts{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.fopt{border:1px solid var(--divider);border-top:3px solid var(--slate);padding:12px 14px;position:relative;background:var(--white)}
+.fopt.rec{border-color:var(--gold);border-top-color:var(--gold);background:var(--gold-soft);box-shadow:none}
+.fopt-band{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--ink)}
+.fopt-tag{position:absolute;top:10px;right:10px;font-size:8.5px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;background:var(--gold);color:#fff;padding:2px 6px}
+.fopt-k{font-size:9px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--muted);margin:8px 0 2px}
+.fopt p{font-size:11.5px;line-height:1.45;color:var(--ink);margin:0}
+.fopt-rec{margin-top:12px;font-size:12.5px;line-height:1.5;color:#5c4a1c}
+.fopt-score{float:right;font-family:var(--serif);font-size:15px;font-weight:700;color:var(--slate)}
+.cprof{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-top:8px}
+.cpi{border-left:3px solid var(--slate);background:var(--wash);padding:7px 10px}
+.cpi-v{font-family:var(--serif);font-size:16px;font-weight:700;color:var(--ink)}
+.cpi-l{font-size:10px;color:var(--muted);margin-top:2px} .cpi-l span{opacity:.8}
+.uaeref{border-top:1px solid var(--divider);margin-top:8px;padding-top:8px;font-size:11.5px;color:var(--muted);line-height:1.5}
+.sbadge{display:inline-block;font-size:8.5px;font-weight:700;letter-spacing:.3px;text-transform:uppercase;padding:1px 5px;margin-left:5px;vertical-align:middle}
+.sbadge.indep{background:#E2F3EC;color:#1F7A52} .sbadge.self{background:#F3ECDD;color:#7d5b1f}
+.sbadge.dead{background:#F6E1E2;color:#8E1B14} .sbadge.age{background:#ECECEC;color:#6B7280}
+.ehealth{font-size:11.5px;color:var(--ink);background:var(--wash);border-left:3px solid var(--slate);padding:8px 12px;margin:8px 0}
+.ehealth.warn{border-left-color:var(--bordeaux);background:#FCF4F4}
+.vbtnrow{margin-top:16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.vchecks{list-style:none;margin:8px 0 0;padding:0}
+.vchecks li{padding:8px 0;border-bottom:1px solid var(--divider);font-size:12.5px;line-height:1.5}
+.vv{display:inline-block;color:#fff;font-size:9px;font-weight:700;letter-spacing:.5px;padding:1px 6px;margin-right:6px;vertical-align:middle}
+.vf{font-size:11.5px;color:var(--muted);margin-top:3px} .vf a{color:var(--slate)}
+
+details.guide{margin-top:14px;font-size:12px} details.guide summary{cursor:pointer;font-weight:600;color:var(--ink)}
+details.guide table{margin-top:8px;border-collapse:collapse;width:100%}
+details.guide td{border:1px solid var(--divider);padding:5px 9px;font-size:11.5px}
+details.guide td:first-child{font-weight:700;width:120px}
+
+.qrow{display:grid;grid-template-columns:1fr auto 1.2fr auto;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid var(--divider)}
+.qrow:last-child{border-bottom:0}
+.qrow .qtext{font-size:13px;color:var(--ink);font-weight:600}
+.qseg{display:inline-flex;border:1px solid var(--divider)}
+.qseg button{border:0;border-right:1px solid var(--divider);background:var(--white);color:var(--muted);font-size:11px;font-weight:600;padding:6px 12px}
+.qseg button:last-child{border-right:0}
+.qseg button.active{background:var(--navy);color:#fff}
+.qrow input.qnote{padding:7px 9px;border:1px solid var(--divider);font-size:12px;color:var(--ink)}
+.qrow .qdel{border:0;background:none;color:var(--muted);font-size:16px;line-height:1;padding:0 6px}
+.qrow .qdel:hover{color:var(--bordeaux)}
+
+.vrow{display:grid;grid-template-columns:54px 150px 1fr 90px 70px;gap:10px;align-items:center;padding:9px 0;border-bottom:1px solid var(--divider);font-size:12px}
+.vrow .vno{font-family:var(--serif);font-weight:700} .vrow .vdelta.up{color:var(--teal-deep)} .vrow .vdelta.down{color:var(--bordeaux)}
+.vrow .vempty{color:var(--muted);font-style:italic}
+
+.foot{margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.legend{display:flex;gap:18px;align-items:center;font-size:11px;color:var(--muted);margin-left:auto}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.notice{font-size:11px;color:var(--muted);background:var(--wash);border-left:3px solid var(--gold);padding:10px 14px;margin-top:14px;line-height:1.5}
+
+@media print{
+  body{background:#fff} header{position:static}
+  .toolbar,.tabs,.foot .btn,.drop,.gate-row .seg,.cl-grid .seg,.qseg,.topbar,.assump,details.guide{display:none!important}
+  .panel,.card{break-inside:avoid} .score-row input[type=range]{display:none}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="hd-inner">
+    <div class="hd-title">
+      <div class="hd-eyebrow">Office of Development Affairs</div>
+      <h1>Project Evaluation</h1>
+      <hr class="rule-gold">
+    </div>
+    <div class="hd-stats">
+      <div class="stat"><div class="v" id="statComposite">—</div><div class="l">Weighted Composite</div></div>
+      <div class="stat"><div class="v" id="statWeight">100<span style="font-size:15px">%</span></div><div class="l">Weight Total</div></div>
+      <div class="stat"><div class="v" id="statDims">8</div><div class="l">Dimensions</div></div>
+      <div class="stat"><div class="v" id="statCrit">22</div><div class="l">Criteria</div></div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="topbar">
+    <div class="ev-fields">
+      <span class="ev-lbl">Evaluator</span>
+      <input id="ev_name" placeholder="Your name" oninput="syncVersionLabel()">
+      <input id="ev_role" placeholder="Role / unit">
+      <span class="ev-lbl" id="verLabel" style="color:var(--gold)">Version 1</span>
+    </div>
+    <div style="display:flex;gap:8px">
+      <button class="btn ghost sm" onclick="downloadInfoRequest()">Download information-request template</button>
+    </div>
+  </div>
+
+  <!-- STEP 1 · LEADERSHIP GATE -->
+  <div class="panel gate">
+    <div class="panel-head">
+      <div><div class="section-kicker">Step 1 · Decisive gate</div><h2 class="section-title">Leadership direction</h2><hr class="rule-gold"></div>
+      <span class="gate-weight">Weighting · 100%</span>
+    </div>
+    <div class="gate-row">
+      <div class="gate-q">Has leadership requested this project?</div>
+      <div class="seg">
+        <button id="gateStd" class="active nv" onclick="setGate('standard')">Standard review</button>
+        <button id="gateDir" onclick="setGate('directed')">Leadership-directed</button>
+      </div>
+    </div>
+    <div class="note" id="gateNote"><strong>Standard review.</strong> The weighted criteria drive the recommendation, and any criterion below its minimum threshold fails the project.</div>
+  </div>
+
+  <!-- STEP 2 · CLASSIFICATION -->
+  <div class="panel">
+    <div class="section-kicker">Step 2 · Classification</div>
+    <h2 class="section-title">Stream &amp; financing</h2><hr class="rule-gold">
+    <div class="cl-grid">
+      <div class="cl">
+        <span class="cl-lbl">Stream</span>
+        <div class="seg">
+          <button id="strDev" class="active nv" onclick="setStream('development')">Development</button>
+          <button id="strHum" onclick="setStream('humanitarian')">Humanitarian</button>
+          <button id="strPhil" onclick="setStream('philanthropy')">Philanthropy</button>
+        </div>
+      </div>
+      <div class="cl">
+        <span class="cl-lbl">Financing</span>
+        <div class="seg">
+          <button id="finInv" class="active nv" onclick="setFinance('investment')">Investment</button>
+          <button id="finGrant" onclick="setFinance('grant')">Grant</button>
+          <button id="finLoan" onclick="setFinance('loan')">Loan</button>
+        </div>
+      </div>
+    </div>
+    <div class="note" id="clNote"></div>
+  </div>
+
+  <!-- STEP 3 · PROJECT -->
+  <div class="panel" id="inputPanel">
+    <div class="section-kicker">Step 3</div><h2 class="section-title">Project under evaluation</h2>
+    <hr class="rule-gold" style="margin-bottom:16px">
+    <div class="tabs">
+      <button class="tab active" data-tab="paste" onclick="switchTab('paste')">Paste text</button>
+      <button class="tab" data-tab="upload" onclick="switchTab('upload')">Upload file</button>
+      <button class="tab" data-tab="sample" onclick="switchTab('sample')">Sample project</button>
+    </div>
+    <div class="meta-grid" style="margin-bottom:16px">
+      <div class="fld"><label>Project title</label><input id="m_title" placeholder="e.g. Women's Economic Empowerment" oninput="syncVersionLabel()"></div>
+      <div class="fld"><label>Region <span class="lblhint">— optional</span></label>
+        <select id="m_region" onchange="onRegionChange(this.value)"></select>
+        <div id="regionActions" style="display:none;margin-top:5px;font-size:11px;line-height:1.4;color:var(--muted)"></div></div>
+      <div class="fld"><label>Countries <span class="lblhint">— one or more</span></label>
+        <div class="msel" id="countryMsel">
+          <div class="msel-head" id="countryHead" tabindex="0" onclick="toggleCountryMenu()"><span class="msel-ph">— Select country/countries —</span></div>
+          <div class="msel-menu" id="countryMenu" style="display:none">
+            <input class="msel-search" id="countrySearch" placeholder="Filter countries…" oninput="renderCountryOpts()">
+            <div class="msel-opts" id="countryOpts"></div>
+          </div>
+        </div></div>
+      <div class="fld"><label>Sector</label><input id="m_sector" placeholder="e.g. Gender &amp; Livelihoods" oninput="onSectorChange()"></div>
+      <div class="fld"><label>Total cost</label><input id="m_cost" placeholder="e.g. 40M" oninput="recompute()"></div>
+      <div class="fld"><label>Currency</label><input id="m_currency" value="AED" placeholder="AED" oninput="recompute()"></div>
+      <div class="fld"><label>Beneficiaries</label><input id="m_ben" placeholder="e.g. 780,000"></div>
+      <div class="fld"><label>Duration</label><input id="m_dur" placeholder="e.g. 30 months"></div>
+      <div class="fld"><label>Proposed partner (implementor)</label><input id="m_partner" placeholder="e.g. UN Women"></div>
+    </div>
+    <div style="margin-bottom:16px;background:var(--wash);border-left:3px solid var(--slate);padding:11px 14px">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--muted)">Evaluation mode — detected automatically</div>
+      <div id="scenarioNote" style="font-size:12.5px;color:var(--ink);margin-top:5px;line-height:1.45"></div>
+      <div id="partnerOpts" style="display:none;margin-top:10px">
+        <label style="display:block;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);margin-bottom:4px">Funding amounts — Scenario B (leave blank to let the AI propose three)</label>
+        <input id="partnerScenarios" value="" placeholder="e.g. US$5M, US$25M, US$100M — or leave blank" style="width:100%;padding:8px 10px;border:1px solid var(--divider);font-size:12px;color:var(--ink)">
+      </div>
+    </div>
+    <div class="fld" style="margin-bottom:16px"><label>Key activities (one per line — appear as bullets on the one-pager)</label>
+      <textarea id="m_activities" style="min-height:70px;width:100%;padding:9px 11px;border:1px solid var(--divider);font-size:13px;color:var(--ink);line-height:1.5;resize:vertical" placeholder="One key activity per line, e.g.&#10;Vocational and skills training for women&#10;Microfinance and seed-capital access&#10;Cooperative formation and market linkages"></textarea></div>
+    <div id="tab-paste" class="tabpane">
+      <div class="fld"><label>Project narrative / proposal text</label>
+        <textarea id="projText" placeholder="Paste the proposal or concept note. The pre-score reads this for qualitative criteria; cost / beneficiaries and the selected country's indicators feed the quantitative ones."></textarea></div>
+    </div>
+    <div id="tab-upload" class="tabpane" style="display:none">
+      <div class="drop" id="drop">
+        Drop one or more <strong>.pdf, .docx or .txt</strong> files here or <button class="btn sm" style="margin-left:6px" onclick="document.getElementById('file').click()">Choose files</button>
+        <input type="file" id="file" accept=".txt,.md,.csv,.pdf,.docx" multiple style="display:none">
+        <div id="dropStatus" style="margin-top:8px;font-size:11px"></div>
+      </div>
+      <div id="fileList"></div>
+    </div>
+    <div id="tab-sample" class="tabpane" style="display:none">
+      <p style="font-size:13px;color:var(--muted);margin:0 0 12px">Load a built-in sample to see the full flow.</p>
+      <button class="btn sm" onclick="loadSample('nigeria')">Nigeria · Women's Economic Empowerment</button>
+      <button class="btn sm" onclick="loadSample('port')" style="margin-left:8px">Nigeria · Port Infrastructure</button>
+    </div>
+    <div class="assump">
+      <div class="fld"><label>AED → USD rate</label><input id="a_fx" type="number" step="0.0001" value="0.2723" onchange="recompute()"></div>
+      <div class="fld"><label>Cost/beneficiary benchmark (USD)</label><input id="a_bench" type="number" step="1" value="55" onchange="benchManual=true;recompute()"></div>
+      <div style="font-size:11px;color:var(--muted);align-self:flex-end;padding-bottom:10px">Assumptions used by the quantitative pre-score — shown on the scorecard and one-pager.</div>
+    </div>
+  </div>
+
+  <!-- STEP 4 · WEIGHTING & EVALUATION -->
+  <div class="panel">
+    <div class="section-kicker">Step 4</div><h2 class="section-title">Weighting &amp; evaluation</h2><hr class="rule-gold">
+    <div class="toolbar">
+      <button class="btn ghost sm" onclick="applyClassificationWeights()">Reset to standard</button>
+      <button class="btn ghost sm" onclick="normalizeWeights()">Normalize to 100%</button>
+      <span id="srvDot" class="srvdot" title="AI scoring-server status" style="margin-left:6px"></span><span id="srvTxt" class="srvtxt"></span>
+      <button class="btn primary" id="runBtn" onclick="runEvaluation()">Run pre-score</button>
+      <span class="total-badge ok" id="totalBadge">Weights: 100%</span>
+    </div>
+    <div class="note warn" id="aiOffline" style="display:none;align-items:center;justify-content:space-between;gap:14px">
+      <span id="aiOfflineMsg"></span>
+      <button class="btn ghost sm" type="button" id="aiRetryBtn" onclick="retryServer(this)" style="white-space:nowrap">Retry connection</button>
+    </div>
+    <div class="note" id="stdNote" style="margin-top:12px"></div>
+    <div class="modehelp">Scoring uses <strong>AI</strong> — Claude reads the full proposal and scores each criterion with reasoning &amp; cited sources. If the scoring server is offline (dot turns red), a provisional <strong>rule-based draft</strong> (keyword &amp; data rules) is used automatically instead.</div>
+    <div class="notice">
+      Adjust any weight before scoring — subtotals and the composite update live. Criteria tagged
+      <span class="minilabel" style="background:#EDE6D9;color:#6f5320">Knockout</span> fail the project (standard review) if scored below their minimum.
+    </div>
+    <details class="guide"><summary>Scoring guide — what the numbers mean</summary>
+      <table>
+        <tr><td>85–100</td><td>Strong — fully addressed, robust evidence (risk: negligible)</td></tr>
+        <tr><td>65–84</td><td>Good — well addressed, minor gaps (risk: low)</td></tr>
+        <tr><td>45–64</td><td>Moderate — partially addressed, notable gaps (risk: moderate)</td></tr>
+        <tr><td>25–44</td><td>Weak — barely addressed, significant gaps (risk: high)</td></tr>
+        <tr><td>0–24</td><td>Poor — not addressed / strong negative evidence (risk: severe)</td></tr>
+      </table>
+      <div style="margin-top:6px;color:var(--muted)">Risk criteria are inverted: a higher score means lower risk.</div>
+    </details>
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="panel" id="summary">
+    <div class="section-kicker">Result</div><h2 class="section-title">Overall score &amp; recommendation</h2>
+    <hr class="rule-gold" style="margin-bottom:18px">
+    <div class="sum-grid">
+      <div class="composite">
+        <div class="lbl-os">Overall score</div>
+        <div class="num" id="bigScore">—</div>
+        <div class="den">/ 100 weighted composite</div>
+        <div id="recBadge"></div>
+        <div class="scoredby" id="scoredBy"></div>
+      </div>
+      <div class="dimbars" id="dimbars"></div>
+    </div>
+    <div class="completeness">
+      <span class="cmplabel" id="cmpText"></span>
+      <div class="cmpbar" id="cmpBar"></div>
+    </div>
+    <div class="hl-rec" id="hlRec"></div>
+    <div id="fundingOptions"></div>
+    <div id="countryProfile"></div>
+    <div class="flags">
+      <div class="flagbox redbox"><h4>Red flags &amp; knockouts</h4><ul id="redList"></ul></div>
+      <div class="flagbox rfibox"><h4>Requests for information (RFI)</h4><ul id="rfiList"></ul></div>
+    </div>
+  </div>
+
+  <!-- PARTNER & STRATEGIC DUE DILIGENCE (Layers 2 & 3) — shown only when enabled in Step 3 -->
+  <div class="panel" id="partnerPanel" style="margin-top:20px;display:none">
+    <div class="panel-head">
+      <div><div class="section-kicker">Layers 2 &amp; 3 · beyond project merit</div><h2 class="section-title">Partner &amp; strategic due diligence</h2><hr class="rule-gold"></div>
+      <span id="partnerStatus" style="font-size:11px;color:var(--muted)"></span>
+    </div>
+    <div id="partnerResults" style="margin-top:4px"></div>
+  </div>
+
+  <div class="cards" id="cards"></div>
+
+  <!-- STRATEGIC QUESTIONS -->
+  <div class="panel" style="margin-top:20px">
+    <div class="panel-head">
+      <div><div class="section-kicker">Further considerations</div><h2 class="section-title">Structuring questions</h2><hr class="rule-gold"></div>
+      <button class="btn ghost sm" onclick="addQuestion()">+ Add question</button>
+    </div>
+    <div id="questions" style="margin-top:14px"></div>
+  </div>
+
+  <!-- STEP 5 · OUTPUT -->
+  <div class="panel" id="outputPanel" style="margin-top:20px">
+    <div class="panel-head">
+      <div><div class="section-kicker">Step 5 · Output</div><h2 class="section-title">One-pager &amp; record</h2><hr class="rule-gold"></div>
+      <button class="btn ghost sm" onclick="saveVersion()">Save version</button>
+    </div>
+    <div class="note">The standard leadership output — a <strong>5-slide decision deck (PPTX)</strong> + a <strong>1-page executive PDF</strong>, generated to the ODA template and saved to your Downloads. Run the pre-score (and partner due diligence) first.</div>
+    <div class="toolbar" style="margin-top:6px;align-items:center;gap:10px">
+      <button class="btn primary" id="deckBtn" onclick="runDeckExport()">Leadership deck + one-pager</button>
+      <span id="deckStatus" style="font-size:11px;color:var(--muted)"></span>
+    </div>
+    <div class="toolbar" style="margin-top:8px">
+      <span style="font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);align-self:center">Quick / legacy</span>
+      <button class="btn ghost" onclick="downloadOnePagerPPT()">In-browser one-pager (PPT)</button>
+      <button class="btn ghost" onclick="downloadOnePagerPDF()">In-browser one-pager (PDF)</button>
+      <button class="btn ghost" onclick="exportJSON()">Export JSON</button>
+    </div>
+    <h4 style="margin:18px 0 4px;font-size:13px">Version history</h4>
+    <div id="vlist"></div>
+  </div>
+
+  <div class="foot">
+    <div class="legend">
+      <span><span class="dot qual"></span> Qualitative</span>
+      <span><span class="dot quant"></span> Quantitative</span>
+    </div>
+  </div>
+</main>
+
+<script>
+/* ════════════ FRAMEWORK ════════════ */
+const FRAMEWORK = [
+  {name:"Strategic Alignment", weight:15, color:"#AD833B", criteria:[
+    {id:"fap", name:"Foreign aid policy — Sectoral", w:5, type:"qual", desc:"Alignment with policy on priority sectors", kw:["policy","priority sector","strategy"]},
+    {id:"rsv", name:"Regional Strategic Value", w:5, type:"qual", desc:"Eligible countries, trade ties (CEPA), bilateral influence", kw:["bilateral","trade","cepa","diplomatic","regional","eligible"], min:35},
+    {id:"cap", name:"Continuum of capital alignment", w:5, type:"qual", desc:"Revenue-generation potential of the intervention", kw:["revenue","return","commercial","investment","self-financing"], invOnly:true},
+  ]},
+  {name:"Relevance & Need", weight:20, color:"#2F586E", criteria:[
+    {id:"need", name:"Ability to meet country need", w:7.5, type:"quant", desc:"Will it improve identified country needs?", kw:["need","gap","poverty","deficit","shortage"], min:35},
+    {id:"nsf", name:"National Strategy Fit", w:5, type:"qual", desc:"Fits national strategies & recent needs assessments", kw:["national strategy","ndp","alignment","government plan"]},
+    {id:"reqc", name:"Request by country", w:7.5, type:"qual", desc:"Has this project been requested by the receiving country / its stakeholders?", kw:["requested","request","invited","demand","government of","ministry of","asked"], min:35},
+  ]},
+  {name:"Effectiveness", weight:5, color:"#101820", criteria:[
+    {id:"toc", name:"Clarity of objectives & ToC", w:2.5, type:"qual", desc:"Clear objectives and theory of change", kw:["objective","theory of change","logframe","outcome","goal"]},
+    {id:"me", name:"Monitoring & evaluation", w:2.5, type:"qual", desc:"Systems in place to monitor & evaluate", kw:["monitor","evaluation","m&e","indicator","baseline"]},
+  ]},
+  {name:"Efficiency", weight:10, color:"#AD833B", criteria:[
+    {id:"fineff", name:"Financial efficiency", w:5, type:"quant", desc:"Cost to reach one beneficiary; value for money", kw:["cost per","value for money","efficiency","unit cost"], min:40},
+    {id:"opeff", name:"Operational efficiency", w:5, type:"quant", desc:"Cost in line with similar projects (benchmark)", kw:["benchmark","comparable","overhead","operating cost"]},
+  ]},
+  {name:"Impact", weight:15, color:"#333F64", criteria:[
+    {id:"scale", name:"Scale of beneficiaries", w:5, type:"quant", desc:"Direct beneficiaries reached per AED spent", kw:["beneficiaries","reach","people","households"]},
+    {id:"fev", name:"Financial & Economic Value for the UAE", w:5, type:"quant", desc:"Economic value for the UAE & private-sector crowding-in", kw:["economic","jobs","gdp","private sector","income","uae"]},
+    {id:"depth", name:"Depth & duration of impact", w:5, type:"qual", desc:"How deep and how long the impact lasts", kw:["long-term","durable","systemic","lasting","sustained"]},
+  ]},
+  {name:"Risk Assessment", weight:15, color:"#79242F", risk:true, criteria:[
+    {id:"polrisk", name:"Political & security risk", w:5, type:"quant", desc:"Global indices: instability, unrest, security threats", kw:["conflict","instability","unrest","security","sanction","fragile"], min:35},
+    {id:"reprisk", name:"Reputational risk", w:5, type:"qual", desc:"Media & reputational implications", kw:["reputation","controversy","media","scrutiny","corruption"]},
+    {id:"finrisk", name:"Financial risk", w:5, type:"quant", desc:"Exposure to financial loss or overrun", kw:["overrun","loss","default","fiduciary","financial risk"], min:35},
+  ]},
+  {name:"Delivery & Coherence", weight:10, color:"#101820", criteria:[
+    {id:"track", name:"Track record & lessons learnt", w:2.5, type:"qual", desc:"History of effective delivery & lessons", kw:["track record","experience","lessons","previous","delivered"]},
+    {id:"intco", name:"Internal coherence", w:2.5, type:"qual", desc:"Alignment with other UAE aid efforts", kw:["coordination","aligned","portfolio","complement"]},
+    {id:"extco", name:"External coherence", w:2.5, type:"qual", desc:"Synergy/overlap with NGOs & multilaterals", kw:["partner","ngo","multilateral","un","world bank","synergy"]},
+    {id:"dup", name:"Duplication / repetitiveness", w:2.5, type:"qual", desc:"Overlap with existing projects & geography", kw:["duplication","overlap","existing","gap analysis"]},
+  ]},
+  {name:"Sustainability & Self-sufficiency", weight:10, color:"#678CA5", criteria:[
+    {id:"cap2", name:"Capacity building", w:5, type:"qual", desc:"Plan to build capacity / embed in local systems", kw:["capacity","training","skills","embed","institution"]},
+    {id:"local", name:"Local ownership", w:5, type:"qual", desc:"Local stakeholders engaged; OPEX to sustain", kw:["local","ownership","community","government","handover","opex"]},
+  ]},
+];
+const ALL=[]; FRAMEWORK.forEach(d=>d.criteria.forEach(c=>{c.dim=d.name;c.risk=!!d.risk;ALL.push(c)}));
+const DEFAULT_W={}, TH={}, DEFAULT_TH={};
+ALL.forEach(c=>{ DEFAULT_W[c.id]=c.w; if(c.min!=null){TH[c.id]=c.min;DEFAULT_TH[c.id]=c.min;} });
+
+/* preset profiles (dimension targets, summing to 100) */
+/* Standardized dimension weights per stream × financing type (each sums to 100).
+   Loaded automatically when the classification (Step 2) changes; editable as a
+   per-project override afterwards. */
+const CLASSIFICATION_WEIGHTS={
+  "development|grant":{"Strategic Alignment":10,"Relevance & Need":20,"Effectiveness":5,"Efficiency":5,"Impact":25,"Risk Assessment":10,"Delivery & Coherence":5,"Sustainability & Self-sufficiency":20},
+  "development|investment":{"Strategic Alignment":15,"Relevance & Need":10,"Effectiveness":5,"Efficiency":20,"Impact":25,"Risk Assessment":15,"Delivery & Coherence":5,"Sustainability & Self-sufficiency":5},
+  "development|loan":{"Strategic Alignment":10,"Relevance & Need":10,"Effectiveness":5,"Efficiency":20,"Impact":15,"Risk Assessment":25,"Delivery & Coherence":5,"Sustainability & Self-sufficiency":10},
+  "humanitarian|grant":{"Strategic Alignment":5,"Relevance & Need":30,"Effectiveness":5,"Efficiency":5,"Impact":25,"Risk Assessment":10,"Delivery & Coherence":15,"Sustainability & Self-sufficiency":5},
+  "humanitarian|investment":{"Strategic Alignment":5,"Relevance & Need":25,"Effectiveness":5,"Efficiency":15,"Impact":25,"Risk Assessment":10,"Delivery & Coherence":10,"Sustainability & Self-sufficiency":5},
+  "humanitarian|loan":{"Strategic Alignment":5,"Relevance & Need":20,"Effectiveness":5,"Efficiency":15,"Impact":20,"Risk Assessment":20,"Delivery & Coherence":10,"Sustainability & Self-sufficiency":5},
+  "philanthropy|grant":{"Strategic Alignment":20,"Relevance & Need":15,"Effectiveness":5,"Efficiency":5,"Impact":25,"Risk Assessment":10,"Delivery & Coherence":5,"Sustainability & Self-sufficiency":15},
+  "philanthropy|investment":{"Strategic Alignment":20,"Relevance & Need":10,"Effectiveness":5,"Efficiency":15,"Impact":25,"Risk Assessment":10,"Delivery & Coherence":5,"Sustainability & Self-sufficiency":10},
+  "philanthropy|loan":{"Strategic Alignment":15,"Relevance & Need":10,"Effectiveness":5,"Efficiency":20,"Impact":20,"Risk Assessment":20,"Delivery & Coherence":5,"Sustainability & Self-sufficiency":5},
+};
+
+/* state */
+const W={}, S={};
+ALL.forEach(c=>{ W[c.id]=c.w; S[c.id]={score:null,rationale:"",evidence:"",conf:"",redFlag:false,missingInfo:false}; });
+let evaluated=false, activeTab="paste", gate="standard", stream="development", finance="investment";
+let aiEndpoint=localStorage.getItem('oda_eval_endpoint')||"http://localhost:8787/score", scoredBy="";
+let benchManual=false, countryData=null, INDIC=null, REGIONS={}, ALLCOUNTRIES=[], selectedCountries=[], projRegion="";
+let disabledCrit=new Set();   // criterion ids manually turned OFF for this evaluation
+let partnerData=null;         // result of the partner due-diligence research
+let verifyData=null;          // result of the adversarial verification pass
+let scenarioC=null;           // {projects:[{...,scores,composite}], recommendedIndex, rationale, uaePrecedents, sources}
+let countryProfile=null;      // {country, info, indicators:[{label,value,year}]}
+
+const DEFAULT_QUESTIONS=["Could it be revenue-generating?","Could it be structured as a loan rather than a grant?","Could it be co-financed with a partner or multilateral?","Could the scope be phased or piloted first?","Could an existing UAE programme deliver this instead?"];
+let QS=DEFAULT_QUESTIONS.map(q=>({q,a:"",note:""}));
+
+/* ════════════ RENDER CARDS ════════════ */
+function renderCards(){
+  const host=document.getElementById('cards'); host.innerHTML=""; blankInactive();
+  FRAMEWORK.forEach(d=>{
+    const card=document.createElement('div'); card.className="card"; card.style.borderTopColor=d.color;
+    const dimW=d.criteria.reduce((a,c)=>a+W[c.id],0);
+    card.innerHTML=`<div class="card-hd"><div class="top"><h3>${d.name}</h3>
+      <div class="dimw"><input type="number" min="0" step="0.5" value="${round(dimW)}" onchange="setDimWeight('${d.name}',this.value)"><span class="pct">%</span></div></div>
+      <div class="dimscore" id="ds_${slug(d.name)}"></div></div>`;
+    d.criteria.forEach(c=>{ const st=S[c.id];
+      const div=document.createElement('div'); div.id="crit_"+c.id;
+      if(!isActive(c)){ div.className="crit na";
+        const locked = c.invOnly && finance!=='investment';
+        div.innerHTML=`<div class="row1"><span class="dot ${c.type}"></span><span class="cname">${c.name}</span>
+            ${locked?'':`<label class="chk excl off" title="Re-include this criterion in the evaluation"><input type="checkbox" onchange="toggleCrit('${c.id}')"> Off</label>`}</div>
+          <div class="cdesc">${c.desc}</div>
+          <div class="ctags"><span class="minilabel ml-na">${locked?'Investment only — not assessed':'Excluded from this evaluation'}</span></div>`;
+        card.appendChild(div); return; }
+      div.className="crit";
+      div.innerHTML=`
+        <div class="row1"><span class="dot ${c.type}"></span><span class="cname">${c.name}</span>
+          <span class="cw"><input type="number" min="0" step="0.5" value="${W[c.id]}" onchange="setW('${c.id}',this.value)"><span class="pct">%</span></span>
+          <label class="chk excl" title="Uncheck to exclude this criterion from the evaluation"><input type="checkbox" checked onchange="toggleCrit('${c.id}')"> On</label></div>
+        <div class="cdesc">${c.desc}</div>
+        <div class="score-row">
+          <input type="range" min="0" max="100" value="${st.score??0}" oninput="setScore('${c.id}',this.value,this)">
+          <input type="number" class="score-num ${st.score==null?'unscored':''}" min="0" max="100" value="${st.score??''}" placeholder="—" onchange="setScore('${c.id}',this.value,this)"></div>
+        ${c.risk?`<div class="riskanchor"><span>Severe risk</span><span>Negligible risk</span></div>`:""}
+        <textarea class="rationale" placeholder="Rationale…" onchange="S['${c.id}'].rationale=this.value">${st.rationale||""}</textarea>
+        ${c.type==='quant'?`<input class="evid" placeholder="Source / value" value="${attr(st.evidence)}" onchange="S['${c.id}'].evidence=this.value">`:""}
+        <div class="ctags">
+          <span class="minilabel ${c.type==='qual'?'ml-qual':'ml-quant'}">${c.type==='qual'?'Qualitative':'Quantitative'}</span>
+          ${TH[c.id]!=null?`<span class="th-ctrl">Knockout · min <input type="number" min="0" max="100" value="${TH[c.id]}" onchange="setTH('${c.id}',this.value)"></span>`:""}
+          <span class="minilabel ml-breach" id="bm_${c.id}" style="display:none">Below min</span>
+          <span class="conf" id="cf_${c.id}">${st.conf?('Confidence: '+st.conf):''}</span>
+          <label class="chk"><input type="checkbox" ${st.redFlag?'checked':''} onchange="S['${c.id}'].redFlag=this.checked;recompute()"> Red flag</label>
+          <label class="chk rfi"><input type="checkbox" ${st.missingInfo?'checked':''} onchange="S['${c.id}'].missingInfo=this.checked;recompute()"> Missing info</label>
+        </div>`;
+      card.appendChild(div);
+    });
+    host.appendChild(card);
+  });
+  recompute();
+}
+
+/* weights / thresholds */
+function isActive(c){ if(c.invOnly && finance!=='investment') return false;   // Continuum of capital alignment = investment only
+  return !disabledCrit.has(c.id); }                                          // …or manually turned off for this evaluation
+function blankInactive(){ ALL.forEach(c=>{ if(!isActive(c)) S[c.id]={score:null,rationale:"",evidence:"",conf:"",redFlag:false,missingInfo:false}; }); }
+function critById(id){ return ALL.find(c=>c.id===id); }
+function toggleCrit(id){ const c=critById(id); if(!c)return;
+  if(c.invOnly && finance!=='investment') return;            // investment-only stays locked off on non-investment
+  if(disabledCrit.has(id)) disabledCrit.delete(id); else disabledCrit.add(id);
+  blankInactive(); rebalanceDim(c.dim); renderCards(); scheduleSave(); }
+function rebalanceDim(dimName){   // keep the dimension's total weight; redistribute among its active criteria
+  const dimCrit=ALL.filter(c=>c.dim===dimName), target=dimCrit.reduce((a,c)=>a+W[c.id],0);
+  dimCrit.filter(c=>!isActive(c)).forEach(c=>W[c.id]=0);
+  const active=dimCrit.filter(isActive); if(!active.length) return;
+  const base=active.map(c=> W[c.id]>0?W[c.id]:(DEFAULT_W[c.id]||1)), sum=base.reduce((a,b)=>a+b,0)||active.length;
+  let acc=0; active.forEach((c,i)=>{ W[c.id]=round(base[i]*target/sum); acc+=W[c.id]; });
+  const big=active.reduce((a,c)=>W[c.id]>W[a.id]?c:a,active[0]); W[big.id]=round(W[big.id]+(target-acc)); }
+function setW(id,v){ W[id]=clamp(parseFloat(v)||0,0,100); recompute(); }
+function setTH(id,v){ TH[id]=(v===''?null:clamp(parseFloat(v)||0,0,100)); recompute(); }
+function setDimWeight(dim,v){ const crit=ALL.filter(c=>c.dim===dim && isActive(c)); if(!crit.length)return; const target=clamp(parseFloat(v)||0,0,100); const cur=crit.reduce((a,c)=>a+W[c.id],0);
+  if(cur===0) crit.forEach(c=>W[c.id]=round(target/crit.length)); else crit.forEach(c=>W[c.id]=round(W[c.id]*target/cur)); renderCards(); }
+function applyClassificationWeights(){
+  const key=stream+'|'+finance, pd=CLASSIFICATION_WEIGHTS[key]||CLASSIFICATION_WEIGHTS['development|investment'];
+  FRAMEWORK.forEach(d=>{ const mem=d.criteria.filter(isActive); const def=mem.reduce((a,c)=>a+DEFAULT_W[c.id],0)||1; const tgt=pd[d.name]??def;
+    let acc=0; mem.forEach(c=>{ W[c.id]=round(DEFAULT_W[c.id]*tgt/def); acc+=W[c.id]; });
+    if(mem.length){ const big=mem.reduce((a,c)=>DEFAULT_W[c.id]>DEFAULT_W[a.id]?c:a, mem[0]); W[big.id]=round(W[big.id]+(tgt-acc)); }
+    d.criteria.filter(c=>!isActive(c)).forEach(c=>W[c.id]=0); });
+  const note=document.getElementById('stdNote');
+  if(note) note.innerHTML=`<strong>Standard weighting · ${cap(stream)} · ${cap(finance)}.</strong> These are the ODA standard weights for this classification. Edit any weight below to override for this project, or use <em>Reset to standard</em> to revert.`;
+  renderCards();
+}
+function normalizeWeights(){ const tot=ALL.reduce((a,c)=>a+W[c.id],0); if(tot===0)return; ALL.forEach(c=>W[c.id]=round(W[c.id]*100/tot)); fixTo100(); renderCards(); }
+function weightTotal(){ return ALL.reduce((a,c)=>a+W[c.id],0); }
+function fixTo100(){ const diff=round(100-weightTotal()); if(Math.abs(diff)>=0.1){ let big=ALL[0]; ALL.forEach(c=>{if(W[c.id]>W[big.id])big=c;}); W[big.id]=round(W[big.id]+diff); } }
+function thresholdBreaches(){ const o=[]; ALL.forEach(c=>{ if(TH[c.id]!=null && S[c.id].score!=null && S[c.id].score<TH[c.id]) o.push({id:c.id,name:c.name,score:S[c.id].score,min:TH[c.id]}); }); return o; }
+
+/* scores + composite */
+function setScore(id,v,el){ const n=(v===''||v==null)?null:clamp(parseFloat(v)||0,0,100); S[id].score=n;
+  if(el){ const row=el.closest('.score-row'); if(row){ const r=row.querySelector('input[type=range]'),num=row.querySelector('input[type=number]'); if(r)r.value=n??0; if(num){num.value=(n==null?'':n);num.classList.toggle('unscored',n==null);} } } recompute(); }
+function currentComposite(){ let c=0; ALL.forEach(x=>{ if(S[x.id].score!=null)c+=S[x.id].score*W[x.id]/100; }); return c; }
+function recompute(){
+  const tot=weightTotal(), okW=Math.abs(tot-100)<0.01;
+  const badge=document.getElementById('totalBadge'); badge.textContent=`Weights: ${round(tot)}%`; badge.className="total-badge "+(okW?"ok":"bad");
+  const sw=document.getElementById('statWeight'); sw.innerHTML=`${round(tot)}<span style="font-size:15px">%</span>`; sw.className="v "+(okW?"ok":"bad");
+  document.getElementById('runBtn').disabled = !okW || !hasProject();
+  let comp=0,anyScore=false;
+  FRAMEWORK.forEach(d=>{ let dpts=0; d.criteria.forEach(c=>{ if(S[c.id].score!=null){dpts+=S[c.id].score*W[c.id]/100;anyScore=true;} });
+    const el=document.getElementById('ds_'+slug(d.name)); const dimW=d.criteria.reduce((a,c)=>a+W[c.id],0);
+    if(el) el.textContent= anyScore?`Contributes ${round1(dpts)} of ${round(dimW)} pts`:`Weight ${round(dimW)}%`; comp+=dpts; });
+  ALL.forEach(c=>{ const el=document.getElementById('crit_'+c.id); if(!el)return; const br=TH[c.id]!=null&&S[c.id].score!=null&&S[c.id].score<TH[c.id];
+    el.classList.toggle('breach',br); const bm=document.getElementById('bm_'+c.id); if(bm)bm.style.display=br?'inline-block':'none'; });
+  const t=anyScore?round1(comp):"—"; document.getElementById('statComposite').textContent=t; document.getElementById('bigScore').textContent=t;
+  document.getElementById('statCrit').textContent=ALL.filter(isActive).length;
+  if(evaluated){ renderDimBars(); renderRecommendation(); renderFlags(); renderCompleteness(); }
+  scheduleSave();
+}
+function renderDimBars(){ const host=document.getElementById('dimbars'); host.innerHTML="";
+  FRAMEWORK.forEach(d=>{ const dimW=d.criteria.reduce((a,c)=>a+W[c.id],0); let dpts=0,sc=false; d.criteria.forEach(c=>{if(S[c.id].score!=null){dpts+=S[c.id].score*W[c.id]/100;sc=true;}});
+    const row=document.createElement('div'); row.className="dimbar";
+    row.innerHTML=`<div class="nm">${d.name}</div><div class="track"><div class="fill" style="width:${dimW>0?clamp(dpts/dimW*100,0,100):0}%;background:${d.color}"></div></div><div class="pts">${sc?round1(dpts):'—'} / ${round(dimW)}</div>`;
+    host.appendChild(row); });
+}
+function renderCompleteness(){
+  let ev=0,es=0,un=0; const act=ALL.filter(isActive);
+  act.forEach(c=>{ const s=S[c.id]; if(s.score==null)un++; else if(s.missingInfo||s.conf==='low')es++; else ev++; });
+  const n=act.length||1;
+  document.getElementById('cmpText').innerHTML=`Evidence base: <b>${ev}</b> evidenced · <b>${es}</b> estimated · <b>${un}</b> unscored`;
+  document.getElementById('cmpBar').innerHTML=`<div class="ev" style="width:${ev/n*100}%"></div><div class="es" style="width:${es/n*100}%"></div><div class="un" style="width:${un/n*100}%"></div>`;
+}
+function assessmentCoverage(){ const aw=ALL.reduce((a,c)=>a+(isActive(c)?W[c.id]:0),0)||100;
+  const sw=ALL.reduce((a,c)=>a+((isActive(c)&&S[c.id].score!=null)?W[c.id]:0),0); return sw/aw; }
+function buildRecommendation(){
+  const comp=currentComposite(), breaches=thresholdBreaches(), missing=ALL.filter(c=>S[c.id].missingInfo);
+  const coverage=assessmentCoverage();
+  const missingHeavy=missing.some(c=>W[c.id]>=5), reds=ALL.filter(c=>S[c.id].redFlag), conditions=[];
+  breaches.forEach(b=>conditions.push(`${b.name} below the minimum standard (${round1(b.score)} < ${b.min})`));
+  reds.forEach(c=>{ if(!breaches.some(b=>b.id===c.id)) conditions.push(`${c.name} flagged as a risk`); });
+  if(missingHeavy) conditions.push(`outstanding information on ${missing.filter(c=>W[c.id]>=5).map(c=>c.name).slice(0,3).join(', ')}`);
+  let verdict,cls,sentence,unassessable=false;
+  if(coverage<0.25){ unassessable=true; verdict='Cannot assess'; cls='rec-hold';
+    sentence=`Project merit cannot be scored — only ${Math.round(coverage*100)}% of the framework has been assessed. The project definition is missing or insufficient; supply the scope, cost, beneficiaries and narrative, then re-run. This is unassessed, not a failure.`;
+    return {verdict,cls,sentence,conditions:[],comp:round1(comp),unassessable,coverage}; }
+  if(gate==='directed'){
+    verdict=conditions.length?'Proceed — with conditions':'Proceed'; cls=conditions.length?'rec-cond':'rec-approve';
+    sentence=conditions.length?`Leadership has directed this project to proceed (score ${round1(comp)}/100). During design and implementation, address: ${conditions.join('; ')}.`
+      :`Leadership has directed this project to proceed (score ${round1(comp)}/100). No material conditions were identified.`;
+  } else if(breaches.length){ verdict='Does not pass'; cls='rec-reject'; sentence=`The project does not pass: ${breaches.map(b=>b.name).join(', ')} ${breaches.length>1?'are':'is'} below the minimum standard and must be resolved before reconsideration. Composite ${round1(comp)}/100.`; }
+  else if(missingHeavy){ verdict='Hold — request information'; cls='rec-hold'; sentence=`Insufficient information to decide (provisional ${round1(comp)}/100). Request: ${conditions.join('; ')}.`; }
+  else if(comp>=75){ verdict='Approve'; cls='rec-approve'; sentence=`Strong performance (${round1(comp)}/100) across the weighted criteria. Recommend approval and progression to the next stage.`; }
+  else if(comp>=60){ verdict='Approve with conditions'; cls='rec-cond'; sentence=`Solid overall (${round1(comp)}/100). Recommend approval subject to ${conditions.length?conditions.join('; '):'the minor improvements noted in the scorecard'}.`; }
+  else if(comp>=40){ verdict='Revise & resubmit'; cls='rec-revise'; sentence=`Moderate overall (${round1(comp)}/100). Recommend revision before resubmission, prioritising the lowest-scoring criteria.`; }
+  else { verdict='Reject'; cls='rec-reject'; sentence=`Weak overall (${round1(comp)}/100). The project does not meet the evaluation threshold; recommend against proceeding in its current form.`; }
+  return {verdict,cls,sentence,conditions,comp:round1(comp),unassessable};
+}
+function renderRecommendation(){ const r=buildRecommendation();
+  document.getElementById('recBadge').innerHTML=`<span class="rec-badge ${r.cls}">${esc(r.verdict)}</span>`;
+  const bs=document.getElementById('bigScore'); if(bs) bs.textContent=r.unassessable?'N/A':round1(r.comp);
+  document.getElementById('scoredBy').textContent= scoredBy? ('Scored by: '+scoredBy):'';
+  const hl=document.getElementById('hlRec'); if(hl) hl.innerHTML=`<div class="v">High-level recommendation</div><p>${esc(r.sentence)}</p>`+(r.conditions.length?`<ul>${r.conditions.map(c=>`<li>${esc(c)}</li>`).join("")}</ul>`:"");
+}
+function renderFlags(){ const breaches=thresholdBreaches(), bIds=new Set(breaches.map(b=>b.id));
+  const red=[...breaches.map(b=>({name:b.name,txt:`Below minimum (${round1(b.score)} &lt; ${b.min})`})),...ALL.filter(c=>S[c.id].redFlag&&!bIds.has(c.id)).map(c=>({name:c.name,txt:esc(S[c.id].rationale)||'flagged'}))];
+  const rfi=ALL.filter(c=>S[c.id].missingInfo);
+  document.getElementById('redList').innerHTML=red.length?red.map(r=>`<li><strong>${r.name}</strong> — ${r.txt}</li>`).join(""):`<li class="empty" style="border:0">None flagged.</li>`;
+  document.getElementById('rfiList').innerHTML=rfi.length?rfi.map(c=>`<li><strong>${c.name}</strong> — ${esc(S[c.id].rationale)||'information required'}</li>`).join(""):`<li class="empty" style="border:0">No outstanding information requests.</li>`;
+}
+
+/* ════════════ PARTNER & STRATEGIC DUE DILIGENCE (Layers 2 & 3) ════════════ */
+function partnerEndpoint(){ return (aiEndpoint||'').replace(/\/score$/,'/partner'); }
+function partnerVerdictCls(v){ v=(v||'').toLowerCase(); if(v.indexOf('sound')===0)return 'rec-approve'; if(v.indexOf('avoid')===0)return 'rec-reject'; return 'rec-cond'; }
+function lensColor(cls){ return cls==='rec-approve'?'#1F7A52':cls==='rec-reject'?'#8E1B14':cls==='rec-revise'?'#8E1B14':cls==='rec-cond'?'#7d5b1f':'var(--slate)'; }
+function sevColor(s){ s=(s||'').toLowerCase(); return s==='high'?'var(--bordeaux)':s==='medium'?'#9a7a1e':'var(--slate)'; }
+function scoreBand(n){ n=+n||0; return n>=75?'Strong':n>=55?'Good':n>=35?'Moderate':'Weak'; }
+/* ─── country profile (Scenario A) — from the dashboard's indicator data ─── */
+const CPROF_INDS=[['SI.POV.DDAY','Poverty ($2.15/day)','%'],['SH.DYN.MORT','Under-5 mortality','/1,000'],['NY.GDP.PCAP.PP.CD','GDP per capita (PPP)','$'],['SE.ADT.LITR.ZS','Adult literacy','%'],['EG.ELC.ACCS.ZS','Electricity access','%'],['NY.GDP.MKTP.KD.ZG','GDP growth','%'],['FP.CPI.TOTL.ZG','Inflation','%'],['SP.POP.TOTL','Population','']];
+function buildCountryProfile(){ const c=(selectedCountries&&selectedCountries[0])||''; countryProfile=null;
+  if(!c||!INDIC||!INDIC[c])return;
+  const d=INDIC[c], inds=CPROF_INDS.map(([code,label,unit])=>{ const v=d[code]; if(!v||v.value==null)return null;
+    const val=v.value, disp= unit==='$'?('$'+Math.round(val).toLocaleString()) : unit===''?Math.round(val).toLocaleString() : (Math.round(val*10)/10)+unit;
+    return {label,value:disp,year:v.year}; }).filter(Boolean);
+  if(inds.length) countryProfile={country:c, region:projRegion||'', indicators:inds, n:(selectedCountries||[]).length}; }
+function renderCountryProfile(){ const el=document.getElementById('countryProfile'); if(!el)return; const cp=countryProfile;
+  if(!cp||!cp.indicators.length){ el.innerHTML=''; return; }
+  el.innerHTML=`<div class="pblock"><h4>Country profile — ${esc(cp.country)}${cp.n>1?(' (+'+(cp.n-1)+' more)'):''} <span class="muted" style="font-size:11px">· dashboard indicator data</span></h4>
+    <div class="cprof">${cp.indicators.map(i=>`<div class="cpi"><div class="cpi-v">${esc(i.value)}</div><div class="cpi-l">${esc(i.label)} <span>· ${esc(String(i.year))}</span></div></div>`).join('')}</div></div>`; }
+/* ─── scenario auto-routing ─── */
+function hasNarrative(){ return (val('projText').trim().length>40) || (typeof uploadedDocs!=='undefined' && uploadedDocs.length>0); }
+function detectScenario(){ const partner=(val('m_partner')||'').trim(), sector=(val('m_sector')||'').trim();
+  if(hasNarrative()) return 'A';
+  if(partner && sector) return 'C';
+  if(partner) return 'B';
+  return 'none'; }
+function updateScenarioNote(){ const el=document.getElementById('scenarioNote'); if(!el)return; const sc=detectScenario(), opts=document.getElementById('partnerOpts');
+  const txt={ A:'<strong>Scenario A — full evaluation.</strong> Scores the project (22 criteria), the partner (if named) and builds a country profile.',
+    B:'<strong>Scenario B — partner funding opportunity.</strong> No project defined. Proposes three funding amounts and evaluates each as a candidate project.',
+    C:'<strong>Scenario C — project origination.</strong> Partner + sector given. Proposes three candidate projects and fully scores each.',
+    none:'Add a project narrative/upload for a full evaluation (A), or name a <strong>partner</strong> in Step 2 — partner only → funding amounts (B); partner + sector → project proposals (C).' }[sc];
+  el.innerHTML=txt; if(opts) opts.style.display=(sc==='B'?'block':'none'); }
+async function runPartnerDD(opts={}){
+  const partner=(val('m_partner')||'').trim();
+  const panel=document.getElementById('partnerPanel'), status=document.getElementById('partnerStatus');
+  if(panel) panel.style.display='block';
+  if(!partner){ document.getElementById('partnerResults').innerHTML=''; status.innerHTML='<span style="color:var(--bordeaux)">Name a partner in Step 2 first.</span>'; return; }
+  if(!aiEndpoint){ status.innerHTML='<span style="color:var(--bordeaux)">AI server not configured.</span>'; return; }
+  const bands=(val('partnerScenarios')||'').split(',').map(s=>s.trim()).filter(Boolean);
+  const propose = !!opts.propose && !bands.length;
+  verifyData=null;   // new research invalidates any prior verification
+  status.textContent='Researching partner & UAE history — searching primary sources, up to a minute…';
+  try{
+    const pr=buildRecommendation();
+    const payload={ partner, project:getMeta(), classification:{stream,finance,gate}, scenarios:(propose?undefined:(bands.length?bands:undefined)), proposeAmounts:propose,
+      projectEval:{ composite:pr.unassessable?null:pr.comp, verdict:pr.verdict, unassessable:pr.unassessable, coverage:Math.round(assessmentCoverage()*100),
+        concerns:[...thresholdBreaches().map(b=>b.name), ...ALL.filter(c=>S[c.id].redFlag).map(c=>c.name)].slice(0,6) } };
+    const res=await fetch(partnerEndpoint(),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    partnerData=await res.json();
+    if(partnerData.error) throw new Error(partnerData.error);
+    renderPartner();
+    const n=partnerData.searches||0;
+    status.innerHTML=`Researched via ${n} web search${n===1?'':'es'} · confidence ${esc(partnerData.confidence||'—')}.`+(partnerData.webSearch?'':' <span style="color:var(--bordeaux)">(web search unavailable — indicative)</span>');
+  }catch(e){ status.innerHTML='<span style="color:var(--bordeaux)">Could not complete ('+esc(e.message)+'). Is the AI server online with web search?</span>'; }
+}
+function factorRows(arr){ return `<div class="pfactors">${(arr||[]).map(f=>`<div class="pf"><div class="pf-h"><span class="pf-n">${esc(f.name||'')}</span><span class="pf-s">${f.score==null?'—':Math.round(f.score)}<span class="muted" style="font-size:10px">/100</span></span></div><div class="pf-bar"><i style="width:${clamp(+f.score||0,0,100)}%;background:${lensColor(scoreBand(f.score)==='Weak'?'rec-reject':scoreBand(f.score)==='Strong'?'rec-approve':'')}"></i></div><p class="pf-j">${esc(f.justification||'—')}</p></div>`).join('')}</div>`; }
+function normBand(s){ return String(s||'').replace(/[\s$,]/g,'').toLowerCase(); }
+function renderFundingOptions(){
+  const el=document.getElementById('fundingOptions'); if(!el)return;
+  const d=partnerData; const sc=d&&d.scenarios||[];
+  if(!sc.length){ el.innerHTML=''; return; }
+  const recN=normBand(d.recommendedBand);
+  const cand = buildRecommendation().unassessable && sc.some(s=>s.option);
+  const isC = !!(scenarioC && scenarioC.projects && scenarioC.projects.length);
+  const title = isC ? 'Candidate projects — proposed & fully scored (one per option)'
+              : cand ? 'Candidate projects — one per funding amount (project not yet defined)'
+              : 'Funding options — evaluated across bands (no fixed amount)';
+  el.innerHTML=`<div class="fopts-wrap"><div class="fopts-h">${title}</div>
+    <div class="fopts">${sc.map(s=>{ const isRec=recN&&normBand(s.band)===recN;
+      const body = cand
+        ? `<div class="fopt-k">Proposed project</div><p>${esc(s.option||'—')}</p><div class="fopt-k">Assessment</div><p>${esc(s.assessment||'—')}</p>`
+        : `<div class="fopt-k">Unlocks</div><p>${esc(s.unlocks||'—')}</p><div class="fopt-k">Visibility / influence</div><p>${esc(s.influence||'—')}</p>`;
+      const sChip=(cand && s.score!=null) ? `<span class="fopt-score">${Math.round(s.score)}<span style="font-size:9px">/100</span></span>` : '';
+      return `<div class="fopt ${isRec?'rec':''}">${isRec?'<span class="fopt-tag">Recommended</span>':''}
+        <div class="fopt-band">${esc(s.band||'')}${sChip}</div>
+        ${body}</div>`; }).join('')}</div>
+    ${d.recommendation?`<div class="fopt-rec"><strong>Recommended ${cand?'candidate project':'option'}.</strong> ${esc(d.recommendation)}</div>`:''}
+    ${(d.uaePrecedents&&d.uaePrecedents.length)?`<div class="uaeref"><strong>UAE precedents referenced</strong> (informing the recommendation): ${d.uaePrecedents.slice(0,4).map(u=>esc((u.engagement||'')+(u.year?(' ('+u.year+')'):'')+(u.amount?(' — '+u.amount):''))).join('; ')}.</div>`:''}</div>`;
+}
+function renderPartner(){
+  const host=document.getElementById('partnerResults'); renderFundingOptions(); if(!host)return;
+  const d=partnerData; if(!d){ host.innerHTML=''; return; }
+  const snd=d.soundness||{}, uae=d.uae||{}, proj=evaluated?buildRecommendation():null;
+  const candProj=!!(proj && proj.unassessable && (d.scenarios||[]).some(s=>s.option));
+  const lens=(label,score,sub,cls)=>`<div class="lens"><div class="lens-l">${label}</div><div class="lens-n">${score==null?'—':Math.round(score)}</div><div class="lens-v" style="color:${lensColor(cls)}">${esc(sub||'')}</div></div>`;
+  let html=`<div class="lens-grid">
+      ${lens('Project merit', proj?proj.comp:null, proj?proj.verdict:'Run pre-score (Step 4)', proj?proj.cls:'')}
+      ${lens('Partner soundness', snd.score, snd.verdict, partnerVerdictCls(snd.verdict))}
+      ${lens('UAE strategic value', uae.score, scoreBand(uae.score), '')}
+    </div>
+    <div style="font-size:11px;color:var(--muted);margin:0 0 4px">Three independent lenses — a strong project can sit behind a weak partner, or vice versa. Scored separately, not blended.</div>`;
+  if(d.recommendation) html+=`<div class="prec"><strong>Recommendation.</strong> ${esc(d.recommendation)}</div>`;
+  html+=`<div class="vbtnrow"><button class="btn" id="verifyBtn" onclick="runVerify()">Run independent verification (adversarial)</button><span id="verifyStatus" style="font-size:11px;color:var(--muted)"></span></div><div id="verifyResults"></div>`;
+  html+=`<div class="pblock"><h4>Partner soundness <span class="rec-badge ${partnerVerdictCls(snd.verdict)}" style="font-size:11px;margin-left:6px">${esc(snd.verdict||'—')} · ${snd.score??'—'}/100</span></h4>
+    <p>${esc(snd.summary||'')}</p>${factorRows(snd.factors)}</div>`;
+  if((d.risks||[]).length) html+=`<div class="pblock"><h4>Risks</h4><ul class="prisks">${d.risks.map(r=>`<li><span class="sev" style="background:${sevColor(r.severity)}">${esc((r.severity||'').toUpperCase())}</span><strong>${esc(r.type||'')}</strong> — ${esc(r.note||'')}</li>`).join('')}</ul></div>`;
+  html+=`<div class="pblock"><h4>UAE strategic value <span class="muted">· ${uae.score??'—'}/100</span></h4>
+    ${uae.summary?`<p>${esc(uae.summary)}</p>`:''}${factorRows(uae.factors)}</div>`;
+  if((d.scenarios||[]).length){ const recN=normBand(d.recommendedBand);
+    html+= candProj
+      ? `<div class="pblock"><h4>Candidate projects</h4><table class="ptable"><thead><tr><th>Option</th><th>Candidate project</th><th>Assessment</th><th>Score</th></tr></thead><tbody>${d.scenarios.map(s=>{const r=recN&&normBand(s.band)===recN;return `<tr${r?' style="background:var(--gold-soft)"':''}><td><strong>${esc(s.band||'')}</strong>${r?' ★':''}</td><td>${esc(s.option||'—')}</td><td>${esc(s.assessment||'—')}</td><td style="text-align:center;font-weight:700">${s.score==null?'—':Math.round(s.score)}</td></tr>`;}).join('')}</tbody></table></div>`
+      : `<div class="pblock"><h4>Funding-scenario sensitivity</h4><table class="ptable"><thead><tr><th>Band</th><th>What it unlocks</th><th>Marginal value</th><th>Visibility / influence</th></tr></thead><tbody>${d.scenarios.map(s=>`<tr><td><strong>${esc(s.band||'')}</strong></td><td>${esc(s.unlocks||'')}</td><td>${esc(s.marginalValue||'')}</td><td>${esc(s.influence||'')}</td></tr>`).join('')}</tbody></table></div>`; }
+  if(d.phasing && !/^\s*not required/i.test(d.phasing)) html+=`<div class="pblock"><h4>Recommended phasing</h4><p>${esc(d.phasing)}</p></div>`;
+  if((d.verify||[]).length) html+=`<div class="pblock note warn" style="margin-top:16px"><strong>Confirm directly with the entity before commitment:</strong><ul style="margin:6px 0 0;padding-left:18px">${d.verify.map(v=>`<li>${esc(v)}</li>`).join('')}</ul></div>`;
+  if((d.sources||[]).length){ const ss=d.sources;
+    const nSelf=ss.filter(s=>s.independent===false).length, nDead=ss.filter(s=>s.ok===false).length, nAge=ss.filter(s=>s.ageing).length;
+    const issues=nDead||nSelf; const parts=[`${ss.length} source${ss.length===1?'':'s'}`]; if(nSelf)parts.push(`${nSelf} self-reported`); if(nDead)parts.push(`${nDead} dead link${nDead===1?'':'s'}`); if(nAge)parts.push(`${nAge} ageing`);
+    html+=`<div class="pblock"><h4>Sources &amp; evidence health</h4><div class="ehealth ${issues?'warn':''}">${esc(parts.join(' · '))}${issues?' — confirm flagged items before relying on them.':' — all links resolve.'}</div><ol class="psources">${ss.map(s=>{
+        let b=''; if(s.independent===false)b+='<span class="sbadge self">Self-reported</span>'; else if(s.independent===true)b+='<span class="sbadge indep">Independent</span>';
+        if(s.ok===false)b+='<span class="sbadge dead">Link dead</span>'; if(s.ageing)b+='<span class="sbadge age">Ageing</span>';
+        return `<li>${s.url?`<a href="${attr(s.url)}" target="_blank" rel="noopener">${esc(s.title||s.url)}</a>`:esc(s.title||'')}${s.publisher?` — ${esc(s.publisher)}`:''}${s.date?` (${esc(s.date)})`:''}${b}${s.for?`<div class="muted" style="font-size:11px">${esc(s.for)}</div>`:''}</li>`; }).join('')}</ol></div>`; }
+  host.innerHTML=html;
+  renderVerify();
+}
+function runVerify(){
+  if(!partnerData) return;
+  const btn=document.getElementById('verifyBtn'), status=document.getElementById('verifyStatus');
+  if(!aiEndpoint){ status.innerHTML='<span style="color:var(--bordeaux)">AI server not configured.</span>'; return; }
+  btn.disabled=true; const lbl=btn.textContent; btn.textContent='Verifying…'; status.textContent='Independently checking the key claims — up to a minute…';
+  const payload={ partner:val('m_partner'), project:getMeta(), classification:{stream,finance,gate}, assessment:partnerData };
+  fetch(aiEndpoint.replace(/\/score$/,'/verify'),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
+    .then(r=>{ if(!r.ok) throw new Error('HTTP '+r.status); return r.json(); })
+    .then(j=>{ if(j.error) throw new Error(j.error); verifyData=j; renderVerify(); const n=j.searches||0; status.innerHTML=`Independently verified via ${n} search${n===1?'':'es'}.`; })
+    .catch(e=>{ status.innerHTML='<span style="color:var(--bordeaux)">Verification failed ('+esc(e.message)+'). Is the AI server online with web search?</span>'; })
+    .finally(()=>{ btn.disabled=false; btn.textContent=lbl; });
+}
+function verifyVerdictCls(v){ v=(v||'').toLowerCase(); return v==='holds'?'rec-approve':v==='does-not-hold'?'rec-reject':'rec-cond'; }
+function renderVerify(){
+  const el=document.getElementById('verifyResults'); if(!el)return; const v=verifyData; if(!v){ el.innerHTML=''; return; }
+  const chk=verd=>verd==='confirmed'?{c:'#1F7A52',t:'Confirmed'}:verd==='refuted'?{c:'#8E1B14',t:'Refuted'}:{c:'#9a7a1e',t:'Unverified'};
+  let h=`<div class="pblock"><h4>Independent verification <span class="rec-badge ${verifyVerdictCls(v.verdict)}" style="font-size:11px;margin-left:6px">${esc((v.verdict||'—').replace(/-/g,' '))} · confidence ${esc(v.overallConfidence||'—')}</span></h4>`;
+  if((v.concerns||[]).length) h+=`<div class="note warn" style="margin:6px 0"><strong>Concerns to resolve before committing:</strong><ul style="margin:6px 0 0;padding-left:18px">${v.concerns.map(c=>`<li>${esc(c)}</li>`).join('')}</ul></div>`;
+  h+=`<ul class="vchecks">${(v.checks||[]).map(c=>{ const b=chk(c.verdict); const s=c.source||{};
+      return `<li><span class="vv" style="background:${b.c}">${b.t}</span><strong>${esc(c.claim||'')}</strong><div class="vf">${esc(c.finding||'')}${s.url?` — <a href="${attr(s.url)}" target="_blank" rel="noopener">${esc(s.title||s.url)}</a>${s.date?` (${esc(s.date)})`:''}${s.ok===false?' <span class="sbadge dead">Link dead</span>':''}`:''}</div></li>`; }).join('')}</ul></div>`;
+  el.innerHTML=h;
+}
+
+/* gate / classification / scoring */
+function setGate(g){ gate=g; document.getElementById('gateStd').classList.toggle('active',g==='standard'); document.getElementById('gateDir').classList.toggle('active',g==='directed');
+  const n=document.getElementById('gateNote');
+  if(g==='directed'){ n.className="note gold"; n.innerHTML='<strong>Leadership-directed.</strong> The project proceeds. The criteria below generate <em>conditions and improvements</em> rather than an approve/reject decision.'; }
+  else { n.className="note"; n.innerHTML='<strong>Standard review.</strong> The weighted criteria drive the recommendation, and any criterion below its minimum threshold fails the project.'; }
+  if(evaluated) recompute(); scheduleSave();
+}
+function setStream(s,keepWeights){ stream=s; document.getElementById('strDev').classList.toggle('active',s==='development'); document.getElementById('strHum').classList.toggle('active',s==='humanitarian'); document.getElementById('strPhil').classList.toggle('active',s==='philanthropy'); clNote(); if(!keepWeights) applyClassificationWeights(); }
+function setFinance(f,keepWeights){ finance=f;
+  document.getElementById('finInv').classList.toggle('active',f==='investment');
+  document.getElementById('finGrant').classList.toggle('active',f==='grant');
+  document.getElementById('finLoan').classList.toggle('active',f==='loan');
+  clNote(); if(!keepWeights) applyClassificationWeights(); }
+function clNote(){ const n=document.getElementById('clNote'); if(!n)return; n.className="note";
+  n.innerHTML='<strong>ODA assesses every project</strong> against the full criteria. The weights below follow the standard for this classification ('+cap(stream)+' · '+cap(finance)+').'; }
+async function checkServer(){ const dot=document.getElementById('srvDot'), txt=document.getElementById('srvTxt'),
+    ban=document.getElementById('aiOffline'), msg=document.getElementById('aiOfflineMsg'); if(!dot)return;
+  const showBan=(t)=>{ if(ban){ ban.style.display='flex'; if(msg) msg.innerHTML=t; } };
+  const hideBan=()=>{ if(ban) ban.style.display='none'; };
+  const url=(aiEndpoint||'').replace(/\/score$/,'/health');
+  if(!url){ dot.className='srvdot'; txt.textContent=''; hideBan(); return; }
+  dot.className='srvdot'; txt.textContent='checking…';
+  try{ const r=await fetch(url,{method:'GET'}); const j=await r.json();
+    if(j&&j.ok&&j.key){ dot.className='srvdot up'; txt.textContent='AI server online'+(j.webSearch?' · web search on':''); hideBan(); }
+    else if(j&&j.ok){ dot.className='srvdot down'; txt.textContent='AI server — no API key';
+      showBan('<strong>AI server is running but has no API key.</strong> Add <code>ANTHROPIC_API_KEY</code> to <code>.env</code>, restart the server, then retry. Scoring uses the rule-based draft until then.'); }
+    else throw new Error('bad'); }
+  catch(e){ dot.className='srvdot down'; txt.textContent='AI server offline';
+    showBan('<strong>AI scoring server is offline.</strong> Pre-scoring will use the provisional rule-based draft. Start it with <code>start_evaluator.bat</code>, then click retry.'); } }
+function retryServer(btn){ if(btn){ btn.disabled=true; const t=btn.textContent; btn.textContent='Checking…';
+    checkServer().finally(()=>{ btn.disabled=false; btn.textContent=t; }); } else { checkServer(); } }
+
+/* ════════════ EVALUATION ════════════ */
+async function runEvaluation(){
+  const sc=detectScenario();
+  if(sc==='none'){ alert('Add a project narrative/upload for a full evaluation (A), or name a partner in Step 2 — partner only → funding amounts (B); partner + sector → project proposals (C).'); return; }
+  const btn=document.getElementById('runBtn'); btn.disabled=true; scenarioC=null;
+  try{
+    if(sc==='A'){
+      btn.textContent= aiEndpoint?'Scoring with AI…':'Scoring…';
+      if(aiEndpoint){ try{ await aiScore(); scoredBy='AI ('+shortHost(aiEndpoint)+')'; } catch(e){ heuristicScoreAll(); scoredBy='Rule-based draft (provisional — AI unavailable)'; } }
+      else { heuristicScoreAll(); scoredBy='Rule-based draft (provisional)'; }
+      evaluated=true; document.getElementById('summary').classList.add('show'); renderCards(); buildCountryProfile();
+      if((val('m_partner')||'').trim()){ btn.textContent='Researching partner & UAE history…'; await runPartnerDD(); }
+    } else if(sc==='B'){
+      evaluated=true; document.getElementById('summary').classList.add('show'); renderCards(); buildCountryProfile();
+      btn.textContent='Proposing amounts & evaluating…'; await runPartnerDD({propose:true});
+    } else if(sc==='C'){
+      evaluated=true; document.getElementById('summary').classList.add('show'); renderCards(); buildCountryProfile();
+      btn.textContent='Proposing & scoring 3 projects…'; await runScenarioC();
+    }
+  } catch(e){ console.error(e); }
+  finally { checkServer(); saveDraft(); renderRecommendation(); renderCountryProfile(); btn.disabled=false; btn.textContent='Run pre-score'; }
+  document.getElementById('summary').scrollIntoView({behavior:'smooth',block:'start'});
+}
+async function runScenarioC(){
+  const ep=aiEndpoint, status=document.getElementById('partnerStatus'), panel=document.getElementById('partnerPanel');
+  if(panel)panel.style.display='block'; if(status)status.textContent='Proposing three candidate projects…';
+  const propResp=await fetch(ep.replace(/\/score$/,'/propose'),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({partner:val('m_partner'),project:getMeta(),classification:{stream,finance,gate}})}).then(r=>{if(!r.ok)throw new Error('propose HTTP '+r.status);return r.json();});
+  if(propResp.error) throw new Error(propResp.error);
+  const projects=(propResp.projects||[]).slice(0,3);
+  if(status)status.textContent='Scoring '+projects.length+' candidate projects (full criteria)…';
+  const crit=ALL.filter(isActive).map(c=>({id:c.id,name:c.name,dimension:c.dim,type:c.type,description:c.desc,min:TH[c.id]??null}));
+  const scored=await Promise.all(projects.map(pj=>{
+    const payload={ project:{title:pj.title,country:pj.country,sector:pj.sector,cost:pj.cost,ben:pj.ben,dur:pj.dur,partner:val('m_partner')}, classification:{stream,finance,gate}, narrative:pj.narrative, criteria:crit };
+    return fetch(ep,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
+      .then(r=>r.ok?r.json():Promise.reject(new Error('score HTTP '+r.status)))
+      .then(s=>{ const sx=s.scores||{}; let comp=0; ALL.forEach(c=>{ if(isActive(c)&&sx[c.id]&&sx[c.id].score!=null) comp+=sx[c.id].score*W[c.id]/100; });
+        const reds=ALL.filter(c=>sx[c.id]&&sx[c.id].redFlag).map(c=>c.name);
+        return {...pj, scores:sx, composite:round1(comp), reds}; })
+      .catch(e=>({...pj, scores:{}, composite:null, reds:[], error:e.message})); }));
+  if(status)status.textContent='Assessing the partner & UAE history…';
+  try{ await runPartnerDD(); }catch(e){}
+  const recIdx = (propResp.recommendedIndex!=null && scored[propResp.recommendedIndex]) ? propResp.recommendedIndex
+    : scored.reduce((bi,p,i,a)=>((p.composite||-1)>(a[bi].composite||-1)?i:bi),0);
+  scenarioC={ projects:scored, recommendedIndex:recIdx, rationale:propResp.rationale||'', uaePrecedents:propResp.uaePrecedents||(partnerData&&partnerData.uaePrecedents)||[], sources:propResp.sources||[] };
+  // map proposed+scored projects into the candidate-option renderers (reuse)
+  partnerData=partnerData||{};
+  partnerData.scenarios=scored.map((pj,i)=>({ band:pj.cost||('Option '+(i+1)), option:(pj.title||'')+(pj.country?(' — '+pj.country):''), assessment:(pj.composite!=null?('Composite '+pj.composite+'/100. '):'')+(pj.reds&&pj.reds.length?('Red flags: '+pj.reds.slice(0,2).join(', ')+'.'):'No red flags.'), score:pj.composite, unlocks:'',marginalValue:'',influence:'' }));
+  partnerData.recommendedBand=scored[recIdx]?(scored[recIdx].cost||('Option '+(recIdx+1))):'';
+  partnerData.recommendation=scenarioC.rationale||partnerData.recommendation;
+  if(scenarioC.uaePrecedents&&scenarioC.uaePrecedents.length) partnerData.uaePrecedents=scenarioC.uaePrecedents;
+  renderPartner();
+  if(status)status.innerHTML='Proposed & scored '+scored.length+' candidate projects.';
+}
+function heuristicScoreAll(){ const text=(val('projText')||'').toLowerCase(), meta=getMeta(); ALL.forEach(c=>{ if(isActive(c)) S[c.id]=autoScore(c,text,meta); }); blankInactive(); }
+async function aiScore(){
+  const payload={ project:getMeta(), classification:{stream,finance,gate}, narrative:val('projText'),
+    criteria:ALL.filter(isActive).map(c=>({id:c.id,name:c.name,dimension:c.dim,type:c.type,description:c.desc,min:TH[c.id]??null})) };
+  const res=await fetch(aiEndpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+  if(!res.ok) throw new Error('HTTP '+res.status);
+  const data=await res.json(); const scores=data.scores||data;
+  ALL.forEach(c=>{ if(!isActive(c))return; const r=scores[c.id]||{}; S[c.id]={score:r.score!=null?clamp(+r.score,0,100):null,conf:r.confidence||r.conf||'',rationale:r.rationale||'',evidence:r.evidence||'',redFlag:!!r.redFlag,missingInfo:!!r.missingInfo}; }); blankInactive();
+}
+function autoScore(c,text,meta){
+  const out={score:50,conf:"low",rationale:"",evidence:"",redFlag:false,missingInfo:false};
+  const fx=parseFloat(val('a_fx'))||0.2723, bench=parseFloat(val('a_bench'))||55;
+  if(c.id==='need' && countryData){ const pov=countryData['SI.POV.DDAY'], mort=countryData['SH.DYN.MORT'];
+    if(pov||mort){ out.score=pov?clamp(Math.round(35+pov.value*1.1),35,95):60; out.conf='medium';
+      out.rationale=`Measured need: poverty ${pov?pov.value+'% ('+pov.year+')':'n/a'}, child mortality ${mort?mort.value+'/1,000 ('+mort.year+')':'n/a'}.`;
+      out.evidence=`World Bank SI.POV.DDAY${pov?' '+pov.year:''}`; return out; } }
+  if(c.id==='fineff' || c.id==='scale'){ const usd=parseCostUSD(meta.cost,fx,meta.currency), ben=parseNum(meta.ben);
+    if(usd&&ben){ const cpb=usd/ben;
+      if(c.id==='fineff'){ const ratio=cpb/bench; out.score=clamp(Math.round(100-(ratio-0.3)*55),5,98); out.conf='medium';
+        out.rationale=`Cost ≈ USD ${fmt(Math.round(cpb))}/beneficiary (USD ${fmtM(usd)} ÷ ${fmt(ben)}); benchmark USD ${bench}.`; out.evidence='Computed: cost ÷ beneficiaries vs benchmark'; }
+      else { out.score=ben>=1e6?90:ben>=5e5?78:ben>=1e5?62:ben>=2e4?45:30; out.conf='medium'; out.rationale=`${fmt(ben)} direct beneficiaries stated.`; out.evidence='Project beneficiary figure'; }
+      return out; }
+    out.score=50; out.conf='low'; out.missingInfo=true; out.rationale=`Cannot compute — ${!usd?'cost':'beneficiary'} figure not provided.`; out.evidence='Not available'; return out; }
+  if(c.risk){ if(text.length<40){ out.missingInfo=true; out.score=50; out.rationale='Insufficient narrative to assess risk.'; if(c.type==='quant')out.evidence='Not available'; return out; }
+    const hits=countKw(text,c.kw); out.score=hits>=3?28:hits===2?42:hits===1?58:78; out.conf=hits>0?'medium':'low'; out.redFlag=hits>=2;
+    out.rationale=hits>0?`${hits} risk signal(s) in narrative (${c.name.toLowerCase()}).`:`No explicit ${c.name.toLowerCase()} signals in narrative.`;
+    if(c.type==='quant') out.evidence=hits>0?'Narrative risk signals (replace with live index)':'No adverse index signal'; return out; }
+  if(text.length<40){ out.missingInfo=true; out.score=45; out.rationale='Proposal text too short to assess this criterion.'; return out; }
+  const hits=countKw(text,c.kw);
+  if(hits>=2){ out.score=80; out.conf='medium'; out.rationale=`Proposal addresses ${c.name.toLowerCase()} (${hits} supporting references).`; }
+  else if(hits===1){ out.score=64; out.conf='low'; out.rationale=`Partial coverage of ${c.name.toLowerCase()} (1 reference).`; }
+  else { out.score=42; out.conf='low'; out.missingInfo=true; out.rationale=`Proposal does not clearly address ${c.name.toLowerCase()}.`; }
+  return out;
+}
+
+/* questions */
+function renderQuestions(){ const host=document.getElementById('questions'); host.innerHTML="";
+  QS.forEach((q,i)=>{ const row=document.createElement('div'); row.className="qrow";
+    row.innerHTML=`<div class="qtext">${esc(q.q)}</div><div class="qseg">${['Yes','No','N/A'].map(a=>`<button class="${q.a===a?'active':''}" onclick="setQ(${i},'${a}')">${a}</button>`).join("")}</div>
+      <input class="qnote" placeholder="Notes / how" value="${attr(q.note)}" onchange="QS[${i}].note=this.value"><button class="qdel" onclick="delQuestion(${i})">&times;</button>`;
+    host.appendChild(row); }); }
+function setQ(i,a){ QS[i].a=(QS[i].a===a?"":a); renderQuestions(); scheduleSave(); }
+function addQuestion(){ const q=prompt("New question:"); if(q){ QS.push({q,a:"",note:""}); renderQuestions(); scheduleSave(); } }
+function delQuestion(i){ QS.splice(i,1); renderQuestions(); scheduleSave(); }
+
+/* input / samples / country */
+function switchTab(t){ activeTab=t; document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.tab===t)); ['paste','upload','sample'].forEach(p=>document.getElementById('tab-'+p).style.display=(p===t?'block':'none')); }
+function scopeText(){ if(selectedCountries.length){ const s=selectedCountries.join(', '); return projRegion?`${s} (${projRegion})`:s; } if(projRegion) return `${projRegion} (region-wide)`; return ''; }
+function getMeta(){ return {title:val('m_title'),country:scopeText(),countries:[...selectedCountries],region:projRegion,flagCountry:(selectedCountries.length===1?selectedCountries[0]:''),sector:val('m_sector'),cost:val('m_cost'),currency:val('m_currency'),ben:val('m_ben'),dur:val('m_dur'),partner:val('m_partner')}; }
+function activityBullets(){
+  const raw=(val('m_activities')||'').trim();
+  const items = raw
+    ? raw.split(/\n+/).map(s=>s.replace(/^[-•*\d.\)]+\s*/,'').trim()).filter(Boolean)
+    : (val('projText')||'').split(/(?<=[.!?])\s+/).map(s=>s.trim()).filter(s=>s.length>20).slice(0,4);
+  return items.slice(0,6).map(s=>trim(s,95));
+}
+function hasProject(){ return (val('projText').trim().length>20)||(val('m_cost')&&val('m_ben')); }
+function onSectorChange(){ if(!benchManual){ document.getElementById('a_bench').value=benchFor(val('m_sector')); } recompute(); }
+function onCountryChange(){ countryData=computeCountryData(); recompute(); }
+const SECTOR_BENCH=[[/health|nutrition|hospital|clinic/i,40],[/educat|school|literacy/i,30],[/water|wash|sanitation/i,25],[/infrastructure|port|road|energy|power/i,120],[/gender|livelihood|women|economic/i,55]];
+function benchFor(s){ for(const [re,v] of SECTOR_BENCH){ if(re.test(s||''))return v; } return 55; }
+document.getElementById('projText').addEventListener('input',recompute);
+['m_cost','m_ben'].forEach(id=>document.getElementById(id).addEventListener('input',recompute));
+
+const drop=document.getElementById('drop'), fileInput=document.getElementById('file');
+['dragover','dragenter'].forEach(e=>drop.addEventListener(e,ev=>{ev.preventDefault();drop.classList.add('drag')}));
+['dragleave','drop'].forEach(e=>drop.addEventListener(e,ev=>{ev.preventDefault();drop.classList.remove('drag')}));
+drop.addEventListener('drop',ev=>{ if(ev.dataTransfer.files&&ev.dataTransfer.files.length) readFiles(ev.dataTransfer.files); });
+fileInput.addEventListener('change',()=>{ if(fileInput.files&&fileInput.files.length){ readFiles(fileInput.files); fileInput.value=''; } });
+
+let uploadedDocs=[];   // [{name, text}] — accumulates across multiple selections / drops
+async function extractText(f){
+  if(/\.pdf$/i.test(f.name) && window.pdfjsLib){
+    pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    const buf=await f.arrayBuffer(); const pdf=await pdfjsLib.getDocument({data:buf}).promise; const parts=[];
+    for(let i=1;i<=pdf.numPages;i++){ const pg=await pdf.getPage(i); const c=await pg.getTextContent(); parts.push(c.items.map(x=>x.str).join(' ')); }
+    return parts.join('\n');
+  } else if(/\.docx$/i.test(f.name) && window.mammoth){ const buf=await f.arrayBuffer(); const r=await mammoth.extractRawText({arrayBuffer:buf}); return r.value; }
+  return await f.text();
+}
+async function readFiles(list){
+  const status=document.getElementById('dropStatus'), files=Array.from(list), fail=[];
+  for(const f of files){
+    status.textContent='Reading '+f.name+'…';
+    try{ const t=await extractText(f); uploadedDocs.push({name:f.name, text:(t||'').trim()}); }
+    catch(e){ fail.push(f.name); }
+  }
+  rebuildNarrative();
+  if(uploadedDocs.length && !val('m_title')) document.getElementById('m_title').value=uploadedDocs[0].name.replace(/\.[^.]+$/,'');
+  renderUploadList(); recompute();
+  const chars=val('projText').length;
+  status.innerHTML=`<strong>${uploadedDocs.length}</strong> document${uploadedDocs.length===1?'':'s'} attached · ${chars.toLocaleString()} chars combined into the narrative.`+
+    (fail.length?` <span style="color:var(--bordeaux)">Could not read: ${esc(fail.join(', '))}.</span>`:'');
+}
+function rebuildNarrative(){
+  const combined=uploadedDocs.length>1
+    ? uploadedDocs.map(d=>`===== DOCUMENT: ${d.name} =====\n${d.text}`).join('\n\n')
+    : (uploadedDocs[0]?.text||'');
+  document.getElementById('projText').value=combined;
+}
+function removeDoc(i){ uploadedDocs.splice(i,1); rebuildNarrative(); renderUploadList(); recompute();
+  document.getElementById('dropStatus').textContent=uploadedDocs.length?`${uploadedDocs.length} document${uploadedDocs.length===1?'':'s'} attached.`:'No documents attached.'; }
+function clearDocs(){ uploadedDocs=[]; rebuildNarrative(); renderUploadList(); recompute(); document.getElementById('dropStatus').textContent='No documents attached.'; }
+function renderUploadList(){
+  const el=document.getElementById('fileList'); if(!el)return;
+  if(!uploadedDocs.length){ el.innerHTML=''; return; }
+  el.innerHTML=`<div style="margin-top:14px;font-size:11px;font-weight:700;letter-spacing:.4px;color:var(--muted);display:flex;justify-content:space-between;align-items:center">
+      <span>ATTACHED DOCUMENTS (${uploadedDocs.length})</span>
+      <button class="btn ghost sm" type="button" onclick="clearDocs()">Clear all</button></div>`+
+    uploadedDocs.map((d,i)=>`<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 11px;margin-top:6px;background:var(--wash);border-left:3px solid var(--slate)">
+        <span style="font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(d.name)} <span style="color:var(--muted)">· ${d.text.length.toLocaleString()} chars</span></span>
+        <button class="btn ghost sm" type="button" onclick="removeDoc(${i})" title="Remove this document" style="flex-shrink:0">&times;</button>
+      </div>`).join('')+
+    `<div style="margin-top:8px;font-size:11px;color:var(--muted)">Combined into the proposal narrative — switch to <strong>Paste text</strong> to view or edit.</div>`;
+}
+const SAMPLES={
+  nigeria:{title:"Women's Economic Empowerment",country:"Nigeria",sector:"Gender & Livelihoods",cost:"11M",currency:"USD",ben:"780,000",dur:"30 months",partner:"UN Women",stream:"development",finance:"grant",
+    activities:"Vocational and skills training for women\nMicrofinance and seed-capital access\nCooperative formation and market linkages\nEmbedding cooperatives in local institutions",
+    text:"This program advances women's economic empowerment in northern Nigeria through vocational training, microfinance access and cooperative development. It was formally requested by the Federal Ministry of Women Affairs and directly responds to the identified country need for female labour-force participation, aligning with the national gender strategy and recent needs assessments. The theory of change links skills training and seed capital to sustained household income; objectives and outcome indicators are defined with a baseline and an M&E framework. Delivery builds on a prior pilot with a documented track record and lessons learnt, coordinated with UN Women and local NGO partners to avoid duplication. A handover plan embeds the cooperatives in local government and community institutions to build lasting capacity and local ownership, with OPEX covered by member contributions."},
+  port:{title:"Port Infrastructure Investment",country:"Nigeria",sector:"Infrastructure",cost:"45M",currency:"USD",ben:"4,500,000",dur:"48 months",partner:"Nigerian Ports Authority",stream:"development",finance:"investment",
+    activities:"Modernize port handling capacity\nUpgrade trade and logistics infrastructure\nCatalyse private-sector crowding-in",
+    text:"Capital investment to modernize port handling capacity, improving trade competitiveness and bilateral commercial ties. The project carries notable financial exposure given large capital outlay and potential cost overrun, and operates in a context with security and instability concerns at the corridor. Economic value for the UAE derives from private-sector crowding-in and job creation. Monitoring arrangements are referenced but the theory of change and beneficiary definition are only partially specified."}
+};
+function loadSample(k){ const s=SAMPLES[k]; ['title','sector','cost','currency','ben','dur','partner'].forEach(f=>document.getElementById('m_'+f).value=s[f]||''); document.getElementById('m_activities').value=s.activities||''; setCountry(s.country); document.getElementById('projText').value=s.text; uploadedDocs=[]; renderUploadList(); benchManual=false; if(s.stream) setStream(s.stream); if(s.finance) setFinance(s.finance); onSectorChange(); switchTab('paste'); recompute(); }
+
+/* version history */
+const VKEY="oda_eval_versions";
+function versions(){ try{return JSON.parse(localStorage.getItem(VKEY)||"{}")}catch{return{}} }
+function projKey(){ return (val('m_title')||'untitled').trim()||'untitled'; }
+function syncVersionLabel(){ const list=versions()[projKey()]||[]; document.getElementById('verLabel').textContent='Version '+(list.length+1); }
+function saveVersion(){ if(!evaluated){ alert('Run the pre-score first (Step 4).'); return; }
+  const all=versions(), k=projKey(), list=all[k]||[], r=buildRecommendation(), prev=list.length?list[list.length-1].composite:null;
+  list.push({ v:list.length+1, date:nowStr(), evaluator:val('ev_name')||'—', role:val('ev_role')||'', composite:r.comp, verdict:r.verdict, delta:prev==null?null:round1(r.comp-prev),
+    snapshot:{W:{...W},TH:{...TH},gate,stream,finance,disabled:[...disabledCrit],scores:Object.fromEntries(ALL.map(c=>[c.id,{...S[c.id]}])),questions:JSON.parse(JSON.stringify(QS))} });
+  all[k]=list; localStorage.setItem(VKEY,JSON.stringify(all)); renderVersions(); syncVersionLabel();
+}
+function renderVersions(){ const list=versions()[projKey()]||[]; const host=document.getElementById('vlist');
+  if(!list.length){ host.innerHTML='<div class="vrow"><span class="vempty" style="grid-column:1/-1">No saved versions yet — Save version to start an audit trail.</span></div>'; return; }
+  host.innerHTML=list.slice().reverse().map((x,ri)=>{ const i=list.length-1-ri; const d=x.delta; const dtxt=d==null?'—':(d>0?'+'+d:''+d);
+    return `<div class="vrow"><span class="vno">v${x.v}</span><span>${esc(x.evaluator)}</span><span>${esc(x.date)} · ${esc(x.verdict)}</span><span>${x.composite}/100 <span class="vdelta ${d>0?'up':d<0?'down':''}">(${dtxt})</span></span><button class="btn ghost sm" onclick="restoreVersion(${i})">Restore</button></div>`;
+  }).join(""); }
+function restoreVersion(i){ const list=versions()[projKey()]||[]; const x=list[i]; if(!x)return; const s=x.snapshot;
+  disabledCrit=new Set(s.disabled||[]);
+  ALL.forEach(c=>{ if(s.W[c.id]!=null)W[c.id]=s.W[c.id]; TH[c.id]=s.TH[c.id]!=null?s.TH[c.id]:null; S[c.id]=s.scores[c.id]?{...s.scores[c.id]}:S[c.id]; });
+  setGate(s.gate||'standard'); setStream(s.stream||'development',true); setFinance(s.finance||'investment',true); if(s.questions)QS=JSON.parse(JSON.stringify(s.questions));
+  evaluated=true; scoredBy='Restored v'+x.v; document.getElementById('summary').classList.add('show'); renderQuestions(); renderCards(); }
+
+/* information-request template */
+function downloadInfoRequest(){
+  const m=getMeta(), today=nowStr().slice(0,10), outstanding=evaluated?ALL.filter(c=>S[c.id].missingInfo):[], breaches=evaluated?thresholdBreaches():[];
+  const sections=FRAMEWORK.map(d=>`    <h2>${esc(d.name)}</h2>\n      <ul>\n${d.criteria.map(c=>`        <li><strong>${esc(c.name)}.</strong> ${esc(c.desc)}<div class="ans"></div></li>`).join("\n")}\n      </ul>`).join("\n");
+  const priority=(outstanding.length||breaches.length)?`<div class="prio"><h2 style="color:#79242F">Priority — outstanding items</h2><ul>${breaches.map(b=>`<li><strong>${esc(b.name)}</strong> — below the minimum standard (${round1(b.score)} &lt; ${b.min}); provide evidence to revise.</li>`).join("")}${outstanding.map(c=>`<li><strong>${esc(c.name)}</strong> — ${esc(S[c.id].rationale)||'information required'}</li>`).join("")}</ul></div>`:"";
+  const html=`<!DOCTYPE html><html><head><meta charset="utf-8"><title>Information Request — ${esc(m.title)||'Project'}</title>
+<style>@import url('https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Montserrat:wght@400;600;700&display=swap');
+body{font-family:'Montserrat',sans-serif;color:#1D252C;max-width:820px;margin:36px auto;padding:0 28px;line-height:1.5}
+h1{font-family:'Lora',serif;font-size:26px;margin:0}h2{font-family:'Lora',serif;font-size:15px;margin:22px 0 6px;border-bottom:1px solid #E2E2E2;padding-bottom:4px}
+.eyebrow{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#AD833B}.rule{width:56px;height:2px;background:#AD833B;margin:8px 0 14px}
+.meta{font-size:12px;color:#6B7280;margin-bottom:18px}ul{margin:0;padding-left:18px}li{font-size:13px;margin:9px 0}.ans{height:42px;border-bottom:1px dotted #B9B9B9;margin-top:6px}
+.prio{background:#FCF4F4;border-left:3px solid #79242F;padding:12px 16px;margin:16px 0}.intro{font-size:13px;background:#F4F5F7;border-left:3px solid #AD833B;padding:12px 16px}@media print{body{margin:0}}</style></head><body>
+<div class="eyebrow">Office of Development Affairs</div><h1>Information Request</h1><div class="rule"></div>
+<div class="meta"><strong>Project:</strong> ${esc(m.title)||'—'} &nbsp;·&nbsp; <strong>Country:</strong> ${esc(m.country)||'—'} &nbsp;·&nbsp; <strong>Sector:</strong> ${esc(m.sector)||'—'} &nbsp;·&nbsp; <strong>Date:</strong> ${today}</div>
+<div class="intro">To complete the evaluation against the ODA criteria framework, please provide the information below. Blank items cannot be scored and will hold the recommendation.</div>
+<h2>Project basics</h2><ul><li><strong>Total cost</strong> (currency &amp; basis)<div class="ans"></div></li><li><strong>Direct beneficiaries</strong> (number &amp; how counted)<div class="ans"></div></li><li><strong>Duration</strong><div class="ans"></div></li><li><strong>Implementing partner(s)</strong><div class="ans"></div></li></ul>
+${priority}
+${sections}
+</body></html>`;
+  dl(html,(m.title||'project').replace(/\s+/g,'_')+"_information_request.html","text/html");
+}
+
+/* one-pager */
+function recColors(cls){ return ({'rec-approve':['#E2F3EC','#1E7D5E'],'rec-cond':['#F3ECDD','#7d5b1f'],'rec-revise':['#FBEEDD','#9a5a14'],'rec-reject':['#F6E1E2','#79242F'],'rec-hold':['#CBDCE6','#2F586E']})[cls]||['#F4F5F7','#1D252C']; }
+function trim(s,n){ s=s||''; return s.length>n?s.slice(0,n).replace(/\s+\S*$/,'')+'…':s; }
+function fieldOrTBD(v){ return (v&&String(v).trim())?String(v).trim():'Not yet defined'; }
+function missingProjectFields(){ const m=getMeta(); const map=[['Sector',m.sector],['Cost',m.cost],['Beneficiaries / outcomes',m.ben],['Duration',m.dur],['Key activities',activityBullets().length?'x':'']];
+  return map.filter(([k,v])=>!(v&&String(v).trim())).map(([k])=>k); }
+function topHighRisk(){ const pd=partnerData; if(pd&&Array.isArray(pd.risks)){ const h=pd.risks.find(r=>(r.severity||'').toLowerCase()==='high'); if(h) return h; } return null; }
+function buildDecision(){ const r=buildRecommendation(), pd=partnerData;
+  let headline=r.verdict, reason=r.sentence, band=(pd&&pd.recommendedBand)||'';
+  if(scenarioC && scenarioC.projects && scenarioC.projects.length){
+    const rec=scenarioC.projects[scenarioC.recommendedIndex]||{};
+    return {r,pd,headline:'Recommended project: '+(rec.title||band||'option'),
+      reason:(scenarioC.rationale||'')+' Three candidate projects were proposed and fully scored; figures are indicative pending formal definition.',
+      band:(rec.cost||band), unassessable:r.unassessable}; }
+  if(pd && pd.recommendation){
+    headline = band ? ('Recommended funding option: '+band) : (r.unassessable?'Evaluate funding options':r.verdict);
+    reason = r.unassessable
+      ? `No project definition yet — the funding options are evaluated on the partner and strategic case. ${pd.recommendation} Project merit will be confirmed once the intervention is defined and scored.`
+      : `Project merit: ${r.verdict} (${r.comp}/100). ${pd.recommendation}`;
+  }
+  return {r,pd,headline,reason,band,unassessable:r.unassessable}; }
+/* ─── canonical leadership deck + one-pager (5-slide PPTX + A4 PDF via /deck) ─── */
+function monthYear(){ try{ return new Date().toLocaleDateString('en-GB',{month:'long',year:'numeric'}); }catch(e){ return nowStr().slice(0,7); } }
+function deckCol(score){ score=+score||0; return score>=70?'GREEN':score>=50?'DBLUE':'BORDEAUX'; }
+function buildDeckData(){
+  const m=getMeta(), dec=buildDecision(), pd=partnerData||{}, snd=pd.soundness||{}, uae=pd.uae||{}, lead=pd.leadership||{};
+  const provisional=!(String(m.sector||'').trim()&&String(m.cost||'').trim()&&String(m.ben||'').trim()&&String(m.dur||'').trim());
+  const dims=FRAMEWORK.map(d=>{ const w=d.criteria.reduce((a,c)=>a+W[c.id],0); let p=0,sc=false; d.criteria.forEach(c=>{ if(S[c.id].score!=null){p+=S[c.id].score*W[c.id]/100;sc=true;} }); return [d.name,(sc?round1(p):'—')+'/'+round(w)]; });
+  const _recN=normBand(pd.recommendedBand), _recSc=(pd.scenarios||[]).find(s=>normBand(s.band)===_recN);
+  const meritScore=Math.round(!dec.unassessable?dec.r.comp:(_recSc&&_recSc.score!=null?_recSc.score:currentComposite()));
+  const hr=topHighRisk()||(pd.risks&&pd.risks[0])||{};
+  const bands=(pd.scenarios||[]).map(s=>[s.band||'', s.option||s.unlocks||'—', s.assessment||s.marginalValue||'—', s.influence||'—', normBand(s.band)===normBand(pd.recommendedBand)]);
+  const subs=(snd.factors||[]).map(f=>[f.name||'',Math.round(f.score||0),deckCol(f.score),f.justification||'']);
+  const prisks=(pd.risks||[]).map(r=>{ const u=(r.severity||'').toUpperCase(), lv=u.indexOf('HIGH')===0?'HIGH':u.indexOf('MED')===0?'MED':'LOW'; return [lv, lv==='HIGH'?'BORDEAUX':lv==='MED'?'GOLD':'GREEN', (r.type?r.type+' — ':'')+(r.note||'')]; });
+  const precedents=(pd.uaePrecedents||[]).slice(0,3).map(u=>{ const amt=(u.amount&&/\$|M\b|bn|million/i.test(u.amount))?u.amount:(((u.engagement||'').match(/US\$[0-9.,]+\s?[MB]?|\$[0-9.,]+\s?[MB]?/)||['—'])[0]); return [amt,(u.engagement||'')+(u.year?(' ('+u.year+')'):'')]; });
+  const whyProceed=(lead.whyProceed&&lead.whyProceed.length)?lead.whyProceed:[ (snd.summary||('Sound partner — '+(Math.round(snd.score)||'—')+'/100.')), ...(snd.factors||[]).slice(0,2).map(f=>(f.name||'')+' — '+(f.justification||'')) ].filter(Boolean);
+  const whyHold=(lead.whyHold&&lead.whyHold.length)?lead.whyHold:[ ...(provisional?['Project undefined — sector, cost, beneficiaries and duration still to be set; merit cannot yet be scored.']:[]), ...(pd.risks||[]).slice(0,2).map(r=>(r.type?r.type+' — ':'')+(r.note||'')) ].filter(Boolean).slice(0,3);
+  return {
+    date:monthYear(), partner:m.partner||'Partner', partnerShort:(m.partner||'Partner'),
+    project:{ sector:m.sector, cost:m.cost, ben:m.ben, dur:m.dur, finance:cap(finance), modality:'', indicativeLevel:pd.recommendedBand||'' },
+    recommendedBand:pd.recommendedBand||'',
+    scores:{ partner:{score:Math.round(snd.score||0),verdict:snd.verdict||'—'}, uae:{score:Math.round(uae.score||0),verdict:scoreBand(uae.score)}, merit:{score:meritScore} },
+    askScoping: dec.reason||pd.recommendation||'', askDefined: dec.reason||pd.recommendation||'',
+    whyProceed, whyHold,
+    topRisk:{ level:((hr.severity||'HIGH').toUpperCase()), risk:(hr.type?hr.type+' — ':'')+(hr.note||''), mitigation: lead.topRiskMitigation||'phased disbursement against independently verified milestones.' },
+    defined:[ ['Partner',m.partner||'—'], ['Funding type',cap(finance)+' — phased against milestones'], ['Modality','Phased contribution'], ['Indicative level', pd.recommendedBand||'—'] ],
+    mustSupply: missingProjectFields(),
+    dims, partnerSummary: snd.summary||'', partnerSubs: subs, partnerRisks: prisks, bands,
+    milestones: pd.milestones||[],
+    strategicLead: lead.strategicLead||pd.recommendation||'',
+    precedents, sequence:(lead.sequence||[]).map(x=>[x.tag||'',x.title||x.t||'',x.detail||x.d||'']),
+    confidence:{ level:(pd.confidence||(verifyData&&verifyData.overallConfidence)||'medium'), note: lead.confidenceNote||'' },
+    footers:{ "1":"ODA neutral assessment · "+monthYear(), "2":"ODA evaluation rubric"+(provisional?' (provisional); inputs to be confirmed by leadership before final scoring.':'.'), "3":(m.partner||'Partner')+", researched "+monthYear()+".", "4":"Funding-band and phasing structure"+(provisional?'; indicative pending project definition.':'.'), "5":"ODA strategic assessment, "+monthYear()+"." }
+  };
+}
+function runDeckExport(){
+  const st=document.getElementById('deckStatus'), btn=document.getElementById('deckBtn');
+  if(!evaluated){ alert('Run the pre-score first (Step 4).'); return; }
+  if(!aiEndpoint){ if(st)st.innerHTML='<span style="color:var(--bordeaux)">AI server not configured.</span>'; return; }
+  btn.disabled=true; const lbl=btn.textContent; btn.textContent='Generating…'; if(st)st.textContent='Generating leadership deck + one-pager on the local server…';
+  fetch(aiEndpoint.replace(/\/score$/,'/deck'),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({deckData:buildDeckData()})})
+    .then(r=>r.ok?r.json():Promise.reject(new Error('HTTP '+r.status))).then(o=>{
+      if(o.deckError||o.onepagerError){ st.innerHTML='<span style="color:var(--bordeaux)">Generation error: '+esc((o.deckError||'')+' '+(o.onepagerError||''))+'</span>'; }
+      else { st.innerHTML='✓ Saved to Downloads: <strong>'+esc((o.deck||'').split(/[\\\\/]/).pop())+'</strong> + <strong>'+esc((o.onepager||'').split(/[\\\\/]/).pop())+'</strong>.'; } })
+    .catch(e=>{ st.innerHTML='<span style="color:var(--bordeaux)">Failed: '+esc(e.message)+' — is the local server running (Node + Chrome)?</span>'; })
+    .finally(()=>{ btn.disabled=false; btn.textContent=lbl; });
+}
+function onePagerData(){ const m=getMeta(), r=buildRecommendation();
+  const dims=FRAMEWORK.map(d=>{ const w=d.criteria.reduce((a,c)=>a+W[c.id],0); let p=0,s=false; d.criteria.forEach(c=>{if(S[c.id].score!=null){p+=S[c.id].score*W[c.id]/100;s=true;}}); return {name:d.name,color:d.color,w:round(w),pts:s?round1(p):null}; });
+  return {m,r,desc:(val('projText')||'').trim(),activities:activityBullets(),dims,gate,stream,finance,evaluator:val('ev_name')||'—',date:nowStr().slice(0,10),scoredBy,partner:partnerData,verify:verifyData,decision:buildDecision(),missingFields:missingProjectFields(),highRisk:topHighRisk(),countryProfile:countryProfile,uaePrecedents:(partnerData&&partnerData.uaePrecedents)||(scenarioC&&scenarioC.uaePrecedents)||[]}; }
+const COUNTRY_ISO2={'Afghanistan':'AF','Algeria':'DZ','Angola':'AO','Bangladesh':'BD','Bolivia':'BO','Botswana':'BW','Burkina Faso':'BF','Burundi':'BI','Cambodia':'KH','Cameroon':'CM','Chad':'TD','Colombia':'CO','Congo, Dem. Rep.':'CD',"Côte d'Ivoire":'CI','Ecuador':'EC','Egypt':'EG','El Salvador':'SV','Eritrea':'ER','Ethiopia':'ET','Ghana':'GH','Guatemala':'GT','Guinea':'GN','Haiti':'HT','Honduras':'HN','India':'IN','Indonesia':'ID','Iraq':'IQ','Jordan':'JO','Kazakhstan':'KZ','Kenya':'KE','Kosovo':'XK','Kyrgyzstan':'KG','Laos':'LA','Lebanon':'LB','Liberia':'LR','Libya':'LY','Madagascar':'MG','Malawi':'MW','Mali':'ML','Mauritania':'MR','Mexico':'MX','Moldova':'MD','Mongolia':'MN','Morocco':'MA','Mozambique':'MZ','Myanmar':'MM','Namibia':'NA','Nepal':'NP','Nicaragua':'NI','Niger':'NE','Nigeria':'NG','Pakistan':'PK','Palestine':'PS','Papua New Guinea':'PG','Peru':'PE','Philippines':'PH','Rwanda':'RW','Senegal':'SN','Sierra Leone':'SL','Somalia':'SO','South Africa':'ZA','South Sudan':'SS','Sri Lanka':'LK','Sudan':'SD','Syria':'SY','Tajikistan':'TJ','Tanzania':'TZ','Thailand':'TH','Timor-Leste':'TL','Togo':'TG','Tunisia':'TN','Turkey':'TR','Turkmenistan':'TM','Uganda':'UG','Ukraine':'UA','Uzbekistan':'UZ','Venezuela':'VE','Vietnam':'VN','Yemen':'YE','Zambia':'ZM','Zimbabwe':'ZW','Armenia':'AM','Azerbaijan':'AZ','Albania':'AL','Argentina':'AR'};
+function flagUrl(c){ const i=COUNTRY_ISO2[c]; return i?`https://flagcdn.com/w80/${i.toLowerCase()}.png`:null; }
+function loadImg(u){ return new Promise(res=>{ if(!u)return res(null); const im=new Image(); im.crossOrigin='anonymous'; im.onload=()=>res(im); im.onerror=()=>res(null); im.src=u; setTimeout(()=>res(null),4000); }); }
+function initials(n){ if(!n)return ''; const w=String(n).split(/\s+/).filter(Boolean); return (w.slice(0,3).map(x=>x[0]).join('')||String(n)[0]).toUpperCase().slice(0,3); }
+function imgToDataURL(img){ try{ const c=document.createElement('canvas'); c.width=img.naturalWidth||80; c.height=img.naturalHeight||60; c.getContext('2d').drawImage(img,0,0); return c.toDataURL('image/png'); }catch(e){ return null; } }
+async function downloadOnePagerPDF(){ if(!evaluated){ alert('Run the pre-score first (Step 4).'); return; }
+  if(!window.jspdf||!window.jspdf.jsPDF){ alert('PDF library not loaded.'); return; }
+  const d=onePagerData(); const {jsPDF}=window.jspdf; const doc=new jsPDF({orientation:'landscape',unit:'pt',format:'a4'});
+  const W0=doc.internal.pageSize.getWidth(), H0=doc.internal.pageSize.getHeight(), M=42;
+  const ink=[29,37,44],gold=[173,131,59],mut=[107,114,128],navy=[51,63,100];
+  const flag=await loadImg(flagUrl(d.m.flagCountry));
+  // title (no organisation eyebrow)
+  doc.setFont('times','bold'); doc.setFontSize(22); doc.setTextColor(...ink); doc.text(trim(d.m.title||'Project',58),M,M+16);
+  doc.setFillColor(...gold); doc.rect(M,M+24,40,2,'F');
+  // subtitle (no 'standard review'; show leadership only when directed)
+  let sub=(d.m.country||'')+'  ·  '+cap(d.stream); if(d.gate==='directed') sub+='  ·  Leadership-directed';
+  sub+='  ·  Evaluated '+d.date+(d.evaluator&&d.evaluator!=='—'?('  ·  '+d.evaluator):'');
+  doc.setFont('helvetica','normal'); doc.setFontSize(9); doc.setTextColor(...mut); doc.text(sub,M,M+42);
+  // country flag (top-right)
+  if(flag){ try{ const fw=44, fh=Math.round(fw*(flag.naturalHeight||30)/(flag.naturalWidth||40)); doc.addImage(flag,'PNG',W0-M-fw,M-4,fw,fh); doc.setDrawColor(226,226,226); doc.setLineWidth(0.5); doc.rect(W0-M-fw,M-4,fw,fh); doc.setLineWidth(1); }catch(e){} }
+  // ── DECISION BANNER — lead with the decision, not the score ──
+  const dec=d.decision, drf=hexToRgb(recColors(dec.r.cls)[1]);
+  let by=M+50;
+  doc.setFont('helvetica','normal'); doc.setFontSize(9.5);
+  const reasonLines=doc.splitTextToSize(dec.reason, W0-2*M-(dec.band?180:28)).slice(0,3);
+  const bannerH=Math.max(60, 34+reasonLines.length*12);
+  doc.setFillColor(231,238,243); doc.rect(M,by,W0-2*M,bannerH,'F'); doc.setFillColor(...drf); doc.rect(M,by,5,bannerH,'F');
+  doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.setTextColor(...gold); doc.text('RECOMMENDATION',M+14,by+15);
+  doc.setFont('times','bold'); doc.setFontSize(14); doc.setTextColor(...ink); doc.text(trim(dec.headline,72),M+14,by+33);
+  doc.setFont('helvetica','normal'); doc.setFontSize(9.5); doc.setTextColor(...ink); doc.text(reasonLines,M+14,by+48);
+  if(dec.band){ const bw=152, bx=W0-M-bw; doc.setFillColor(243,236,221); doc.rect(bx,by+10,bw,bannerH-20,'F'); doc.setFillColor(...gold); doc.rect(bx,by+10,4,bannerH-20,'F');
+    doc.setFont('helvetica','bold'); doc.setFontSize(7); doc.setTextColor(124,91,31); doc.text('RECOMMENDED COMMITMENT',bx+10,by+26);
+    doc.setFont('times','bold'); doc.setFontSize(17); doc.setTextColor(...ink); doc.text(trim(String(dec.band),18),bx+10,by+48); }
+  let y=by+bannerH+16;
+  // ── THREE LENSES (project / partner / UAE) ──
+  const hasP=!!d.partner, sndS=d.partner&&d.partner.soundness||{}, uaeS=d.partner&&d.partner.uae||{};
+  const lenses=[['PROJECT MERIT', dec.unassessable?'N/A':String(d.r.comp), dec.unassessable?'Definition missing':d.r.verdict, dec.unassessable]];
+  if(hasP){ lenses.push(['PARTNER SOUNDNESS', String(sndS.score==null?'—':sndS.score), sndS.verdict||'', false], ['UAE STRATEGIC VALUE', String(uaeS.score==null?'—':uaeS.score), scoreBand(uaeS.score), false]); }
+  const ln=lenses.length, lgap=12, lw= ln>1 ? (W0-2*M-(ln-1)*lgap)/ln : (W0-2*M)/3, lh=54;
+  lenses.forEach((L,i)=>{ const lx=M+i*(lw+lgap); doc.setDrawColor(226,226,226); doc.setLineWidth(0.6); doc.rect(lx,y,lw,lh); doc.setFillColor(...navy); doc.rect(lx,y,lw,2.5,'F');
+    doc.setFont('helvetica','bold'); doc.setFontSize(7.5); doc.setTextColor(...gold); doc.text(L[0],lx+lw/2,y+15,{align:'center',charSpace:0.3});
+    doc.setFont('times','bold'); doc.setFontSize(22); doc.setTextColor(...(L[3]?mut:ink)); doc.text(L[1],lx+lw/2,y+37,{align:'center'});
+    doc.setFont('helvetica','normal'); doc.setFontSize(8); doc.setTextColor(...(L[3]?[121,36,47]:mut)); doc.text(trim(L[2]||'',30),lx+lw/2,y+48,{align:'center'}); });
+  y+=lh+15;
+  // ── HIGHEST RISK (surfaced by the headline) ──
+  if(d.highRisk){ const hr=d.highRisk, hrLines=doc.splitTextToSize('HIGH — '+(hr.type||'Risk')+': '+(hr.note||''),W0-2*M-16), hrH=10+hrLines.length*11;
+    doc.setFillColor(246,225,226); doc.rect(M,y,W0-2*M,hrH,'F'); doc.setFillColor(121,36,47); doc.rect(M,y,4,hrH,'F');
+    doc.setFont('helvetica','normal'); doc.setFontSize(9); doc.setTextColor(...ink); doc.text(hrLines,M+12,y+13); y+=hrH+14; }
+  // ── PROJECT DEFINITION (blanks → 'Not yet defined') ──
+  doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.setTextColor(...gold); doc.text('PROJECT DEFINITION',M,y); y+=12;
+  const facts=[['Sector',fieldOrTBD(d.m.sector)],['Cost',d.m.cost?((d.m.currency?d.m.currency+' ':'')+d.m.cost):'Not yet defined'],['Beneficiaries / outcomes',fieldOrTBD(d.m.ben)],['Duration',fieldOrTBD(d.m.dur)],['Funding type',cap(d.finance)],['Proposed partner',fieldOrTBD(d.m.partner)]];
+  const fcw=(W0-2*M)/3;
+  facts.forEach((f,i)=>{ const fx=M+(i%3)*fcw, fyy=y+Math.floor(i/3)*28; const tbd=f[1]==='Not yet defined';
+    doc.setFont('helvetica','bold'); doc.setFontSize(7); doc.setTextColor(...mut); doc.text(f[0].toUpperCase(),fx,fyy+6);
+    doc.setFont('helvetica',tbd?'italic':'normal'); doc.setFontSize(9.5); doc.setTextColor(...(tbd?[121,36,47]:ink)); doc.text(trim(String(f[1]),Math.floor(fcw/4.6)),fx,fyy+18); });
+  y+=2*28+4;
+  if(d.missingFields&&d.missingFields.length){ doc.setFont('helvetica','italic'); doc.setFontSize(8.5); doc.setTextColor(121,36,47);
+    doc.text(doc.splitTextToSize('To complete the assessment, leadership must supply: '+d.missingFields.join(', ')+'.',W0-2*M),M,y); y+=16; }
+  // ── COUNTRY PROFILE (Scenario A — from dashboard indicator data) ──
+  if(d.countryProfile&&d.countryProfile.indicators&&d.countryProfile.indicators.length){ const cp=d.countryProfile;
+    doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.setTextColor(...gold); doc.text('COUNTRY PROFILE — '+String(cp.country).toUpperCase(),M,y); y+=12;
+    const cpl=doc.splitTextToSize(cp.indicators.map(i=>i.label+': '+i.value+' ('+i.year+')').join('   ·   '),W0-2*M);
+    doc.setFont('helvetica','normal'); doc.setFontSize(8.5); doc.setTextColor(...ink); doc.text(cpl,M,y); y+=cpl.length*10+6; }
+  // ── UAE PRECEDENTS (reference — informs the recommendation) ──
+  if(d.uaePrecedents&&d.uaePrecedents.length){ doc.setFont('helvetica','italic'); doc.setFontSize(8); doc.setTextColor(...mut);
+    const ul=doc.splitTextToSize('UAE precedents referenced: '+d.uaePrecedents.slice(0,3).map(u=>(u.engagement||'')+(u.year?(' ('+u.year+')'):'')+(u.amount?(' — '+u.amount):'')).join('; ')+'.',W0-2*M); doc.text(ul,M,y); y+=ul.length*10+6; }
+  // ── DIMENSION BREAKDOWN (evidence — below the decision) ──
+  doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.setTextColor(...gold); doc.text('DIMENSION BREAKDOWN  ·  evidence',M,y); y+=10;
+  const half=Math.ceil(d.dims.length/2), colW2=(W0-2*M-22)/2;
+  d.dims.forEach((x,i)=>{ const col=i<half?0:1, dx=M+col*(colW2+22), dyy=y+(i<half?i:i-half)*15;
+    doc.setFont('helvetica','normal'); doc.setFontSize(8); doc.setTextColor(...ink); doc.text(trim(x.name,30),dx,dyy+7);
+    const bx=dx+colW2*0.55, bw=colW2*0.30; doc.setFillColor(240,240,240); doc.rect(bx,dyy,bw,7,'F'); const rgb=hexToRgb(x.color); doc.setFillColor(...rgb); doc.rect(bx,dyy,Math.max(1,bw*(x.w?clamp((x.pts||0)/x.w,0,1):0)),7,'F');
+    doc.setTextColor(...mut); doc.text(`${x.pts==null?'—':x.pts}/${x.w}`,dx+colW2,dyy+7,{align:'right'}); });
+  // ── partner pages (only if Layers 2 & 3 were run) ──
+  if(d.partner){ const pd=d.partner, snd=pd.soundness||{}, uae=pd.uae||{};
+    const W=W0-2*M;
+    const head=(title)=>{ doc.addPage(); doc.setFont('times','bold'); doc.setFontSize(19); doc.setTextColor(...ink); doc.text(title,M,M+13); doc.setFillColor(...gold); doc.rect(M,M+21,40,2,'F');
+      doc.setFont('helvetica','normal'); doc.setFontSize(9); doc.setTextColor(...mut); doc.text(trim((pd.partner||d.m.partner||'')+'  ·  researched '+d.date+(pd.confidence?('  ·  confidence '+pd.confidence):''),110),M,M+38); };
+    const lensRow=(y)=>{ const lw=(W-24)/3;
+      [['PROJECT MERIT',d.r.comp,d.r.verdict],['PARTNER SOUNDNESS',snd.score,snd.verdict],['UAE STRATEGIC VALUE',uae.score,scoreBand(uae.score)]].forEach((L,i)=>{
+        const lx=M+i*(lw+12); doc.setDrawColor(226,226,226); doc.setLineWidth(0.6); doc.rect(lx,y,lw,48); doc.setFillColor(...navy); doc.rect(lx,y,lw,2.5,'F');
+        doc.setFont('helvetica','bold'); doc.setFontSize(7.5); doc.setTextColor(...gold); doc.text(L[0],lx+lw/2,y+14,{align:'center',charSpace:0.4});
+        doc.setFont('times','bold'); doc.setFontSize(23); doc.setTextColor(...ink); doc.text(L[1]==null?'—':String(Math.round(L[1])),lx+lw/2,y+35,{align:'center'});
+        doc.setFont('helvetica','normal'); doc.setFontSize(8); doc.setTextColor(...mut); doc.text(trim(L[2]||'',26),lx+lw/2,y+45,{align:'center'}); });
+      return y+48+16; };
+    const factorBlock=(title,score,summary,factors,y)=>{ doc.setFont('helvetica','bold'); doc.setFontSize(9); doc.setTextColor(...gold); doc.text((title+'  '+(score==null?'':score+'/100')).toUpperCase(),M,y); let fy=y+14;
+      if(summary){ doc.setFont('helvetica','normal'); doc.setFontSize(9); doc.setTextColor(...ink); const sl=doc.splitTextToSize(summary,W); doc.text(sl,M,fy); fy+=sl.length*11+8; }
+      (factors||[]).forEach(f=>{ doc.setFont('helvetica','bold'); doc.setFontSize(9); doc.setTextColor(...ink); doc.text(trim(f.name||'',60),M,fy); doc.text(f.score==null?'—':String(f.score)+'/100',W0-M,fy,{align:'right'});
+        doc.setFillColor(231,233,236); doc.rect(M,fy+3,W,3,'F'); doc.setFillColor(47,88,110); doc.rect(M,fy+3,W*clamp((+f.score||0)/100,0,1),3,'F');
+        doc.setFont('helvetica','normal'); doc.setFontSize(8.5); doc.setTextColor(...mut); const jl=doc.splitTextToSize(f.justification||'',W); doc.text(jl,M,fy+15); fy+=15+jl.length*10+9; });
+      return fy; };
+    // PAGE — Partner overview & key information
+    head('Partner overview & key information');
+    let oy=M+50;
+    if(d.verify){ doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.setTextColor(...gold); doc.text('INDEPENDENT VERIFICATION',M,oy);
+      doc.setFont('helvetica','normal'); doc.setFontSize(8.5); doc.setTextColor(...ink); doc.text(trim((d.verify.verdict||'—').replace(/-/g,' ')+'  ·  confidence '+(d.verify.overallConfidence||'—')+((d.verify.concerns||[]).length?('  ·  '+d.verify.concerns.length+' concern(s) flagged'):''),120),M+118,oy); oy+=14; }
+    let ya=lensRow(oy);
+    ya=factorBlock('Partner soundness',snd.score,snd.summary,snd.factors,ya+6);
+    if((pd.risks||[]).length){ doc.setFont('helvetica','bold'); doc.setFontSize(9); doc.setTextColor(...gold); doc.text('KEY RISKS',M,ya+4); let ry=ya+17;
+      pd.risks.slice(0,4).forEach(r=>{ doc.setFont('helvetica','bold'); doc.setFontSize(8.5); doc.setTextColor(...ink); doc.text(((r.severity||'').toUpperCase()+' · '+(r.type||'')),M,ry);
+        doc.setFont('helvetica','normal'); doc.setTextColor(...mut); const nl=doc.splitTextToSize(r.note||'',W-95); doc.text(nl,M+95,ry); ry+=Math.max(11,nl.length*10)+4; }); }
+    // PAGE — Funding scenarios & overall recommendation
+    head('Funding scenarios & overall recommendation');
+    let yb=M+50;
+    if(pd.recommendation){ const rl=doc.splitTextToSize(pd.recommendation,W-20), bh=20+rl.length*11+6; doc.setFillColor(243,236,221); doc.rect(M,yb,W,bh,'F'); doc.setFillColor(...gold); doc.rect(M,yb,4,bh,'F');
+      doc.setFont('helvetica','bold'); doc.setFontSize(8.5); doc.setTextColor(124,91,31); doc.text('OVERALL RECOMMENDATION',M+12,yb+14);
+      doc.setFont('helvetica','normal'); doc.setFontSize(9.5); doc.setTextColor(...ink); doc.text(rl,M+12,yb+28); yb+=bh+16; }
+    const candP = d.decision.unassessable && (pd.scenarios||[]).some(s=>s.option);
+    doc.setFont('helvetica','bold'); doc.setFontSize(9); doc.setTextColor(...gold); doc.text(candP?'CANDIDATE PROJECTS':'FUNDING SCENARIOS',M,yb); yb+=9;
+    const tc = candP ? [{h:'OPTION',w:0.15},{h:'CANDIDATE PROJECT',w:0.40},{h:'ASSESSMENT',w:0.33},{h:'SCORE',w:0.12}] : [{h:'BAND',w:0.14},{h:'WHAT IT UNLOCKS',w:0.34},{h:'MARGINAL VALUE',w:0.26},{h:'VISIBILITY / INFLUENCE',w:0.26}];
+    doc.setFillColor(...ink); doc.rect(M,yb,W,15,'F'); doc.setFont('helvetica','bold'); doc.setFontSize(7.5); doc.setTextColor(255,255,255); let hx=M; tc.forEach(c=>{ doc.text(c.h,hx+4,yb+10,{charSpace:0.3}); hx+=W*c.w; }); yb+=15;
+    const recN=normBand(pd.recommendedBand);
+    (pd.scenarios||[]).forEach(s=>{ const isRec=recN&&normBand(s.band)===recN;
+      const vals = candP ? [s.band+(isRec?'  ★':''), s.option, s.assessment, (s.score==null?'—':String(Math.round(s.score)))] : [s.band+(isRec?'  ★':''),s.unlocks,s.marginalValue,s.influence];
+      const wrap=tc.map((c,i)=>doc.splitTextToSize(String(vals[i]||'—'),W*c.w-8)), rh=Math.max(...wrap.map(w=>w.length))*10+10;
+      if(isRec){ doc.setFillColor(243,236,221); doc.rect(M,yb,W,rh,'F'); }
+      doc.setDrawColor(isRec?173:226,isRec?131:226,isRec?59:226); doc.setLineWidth(isRec?1:0.5); doc.rect(M,yb,W,rh); doc.setLineWidth(1); let xx=M;
+      wrap.forEach((w,i)=>{ doc.setFont('helvetica',i===0?'bold':'normal'); doc.setFontSize(8.5); doc.setTextColor(...(i===0?ink:[70,70,70])); doc.text(w,xx+4,yb+12); xx+=W*tc[i].w; }); yb+=rh; });
+    if(Array.isArray(pd.milestones)&&pd.milestones.length){ yb+=16; doc.setFont('helvetica','bold'); doc.setFontSize(9); doc.setTextColor(...gold); doc.text('PHASING — RELEASE IS CONDITIONED ON THESE MILESTONES',M,yb); yb+=14;
+      pd.milestones.slice(0,5).forEach((m,i)=>{ doc.setFillColor(47,88,110); doc.rect(M,yb-9,13,13,'F'); doc.setFont('helvetica','bold'); doc.setFontSize(8); doc.setTextColor(255,255,255); doc.text(String(i+1),M+6.5,yb,{align:'center'});
+        doc.setFont('helvetica','normal'); doc.setFontSize(9); doc.setTextColor(...ink); const ml=doc.splitTextToSize(String(m),W-22); doc.text(ml,M+20,yb); yb+=Math.max(13,ml.length*10)+5; }); }
+    else if(pd.phasing && !/^\s*not required/i.test(pd.phasing)){ yb+=14; doc.setFont('helvetica','bold'); doc.setFontSize(9); doc.setTextColor(...gold); doc.text('RECOMMENDED PHASING',M,yb); doc.setFont('helvetica','normal'); doc.setFontSize(9); doc.setTextColor(...ink); const pl=doc.splitTextToSize(pd.phasing,W); doc.text(pl,M,yb+13); yb+=13+pl.length*11; }
+    yb+=16; factorBlock('Strategic value to the UAE',uae.score,uae.summary,uae.factors,yb);
+  }
+  doc.save((d.m.title||'project').replace(/\s+/g,'_')+'_one_pager.pdf');
+}
+async function downloadOnePagerPPT(){ if(!evaluated){ alert('Run the pre-score first (Step 4).'); return; }
+  if(typeof PptxGenJS==='undefined'){ alert('PPT library not loaded.'); return; }
+  const d=onePagerData(), [rbg,rfg]=recColors(d.r.cls), hex=s=>s.replace('#','');
+  const flag=await loadImg(flagUrl(d.m.flagCountry)); const flagData=flag?imgToDataURL(flag):null;
+  const p=new PptxGenJS(); p.layout='LAYOUT_WIDE'; const s=p.addSlide(); s.background={color:'FFFFFF'};
+  // title (no organisation eyebrow)
+  s.addText(d.m.title||'Project',{x:0.5,y:0.38,w:9.8,h:0.5,fontFace:'Lora',fontSize:25,bold:true,color:'1D252C'});
+  s.addShape(p.ShapeType.rect,{x:0.5,y:0.95,w:0.78,h:0.03,fill:{color:'AD833B'},line:{type:'none'}});
+  let sub=(d.m.country||'')+'  ·  '+cap(d.stream); if(d.gate==='directed') sub+='  ·  Leadership-directed';
+  sub+='  ·  Evaluated '+d.date+(d.evaluator&&d.evaluator!=='—'?('  ·  '+d.evaluator):'');
+  s.addText(sub,{x:0.5,y:1.04,w:11.0,h:0.25,fontFace:'Montserrat',fontSize:9.5,color:'6B7280'});
+  if(flagData){ s.addImage({data:flagData,x:12.0,y:0.4,w:0.9,h:0.6}); s.addShape(p.ShapeType.rect,{x:12.0,y:0.4,w:0.9,h:0.6,fill:{type:'none'},line:{color:'E2E2E2',width:0.75}}); }
+  // ── DECISION BANNER — lead with the decision ──
+  const dec=d.decision, drf=hex(recColors(dec.r.cls)[1]);
+  let y=1.35;
+  s.addShape(p.ShapeType.rect,{x:0.5,y:y,w:12.33,h:1.12,fill:{color:'E7EEF3'},line:{type:'none'}});
+  s.addShape(p.ShapeType.rect,{x:0.5,y:y,w:0.06,h:1.12,fill:{color:drf},line:{type:'none'}});
+  s.addText('RECOMMENDATION',{x:0.68,y:y+0.06,w:8,h:0.2,fontFace:'Montserrat',fontSize:8.5,bold:true,color:'AD833B',charSpacing:1.5});
+  s.addText(trim(dec.headline,80),{x:0.68,y:y+0.24,w:(dec.band?9.3:11.9),h:0.4,fontFace:'Lora',fontSize:15,bold:true,color:'1D252C'});
+  s.addText(trim(dec.reason,300),{x:0.68,y:y+0.62,w:(dec.band?9.3:11.9),h:0.46,fontFace:'Montserrat',fontSize:9.5,color:'1D252C',valign:'top'});
+  if(dec.band){ const bx=10.15,bw=2.65; s.addShape(p.ShapeType.rect,{x:bx,y:y+0.14,w:bw,h:0.84,fill:{color:'F3ECDD'},line:{type:'none'}}); s.addShape(p.ShapeType.rect,{x:bx,y:y+0.14,w:0.05,h:0.84,fill:{color:'AD833B'},line:{type:'none'}});
+    s.addText('RECOMMENDED COMMITMENT',{x:bx+0.14,y:y+0.22,w:bw-0.24,h:0.2,fontFace:'Montserrat',fontSize:7,bold:true,color:'7D5B1F',charSpacing:0.5});
+    s.addText(trim(String(dec.band),18),{x:bx+0.14,y:y+0.42,w:bw-0.24,h:0.45,fontFace:'Lora',fontSize:20,bold:true,color:'1D252C',valign:'middle'}); }
+  y+=1.12+0.16;
+  // ── THREE LENSES ──
+  const sndS=(d.partner&&d.partner.soundness)||{}, uaeS=(d.partner&&d.partner.uae)||{};
+  const lenses=[['PROJECT MERIT',dec.unassessable?'N/A':String(d.r.comp),dec.unassessable?'Definition missing':d.r.verdict,dec.unassessable]];
+  if(d.partner){ lenses.push(['PARTNER SOUNDNESS',String(sndS.score==null?'—':sndS.score),sndS.verdict||'',false],['UAE STRATEGIC VALUE',String(uaeS.score==null?'—':uaeS.score),scoreBand(uaeS.score),false]); }
+  const ln=lenses.length, lgap=0.2, lw= ln>1 ? (12.33-(ln-1)*lgap)/ln : 3.9, lh=0.92;
+  lenses.forEach((L,i)=>{ const lx=0.5+i*(lw+lgap);
+    s.addShape(p.ShapeType.rect,{x:lx,y:y,w:lw,h:lh,fill:{color:'FFFFFF'},line:{color:'E2E2E2',width:1}});
+    s.addShape(p.ShapeType.rect,{x:lx,y:y,w:lw,h:0.04,fill:{color:'333F64'},line:{type:'none'}});
+    s.addText(L[0],{x:lx,y:y+0.08,w:lw,h:0.2,align:'center',fontFace:'Montserrat',fontSize:8,bold:true,color:'AD833B',charSpacing:1});
+    s.addText(L[1],{x:lx,y:y+0.24,w:lw,h:0.42,align:'center',fontFace:'Lora',fontSize:24,bold:true,color:(L[3]?'6B7280':'1D252C')});
+    s.addText(trim(L[2]||'',30),{x:lx,y:y+0.66,w:lw,h:0.2,align:'center',fontFace:'Montserrat',fontSize:8.5,color:(L[3]?'79242F':'6B7280')}); });
+  y+=lh+0.16;
+  // ── HIGHEST RISK ──
+  if(d.highRisk){ const hr=d.highRisk; s.addShape(p.ShapeType.rect,{x:0.5,y:y,w:12.33,h:0.5,fill:{color:'F6E1E2'},line:{type:'none'}}); s.addShape(p.ShapeType.rect,{x:0.5,y:y,w:0.05,h:0.5,fill:{color:'79242F'},line:{type:'none'}});
+    s.addText([{text:'HIGH — '+(hr.type||'Risk')+': ',options:{bold:true,color:'79242F'}},{text:trim(hr.note||'',200),options:{color:'1D252C'}}],{x:0.66,y:y+0.04,w:12.0,h:0.42,fontFace:'Montserrat',fontSize:9,valign:'middle'}); y+=0.5+0.14; }
+  // ── PROJECT DEFINITION (blanks → Not yet defined) ──
+  s.addText('PROJECT DEFINITION',{x:0.5,y:y,w:6,h:0.2,fontFace:'Montserrat',fontSize:8.5,bold:true,color:'AD833B',charSpacing:1}); y+=0.24;
+  const facts=[['Sector',fieldOrTBD(d.m.sector)],['Cost',d.m.cost?((d.m.currency?d.m.currency+' ':'')+d.m.cost):'Not yet defined'],['Beneficiaries / outcomes',fieldOrTBD(d.m.ben)],['Duration',fieldOrTBD(d.m.dur)],['Funding type',cap(d.finance)],['Proposed partner',fieldOrTBD(d.m.partner)]];
+  const fcw=12.33/3;
+  facts.forEach((f,i)=>{ const fx=0.5+(i%3)*fcw, fyy=y+Math.floor(i/3)*0.5, tbd=f[1]==='Not yet defined';
+    s.addText(f[0].toUpperCase(),{x:fx,y:fyy,w:fcw-0.2,h:0.18,fontFace:'Montserrat',fontSize:7,bold:true,color:'6B7280'});
+    s.addText(trim(String(f[1]),48),{x:fx,y:fyy+0.17,w:fcw-0.2,h:0.3,fontFace:'Montserrat',fontSize:9.5,italic:tbd,color:(tbd?'79242F':'1D252C')}); });
+  y+=2*0.5;
+  if(d.missingFields&&d.missingFields.length){ s.addText('To complete the assessment, leadership must supply: '+d.missingFields.join(', ')+'.',{x:0.5,y:y,w:12.33,h:0.3,fontFace:'Montserrat',fontSize:8.5,italic:true,color:'79242F',valign:'top'}); y+=0.32; }
+  // ── COUNTRY PROFILE (Scenario A) ──
+  if(d.countryProfile&&d.countryProfile.indicators&&d.countryProfile.indicators.length){ const cp=d.countryProfile;
+    s.addText('COUNTRY PROFILE — '+String(cp.country).toUpperCase(),{x:0.5,y:y,w:8,h:0.2,fontFace:'Montserrat',fontSize:8.5,bold:true,color:'AD833B',charSpacing:1}); y+=0.22;
+    s.addText(cp.indicators.map(i=>i.label+': '+i.value+' ('+i.year+')').join('    ·    '),{x:0.5,y:y,w:12.33,h:0.4,fontFace:'Montserrat',fontSize:8.5,color:'1D252C',valign:'top'}); y+=0.42; }
+  // ── UAE PRECEDENTS (reference) ──
+  if(d.uaePrecedents&&d.uaePrecedents.length){ s.addText([{text:'UAE precedents referenced: ',options:{bold:true,italic:true}},{text:d.uaePrecedents.slice(0,3).map(u=>(u.engagement||'')+(u.year?(' ('+u.year+')'):'')+(u.amount?(' — '+u.amount):'')).join('; ')+'.',options:{italic:true}}],{x:0.5,y:y,w:12.33,h:0.34,fontFace:'Montserrat',fontSize:8,color:'6B7280',valign:'top'}); y+=0.36; }
+  // ── DIMENSION BREAKDOWN (evidence) ──
+  y+=0.04; s.addText('DIMENSION BREAKDOWN  ·  evidence',{x:0.5,y:y,w:8,h:0.2,fontFace:'Montserrat',fontSize:8.5,bold:true,color:'AD833B',charSpacing:1}); y+=0.24;
+  const half=Math.ceil(d.dims.length/2), cW=6.0;
+  d.dims.forEach((x,i)=>{ const col=i<half?0:1, dx=0.5+col*(cW+0.33), dyy=y+(i<half?i:i-half)*0.2;
+    s.addText(trim(x.name,30),{x:dx,y:dyy,w:cW*0.5,h:0.18,fontFace:'Montserrat',fontSize:8.5,color:'1D252C'});
+    s.addShape(p.ShapeType.rect,{x:dx+cW*0.52,y:dyy+0.02,w:cW*0.3,h:0.1,fill:{color:'F0F0F0'},line:{color:'E2E2E2',width:0.5}});
+    s.addShape(p.ShapeType.rect,{x:dx+cW*0.52,y:dyy+0.02,w:Math.max(0.02,cW*0.3*(x.w?clamp((x.pts||0)/x.w,0,1):0)),h:0.1,fill:{color:hex(x.color)},line:{type:'none'}});
+    s.addText(`${x.pts==null?'—':x.pts}/${x.w}`,{x:dx+cW*0.84,y:dyy-0.01,w:cW*0.16,h:0.18,fontFace:'Montserrat',fontSize:8,color:'6B7280'}); });
+  // ── partner slides (only if Layers 2 & 3 were run) ──
+  if(d.partner){ const pd=d.partner, snd=pd.soundness||{}, uae=pd.uae||{};
+    const sub=trim((pd.partner||d.m.partner||'')+'  ·  researched '+d.date+(pd.confidence?('  ·  confidence '+pd.confidence):''),110);
+    const newSlide=(title)=>{ const sl=p.addSlide(); sl.background={color:'FFFFFF'};
+      sl.addText(title,{x:0.5,y:0.38,w:12.3,h:0.5,fontFace:'Lora',fontSize:23,bold:true,color:'1D252C'});
+      sl.addShape(p.ShapeType.rect,{x:0.5,y:0.95,w:0.78,h:0.03,fill:{color:'AD833B'},line:{type:'none'}});
+      sl.addText(sub,{x:0.5,y:1.0,w:12.3,h:0.25,fontFace:'Montserrat',fontSize:9.5,color:'6B7280'}); return sl; };
+    const lensRow=(sl,y)=>{ const lw=4.1, gap=0.2;
+      [['PROJECT MERIT',d.r.comp,d.r.verdict],['PARTNER SOUNDNESS',snd.score,snd.verdict],['UAE STRATEGIC VALUE',uae.score,scoreBand(uae.score)]].forEach((L,i)=>{ const lx=0.5+i*(lw+gap);
+        sl.addShape(p.ShapeType.rect,{x:lx,y:y,w:lw,h:1.0,fill:{color:'FFFFFF'},line:{color:'E2E2E2',width:1}});
+        sl.addShape(p.ShapeType.rect,{x:lx,y:y,w:lw,h:0.05,fill:{color:'2F586E'},line:{type:'none'}});
+        sl.addText(L[0],{x:lx,y:y+0.1,w:lw,h:0.25,align:'center',fontFace:'Montserrat',fontSize:8,bold:true,color:'AD833B',charSpacing:1.5});
+        sl.addText(L[1]==null?'—':String(Math.round(L[1])),{x:lx,y:y+0.28,w:lw,h:0.5,align:'center',fontFace:'Lora',fontSize:30,bold:true,color:'1D252C'});
+        sl.addText(trim(L[2]||'',28),{x:lx,y:y+0.76,w:lw,h:0.2,align:'center',fontFace:'Montserrat',fontSize:8.5,color:'6B7280'}); });
+      return y+1.0+0.22; };
+    const factorCol=(sl,title,score,summary,factors,x,yy,w)=>{ sl.addText((title+'  '+(score==null?'':score+'/100')).toUpperCase(),{x:x,y:yy,w:w,h:0.22,fontFace:'Montserrat',fontSize:8.5,bold:true,color:'AD833B',charSpacing:1}); let fy=yy+0.26;
+      if(summary){ sl.addText(trim(summary,210),{x:x,y:fy,w:w,h:0.4,fontFace:'Montserrat',fontSize:8.5,color:'1D252C',valign:'top'}); fy+=0.46; }
+      (factors||[]).forEach(f=>{ sl.addText([{text:(f.name||'')+'   ',options:{bold:true,color:'1D252C'}},{text:(f.score==null?'—':f.score+'/100'),options:{bold:true,color:'2F586E'}}],{x:x,y:fy,w:w,h:0.2,fontFace:'Montserrat',fontSize:8.5});
+        sl.addShape(p.ShapeType.rect,{x:x,y:fy+0.21,w:w,h:0.05,fill:{color:'E7E9EC'},line:{type:'none'}}); sl.addShape(p.ShapeType.rect,{x:x,y:fy+0.21,w:Math.max(0.02,w*clamp((+f.score||0)/100,0,1)),h:0.05,fill:{color:'2F586E'},line:{type:'none'}});
+        sl.addText(trim(f.justification||'',160),{x:x,y:fy+0.28,w:w,h:0.42,fontFace:'Montserrat',fontSize:8,color:'6B7280',valign:'top'}); fy+=0.8; }); return fy; };
+    // SLIDE — Partner overview & key information
+    const sa=newSlide('Partner overview & key information'); let lensY=1.4;
+    if(d.verify){ sa.addText([{text:'INDEPENDENT VERIFICATION  ',options:{bold:true,color:'AD833B',charSpacing:1,fontSize:8}},{text:((d.verify.verdict||'—').replace(/-/g,' '))+'  ·  confidence '+(d.verify.overallConfidence||'—')+((d.verify.concerns||[]).length?('  ·  '+d.verify.concerns.length+' concern(s) flagged'):''),options:{color:'1D252C',fontSize:8.5}}],{x:0.5,y:1.24,w:12.3,h:0.22,fontFace:'Montserrat'}); lensY=1.58; }
+    let ya=lensRow(sa,lensY)+0.15;
+    factorCol(sa,'Partner soundness',snd.score,snd.summary,snd.factors,0.5,ya,5.9);
+    // key risks (right column)
+    sa.addText('KEY RISKS',{x:6.83,y:ya,w:6,h:0.22,fontFace:'Montserrat',fontSize:8.5,bold:true,color:'AD833B',charSpacing:1}); let ry=ya+0.28;
+    (pd.risks||[]).slice(0,5).forEach(r=>{ sa.addText([{text:((r.severity||'').toUpperCase()+' · '+(r.type||'')+'  '),options:{bold:true,color:'1D252C'}},{text:trim(r.note||'',150),options:{color:'6B7280'}}],{x:6.83,y:ry,w:6,h:0.45,fontFace:'Montserrat',fontSize:8.5,valign:'top'}); ry+=0.62; });
+    // SLIDE — Funding scenarios / candidate projects & overall recommendation
+    const candP = d.decision.unassessable && (pd.scenarios||[]).some(z=>z.option);
+    const sb=newSlide(candP?'Candidate projects & recommended commitment':'Funding scenarios & overall recommendation'); let y=1.45;
+    if(pd.recommendation){ sb.addShape(p.ShapeType.rect,{x:0.5,y:y,w:12.33,h:0.74,fill:{color:'F3ECDD'},line:{type:'none'}}); sb.addShape(p.ShapeType.rect,{x:0.5,y:y,w:0.06,h:0.74,fill:{color:'AD833B'},line:{type:'none'}});
+      sb.addText([{text:'OVERALL RECOMMENDATION  ',options:{bold:true,color:'7d5b1f',fontSize:8.5,charSpacing:1.5}},{text:trim(pd.recommendation,260),options:{color:'5c4a1c',fontSize:9.5}}],{x:0.66,y:y+0.06,w:12.0,h:0.64,fontFace:'Montserrat',valign:'middle'}); y+=0.94; }
+    // scenario / candidate-project table
+    const tcols = candP ? [{h:'OPTION',x:0.5,w:1.7},{h:'CANDIDATE PROJECT',x:2.2,w:4.7},{h:'ASSESSMENT',x:6.9,w:4.6},{h:'SCORE',x:11.5,w:1.33}] : [{h:'BAND',x:0.5,w:1.6},{h:'WHAT IT UNLOCKS',x:2.1,w:4.3},{h:'MARGINAL VALUE',x:6.4,w:3.2},{h:'VISIBILITY / INFLUENCE',x:9.6,w:3.23}];
+    sb.addShape(p.ShapeType.rect,{x:0.5,y:y,w:12.33,h:0.32,fill:{color:'1D252C'},line:{type:'none'}});
+    tcols.forEach(c=>sb.addText(c.h,{x:c.x+0.06,y:y,w:c.w-0.1,h:0.32,fontFace:'Montserrat',fontSize:7.5,bold:true,color:'FFFFFF',charSpacing:0.5,valign:'middle'})); y+=0.32;
+    const recNb=normBand(pd.recommendedBand);
+    (pd.scenarios||[]).forEach((s,i)=>{ const isRec=recNb&&normBand(s.band)===recNb; const rh=0.86;
+      sb.addShape(p.ShapeType.rect,{x:0.5,y:y,w:12.33,h:rh,fill:{color:isRec?'F3ECDD':(i%2?'F7F8FA':'FFFFFF')},line:{color:isRec?'AD833B':'E2E2E2',width:isRec?1.25:0.5}});
+      const cells = candP ? [s.band+(isRec?'  ★':''), s.option, s.assessment, (s.score==null?'—':String(Math.round(s.score)))] : [s.band+(isRec?'  ★':''),s.unlocks,s.marginalValue,s.influence];
+      tcols.forEach((c,ci)=>sb.addText(trim(String(cells[ci]||'—'),220),{x:c.x+0.06,y:y+0.04,w:c.w-0.12,h:rh-0.08,fontFace:'Montserrat',fontSize:8.5,bold:ci===0,align:(candP&&ci===3?'center':'left'),color:ci===0?'1D252C':'464646',valign:'top'})); y+=rh; });
+    if(Array.isArray(pd.milestones)&&pd.milestones.length){ y+=0.18; sb.addText('PHASING — RELEASE IS CONDITIONED ON THESE MILESTONES',{x:0.5,y:y,w:12.33,h:0.2,fontFace:'Montserrat',fontSize:8.5,bold:true,color:'AD833B',charSpacing:1}); y+=0.26;
+      pd.milestones.slice(0,5).forEach((m,i)=>{ sb.addShape(p.ShapeType.rect,{x:0.5,y:y,w:0.22,h:0.22,fill:{color:'2F586E'},line:{type:'none'}}); sb.addText(String(i+1),{x:0.5,y:y,w:0.22,h:0.22,align:'center',valign:'middle',fontFace:'Montserrat',fontSize:9,bold:true,color:'FFFFFF'});
+        sb.addText(trim(String(m),180),{x:0.82,y:y,w:11.9,h:0.3,fontFace:'Montserrat',fontSize:9.5,color:'1D252C',valign:'top'}); y+=0.34; }); }
+    else if(pd.phasing && !/^\s*not required/i.test(pd.phasing)){ y+=0.18; sb.addText([{text:'RECOMMENDED PHASING  ',options:{bold:true,color:'AD833B',charSpacing:1,fontSize:8.5}},{text:trim(pd.phasing,220),options:{color:'1D252C',fontSize:9}}],{x:0.5,y:y,w:12.33,h:0.5,fontFace:'Montserrat',valign:'top'}); y+=0.5; }
+    factorCol(sb,'Strategic value to the UAE',uae.score,uae.summary,uae.factors,0.5,y+0.1,12.33);
+  }
+  p.writeFile({fileName:(d.m.title||'project').replace(/\s+/g,'_')+'_one_pager.pptx'});
+}
+
+/* export JSON */
+function exportJSON(){ const data={ project:getMeta(), classification:{stream,finance,leadershipGate:gate}, evaluator:{name:val('ev_name'),role:val('ev_role'),date:nowStr()}, scoredBy, weightTotal:round(weightTotal()), disabledCriteria:[...disabledCrit],
+  composite:evaluated?round1(currentComposite()):null, recommendation:document.querySelector('#recBadge .rec-badge')?.textContent||null, thresholdBreaches:thresholdBreaches(),
+  dimensions:FRAMEWORK.map(d=>({name:d.name,weight:round(d.criteria.reduce((a,c)=>a+W[c.id],0)),criteria:d.criteria.map(c=>({criterion:c.name,dimension:d.name,type:c.type,active:isActive(c),weight:W[c.id],min:TH[c.id]??null,score:S[c.id].score,confidence:S[c.id].conf,rationale:S[c.id].rationale,evidence:S[c.id].evidence,redFlag:S[c.id].redFlag,missingInfo:S[c.id].missingInfo}))})),
+  questions:QS, partnerDueDiligence:partnerData||null, independentVerification:verifyData||null }; dl(JSON.stringify(data,null,2),(getMeta().title||"project").replace(/\s+/g,'_')+"_evaluation.json","application/json"); }
+
+/* utils */
+function dl(content,name,type){ const b=new Blob([content],{type}); const a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download=name; a.click(); }
+function val(id){const e=document.getElementById(id);return e?e.value:'';}
+function clamp(n,a,b){return Math.max(a,Math.min(b,n));}
+function round(n){return Math.round(n*10)/10;} function round1(n){return Math.round(n*10)/10;}
+function slug(s){return s.replace(/[^a-z0-9]/gi,'').toLowerCase();}
+function esc(s){return (s||"").replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));}
+function attr(s){return esc(s);}
+function cap(s){s=s||'';return s.charAt(0).toUpperCase()+s.slice(1);}
+function countKw(t,kw){return kw.reduce((a,k)=>a+(t.includes(k)?1:0),0);}
+function parseNum(s){ if(!s)return null; const n=parseFloat(String(s).replace(/[^0-9.]/g,'')); return isNaN(n)?null:n; }
+function parseCostUSD(s,fx,cur){ if(!s)return null; let str=String(s).toLowerCase(); let n=parseFloat(str.replace(/[^0-9.]/g,'')); if(isNaN(n))return null; if(/m|million/.test(str))n*=1e6; else if(/k/.test(str))n*=1e3; else if(/b|billion/.test(str))n*=1e9; const aed=/aed|dh/.test(str)||(cur&&/aed/i.test(cur)); if(aed)n*=(fx||0.2723); return n; }
+function fmt(n){return Number(n).toLocaleString('en-US');}
+function fmtM(n){return n>=1e6?(n/1e6).toFixed(1)+'M':n>=1e3?(n/1e3).toFixed(0)+'K':String(n);}
+function hexToRgb(h){ h=h.replace('#',''); return [parseInt(h.slice(0,2),16),parseInt(h.slice(2,4),16),parseInt(h.slice(4,6),16)]; }
+function shortHost(u){ try{return new URL(u).host;}catch{return 'endpoint';} }
+function nowStr(){ const d=new Date(); const p=x=>String(x).padStart(2,'0'); return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`; }
+
+/* country data + boot */
+async function loadIndicators(){ try{ const res=await fetch('data/indicators.json?v='+Date.now()); if(!res.ok)throw 0; INDIC=await res.json();
+    REGIONS=INDIC._regions||{}; ALLCOUNTRIES=Object.keys(INDIC).filter(k=>!k.startsWith('_')).sort();
+  }catch(e){ INDIC=null; REGIONS={}; ALLCOUNTRIES=[]; }
+  buildRegionSelect(); renderCountryOpts(); renderCountryHead(); }
+
+function buildRegionSelect(){ const sel=document.getElementById('m_region'); if(!sel)return;
+  const regions=Object.keys(REGIONS).sort();
+  sel.innerHTML='<option value="">— No region —</option>'+regions.map(r=>`<option value="${attr(r)}">${esc(r)} (${REGIONS[r].length})</option>`).join(""); sel.value=projRegion; }
+function onRegionChange(r){ projRegion=r||""; renderRegionActions(); renderCountryHead(); onCountryChange(); }
+function renderRegionActions(){ const el=document.getElementById('regionActions'); if(!el)return;
+  if(projRegion && REGIONS[projRegion]){ el.style.display='block';
+    el.innerHTML=`Region-wide scope (indicators averaged across ${REGIONS[projRegion].length} countries). <a href="#" style="color:var(--gold);font-weight:600" onclick="addRegionCountries();return false">Select its countries</a> to fine-tune.`;
+  } else { el.style.display='none'; el.innerHTML=''; } }
+function addRegionCountries(){ if(!projRegion||!REGIONS[projRegion])return; const set=new Set(selectedCountries);
+  REGIONS[projRegion].forEach(c=>set.add(c)); selectedCountries=ALLCOUNTRIES.filter(c=>set.has(c));
+  renderCountryOpts(); renderCountryHead(); onCountryChange(); }
+
+function toggleCountryMenu(force){ const m=document.getElementById('countryMenu'), h=document.getElementById('countryHead'); if(!m)return;
+  const open = force!=null?force : m.style.display==='none';
+  m.style.display=open?'flex':'none'; h.classList.toggle('open',open);
+  if(open){ const s=document.getElementById('countrySearch'); s.value=''; renderCountryOpts(); setTimeout(()=>s.focus(),0); } }
+function renderCountryOpts(){ const box=document.getElementById('countryOpts'); if(!box)return;
+  const q=(document.getElementById('countrySearch')?.value||'').toLowerCase();
+  const list=ALLCOUNTRIES.filter(c=>c.toLowerCase().includes(q)), sset=new Set(selectedCountries);
+  box.innerHTML=list.map(c=>`<label class="msel-opt"><input type="checkbox" ${sset.has(c)?'checked':''} onchange="toggleCountry('${attr(c)}',this.checked)">${esc(c)}</label>`).join("")||'<div style="padding:8px;color:var(--muted);font-size:12px">No match.</div>'; }
+function toggleCountry(name,on){ const set=new Set(selectedCountries); if(on)set.add(name); else set.delete(name);
+  selectedCountries=ALLCOUNTRIES.filter(c=>set.has(c)); renderCountryHead(); onCountryChange(); }
+function renderCountryHead(){ const h=document.getElementById('countryHead'); if(!h)return;
+  if(!selectedCountries.length){ h.innerHTML='<span class="msel-ph">— Select country/countries —</span>'; return; }
+  h.innerHTML=selectedCountries.map(c=>`<span class="msel-chip">${esc(c)}<b onclick="event.stopPropagation();toggleCountry('${attr(c)}',false)">&times;</b></span>`).join(''); }
+function setCountry(name){ selectedCountries=name?[name]:[]; projRegion=""; const sel=document.getElementById('m_region'); if(sel)sel.value=''; renderRegionActions(); renderCountryOpts(); renderCountryHead(); onCountryChange(); }
+function setCountries(list,region){ selectedCountries=(list||[]).filter(c=>ALLCOUNTRIES.includes(c)); projRegion=region||""; const sel=document.getElementById('m_region'); if(sel)sel.value=projRegion; renderRegionActions(); renderCountryOpts(); renderCountryHead(); onCountryChange(); }
+function computeCountryData(){ if(!INDIC)return null;
+  const list = selectedCountries.length ? selectedCountries : (projRegion && REGIONS[projRegion] ? REGIONS[projRegion] : []);
+  const have = list.filter(c=>INDIC[c]); if(!have.length)return null;
+  if(have.length===1) return INDIC[have[0]];
+  const agg={};
+  have.forEach(c=>{ const d=INDIC[c]||{}; Object.keys(d).forEach(k=>{ const v=d[k]; if(!v||v.value==null)return; const a=agg[k]||(agg[k]={sum:0,n:0,year:''}); a.sum+=+v.value; a.n++; const y=String(v.year||''); if(y>a.year)a.year=y; }); });
+  const out={}; Object.keys(agg).forEach(k=>{ out[k]={value:Math.round(agg[k].sum/agg[k].n*100)/100, year:agg[k].year, agg:true, n:agg[k].n}; }); return out; }
+document.addEventListener('click',e=>{ const ms=document.getElementById('countryMsel'); if(ms&&!ms.contains(e.target)){ const m=document.getElementById('countryMenu'); if(m&&m.style.display!=='none') toggleCountryMenu(false); } });
+function applyURLParams(){ const q=new URLSearchParams(location.search);
+  [['title','m_title'],['sector','m_sector'],['cost','m_cost'],['ben','m_ben'],['dur','m_dur']].forEach(([k,id])=>{ if(q.get(k))document.getElementById(id).value=q.get(k); });
+  if(q.get('country')) setCountry(q.get('country')); onSectorChange(); syncVersionLabel(); }
+
+/* autosave — keep the in-progress evaluation across refreshes */
+const DRAFT_KEY='oda_eval_draft'; let _saveT=null;
+function scheduleSave(){ clearTimeout(_saveT); _saveT=setTimeout(saveDraft,500); }
+function saveDraft(){ /* autosave disabled — the evaluator starts blank on every refresh */ }
+function restoreDraft(){ let d; try{ d=JSON.parse(localStorage.getItem(DRAFT_KEY)||'null'); }catch(e){ d=null; } if(!d) return false;
+  try{
+    const setv=(id,v)=>{ const el=document.getElementById(id); if(el&&v!=null) el.value=v; };
+    if(d.m){ setv('m_title',d.m.title); setv('m_sector',d.m.sector); setv('m_cost',d.m.cost); setv('m_currency',d.m.currency); setv('m_ben',d.m.ben); setv('m_dur',d.m.dur); setv('m_partner',d.m.partner); setv('m_activities',d.m.activities); if(d.m.countries&&d.m.countries.length) setCountries(d.m.countries,d.m.region); else if(d.m.country) setCountry(d.m.country); }
+    setv('projText',d.narrative); setv('ev_name',d.ev_name); setv('ev_role',d.ev_role); setv('a_fx',d.fx); setv('a_bench',d.bench); benchManual=!!d.benchManual;
+    if(d.stream) setStream(d.stream,true); if(d.finance) setFinance(d.finance,true); if(d.gate) setGate(d.gate);
+    if(d.W) ALL.forEach(c=>{ if(d.W[c.id]!=null)W[c.id]=d.W[c.id]; });
+    ALL.forEach(c=>{ TH[c.id]=(d.TH&&(c.id in d.TH))?d.TH[c.id]:(DEFAULT_TH[c.id]!=null?DEFAULT_TH[c.id]:null); });
+    if(d.S) ALL.forEach(c=>{ if(d.S[c.id]) S[c.id]=Object.assign({score:null,rationale:"",evidence:"",conf:"",redFlag:false,missingInfo:false},d.S[c.id]); });
+    if(d.QS&&d.QS.length) QS=d.QS;
+    scoredBy=d.scoredBy||''; evaluated=!!d.evaluated;
+    if(evaluated) document.getElementById('summary').classList.add('show');
+    renderQuestions(); renderCards(); syncVersionLabel(); return true;
+  }catch(e){ return false; }
+}
+document.addEventListener('input', scheduleSave);
+document.addEventListener('change', scheduleSave);
+document.addEventListener('input', updateScenarioNote);
+document.addEventListener('change', updateScenarioNote);
+
+document.getElementById('statDims').textContent=FRAMEWORK.length;
+document.getElementById('statCrit').textContent=ALL.length;
+renderQuestions(); clNote();
+(function bootEvaluator(){
+  try{ localStorage.removeItem(DRAFT_KEY); }catch(e){}   // start fresh on every page load
+  applyClassificationWeights();
+  loadIndicators().then(applyURLParams);                 // URL params (e.g. ?country=) still pre-fill
+})();
+renderVersions(); checkServer(); updateScenarioNote();
+</script>
+</body>
+</html>

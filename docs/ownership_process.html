@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Ownership & Handoff — Decision Process</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{ --ink:#1D252C; --gold:#AD833B; --slate:#2F586E; --navy:#333F64; --sky:#CBDCE6; --muted:#6B7280; --border:#E2E2E2; }
+*{box-sizing:border-box; margin:0; padding:0}
+body{background:#EDEef1; font-family:'Montserrat',sans-serif; display:flex; justify-content:center; padding:20px}
+.slide{position:relative; width:1280px; height:720px; flex-shrink:0; background:#fff; overflow:hidden; box-shadow:0 6px 30px rgba(0,0,0,.12)}
+
+.eyebrow{position:absolute; left:64px; top:46px; font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--gold)}
+h1{position:absolute; left:64px; top:62px; font-family:'Lora',serif; font-size:33px; font-weight:700; color:var(--ink)}
+.rule{position:absolute; left:64px; top:112px; width:56px; height:3px; background:var(--gold)}
+.sub{position:absolute; left:64px; top:126px; width:1050px; font-size:14px; line-height:1.5; color:var(--muted)}
+
+svg.flow{position:absolute; inset:0; width:1280px; height:720px; z-index:1}
+
+.node{position:absolute; z-index:2}
+.start{display:flex; align-items:center; justify-content:center; text-align:center; background:var(--ink); color:#fff; font-size:14px; font-weight:600; line-height:1.25; padding:8px}
+.diamond{display:flex; align-items:center; justify-content:center; text-align:center; background:var(--gold); color:#fff; clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%); font-weight:700; font-size:14px}
+
+.card{background:#fff; border:1px solid var(--border); border-left-width:5px; padding:12px 16px}
+.card .cn{font-family:'Lora',serif; font-size:16px; font-weight:700; color:var(--ink)}
+.card .cd{font-size:11px; line-height:1.4; color:var(--muted); margin-top:5px}
+.card .ci{font-size:9.5px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:var(--gold); margin-bottom:3px}
+.erc{position:absolute; z-index:2; background:#FAFAFA; border:1.5px dashed var(--border); padding:7px 13px; font-size:11px; color:var(--muted); line-height:1.35}
+.erc b{font-family:'Lora',serif; color:var(--ink); font-size:12.5px}
+
+.parallel{position:absolute; left:0; bottom:0; width:1280px; height:70px; background:rgba(203,220,230,.35); border-left:5px solid var(--navy); display:flex; align-items:center; padding:0 64px; z-index:2}
+.parallel b{font-family:'Lora',serif; color:var(--ink); font-size:14px}
+.parallel span{color:var(--ink); font-size:13px; line-height:1.45}
+.parallel .tag{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--navy);margin-right:14px;white-space:nowrap}
+
+@media print{ @page{size:landscape; margin:0} body{background:#fff; padding:0} .slide{box-shadow:none} }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="eyebrow">Office of Development Affairs · Entity Handoff</div>
+  <h1>Project Ownership &amp; Handoff</h1>
+  <div class="rule"></div>
+  <div class="sub">ODA owns no projects. Every project is handed to one delivery entity — routed first by <strong>who leads the engagement</strong> (the UAE Government or a UAE entity), then by instrument or nature. ODA assesses <strong>all</strong> of them against the evaluation criteria in parallel.</div>
+
+  <svg class="flow" viewBox="0 0 1280 720">
+    <defs>
+      <marker id="arr" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#6B7280"/></marker>
+      <marker id="arrd" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#9aa1a8"/></marker>
+    </defs>
+    <g fill="none" stroke="#9aa1a8" stroke-width="1.7" marker-end="url(#arr)">
+      <path d="M200,360 L208,360"/>                              <!-- intake -> who -->
+      <path d="M315,285 L315,210 L498,210"/>                     <!-- who: UAE Govt -> Instrument -->
+      <path d="M315,435 L315,510 L488,510"/>                     <!-- who: Entity -> Philanthropic -->
+      <path d="M575,160 L575,190 L960,190"/>                     <!-- loan -> ADFD -->
+      <path d="M575,260 L575,350 L960,350"/>                     <!-- grant/inv -> UAE -->
+      <path d="M660,510 L820,510 L820,380 L960,380"/>            <!-- charity -> UAE -->
+      <path d="M575,560 L960,560"/>                              <!-- yes philanthropy -> EZP -->
+    </g>
+    <path d="M1115,438 L1115,447" fill="none" stroke="#9aa1a8" stroke-width="1.6" stroke-dasharray="4 3" marker-end="url(#arrd)"/>
+    <g font-family="Montserrat" font-size="11" font-weight="700" fill="#AD833B" letter-spacing="1">
+      <text x="335" y="202">UAE GOVERNMENT</text>
+      <text x="322" y="502">A UAE ENTITY</text>
+      <text x="665" y="182">LOAN</text>
+      <text x="600" y="343">GRANT / INVESTMENT</text>
+      <text x="672" y="502">NO · CHARITY</text>
+      <text x="592" y="552">YES · PHILANTHROPY</text>
+    </g>
+  </svg>
+
+  <div class="node start" style="left:60px; top:331px; width:140px; height:58px">Project<br>intake</div>
+
+  <div class="node diamond" style="left:210px; top:285px; width:210px; height:150px; font-size:13px"><span>Who leads the<br>engagement?</span></div>
+  <div class="node diamond" style="left:500px; top:160px; width:150px; height:100px">Instrument?</div>
+  <div class="node diamond" style="left:490px; top:460px; width:170px; height:100px">Philanthropic?</div>
+
+  <div class="node card" style="left:965px; top:152px; width:300px; border-left-color:var(--navy)">
+    <div class="ci">UAE Government · Loan</div>
+    <div class="cn">ADFD</div>
+    <div class="cd">Loans (incl. G2G loans) · development lending</div>
+  </div>
+
+  <div class="node card" style="left:965px; top:300px; width:300px; border-left-color:var(--slate)">
+    <div class="ci">UAE Government grants &amp; investments · charity</div>
+    <div class="cn">UAE Aid Agency</div>
+    <div class="cd">Grants · investments · humanitarian &amp; development · short-term relief · charity. Serves <strong>government (G2G) and multilateral</strong> counterparts.</div>
+  </div>
+
+  <div class="erc" style="left:986px; top:449px; width:285px">
+    <b>→ ERC</b> — UAE Aid Agency onward-hands charity to the Emirates Red Crescent.
+  </div>
+
+  <div class="node card" style="left:965px; top:516px; width:300px; border-left-color:var(--gold)">
+    <div class="ci">UAE entity · philanthropy</div>
+    <div class="cn">Erth Zayed Philanthropies</div>
+    <div class="cd">Philanthropic grants</div>
+  </div>
+
+  <div class="parallel">
+    <span class="tag">In parallel</span>
+    <span><b>ODA Project Evaluation</b> — every project, whatever its destination, is assessed by ODA against the 8-dimension / 22-criteria framework.</span>
+  </div>
+</div>
+</body>
+</html>

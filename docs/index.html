@@ -1432,6 +1432,9 @@ body {
     <div class="sb-icon" data-view="analytics" onclick="switchView('analytics',this)" title="Analytics">
       <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="18" y="3" width="4" height="18"/><rect x="10" y="8" width="4" height="13"/><rect x="2" y="13" width="4" height="8"/></svg>
     </div>
+    <div class="sb-icon" data-view="evaluation" onclick="switchView('evaluation',this)" title="Program Evaluation">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+    </div>
     <div class="sb-icon" data-view="settings" onclick="switchView('settings',this)" title="Settings">
       <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
     </div>
@@ -1564,6 +1567,11 @@ body {
       <div class="kpi-row" id="kpi-row"></div>
       <div class="analytics-grid" id="analytics-grid"></div>
     </div>
+  </div>
+
+  <!-- ── VIEW: Program Evaluation (embedded evaluator) ── -->
+  <div id="view-evaluation" class="view" style="padding:0">
+    <iframe id="evaluator-frame" title="Program Evaluation" style="width:100%;height:calc(100vh - 56px);border:0;display:block"></iframe>
   </div>
 
   <!-- ── VIEW: Settings ── -->
@@ -1762,6 +1770,8 @@ const requests = [
   { id:8,  titleEn:'Governance & Accountability',    titleAr:'الحوكمة والمساءلة',                  country:'Ghana',      countryAr:'غانا',      path:'B', sector:'Governance',          sectorAr:'الحوكمة',        status:1, reviewed:false, engaged:false, date:'22 May 2025', cost:'$5M',  lead:'K. Mensah',  lat:7.9,  lng:-1.0 },
   { id:10, titleEn:'Refugee Livelihood Support',     titleAr:'دعم سبل معيشة اللاجئين',            country:'Jordan',     countryAr:'الأردن',    path:'C', sector:'Livelihoods',         sectorAr:'سبل المعيشة',    status:4, reviewed:false, engaged:true,  date:'01 Apr 2025', cost:'$8M',  lead:'L. Nassar',  lat:31.9, lng:35.9 },
   { id:12, titleEn:'Port Infrastructure Investment', titleAr:'الاستثمار في البنية التحتية للموانئ',country:'Nigeria',    countryAr:'نيجيريا',   path:'C', sector:'Infrastructure',      sectorAr:'البنية التحتية', status:2, reviewed:false, engaged:false, date:'10 May 2025', cost:'$45M', lead:'A. Okonkwo', lat:9.1,  lng:8.7  },
+  { id:13, titleEn:'Chaco Water Security',           titleAr:'الأمن المائي في تشاكو',              country:'Paraguay',   countryAr:'باراغواي',  path:'B', sector:'WASH',                sectorAr:'المياه والصرف الصحي', status:2, reviewed:false, engaged:false, date:'12 May 2026', cost:'$8M',  lead:'M. Giménez', lat:-23.4, lng:-58.4 },
+  { id:14, titleEn:'Smallholder Agriculture Resilience', titleAr:'مرونة المزارعين الصغار',         country:'Paraguay',   countryAr:'باراغواي',  path:'C', sector:'Agriculture & Livelihoods', sectorAr:'الزراعة وسبل المعيشة', status:3, reviewed:false, engaged:true,  date:'03 Jun 2026', cost:'$14M', lead:'R. Benítez', lat:-25.3, lng:-57.6 },
 ];
 
 const countryPrograms = {
@@ -1819,6 +1829,17 @@ const countryPrograms = {
     proposed:[{nameEn:'Secondary Education Quality',nameAr:'جودة التعليم الثانوي',type:'proposed',sector:'Education',sectorAr:'التعليم',cost:'$4M',start:'Q1 2025',status:'Approved',statusAr:'معتمد',path:'B',lead:'C. Uwimana',ben:'95,000'}],
     evaluation:[]
   },
+  'Paraguay':   {
+    existing:[
+      {nameEn:'Primary Healthcare Access',nameAr:'الوصول للرعاية الصحية الأولية',type:'existing',sector:'Health',sectorAr:'الصحة',cost:'$4M',start:'Mar 2023',status:'Active',statusAr:'نشط',path:'B',lead:'M. Giménez',ben:'160,000'}
+    ],
+    proposed:[
+      {nameEn:'Chaco Water Security',nameAr:'الأمن المائي في تشاكو',type:'proposed',sector:'WASH',sectorAr:'المياه والصرف الصحي',cost:'$8M',start:'Q4 2026',status:'Program Dev',statusAr:'تطوير البرنامج',path:'B',lead:'M. Giménez',ben:'140,000'}
+    ],
+    evaluation:[
+      {nameEn:'Smallholder Agriculture Resilience',nameAr:'مرونة المزارعين الصغار',type:'evaluation',sector:'Agriculture & Livelihoods',sectorAr:'الزراعة وسبل المعيشة',cost:'$14M',start:'TBD',status:'Under Evaluation',statusAr:'قيد التقييم',path:'C',lead:'R. Benítez',ben:'45,000 farmers'}
+    ]
+  },
 };
 
 // ── City-level coordinates (district / city) ──────────────────────────────
@@ -1835,6 +1856,8 @@ const cityData = {
   10: { lat:32.34, lng:36.21, name:'Mafraq Governorate',  nameAr:'محافظة المفرق',        zoom:11 },
   11: { lat:-1.94, lng:30.06, name:'Kigali',              nameAr:'كيغالي',               zoom:12 },
   12: { lat:6.45,  lng:3.39,  name:'Lagos Port Area',     nameAr:'منطقة ميناء لاغوس',   zoom:13 },
+  13: { lat:-22.55,lng:-59.65,name:'Boquerón / Chaco',    nameAr:'بوكيرون / تشاكو',      zoom:8  },
+  14: { lat:-25.28,lng:-57.63,name:'Asunción & San Pedro',nameAr:'أسونسيون وسان بيدرو', zoom:9  },
 };
 
 // ── Program name → request id (enables drawer card → project detail nav) ──
@@ -1851,16 +1874,22 @@ const programToReqId = {
   'Refugee Livelihood Support':     10,
   'Secondary Education Quality':    11,
   'Port Infrastructure Investment': 12,
+  'Chaco Water Security':           13,
+  'Smallholder Agriculture Resilience': 14,
 };
 
 // ── Request metadata (impact, beneficiaries, duration, implementor) ──────
 const requestMeta = {
   2:  { impact:'Moderate',       beneficiaries:'120,000',  duration:'18 months', implementor:'UN', implName:'UN Agency', implNameAr:'وكالة أممية', history:[], notes:[] },
-  4:  { impact:'High',           beneficiaries:'780,000',  duration:'30 months', implementor:'UN', implName:'UN Agency', implNameAr:'وكالة أممية', history:[], notes:[] },
+  4:  { impact:'High',           beneficiaries:'780,000',  duration:'30 months', implementor:'UN', implName:'UN Agency', implNameAr:'وكالة أممية', history:[], notes:[],
+        evaluation:{ score:72.2, verdict:'Hold — Request Information', cls:'hold', classification:'Development · Grant', gate:'Standard review', date:'4 Jun 2026',
+          redFlags:['Political & security risk'], rfi:['Financial & Economic Value for the UAE'] } },
   6:  { impact:'Moderate',       beneficiaries:'95,000',   duration:'12 months', implementor:'UN', implName:'UN Agency', implNameAr:'وكالة أممية', history:[], notes:[] },
   8:  { impact:'Moderate',       beneficiaries:'210,000',  duration:'18 months', implementor:'UN', implName:'UN Agency', implNameAr:'وكالة أممية', history:[], notes:[] },
   10: { impact:'High',           beneficiaries:'670,000',  duration:'24 months', implementor:'UN', implName:'UN Agency', implNameAr:'وكالة أممية', history:[], notes:[] },
   12: { impact:'Transformative', beneficiaries:'4,500,000',duration:'48 months', implementor:'UN', implName:'UN Agency', implNameAr:'وكالة أممية', history:[], notes:[] },
+  13: { impact:'High',           beneficiaries:'140,000',  duration:'24 months', implementor:'UN', implName:'UN Agency', implNameAr:'وكالة أممية', history:[], notes:[] },
+  14: { impact:'Moderate',       beneficiaries:'45,000 farmers', duration:'36 months', implementor:'UN', implName:'UN Agency', implNameAr:'وكالة أممية', history:[], notes:[] },
 };
 
 // ── Sector EN → AR lookup ──────────────────────────────────────────────────
@@ -1945,7 +1974,7 @@ const COUNTRY_LATLNG = {
   'Morocco':[31.8,-7.1],'Mozambique':[-18.7,35.5],'Myanmar':[17.1,96.6],'Namibia':[-22.0,17.1],
   'Nepal':[28.4,84.1],'Nicaragua':[12.9,-85.2],'Niger':[17.6,8.1],'Nigeria':[9.1,8.7],
   'Pakistan':[30.4,69.3],'Palestine':[31.9,35.3],'Papua New Guinea':[-6.3,143.9],
-  'Peru':[-9.2,-75.0],'Philippines':[12.9,121.8],'Rwanda':[-1.9,29.9],'Senegal':[14.5,-14.5],
+  'Paraguay':[-23.4,-58.4],'Peru':[-9.2,-75.0],'Philippines':[12.9,121.8],'Rwanda':[-1.9,29.9],'Senegal':[14.5,-14.5],
   'Sierra Leone':[8.5,-11.8],'Somalia':[5.2,46.2],'South Africa':[-30.6,25.0],
   'South Sudan':[6.9,31.3],'Sri Lanka':[7.9,80.7],'Sudan':[12.8,30.2],'Syria':[34.8,38.9],
   'Tajikistan':[38.9,71.3],'Tanzania':[-6.4,34.9],'Thailand':[15.9,100.9],'Timor-Leste':[-8.9,125.7],
@@ -1969,7 +1998,7 @@ const COUNTRY_ISO = {
   'Mexico':'MEX','Moldova':'MDA','Mongolia':'MNG','Morocco':'MAR','Mozambique':'MOZ',
   'Myanmar':'MMR','Namibia':'NAM','Nepal':'NPL','Nicaragua':'NIC','Niger':'NER',
   'Nigeria':'NGA','Pakistan':'PAK','Palestine':'PSE','Papua New Guinea':'PNG',
-  'Peru':'PER','Philippines':'PHL','Rwanda':'RWA','Senegal':'SEN','Sierra Leone':'SLE',
+  'Paraguay':'PRY','Peru':'PER','Philippines':'PHL','Rwanda':'RWA','Senegal':'SEN','Sierra Leone':'SLE',
   'Somalia':'SOM','South Africa':'ZAF','South Sudan':'SSD','Sri Lanka':'LKA','Sudan':'SDN',
   'Syria':'SYR','Tajikistan':'TJK','Tanzania':'TZA','Thailand':'THA','Timor-Leste':'TLS',
   'Togo':'TGO','Tunisia':'TUN','Turkey':'TUR','Turkmenistan':'TKM','Uganda':'UGA',
@@ -2136,6 +2165,29 @@ function switchView(view, navEl) {
   if (view === 'settings')  renderSettings(currentSettingsTab);
   if (view === 'documents') renderDocuments();
   if (view === 'overview')  renderOverview();
+  if (view === 'evaluation') {
+    const f = document.getElementById('evaluator-frame');
+    if (f && !f.src) f.src = 'evaluator.html?v=' + Date.now();   // lazy-load fresh (cache-bust)
+  }
+  // Remember the active view so a refresh returns here
+  try {
+    localStorage.setItem('cad_view', view);
+    if (view === 'project' && selectedRequest) localStorage.setItem('cad_project', selectedRequest.id);
+  } catch (e) {}
+}
+
+function restoreView() {
+  try {
+    const v = localStorage.getItem('cad_view');
+    if (!v || v === 'pipeline') return;
+    if (v === 'project') {
+      const id = parseInt(localStorage.getItem('cad_project'), 10);
+      if (!isNaN(id) && requests.find(r => r.id === id)) { openProject(id); return; }
+      return;
+    }
+    const el = document.querySelector('.sb-icon[data-view="' + v + '"]');
+    if (el && document.getElementById('view-' + v)) switchView(v, el);
+  } catch (e) {}
 }
 
 // ── Language ──────────────────────────────────────────────────────────────
@@ -4014,7 +4066,7 @@ async function cd_exportCountryPPT_legacy(country) {
     const gni=gv('NY.GNP.PCAP.CD');
     const dacClass=!gni?'Developing Country':gni<1135?'Least Developed · Low Income':gni<4465?'Lower-Middle Income':gni<13845?'Upper-Middle Income':'High Income';
     const dateStr=new Date().toLocaleDateString('en-US',{month:'long',year:'numeric'});
-    const COUNTRY_INFO={'Afghanistan':{capital:'Kabul',currency:'Afghani (AFN)',languages:'Dari, Pashto'},'Algeria':{capital:'Algiers',currency:'Algerian Dinar (DZD)',languages:'Arabic, Tamazight'},'Angola':{capital:'Luanda',currency:'Kwanza (AOA)',languages:'Portuguese'},'Bangladesh':{capital:'Dhaka',currency:'Taka (BDT)',languages:'Bengali'},'Bolivia':{capital:'Sucre',currency:'Boliviano (BOB)',languages:'Spanish, Quechua'},'Botswana':{capital:'Gaborone',currency:'Pula (BWP)',languages:'English, Setswana'},'Burkina Faso':{capital:'Ouagadougou',currency:'CFA Franc (XOF)',languages:'French'},'Burundi':{capital:'Gitega',currency:'Burundian Franc (BIF)',languages:'Kirundi, French'},'Cambodia':{capital:'Phnom Penh',currency:'Riel (KHR)',languages:'Khmer'},'Cameroon':{capital:'Yaoundé',currency:'CFA Franc (XAF)',languages:'French, English'},'Chad':{capital:"N'Djamena",currency:'CFA Franc (XAF)',languages:'Arabic, French'},'Colombia':{capital:'Bogotá',currency:'Colombian Peso (COP)',languages:'Spanish'},'Congo, Dem. Rep.':{capital:'Kinshasa',currency:'Congolese Franc (CDF)',languages:'French'},"Côte d'Ivoire":{capital:'Yamoussoukro',currency:'CFA Franc (XOF)',languages:'French'},'Ecuador':{capital:'Quito',currency:'US Dollar (USD)',languages:'Spanish'},'Egypt':{capital:'Cairo',currency:'Egyptian Pound (EGP)',languages:'Arabic'},'El Salvador':{capital:'San Salvador',currency:'US Dollar (USD)',languages:'Spanish'},'Eritrea':{capital:'Asmara',currency:'Nakfa (ERN)',languages:'Tigrinya, Arabic'},'Ethiopia':{capital:'Addis Ababa',currency:'Birr (ETB)',languages:'Amharic'},'Ghana':{capital:'Accra',currency:'Cedi (GHS)',languages:'English'},'Guatemala':{capital:'Guatemala City',currency:'Quetzal (GTQ)',languages:'Spanish'},'Guinea':{capital:'Conakry',currency:'Guinean Franc (GNF)',languages:'French'},'Haiti':{capital:'Port-au-Prince',currency:'Gourde (HTG)',languages:'French, Creole'},'Honduras':{capital:'Tegucigalpa',currency:'Lempira (HNL)',languages:'Spanish'},'India':{capital:'New Delhi',currency:'Indian Rupee (INR)',languages:'Hindi, English'},'Indonesia':{capital:'Jakarta',currency:'Rupiah (IDR)',languages:'Indonesian'},'Iraq':{capital:'Baghdad',currency:'Iraqi Dinar (IQD)',languages:'Arabic, Kurdish'},'Jordan':{capital:'Amman',currency:'Jordanian Dinar (JOD)',languages:'Arabic'},'Kazakhstan':{capital:'Astana',currency:'Tenge (KZT)',languages:'Kazakh, Russian'},'Kenya':{capital:'Nairobi',currency:'Kenyan Shilling (KES)',languages:'Swahili, English'},'Kosovo':{capital:'Pristina',currency:'Euro (EUR)',languages:'Albanian, Serbian'},'Kyrgyzstan':{capital:'Bishkek',currency:'Som (KGS)',languages:'Kyrgyz, Russian'},'Laos':{capital:'Vientiane',currency:'Kip (LAK)',languages:'Lao'},'Lebanon':{capital:'Beirut',currency:'Lebanese Pound (LBP)',languages:'Arabic'},'Liberia':{capital:'Monrovia',currency:'Liberian Dollar (LRD)',languages:'English'},'Libya':{capital:'Tripoli',currency:'Libyan Dinar (LYD)',languages:'Arabic'},'Madagascar':{capital:'Antananarivo',currency:'Ariary (MGA)',languages:'Malagasy, French'},'Malawi':{capital:'Lilongwe',currency:'Malawian Kwacha (MWK)',languages:'English, Chichewa'},'Mali':{capital:'Bamako',currency:'CFA Franc (XOF)',languages:'French'},'Mauritania':{capital:'Nouakchott',currency:'Ouguiya (MRU)',languages:'Arabic'},'Mexico':{capital:'Mexico City',currency:'Mexican Peso (MXN)',languages:'Spanish'},'Moldova':{capital:'Chișinău',currency:'Moldovan Leu (MDL)',languages:'Romanian'},'Mongolia':{capital:'Ulaanbaatar',currency:'Tögrög (MNT)',languages:'Mongolian'},'Morocco':{capital:'Rabat',currency:'Dirham (MAD)',languages:'Arabic, Tamazight'},'Mozambique':{capital:'Maputo',currency:'Metical (MZN)',languages:'Portuguese'},'Myanmar':{capital:'Naypyidaw',currency:'Kyat (MMK)',languages:'Burmese'},'Namibia':{capital:'Windhoek',currency:'Namibian Dollar (NAD)',languages:'English'},'Nepal':{capital:'Kathmandu',currency:'Nepalese Rupee (NPR)',languages:'Nepali'},'Nicaragua':{capital:'Managua',currency:'Córdoba (NIO)',languages:'Spanish'},'Niger':{capital:'Niamey',currency:'CFA Franc (XOF)',languages:'French'},'Nigeria':{capital:'Abuja',currency:'Naira (NGN)',languages:'English'},'Pakistan':{capital:'Islamabad',currency:'Pakistani Rupee (PKR)',languages:'Urdu, English'},'Palestine':{capital:'Ramallah',currency:'Israeli Shekel (ILS)',languages:'Arabic'},'Papua New Guinea':{capital:'Port Moresby',currency:'Kina (PGK)',languages:'English, Tok Pisin'},'Peru':{capital:'Lima',currency:'Sol (PEN)',languages:'Spanish'},'Philippines':{capital:'Manila',currency:'Philippine Peso (PHP)',languages:'Filipino, English'},'Rwanda':{capital:'Kigali',currency:'Rwandan Franc (RWF)',languages:'Kinyarwanda, English'},'Senegal':{capital:'Dakar',currency:'CFA Franc (XOF)',languages:'French'},'Sierra Leone':{capital:'Freetown',currency:'Leone (SLL)',languages:'English'},'Somalia':{capital:'Mogadishu',currency:'Somali Shilling (SOS)',languages:'Somali, Arabic'},'South Africa':{capital:'Pretoria',currency:'Rand (ZAR)',languages:'11 official'},'South Sudan':{capital:'Juba',currency:'S. Sudanese Pound (SSP)',languages:'English'},'Sri Lanka':{capital:'Colombo',currency:'Sri Lankan Rupee (LKR)',languages:'Sinhala, Tamil'},'Sudan':{capital:'Khartoum',currency:'Sudanese Pound (SDG)',languages:'Arabic'},'Syria':{capital:'Damascus',currency:'Syrian Pound (SYP)',languages:'Arabic'},'Tajikistan':{capital:'Dushanbe',currency:'Somoni (TJS)',languages:'Tajik'},'Tanzania':{capital:'Dodoma',currency:'Tanzanian Shilling (TZS)',languages:'Swahili, English'},'Thailand':{capital:'Bangkok',currency:'Thai Baht (THB)',languages:'Thai'},'Timor-Leste':{capital:'Dili',currency:'US Dollar (USD)',languages:'Tetum, Portuguese'},'Togo':{capital:'Lomé',currency:'CFA Franc (XOF)',languages:'French'},'Tunisia':{capital:'Tunis',currency:'Tunisian Dinar (TND)',languages:'Arabic'},'Turkey':{capital:'Ankara',currency:'Turkish Lira (TRY)',languages:'Turkish'},'Turkmenistan':{capital:'Ashgabat',currency:'Manat (TMT)',languages:'Turkmen'},'Uganda':{capital:'Kampala',currency:'Ugandan Shilling (UGX)',languages:'English, Swahili'},'Ukraine':{capital:'Kyiv',currency:'Hryvnia (UAH)',languages:'Ukrainian'},'Uzbekistan':{capital:'Tashkent',currency:'Uzbekistani Som (UZS)',languages:'Uzbek'},'Venezuela':{capital:'Caracas',currency:'Bolívar (VES)',languages:'Spanish'},'Vietnam':{capital:'Hanoi',currency:'Vietnamese Đồng (VND)',languages:'Vietnamese'},'Yemen':{capital:"Sana'a",currency:'Yemeni Rial (YER)',languages:'Arabic'},'Zambia':{capital:'Lusaka',currency:'Zambian Kwacha (ZMW)',languages:'English'},'Zimbabwe':{capital:'Harare',currency:'Zimbabwe Gold (ZiG)',languages:'English, Shona'},'Armenia':{capital:'Yerevan',currency:'Armenian Dram (AMD)',languages:'Armenian'},'Azerbaijan':{capital:'Baku',currency:'Azerbaijani Manat (AZN)',languages:'Azerbaijani'},'Albania':{capital:'Tirana',currency:'Albanian Lek (ALL)',languages:'Albanian'},'Argentina':{capital:'Buenos Aires',currency:'Argentine Peso (ARS)',languages:'Spanish'},'Somaliland':{capital:'Hargeisa',currency:'Somaliland Shilling (SLSH)',languages:'Somali, Arabic, English'}};
+    const COUNTRY_INFO={'Afghanistan':{capital:'Kabul',currency:'Afghani (AFN)',languages:'Dari, Pashto'},'Algeria':{capital:'Algiers',currency:'Algerian Dinar (DZD)',languages:'Arabic, Tamazight'},'Angola':{capital:'Luanda',currency:'Kwanza (AOA)',languages:'Portuguese'},'Bangladesh':{capital:'Dhaka',currency:'Taka (BDT)',languages:'Bengali'},'Bolivia':{capital:'Sucre',currency:'Boliviano (BOB)',languages:'Spanish, Quechua'},'Botswana':{capital:'Gaborone',currency:'Pula (BWP)',languages:'English, Setswana'},'Burkina Faso':{capital:'Ouagadougou',currency:'CFA Franc (XOF)',languages:'French'},'Burundi':{capital:'Gitega',currency:'Burundian Franc (BIF)',languages:'Kirundi, French'},'Cambodia':{capital:'Phnom Penh',currency:'Riel (KHR)',languages:'Khmer'},'Cameroon':{capital:'Yaoundé',currency:'CFA Franc (XAF)',languages:'French, English'},'Chad':{capital:"N'Djamena",currency:'CFA Franc (XAF)',languages:'Arabic, French'},'Colombia':{capital:'Bogotá',currency:'Colombian Peso (COP)',languages:'Spanish'},'Congo, Dem. Rep.':{capital:'Kinshasa',currency:'Congolese Franc (CDF)',languages:'French'},"Côte d'Ivoire":{capital:'Yamoussoukro',currency:'CFA Franc (XOF)',languages:'French'},'Ecuador':{capital:'Quito',currency:'US Dollar (USD)',languages:'Spanish'},'Egypt':{capital:'Cairo',currency:'Egyptian Pound (EGP)',languages:'Arabic'},'El Salvador':{capital:'San Salvador',currency:'US Dollar (USD)',languages:'Spanish'},'Eritrea':{capital:'Asmara',currency:'Nakfa (ERN)',languages:'Tigrinya, Arabic'},'Ethiopia':{capital:'Addis Ababa',currency:'Birr (ETB)',languages:'Amharic'},'Ghana':{capital:'Accra',currency:'Cedi (GHS)',languages:'English'},'Guatemala':{capital:'Guatemala City',currency:'Quetzal (GTQ)',languages:'Spanish'},'Guinea':{capital:'Conakry',currency:'Guinean Franc (GNF)',languages:'French'},'Haiti':{capital:'Port-au-Prince',currency:'Gourde (HTG)',languages:'French, Creole'},'Honduras':{capital:'Tegucigalpa',currency:'Lempira (HNL)',languages:'Spanish'},'India':{capital:'New Delhi',currency:'Indian Rupee (INR)',languages:'Hindi, English'},'Indonesia':{capital:'Jakarta',currency:'Rupiah (IDR)',languages:'Indonesian'},'Iraq':{capital:'Baghdad',currency:'Iraqi Dinar (IQD)',languages:'Arabic, Kurdish'},'Jordan':{capital:'Amman',currency:'Jordanian Dinar (JOD)',languages:'Arabic'},'Kazakhstan':{capital:'Astana',currency:'Tenge (KZT)',languages:'Kazakh, Russian'},'Kenya':{capital:'Nairobi',currency:'Kenyan Shilling (KES)',languages:'Swahili, English'},'Kosovo':{capital:'Pristina',currency:'Euro (EUR)',languages:'Albanian, Serbian'},'Kyrgyzstan':{capital:'Bishkek',currency:'Som (KGS)',languages:'Kyrgyz, Russian'},'Laos':{capital:'Vientiane',currency:'Kip (LAK)',languages:'Lao'},'Lebanon':{capital:'Beirut',currency:'Lebanese Pound (LBP)',languages:'Arabic'},'Liberia':{capital:'Monrovia',currency:'Liberian Dollar (LRD)',languages:'English'},'Libya':{capital:'Tripoli',currency:'Libyan Dinar (LYD)',languages:'Arabic'},'Madagascar':{capital:'Antananarivo',currency:'Ariary (MGA)',languages:'Malagasy, French'},'Malawi':{capital:'Lilongwe',currency:'Malawian Kwacha (MWK)',languages:'English, Chichewa'},'Mali':{capital:'Bamako',currency:'CFA Franc (XOF)',languages:'French'},'Mauritania':{capital:'Nouakchott',currency:'Ouguiya (MRU)',languages:'Arabic'},'Mexico':{capital:'Mexico City',currency:'Mexican Peso (MXN)',languages:'Spanish'},'Moldova':{capital:'Chișinău',currency:'Moldovan Leu (MDL)',languages:'Romanian'},'Mongolia':{capital:'Ulaanbaatar',currency:'Tögrög (MNT)',languages:'Mongolian'},'Morocco':{capital:'Rabat',currency:'Dirham (MAD)',languages:'Arabic, Tamazight'},'Mozambique':{capital:'Maputo',currency:'Metical (MZN)',languages:'Portuguese'},'Myanmar':{capital:'Naypyidaw',currency:'Kyat (MMK)',languages:'Burmese'},'Namibia':{capital:'Windhoek',currency:'Namibian Dollar (NAD)',languages:'English'},'Nepal':{capital:'Kathmandu',currency:'Nepalese Rupee (NPR)',languages:'Nepali'},'Nicaragua':{capital:'Managua',currency:'Córdoba (NIO)',languages:'Spanish'},'Niger':{capital:'Niamey',currency:'CFA Franc (XOF)',languages:'French'},'Nigeria':{capital:'Abuja',currency:'Naira (NGN)',languages:'English'},'Pakistan':{capital:'Islamabad',currency:'Pakistani Rupee (PKR)',languages:'Urdu, English'},'Palestine':{capital:'Ramallah',currency:'Israeli Shekel (ILS)',languages:'Arabic'},'Papua New Guinea':{capital:'Port Moresby',currency:'Kina (PGK)',languages:'English, Tok Pisin'},'Paraguay':{capital:'Asunción',currency:'Guaraní (PYG)',languages:'Spanish, Guaraní'},'Peru':{capital:'Lima',currency:'Sol (PEN)',languages:'Spanish'},'Philippines':{capital:'Manila',currency:'Philippine Peso (PHP)',languages:'Filipino, English'},'Rwanda':{capital:'Kigali',currency:'Rwandan Franc (RWF)',languages:'Kinyarwanda, English'},'Senegal':{capital:'Dakar',currency:'CFA Franc (XOF)',languages:'French'},'Sierra Leone':{capital:'Freetown',currency:'Leone (SLL)',languages:'English'},'Somalia':{capital:'Mogadishu',currency:'Somali Shilling (SOS)',languages:'Somali, Arabic'},'South Africa':{capital:'Pretoria',currency:'Rand (ZAR)',languages:'11 official'},'South Sudan':{capital:'Juba',currency:'S. Sudanese Pound (SSP)',languages:'English'},'Sri Lanka':{capital:'Colombo',currency:'Sri Lankan Rupee (LKR)',languages:'Sinhala, Tamil'},'Sudan':{capital:'Khartoum',currency:'Sudanese Pound (SDG)',languages:'Arabic'},'Syria':{capital:'Damascus',currency:'Syrian Pound (SYP)',languages:'Arabic'},'Tajikistan':{capital:'Dushanbe',currency:'Somoni (TJS)',languages:'Tajik'},'Tanzania':{capital:'Dodoma',currency:'Tanzanian Shilling (TZS)',languages:'Swahili, English'},'Thailand':{capital:'Bangkok',currency:'Thai Baht (THB)',languages:'Thai'},'Timor-Leste':{capital:'Dili',currency:'US Dollar (USD)',languages:'Tetum, Portuguese'},'Togo':{capital:'Lomé',currency:'CFA Franc (XOF)',languages:'French'},'Tunisia':{capital:'Tunis',currency:'Tunisian Dinar (TND)',languages:'Arabic'},'Turkey':{capital:'Ankara',currency:'Turkish Lira (TRY)',languages:'Turkish'},'Turkmenistan':{capital:'Ashgabat',currency:'Manat (TMT)',languages:'Turkmen'},'Uganda':{capital:'Kampala',currency:'Ugandan Shilling (UGX)',languages:'English, Swahili'},'Ukraine':{capital:'Kyiv',currency:'Hryvnia (UAH)',languages:'Ukrainian'},'Uzbekistan':{capital:'Tashkent',currency:'Uzbekistani Som (UZS)',languages:'Uzbek'},'Venezuela':{capital:'Caracas',currency:'Bolívar (VES)',languages:'Spanish'},'Vietnam':{capital:'Hanoi',currency:'Vietnamese Đồng (VND)',languages:'Vietnamese'},'Yemen':{capital:"Sana'a",currency:'Yemeni Rial (YER)',languages:'Arabic'},'Zambia':{capital:'Lusaka',currency:'Zambian Kwacha (ZMW)',languages:'English'},'Zimbabwe':{capital:'Harare',currency:'Zimbabwe Gold (ZiG)',languages:'English, Shona'},'Armenia':{capital:'Yerevan',currency:'Armenian Dram (AMD)',languages:'Armenian'},'Azerbaijan':{capital:'Baku',currency:'Azerbaijani Manat (AZN)',languages:'Azerbaijani'},'Albania':{capital:'Tirana',currency:'Albanian Lek (ALL)',languages:'Albanian'},'Argentina':{capital:'Buenos Aires',currency:'Argentine Peso (ARS)',languages:'Spanish'},'Somaliland':{capital:'Hargeisa',currency:'Somaliland Shilling (SLSH)',languages:'Somali, Arabic, English'}};
     const cInfo=COUNTRY_INFO[country]||{capital:'—',currency:'—',languages:'—'};
     // Sector status
     const stChip=(v,hi,lo,inv)=>{if(!v)return{l:'Developing',c:'AD833B'};const pct=inv?Math.max(0,1-v/hi)*100:Math.min(v/hi,1)*100;return pct>=80?{l:'Improving',c:'2F7F58'}:pct>=50?{l:'Developing',c:'AD833B'}:v>(inv?hi*1.5:lo)?{l:'Weak',c:'BA492F'}:{l:'Severe',c:NEG};};
@@ -5628,6 +5680,7 @@ function renderProjectDetail() {
         </div>
       </div>
     </div>
+    ${buildEvalHtml(r.id)}
     <div class="proj-timeline-wrap">
       <div class="proj-timeline-header">
         <div class="proj-section-title">${tx.projProgress}</div>
@@ -5650,6 +5703,37 @@ ${buildHistoryHtml(r.id)}
 `;
 
   setTimeout(() => initProjMiniMap(r.id), 80);
+}
+
+function buildEvalHtml(reqId) {
+  const e = requestMeta[reqId] && requestMeta[reqId].evaluation;
+  if (!e) return '';
+  const C = { approve:['#E6F7F2','#1E7D5E'], cond:['#FEF3C7','#7d5b1f'], revise:['#FBEEDD','#9a5a14'],
+              reject:['#FDECEA','#9B120B'], hold:['#E8EFF4','#2F586E'] };
+  const [bg, fg] = C[e.cls] || ['#F4F6FB','#1D252C'];
+  const flags = (e.redFlags && e.redFlags.length)
+    ? `<div style="margin-top:10px"><span style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--maroon)">Red flags</span>
+         <div style="font-size:12px;color:var(--text);margin-top:3px">${e.redFlags.map(x=>'&#9888; '+x).join(' &nbsp; ')}</div></div>` : '';
+  const rfi = (e.rfi && e.rfi.length)
+    ? `<div style="margin-top:8px"><span style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#2F586E">Requests for information</span>
+         <div style="font-size:12px;color:var(--text);margin-top:3px">${e.rfi.join(' &middot; ')}</div></div>` : '';
+  return `
+  <div class="proj-timeline-wrap">
+    <div class="proj-timeline-header">
+      <div class="proj-section-title">Program Evaluation</div>
+      <span style="font-size:11px;color:var(--text3)">${e.classification} &middot; ${e.gate} &middot; ${e.date}</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:20px;padding:8px 2px 2px">
+      <div style="text-align:center;flex-shrink:0">
+        <div style="font-size:36px;font-weight:800;line-height:1;color:var(--text)">${e.score}</div>
+        <div style="font-size:10px;color:var(--text3);margin-top:2px">/ 100 composite</div>
+      </div>
+      <div>
+        <span style="display:inline-block;padding:6px 15px;border-radius:20px;font-size:12.5px;font-weight:700;background:${bg};color:${fg}">${e.verdict}</span>
+        ${flags}${rfi}
+      </div>
+    </div>
+  </div>`;
 }
 
 function buildNotesHtml(reqId) {
@@ -6741,6 +6825,7 @@ function loadPrebakedIndicators() {
       if (resp.ok) {
         const json = await resp.json();
         delete json._meta;
+        delete json._regions;
         prebakedIndicators = json;
       }
     } catch (e) { /* no snapshot reachable — live fetch will cover */ }
@@ -7041,7 +7126,7 @@ const COUNTRY_ISO2 = {
   'Mauritania':'MR','Mexico':'MX','Moldova':'MD','Mongolia':'MN','Morocco':'MA',
   'Mozambique':'MZ','Myanmar':'MM','Namibia':'NA','Nepal':'NP','Nicaragua':'NI',
   'Niger':'NE','Nigeria':'NG','Pakistan':'PK','Palestine':'PS','Papua New Guinea':'PG',
-  'Peru':'PE','Philippines':'PH','Rwanda':'RW','Senegal':'SN','Sierra Leone':'SL',
+  'Paraguay':'PY','Peru':'PE','Philippines':'PH','Rwanda':'RW','Senegal':'SN','Sierra Leone':'SL',
   'Somalia':'SO','South Africa':'ZA','South Sudan':'SS','Sri Lanka':'LK','Sudan':'SD',
   'Syria':'SY','Tajikistan':'TJ','Tanzania':'TZ','Thailand':'TH','Timor-Leste':'TL',
   'Togo':'TG','Tunisia':'TN','Turkey':'TR','Turkmenistan':'TM','Uganda':'UG',
@@ -7056,6 +7141,7 @@ loadPrebakedIndicators();   // hydrate the static WB indicator snapshot (non-blo
 renderBudgetBars(); renderStatsBar();
 renderPipeline();
 renderSettings('general');
+restoreView();   // return to the view the user was on before refresh
 // Map init — 250 ms after load gives the flex layout time to paint
 function safeInitMap() {
   setTimeout(() => {
@@ -7088,7 +7174,7 @@ const CONTINENT_MAP = {
   'Morocco':'Africa','Mozambique':'Africa','Myanmar':'Asia','Namibia':'Africa',
   'Nepal':'Asia','Nicaragua':'Americas','Niger':'Africa','Nigeria':'Africa',
   'Pakistan':'Asia','Palestine':'Asia','Papua New Guinea':'Pacific',
-  'Peru':'Americas','Philippines':'Asia','Rwanda':'Africa','Senegal':'Africa',
+  'Paraguay':'Americas','Peru':'Americas','Philippines':'Asia','Rwanda':'Africa','Senegal':'Africa',
   'Sierra Leone':'Africa','Somalia':'Africa','South Africa':'Africa',
   'South Sudan':'Africa','Sri Lanka':'Asia','Sudan':'Africa','Syria':'Asia',
   'Tajikistan':'Asia','Tanzania':'Africa','Thailand':'Asia','Timor-Leste':'Asia',

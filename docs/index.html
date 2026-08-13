@@ -8,6 +8,7 @@
 <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
 <link  href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
+<script src="country_deck.js"></script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -3752,71 +3753,20 @@ const PPT_BUILDER_ENDPOINT = (window.PPT_BUILDER_ENDPOINT
 
 async function cd_exportCountryPPT(country) {
   if (!country) return;
-  const btn = document.getElementById('cd-export-btn');
-  const origHtml = btn ? btn.innerHTML : '';
-
-  // ── Phase 1: try the canonical Cloud Run builder ──
-  if (btn) { btn.textContent = 'Generating…'; btn.disabled = true; }
-  let remoteError = null;
-  try {
-    if (!countryDataCache[country] ||
-        Object.keys(countryDataCache[country]).filter(k=>!k.startsWith('__')).length < 3) {
-      await Promise.race([ca_loadCountryData(country), new Promise(r=>setTimeout(r,8000))]);
-    }
-    const ctx = cd_buildBuilderContext(country);
-
-    const controller = new AbortController();
-    const timeoutId  = setTimeout(() => controller.abort(), 30000);
-    let resp;
-    try {
-      resp = await fetch(PPT_BUILDER_ENDPOINT, {
-        method:  'POST',
-        headers: {'Content-Type':'application/json'},
-        body:    JSON.stringify(ctx),
-        signal:  controller.signal,
-      });
-    } finally {
-      clearTimeout(timeoutId);
-    }
-    if (!resp.ok) {
-      const errText = await resp.text().catch(()=>'(no body)');
-      throw new Error(`Builder returned ${resp.status}: ${errText.slice(0,200)}`);
-    }
-    const blob = await resp.blob();
-    const url  = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `${country}_Country_Overview.pptx`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-    if (btn) { btn.innerHTML = origHtml; btn.disabled = false; }
-    console.log('[CAD] PPT generated via Cloud Run builder');
-    return;
-  } catch (err) {
-    remoteError = err;
-    console.warn(
-      `[CAD] Cloud Run PPT builder unreachable (${err.name || err.message}). ` +
-      `Falling back to in-browser exporter.`, err);
-  }
-
-  // ── Phase 2: fallback to legacy in-browser pptxgenjs ──
-  if (btn) { btn.innerHTML = origHtml; btn.disabled = false; }
+  // Client-side generation is the primary (and only) path — no cloud backend, so this
+  // works identically on the hosted GitHub Pages site and locally. It builds the ODA
+  // country-assessment deck (docs/country_deck.js) from live World Bank data, with every
+  // figure referenced by source + year. See cd_exportCountryPPT_legacy below.
   if (typeof PptxGenJS === 'undefined') {
-    alert('Export failed.\n\n' +
-          'Remote builder: ' + (remoteError?.message || 'unreachable') + '\n' +
-          'Local exporter: pptxgenjs library not loaded.');
+    alert('PPT library not loaded. Please refresh and try again.');
     return;
   }
   try {
     await cd_exportCountryPPT_legacy(country);
-    console.log('[CAD] PPT generated via in-browser fallback');
-  } catch (err2) {
-    console.error('[CAD] Both remote and local PPT exporters failed:', err2);
-    alert('Export failed.\n\n' +
-          'Remote builder: ' + (remoteError?.message || 'unreachable') + '\n' +
-          'Local exporter: ' + (err2.message || err2));
+    console.log('[CAD] Country deck generated in-browser');
+  } catch (err) {
+    console.error('[CAD] Country PPT export failed:', err);
+    alert('Export failed: ' + (err.message || err));
   }
 }
 
@@ -4122,7 +4072,17 @@ async function cd_exportCountryPPT_legacy(country) {
     const cBudget=cReqs.reduce((s,r)=>{const m=(r.cost||'').replace(/[^0-9.]/g,'');return s+(parseFloat(m)||0);},0);
     const cProg=countryPrograms[country]||{existing:[],proposed:[],evaluation:[]};
     const totProg=(cProg.existing||[]).length+(cProg.proposed||[]).length+(cProg.evaluation||[]).length;
-    // ── PPT setup ──
+    // ── Reference-matched ODA country deck (docs/country_deck.js) — live data, fully referenced ──
+    if (typeof window.buildCountryDeck === 'function') {
+      await window.buildCountryDeck({
+        country, data:d, info:cInfo, iso2:iso2code,
+        programs:cProg, requests, reqMeta:requestMeta,
+        flagData:flagImg, mapData:mapImg, dateStr, PptxGenJS,
+        fileName:`${country}_Country_Assessment.pptx`
+      });
+      return; // finally{} restores the button
+    }
+    // ── PPT setup (legacy fallback if country_deck.js failed to load) ──
     const pptx=new PptxGenJS();
     pptx.defineLayout({name:'WIDE',width:13.333,height:7.5});
     pptx.layout='WIDE'; pptx.title=`${country} Country Overview`; pptx.author='Country Assessment Dashboard';

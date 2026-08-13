@@ -3979,7 +3979,7 @@ function cd_buildBuilderContext(country) {
 
 // Legacy in-browser exporter (pptxgenjs). Kept as automatic fallback if the
 // Cloud Run builder is unreachable. Not normally invoked.
-async function cd_exportCountryPPT_legacy(country) {
+async function cd_exportCountryPPT_legacy(country, research) {
   if (!country) return;
   if (typeof PptxGenJS === 'undefined') { alert('PPT library not loaded. Please refresh and try again.'); return; }
   const btn = document.getElementById('cd-export-btn');
@@ -4077,7 +4077,7 @@ async function cd_exportCountryPPT_legacy(country) {
       await window.buildCountryDeck({
         country, data:d, info:cInfo, iso2:iso2code,
         programs:cProg, requests, reqMeta:requestMeta,
-        flagData:flagImg, mapData:mapImg, dateStr, PptxGenJS,
+        flagData:flagImg, mapData:mapImg, dateStr, PptxGenJS, research,
         fileName:`${country}_Country_Assessment.pptx`
       });
       return; // finally{} restores the button
@@ -6645,8 +6645,56 @@ function closeAIReportModal() {
 function aiConfirmGenerate() {
   if (!aiSelectedWorkflow || !aiTargetCountry) return;
   const sector = document.getElementById('ai-sector-input').value.trim();
+  const country = aiTargetCountry, wf = aiSelectedWorkflow;
   closeAIReportModal();
-  exportCountryContext(aiTargetCountry, aiSelectedWorkflow, sector);
+  // Phase 2 — the Country Needs Assessment now runs LIVE against the local AI server and
+  // renders the fully-researched deck in-browser. Proposal/External keep the context handoff.
+  if (wf === 'needs') { cd_generateAICountryDeck(country); return; }
+  exportCountryContext(country, wf, sector);
+}
+
+// Lightweight progress overlay for the long (2–4 min) research run.
+function cd_progressOverlay(title, sub){
+  let ov=document.getElementById('cd-ai-progress');
+  if(!ov){
+    ov=document.createElement('div'); ov.id='cd-ai-progress';
+    ov.style.cssText='position:fixed;inset:0;z-index:4000;background:rgba(29,37,44,.72);display:flex;align-items:center;justify-content:center';
+    ov.innerHTML='<div style="background:#fff;max-width:460px;width:90%;padding:26px 28px;border-top:3px solid #AD833B;box-shadow:0 20px 60px rgba(0,0,0,.35)">'
+      +'<div style="font-family:Lora,Georgia,serif;font-size:18px;font-weight:700;color:#1D252C" id="cd-ai-p-title"></div>'
+      +'<div style="font-size:12.5px;color:#5B6A7E;margin-top:8px;line-height:1.5" id="cd-ai-p-sub"></div>'
+      +'<div style="margin-top:16px;height:3px;background:#EEE;overflow:hidden"><div style="height:100%;width:30%;background:#AD833B;animation:cdaiwipe 1.4s ease-in-out infinite"></div></div></div>';
+    document.body.appendChild(ov);
+    if(!document.getElementById('cd-ai-kf')){ const s=document.createElement('style'); s.id='cd-ai-kf'; s.textContent='@keyframes cdaiwipe{0%{margin-left:-30%}100%{margin-left:110%}}'; document.head.appendChild(s); }
+  }
+  ov.querySelector('#cd-ai-p-title').textContent=title;
+  ov.querySelector('#cd-ai-p-sub').textContent=sub;
+  ov.style.display='flex';
+  return { setStatus:t=>{ const e=ov.querySelector('#cd-ai-p-sub'); if(e) e.textContent=t; }, remove:()=>{ ov.style.display='none'; } };
+}
+
+// Phase 2 — live AI deep-research country deck via the local scoring server (localhost only).
+async function cd_generateAICountryDeck(country){
+  const base=(localStorage.getItem('oda_eval_endpoint')||'http://localhost:8787/score').replace(/\/score$/,'');
+  const ov=cd_progressOverlay('AI deep research · '+country,'Checking the local research server…');
+  try{
+    let up=false;
+    try{ const h=await fetch(base+'/health',{method:'GET'}); const hj=await h.json(); up=!!(hj&&hj.ok&&hj.key); }catch(e){}
+    if(!up){ ov.remove();
+      alert('AI deep research needs your local scoring server.\n\nStart evaluator_score_server.py (port 8787) and open the dashboard at http://localhost:8000 — a hosted https page cannot reach a local http server (same limit as the evaluator AI).\n\nMeanwhile, “Export Report” gives the instant, fully-referenced deck.');
+      return; }
+    ov.setStatus('Loading indicators…');
+    await Promise.race([ca_loadCountryData(country), new Promise(r=>setTimeout(r,8000))]);
+    const data=countryDataCache[country]||{}, indicators={};
+    Object.keys(data).forEach(id=>{ if(!id.startsWith('__')&&data[id]&&data[id].value!=null) indicators[id]={value:data[id].value,year:data[id].year}; });
+    ov.setStatus('Researching '+country+' across World Bank · WHO · UNESCO · FAO · WHO/UNICEF JMP · ITU · IEA and national sources — this takes 2–4 minutes…');
+    const res=await fetch(base+'/country',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({country,countryInfo:{},indicators})});
+    if(!res.ok) throw new Error('research server returned HTTP '+res.status);
+    const research=await res.json();
+    if(research.error) throw new Error(research.error);
+    ov.setStatus('Building the deck — '+(research.searches||0)+' sources researched…');
+    await cd_exportCountryPPT_legacy(country, research);
+    ov.remove();
+  }catch(e){ ov.remove(); console.error('[CAD] AI deep-research deck failed:',e); alert('AI deep research failed: '+(e.message||e)+'\n\nCheck the server log (_score_server.log).'); }
 }
 
 function exportCountryContext(country, workflow, sector) {
@@ -8500,9 +8548,9 @@ function im_toast(msg, bg) {
           style="border:1.5px solid var(--border);border-radius:9px;padding:12px 14px;cursor:pointer;transition:all .15s">
           <div style="display:flex;align-items:center;justify-content:space-between">
             <div style="font-size:13px;font-weight:700;color:var(--text)">Country Needs Assessment</div>
-            <span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:var(--accent-lt);color:var(--accent)">needs · 6 agents</span>
+            <span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:var(--accent-lt);color:var(--accent)">needs · live AI</span>
           </div>
-          <div style="font-size:11px;color:var(--text3);margin-top:3px">Evidence-based gap analysis. No project proposals.</div>
+          <div style="font-size:11px;color:var(--text3);margin-top:3px">Live AI deep-research → the full referenced deck, downloaded here. Needs the local server (~2–4 min).</div>
         </div>
 
         <div id="ai-wf-proposal" onclick="aiSelectWorkflow('proposal')"

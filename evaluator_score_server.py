@@ -542,6 +542,97 @@ def propose(payload):
     return data
 
 
+COUNTRY_MAX_TOKENS = int(os.environ.get("COUNTRY_MAX_TOKENS", "16000"))
+
+COUNTRY_SYSTEM = """You are the Country Needs Assessment researcher for the Office of Development Affairs (ODA).
+Given a country and a baseline of World Bank indicators, produce a rigorous, fully-sourced,
+sector-by-sector assessment for a senior leadership audience (the ODA country-assessment deck).
+
+RESEARCH LIVE. Use web search to gather the most recent figures from PRIMARY sources:
+World Bank, IMF, WHO (incl. GHED), UNICEF / UN IGME, UNESCO UIS, FAO (incl. SOFI), WHO/UNICEF JMP,
+ITU, IEA, ILO, OCHA / ReliefWeb, and the country's own national statistics office and central bank.
+Treat the provided World Bank baseline as a floor; prefer and CITE the most recent primary figure.
+
+RULES
+- EVERY numeric stat MUST carry a real source and year. NEVER invent a figure. If a figure cannot be
+  found, omit that stat rather than guess. Prefer figures from the last 3 years.
+- Prose must be tight and analytical (leadership register): what the number means and where the gap is.
+  Two to four sentences of substance per sector, distilled into the fields below.
+- Interventions must be concrete and country-specific (name real programmes, regions, or instruments
+  where possible), never generic boilerplate.
+- LENGTH LIMITS (strict — these render into fixed slide space):
+    * each sector "statement": ONE headline sentence, <= 16 words.
+    * each "sectorStatus" note: <= 8 words (e.g. "U5 mortality 16/1,000; rural reach gaps").
+    * each "crossSector" line: <= 9 words; "recommended": <= 16 words.
+    * each "insights" item: <= 24 words. each "interventions" item: <= 14 words.
+    * each stat "label": <= 5 words; "value": a short token (e.g. "16.3", "8.4%", "$18.5K").
+- Return STRICT JSON ONLY — no prose outside the JSON, no markdown fences, no trailing commentary.
+
+OUTPUT JSON SHAPE (use these exact keys):
+{
+ "subtitle": string,                     // e.g. "Republica del Paraguay - Heart of South America"
+ "incomeClass": string,                  // e.g. "Developing - Upper-Middle Income"
+ "sectorStatus": [                        // EXACTLY 6, in this order:
+   {"sector":"Health","note":string,"status":"Improving"|"Developing"|"Weak"|"Severe"},
+   {"sector":"Education", ...}, {"sector":"Food Security", ...},
+   {"sector":"WASH", ...}, {"sector":"Economic", ...}, {"sector":"Infrastructure", ...} ],
+ "sectors": {
+   "economy":        {"statement":string,"stats":[{"value":string,"label":string,"source":string,"year":string} x3-4],"insights":[string x3],"interventions":[string x4]},
+   "health":         {...}, "education": {...}, "food": {...}, "agriculture": {...},
+   "infrastructure": {...}, "wash": {...}, "energy": {...}
+ },
+ "crossSector": [                         // EXACTLY 6 (Health, Education, Food Security, Agriculture, Infrastructure, WASH)
+   {"sector":string,"status":"Improving"|"Developing"|"Weak"|"Severe","lines":[string,string],"recommended":string}, ... ],
+ "sources": [ {"label":string,"url":string}, ... up to 12 primary sources actually consulted ],
+ "confidence": "high"|"medium"|"low"
+}"""
+
+
+def country_research(payload):
+    """Live, multi-source country needs assessment -> the enriched deck-research model
+    consumed by docs/country_deck.js (buildCountryDeck opts.research)."""
+    client = get_client()
+    country = payload.get("country") or "the country"
+    info = payload.get("countryInfo") or {}
+    inds = payload.get("indicators") or {}
+    lines = []
+    for k, v in inds.items():
+        if isinstance(v, dict) and v.get("value") is not None:
+            lines.append("%s = %s (%s)" % (k, v.get("value"), v.get("year", "")))
+    baseline = "\n".join(lines[:90]) or "(no baseline indicators supplied)"
+    user = (
+        "COUNTRY: %s\n"
+        "Capital: %s | Currency: %s | Languages: %s\n\n"
+        "WORLD BANK BASELINE INDICATORS (id = value (year)):\n%s\n\n"
+        "Produce the ODA country needs assessment JSON for %s per your instructions. "
+        "Research the latest primary-source figures across every sector and cite each one."
+        % (country, info.get("capital", "—"), info.get("currency", "—"),
+           info.get("languages", "—"), baseline, country)
+    )
+    base = dict(model=MODEL, max_tokens=COUNTRY_MAX_TOKENS, system=COUNTRY_SYSTEM,
+                messages=[{"role": "user", "content": user}])
+    used_web, searches = False, 0
+    if WEB_SEARCH:
+        tools = [{"type": "web_search_20250305", "name": "web_search", "max_uses": max(WEB_MAX_USES, 16)}]
+        try:
+            msg, searches = _run(client, base, tools)
+            used_web = True
+        except Exception as e:  # noqa: BLE001
+            sys.stderr.write("[country] web_search unavailable, researching without it: %s\n" % e)
+            msg, searches = _run(client, base)
+    else:
+        msg, searches = _run(client, base)
+    text = "".join(b.text for b in msg.content if getattr(b, "type", "") == "text")
+    data = _extract_json(text)
+    if isinstance(data.get("sources"), list):
+        try:
+            _validate_sources(data["sources"])
+        except Exception:
+            pass
+    data.update({"country": country, "model": MODEL, "webSearch": used_web, "searches": searches})
+    return data
+
+
 def make_deck(payload):
     """Run the canonical generators on a posted deck-data model; save deck + one-pager to Downloads."""
     data = payload.get("deckData") or payload
@@ -601,6 +692,7 @@ class Handler(BaseHTTPRequestHandler):
                  else "partner" if self.path.startswith("/partner")
                  else "verify" if self.path.startswith("/verify")
                  else "propose" if self.path.startswith("/propose")
+                 else "country" if self.path.startswith("/country")
                  else "deck" if self.path.startswith("/deck") else None)
         if not route:
             self._json(404, {"error": "not found"})
@@ -612,7 +704,7 @@ class Handler(BaseHTTPRequestHandler):
             self._json(400, {"error": f"bad request: {e}"})
             return
         try:
-            fn = {"score": score, "partner": partner, "verify": verify, "propose": propose, "deck": make_deck}[route]
+            fn = {"score": score, "partner": partner, "verify": verify, "propose": propose, "country": country_research, "deck": make_deck}[route]
             self._json(200, fn(payload))
         except Exception as e:
             self._json(500, {"error": str(e)})

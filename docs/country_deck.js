@@ -66,6 +66,17 @@ function buildCountryDeck(opts){
   if(!Pptx) throw new Error('PptxGenJS constructor not provided');
   const DATE = dateStr || new Date().toLocaleDateString('en-US',{month:'long',year:'numeric'});
 
+  // ── optional AI deep-research model (phase 2). When present, its cited multi-source
+  //    stats / insights / interventions override the World-Bank-templated content. ──
+  const R = opts.research || null;
+  const rSec = k => (R && R.sectors && R.sectors[k]) || null;
+  const _t=(s,n)=>{s=String(s==null?'':s);return s.length>n?s.slice(0,n-1)+'…':s;};
+  const rStats = k => { const s=rSec(k); if(!s||!Array.isArray(s.stats)||!s.stats.length) return null;
+    return s.stats.slice(0,4).map(st=>({ val:_t(st.value==null?'—':st.value,14), lbl:_t(st.label||'',40),
+      cite:_t([st.source,st.year].filter(Boolean).join(' · '),42), neg:!!st.neg })); };
+  const statusBadge = st => { const s=String(st||'').toLowerCase();
+    return s.startsWith('impr')?{l:'Improving',c:'2F7F58'}:s.startsWith('sev')?{l:'Severe',c:'79242F'}:s.startsWith('weak')?{l:'Weak',c:'79242F'}:{l:'Developing',c:'AD833B'}; };
+
   // ── data accessors ──
   const gv = id => (data[id] && data[id].value!=null) ? data[id].value : null;
   const yr = id => (data[id] && data[id].year) ? String(data[id].year) : '';
@@ -124,9 +135,10 @@ function buildCountryDeck(opts){
     sl.addText('Source: '+srcTxt,{x:0.5,y:7.17,w:9.5,h:0.22,fontFace:BODY,fontSize:8,color:tc,valign:'middle'});
     sl.addText([{text:'ODA',options:{bold:true,color:oc}},{text:'   '+String(PAGE).padStart(2,'0')+' / '+String(TOTAL).padStart(2,'0'),options:{color:tc}}],{x:10.5,y:7.17,w:2.33,h:0.22,fontFace:BODY,fontSize:8,align:'right',valign:'middle'});
   };
+  const oneLine=s=>trim(String(s==null?'':s).split(/\.\s/)[0].replace(/\.$/,''),82);
   const sectorHead=(sl,eb,title,statement)=>{
     eyebrow(sl,eb,0.5,0.34,8,GOLD);
-    sl.addText([{text:title,options:{bold:true,color:INK}},{text:'  —  '+statement,options:{color:FG3}}],{x:0.5,y:0.58,w:12.3,h:0.5,fontFace:HEAD,fontSize:19,valign:'middle'});
+    sl.addText([{text:title,options:{bold:true,color:INK}},{text:'  —  '+oneLine(statement),options:{color:FG3}}],{x:0.5,y:0.58,w:12.3,h:0.5,fontFace:HEAD,fontSize:18,valign:'middle'});
   };
   // 2×2 grid of citation stat cards
   const statCards=(sl,stats,x,y,w,cols=2,cardH=1.0)=>{
@@ -195,8 +207,9 @@ function buildCountryDeck(opts){
     if(flagData) sl.addImage({data:flagData,x:0.4,y:0.44,w:1.5,h:1.0});
     else { sl.addShape(p.ShapeType.rect,{x:0.4,y:0.44,w:1.5,h:1.0,fill:{color:'27304D'},line:{color:WHITE,width:0.5,transparency:60}}); sl.addText((iso2||'').toUpperCase(),{x:0.4,y:0.44,w:1.5,h:1.0,fontFace:HEAD,fontSize:26,bold:true,color:GOLD_LT,align:'center',valign:'middle'}); }
     sl.addText('COUNTRY OVERVIEW',{x:0.4,y:1.66,w:LW-0.6,h:0.22,fontFace:BODY,fontSize:9,bold:true,color:GOLD_LT,charSpacing:2.6});
-    sl.addText(country,{x:0.37,y:1.9,w:LW-0.45,h:1.2,fontFace:HEAD,fontSize:country.length>12?38:46,bold:true,color:WHITE,valign:'top',wrap:true});
-    const rows=[['UN CLASS',dacClass],['CAPITAL',cInfo.capital],['GNI / CAP',gdpCap+(gdpCapV!=null?' PPP ('+yr('NY.GDP.PCAP.PP.CD')+')':'')],['CURRENCY',cInfo.currency],['LANGUAGES',cInfo.languages],['PERIOD',DATE]];
+    sl.addText(country,{x:0.37,y:1.9,w:LW-0.45,h:1.05,fontFace:HEAD,fontSize:country.length>12?36:46,bold:true,color:WHITE,valign:'top',wrap:true});
+    if(R&&R.subtitle) sl.addText(R.subtitle,{x:0.4,y:3.02,w:LW-0.55,h:0.46,fontFace:BODY,fontSize:9.5,italic:true,color:SKY,valign:'top',wrap:true});
+    const rows=[['UN CLASS',(R&&R.incomeClass)||dacClass],['CAPITAL',cInfo.capital],['GNI / CAP',gdpCap+(gdpCapV!=null?' PPP ('+yr('NY.GDP.PCAP.PP.CD')+')':'')],['CURRENCY',cInfo.currency],['LANGUAGES',cInfo.languages],['PERIOD',DATE]];
     let ry=3.55;
     rows.forEach(([k,v])=>{
       sl.addText(k,{x:0.4,y:ry,w:1.2,h:0.24,fontFace:BODY,fontSize:8,bold:true,color:GOLD_LT,charSpacing:1.2,valign:'top'});
@@ -239,7 +252,7 @@ function buildCountryDeck(opts){
     sl.addShape(p.ShapeType.rect,{x:spX,y:mY,w:spW,h:mH,fill:{color:WHITE},line:{type:'none'}});
     sl.addShape(p.ShapeType.rect,{x:spX,y:mY,w:spW,h:0.045,fill:{color:NAVY},line:{type:'none'}});
     sl.addText('SECTOR STATUS · '+DATE.split(' ').pop(),{x:spX+0.14,y:mY+0.12,w:spW-0.24,h:0.2,fontFace:BODY,fontSize:8.5,bold:true,color:GOLD,charSpacing:1});
-    const srows=[['Health','U5 mortality '+u5mr+'/1,000',healthSt],['Education','Adult literacy '+lit,eduSt],['Food Security','Undernourishment '+under,foodSt],['WASH','Safe water '+water,washSt],['Economic','GDP growth '+gdpGr+' · inflation '+inf,econSt],['Infrastructure','Electricity '+elec,infraSt]];
+    const srows=(R&&Array.isArray(R.sectorStatus)&&R.sectorStatus.length>=6)?R.sectorStatus.slice(0,6).map(s=>[s.sector,trim(s.note,44),statusBadge(s.status)]):[['Health','U5 mortality '+u5mr+'/1,000',healthSt],['Education','Adult literacy '+lit,eduSt],['Food Security','Undernourishment '+under,foodSt],['WASH','Safe water '+water,washSt],['Economic','GDP growth '+gdpGr+' · inflation '+inf,econSt],['Infrastructure','Electricity '+elec,infraSt]];
     const srH=(mH-0.5)/srows.length;
     srows.forEach((r,i)=>{
       const sry=mY+0.42+i*srH;
@@ -255,7 +268,7 @@ function buildCountryDeck(opts){
     const sl=p.addSlide(); sl.addShape(p.ShapeType.rect,{x:0,y:0,w:13.333,h:7.5,fill:{color:WHITE},line:{type:'none'}});
     eyebrow(sl,country+' · cross-sector snapshot',0.5,0.34,10,GOLD);
     sl.addText([{text:'Sector Overview',options:{bold:true,color:INK}},{text:'  —  key indicators & recommended interventions by sector',options:{color:FG3}}],{x:0.5,y:0.58,w:12.3,h:0.44,fontFace:HEAD,fontSize:18,valign:'middle'});
-    const cards=[
+    const cards=(R&&Array.isArray(R.crossSector)&&R.crossSector.length>=6)?R.crossSector.slice(0,6).map(c=>({nm:c.sector,st:statusBadge(c.status),lines:(c.lines||[]).slice(0,2).map(x=>trim(x,54)),rec:c.recommended||''})):[
       {nm:'Health',st:healthSt,lines:[`Under-5 mortality ${u5mr}/1,000 · life expectancy ${le} yrs`,`Health spend ${hexp} of GDP`],rec:iH[0]},
       {nm:'Education',st:eduSt,lines:[`Adult literacy ${lit}`,`Education spend ${f1('SE.XPD.TOTL.GD.ZS','%')} of GDP`],rec:iE[0]},
       {nm:'Food Security',st:foodSt,lines:[`Undernourishment ${under} · stunting ${stunt}`,`Agriculture ${agriGDP} of GDP`],rec:iF[0]},
@@ -280,17 +293,25 @@ function buildCountryDeck(opts){
   });
 
   // sector slide factory (stats left, benchmark viz right — reference layout)
+  const SECKEY={'Economy':'economy','Health':'health','Education':'education','Food Security & Nutrition':'food','Agriculture & Rural Livelihoods':'agriculture','Infrastructure & Connectivity':'infrastructure','Water, Sanitation & Hygiene':'wash','Energy & Power':'energy'};
   const sectorSlide=(eb,title,statement,stats,ins,intv,viz,footSrc)=>S.push(()=>{
+    // Prefer AI-researched content for this sector when a research model is supplied.
+    const key=SECKEY[eb]||String(eb).toLowerCase(), rs=rSec(key), rst=rStats(key);
+    const useStmt=(rs&&rs.statement)?rs.statement:statement;
+    const useStats=rst||stats;
+    const useIns=(rs&&Array.isArray(rs.insights)&&rs.insights.length)?rs.insights.slice(0,3).map(t=>trim(t,140)):ins;
+    const useIntv=(rs&&Array.isArray(rs.interventions)&&rs.interventions.length)?rs.interventions:intv;
+    const useFoot=(rs&&rs.stats&&rs.stats.length)?(rs.stats.map(s=>s.source).filter(Boolean).filter((v,i,a)=>a.indexOf(v)===i).slice(0,4).join(' · ')+' · '+DATE):footSrc;
     const sl=p.addSlide(); sl.addShape(p.ShapeType.rect,{x:0,y:0,w:13.333,h:7.5,fill:{color:WHITE},line:{type:'none'}});
-    sectorHead(sl,eb,title,statement);
+    sectorHead(sl,eb,title,useStmt);
     const LX=0.5, LW=7.0;
-    statCards(sl,stats,LX,1.35,LW);
-    const insEnd=insights(sl,ins,LX,3.7,LW);
-    interventions(sl,intv,LX,Math.max(insEnd+0.05,5.05),LW,1.55);
-    // right visual
+    statCards(sl,useStats,LX,1.35,LW);
+    const insEnd=insights(sl,useIns,LX,3.7,LW);
+    interventions(sl,useIntv,LX,Math.max(insEnd+0.05,5.05),LW,1.55);
+    // right visual (World Bank benchmark bars — kept as an orientation reference)
     const RX=7.85, RW=4.98;
     viz(sl,RX,1.5,RW,4.8);
-    foot(sl,footSrc);
+    foot(sl,useFoot);
   });
 
   // ══ 03 NATIONAL OVERVIEW ══
@@ -393,28 +414,8 @@ function buildCountryDeck(opts){
       {label:'CO₂ per capita (t)',val:gv('EN.ATM.CO2E.PC'),unit:'t',bench:4.7,inv:true,dec:1},
     ]),'IEA · World Bank · '+DATE);
 
-  // ══ PIPELINE ══
-  const cReqs=(requests||[]).filter(r=>r.country===country);
-  S.push(()=>{
-    const sl=p.addSlide(); sl.addShape(p.ShapeType.rect,{x:0,y:0,w:13.333,h:7.5,fill:{color:WHITE},line:{type:'none'}});
-    sectorHead(sl,'Country Pipeline','Pipeline & Programmes',cReqs.length?`${cReqs.length} active project${cReqs.length!==1?'s':''} in ${country}`:`Catalogue country — no active pipeline yet`);
-    if(!cReqs.length){
-      sl.addShape(p.ShapeType.rect,{x:0.5,y:2.4,w:12.33,h:2.2,fill:{color:CARD},line:{type:'none'}});
-      sl.addText('No pipeline projects are currently recorded for '+country+'.',{x:0.5,y:3.3,w:12.33,h:0.5,fontFace:BODY,fontSize:14,color:FG3,align:'center'});
-    } else {
-      const cols=[{w:1.7,l:'Sector'},{w:3.7,l:'Project'},{w:2.1,l:'Path'},{w:1.9,l:'Status'},{w:1.1,l:'Cost'},{w:1.83,l:'Implementor'}];
-      let cx=0.5; sl.addShape(p.ShapeType.rect,{x:0.5,y:1.4,w:12.33,h:0.34,fill:{color:NAVY},line:{type:'none'}});
-      cols.forEach(c=>{ sl.addText(c.l,{x:cx+0.08,y:1.4,w:c.w-0.12,h:0.34,fontFace:BODY,fontSize:9,bold:true,color:WHITE,valign:'middle'}); cx+=c.w; });
-      const pn={B:'Sector Assessment',C:'Program Evaluation'}, st=['Intake','Country Analysis','Program Dev','Stakeholder Eng.','Leadership Review','Approved'];
-      cReqs.slice(0,8).forEach((r,i)=>{
-        const ry=1.78+i*0.56; cx=0.5;
-        sl.addShape(p.ShapeType.rect,{x:0.5,y:ry,w:12.33,h:0.54,fill:{color:i%2?'F7F8FA':WHITE},line:{color:BORDER,width:0.5}});
-        const cell=(t,w,o={})=>{ sl.addText(String(t),{x:cx+0.08,y:ry,w:w-0.14,h:0.54,fontFace:BODY,fontSize:o.fs||9,bold:!!o.b,color:o.c||INK,valign:'middle',wrap:true}); cx+=w; };
-        cell(r.sector||'—',cols[0].w,{c:FG2}); cell(r.titleEn||'—',cols[1].w,{b:true,fs:9.5}); cell(pn[r.path]||('Path '+r.path),cols[2].w,{c:SLATE,b:true,fs:8}); cell(st[Math.min(r.status||0,5)],cols[3].w,{c:FG2}); cell(r.cost||'—',cols[4].w,{c:GOLD,b:true}); cell((reqMeta[r.id]||{}).implName||'—',cols[5].w,{c:FG2,fs:8.5});
-      });
-    }
-    foot(sl,'ODA Country Assessment Dashboard — pipeline data · '+DATE);
-  });
+  // (Pipeline-projects and Priorities slides intentionally omitted — this deck is a pure
+  //  country assessment; pipeline data is country-specific and not relevant across all decks.)
 
   // ══ SOURCES ══
   S.push(()=>{
@@ -424,11 +425,15 @@ function buildCountryDeck(opts){
     sl.addText('Sector Assessment & Intervention Priorities · '+DATE+' · ODA Country Analysis',{x:0.6,y:2.05,w:11,h:0.4,fontFace:BODY,fontSize:12,color:SKY});
     sl.addShape(p.ShapeType.rect,{x:0.6,y:2.8,w:0.9,h:0.03,fill:{color:GOLD},line:{type:'none'}});
     sl.addText('SOURCES & PROVENANCE',{x:0.6,y:3.15,w:11,h:0.3,fontFace:BODY,fontSize:11,bold:true,color:GOLD_LT,charSpacing:2});
-    sl.addText('World Bank Open Data · IMF · WHO · UN IGME (UNICEF/WHO) · UNESCO UIS · FAO · WHO/UNICEF JMP · ITU · IEA · ILO',{x:0.6,y:3.55,w:11.5,h:0.6,fontFace:BODY,fontSize:12,color:'EAF0F4',valign:'top',wrap:true});
-    sl.addText([
+    const srcLine=(R&&Array.isArray(R.sources)&&R.sources.length)?R.sources.map(s=>s&&(s.label||s.url)).filter(Boolean).slice(0,14).join(' · '):'World Bank Open Data · IMF · WHO · UN IGME (UNICEF/WHO) · UNESCO UIS · FAO · WHO/UNICEF JMP · ITU · IEA · ILO';
+    sl.addText(srcLine,{x:0.6,y:3.55,w:11.9,h:0.85,fontFace:BODY,fontSize:11,color:'EAF0F4',valign:'top',wrap:true});
+    sl.addText(R?[
+      {text:'This assessment was produced by live AI deep-research'+(R.searches?(' ('+R.searches+' web searches)'):'')+' across the primary sources above',options:{bold:true,color:WHITE}},
+      {text:'. Every figure carries its source and reference year; interventions are country-specific. Figures that could not be verified against a primary source were omitted rather than estimated'+(R.confidence?('. Overall confidence: '+R.confidence):'')+'.',options:{color:SKY}},
+    ]:[
       {text:'All indicator values are retrieved live from World Bank Open Data at the time of download',options:{bold:true,color:WHITE}},
       {text:' and compiled from the originating agencies listed above. Each figure on every slide carries its source and reference year. Where an indicator is unavailable for '+country+', the field is shown as “—” rather than estimated. Benchmarks are global or regional reference values for orientation, not targets.',options:{color:SKY}},
-    ],{x:0.6,y:4.35,w:11.6,h:1.6,fontFace:BODY,fontSize:11,valign:'top',wrap:true,lineSpacingMultiple:1.15});
+    ],{x:0.6,y:4.55,w:11.6,h:1.7,fontFace:BODY,fontSize:11,valign:'top',wrap:true,lineSpacingMultiple:1.15});
     sl.addText('Retrieved '+DATE+' · ODA Country Assessment Dashboard',{x:0.6,y:6.5,w:11,h:0.3,fontFace:BODY,fontSize:9,color:FG3});
     foot(sl,'World Bank Open Data (retrieved '+DATE+') + originating agencies',true);
   });

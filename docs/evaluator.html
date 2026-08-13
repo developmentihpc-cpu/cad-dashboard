@@ -497,7 +497,7 @@ details.guide td:first-child{font-weight:700;width:120px}
       <div><div class="section-kicker">Step 5 · Output</div><h2 class="section-title">One-pager &amp; record</h2><hr class="rule-gold"></div>
       <button class="btn ghost sm" onclick="saveVersion()">Save version</button>
     </div>
-    <div class="note">The standard leadership output — a <strong>5-slide decision deck (PPTX)</strong> + a <strong>1-page executive PDF</strong>, generated to the ODA template and saved to your Downloads. Run the pre-score (and partner due diligence) first.</div>
+    <div class="note">The standard leadership output. On the <strong>local server</strong> this is the full <strong>5-slide decision deck (PPTX)</strong> + <strong>1-page executive PDF</strong>, generated to the ODA template and saved to your Downloads. On the <strong>hosted site</strong> (no local server) it downloads a <strong>one-page PPTX + PDF</strong> straight from your browser. Run the pre-score (and partner due diligence) first.</div>
     <div class="toolbar" style="margin-top:6px;align-items:center;gap:10px">
       <button class="btn primary" id="deckBtn" onclick="runDeckExport()">Leadership deck + one-pager</button>
       <span id="deckStatus" style="font-size:11px;color:var(--muted)"></span>
@@ -1194,17 +1194,34 @@ function buildDeckData(){
     footers:{ "1":"ODA neutral assessment · "+monthYear(), "2":"ODA evaluation rubric"+(provisional?' (provisional); inputs to be confirmed by leadership before final scoring.':'.'), "3":(m.partner||'Partner')+", researched "+monthYear()+".", "4":"Funding-band and phasing structure"+(provisional?'; indicative pending project definition.':'.'), "5":"ODA strategic assessment, "+monthYear()+"." }
   };
 }
+function evalIsLocal(){ return /^(localhost|127\.0\.0\.1|0\.0\.0\.0|\[::1\])$/i.test(location.hostname); }
+async function clientSideExport(st){
+  // No server required — build the export in the browser from the current evaluation
+  // (AI scores if the local server was reached, otherwise the rule-based draft). This is
+  // the path the hosted GitHub Pages site always uses. PDF first (synchronous, reliable),
+  // then PPTX; each is caught independently so one failing never blocks the other.
+  if(st)st.textContent='Generating one-pager in your browser…';
+  const ok=[], errs=[];
+  try{ await downloadOnePagerPDF(); ok.push('one-pager (PDF)'); }catch(e){ errs.push('PDF: '+(e&&e.message||e)); }
+  try{ await downloadOnePagerPPT(); ok.push('one-pager (PPTX)'); }catch(e){ errs.push('PPTX: '+(e&&e.message||e)); }
+  if(ok.length){ if(st)st.innerHTML='✓ Downloaded in your browser: <strong>'+ok.join('</strong> + <strong>')+'</strong>. See your browser downloads.'+(errs.length?(' <span style="color:var(--bordeaux)">('+esc(errs.join('; '))+')</span>'):''); }
+  else if(st){ st.innerHTML='<span style="color:var(--bordeaux)">In-browser export failed: '+esc(errs.join('; '))+'</span>'; }
+}
 function runDeckExport(){
   const st=document.getElementById('deckStatus'), btn=document.getElementById('deckBtn');
   if(!evaluated){ alert('Run the pre-score first (Step 4).'); return; }
-  if(!aiEndpoint){ if(st)st.innerHTML='<span style="color:var(--bordeaux)">AI server not configured.</span>'; return; }
-  btn.disabled=true; const lbl=btn.textContent; btn.textContent='Generating…'; if(st)st.textContent='Generating leadership deck + one-pager on the local server…';
+  btn.disabled=true; const lbl=btn.textContent; btn.textContent='Generating…';
+  const done=()=>{ btn.disabled=false; btn.textContent=lbl; };
+  // A hosted (https) page can never reach the local http scoring server (mixed-content),
+  // so on any non-localhost origin generate the export entirely client-side.
+  if(!evalIsLocal() || !aiEndpoint){ clientSideExport(st).finally(done); return; }
+  if(st)st.textContent='Generating leadership deck + one-pager on the local server…';
   fetch(aiEndpoint.replace(/\/score$/,'/deck'),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({deckData:buildDeckData()})})
     .then(r=>r.ok?r.json():Promise.reject(new Error('HTTP '+r.status))).then(o=>{
       if(o.deckError||o.onepagerError){ st.innerHTML='<span style="color:var(--bordeaux)">Generation error: '+esc((o.deckError||'')+' '+(o.onepagerError||''))+'</span>'; }
       else { st.innerHTML='✓ Saved to Downloads: <strong>'+esc((o.deck||'').split(/[\\\\/]/).pop())+'</strong> + <strong>'+esc((o.onepager||'').split(/[\\\\/]/).pop())+'</strong>.'; } })
-    .catch(e=>{ st.innerHTML='<span style="color:var(--bordeaux)">Failed: '+esc(e.message)+' — is the local server running (Node + Chrome)?</span>'; })
-    .finally(()=>{ btn.disabled=false; btn.textContent=lbl; });
+    .catch(e=>clientSideExport(st))
+    .finally(done);
 }
 function onePagerData(){ const m=getMeta(), r=buildRecommendation();
   const dims=FRAMEWORK.map(d=>{ const w=d.criteria.reduce((a,c)=>a+W[c.id],0); let p=0,s=false; d.criteria.forEach(c=>{if(S[c.id].score!=null){p+=S[c.id].score*W[c.id]/100;s=true;}}); return {name:d.name,color:d.color,w:round(w),pts:s?round1(p):null}; });
@@ -1445,7 +1462,7 @@ async function downloadOnePagerPPT(){ if(!evaluated){ alert('Run the pre-score f
     else if(pd.phasing && !/^\s*not required/i.test(pd.phasing)){ y+=0.18; sb.addText([{text:'RECOMMENDED PHASING  ',options:{bold:true,color:'AD833B',charSpacing:1,fontSize:8.5}},{text:trim(pd.phasing,220),options:{color:'1D252C',fontSize:9}}],{x:0.5,y:y,w:12.33,h:0.5,fontFace:'Montserrat',valign:'top'}); y+=0.5; }
     factorCol(sb,'Strategic value to the UAE',uae.score,uae.summary,uae.factors,0.5,y+0.1,12.33);
   }
-  p.writeFile({fileName:(d.m.title||'project').replace(/\s+/g,'_')+'_one_pager.pptx'});
+  return p.writeFile({fileName:(d.m.title||'project').replace(/\s+/g,'_')+'_one_pager.pptx'});
 }
 
 /* export JSON */

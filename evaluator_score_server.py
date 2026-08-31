@@ -659,6 +659,36 @@ def make_deck(payload):
     return out
 
 
+def country_report(payload):
+    """Build the EXACT 23-slide ODA country-proposal deck by filling the bundled template
+    (country_report/assets/country_proposal_template.pptx) via build_country_report.py:
+    live research rewrites every slot, flag + ADM1 maps are fetched, fill_template builds it.
+    Long-running (~15-25 min, multiple web-search passes). Saves to ~/Downloads."""
+    country = (payload.get("country") or "").strip()
+    if not country:
+        return {"ok": False, "error": "no country supplied"}
+    iso2 = (payload.get("iso2") or "").strip()
+    iso3 = (payload.get("iso3") or "").strip()
+    downloads = os.path.join(os.path.expanduser("~"), "Downloads")
+    slug = re.sub(r"[^A-Za-z0-9]+", "_", country).strip("_") or "country"
+    out = os.path.join(downloads, slug + "_Country_Proposal.pptx")
+    cmd = [sys.executable, "build_country_report.py", country]
+    if iso2:
+        cmd += ["--iso2", iso2]
+    if iso3:
+        cmd += ["--iso3", iso3]
+    cmd += ["--out", out]
+    try:
+        r = subprocess.run(cmd, cwd=str(BASE_DIR), capture_output=True, text=True,
+                           encoding="utf-8", errors="replace",
+                           env={**os.environ, "PYTHONUTF8": "1"}, timeout=2400)
+    except subprocess.TimeoutExpired:
+        return {"ok": False, "error": "report build timed out (>40 min)"}
+    if r.returncode != 0:
+        return {"ok": False, "error": ((r.stderr or "") + (r.stdout or ""))[-700:] or "build failed"}
+    return {"ok": True, "file": out, "log": (r.stdout or "")[-500:]}
+
+
 class Handler(BaseHTTPRequestHandler):
     def _cors(self):
         self.send_header("Access-Control-Allow-Origin", "*")
@@ -692,6 +722,7 @@ class Handler(BaseHTTPRequestHandler):
                  else "partner" if self.path.startswith("/partner")
                  else "verify" if self.path.startswith("/verify")
                  else "propose" if self.path.startswith("/propose")
+                 else "country_report" if self.path.startswith("/country_report")
                  else "country" if self.path.startswith("/country")
                  else "deck" if self.path.startswith("/deck") else None)
         if not route:
@@ -704,7 +735,7 @@ class Handler(BaseHTTPRequestHandler):
             self._json(400, {"error": f"bad request: {e}"})
             return
         try:
-            fn = {"score": score, "partner": partner, "verify": verify, "propose": propose, "country": country_research, "deck": make_deck}[route]
+            fn = {"score": score, "partner": partner, "verify": verify, "propose": propose, "country": country_research, "country_report": country_report, "deck": make_deck}[route]
             self._json(200, fn(payload))
         except Exception as e:
             self._json(500, {"error": str(e)})

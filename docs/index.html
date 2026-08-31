@@ -3751,12 +3751,31 @@ async function cd_exportPPT(country) {
 const PPT_BUILDER_ENDPOINT = (window.PPT_BUILDER_ENDPOINT
   || "https://cad-telegram-bot-uc.a.run.app/generate-ppt");
 
+let REPORTS_MANIFEST = {};
+async function loadReportsManifest() {
+  // Pre-generated EXACT-format decks (23-slide template) hosted under docs/reports/.
+  try {
+    const r = await fetch('reports/manifest.json?v=' + Date.now());
+    if (r.ok) { const j = await r.json(); REPORTS_MANIFEST = j.reports || {}; }
+  } catch (e) { /* no manifest — fall back to client-side generation */ }
+}
+
 async function cd_exportCountryPPT(country) {
   if (!country) return;
-  // Client-side generation is the primary (and only) path — no cloud backend, so this
-  // works identically on the hosted GitHub Pages site and locally. It builds the ODA
-  // country-assessment deck (docs/country_deck.js) from live World Bank data, with every
-  // figure referenced by source + year. See cd_exportCountryPPT_legacy below.
+  // 1) Prefer a pre-generated EXACT-format deck (the 23-slide ODA template, filled by
+  //    build_country_report.py) when one is hosted for this country — works everywhere,
+  //    including the hosted GitHub Pages site.
+  const rep = REPORTS_MANIFEST[country];
+  if (rep && rep.file) {
+    const a = document.createElement('a');
+    a.href = 'reports/' + rep.file; a.download = rep.file;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    console.log('[CAD] Served pre-generated exact-format deck for ' + country);
+    return;
+  }
+  // 2) Otherwise build the client-side deck live from World Bank data (works everywhere).
+  //    For the full exact 23-slide template on a country with no hosted deck, use the
+  //    drawer's "Country Needs Assessment" (local server) — see cd_generateAICountryDeck.
   if (typeof PptxGenJS === 'undefined') {
     alert('PPT library not loaded. Please refresh and try again.');
     return;
@@ -6674,27 +6693,27 @@ function cd_progressOverlay(title, sub){
 
 // Phase 2 — live AI deep-research country deck via the local scoring server (localhost only).
 async function cd_generateAICountryDeck(country){
+  // Builds the EXACT 23-slide ODA country-proposal deck by filling the bundled template
+  // (country_report/assets/country_proposal_template.pptx) via the local server's
+  // /country_report pipeline: live research rewrites every slot, the flag + ADM1 maps are
+  // fetched, fill_template.py builds it. Long-running and localhost-only; saved to Downloads.
   const base=(localStorage.getItem('oda_eval_endpoint')||'http://localhost:8787/score').replace(/\/score$/,'');
-  const ov=cd_progressOverlay('AI deep research · '+country,'Checking the local research server…');
+  const ov=cd_progressOverlay('Country needs assessment · '+country,'Checking the local research server…');
   try{
     let up=false;
     try{ const h=await fetch(base+'/health',{method:'GET'}); const hj=await h.json(); up=!!(hj&&hj.ok&&hj.key); }catch(e){}
     if(!up){ ov.remove();
-      alert('AI deep research needs your local scoring server.\n\nStart evaluator_score_server.py (port 8787) and open the dashboard at http://localhost:8000 — a hosted https page cannot reach a local http server (same limit as the evaluator AI).\n\nMeanwhile, “Export Report” gives the instant, fully-referenced deck.');
+      alert('The full country needs assessment needs your local server.\n\nStart evaluator_score_server.py (port 8787) and open the dashboard at http://localhost:8000 — a hosted https page cannot reach a local http server.\n\nMeanwhile, “Export Report” gives the instant, fully-referenced deck.');
       return; }
-    ov.setStatus('Loading indicators…');
-    await Promise.race([ca_loadCountryData(country), new Promise(r=>setTimeout(r,8000))]);
-    const data=countryDataCache[country]||{}, indicators={};
-    Object.keys(data).forEach(id=>{ if(!id.startsWith('__')&&data[id]&&data[id].value!=null) indicators[id]={value:data[id].value,year:data[id].year}; });
-    ov.setStatus('Researching '+country+' across World Bank · WHO · UNESCO · FAO · WHO/UNICEF JMP · ITU · IEA and national sources — this takes 2–4 minutes…');
-    const res=await fetch(base+'/country',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({country,countryInfo:{},indicators})});
-    if(!res.ok) throw new Error('research server returned HTTP '+res.status);
-    const research=await res.json();
-    if(research.error) throw new Error(research.error);
-    ov.setStatus('Building the deck — '+(research.searches||0)+' sources researched…');
-    await cd_exportCountryPPT_legacy(country, research);
+    const iso2=(typeof COUNTRY_ISO2!=='undefined'?(COUNTRY_ISO2[country]||''):'');
+    const iso3=(typeof COUNTRY_ISO!=='undefined'?(COUNTRY_ISO[country]||''):'');
+    ov.setStatus('Researching '+country+' and filling the exact 23-slide ODA template across World Bank · WHO · UNICEF · UNESCO · FAO · JMP · ITU · IEA · OCHA and national sources.\n\nThis is a deep pass — it takes roughly 15–25 minutes. Keep this tab open.');
+    const res=await fetch(base+'/country_report',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({country,iso2,iso3})});
+    const j=await res.json().catch(()=>({ok:false,error:'HTTP '+res.status}));
+    if(!res.ok||!j.ok) throw new Error(j.error||('HTTP '+res.status));
     ov.remove();
-  }catch(e){ ov.remove(); console.error('[CAD] AI deep-research deck failed:',e); alert('AI deep research failed: '+(e.message||e)+'\n\nCheck the server log (_score_server.log).'); }
+    alert('✓ Country proposal saved to your Downloads:\n\n'+String(j.file||'').split(/[\\\\/]/).pop()+'\n\nThe exact 23-slide ODA template, filled with researched, sourced data for '+country+'.');
+  }catch(e){ ov.remove(); console.error('[CAD] Country report build failed:',e); alert('Country report build failed: '+(e.message||e)+'\n\nCheck the server log (_score_server.log).'); }
 }
 
 function exportCountryContext(country, workflow, sector) {
@@ -7146,6 +7165,7 @@ const COUNTRY_ISO2 = {
 // ── Init ──────────────────────────────────────────────────────────────────
 applyTranslations();
 loadPrebakedIndicators();   // hydrate the static WB indicator snapshot (non-blocking)
+loadReportsManifest();      // learn which countries have a hosted exact-format deck (non-blocking)
 renderBudgetBars(); renderStatsBar();
 renderPipeline();
 renderSettings('general');
@@ -8548,9 +8568,9 @@ function im_toast(msg, bg) {
           style="border:1.5px solid var(--border);border-radius:9px;padding:12px 14px;cursor:pointer;transition:all .15s">
           <div style="display:flex;align-items:center;justify-content:space-between">
             <div style="font-size:13px;font-weight:700;color:var(--text)">Country Needs Assessment</div>
-            <span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:var(--accent-lt);color:var(--accent)">needs · live AI</span>
+            <span style="font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;background:var(--accent-lt);color:var(--accent)">exact 23-slide deck</span>
           </div>
-          <div style="font-size:11px;color:var(--text3);margin-top:3px">Live AI deep-research → the full referenced deck, downloaded here. Needs the local server (~2–4 min).</div>
+          <div style="font-size:11px;color:var(--text3);margin-top:3px">Live research fills the exact 23-slide ODA template → saved to Downloads. Needs the local server (~15–25 min).</div>
         </div>
 
         <div id="ai-wf-proposal" onclick="aiSelectWorkflow('proposal')"

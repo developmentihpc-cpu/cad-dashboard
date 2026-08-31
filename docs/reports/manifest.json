@@ -1,0 +1,11 @@
+{
+  "note": "Pre-generated EXACT-format ODA country-proposal decks (23-slide template, filled by build_country_report.py). Keyed by country display name. The dashboard's Export Report serves these directly where present (works on the hosted site); other countries fall back to the client-side deck, and the full exact deck can be generated on-demand locally via the drawer's Country Needs Assessment.",
+  "reports": {
+    "Paraguay": {
+      "file": "Paraguay_Country_Proposal.pptx",
+      "slides": 23,
+      "generated": "2026-08-31",
+      "sources": "World Bank, IMF, WHO, UNICEF/UN IGME, UNESCO UIS, FAO, WHO/UNICEF JMP, ITU, IEA, PAHO, INE, national sources"
+    }
+  }
+}

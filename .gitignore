@@ -18,6 +18,11 @@ _deckdata_*.json
 _onepager.html
 pipeline-state.json
 *.log
+# Country-report pipeline: skill-derived assets/scripts live locally (used by the local
+# server) and build scratch — not committed. The pre-generated hosted decks live in docs/reports/.
+country_report/
+_report_build/
+_content_*.json
 
 # ──────────────────────────────────────────────────────
 # Map-rendering skill (~18 MB — bundled boundary data + flags)
@@ -57,6 +62,9 @@ command-key.html
 build-1pager-pptx.js
 *.pptx
 *.zip
+# …except the pre-generated exact-format country decks hosted on GitHub Pages
+!docs/reports/
+!docs/reports/*.pptx
 
 # ──────────────────────────────────────────────────────
 # IHPC Project Tracker — local database (reseeded from tracker_seed.json)

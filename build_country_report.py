@@ -11,7 +11,7 @@ and rewrite every country-specific slot in place, then fill_template.py builds t
 
 Key from .env (ANTHROPIC_API_KEY). Web search on by default.
 """
-import argparse, json, os, re, sys, subprocess, urllib.request, io
+import argparse, json, os, re, sys, subprocess, urllib.request, io, unicodedata
 from pathlib import Path
 
 BASE = Path(__file__).resolve().parent
@@ -93,12 +93,12 @@ ABSOLUTE RULES
 - Do NOT mention Zimbabwe, Harare, ZiG, ZimStat, or any Zimbabwe-specific entity anywhere in the output.
 """
 
-def _run(cl, messages, tools):
+def _run(cl, messages, tools, system=SYSTEM):
     searches = 0; last = None
     for _ in range(6):
-        last = cl.messages.create(model=MODEL, max_tokens=8000, system=SYSTEM,
+        last = cl.messages.create(model=MODEL, max_tokens=8000, system=system,
                                   messages=messages, tools=tools) if tools else \
-               cl.messages.create(model=MODEL, max_tokens=8000, system=SYSTEM, messages=messages)
+               cl.messages.create(model=MODEL, max_tokens=8000, system=system, messages=messages)
         searches += sum(1 for b in last.content if getattr(b, "type", "") == "server_tool_use")
         if getattr(last, "stop_reason", None) == "pause_turn":
             messages.append({"role": "assistant", "content": last.content}); continue
@@ -213,6 +213,59 @@ def fetch_geojson(iso3, dest):
     dest.write_bytes(data)
     return str(dest)
 
+# map slot -> content slot carrying its caption/theme (slide 7 + the 8 sector deep-dives)
+THEME_CAP = {"map_s7": "s7_50", "map_s8": "s8_29", "map_s9": "s9_29", "map_s10": "s10_29",
+             "map_s11": "s11_29", "map_s12": "s12_29", "map_s13": "s13_29",
+             "map_s14": "s14_29", "map_s15": "s15_29"}
+CHORO_PAL = ["6E4A1E", "AD833B", "E7D7B4"]  # high -> medium -> low (dark gold -> light)
+MAPS_SYSTEM = ("You are a subnational data analyst. For a country's ADM1 regions, classify each into "
+               "HIGH / MEDIUM density bands for a given indicator using known geographic patterns "
+               "(indicative estimates — the deck labels them 'est.'). Return STRICT JSON only, using the "
+               "exact region names supplied.")
+
+def _norm(s):
+    return "".join(c for c in unicodedata.normalize("NFKD", str(s)) if not unicodedata.combining(c)).lower().strip()
+
+def region_names(geojson_path, name_key="shapeName"):
+    g = json.load(open(geojson_path, encoding="utf-8"))
+    return [f["properties"].get(name_key) for f in g["features"] if f["properties"].get(name_key)]
+
+def choropleth_maps(cl, country, geojson_path, themes):
+    """Ask the model to band each ADM1 region (high/medium; rest = low) per map theme, then build
+    vector_maps choropleth specs. Region names are matched diacritic-insensitively to the geojson."""
+    regions = region_names(geojson_path)
+    rnorm = {_norm(r): r for r in regions}
+    theme_list = "\n".join("- %s: %s" % (k, v) for k, v in themes.items())
+    user = ("COUNTRY: %s\nADM1 regions (use these EXACT names as keys): %s\n\n"
+            "For EACH map below, list the regions in the HIGH band and the MEDIUM band for that indicator "
+            "(every other region is treated as LOW). Base it on known subnational patterns (indicative). "
+            "Give a 3-item legend describing the high, medium and low bands (each <= 44 characters).\n\n"
+            "MAPS:\n%s\n\n"
+            'Return STRICT JSON only: {"map_key": {"high":[regions], "medium":[regions], '
+            '"legend":[high_label, medium_label, low_label]}, ...}. Include every map key. Region names verbatim.'
+            % (country, ", ".join(regions), theme_list))
+    tools = [{"type": "web_search_20250305", "name": "web_search", "max_uses": 6}]
+    msg, n = _run(cl, [{"role": "user", "content": user}], tools, system=MAPS_SYSTEM)
+    text = "".join(b.text for b in msg.content if getattr(b, "type", "") == "text")
+    data = _extract_json(text)
+    vm = {}
+    for mk, spec in data.items():
+        if mk not in ("crisis_map",) + tuple(MAP_SLOTS):
+            continue
+        classes = {}
+        for r in (spec.get("high") or []):
+            m = rnorm.get(_norm(r))
+            if m:
+                classes[m] = 0
+        for r in (spec.get("medium") or []):
+            m = rnorm.get(_norm(r))
+            if m and m not in classes:
+                classes[m] = 1
+        leg = spec.get("legend")
+        vm[mk] = {"geojson": geojson_path, "classes": classes, "palette": CHORO_PAL,
+                  "legend": leg if isinstance(leg, list) and len(leg) == 3 else None}
+    return vm, n
+
 def fetch_flag(iso2, dest):
     try:
         url = "https://flagcdn.com/w320/%s.png" % iso2.lower()
@@ -293,13 +346,24 @@ def main():
         fp = fetch_flag(args.iso2, build / ("flag_%s.png" % args.iso2))
         if fp:
             content["images"]["flag"] = fp
-    # maps — flat gold ADM1 locator on every map slot (removes the template's Zimbabwe maps)
+    # maps — ADM1 choropleths (density bands per map theme) for the data maps; flat gold locator
+    # for cover_map. geoBoundaries ADM1 boundaries; per-region classification via the model.
     if args.iso3:
         try:
             gj = fetch_geojson(args.iso3, build / ("%s_adm1.geojson" % args.iso3.upper()))
-            content["vector_maps"] = {slot: {"geojson": gj, "classes": {}, "palette": ["AD833B"]}
-                                      for slot in MAP_SLOTS}
-            print("  maps: flat gold ADM1 locator on %d slots" % len(MAP_SLOTS))
+            vm = {"cover_map": {"geojson": gj, "classes": {}, "palette": ["AD833B"]}}
+            themes = {mk: _asstr(edited.get(cap, "")).strip() for mk, cap in THEME_CAP.items()
+                      if _asstr(edited.get(cap, "")).strip()}
+            themes["crisis_map"] = "Climate and disaster shock exposure by region"
+            try:
+                choro, cn = choropleth_maps(cl, args.country, gj, themes)
+                total_searches += cn
+                vm.update(choro)
+                print("  maps: %d ADM1 choropleths + cover locator (%d searches)" % (len(choro), cn))
+            except Exception as e:  # noqa: BLE001
+                print("  choropleth classification failed, using flat locators:", e)
+                vm.update({slot: {"geojson": gj, "classes": {}, "palette": ["AD833B"]} for slot in MAP_SLOTS})
+            content["vector_maps"] = vm
         except Exception as e:  # noqa: BLE001
             print("  maps skipped (geojson fetch failed):", e)
 

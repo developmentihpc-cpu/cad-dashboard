@@ -270,18 +270,21 @@ def fetch_flag(iso2, dest):
     try:
         url = "https://flagcdn.com/w320/%s.png" % iso2.lower()
         data = urllib.request.urlopen(url, timeout=15).read()
-        # pad to AR 2.000 for the flag slot
+        # Pad to the slot's AR 2.000 with TRANSPARENCY (not white), so the navy panel shows
+        # through the sides and only the flag is visible — no white bars, no distortion.
         from PIL import Image
-        im = Image.open(io.BytesIO(data)).convert("RGB")
+        im = Image.open(io.BytesIO(data)).convert("RGBA")
         ar = 2.0
         w, h = im.size
-        if w / h < ar:  # too tall -> pad width
-            nw = int(round(h * ar)); canvas = Image.new("RGB", (nw, h), "white")
-            canvas.paste(im, ((nw - w) // 2, 0)); im = canvas
-        elif w / h > ar:
-            nh = int(round(w / ar)); canvas = Image.new("RGB", (nw := w, nh), "white")
-            canvas.paste(im, (0, (nh - h) // 2)); im = canvas
-        im.save(dest)
+        if abs(w / h - ar) > 0.01:
+            if w / h < ar:  # too tall -> pad width (transparent left/right)
+                nw = int(round(h * ar)); canvas = Image.new("RGBA", (nw, h), (0, 0, 0, 0))
+                canvas.paste(im, ((nw - w) // 2, 0), im)
+            else:            # too wide -> pad height (transparent top/bottom)
+                nh = int(round(w / ar)); canvas = Image.new("RGBA", (w, nh), (0, 0, 0, 0))
+                canvas.paste(im, (0, (nh - h) // 2), im)
+            im = canvas
+        im.save(dest)  # PNG keeps the alpha channel
         return str(dest)
     except Exception as e:
         print("  flag fetch failed:", e); return None

@@ -2464,8 +2464,10 @@ function initMap() {
   if (mapInitialized) return;
   mapInitialized = true;
   map = L.map('map', { zoomControl:false, attributionControl:false }).setView([15,25],3);
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', { maxZoom:12, subdomains:'abcd' }).addTo(map);
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png', { maxZoom:12, subdomains:'abcd', opacity:0.6 }).addTo(map);
+  // Esri light-gray canvas — free, no API key (CARTO basemaps now require registration and
+  // return an "API Key required" tile for unregistered domains). Clean Positron-style look.
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', { maxZoom:12, attribution:'Tiles © Esri' }).addTo(map);
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}', { maxZoom:12, opacity:0.75 }).addTo(map);
   L.control.zoom({ position:'bottomright' }).addTo(map);
   // Build pipeline/active sets from requests
   const pipelineSet = new Set(), activeSet = new Set();
@@ -5876,11 +5878,11 @@ function initProjMiniMap(id) {
     dragging: true, scrollWheelZoom: false, doubleClickZoom: true
   }).setView([city.lat, city.lng], city.zoom);
 
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
-    maxZoom: 16, subdomains: 'abcd'
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+    maxZoom: 16, attribution: 'Tiles © Esri'
   }).addTo(projMiniMap);
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_only_labels/{z}/{x}/{y}{r}.png', {
-    maxZoom: 16, subdomains: 'abcd', opacity: 0.7
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}', {
+    maxZoom: 16, opacity: 0.75
   }).addTo(projMiniMap);
 
   // Styled pin matching the dashboard accent

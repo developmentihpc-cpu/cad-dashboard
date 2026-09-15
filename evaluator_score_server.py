@@ -689,6 +689,28 @@ def country_report(payload):
     return {"ok": True, "file": out, "log": (r.stdout or "")[-500:]}
 
 
+def combine_report(payload):
+    """Assemble a multi-country combined report (summary page + per-country needs assessments,
+    proposed programmes removed) from the pre-generated decks via combine_reports.py. Local."""
+    title = (payload.get("title") or "Global South Country Assessment Report").strip()
+    countries = [str(c) for c in (payload.get("countries") or []) if str(c).strip()]
+    if not countries:
+        return {"ok": False, "error": "no countries selected"}
+    downloads = os.path.join(os.path.expanduser("~"), "Downloads")
+    slug = re.sub(r"[^A-Za-z0-9]+", "_", title).strip("_") or "Combined_Report"
+    out = os.path.join(downloads, slug + ".pptx")
+    cmd = [sys.executable, "combine_reports.py", "--title", title, "--out", out, "--countries"] + countries
+    try:
+        r = subprocess.run(cmd, cwd=str(BASE_DIR), capture_output=True, text=True,
+                           encoding="utf-8", errors="replace",
+                           env={**os.environ, "PYTHONUTF8": "1"}, timeout=1200)
+    except subprocess.TimeoutExpired:
+        return {"ok": False, "error": "combine timed out"}
+    if r.returncode != 0:
+        return {"ok": False, "error": ((r.stderr or "") + (r.stdout or ""))[-700:] or "combine failed"}
+    return {"ok": True, "file": out, "log": (r.stdout or "").strip()[-500:]}
+
+
 class Handler(BaseHTTPRequestHandler):
     def _cors(self):
         self.send_header("Access-Control-Allow-Origin", "*")
@@ -722,6 +744,7 @@ class Handler(BaseHTTPRequestHandler):
                  else "partner" if self.path.startswith("/partner")
                  else "verify" if self.path.startswith("/verify")
                  else "propose" if self.path.startswith("/propose")
+                 else "combine_report" if self.path.startswith("/combine_report")
                  else "country_report" if self.path.startswith("/country_report")
                  else "country" if self.path.startswith("/country")
                  else "deck" if self.path.startswith("/deck") else None)
@@ -735,7 +758,7 @@ class Handler(BaseHTTPRequestHandler):
             self._json(400, {"error": f"bad request: {e}"})
             return
         try:
-            fn = {"score": score, "partner": partner, "verify": verify, "propose": propose, "country": country_research, "country_report": country_report, "deck": make_deck}[route]
+            fn = {"score": score, "partner": partner, "verify": verify, "propose": propose, "country": country_research, "country_report": country_report, "combine_report": combine_report, "deck": make_deck}[route]
             self._json(200, fn(payload))
         except Exception as e:
             self._json(500, {"error": str(e)})

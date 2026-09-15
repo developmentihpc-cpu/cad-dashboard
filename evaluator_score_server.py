@@ -663,7 +663,10 @@ def country_report(payload):
     """Build the EXACT 23-slide ODA country-proposal deck by filling the bundled template
     (country_report/assets/country_proposal_template.pptx) via build_country_report.py:
     live research rewrites every slot, flag + ADM1 maps are fetched, fill_template builds it.
-    Long-running (~15-25 min, multiple web-search passes). Saves to ~/Downloads."""
+    Long-running (~15-25 min). Builds into the hosted report library (docs/reports/) + registers
+    it in manifest.json (so the dashboard library and combined-report builder see it), and copies
+    the deck to ~/Downloads."""
+    import shutil, datetime
     country = (payload.get("country") or "").strip()
     if not country:
         return {"ok": False, "error": "no country supplied"}
@@ -671,13 +674,16 @@ def country_report(payload):
     iso3 = (payload.get("iso3") or "").strip()
     downloads = os.path.join(os.path.expanduser("~"), "Downloads")
     slug = re.sub(r"[^A-Za-z0-9]+", "_", country).strip("_") or "country"
-    out = os.path.join(downloads, slug + "_Country_Proposal.pptx")
+    reports = BASE_DIR / "docs" / "reports"
+    reports.mkdir(parents=True, exist_ok=True)
+    fname = slug + "_Country_Proposal.pptx"
+    hosted = str(reports / fname)
     cmd = [sys.executable, "build_country_report.py", country]
     if iso2:
         cmd += ["--iso2", iso2]
     if iso3:
         cmd += ["--iso3", iso3]
-    cmd += ["--out", out]
+    cmd += ["--out", hosted]
     try:
         r = subprocess.run(cmd, cwd=str(BASE_DIR), capture_output=True, text=True,
                            encoding="utf-8", errors="replace",
@@ -686,7 +692,21 @@ def country_report(payload):
         return {"ok": False, "error": "report build timed out (>40 min)"}
     if r.returncode != 0:
         return {"ok": False, "error": ((r.stderr or "") + (r.stdout or ""))[-700:] or "build failed"}
-    return {"ok": True, "file": out, "log": (r.stdout or "")[-500:]}
+    dl = os.path.join(downloads, fname)
+    try:
+        shutil.copy(hosted, dl)
+    except Exception:
+        dl = hosted
+    try:  # register in the hosted library manifest
+        mpath = reports / "manifest.json"
+        man = json.loads(mpath.read_text(encoding="utf-8")) if mpath.exists() else {"reports": {}}
+        man.setdefault("reports", {})[country] = {
+            "file": fname, "slides": 23, "generated": datetime.date.today().isoformat(),
+            "sources": "World Bank, IMF, WHO, UNICEF/UN IGME, UNESCO UIS, FAO, WHO/UNICEF JMP, ITU, IEA, national sources"}
+        mpath.write_text(json.dumps(man, ensure_ascii=False, indent=2), encoding="utf-8")
+    except Exception as e:  # noqa: BLE001
+        sys.stderr.write("[country] manifest update failed: %s\n" % e)
+    return {"ok": True, "file": dl, "hosted": hosted, "log": (r.stdout or "")[-500:]}
 
 
 def combine_report(payload):

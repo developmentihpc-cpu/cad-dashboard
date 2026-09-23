@@ -26,6 +26,7 @@ import concurrent.futures
 import json
 import os
 import re
+import shutil
 import subprocess
 import sys
 import urllib.request
@@ -633,6 +634,106 @@ def country_research(payload):
     return data
 
 
+def _ocr_available():
+    try:
+        import pytesseract  # noqa: F401
+        return bool(shutil.which("tesseract"))
+    except Exception:
+        return False
+
+
+def _paginate(text, size=3200):
+    """Split marker-less text (docx/txt) into ~page-sized blocks so evidence can still cite [[p.N]]."""
+    text = text or ""
+    if len(text) <= size:
+        return [text]
+    out, buf = [], []
+    n = 0
+    for para in text.split("\n"):
+        buf.append(para); n += len(para) + 1
+        if n >= size:
+            out.append("\n".join(buf)); buf, n = [], 0
+    if buf:
+        out.append("\n".join(buf))
+    return out or [text]
+
+
+def extract_text(payload):
+    """Server-side text extraction with [[p.N]] page markers, for the Project Evaluation upload.
+    Input:  {filename, data_b64}
+    Output: {ok, text, receipt:{filename,pages,chars,chars_per_page,method,file_hash}, file_hash}
+            or {ok:false, extraction_failed:true, reason, receipt, ocr_available} when the text
+            layer is too thin to score (scanned / image-only). Never returns a scored result."""
+    import base64, hashlib, io
+    name = (payload.get("filename") or "document").strip()
+    try:
+        data = base64.b64decode(payload.get("data_b64") or "")
+    except Exception as e:  # noqa: BLE001
+        return {"ok": False, "error": "bad file data: %s" % e}
+    if not data:
+        return {"ok": False, "error": "empty upload"}
+    fhash = hashlib.sha256(data).hexdigest()[:16]
+    ext = os.path.splitext(name)[1].lower().lstrip(".")
+    pages = []
+    method = ext
+    try:
+        if ext == "pdf":
+            import fitz
+            method = "PyMuPDF"
+            doc = fitz.open(stream=data, filetype="pdf")
+            pages = [doc[i].get_text("text") or "" for i in range(len(doc))]
+            doc.close()
+        elif ext == "docx":
+            import docx
+            method = "python-docx"
+            d = docx.Document(io.BytesIO(data))
+            blocks = [p.text for p in d.paragraphs]
+            for tb in d.tables:
+                for row in tb.rows:
+                    blocks.append(" | ".join(c.text for c in row.cells))
+            pages = _paginate("\n".join(blocks))
+        elif ext == "pptx":
+            import pptx
+            method = "python-pptx"
+            prs = pptx.Presentation(io.BytesIO(data))
+            for s in prs.slides:
+                t = []
+                for sh in s.shapes:
+                    if sh.has_text_frame and sh.text_frame.text.strip():
+                        t.append(sh.text_frame.text)
+                    if getattr(sh, "has_table", False) and sh.has_table:
+                        for row in sh.table.rows:
+                            t.append(" | ".join(c.text for c in row.cells))
+                if s.has_notes_slide and s.notes_slide.notes_text_frame:
+                    nt = s.notes_slide.notes_text_frame.text
+                    if nt.strip():
+                        t.append("[notes] " + nt)
+                pages.append("\n".join(t))
+        elif ext in ("txt", "md", "csv", "json"):
+            method = "text"
+            pages = _paginate(data.decode("utf-8", "replace"))
+        else:
+            return {"ok": False, "error": "unsupported file type: .%s" % ext}
+    except Exception as e:  # noqa: BLE001
+        return {"ok": False, "error": "extraction error (%s): %s" % (method, e)}
+
+    pages = [p or "" for p in pages] or [""]
+    total = sum(len(p.strip()) for p in pages)
+    npages = len(pages)
+    cpp = total / npages if npages else 0
+    marked = "\n\n".join("[[p.%d]]\n%s" % (i + 1, pages[i].strip()) for i in range(npages))
+    receipt = {"filename": name, "pages": npages, "chars": total,
+               "chars_per_page": round(cpp), "method": method, "file_hash": fhash}
+    # fail loud: too little text to score (scanned / image-only PDF)
+    if total < 2000 or (npages >= 3 and cpp < 200):
+        return {"ok": False, "extraction_failed": True, "receipt": receipt,
+                "ocr_available": _ocr_available(), "text": marked,
+                "reason": ("Extracted only %d characters across %d page(s) (avg %d/page). The file "
+                           "likely has little or no text layer — a scanned or image-only PDF. "
+                           "Not scoring." % (total, npages, round(cpp)))}
+    return {"ok": True, "text": marked, "receipt": receipt, "file_hash": fhash}
+
+
 def make_deck(payload):
     """Run the canonical generators on a posted deck-data model; save deck + one-pager to Downloads."""
     data = payload.get("deckData") or payload
@@ -764,6 +865,7 @@ class Handler(BaseHTTPRequestHandler):
                  else "partner" if self.path.startswith("/partner")
                  else "verify" if self.path.startswith("/verify")
                  else "propose" if self.path.startswith("/propose")
+                 else "extract" if self.path.startswith("/extract")
                  else "combine_report" if self.path.startswith("/combine_report")
                  else "country_report" if self.path.startswith("/country_report")
                  else "country" if self.path.startswith("/country")
@@ -778,7 +880,7 @@ class Handler(BaseHTTPRequestHandler):
             self._json(400, {"error": f"bad request: {e}"})
             return
         try:
-            fn = {"score": score, "partner": partner, "verify": verify, "propose": propose, "country": country_research, "country_report": country_report, "combine_report": combine_report, "deck": make_deck}[route]
+            fn = {"score": score, "partner": partner, "verify": verify, "propose": propose, "country": country_research, "country_report": country_report, "combine_report": combine_report, "extract": extract_text, "deck": make_deck}[route]
             self._json(200, fn(payload))
         except Exception as e:
             self._json(500, {"error": str(e)})

@@ -919,6 +919,7 @@ function retryServer(btn){ if(btn){ btn.disabled=true; const t=btn.textContent; 
 
 /* ════════════ EVALUATION ════════════ */
 async function runEvaluation(){
+  if(extractionBlocked){ alert('Extraction failed on an uploaded document — it appears to be a scanned or image-only PDF with no readable text.\n\nScoring is blocked to avoid grading an empty input. Re-export the document with a text layer, run OCR, or paste the proposal text before running the evaluation.'); return; }
   const sc=detectScenario();
   if(sc==='none'){ alert('Add a project narrative/upload for a full evaluation (A), or name a partner in Step 2 — partner only → funding amounts (B); partner + sector → project proposals (C).'); return; }
   const btn=document.getElementById('runBtn'); btn.disabled=true; scenarioC=null;
@@ -1041,6 +1042,16 @@ drop.addEventListener('drop',ev=>{ if(ev.dataTransfer.files&&ev.dataTransfer.fil
 fileInput.addEventListener('change',()=>{ if(fileInput.files&&fileInput.files.length){ readFiles(fileInput.files); fileInput.value=''; } });
 
 let uploadedDocs=[];   // [{name, text}] — accumulates across multiple selections / drops
+let extractReceipts=[];   // per-file server extraction receipts (receipt panel + audit)
+let extractionBlocked=false;   // true if any upload failed extraction (scanned / no text) → refuse to score
+function extractBase(){ return (aiEndpoint||'http://localhost:8787/score').replace(/\/score$/,''); }
+function fileToB64(f){ return new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(String(r.result).split(',')[1]||''); r.onerror=rej; r.readAsDataURL(f); }); }
+async function serverExtract(f){
+  const b64=await fileToB64(f);
+  const res=await fetch(extractBase()+'/extract',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({filename:f.name,data_b64:b64})});
+  if(!res.ok) throw new Error('extract HTTP '+res.status);
+  return await res.json();
+}
 async function extractText(f){
   if(/\.pdf$/i.test(f.name) && window.pdfjsLib){
     pdfjsLib.GlobalWorkerOptions.workerSrc='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
@@ -1053,26 +1064,63 @@ async function extractText(f){
 async function readFiles(list){
   const status=document.getElementById('dropStatus'), files=Array.from(list), fail=[];
   for(const f of files){
-    status.textContent='Reading '+f.name+'…';
-    try{ const t=await extractText(f); uploadedDocs.push({name:f.name, text:(t||'').trim()}); }
-    catch(e){ fail.push(f.name); }
+    status.textContent='Extracting '+f.name+'…';
+    try{
+      let r=null;
+      try{ r=await serverExtract(f); }catch(se){ r=null; }   // server unreachable → client fallback
+      if(r && r.extraction_failed){
+        extractionBlocked=true;
+        extractReceipts.push({...(r.receipt||{filename:f.name}), failed:true, reason:r.reason, ocr:!!r.ocr_available});
+        uploadedDocs.push({name:f.name, text:'', failed:true});
+      } else if(r && r.ok){
+        extractReceipts.push(r.receipt||{filename:f.name});
+        uploadedDocs.push({name:f.name, text:(r.text||'').trim(), receipt:r.receipt});
+      } else if(r && r.error){
+        fail.push(f.name+' ('+r.error+')');
+      } else {
+        const t=await extractText(f);   // client-side fallback (hosted site / no local server)
+        uploadedDocs.push({name:f.name, text:(t||'').trim(), clientSide:true});
+        extractReceipts.push({filename:f.name, method:'browser (pdf.js/mammoth)', chars:(t||'').trim().length, pages:null});
+      }
+    } catch(e){ fail.push(f.name); }
   }
   rebuildNarrative();
   if(uploadedDocs.length && !val('m_title')) document.getElementById('m_title').value=uploadedDocs[0].name.replace(/\.[^.]+$/,'');
-  renderUploadList(); recompute();
-  const chars=val('projText').length;
-  status.innerHTML=`<strong>${uploadedDocs.length}</strong> document${uploadedDocs.length===1?'':'s'} attached · ${chars.toLocaleString()} chars combined into the narrative.`+
-    (fail.length?` <span style="color:var(--bordeaux)">Could not read: ${esc(fail.join(', '))}.</span>`:'');
+  renderUploadList(); recompute(); renderExtractReceipt(fail);
+}
+function renderExtractReceipt(fail){
+  const status=document.getElementById('dropStatus'); if(!status) return;
+  const rows=extractReceipts.map(x=>{
+    const sent = x.failed ? '<span style="color:var(--bordeaux);font-weight:700">extraction failed</span>'
+      : `${(x.chars||0).toLocaleString()} chars${x.pages!=null?` · ${x.pages} pages`:''}`;
+    return `<div style="display:flex;justify-content:space-between;gap:10px;font-size:11px;padding:2px 0">
+      <span>${esc(x.filename||'file')} <span style="color:var(--muted)">· ${esc(x.method||'')}</span></span>
+      <span>${sent}</span></div>`;
+  }).join('');
+  let msg = rows;
+  if(extractionBlocked){
+    const blocked=extractReceipts.filter(x=>x.failed);
+    msg += `<div style="margin-top:8px;padding:9px 11px;background:#F6E1E2;border-left:3px solid var(--bordeaux)">
+      <strong style="color:var(--bordeaux)">Extraction failed — possibly a scanned or image-only PDF.</strong>
+      ${esc(blocked.map(b=>b.reason).filter(Boolean)[0]||'')}
+      <div style="margin-top:5px;color:var(--muted)">Scoring is blocked until readable text is available. `+
+      (blocked.some(b=>b.ocr)
+        ? `<button class="btn ghost sm" onclick="alert('OCR run will follow when wired.')">Run OCR</button>`
+        : `OCR is not installed on this machine (install <code>tesseract</code> to enable it), or re-export the document with a text layer / paste the text.`)+
+      `</div></div>`;
+  }
+  if(fail && fail.length) msg += `<div style="color:var(--bordeaux);font-size:11px;margin-top:6px">Could not read: ${esc(fail.join(', '))}.</div>`;
+  status.innerHTML = msg || 'No documents attached.';
 }
 function rebuildNarrative(){
-  const combined=uploadedDocs.length>1
-    ? uploadedDocs.map(d=>`===== DOCUMENT: ${d.name} =====\n${d.text}`).join('\n\n')
-    : (uploadedDocs[0]?.text||'');
+  const good=uploadedDocs.filter(d=>!d.failed && d.text);   // never fold failed-extraction docs into the narrative
+  const combined=good.length>1
+    ? good.map(d=>`===== DOCUMENT: ${d.name} =====\n${d.text}`).join('\n\n')
+    : (good[0]?.text||'');
   document.getElementById('projText').value=combined;
 }
-function removeDoc(i){ uploadedDocs.splice(i,1); rebuildNarrative(); renderUploadList(); recompute();
-  document.getElementById('dropStatus').textContent=uploadedDocs.length?`${uploadedDocs.length} document${uploadedDocs.length===1?'':'s'} attached.`:'No documents attached.'; }
-function clearDocs(){ uploadedDocs=[]; rebuildNarrative(); renderUploadList(); recompute(); document.getElementById('dropStatus').textContent='No documents attached.'; }
+function removeDoc(i){ uploadedDocs.splice(i,1); extractReceipts.splice(i,1); extractionBlocked=uploadedDocs.some(d=>d.failed); rebuildNarrative(); renderUploadList(); recompute(); renderExtractReceipt([]); }
+function clearDocs(){ uploadedDocs=[]; extractReceipts=[]; extractionBlocked=false; rebuildNarrative(); renderUploadList(); recompute(); document.getElementById('dropStatus').textContent='No documents attached.'; }
 function renderUploadList(){
   const el=document.getElementById('fileList'); if(!el)return;
   if(!uploadedDocs.length){ el.innerHTML=''; return; }

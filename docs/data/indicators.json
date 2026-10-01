@@ -1,10 +1,10 @@
 {
  "_meta": {
-  "generated": "2026-09-01T08:11:24+00:00",
+  "generated": "2026-10-01T09:37:49+00:00",
   "source": "World Bank Open Data API (api.worldbank.org)",
   "countries": 86,
   "indicators": 65,
-  "datapoints": 4587
+  "datapoints": 4539
  },
  "_regions": {
   "East Asia & Pacific": [
@@ -175,17 +175,9 @@
    "value": 59.6136016845703,
    "year": "2023"
   },
-  "SE.TER.ENRR": {
-   "value": 10.85435962677,
-   "year": "2020"
-  },
   "SE.ADT.LITR.ZS": {
    "value": 37.2700004577637,
    "year": "2021"
-  },
-  "SE.XPD.TOTL.GD.ZS": {
-   "value": 4.34319019317627,
-   "year": "2017"
   },
   "SE.PRM.CMPT.ZS": {
    "value": 90.3076095581055,
@@ -242,10 +234,6 @@
   "BX.KLT.DINV.WD.GD.ZS": {
    "value": 0.144466946606861,
    "year": "2021"
-  },
-  "GC.TAX.TOTL.GD.ZS": {
-   "value": 9.89845089688421,
-   "year": "2017"
   },
   "SH.H2O.SMDW.ZS": {
    "value": 30.5547223111169,
@@ -2011,10 +1999,6 @@
    "value": 0.957783217657101,
    "year": "2025"
   },
-  "GC.TAX.TOTL.GD.ZS": {
-   "value": 16.9648657379261,
-   "year": "2007"
-  },
   "SI.POV.GINI": {
    "value": 40.9,
    "year": "2024"
@@ -2164,10 +2148,6 @@
   "SE.TER.ENRR": {
    "value": 21.4087908549348,
    "year": "2024"
-  },
-  "SE.XPD.TOTL.GD.ZS": {
-   "value": 8.05833660991541,
-   "year": "2020"
   },
   "SE.PRM.CMPT.ZS": {
    "value": 101.532181974812,
@@ -3235,10 +3215,6 @@
    "value": 23.49298947746,
    "year": "2024"
   },
-  "SE.TER.ENRR": {
-   "value": 4.39665967267065,
-   "year": "2020"
-  },
   "SE.XPD.TOTL.GD.ZS": {
    "value": 3.20149725837724,
    "year": "2023"
@@ -3457,10 +3433,6 @@
    "value": 95.3399963378906,
    "year": "2024"
   },
-  "SE.XPD.TOTL.GD.ZS": {
-   "value": 5.26166009902954,
-   "year": "2020"
-  },
   "SE.PRM.CMPT.ZS": {
    "value": 97.1171035766602,
    "year": "2022"
@@ -3623,10 +3595,6 @@
    "value": 1919.82250200565,
    "year": "2025"
   },
-  "FP.CPI.TOTL.ZG": {
-   "value": 2.88585107289988,
-   "year": "2016"
-  },
   "GC.DOD.TOTL.GD.ZS": {
    "value": 14.9405246182608,
    "year": "2022"
@@ -3686,10 +3654,6 @@
   "SE.SEC.ENRR": {
    "value": 55.4860992431641,
    "year": "2023"
-  },
-  "SE.TER.ENRR": {
-   "value": 6.37987995147705,
-   "year": "2020"
   },
   "SE.ADT.LITR.ZS": {
    "value": 68.5,
@@ -4393,10 +4357,6 @@
    "value": 79.4531619498685,
    "year": "2022"
   },
-  "SE.XPD.TOTL.GD.ZS": {
-   "value": 3.76082992553711,
-   "year": "2008"
-  },
   "SE.PRM.CMPT.ZS": {
    "value": 98.2100688782627,
    "year": "2024"
@@ -4460,10 +4420,6 @@
   "BX.KLT.DINV.WD.GD.ZS": {
    "value": 4.23066505478546,
    "year": "2025"
-  },
-  "GC.TAX.TOTL.GD.ZS": {
-   "value": 12.5192110970171,
-   "year": "2015"
   },
   "SI.POV.GINI": {
    "value": 28.5,
@@ -4789,6 +4745,10 @@
   }
  },
  "Eritrea": {
+  "NY.GDP.MKTP.KD.ZG": {
+   "value": 8.67980010138049,
+   "year": "2011"
+  },
   "SL.UEM.TOTL.ZS": {
    "value": 5.978,
    "year": "2025"
@@ -4841,14 +4801,6 @@
    "value": 44.0441284179688,
    "year": "2022"
   },
-  "SE.TER.ENRR": {
-   "value": 3.20262002944946,
-   "year": "2016"
-  },
-  "SE.XPD.TOTL.GD.ZS": {
-   "value": 2.12700009346008,
-   "year": "2006"
-  },
   "SE.PRM.CMPT.ZS": {
    "value": 61.2794189453125,
    "year": "2022"
@@ -4892,6 +4844,10 @@
   "SP.RUR.TOTL.ZS": {
    "value": 65.4595495744784,
    "year": "2025"
+  },
+  "IT.NET.USER.ZS": {
+   "value": 14.34939957,
+   "year": "2020"
   },
   "IT.NET.BBND.P2": {
    "value": 0.165393390775689,
@@ -4990,10 +4946,6 @@
   "SE.PRM.ENRR": {
    "value": 84.4160102082984,
    "year": "2024"
-  },
-  "SE.TER.ENRR": {
-   "value": 5.9192507771213,
-   "year": "2014"
   },
   "SE.ADT.LITR.ZS": {
    "value": 60.4599990844727,
@@ -5669,10 +5621,6 @@
    "value": 26.1,
    "year": "2022"
   },
-  "SE.TER.ENRR": {
-   "value": 10.8547201156616,
-   "year": "2014"
-  },
   "SE.XPD.TOTL.GD.ZS": {
    "value": 1.72470879088585,
    "year": "2023"
@@ -5724,10 +5672,6 @@
   "BX.KLT.DINV.WD.GD.ZS": {
    "value": 5.60537419672253,
    "year": "2024"
-  },
-  "GC.TAX.TOTL.GD.ZS": {
-   "value": 7.43568715023211,
-   "year": "1992"
   },
   "SH.H2O.BASW.ZS": {
    "value": 74.1924841600776,
@@ -5854,10 +5798,6 @@
   "SH.STA.STNT.ZS": {
    "value": 22,
    "year": "2023"
-  },
-  "SE.TER.ENRR": {
-   "value": 1.05140995979309,
-   "year": "1986"
   },
   "SE.XPD.TOTL.GD.ZS": {
    "value": 0.964648012977964,
@@ -6601,10 +6541,6 @@
    "value": 1.54140671670434,
    "year": "2025"
   },
-  "GC.TAX.TOTL.GD.ZS": {
-   "value": 11.0577865188848,
-   "year": "2009"
-  },
   "SI.POV.GINI": {
    "value": 34.4,
    "year": "2025"
@@ -6743,17 +6679,9 @@
    "value": 91,
    "year": "2024"
   },
-  "SE.TER.ENRR": {
-   "value": 15.5580997467041,
-   "year": "2005"
-  },
   "SE.ADT.LITR.ZS": {
    "value": 84.0648941705243,
    "year": "2021"
-  },
-  "SE.XPD.TOTL.GD.ZS": {
-   "value": 3.55150008201599,
-   "year": "1989"
   },
   "SE.ADT.1524.LT.ZS": {
    "value": 92.3870730120635,
@@ -6814,10 +6742,6 @@
   "BX.KLT.DINV.WD.GD.ZS": {
    "value": -2.73525447039729,
    "year": "2024"
-  },
-  "GC.TAX.TOTL.GD.ZS": {
-   "value": 1.34459361810327,
-   "year": "2019"
   },
   "SI.POV.GINI": {
    "value": 29.8,
@@ -7595,10 +7519,6 @@
    "value": 8.7,
    "year": "2024"
   },
-  "EG.ELC.ACCS.ZS": {
-   "value": 100,
-   "year": "1999"
-  },
   "NV.AGR.TOTL.ZS": {
    "value": 7.36156167634088,
    "year": "2025"
@@ -7626,6 +7546,10 @@
   "SI.POV.DDAY": {
    "value": 10,
    "year": "2022"
+  },
+  "IT.NET.USER.ZS": {
+   "value": 89.4430319734879,
+   "year": "2018"
   },
   "IT.CEL.SETS.P2": {
    "value": 34.5402009143477,
@@ -8383,10 +8307,6 @@
    "value": 66.5939255094706,
    "year": "2022"
   },
-  "SE.TER.ENRR": {
-   "value": 10.838520055325,
-   "year": "2012"
-  },
   "SE.XPD.TOTL.GD.ZS": {
    "value": 2.2665256232687,
    "year": "2023"
@@ -8560,14 +8480,6 @@
   "SH.STA.STNT.ZS": {
    "value": 7.9,
    "year": "2022"
-  },
-  "SE.TER.ENRR": {
-   "value": 58.543701171875,
-   "year": "2003"
-  },
-  "SE.XPD.TOTL.GD.ZS": {
-   "value": 2.26416993141174,
-   "year": "1999"
   },
   "EG.ELC.ACCS.ZS": {
    "value": 77.4,
@@ -9207,10 +9119,6 @@
    "value": 38.9389470920545,
    "year": "2023"
   },
-  "SE.TER.ENRR": {
-   "value": 5.12750941173932,
-   "year": "2015"
-  },
   "SE.ADT.LITR.ZS": {
    "value": 35.6300010681152,
    "year": "2024"
@@ -9416,10 +9324,6 @@
   "SE.PRM.ENRR": {
    "value": 105.434763333022,
    "year": "2024"
-  },
-  "SE.TER.ENRR": {
-   "value": 5.97194330025359,
-   "year": "2020"
   },
   "SE.ADT.LITR.ZS": {
    "value": 59.5299987792969,
@@ -10531,10 +10435,6 @@
    "value": 119.162225223393,
    "year": "2022"
   },
-  "SE.TER.ENRR": {
-   "value": 7.4630510423433,
-   "year": "2018"
-  },
   "SE.ADT.LITR.ZS": {
    "value": 61.6653441678133,
    "year": "2022"
@@ -10705,10 +10605,6 @@
    "value": 6011.53492175516,
    "year": "2025"
   },
-  "FP.CPI.TOTL.ZG": {
-   "value": 8.82506696804558,
-   "year": "2019"
-  },
   "SL.UEM.TOTL.ZS": {
    "value": 3.047,
    "year": "2025"
@@ -10753,17 +10649,9 @@
    "value": 71,
    "year": "2024"
   },
-  "SE.TER.ENRR": {
-   "value": 20.3723297119141,
-   "year": "2018"
-  },
   "SE.ADT.LITR.ZS": {
    "value": 93.527395549521,
    "year": "2020"
-  },
-  "SE.XPD.TOTL.GD.ZS": {
-   "value": 1.99976003170013,
-   "year": "2019"
   },
   "SE.ADT.1524.LT.ZS": {
    "value": 96.3616999952531,
@@ -10821,10 +10709,6 @@
    "value": 1.47879223317634,
    "year": "2024"
   },
-  "GC.TAX.TOTL.GD.ZS": {
-   "value": 6.01765247726484,
-   "year": "2019"
-  },
   "SH.H2O.SMDW.ZS": {
    "value": 59.7239750772507,
    "year": "2024"
@@ -10852,6 +10736,10 @@
   "SN.ITK.DEFC.ZS": {
    "value": 5.4,
    "year": "2023"
+  },
+  "IT.NET.USER.ZS": {
+   "value": 45.4477005,
+   "year": "2020"
   },
   "IT.NET.BBND.P2": {
    "value": 2.86965759378273,
@@ -11597,10 +11485,6 @@
    "value": 19.8664761204349,
    "year": "2024"
   },
-  "SE.TER.ENRR": {
-   "value": 4.15170730347346,
-   "year": "2019"
-  },
   "SE.ADT.LITR.ZS": {
    "value": 35.6100006103516,
    "year": "2022"
@@ -11672,10 +11556,6 @@
   "BX.KLT.DINV.WD.GD.ZS": {
    "value": 1.81493836603542,
    "year": "2024"
-  },
-  "GC.TAX.TOTL.GD.ZS": {
-   "value": 11.7645285971099,
-   "year": "1980"
   },
   "SI.POV.GINI": {
    "value": 32.9,
@@ -11822,10 +11702,6 @@
   "SE.SEC.ENRR": {
    "value": 46.8931503295898,
    "year": "2023"
-  },
-  "SE.TER.ENRR": {
-   "value": 9.74153350922586,
-   "year": "2011"
   },
   "SE.ADT.LITR.ZS": {
    "value": 70.4100036621094,
@@ -12481,10 +12357,6 @@
    "value": 52.0929750873194,
    "year": "2023"
   },
-  "SE.TER.ENRR": {
-   "value": 1.94981002807617,
-   "year": "1999"
-  },
   "SE.ADT.LITR.ZS": {
    "value": 87.0046890533686,
    "year": "2022"
@@ -12690,10 +12562,6 @@
   "SE.SEC.ENRR": {
    "value": 79.1305613911018,
    "year": "2024"
-  },
-  "SE.TER.ENRR": {
-   "value": 37.6179261040957,
-   "year": "2010"
   },
   "SE.ADT.LITR.ZS": {
    "value": 94.8600006103516,
@@ -12932,10 +12800,6 @@
   "SE.SEC.ENRR": {
    "value": 108.289047241211,
    "year": "2024"
-  },
-  "SE.TER.ENRR": {
-   "value": 71.2404708862305,
-   "year": "2017"
   },
   "SE.ADT.LITR.ZS": {
    "value": 93.6600036621094,
@@ -13861,10 +13725,6 @@
    "value": 86.9079513549805,
    "year": "2023"
   },
-  "SE.TER.ENRR": {
-   "value": 1.98783004283905,
-   "year": "2002"
-  },
   "SE.XPD.TOTL.GD.ZS": {
    "value": 2.62455277942046,
    "year": "2023"
@@ -14046,10 +13906,6 @@
   "SE.SEC.ENRR": {
    "value": 3.34785008430481,
    "year": "2023"
-  },
-  "SE.TER.ENRR": {
-   "value": 2.41033005714417,
-   "year": "1987"
   },
   "SE.ADT.LITR.ZS": {
    "value": 54.1199989318848,
@@ -14411,6 +14267,10 @@
   }
  },
  "South Sudan": {
+  "NY.GDP.MKTP.KD.ZG": {
+   "value": -10.7933646271143,
+   "year": "2015"
+  },
   "FP.CPI.TOTL.ZG": {
    "value": 91.4408220769046,
    "year": "2024"
@@ -14466,10 +14326,6 @@
   "SE.SEC.ENRR": {
    "value": 122.120628356934,
    "year": "2024"
-  },
-  "SE.XPD.TOTL.GD.ZS": {
-   "value": 1.56539228959694,
-   "year": "2016"
   },
   "EG.ELC.ACCS.ZS": {
    "value": 5.4,
@@ -14530,6 +14386,10 @@
   "SN.ITK.DEFC.ZS": {
    "value": 22.3,
    "year": "2023"
+  },
+  "IT.NET.USER.ZS": {
+   "value": 6.671000004,
+   "year": "2019"
   },
   "IT.NET.BBND.P2": {
    "value": 0.00174164840403178,
@@ -14847,14 +14707,6 @@
    "value": 46,
    "year": "2024"
   },
-  "SE.TER.ENRR": {
-   "value": 15.8645696640015,
-   "year": "2015"
-  },
-  "SE.XPD.TOTL.GD.ZS": {
-   "value": 2.02213001251221,
-   "year": "2009"
-  },
   "EG.ELC.ACCS.ZS": {
    "value": 66,
    "year": "2024"
@@ -14911,10 +14763,6 @@
    "value": 1.37399372870934,
    "year": "2023"
   },
-  "GC.TAX.TOTL.GD.ZS": {
-   "value": 7.39027026174951,
-   "year": "2016"
-  },
   "SH.H2O.BASW.ZS": {
    "value": 64.8917129502851,
    "year": "2024"
@@ -14934,6 +14782,10 @@
   "SN.ITK.DEFC.ZS": {
    "value": 11,
    "year": "2021"
+  },
+  "IT.NET.USER.ZS": {
+   "value": 18.60000038,
+   "year": "2017"
   },
   "IT.NET.BBND.P2": {
    "value": 0.0604394040047428,
@@ -14984,10 +14836,6 @@
   "NY.GDP.PCAP.PP.CD": {
    "value": 4905.15252202552,
    "year": "2022"
-  },
-  "FP.CPI.TOTL.ZG": {
-   "value": 13.4175653228571,
-   "year": "2019"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 13.569,
@@ -15041,17 +14889,9 @@
    "value": 38.736930847168,
    "year": "2024"
   },
-  "SE.TER.ENRR": {
-   "value": 43.7606582641602,
-   "year": "2016"
-  },
   "SE.ADT.LITR.ZS": {
    "value": 94.4199981689453,
    "year": "2021"
-  },
-  "SE.XPD.TOTL.GD.ZS": {
-   "value": 5.13012981414795,
-   "year": "2009"
   },
   "SE.PRM.CMPT.ZS": {
    "value": 60.1269912719727,
@@ -15137,6 +14977,10 @@
    "value": 39,
    "year": "2023"
   },
+  "IT.NET.USER.ZS": {
+   "value": 33.77000046,
+   "year": "2018"
+  },
   "IT.NET.BBND.P2": {
    "value": 6.86124546257849,
    "year": "2023"
@@ -15186,10 +15030,6 @@
   "NY.GDP.PCAP.PP.CD": {
    "value": 5923.47183321348,
    "year": "2025"
-  },
-  "FP.CPI.TOTL.ZG": {
-   "value": 6.00458082322139,
-   "year": "2016"
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": 17.0983293460641,
@@ -16131,10 +15971,6 @@
    "value": 63.4192515229188,
    "year": "2023"
   },
-  "SE.TER.ENRR": {
-   "value": 14.9029897765252,
-   "year": "2020"
-  },
   "SE.ADT.LITR.ZS": {
    "value": 72.5999984741211,
    "year": "2022"
@@ -16436,10 +16272,6 @@
   "BX.KLT.DINV.WD.GD.ZS": {
    "value": 1.47747574805229,
    "year": "2024"
-  },
-  "GC.TAX.TOTL.GD.ZS": {
-   "value": 20.1154877238471,
-   "year": "2012"
   },
   "SI.POV.GINI": {
    "value": 33.7,
@@ -16917,6 +16749,10 @@
    "value": 4.3,
    "year": "2023"
   },
+  "IT.NET.USER.ZS": {
+   "value": 17.99029922,
+   "year": "2016"
+  },
   "IT.NET.BBND.P2": {
    "value": 5.21710831232306,
    "year": "2022"
@@ -17018,10 +16854,6 @@
   "SH.STA.STNT.ZS": {
    "value": 24.4,
    "year": "2022"
-  },
-  "SE.TER.ENRR": {
-   "value": 4.61899995803833,
-   "year": "2014"
   },
   "SE.ADT.LITR.ZS": {
    "value": 77.0400009155273,
@@ -17629,10 +17461,6 @@
    "value": 1.57068062827224,
    "year": "2025"
   },
-  "FP.CPI.TOTL.ZG": {
-   "value": 254.948534781816,
-   "year": "2016"
-  },
   "SL.UEM.TOTL.ZS": {
    "value": 5.307,
    "year": "2025"
@@ -17680,14 +17508,6 @@
   "SE.SEC.ENRR": {
    "value": 97.7908172607422,
    "year": "2024"
-  },
-  "SE.TER.ENRR": {
-   "value": 78.2699203491211,
-   "year": "2009"
-  },
-  "SE.XPD.TOTL.GD.ZS": {
-   "value": 6.87467002868652,
-   "year": "2009"
   },
   "SE.PRM.CMPT.ZS": {
    "value": 103.043952941895,
@@ -18037,9 +17857,9 @@
   }
  },
  "Yemen": {
-  "FP.CPI.TOTL.ZG": {
-   "value": 8.10472583623915,
-   "year": "2014"
+  "NY.GDP.MKTP.KD.ZG": {
+   "value": 0.752447592962554,
+   "year": "2018"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 17.322,
@@ -18088,14 +17908,6 @@
   "SH.STA.STNT.ZS": {
    "value": 48.5,
    "year": "2022"
-  },
-  "SE.TER.ENRR": {
-   "value": 8.80690002441406,
-   "year": "2011"
-  },
-  "SE.XPD.TOTL.GD.ZS": {
-   "value": 5.15144014358521,
-   "year": "2008"
   },
   "EG.ELC.ACCS.ZS": {
    "value": 86.3,
@@ -18156,6 +17968,10 @@
   "SH.STA.HYGN.ZS": {
    "value": 63.3468892689192,
    "year": "2024"
+  },
+  "IT.NET.USER.ZS": {
+   "value": 17.49099922,
+   "year": "2019"
   },
   "IT.NET.BBND.P2": {
    "value": 1.27124133725573,
@@ -18266,10 +18082,6 @@
   "SE.SEC.ENRR": {
    "value": 56.7889289855957,
    "year": "2024"
-  },
-  "SE.TER.ENRR": {
-   "value": 3.96159738763825,
-   "year": "2012"
   },
   "SE.ADT.LITR.ZS": {
    "value": 71.7699966430664,
@@ -18548,10 +18360,6 @@
   "BX.KLT.DINV.WD.GD.ZS": {
    "value": 1.12093172517355,
    "year": "2024"
-  },
-  "GC.TAX.TOTL.GD.ZS": {
-   "value": 7.21476804985273,
-   "year": "2018"
   },
   "SH.H2O.SMDW.ZS": {
    "value": 25.460563358156,

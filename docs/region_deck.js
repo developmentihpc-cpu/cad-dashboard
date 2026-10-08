@@ -1,6 +1,7 @@
 /* region_deck.js — ODA regional needs-assessment deck (English or Arabic).
  *
- * cover · regional snapshot · need ranking · comparison table · one profile per
+ * cover · regional overview (need-index map) · needs at a glance · need ranking ·
+ * comparison table · one profile per
  * country · method & sources. Ratings use the shared severity scale (severity.js),
  * identical to the dashboard. Requires deck_kit.js + severity.js (+ i18n_ar.js).
  *
@@ -83,42 +84,63 @@ function buildRegionDeck(opts){
       sl.text(t, { x:x + 0.22, y:yy, w:w - 0.22, h:hh, fontFace:BODY, fontSize:10, color:C.INK, valign:'top', wrap:true }); yy += hh + 0.12; });
     return yy; };
 
-  // ══ COVER ══
+  // ══ 1 · COVER ══
   S.push(() => {
-    const sl = newSlide(C.WHITE); const LW = 4.1;
-    sl.shape(p.ShapeType.rect, { x:0, y:0, w:LW, h:7.5, fill:{ color:C.NAVY }, line:{ type:'none' } });
-    sl.shape(p.ShapeType.rect, { x:LW, y:0, w:0.05, h:7.5, fill:{ color:C.GOLD }, line:{ type:'none' } });
-    sl.text(T('REGIONAL ASSESSMENT', 'التقييم الإقليمي'), { x:0.5, y:0.7, w:LW - 0.8, h:0.3, fontFace:BODY, fontSize:9, bold:true, color:C.GOLD_LT, charSpacing:2.6 });
-    sl.text(String(list.length), { x:0.5, y:1.25, w:LW - 0.8, h:0.95, fontFace:HEAD, fontSize:54, bold:true, color:C.WHITE });
-    sl.text(T('countries assessed', 'دولة مشمولة بالتقييم'), { x:0.5, y:2.2, w:LW - 0.8, h:0.3, fontFace:BODY, fontSize:11, color:C.SKY_LT });
-    [[T('Population', 'عدد السكان'), people(pop)], [T('Without electricity', 'دون كهرباء'), people(without('EG.ELC.ACCS.ZS'))],
-     [T('Median under-5 mortality', 'وسيط وفيات الأطفال دون الخامسة'), meds['SH.DYN.MORT'] != null ? Math.round(meds['SH.DYN.MORT']) + T(' per 1,000', ' لكل 1,000') : '—'],
-     [T('Median GDP per capita (PPP)', 'وسيط نصيب الفرد من الناتج'), medGdp != null ? F.money({ v:medGdp }) : '—']].forEach(([l, v], i) => {
-      const y = 3.0 + i * 0.88;
-      sl.shape(p.ShapeType.line, { x:0.5, y:y - 0.1, w:LW - 0.9, h:0, line:{ color:'3A5068', width:0.5 } });
-      sl.text(l, { x:0.5, y, w:LW - 0.9, h:0.22, fontFace:BODY, fontSize:7.8, bold:true, color:C.GOLD_LT, charSpacing:1.4 });
-      sl.text(v, { x:0.5, y:y + 0.24, w:LW - 0.9, h:0.42, fontFace:HEAD, fontSize:18, bold:true, color:C.WHITE }); });
-    const RX = LW + 0.6, RW = 13.333 - RX - 0.6;
-    eyebrow(sl, T('ODA · regional needs assessment', 'مكتب الشؤون التنموية · تقييم الاحتياجات الإقليمي'), RX, 1.2, RW);
-    sl.text(REGION, { x:RX, y:1.55, w:RW, h:1.6, fontFace:HEAD, fontSize: REGION.length > 28 ? 32 : 42, bold:true, color:C.INK, valign:'top', fit:'shrink' });
-    sl.shape(p.ShapeType.rect, { x:RX, y:3.3, w:0.9, h:0.04, fill:{ color:C.GOLD }, line:{ type:'none' } });
+    const sl = newSlide(C.NAVY);
+    sl.shape(p.ShapeType.rect, { x:0, y:7.0, w:13.333, h:0.5, fill:{ color:C.INK }, line:{ type:'none' } });
+    sl.shape(p.ShapeType.rect, { x:0, y:6.96, w:13.333, h:0.04, fill:{ color:C.GOLD }, line:{ type:'none' } });
+    if (opts.logo && opts.logo.data) {
+      sl.shape(p.ShapeType.roundRect, { x:0.6, y:0.55, w:2.9, h:0.9, rectRadius:0.08, fill:{ color:C.WHITE }, line:{ type:'none' } });
+      const lg = DK.contain(opts.logo.ratio, 0.75, 0.66, 2.6, 0.68);
+      sl.image({ data:opts.logo.data, x:lg.x, y:lg.y, w:lg.w, h:lg.h });
+    }
+    sl.text(T('REGIONAL ASSESSMENT', 'التقييم الإقليمي'), { x:0.6, y:2.25, w:9, h:0.3, fontFace:BODY, fontSize:11, bold:true, color:C.GOLD_LT, charSpacing:3 });
+    sl.text(REGION, { x:0.55, y:2.6, w:9.6, h:1.4, fontFace:HEAD, fontSize: REGION.length > 30 ? 36 : 50, bold:true, color:C.WHITE, valign:'top', fit:'shrink' });
+    sl.shape(p.ShapeType.rect, { x:0.6, y:4.15, w:1.1, h:0.05, fill:{ color:C.GOLD }, line:{ type:'none' } });
     sl.text(T(`Development needs across ${list.length} countries — health, food security, water and sanitation, and energy — with a profile of every country.`,
               `الاحتياجات التنموية في ${list.length} دولة — الصحة والأمن الغذائي والمياه والصرف الصحي والطاقة — مع ملف تعريفي لكل دولة.`),
-      { x:RX, y:3.55, w:RW, h:0.9, fontFace:BODY, fontSize:13, color:C.MUTE, valign:'top', wrap:true });
-    sl.text(list.map(c => cn(c.name)).sort((a, b) => a.localeCompare(b, ar ? 'ar' : 'en')).join(' · '), { x:RX, y:4.75, w:RW, h:1.6, fontFace:BODY, fontSize:9, color:C.FAINT, valign:'top', wrap:true, fit:'shrink' });
-    sl.text(DATE + T(' · ODA Country Assessment Dashboard', ' · لوحة تقييم الدول'), { x:RX, y:6.65, w:RW, h:0.3, fontFace:BODY, fontSize:9, color:C.FAINT });
+      { x:0.6, y:4.4, w:8.6, h:0.8, fontFace:BODY, fontSize:14, color:C.SKY_LT, valign:'top', wrap:true });
+    sl.text(list.map(c => cn(c.name)).sort((a, b) => a.localeCompare(b, ar ? 'ar' : 'en')).join('  ·  '), { x:0.6, y:5.35, w:12.1, h:1.4, fontFace:BODY, fontSize:9.5, color:'A9BCCF', valign:'top', wrap:true, fit:'shrink' });
+    // big country count, top right
+    sl.text(String(list.length), { x:10.3, y:0.5, w:2.4, h:1.1, fontFace:HEAD, fontSize:60, bold:true, color:C.GOLD_LT, align:'right' });
+    sl.text(T('countries', 'دولة'), { x:10.3, y:1.55, w:2.4, h:0.3, fontFace:BODY, fontSize:11, color:C.SKY_LT, align:'right' });
+    sl.text(DATE, { x:0.6, y:7.05, w:5, h:0.4, fontFace:BODY, fontSize:10, bold:true, color:C.GOLD_LT, valign:'middle' });
+    sl.text(T('Office of Development Affairs', 'مكتب الشؤون التنموية'), { x:7.7, y:7.05, w:5.03, h:0.4, fontFace:BODY, fontSize:10, color:C.SKY_LT, align:'right', valign:'middle' });
   });
 
-  // ══ REGIONAL SNAPSHOT ══
+  // ══ 2 · REGIONAL OVERVIEW — need-index map (country-level data), people, key figures ══
   S.push(() => {
     const sl = newSlide(C.WHITE);
-    head(sl, REGION + T(' · regional snapshot', ' · لمحة إقليمية'), T('At a Glance', 'في لمحة'), T('the scale of unmet basic needs across the region', 'حجم الاحتياجات الأساسية غير الملبّاة في الإقليم'));
-    const cw = 2.9, gap = 0.24, y = 1.45;
-    card(sl, 0.5, y, cw, 1.25, people(pop), T('People in the region', 'سكان الإقليم'), T('World Bank · latest year', 'البنك الدولي · أحدث سنة'));
-    card(sl, 0.5 + (cw + gap), y, cw, 1.25, people(without('EG.ELC.ACCS.ZS')), T('Without electricity', 'دون كهرباء'), T('estimated from national rates', 'تقدير من المعدلات الوطنية'), 1);
-    card(sl, 0.5 + 2 * (cw + gap), y, cw, 1.25, people(without('SH.H2O.BASW.ZS')), T('Without basic drinking water', 'دون مياه شرب أساسية'), T('estimated from national rates', 'تقدير من المعدلات الوطنية'), 1);
-    card(sl, 0.5 + 3 * (cw + gap), y, cw, 1.25, people(without('SH.STA.BASS.ZS')), T('Without basic sanitation', 'دون صرف صحي أساسي'), T('estimated from national rates', 'تقدير من المعدلات الوطنية'), 1);
-    eyebrow(sl, T('Key insights', 'أبرز الملاحظات'), 0.5, 3.05, 6.8, C.SKY_DK);
+    head(sl, T('Regional overview', 'نظرة عامة على الإقليم'), REGION, T('where needs are greatest, country by country', 'أين يكون الاحتياج أكبر، دولةً بدولة'));
+    const M = DK.MAP_SLOTS.region, mx = 0.5, my = 1.35;
+    if (opts.mapData) sl.image({ data:opts.mapData, x:mx, y:my, w:M.w, h:M.h });
+    else { sl.shape(p.ShapeType.rect, { x:mx, y:my, w:M.w, h:M.h, fill:{ color:C.SKY_PALE }, line:{ type:'none' } });
+      sl.text(T('Map unavailable', 'الخريطة غير متاحة'), { x:mx, y:my + M.h / 2 - 0.2, w:M.w, h:0.4, fontFace:BODY, fontSize:11, color:C.FAINT, align:'center' }); }
+    // legend under the map: need-index tiers (the map shades each country by its own index)
+    const sh = opts.needShades || { hi:'0A6FD1', mid:'2EA0F2', lo:'9ED6FA', none:'C3CDD6' };
+    const keys = [[sh.hi, T('Highest-need third', 'الثلث الأعلى احتياجاً')], [sh.mid, T('Middle third', 'الثلث الأوسط')], [sh.lo, T('Lowest third', 'الثلث الأدنى')], [sh.none, T('Not ranked', 'غير مصنّفة')]];
+    keys.forEach(([col, t], i) => { const kx = mx + i * 1.85;
+      sl.shape(p.ShapeType.rect, { x:kx, y:my + M.h + 0.12, w:0.18, h:0.14, fill:{ color:col }, line:{ type:'none' } });
+      sl.text(t, { x:kx + 0.25, y:my + M.h + 0.06, w:1.55, h:0.26, fontFace:BODY, fontSize:7.8, color:C.MUTE, valign:'middle' }); });
+    // right column: key figures
+    const RX = 8.35, RW = 13.333 - RX - 0.5, ch = 0.98;
+    eyebrow(sl, T('The region in numbers', 'الإقليم بالأرقام'), RX, 1.35, RW, C.SKY_DK);
+    const cards = [
+      [people(pop), T('People in the region', 'سكان الإقليم'), null],
+      [people(without('EG.ELC.ACCS.ZS')), T('Without electricity', 'دون كهرباء'), 1],
+      [people(without('SH.H2O.BASW.ZS')), T('Without basic drinking water', 'دون مياه شرب أساسية'), 1],
+      [people(without('SH.STA.BASS.ZS')), T('Without basic sanitation', 'دون صرف صحي أساسي'), 1],
+      [meds['SH.DYN.MORT'] != null ? String(Math.round(meds['SH.DYN.MORT'])) : '—', T('Median under-5 mortality (per 1,000)', 'وسيط وفيات الأطفال دون الخامسة (لكل 1,000)'), meds['SH.DYN.MORT'] != null ? DK.sevLvl('SH.DYN.MORT', meds['SH.DYN.MORT']) : null],
+    ];
+    cards.forEach(([v, l, L], i) => card(sl, RX, 1.68 + i * (ch + 0.08), RW, ch, v, l, null, L));
+    foot(sl, T('ODA need index · World Bank Open Data · Natural Earth (borders) · ', 'مؤشر الاحتياج · بيانات البنك الدولي · Natural Earth (الحدود) · ') + DATE);
+  });
+
+  // ══ 3 · NEEDS AT A GLANCE ══
+  S.push(() => {
+    const sl = newSlide(C.WHITE);
+    head(sl, REGION + T(' · regional snapshot', ' · لمحة إقليمية'), T('Needs at a Glance', 'الاحتياجات في لمحة'), T('how widespread each gap is across the region', 'مدى انتشار كل فجوة في الإقليم'));
+    eyebrow(sl, T('Key insights', 'أبرز الملاحظات'), 0.5, 1.45, 6.6, C.SKY_DK);
     const top3 = ranked.slice(0, 3).map(c => cn(c.name));
     const u5bad = list.filter(c => (curLvl(c, 'SH.DYN.MORT') ?? 3) <= 1).length;
     const incomeLine = inc.LIC ? T(`${inc.LIC} of ${list.length} countries are low-income; ${inc.LMIC} are lower-middle income.`, `${inc.LIC} من ${list.length} دول منخفضة الدخل، و${inc.LMIC} من الشريحة الدنيا من الدخل المتوسط.`)
@@ -129,16 +151,16 @@ function buildRegionDeck(opts){
       meds['SH.DYN.MORT'] != null ? T(`Regional median under-5 mortality is ${Math.round(meds['SH.DYN.MORT'])} per 1,000; median GDP per capita (PPP) is ${medGdp != null ? F.money({ v:medGdp }) : 'not available'}.`,
         `يبلغ الوسيط الإقليمي لوفيات الأطفال دون الخامسة ${Math.round(meds['SH.DYN.MORT'])} لكل 1,000، ووسيط نصيب الفرد من الناتج ${medGdp != null ? F.money({ v:medGdp }) : 'غير متاح'}.`) : null,
       incomeLine,
-    ].filter(Boolean), 0.5, 3.38, 6.8);
-    const RX = 7.85, RW = 4.98;
-    eyebrow(sl, T('Countries rated severe or high concern', 'الدول المصنّفة حرجة أو مقلقة'), RX, 3.05, RW, C.SKY_DK);
+    ].filter(Boolean), 0.5, 1.8, 6.6);
+    const RX = 7.6, RW = 5.23;
+    eyebrow(sl, T('Countries rated severe or high concern', 'الدول المصنّفة حرجة أو مقلقة'), RX, 1.45, RW, C.SKY_DK);
     IND.forEach((ind, i) => {
       const have = list.filter(c => curLvl(c, ind.id) != null), bad = have.filter(c => curLvl(c, ind.id) <= 1).length;
-      const ry = 3.42 + i * 0.58;
-      sl.text(lbl(ind), { x:RX, y:ry, w:RW - 1.2, h:0.22, fontFace:BODY, fontSize:8.8, bold:true, color:C.MUTE });
-      sl.text(T(`${bad} of ${have.length}`, `${bad} من ${have.length}`), { x:RX + RW - 1.2, y:ry, w:1.2, h:0.22, fontFace:BODY, fontSize:8.8, bold:true, color:C.INK, align:'right' });
-      sl.shape(p.ShapeType.rect, { x:RX, y:ry + 0.26, w:RW, h:0.18, fill:{ color:C.SKY_PALE }, line:{ type:'none' } });
-      if (have.length && bad) sl.shape(p.ShapeType.rect, { x:RX, y:ry + 0.26, w:Math.max(0.05, RW * bad / have.length), h:0.18, fill:{ color:SEV.fill[0] }, line:{ type:'none' } });
+      const ry = 1.85 + i * 0.78;
+      sl.text(lbl(ind), { x:RX, y:ry, w:RW - 1.2, h:0.26, fontFace:BODY, fontSize:9.4, bold:true, color:C.INK });
+      sl.text(T(`${bad} of ${have.length}`, `${bad} من ${have.length}`), { x:RX + RW - 1.2, y:ry, w:1.2, h:0.26, fontFace:BODY, fontSize:9.4, bold:true, color:C.INK, align:'right' });
+      sl.shape(p.ShapeType.rect, { x:RX, y:ry + 0.32, w:RW, h:0.24, fill:{ color:C.SKY_PALE }, line:{ type:'none' } });
+      if (have.length && bad) sl.shape(p.ShapeType.rect, { x:RX, y:ry + 0.32, w:Math.max(0.05, RW * bad / have.length), h:0.24, fill:{ color:SEV.fill[0] }, line:{ type:'none' } });
     });
     foot(sl, SRC_LINE + ' · ' + DATE);
   });
@@ -191,7 +213,7 @@ function buildRegionDeck(opts){
     const sl = newSlide(C.WHITE);
     eyebrow(sl, REGION + T(' · country profile', ' · ملف الدولة'), 0.5, 0.34, 8);
     let tx = 0.5;
-    if (c.flagData) { try { sl.image({ data:c.flagData, x:0.5, y:0.68, w:0.62, h:0.41 }); tx = 1.28; } catch (e) {} }
+    if (c.flagData) { try { const f = DK.contain(c.flagRatio, 0.5, 0.66, 0.66, 0.46); sl.image({ data:c.flagData, x:f.x, y:f.y, w:f.w, h:f.h }); tx = 1.32; } catch (e) {} }
     sl.text(cn(c.name), { x:tx, y:0.6, w:7.5, h:0.55, fontFace:HEAD, fontSize:24, bold:true, color:C.INK, valign:'middle', fit:'shrink' });
     sl.text([incN(c.income), gv(c, 'SP.POP.TOTL') != null ? T('Population ', 'عدد السكان ') + F.pop(c.R('SP.POP.TOTL')) : null, gv(c, 'NY.GDP.PCAP.PP.CD') != null ? T('GDP/cap ', 'نصيب الفرد ') + F.money(c.R('NY.GDP.PCAP.PP.CD')) : null].filter(Boolean).join(' · '),
       { x:tx, y:1.14, w:8.5, h:0.28, fontFace:BODY, fontSize:10, color:C.MUTE });

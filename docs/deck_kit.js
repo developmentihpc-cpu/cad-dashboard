@@ -90,7 +90,17 @@ const DK = (() => {
   // "03 / 09" in English; "3 من 9" in Arabic (a slash pair would display reversed right-to-left)
   const pageLabel = (page, total, ar) => ar ? page + ' من ' + total : String(page).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
 
-  return { W, C, SEV, sevLvl, sevLabelOf, reader, slide, fmt, pageLabel, STALE_YEARS };
+  // Map slots (inches). The dashboard renders each map image at exactly this aspect ratio,
+  // and the decks place it at exactly this size — so maps are never stretched.
+  const MAP_SLOTS = { country: { w:6.0, h:5.05 }, region: { w:7.55, h:5.35 } };
+  // Fit an image of the given width/height ratio inside a box, centred, without distortion
+  const contain = (ratio, x, y, w, h) => {
+    const r = ratio || w / h; let iw = w, ih = w / r;
+    if (ih > h) { ih = h; iw = h * r; }
+    return { x: x + (w - iw) / 2, y: y + (h - ih) / 2, w: iw, h: ih };
+  };
+
+  return { W, C, SEV, sevLvl, sevLabelOf, reader, slide, fmt, pageLabel, STALE_YEARS, MAP_SLOTS, contain };
 })();
 
 if (typeof window !== 'undefined') window.DK = DK;

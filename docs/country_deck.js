@@ -1,6 +1,6 @@
 /* country_deck.js — ODA instant country assessment deck (English or Arabic).
  *
- * 9 slides: cover · executive summary · six sector slides (health, education,
+ * 10 slides: cover · country overview (map, key facts, status by sector) · executive summary · six sector slides (health, education,
  * food security & agriculture, WASH, energy & connectivity, economy) · method & sources.
  *
  * Every rating uses the shared severity scale (severity.js) — the same one the
@@ -181,13 +181,13 @@ function buildCountryDeck(opts){
     sl.text(ar ? lab : lab.toUpperCase(), { x, y, w, h, fontFace:BODY, fontSize: h < 0.2 ? 6.4 : 7.5, bold:true, color: L == null ? C.MUTE : SEV.onFill[L], align:'center', valign:'middle' });
   };
   // stat card with severity-coloured top bar; outdated values flagged
-  const statCard = (sl, id, x, y, w, h) => {
-    const r = R(id), L = lvlAny(id);
+  const statCard = (sl, id, x, y, w, h, compact) => {
+    const r = R(id), L = lvlAny(id), pad = compact ? 0.12 : 0.16;
     sl.shape(p.ShapeType.rect, { x, y, w, h, fill:{ color:C.CARD }, line:{ type:'none' } });
     sl.shape(p.ShapeType.rect, { x, y, w, h:0.05, fill:{ color: L == null ? C.GOLD : SEV.fill[L] }, line:{ type:'none' } });
-    sl.text(r ? I[id].f(r) : '—', { x:x + 0.16, y:y + 0.14, w:w - 0.3, h:0.5, fontFace:HEAD, fontSize:24, bold:true, color: !r ? C.FAINT : (L != null && L <= 1) ? SEV.text[L] : C.INK, valign:'middle' });
-    sl.text(lbl(id) + (I[id].u && r ? ' (' + I[id].u[ar ? 1 : 0].trim() + ')' : ''), { x:x + 0.16, y:y + 0.62, w:w - 0.3, h:0.34, fontFace:BODY, fontSize:8.2, bold:true, color:C.INK, valign:'top' });
-    sl.text(cite(id), { x:x + 0.16, y:y + h - 0.25, w:w - 0.3, h:0.2, fontFace:BODY, fontSize:7, color: r && r.stale ? SEV.text[0] : C.FAINT, valign:'top', bold: !!(r && r.stale) });
+    sl.text(r ? I[id].f(r) : '—', { x:x + pad, y:y + (compact ? 0.1 : 0.14), w:w - 2 * pad, h: compact ? 0.4 : 0.5, fontFace:HEAD, fontSize: compact ? 19 : 24, bold:true, color: !r ? C.FAINT : (L != null && L <= 1) ? SEV.text[L] : C.INK, valign:'middle' });
+    sl.text(lbl(id) + (I[id].u && r ? ' (' + I[id].u[ar ? 1 : 0].trim() + ')' : ''), { x:x + pad, y:y + (compact ? 0.5 : 0.62), w:w - 2 * pad, h:0.3, fontFace:BODY, fontSize: compact ? 7.4 : 8.2, bold:true, color:C.INK, valign:'top' });
+    sl.text(cite(id), { x:x + pad, y:y + h - (compact ? 0.21 : 0.25), w:w - 2 * pad, h:0.18, fontFace:BODY, fontSize: compact ? 6.4 : 7, color: r && r.stale ? SEV.text[0] : C.FAINT, valign:'top', bold: !!(r && r.stale) });
   };
   const bullets = (sl, items, x, y, w, col, size) => {
     let yy = y; const per = Math.max(52, Math.round(w * 13));
@@ -224,46 +224,72 @@ function buildCountryDeck(opts){
 
   // ══ 1 · COVER ══
   S.push(() => {
-    const sl = newSlide(C.WHITE); const LW = 4.0;
-    sl.shape(p.ShapeType.rect, { x:0, y:0, w:LW, h:7.5, fill:{ color:C.NAVY }, line:{ type:'none' } });
-    sl.shape(p.ShapeType.rect, { x:LW, y:0, w:0.05, h:7.5, fill:{ color:C.GOLD }, line:{ type:'none' } });
-    if (opts.flagData) sl.image({ data:opts.flagData, x:0.5, y:0.55, w:1.35, h:0.9 });
-    sl.text(T('COUNTRY ASSESSMENT', 'تقييم الدولة'), { x:0.5, y:1.75, w:LW - 0.8, h:0.26, fontFace:BODY, fontSize:9, bold:true, color:C.GOLD_LT, charSpacing:2.6 });
-    sl.text(NAME, { x:0.48, y:2.05, w:LW - 0.7, h:1.1, fontFace:HEAD, fontSize: NAME.length > 14 ? 30 : 40, bold:true, color:C.WHITE, valign:'top', fit:'shrink' });
-    const info = ar && typeof AR_INFO !== 'undefined' && AR_INFO[country] ? { capital:AR_INFO[country][0], currency:AR_INFO[country][1], languages:AR_INFO[country][2] } : (opts.info || {});
-    const rows = [[T('REGION', 'الإقليم'), REGION], [T('INCOME GROUP', 'فئة الدخل'), INCOME], [T('CAPITAL', 'العاصمة'), info.capital], [T('CURRENCY', 'العملة'), info.currency], [T('LANGUAGES', 'اللغات'), info.languages]].filter(r => r[1]);
-    let ry = 3.35;
-    rows.forEach(([k, v]) => {
-      sl.text(k, { x:0.5, y:ry, w:LW - 0.8, h:0.2, fontFace:BODY, fontSize:7.5, bold:true, color:C.GOLD_LT, charSpacing:1.4 });
-      sl.text(v, { x:0.5, y:ry + 0.2, w:LW - 0.8, h:0.32, fontFace:BODY, fontSize:11, color:'E6EEF5', valign:'top', fit:'shrink' });
-      ry += 0.62;
-    });
-    sl.text(DATE, { x:0.5, y:6.85, w:LW - 0.8, h:0.26, fontFace:BODY, fontSize:9, bold:true, color:C.GOLD_LT });
-    // right: snapshot tiles + map
-    const RX = LW + 0.5, RW = 13.333 - RX - 0.5;
-    eyebrow(sl, T('National snapshot', 'لمحة وطنية'), RX, 0.5, RW);
-    const tiles = ['SP.POP.TOTL', 'NY.GDP.PCAP.PP.CD', 'SH.DYN.MORT', 'SN.ITK.DEFC.ZS', 'SH.H2O.BASW.ZS', 'EG.ELC.ACCS.ZS'];
-    const tw = (RW - 0.5) / 3, th = 1.24;
-    tiles.forEach((id, i) => statCard(sl, id, RX + (i % 3) * (tw + 0.25), 0.85 + Math.floor(i / 3) * (th + 0.18), tw, th));
-    const mY = 3.6, mH = 3.2, mW = RW * 0.6;
-    if (opts.mapData) sl.image({ data:opts.mapData, x:RX, y:mY, w:mW, h:mH });
-    else sl.shape(p.ShapeType.rect, { x:RX, y:mY, w:mW, h:mH, fill:{ color:C.SKY_PALE }, line:{ type:'none' } });
-    // need-index panel
-    const nX = RX + mW + 0.25, nW = RW - mW - 0.25;
-    sl.shape(p.ShapeType.rect, { x:nX, y:mY, w:nW, h:mH, fill:{ color:C.SKY_PALE }, line:{ type:'none' } });
-    sl.text(T('ODA NEED INDEX', 'مؤشر الاحتياج'), { x:nX + 0.2, y:mY + 0.2, w:nW - 0.4, h:0.24, fontFace:BODY, fontSize:8.5, bold:true, color:C.GOLD, charSpacing:1.6 });
-    if (opts.need) {
-      sl.text(String(Math.round(opts.need.score)), { x:nX + 0.2, y:mY + 0.5, w:nW - 0.4, h:0.9, fontFace:HEAD, fontSize:48, bold:true, color:C.INK });
-      sl.text(T('out of 100 · rank ' + opts.need.rank + ' of ' + opts.need.of, 'من 100 · الترتيب ' + opts.need.rank + ' من ' + opts.need.of), { x:nX + 0.2, y:mY + 1.4, w:nW - 0.4, h:0.3, fontFace:BODY, fontSize:10, color:C.MUTE });
-    } else sl.text(T('Not enough data to rank', 'البيانات غير كافية للترتيب'), { x:nX + 0.2, y:mY + 0.6, w:nW - 0.4, h:0.5, fontFace:BODY, fontSize:11, color:C.MUTE });
-    let sy = mY + 1.82;
-    SECTORS.forEach(s => {
-      sl.text(T(s.short[0], s.short[1]), { x:nX + 0.2, y:sy, w:nW - 1.4, h:0.19, fontFace:BODY, fontSize:8, color:C.INK, valign:'middle' });
-      badge(sl, s.level, nX + nW - 1.32, sy + 0.01, 1.12, 0.17); sy += 0.22;
-    });
+    const sl = newSlide(C.NAVY);
+    sl.shape(p.ShapeType.rect, { x:0, y:7.0, w:13.333, h:0.5, fill:{ color:C.INK }, line:{ type:'none' } });
+    sl.shape(p.ShapeType.rect, { x:0, y:6.96, w:13.333, h:0.04, fill:{ color:C.GOLD }, line:{ type:'none' } });
+    if (opts.logo && opts.logo.data) {   // ODA logo on a white chip, proportions preserved
+      sl.shape(p.ShapeType.roundRect, { x:0.6, y:0.55, w:2.9, h:0.9, rectRadius:0.08, fill:{ color:C.WHITE }, line:{ type:'none' } });
+      const lg = DK.contain(opts.logo.ratio, 0.75, 0.66, 2.6, 0.68);
+      sl.image({ data:opts.logo.data, x:lg.x, y:lg.y, w:lg.w, h:lg.h });
+    }
+    sl.text(T('COUNTRY ASSESSMENT', 'تقييم الدولة'), { x:0.6, y:2.25, w:8, h:0.3, fontFace:BODY, fontSize:11, bold:true, color:C.GOLD_LT, charSpacing:3 });
+    sl.text(NAME, { x:0.55, y:2.6, w:8.4, h:1.3, fontFace:HEAD, fontSize: NAME.length > 18 ? 40 : 54, bold:true, color:C.WHITE, valign:'top', fit:'shrink' });
+    sl.shape(p.ShapeType.rect, { x:0.6, y:4.05, w:1.1, h:0.05, fill:{ color:C.GOLD }, line:{ type:'none' } });
+    sl.text(T('Development needs, sector by sector — an instant assessment built from live World Bank data.', 'الاحتياجات التنموية قطاعاً بقطاع — تقييم فوري مبني على بيانات البنك الدولي المباشرة.'),
+      { x:0.6, y:4.3, w:7.8, h:0.8, fontFace:BODY, fontSize:14, color:C.SKY_LT, valign:'top', wrap:true });
+    sl.text([REGION, INCOME].filter(Boolean).join('  ·  '), { x:0.6, y:5.25, w:7.8, h:0.35, fontFace:BODY, fontSize:12, bold:true, color:C.WHITE });
+    if (opts.flagData) {   // flag at its true proportions (fitted in a 3.2 × 2.2 in area) with a fine white frame
+      const f = DK.contain(opts.flagRatio, 9.5, 2.5, 3.2, 2.2);
+      sl.shape(p.ShapeType.rect, { x:f.x - 0.07, y:f.y - 0.07, w:f.w + 0.14, h:f.h + 0.14, fill:{ color:C.WHITE }, line:{ type:'none' } });
+      sl.image({ data:opts.flagData, x:f.x, y:f.y, w:f.w, h:f.h });
+    }
+    sl.text(DATE, { x:0.6, y:7.05, w:5, h:0.4, fontFace:BODY, fontSize:10, bold:true, color:C.GOLD_LT, valign:'middle' });
+    sl.text(T('Office of Development Affairs', 'مكتب الشؤون التنموية'), { x:7.7, y:7.05, w:5.03, h:0.4, fontFace:BODY, fontSize:10, color:C.SKY_LT, align:'right', valign:'middle' });
   });
 
-  // ══ 2 · EXECUTIVE SUMMARY ══
+  // ══ 2 · COUNTRY OVERVIEW — map, key facts, people, status per sector ══
+  S.push(() => {
+    const sl = newSlide(C.WHITE);
+    head(sl, T('Country overview', 'نظرة عامة على الدولة'), NAME, T('location, key figures and status by sector', 'الموقع والأرقام الرئيسية والوضع حسب القطاع'));
+    // map — accurate borders, rendered at exactly this slot's aspect ratio (never stretched)
+    const M = DK.MAP_SLOTS.country, mx = 0.5, my = 1.35;
+    if (opts.mapData) sl.image({ data:opts.mapData, x:mx, y:my, w:M.w, h:M.h });
+    else { sl.shape(p.ShapeType.rect, { x:mx, y:my, w:M.w, h:M.h, fill:{ color:C.SKY_PALE }, line:{ type:'none' } });
+      sl.text(T('Map unavailable', 'الخريطة غير متاحة'), { x:mx, y:my + M.h / 2 - 0.2, w:M.w, h:0.4, fontFace:BODY, fontSize:11, color:C.FAINT, align:'center' }); }
+    sl.shape(p.ShapeType.rect, { x:mx, y:my + M.h + 0.1, w:0.16, h:0.12, fill:{ color:C.SKY_DK }, line:{ type:'none' } });
+    sl.text(NAME + T(' · national borders (Natural Earth)', ' · الحدود الوطنية (Natural Earth)'), { x:mx + 0.24, y:my + M.h + 0.04, w:M.w - 0.3, h:0.24, fontFace:BODY, fontSize:7.6, color:C.FAINT, valign:'middle' });
+    // right column
+    const RX = 6.85, RW = 13.333 - RX - 0.5;
+    const info = ar && typeof AR_INFO !== 'undefined' && AR_INFO[country] ? { capital:AR_INFO[country][0], currency:AR_INFO[country][1], languages:AR_INFO[country][2] } : (opts.info || {});
+    const facts = [[T('Region', 'الإقليم'), REGION], [T('Income group', 'فئة الدخل'), INCOME], [T('Capital', 'العاصمة'), info.capital], [T('Currency', 'العملة'), info.currency], [T('Languages', 'اللغات'), info.languages]].filter(f => f[1]);
+    eyebrow(sl, T('Key facts', 'معلومات أساسية'), RX, 1.35, RW, C.SKY_DK);
+    facts.forEach(([k, v], i) => {
+      const fx = RX + (i % 2) * (RW / 2), fy = 1.65 + Math.floor(i / 2) * 0.42;
+      sl.text([{ text:k + ':  ', options:{ color:C.MUTE } }, { text:v, options:{ color:C.INK, bold:true } }], { x:fx, y:fy, w:RW / 2 - 0.1, h:0.36, fontFace:BODY, fontSize:9.4, valign:'middle' });
+    });
+    eyebrow(sl, T('People & living conditions', 'السكان والظروف المعيشية'), RX, 2.95, RW, C.SKY_DK);
+    const tiles = ['SP.POP.TOTL', 'NY.GDP.PCAP.PP.CD', 'SH.DYN.MORT', 'SN.ITK.DEFC.ZS', 'SH.H2O.BASW.ZS', 'EG.ELC.ACCS.ZS'];
+    const tw = (RW - 0.3) / 3, th = 0.98;
+    tiles.forEach((id, i) => statCard(sl, id, RX + (i % 3) * (tw + 0.15), 3.25 + Math.floor(i / 3) * (th + 0.12), tw, th, true));
+    // need index + sector status
+    const by = 5.5, bh = 1.45;
+    sl.shape(p.ShapeType.rect, { x:RX, y:by, w:1.75, h:bh, fill:{ color:C.SKY_PALE }, line:{ type:'none' } });
+    sl.text(T('NEED INDEX', 'مؤشر الاحتياج'), { x:RX + 0.15, y:by + 0.12, w:1.5, h:0.22, fontFace:BODY, fontSize:8, bold:true, color:C.GOLD, charSpacing:1.4 });
+    if (opts.need) {
+      sl.text(String(Math.round(opts.need.score)), { x:RX + 0.15, y:by + 0.36, w:1.5, h:0.6, fontFace:HEAD, fontSize:34, bold:true, color:C.INK, valign:'middle' });
+      sl.text(T('of 100 · rank ' + opts.need.rank + '/' + opts.need.of, 'من 100 · الترتيب ' + opts.need.rank + ' من ' + opts.need.of), { x:RX + 0.15, y:by + 1.0, w:1.5, h:0.32, fontFace:BODY, fontSize:8.4, color:C.MUTE });
+    } else sl.text(T('Not ranked', 'غير مصنّفة'), { x:RX + 0.15, y:by + 0.5, w:1.5, h:0.4, fontFace:BODY, fontSize:10, color:C.MUTE });
+    const sx = RX + 1.95, sw = RW - 1.95;
+    sl.text(T('STATUS BY SECTOR', 'الوضع حسب القطاع'), { x:sx, y:by - 0.02, w:sw, h:0.22, fontFace:BODY, fontSize:8, bold:true, color:C.GOLD, charSpacing:1.4 });
+    SECTORS.forEach((s, i) => {
+      const yy = by + 0.24 + i * 0.205;
+      sl.text(T(s.short[0], s.short[1]), { x:sx, y:yy, w:sw - 1.3, h:0.19, fontFace:BODY, fontSize:8.4, color:C.INK, valign:'middle' });
+      badge(sl, s.level, sx + sw - 1.2, yy + 0.015, 1.2, 0.165);
+    });
+    foot(sl, T('World Bank Open Data · Natural Earth (borders) · ', 'بيانات البنك الدولي · Natural Earth (الحدود) · ') + DATE);
+  });
+
+  // ══ 3 · EXECUTIVE SUMMARY ══
   S.push(() => {
     const sl = newSlide(C.WHITE);
     head(sl, T('Executive summary', 'الملخص التنفيذي'), NAME, T('where needs are greatest and why', 'أين يكمن الاحتياج الأكبر ولماذا'));
@@ -325,7 +351,7 @@ function buildCountryDeck(opts){
     foot(sl, T('ODA need index and SDG/WHO benchmarks · World Bank Open Data · ', 'مؤشر الاحتياج ومعايير أهداف التنمية المستدامة · بيانات البنك الدولي · ') + DATE);
   });
 
-  // ══ 3–8 · SECTOR SLIDES ══
+  // ══ 4–9 · SECTOR SLIDES ══
   SECTORS.forEach(s => S.push(() => {
     const sl = newSlide(C.WHITE);
     const st = s.level == null ? T('no current benchmarked data', 'لا توجد بيانات حديثة قابلة للمقارنة')
@@ -359,7 +385,7 @@ function buildCountryDeck(opts){
     foot(sl, srcs + ' · ' + DATE);
   }));
 
-  // ══ 9 · METHOD & SOURCES ══
+  // ══ 10 · METHOD & SOURCES ══
   S.push(() => {
     const sl = newSlide(C.NAVY);
     sl.text(T('METHOD & SOURCES', 'المنهجية والمصادر'), { x:0.6, y:0.6, w:9, h:0.3, fontFace:BODY, fontSize:10, bold:true, color:C.GOLD_LT, charSpacing:2.6 });

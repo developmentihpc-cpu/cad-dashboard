@@ -2651,30 +2651,70 @@ async function repFlag(country) {
   try {
     if (CUSTOM_FLAGS[country]) return await repFetchDataUrl(CUSTOM_FLAGS[country], 4000);
     const iso2 = (COUNTRY_ISO2[country] || '').toLowerCase();
-    return iso2 ? await repFetchDataUrl(`https://flagcdn.com/w160/${iso2}.png`, 4000) : null;
+    return iso2 ? await repFetchDataUrl(`https://flagcdn.com/w320/${iso2}.png`, 4000) : null;
   } catch (e) { return null; }
 }
-// Locator map for the cover: Esri light-grey basemap (no key) with a gold ring on the country.
-async function repMap(country) {
-  const ll = COUNTRY_LATLNG[country]; if (!ll) return null;
-  const [lat, lng] = ll, dx = 10, dy = 7;
-  const W = 900, H = 600;
-  const url = 'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/export'
-    + `?bbox=${lng - dx},${lat - dy},${lng + dx},${lat + dy}&bboxSR=4326&imageSR=3857&size=${W},${H}&format=jpg&f=image`;
+// width ÷ height of an image, so slides can place flags and the logo without stretching them
+function repImgRatio(src) {
+  return new Promise(res => { if (!src) return res(null); const i = new Image();
+    i.onload = () => res(i.naturalHeight ? i.naturalWidth / i.naturalHeight : null); i.onerror = () => res(null); i.src = src; });
+}
+let REP_LOGO = null;
+async function repLogo() {
+  if (!REP_LOGO) REP_LOGO = repFetchDataUrl('logo.png', 4000).then(async data => ({ data, ratio: await repImgRatio(data) })).catch(() => null);
+  return REP_LOGO;
+}
+// ── Report maps — drawn from Natural Earth outlines (accurate borders), never stretched ──
+// The image is rendered at exactly the aspect ratio of the slide's map slot (DK.MAP_SLOTS),
+// so PowerPoint places it 1:1. Maps only show what we know precisely: where the country is,
+// and — for regions — each country's need-index tier. Everything else is shown as charts.
+const GEO_NAME = { 'Congo, Dem. Rep.':'Dem. Rep. Congo', 'South Sudan':'S. Sudan' };   // our name → world-atlas name
+async function repMapImage({ focus = [], fill = {}, labels = false, slot }) {
   try {
-    const src = await repFetchDataUrl(url, 7000);
-    const img = await new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = src; });
-    const cv = document.createElement('canvas'); cv.width = img.width; cv.height = img.height;
-    const g = cv.getContext('2d'); g.drawImage(img, 0, 0);
-    // centre point in the (Mercator) image — the requested box is stretched to the image size
-    const merc = la => Math.log(Math.tan(Math.PI / 4 + la * Math.PI / 360));
-    const fy = (merc(lat + dy) - merc(lat)) / (merc(lat + dy) - merc(lat - dy));
-    const cx = img.width / 2, cy = img.height * fy;
-    g.strokeStyle = '#AD833B'; g.lineWidth = 6; g.beginPath(); g.arc(cx, cy, 34, 0, Math.PI * 2); g.stroke();
-    g.fillStyle = '#AD833B'; g.beginPath(); g.arc(cx, cy, 8, 0, Math.PI * 2); g.fill();
-    return cv.toDataURL('image/jpeg', 0.88);
-  } catch (e) { return null; }
+    const geo = await loadWorld('50m');
+    const byName = {}; geo.features.forEach(f => { byName[f.properties.name] = f; });
+    const feat = c => byName[GEO_NAME[c] || c];
+    const focusF = focus.map(feat).filter(Boolean);
+    if (!focusF.length) return null;
+    // polygons as rings of [lon, lat]
+    const polys = f => f.geometry.type === 'Polygon' ? [f.geometry.coordinates] : f.geometry.coordinates;
+    const ringArea = r => Math.abs(r.reduce((s, p, i) => { const q = r[(i + 1) % r.length]; return s + p[0] * q[1] - q[0] * p[1]; }, 0) / 2);
+    // extent from each country's main landmasses (ignores far-flung islands such as the Galápagos)
+    let x0 = 180, x1 = -180, y0 = 90, y1 = -90;
+    focusF.forEach(f => {
+      const ps = polys(f), big = Math.max(...ps.map(p => ringArea(p[0])));
+      ps.filter(p => ringArea(p[0]) >= big * 0.12).forEach(p => p[0].forEach(([x, y]) => { x0 = Math.min(x0, x); x1 = Math.max(x1, x); y0 = Math.min(y0, y); y1 = Math.max(y1, y); }));
+    });
+    const single = focus.length === 1;
+    const padF = single ? 0.55 : 0.08, minHalf = single ? 4 : 2;
+    let cx = (x0 + x1) / 2, cy = (y0 + y1) / 2, hx = Math.max((x1 - x0) / 2 * (1 + padF), minHalf), hy = Math.max((y1 - y0) / 2 * (1 + padF), minHalf);
+    const k = Math.cos(cy * Math.PI / 180);                                   // equirectangular, scaled at the map's centre latitude
+    const W = 1600, H = Math.round(W * slot.h / slot.w);
+    const scale = Math.min(W / (2 * hx * k), H / (2 * hy));                   // fit the extent inside the slot, same scale both ways
+    const px = lon => W / 2 + (lon - cx) * k * scale, py = lat => H / 2 - (lat - cy) * scale;
+    const cv = document.createElement('canvas'); cv.width = W; cv.height = H;
+    const g = cv.getContext('2d');
+    g.fillStyle = '#EAF2F8'; g.fillRect(0, 0, W, H);
+    const draw = (f, fillCol, stroke, lw) => {
+      g.beginPath();
+      polys(f).forEach(p => p.forEach(ring => ring.forEach(([x, y], i) => i ? g.lineTo(px(x), py(y)) : g.moveTo(px(x), py(y)))));
+      g.fillStyle = fillCol; g.fill('evenodd');
+      g.strokeStyle = stroke; g.lineWidth = lw; g.lineJoin = 'round'; g.stroke();
+    };
+    geo.features.forEach(f => draw(f, '#D5DDE6', '#FFFFFF', 1.6));
+    Object.entries(fill).forEach(([c, col]) => { const f = feat(c); if (f) draw(f, col, '#FFFFFF', 1.8); });
+    if (single) draw(focusF[0], '#1B6FA8', '#0F2A40', 3);
+    if (labels) {   // member-country names, in the report's language
+      g.textAlign = 'center'; g.textBaseline = 'middle';
+      g.font = (lang === 'ar' ? '600 26px "IBM Plex Sans Arabic"' : '600 22px Inter') + ', sans-serif';
+      focus.forEach(c => { const ll = COUNTRY_LATLNG[c]; if (!ll) return; const x = px(ll[1]), y = py(ll[0]);
+        if (x < 30 || x > W - 30 || y < 20 || y > H - 20) return;
+        g.lineWidth = 6; g.strokeStyle = 'rgba(255,255,255,.9)'; g.strokeText(cN(c), x, y); g.fillStyle = '#0F2A40'; g.fillText(cN(c), x, y); });
+    }
+    return cv.toDataURL('image/png');
+  } catch (e) { console.warn('[CAD] map render failed', e); return null; }
 }
+async function repMap(country) { return repMapImage({ focus:[country], slot: DK.MAP_SLOTS.country }); }
 // Live headline indicators for many countries at once — one World Bank call per indicator.
 async function repRegionLive(countries, ids) {
   const isoToName = {}, isos = [];
@@ -2712,11 +2752,12 @@ async function repBuildCountryBlob(country, setStatus) {
   setStatus && setStatus(tr('Loading live World Bank data for ' + country + '…', 'جارٍ تحميل بيانات البنك الدولي المباشرة لـ' + cN(country) + '…'));
   const d = await repCountryData(country);
   setStatus && setStatus(tr('Building the ' + country + ' report…', 'جارٍ إعداد تقرير ' + cN(country) + '…'));
-  const [flagData, mapData] = await Promise.all([repFlag(country), repMap(country)]);
+  const [flagData, mapData, logo] = await Promise.all([repFlag(country), repMap(country), repLogo()]);
+  const flagRatio = await repImgRatio(flagData);
   const need = needScores()[country] || {};
   const blob = await window.buildCountryDeck({
     country, data: d, info: COUNTRY_INFO[country] || {}, iso2: (COUNTRY_ISO2[country] || '').toLowerCase(),
-    flagData, mapData, dateStr: repDateStr(), PptxGenJS, output: 'blob', lang,
+    flagData, flagRatio, mapData, logo, dateStr: repDateStr(), PptxGenJS, output: 'blob', lang,
     region: repRegionOf(country), income: COUNTRY_INCOME[country] || '',
     need: need.need != null ? { score: need.need, rank: need.rank, of: (needScores().__ranked || []).length } : null,
   });
@@ -2779,8 +2820,12 @@ async function repRunRegion(region) {
     ov.setStatus(tr('Fetching flags and building the ' + region + ' report…', 'جارٍ تحميل الأعلام وإعداد تقرير ' + rN(region) + '…'));
     const need = needScores();
     const flags = await Promise.all(members.map(repFlag));
+    const flagRatios = await Promise.all(flags.map(repImgRatio));
+    const logo = await repLogo();
+    const fill = {}; members.forEach(c => { fill[c] = NEED_SHADES[needTier(c)]; });
+    const mapData = await repMapImage({ focus: members, fill, labels: true, slot: DK.MAP_SLOTS.region });
     const countries = members.map((c, i) => ({
-      name: c, iso2: COUNTRY_ISO2[c] || '', income: COUNTRY_INCOME[c] || '', flagData: flags[i],
+      name: c, iso2: COUNTRY_ISO2[c] || '', income: COUNTRY_INCOME[c] || '', flagData: flags[i], flagRatio: flagRatios[i],
       need: need[c] ? need[c].need : null, needRank: null, tier: needTier(c),
       data: { ...(prebakedIndicators[c] || {}), ...(live.data[c] || {}) },
     }));
@@ -2789,7 +2834,8 @@ async function repRunRegion(region) {
       ? tr('Headline indicators were retrieved live from the World Bank API when this report was built.', 'تم استرجاع المؤشرات الرئيسية مباشرة من واجهة البنك الدولي عند إعداد هذا التقرير.')
       : tr('Figures come from the dashboard’s World Bank snapshot' + (repSnapshotStr() ? ' of ' + repSnapshotStr() : '') + ' (the live API could not be reached).',
            'الأرقام مأخوذة من النسخة المحفوظة من بيانات البنك الدولي' + (repSnapshotStr() ? ' بتاريخ ' + repSnapshotStr() : '') + ' (تعذّر الوصول إلى البيانات المباشرة).');
-    const blob = await window.buildRegionDeck({ region, countries, dateStr: repDateStr(), dataNote, PptxGenJS, output: 'blob', lang });
+    const blob = await window.buildRegionDeck({ region, countries, dateStr: repDateStr(), dataNote, PptxGenJS, output: 'blob', lang, mapData, logo,
+      needShades: { hi: NEED_SHADES.hi.slice(1), mid: NEED_SHADES.mid.slice(1), lo: NEED_SHADES.lo.slice(1), none: NEED_SHADES.none.slice(1) } });
     const fileName = repFileSafe(region) + '_Regional_Assessment' + repLangSuffix() + '_' + repStamp() + '.pptx';
     const saved = await repSave({ id: repId(), kind: 'region', title: region + ' — Regional Assessment', region, countries: members,
       createdAt: new Date().toISOString(), fileName, size: blob.size, data: live.live ? 'live' : 'snapshot', blob, lang });

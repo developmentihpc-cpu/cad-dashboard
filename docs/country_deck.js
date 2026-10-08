@@ -25,6 +25,7 @@
  *   PptxGenJS : the pptxgenjs constructor (Node passes require('pptxgenjs'); browser uses global)
  *   fileName  : output filename
  *   write     : 'file' (Node writeFile) | 'blob' (browser writeFile download). default 'file'.
+ *   output    : 'blob' → resolve with the deck as a Blob instead of downloading it.
  */
 'use strict';
 
@@ -441,6 +442,8 @@ function buildCountryDeck(opts){
   TOTAL=S.length;
   S.forEach(fn=>fn());
 
+  // output:'blob' returns the deck as a Blob (the dashboard saves it, then downloads it)
+  if (opts.output === 'blob') return p.write({ outputType:'blob' });
   const fileName = opts.fileName || `${country.replace(/\s+/g,'_')}_Country_Assessment.pptx`;
   return p.writeFile({ fileName });
 }

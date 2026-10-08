@@ -4,10 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Country Assessment Dashboard</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:wght@500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
 <link  href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
+<script src="i18n_ar.js"></script>
+<script src="severity.js"></script>
+<script src="deck_kit.js"></script>
 <script src="country_deck.js"></script>
 <script src="region_deck.js"></script>
 <style>
@@ -71,7 +75,7 @@ body {
 [dir="rtl"] .req-card.selected { border-left: none; border-right: 3px solid var(--accent); }
 [dir="rtl"] .req-bottom, [dir="rtl"] .req-meta, [dir="rtl"] .icon-row,
 [dir="rtl"] .chip-row, [dir="rtl"] .panel-top, [dir="rtl"] .pc-row,
-[dir="rtl"] .stat-row, [dir="rtl"] .drawer-header, [dir="rtl"] .drawer-tabs,
+[dir="rtl"] .stat-row,
 [dir="rtl"] .kpi-row, [dir="rtl"] .analytics-grid,
 [dir="rtl"] .bar-row, [dir="rtl"] .proj-hero, [dir="rtl"] .proj-meta,
 [dir="rtl"] .proj-details-grid { flex-direction: row-reverse; }
@@ -461,9 +465,7 @@ body {
   flex-shrink: 0;
 }
 .cd-export-btn:hover { opacity: .85; }
-[dir="rtl"] .drawer-header { flex-direction: row-reverse; }
 [dir="rtl"] .cd-stat-grid  { direction: rtl; }
-[dir="rtl"] .cd-section-hd { flex-direction: row-reverse; }
 [dir="rtl"] .cd-req-item   { flex-direction: row-reverse; }
 [dir="rtl"] .cd-req-item-right { align-items: flex-start; }
 
@@ -1625,6 +1627,81 @@ body {
   .rp-body { padding:18px; }
 }
 
+/* ══ Language toggle ══════════════════════════════════════════════════════ */
+.lang-toggle { display:flex; margin-inline-start:16px; border:1px solid var(--ex-line); border-radius:20px; padding:2px; background:#fff; flex-shrink:0; }
+.lang-opt { border:none; background:none; font:600 11.5px 'Inter',sans-serif; color:var(--ex-mute); padding:5px 13px; border-radius:16px; cursor:pointer; transition:all .15s; }
+.lang-opt[data-lang="ar"] { font-family:'IBM Plex Sans Arabic',sans-serif; font-size:12.5px; }
+.lang-opt:hover { color:var(--ex-ink); }
+.lang-opt.on { background:var(--ex-ink); color:#fff; }
+.ex-lang-tag { display:inline-block; font:700 9px 'Inter',sans-serif; color:var(--ex-faint); border:1px solid var(--ex-line); border-radius:4px; padding:0 4px; margin-inline-start:4px; vertical-align:1px; }
+.ex-tip { font:500 12px 'Inter',sans-serif; }
+
+/* progress overlay */
+.cd-prog-card { background:#fff; max-width:460px; width:90%; padding:26px 28px; border-radius:16px; border-top:3px solid var(--ex-gold); box-shadow:0 24px 64px rgba(15,42,64,.3); }
+.cd-prog-title { font-family:var(--ex-serif); font-size:19px; font-weight:600; color:var(--ex-ink); }
+.cd-prog-sub { font-size:13px; color:var(--ex-mute); margin-top:8px; line-height:1.55; }
+.cd-prog-bar { margin-top:18px; height:3px; background:var(--ex-sky-pale); border-radius:2px; overflow:hidden; }
+.cd-prog-bar div { height:100%; width:30%; background:var(--ex-gold); animation:cdaiwipe 1.4s ease-in-out infinite; }
+@keyframes cdaiwipe { 0% { margin-inline-start:-30%; } 100% { margin-inline-start:110%; } }
+
+/* Arabic map labels (full map, Arabic mode) */
+.vec-map { background:#EDF3F8 !important; }
+.map-label span { display:inline-block; transform:translate(-50%, 7px); white-space:nowrap; font:600 10px "Inter",sans-serif; color:#4A5B6E;
+  text-shadow:0 0 3px #fff, 0 0 3px #fff, 0 0 2px #fff; pointer-events:none; }
+.map-z-low .map-label { display:none; }
+[dir="rtl"] .map-label span { font:600 11px "IBM Plex Sans Arabic",sans-serif; }
+
+/* ══ Arabic: right-to-left layout ═════════════════════════════════════════ */
+[dir="rtl"] body, [dir="rtl"] button, [dir="rtl"] input, [dir="rtl"] select, [dir="rtl"] textarea,
+[dir="rtl"] .ex-btn, [dir="rtl"] .ex-mini, [dir="rtl"] .rep-qs, [dir="rtl"] .rep-input, [dir="rtl"] .need-key { font-family:'IBM Plex Sans Arabic','Sakkal Majalla',sans-serif; }
+[dir="rtl"] { --ex-serif:'Noto Naskh Arabic','Sakkal Majalla',serif; }
+[dir="rtl"] .ex-summary, [dir="rtl"] .rep-help, [dir="rtl"] .ex-method { line-height:1.85; }
+[dir="rtl"] .ex-title { font-size:40px; line-height:1.3; letter-spacing:0; }
+[dir="rtl"] .ex-kpi-val { white-space:nowrap; font-size:29px; }
+/* Arabic letters must stay joined: no letter-spacing, no uppercase transforms */
+[dir="rtl"] .ex-eyebrow, [dir="rtl"] .ex-kpi-label, [dir="rtl"] .ex-sub-title, [dir="rtl"] .rp-med-l, [dir="rtl"] .ex-table th,
+[dir="rtl"] .ex-tag, [dir="rtl"] .sev-pill, [dir="rtl"] .leg-title, [dir="rtl"] .cd-section-title, [dir="rtl"] .ex-card-title,
+[dir="rtl"] .ca-ind-label, [dir="rtl"] .cd-stat-label { letter-spacing:0 !important; text-transform:none !important; }
+[dir="rtl"] .ex-eyebrow { font-size:12.5px; }
+[dir="rtl"] .ex-kpi-label, [dir="rtl"] .rp-med-l, [dir="rtl"] .ex-sub-title, [dir="rtl"] .ex-table th { font-size:12px; }
+[dir="rtl"] .sev-pill, [dir="rtl"] .ex-tag { font-size:10.5px; }
+/* header */
+[dir="rtl"] .app-header-title { margin-left:0; padding-left:0; border-left:none; margin-right:22px; padding-right:22px; border-right:1px solid var(--ex-gold); font-size:19px; }
+[dir="rtl"] .app-header-date { margin-left:0; margin-right:auto; }
+/* sidebar */
+[dir="rtl"] .sidebar { border-right:none; border-left:1px solid var(--ex-line); }
+[dir="rtl"] .sb-icon.active::before { left:auto; right:-10px; border-radius:3px 0 0 3px; }
+[dir="rtl"] .sb-icon::after { left:auto; right:58px; font-family:'IBM Plex Sans Arabic',sans-serif; }
+/* hero, KPI strip, cards */
+[dir="rtl"] .ex-hero::after { background:linear-gradient(270deg, var(--ex-gold) 0, var(--ex-gold) 120px, transparent 120px); }
+[dir="rtl"] .ex-kpi { border-left:none; border-right:1px solid var(--ex-line); }
+[dir="rtl"] .ex-kpi:first-child { border-right:none; }
+[dir="rtl"] .ex-kpi.gold::before { left:auto; right:24px; }
+[dir="rtl"] .ex-table th { text-align:right; }
+[dir="rtl"] .ex-table .num { text-align:left; }
+[dir="rtl"] .ex-rank-n { text-align:left; }
+[dir="rtl"] .ex-rank-score, [dir="rtl"] .ex-stage-val { text-align:left; }
+[dir="rtl"] .rep-toast { border-left:none; border-right:3px solid var(--ex-gold); }
+/* region popup */
+[dir="rtl"] .rp-hd::after { left:auto; right:32px; }
+[dir="rtl"] .rp-med { border-left:1px solid var(--ex-line); border-right:3px solid var(--ex-line); }
+[dir="rtl"] .rp-med.sev-0 { border-right-color:var(--sev0); } [dir="rtl"] .rp-med.sev-1 { border-right-color:var(--sev1); }
+[dir="rtl"] .rp-med.sev-2 { border-right-color:var(--sev2); } [dir="rtl"] .rp-med.sev-3 { border-right-color:var(--sev3); }
+[dir="rtl"] .sevc-0 { box-shadow:inset -3px 0 0 var(--sev0); } [dir="rtl"] .sevc-1 { box-shadow:inset -3px 0 0 var(--sev1); }
+[dir="rtl"] .sevc-2 { box-shadow:inset -3px 0 0 var(--sev2); } [dir="rtl"] .sevc-3 { box-shadow:inset -3px 0 0 var(--sev3); }
+/* indicator cards in the country panel */
+[dir="rtl"] .ca-ind-card[class*="sev-"] { border-left:1px solid var(--border); }
+[dir="rtl"] .ca-ind-card.sev-0 { border-right:3px solid var(--sev0); } [dir="rtl"] .ca-ind-card.sev-1 { border-right:3px solid var(--sev1); }
+[dir="rtl"] .ca-ind-card.sev-2 { border-right:3px solid var(--sev2); } [dir="rtl"] .ca-ind-card.sev-3 { border-right:3px solid var(--sev3); }
+[dir="rtl"] .sev-pill { margin-left:0; margin-right:6px; }
+/* maps stay geographic (left-to-right); only their labels, keys and popups read right-to-left */
+[dir="rtl"] #map, [dir="rtl"] .ex-map, [dir="rtl"] .leaflet-container { direction:ltr; }
+[dir="rtl"] .ex-map-legend { left:auto; right:16px; }
+[dir="rtl"] .ex-pop, [dir="rtl"] .leaflet-tooltip { direction:rtl; text-align:right; font-family:'IBM Plex Sans Arabic',sans-serif; }
+[dir="rtl"] .ex-pop-name { font-family:var(--ex-serif); }
+[dir="rtl"] .need-key-col { align-items:flex-end; }
+[dir="rtl"] .map-legend { direction:rtl; text-align:right; }
+
 @media (max-width: 1100px) {
   .ex-grid-map { grid-template-columns:1fr; }
   .ex-map { height:340px; }
@@ -1659,8 +1736,12 @@ body {
 
 <header class="app-header">
   <img src="logo.png" alt="Office of Development Affairs" style="height:34px;width:auto;display:block">
-  <div class="app-header-title">Country Assessment Dashboard</div>
+  <div class="app-header-title" data-ar="لوحة تقييم الدول">Country Assessment Dashboard</div>
   <div class="app-header-date" id="app-header-date"></div>
+  <div class="lang-toggle" role="group" aria-label="Language">
+    <button type="button" class="lang-opt" data-lang="en" onclick="setLang('en')">EN</button>
+    <button type="button" class="lang-opt" data-lang="ar" onclick="setLang('ar')" lang="ar">عربي</button>
+  </div>
 </header>
 
 <div class="app-body">
@@ -1669,16 +1750,16 @@ body {
 <nav class="sidebar">
   <div class="sb-logo" title="Country Assessment Dashboard">CAD</div>
   <div class="sb-nav">
-    <div class="sb-icon active" data-view="executive" data-label="Executive View" aria-label="Executive View" onclick="switchView('executive',this)">
+    <div class="sb-icon active" data-view="executive" data-label="Executive View" data-label-ar="الملخص التنفيذي" aria-label="Executive View" onclick="switchView('executive',this)">
       <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
     </div>
-    <div class="sb-icon" data-view="countries" data-label="Countries map" aria-label="Countries map" onclick="switchView('countries',this)">
+    <div class="sb-icon" data-view="countries" data-label="Countries map" data-label-ar="خريطة الدول" aria-label="Countries map" onclick="switchView('countries',this)">
       <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
     </div>
-    <div class="sb-icon" data-view="reports" data-label="Country Reports" aria-label="Country Reports" onclick="switchView('reports',this)">
+    <div class="sb-icon" data-view="reports" data-label="Country Reports" data-label-ar="تقارير الدول" aria-label="Country Reports" onclick="switchView('reports',this)">
       <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
     </div>
-    <div class="sb-icon" data-view="evaluation" data-label="Program Evaluations" aria-label="Program Evaluations" onclick="switchView('evaluation',this)">
+    <div class="sb-icon" data-view="evaluation" data-label="Program Evaluations" data-label-ar="تقييم البرامج" aria-label="Program Evaluations" onclick="switchView('evaluation',this)">
       <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
     </div>
   </div>
@@ -1706,20 +1787,20 @@ body {
   <div id="view-countries" class="view">
     <div class="map-toolbar">
       <div>
-        <div class="map-toolbar-title">Countries</div>
-        <div class="map-toolbar-sub">Click a country for live indicators and reports</div>
+        <div class="map-toolbar-title" data-ar="الدول">Countries</div>
+        <div class="map-toolbar-sub" data-ar="انقر على دولة لعرض مؤشراتها المباشرة وتقاريرها">Click a country for live indicators and reports</div>
       </div>
       <select class="mf-select" id="map-jump" onchange="mapJumpTo(this.value);this.value=''" aria-label="Go to country">
-        <option value="">Go to country…</option>
+        <option value="" data-ar="انتقل إلى دولة…">Go to country…</option>
       </select>
     </div>
     <div class="map-wrap">
       <div id="map"></div>
       <div class="map-legend">
-        <div class="leg-title">Need index · click to filter</div>
+        <div class="leg-title" data-ar="مؤشر الاحتياج · انقر للتصفية">Need index · click to filter</div>
         <div id="map-need-key" class="need-key-col"></div>
-        <div class="leg-item"><div class="leg-dot" style="background:#C3CDD6"></div><span>Not ranked</span></div>
-        <div class="leg-item"><div class="leg-dot" style="background:#C9952A"></div><span>Selected</span></div>
+        <div class="leg-item"><div class="leg-dot" style="background:#C3CDD6"></div><span data-ar="غير مصنّفة">Not ranked</span></div>
+        <div class="leg-item"><div class="leg-dot" style="background:#C9952A"></div><span data-ar="المحددة">Selected</span></div>
       </div>
       <div class="drawer" id="drawer">
         <div class="drawer-header">
@@ -1730,14 +1811,14 @@ body {
           <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end">
             <button class="cd-export-btn" onclick="repRunSingle(cdCountry)">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-              Instant report
+              <span data-ar="تقرير فوري">Instant report</span>
             </button>
             <button class="cd-export-btn" onclick="cd_generateAICountryDeck(cdCountry)" style="background:#fff;color:var(--accent);gap:5px" title="Needs the local research server">
-              Full AI report
+              <span data-ar="تقرير الذكاء الاصطناعي الكامل">Full AI report</span>
             </button>
             <div class="drawer-tabs" id="cd-main-tabs">
-              <button class="dtab active" id="cd-tab-overview"    onclick="cdSwitchTab('overview',this)">Overview</button>
-              <button class="dtab"        id="cd-tab-indicators"  onclick="cdSwitchTab('indicators',this)">Indicators</button>
+              <button class="dtab active" id="cd-tab-overview"    onclick="cdSwitchTab('overview',this)" data-ar="نظرة عامة">Overview</button>
+              <button class="dtab"        id="cd-tab-indicators"  onclick="cdSwitchTab('indicators',this)" data-ar="المؤشرات">Indicators</button>
             </div>
             <button class="drawer-close" onclick="closeDrawer()">&#x2715;</button>
           </div>
@@ -2044,6 +2125,96 @@ let cdActiveIndTab = 'overview';
 
 const t = () => T[lang];
 
+// ══════════════════════════════════════════════════════════════════════════
+// LANGUAGE — English / Arabic. Arabic switches the page to right-to-left
+// (the layout mirrors), translates every label, country, region and indicator,
+// relabels the map in Arabic and builds reports in Arabic.
+// ══════════════════════════════════════════════════════════════════════════
+try { lang = localStorage.getItem('cad_lang') === 'ar' ? 'ar' : 'en'; } catch (e) {}
+const isAr = () => lang === 'ar';
+const tr = (en, ar) => lang === 'ar' ? ar : en;                       // pick the string for the current language
+const cN = c => lang === 'ar' ? (AR_COUNTRY[c] || c) : c;               // country display name
+const rN = r => lang === 'ar' ? (AR_REGION[r] || r) : r;                // region display name
+const incN = code => lang === 'ar' ? (AR_INCOME[code] || '')
+  : ({ LIC:'Low income', LMIC:'Lower-middle income', UMIC:'Upper-middle income' }[code] || '');
+const byName = (a, b) => cN(a).localeCompare(cN(b), lang === 'ar' ? 'ar' : 'en');
+const LOCALE = () => lang === 'ar' ? 'ar-AE-u-nu-latn' : 'en-GB';     // Arabic month names, Western digits
+const AR_UNIT = { ' yrs':' سنة', ' /1,000':' لكل 1,000', ' /100':' لكل 100', ' /100k':' لكل 100 ألف', ' /1k':' لكل ألف',
+  ' /M':' لكل مليون', ' /km²':' /كم²', ' USD':' دولار', ' kWh/cap':' ك.و.س للفرد', ' kcal/day':' سعرة/يوم',
+  ' kg oil eq':' كغ مكافئ نفط', ' kg/ha':' كغ/هكتار', ' t':' طن' };
+const unitN = u => lang === 'ar' && AR_UNIT[u] != null ? AR_UNIT[u] : (u || '');
+
+function applyStaticLang() {
+  const ar = isAr();
+  document.documentElement.lang = ar ? 'ar' : 'en';
+  document.documentElement.dir  = ar ? 'rtl' : 'ltr';
+  document.title = ar ? 'لوحة تقييم الدول' : 'Country Assessment Dashboard';
+  document.querySelectorAll('[data-ar]').forEach(el => {
+    if (el.dataset.en == null) el.dataset.en = el.textContent;
+    el.textContent = ar ? el.dataset.ar : el.dataset.en;
+  });
+  document.querySelectorAll('.sb-icon[data-label]').forEach(el => {
+    if (el.dataset.labelEn == null) el.dataset.labelEn = el.dataset.label;
+    el.dataset.label = ar ? el.dataset.labelAr : el.dataset.labelEn;
+    el.setAttribute('aria-label', el.dataset.label);
+  });
+  document.querySelectorAll('.lang-opt').forEach(b => b.classList.toggle('on', b.dataset.lang === lang));
+  const hd = document.getElementById('app-header-date');
+  if (hd) hd.textContent = new Date().toLocaleDateString(LOCALE(), { day:'numeric', month:'long', year:'numeric' });
+}
+
+function setLang(l) {
+  if (l === lang) return;
+  lang = l;
+  try { localStorage.setItem('cad_lang', l); } catch (e) {}
+  applyStaticLang();
+  mapApplyLang();
+  const active = (document.querySelector('.view.active') || {}).id;
+  if (active === 'view-executive') renderExecutive();
+  if (active === 'view-reports') renderReports();
+  if (cdCountry && document.getElementById('drawer').classList.contains('open')) {
+    openCountryDrawer(cdCountry);
+  }
+  if (rpRegion) renderRegionPopup();
+  const f = document.getElementById('evaluator-frame');
+  if (f && f.src) f.src = 'evaluator.html?lang=' + lang + '&v=' + Date.now();
+}
+
+// World outline drawn from Natural Earth (world-atlas TopoJSON) instead of map tiles, so
+// the map carries no baked-in English text; country labels come from us, in the chosen language.
+const WORLD_GEO = {};
+function loadWorld(res) {
+  if (!WORLD_GEO[res]) WORLD_GEO[res] = fetch(`https://cdn.jsdelivr.net/npm/world-atlas@2/countries-${res}.json`)
+    .then(r => r.json()).then(t => topojson.feature(t, t.objects.countries))
+    .then(g => { g.features = g.features.filter(f => f.id !== '010'); return g; });   // drop Antarctica
+  return WORLD_GEO[res];
+}
+function addWorldLayer(m, res) {
+  m.getContainer().classList.add('vec-map');
+  return loadWorld(res).then(geo => {
+    if (!m._panes || !m._panes.overlayPane || !m.getContainer().isConnected) return null;   // map was replaced while loading
+    const layer = L.geoJSON(geo, { interactive:false, style:{ color:'#FFFFFF', weight:0.9, fillColor:'#DCE3EB', fillOpacity:1 } }).addTo(m);
+    layer.bringToBack();
+    return layer;
+  }).catch(() => {   // offline / blocked → fall back to the label-free-at-low-zoom Esri canvas
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', { maxZoom:12 }).addTo(m);
+  });
+}
+
+// Country labels on the full map, in the current language (shown from zoom 3).
+let mapLabels = null;
+function mapApplyLang() {
+  if (!map) return;
+  if (mapLabels) map.removeLayer(mapLabels);
+  mapLabels = L.layerGroup(Object.entries(COUNTRY_LATLNG).map(([c, ll]) =>
+    L.marker(ll, { interactive:false, keyboard:false, icon: L.divIcon({ className:'map-label', html:`<span>${exEsc(cN(c))}</span>`, iconSize:[0, 0] }) }))).addTo(map);
+  // pin tooltips + the "go to country" list follow the language
+  colorMapPins();
+  const jump = document.getElementById('map-jump');
+  if (jump) jump.innerHTML = `<option value="">${tr('Go to country…', 'انتقل إلى دولة…')}</option>` +
+    Object.keys(COUNTRY_LATLNG).sort(byName).map(c => `<option value="${exEsc(c)}">${exEsc(cN(c))}</option>`).join('');
+}
+
 // ── View switching ────────────────────────────────────────────────────────
 // Views: executive (landing) · reports · evaluation · countries (map)
 function switchView(view, navEl) {
@@ -2104,10 +2275,10 @@ function initMap() {
   if (mapInitialized) return;
   mapInitialized = true;
   map = L.map('map', { zoomControl:false, attributionControl:false }).setView([12,25],3);
-  // Esri light-gray canvas — free, no API key. Clean Positron-style look.
-  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', { maxZoom:12, attribution:'Tiles © Esri' }).addTo(map);
-  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}', { maxZoom:12, opacity:0.75 }).addTo(map);
+  addWorldLayer(map, '50m');   // clean vector world outline; labels added by mapApplyLang()
   L.control.zoom({ position:'bottomright' }).addTo(map);
+  const zoomCls = () => map.getContainer().classList.toggle('map-z-low', map.getZoom() < 3);
+  map.on('zoomend', zoomCls); zoomCls();
 
   // Plot every country in the catalogue; colour comes from the need index (colorMapPins)
   Object.entries(COUNTRY_LATLNG).forEach(([country, [lat, lng]]) => {
@@ -2125,10 +2296,7 @@ function initMap() {
     }).addTo(map);
     mapMarkers[country] = { marker, el };
   });
-  const jump = document.getElementById('map-jump');
-  if (jump) jump.innerHTML = '<option value="">Go to country…</option>' +
-    Object.keys(COUNTRY_LATLNG).sort().map(c => `<option value="${exEsc(c)}">${exEsc(c)}</option>`).join('');
-  colorMapPins();
+  mapApplyLang();   // English reference labels or Arabic labels, pin tooltips, country list
 }
 
 // Shade pins by need index: top third = high, middle = medium, rest = lower.
@@ -2140,7 +2308,7 @@ function colorMapPins() {
     el.classList.remove('need-hi', 'need-mid', 'need-lo');
     const r = need[c] && need[c].rank;
     if (r) el.classList.add(r <= n / 3 ? 'need-hi' : r <= 2 * n / 3 ? 'need-mid' : 'need-lo');
-    el.title = c + (r ? ' · need index ' + Math.round(need[c].need) + ' (rank ' + r + ' of ' + n + ')' : '');
+    el.title = cN(c) + (r ? tr(' · need index ', ' · مؤشر الاحتياج ') + Math.round(need[c].need) + tr(' (rank ' + r + ' of ' + n + ')', ' (الترتيب ' + r + ' من ' + n + ')') : '');
   });
   const key = document.getElementById('map-need-key');
   if (key) key.innerHTML = needKeyHtml('mapFilterTier', mapTier, false);
@@ -2160,10 +2328,12 @@ function openCountryDrawer(country) {
   cdActiveTab = 'overview';
   cdActiveIndTab = 'overview';
   const need = needScores()[country] || {};
-  const inc = { LIC:'Low income', LMIC:'Lower-middle income', UMIC:'Upper-middle income' }[COUNTRY_INCOME[country]] || '';
-  document.getElementById('drawer-title').textContent = country;
+  const total = (needScores().__ranked || []).length;
+  document.getElementById('drawer-title').textContent = cN(country);
   document.getElementById('drawer-sub').textContent =
-    [repRegionOf(country), inc, need.rank ? 'Need index ' + Math.round(need.need) + ' · rank ' + need.rank + ' of ' + (needScores().__ranked || []).length : ''].filter(Boolean).join(' · ') || '—';
+    [rN(repRegionOf(country)), incN(COUNTRY_INCOME[country]),
+     need.rank ? tr('Need index ' + Math.round(need.need) + ' · rank ' + need.rank + ' of ' + total,
+                    'مؤشر الاحتياج ' + Math.round(need.need) + ' · الترتيب ' + need.rank + ' من ' + total) : ''].filter(Boolean).join(' · ') || '—';
 
   // Reset main tabs
   document.querySelectorAll('#cd-main-tabs .dtab').forEach(b => b.classList.remove('active'));
@@ -2198,7 +2368,7 @@ function cdRenderOverview() {
       .filter(x => x != null).sort((x, y) => x - y);
     if (!a.length) return null; const m = Math.floor(a.length / 2); return a.length % 2 ? a[m] : (a[m - 1] + a[m]) / 2;
   };
-  const keyInds = [{ id:'SP.POP.TOTL', lbl:'Population', pop:true }].concat(REGION_INDS);
+  const keyInds = [{ id:'SP.POP.TOTL', lbl:'Population', lblAr:'عدد السكان', pop:true }].concat(REGION_INDS);
   const statsHtml = keyInds.map(ind => {
     const raw = data[ind.id];
     const hasVal = !loading && raw && raw.value != null;
@@ -2208,13 +2378,14 @@ function cdRenderOverview() {
     const med = ind.pop ? null : regMedian(ind.id);
     const srcUrl = `https://data.worldbank.org/indicator/${ind.id}?locations=${iso}`;
     return `<div class="rp-med${sv ? ' sev-' + sv.lvl : ''}"${sv ? ` title="${exEsc(sv.why)}"` : ''}>
-      <div class="rp-med-l">${ind.lbl}</div>
+      <div class="rp-med-l">${tr(ind.lbl, ind.lblAr)}</div>
       <div class="rp-med-v">${val}</div>
-      <div class="rp-med-s">${sv ? `<b>${sv.label}</b> · ` : ''}${hasVal ? raw.year + ' · ' : ''}<a href="${srcUrl}" target="_blank" title="World Bank Open Data">Source</a></div>
-      ${med != null ? `<div class="rp-med-s">Region median: ${fmt(med)}</div>` : ''}
+      <div class="rp-med-s">${sv ? `<b>${sv.label}</b> · ` : ''}${hasVal ? raw.year + ' · ' : ''}<a href="${srcUrl}" target="_blank" title="${tr('World Bank Open Data', 'بيانات البنك الدولي المفتوحة')}">${tr('Source', 'المصدر')}</a></div>
+      ${med != null ? `<div class="rp-med-s">${tr('Region median', 'وسيط الإقليم')}: ${fmt(med)}</div>` : ''}
     </div>`;
   }).join('');
-  const srcLabel = data.__source === 'live' ? 'Live from World Bank' : data.__source === 'baked' ? 'Snapshot · refreshing live…' : '';
+  const srcLabel = data.__source === 'live' ? tr('Live from World Bank', 'مباشر من البنك الدولي')
+    : data.__source === 'baked' ? tr('Snapshot · refreshing live…', 'نسخة محفوظة · جارٍ التحديث المباشر…') : '';
 
   // Reports for this country: saved in this browser + published on the website
   const mine = REP_LIBRARY.filter(r => r.countries.includes(cdCountry)).slice(0, 6);
@@ -2223,18 +2394,18 @@ function cdRenderOverview() {
   document.getElementById('drawer-body').innerHTML = `
     <div class="cd-section">
       <div class="cd-section-hd">
-        <div class="cd-section-title">Key Indicators <span style="font-weight:500;color:var(--text3);font-size:11px;margin-left:6px">${srcLabel}</span></div>
-        ${loading ? `<span class="cd-stat-loading">Loading…</span>` : `<a href="https://data.worldbank.org/country/${iso}" target="_blank" style="font-size:10px;color:var(--accent);text-decoration:none">World Bank profile →</a>`}
+        <div class="cd-section-title">${tr('Key Indicators', 'المؤشرات الرئيسية')} <span style="font-weight:500;color:var(--text3);font-size:11px;margin-inline-start:6px">${srcLabel}</span></div>
+        ${loading ? `<span class="cd-stat-loading">${tr('Loading…', 'جارٍ التحميل…')}</span>` : `<a href="https://data.worldbank.org/country/${iso}" target="_blank" style="font-size:10px;color:var(--accent);text-decoration:none">${tr('World Bank profile →', 'ملف البنك الدولي ←')}</a>`}
       </div>
-      ${SEV_LEGEND_HTML}
+      ${sevLegendHtml()}
       <div class="rp-meds cd-key-meds">${statsHtml}</div>
     </div>
     <div class="cd-section cd-reports">
       <div class="cd-section-hd">
-        <div class="cd-section-title">Reports for ${exEsc(cdCountry)}</div>
+        <div class="cd-section-title">${tr('Reports for ' + exEsc(cdCountry), 'تقارير ' + exEsc(cN(cdCountry)))}</div>
         <span class="cd-section-count">${mine.length + (REPORTS_MANIFEST[cdCountry] ? 1 : 0)}</span>
       </div>
-      ${repsHtml || '<div class="cd-empty-country">No reports yet. Use Instant report above.</div>'}
+      ${repsHtml || `<div class="cd-empty-country">${tr('No reports yet. Use Instant report above.', 'لا توجد تقارير بعد. استخدم «تقرير فوري» في الأعلى.')}</div>`}
     </div>`;
 }
 
@@ -2293,13 +2464,13 @@ function cdBuildIndGrid(tabKey) {
     const sv = hasVal ? indSeverity(ind.id, raw.value) : null;
     return `<div class="ca-ind-card ${!hasVal ? 'ca-no-data' : ''}${sv ? ' sev-' + sv.lvl : ''}"${sv ? ` title="${exEsc(sv.why)}"` : ''}>
       <div class="ca-ind-label">${label}${sv ? sevPill(sv) : ''}</div>
-      <div class="ca-ind-val">${val}${hasVal ? '<span class="ca-ind-unit">' + ind.unit + '</span>' : ''}</div>
+      <div class="ca-ind-val">${val}${hasVal ? '<span class="ca-ind-unit">' + unitN(ind.unit) + '</span>' : ''}</div>
       ${year ? `<div class="ca-ind-year">${year}</div>` : ''}
-      <div class="ca-ind-src"><a href="${srcUrl}" target="_blank" class="ca-src-link">World Bank</a></div>
+      <div class="ca-ind-src"><a href="${srcUrl}" target="_blank" class="ca-src-link">${tr('World Bank', 'البنك الدولي')}</a></div>
     </div>`;
   }).join('');
 
-  return `${SEV_LEGEND_HTML}<div class="cd-ind-grid">${cards}</div>`;
+  return `${sevLegendHtml()}<div class="cd-ind-grid">${cards}</div>`;
 }
 
 
@@ -2315,7 +2486,7 @@ function closeDrawer() {
 // optional full AI report (local server), and the saved-reports library.
 // ══════════════════════════════════════════════════════════════════════════
 let REGION_MEMBERS = {};   // {WB region: [countries]} — captured from indicators.json _regions
-const COUNTRY_INCOME = {'Afghanistan':'LIC', 'Albania':'UMIC', 'Algeria':'UMIC', 'Angola':'LMIC', 'Argentina':'UMIC', 'Armenia':'UMIC', 'Azerbaijan':'UMIC', 'Bangladesh':'LMIC', 'Bolivia':'LMIC', 'Botswana':'UMIC', 'Burkina Faso':'LIC', 'Burundi':'LIC', 'Cambodia':'LMIC', 'Cameroon':'LMIC', 'Chad':'LIC', 'Colombia':'UMIC', 'Congo, Dem. Rep.':'LIC', 'Ecuador':'UMIC', 'Egypt':'LMIC', 'El Salvador':'UMIC', 'Eritrea':'LIC', 'Ethiopia':'LIC', 'Ghana':'LMIC', 'Guatemala':'UMIC', 'Guinea':'LMIC', 'Haiti':'LMIC', 'Honduras':'LMIC', 'India':'LMIC', 'Indonesia':'UMIC', 'Iraq':'UMIC', 'Ivoire':'LMIC', 'Jordan':'UMIC', 'Kazakhstan':'UMIC', 'Kenya':'LMIC', 'Kosovo':'UMIC', 'Kyrgyzstan':'LMIC', 'Laos':'LMIC', 'Lebanon':'LMIC', 'Liberia':'LIC', 'Libya':'UMIC', 'Madagascar':'LIC', 'Malawi':'LIC', 'Mali':'LIC', 'Mauritania':'LMIC', 'Mexico':'UMIC', 'Moldova':'UMIC', 'Mongolia':'UMIC', 'Morocco':'LMIC', 'Mozambique':'LIC', 'Myanmar':'LMIC', 'Namibia':'LMIC', 'Nepal':'LMIC', 'Nicaragua':'LMIC', 'Niger':'LIC', 'Nigeria':'LMIC', 'Pakistan':'LMIC', 'Palestine':'LMIC', 'Papua New Guinea':'LMIC', 'Paraguay':'UMIC', 'Peru':'UMIC', 'Philippines':'UMIC', 'Rwanda':'LIC', 'Senegal':'LMIC', 'Sierra Leone':'LIC', 'Somalia':'LIC', 'South Africa':'UMIC', 'South Sudan':'LIC', 'Sri Lanka':'UMIC', 'Sudan':'LIC', 'Syria':'LIC', 'Tajikistan':'LMIC', 'Tanzania':'LMIC', 'Thailand':'UMIC', 'Timor-Leste':'LMIC', 'Togo':'LMIC', 'Tunisia':'LMIC', 'Turkey':'UMIC', 'Turkmenistan':'UMIC', 'Uganda':'LIC', 'Ukraine':'UMIC', 'Uzbekistan':'LMIC', 'Venezuela':'LMIC', 'Vietnam':'UMIC', 'Yemen':'LIC', 'Zambia':'LMIC', 'Zimbabwe':'LMIC'};   // World Bank income group per country (LIC/LMIC/UMIC) for the report selector
+const COUNTRY_INCOME = {'Afghanistan':'LIC', 'Albania':'UMIC', 'Algeria':'UMIC', 'Angola':'LMIC', 'Argentina':'UMIC', 'Armenia':'UMIC', 'Azerbaijan':'UMIC', 'Bangladesh':'LMIC', 'Bolivia':'LMIC', 'Botswana':'UMIC', 'Burkina Faso':'LIC', 'Burundi':'LIC', 'Cambodia':'LMIC', 'Cameroon':'LMIC', 'Chad':'LIC', 'Colombia':'UMIC', 'Congo, Dem. Rep.':'LIC', 'Ecuador':'UMIC', 'Egypt':'LMIC', 'El Salvador':'UMIC', 'Eritrea':'LIC', 'Ethiopia':'LIC', 'Ghana':'LMIC', 'Guatemala':'UMIC', 'Guinea':'LMIC', 'Haiti':'LMIC', 'Honduras':'LMIC', 'India':'LMIC', 'Indonesia':'UMIC', 'Iraq':'UMIC', "Côte d'Ivoire":'LMIC', 'Jordan':'UMIC', 'Kazakhstan':'UMIC', 'Kenya':'LMIC', 'Kosovo':'UMIC', 'Kyrgyzstan':'LMIC', 'Laos':'LMIC', 'Lebanon':'LMIC', 'Liberia':'LIC', 'Libya':'UMIC', 'Madagascar':'LIC', 'Malawi':'LIC', 'Mali':'LIC', 'Mauritania':'LMIC', 'Mexico':'UMIC', 'Moldova':'UMIC', 'Mongolia':'UMIC', 'Morocco':'LMIC', 'Mozambique':'LIC', 'Myanmar':'LMIC', 'Namibia':'LMIC', 'Nepal':'LMIC', 'Nicaragua':'LMIC', 'Niger':'LIC', 'Nigeria':'LMIC', 'Pakistan':'LMIC', 'Palestine':'LMIC', 'Papua New Guinea':'LMIC', 'Paraguay':'UMIC', 'Peru':'UMIC', 'Philippines':'UMIC', 'Rwanda':'LIC', 'Senegal':'LMIC', 'Sierra Leone':'LIC', 'Somalia':'LIC', 'South Africa':'UMIC', 'South Sudan':'LIC', 'Sri Lanka':'UMIC', 'Sudan':'LIC', 'Syria':'LIC', 'Tajikistan':'LMIC', 'Tanzania':'LMIC', 'Thailand':'UMIC', 'Timor-Leste':'LMIC', 'Togo':'LMIC', 'Tunisia':'LMIC', 'Turkey':'UMIC', 'Turkmenistan':'UMIC', 'Uganda':'LIC', 'Ukraine':'UMIC', 'Uzbekistan':'LMIC', 'Venezuela':'LMIC', 'Vietnam':'UMIC', 'Yemen':'LIC', 'Zambia':'LMIC', 'Zimbabwe':'LMIC'};   // World Bank income group per country (LIC/LMIC/UMIC) for the report selector
 const COUNTRY_INFO = {'Afghanistan':{capital:'Kabul',currency:'Afghani (AFN)',languages:'Dari, Pashto'},'Algeria':{capital:'Algiers',currency:'Algerian Dinar (DZD)',languages:'Arabic, Tamazight'},'Angola':{capital:'Luanda',currency:'Kwanza (AOA)',languages:'Portuguese'},'Bangladesh':{capital:'Dhaka',currency:'Taka (BDT)',languages:'Bengali'},'Bolivia':{capital:'Sucre',currency:'Boliviano (BOB)',languages:'Spanish, Quechua'},'Botswana':{capital:'Gaborone',currency:'Pula (BWP)',languages:'English, Setswana'},'Burkina Faso':{capital:'Ouagadougou',currency:'CFA Franc (XOF)',languages:'French'},'Burundi':{capital:'Gitega',currency:'Burundian Franc (BIF)',languages:'Kirundi, French'},'Cambodia':{capital:'Phnom Penh',currency:'Riel (KHR)',languages:'Khmer'},'Cameroon':{capital:'Yaoundé',currency:'CFA Franc (XAF)',languages:'French, English'},'Chad':{capital:"N'Djamena",currency:'CFA Franc (XAF)',languages:'Arabic, French'},'Colombia':{capital:'Bogotá',currency:'Colombian Peso (COP)',languages:'Spanish'},'Congo, Dem. Rep.':{capital:'Kinshasa',currency:'Congolese Franc (CDF)',languages:'French'},"Côte d'Ivoire":{capital:'Yamoussoukro',currency:'CFA Franc (XOF)',languages:'French'},'Ecuador':{capital:'Quito',currency:'US Dollar (USD)',languages:'Spanish'},'Egypt':{capital:'Cairo',currency:'Egyptian Pound (EGP)',languages:'Arabic'},'El Salvador':{capital:'San Salvador',currency:'US Dollar (USD)',languages:'Spanish'},'Eritrea':{capital:'Asmara',currency:'Nakfa (ERN)',languages:'Tigrinya, Arabic'},'Ethiopia':{capital:'Addis Ababa',currency:'Birr (ETB)',languages:'Amharic'},'Ghana':{capital:'Accra',currency:'Cedi (GHS)',languages:'English'},'Guatemala':{capital:'Guatemala City',currency:'Quetzal (GTQ)',languages:'Spanish'},'Guinea':{capital:'Conakry',currency:'Guinean Franc (GNF)',languages:'French'},'Haiti':{capital:'Port-au-Prince',currency:'Gourde (HTG)',languages:'French, Creole'},'Honduras':{capital:'Tegucigalpa',currency:'Lempira (HNL)',languages:'Spanish'},'India':{capital:'New Delhi',currency:'Indian Rupee (INR)',languages:'Hindi, English'},'Indonesia':{capital:'Jakarta',currency:'Rupiah (IDR)',languages:'Indonesian'},'Iraq':{capital:'Baghdad',currency:'Iraqi Dinar (IQD)',languages:'Arabic, Kurdish'},'Jordan':{capital:'Amman',currency:'Jordanian Dinar (JOD)',languages:'Arabic'},'Kazakhstan':{capital:'Astana',currency:'Tenge (KZT)',languages:'Kazakh, Russian'},'Kenya':{capital:'Nairobi',currency:'Kenyan Shilling (KES)',languages:'Swahili, English'},'Kosovo':{capital:'Pristina',currency:'Euro (EUR)',languages:'Albanian, Serbian'},'Kyrgyzstan':{capital:'Bishkek',currency:'Som (KGS)',languages:'Kyrgyz, Russian'},'Laos':{capital:'Vientiane',currency:'Kip (LAK)',languages:'Lao'},'Lebanon':{capital:'Beirut',currency:'Lebanese Pound (LBP)',languages:'Arabic'},'Liberia':{capital:'Monrovia',currency:'Liberian Dollar (LRD)',languages:'English'},'Libya':{capital:'Tripoli',currency:'Libyan Dinar (LYD)',languages:'Arabic'},'Madagascar':{capital:'Antananarivo',currency:'Ariary (MGA)',languages:'Malagasy, French'},'Malawi':{capital:'Lilongwe',currency:'Malawian Kwacha (MWK)',languages:'English, Chichewa'},'Mali':{capital:'Bamako',currency:'CFA Franc (XOF)',languages:'French'},'Mauritania':{capital:'Nouakchott',currency:'Ouguiya (MRU)',languages:'Arabic'},'Mexico':{capital:'Mexico City',currency:'Mexican Peso (MXN)',languages:'Spanish'},'Moldova':{capital:'Chișinău',currency:'Moldovan Leu (MDL)',languages:'Romanian'},'Mongolia':{capital:'Ulaanbaatar',currency:'Tögrög (MNT)',languages:'Mongolian'},'Morocco':{capital:'Rabat',currency:'Dirham (MAD)',languages:'Arabic, Tamazight'},'Mozambique':{capital:'Maputo',currency:'Metical (MZN)',languages:'Portuguese'},'Myanmar':{capital:'Naypyidaw',currency:'Kyat (MMK)',languages:'Burmese'},'Namibia':{capital:'Windhoek',currency:'Namibian Dollar (NAD)',languages:'English'},'Nepal':{capital:'Kathmandu',currency:'Nepalese Rupee (NPR)',languages:'Nepali'},'Nicaragua':{capital:'Managua',currency:'Córdoba (NIO)',languages:'Spanish'},'Niger':{capital:'Niamey',currency:'CFA Franc (XOF)',languages:'French'},'Nigeria':{capital:'Abuja',currency:'Naira (NGN)',languages:'English'},'Pakistan':{capital:'Islamabad',currency:'Pakistani Rupee (PKR)',languages:'Urdu, English'},'Palestine':{capital:'Ramallah',currency:'Israeli Shekel (ILS)',languages:'Arabic'},'Papua New Guinea':{capital:'Port Moresby',currency:'Kina (PGK)',languages:'English, Tok Pisin'},'Paraguay':{capital:'Asunción',currency:'Guaraní (PYG)',languages:'Spanish, Guaraní'},'Peru':{capital:'Lima',currency:'Sol (PEN)',languages:'Spanish'},'Philippines':{capital:'Manila',currency:'Philippine Peso (PHP)',languages:'Filipino, English'},'Rwanda':{capital:'Kigali',currency:'Rwandan Franc (RWF)',languages:'Kinyarwanda, English'},'Senegal':{capital:'Dakar',currency:'CFA Franc (XOF)',languages:'French'},'Sierra Leone':{capital:'Freetown',currency:'Leone (SLL)',languages:'English'},'Somalia':{capital:'Mogadishu',currency:'Somali Shilling (SOS)',languages:'Somali, Arabic'},'South Africa':{capital:'Pretoria',currency:'Rand (ZAR)',languages:'11 official'},'South Sudan':{capital:'Juba',currency:'S. Sudanese Pound (SSP)',languages:'English'},'Sri Lanka':{capital:'Colombo',currency:'Sri Lankan Rupee (LKR)',languages:'Sinhala, Tamil'},'Sudan':{capital:'Khartoum',currency:'Sudanese Pound (SDG)',languages:'Arabic'},'Syria':{capital:'Damascus',currency:'Syrian Pound (SYP)',languages:'Arabic'},'Tajikistan':{capital:'Dushanbe',currency:'Somoni (TJS)',languages:'Tajik'},'Tanzania':{capital:'Dodoma',currency:'Tanzanian Shilling (TZS)',languages:'Swahili, English'},'Thailand':{capital:'Bangkok',currency:'Thai Baht (THB)',languages:'Thai'},'Timor-Leste':{capital:'Dili',currency:'US Dollar (USD)',languages:'Tetum, Portuguese'},'Togo':{capital:'Lomé',currency:'CFA Franc (XOF)',languages:'French'},'Tunisia':{capital:'Tunis',currency:'Tunisian Dinar (TND)',languages:'Arabic'},'Turkey':{capital:'Ankara',currency:'Turkish Lira (TRY)',languages:'Turkish'},'Turkmenistan':{capital:'Ashgabat',currency:'Manat (TMT)',languages:'Turkmen'},'Uganda':{capital:'Kampala',currency:'Ugandan Shilling (UGX)',languages:'English, Swahili'},'Ukraine':{capital:'Kyiv',currency:'Hryvnia (UAH)',languages:'Ukrainian'},'Uzbekistan':{capital:'Tashkent',currency:'Uzbekistani Som (UZS)',languages:'Uzbek'},'Venezuela':{capital:'Caracas',currency:'Bolívar (VES)',languages:'Spanish'},'Vietnam':{capital:'Hanoi',currency:'Vietnamese Đồng (VND)',languages:'Vietnamese'},'Yemen':{capital:"Sana'a",currency:'Yemeni Rial (YER)',languages:'Arabic'},'Zambia':{capital:'Lusaka',currency:'Zambian Kwacha (ZMW)',languages:'English'},'Zimbabwe':{capital:'Harare',currency:'Zimbabwe Gold (ZiG)',languages:'English, Shona'},'Armenia':{capital:'Yerevan',currency:'Armenian Dram (AMD)',languages:'Armenian'},'Azerbaijan':{capital:'Baku',currency:'Azerbaijani Manat (AZN)',languages:'Azerbaijani'},'Albania':{capital:'Tirana',currency:'Albanian Lek (ALL)',languages:'Albanian'},'Argentina':{capital:'Buenos Aires',currency:'Argentine Peso (ARS)',languages:'Spanish'},'Somaliland':{capital:'Hargeisa',currency:'Somaliland Shilling (SLSH)',languages:'Somali, Arabic, English'}};
 let REPORTS_MANIFEST = {};
 async function loadReportsManifest() {
@@ -2344,9 +2515,21 @@ function repRegionOf(country) {
 function repFileSafe(s) { return String(s).normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^\w\-]+/g, '_').replace(/_+/g, '_').replace(/^_|_$/g, ''); }
 function repStamp() { return new Date().toISOString().slice(0, 10); }
 function repId() { return Date.now().toString(36) + Math.random().toString(36).slice(2, 7); }
-function repFmtSize(b) { return b == null ? '—' : b > 1048576 ? (b / 1048576).toFixed(1) + ' MB' : Math.max(1, Math.round(b / 1024)) + ' KB'; }
-function repFmtDate(iso) { try { return new Date(iso).toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' }) + ' · ' + new Date(iso).toLocaleTimeString('en-GB', { hour:'2-digit', minute:'2-digit' }); } catch (e) { return iso || ''; } }
-function repFmtPeople(n) { return n >= 1e9 ? (n / 1e9).toFixed(2) + 'B' : n >= 1e6 ? Math.round(n / 1e6) + 'M' : n >= 1e3 ? Math.round(n / 1e3) + 'K' : String(Math.round(n)); }
+function repFmtSize(b) { return b == null ? '—' : b > 1048576 ? (b / 1048576).toFixed(1) + tr(' MB', ' م.ب') : Math.max(1, Math.round(b / 1024)) + tr(' KB', ' ك.ب'); }
+function repFmtDate(iso) { try { return new Date(iso).toLocaleDateString(LOCALE(), { day:'numeric', month:'short', year:'numeric' }) + ' · ' + new Date(iso).toLocaleTimeString(LOCALE(), { hour:'2-digit', minute:'2-digit' }); } catch (e) { return iso || ''; } }
+function repFmtPeople(n) {
+  if (isAr()) return n >= 1e9 ? (n / 1e9).toFixed(2) + ' مليار' : n >= 1e6 ? Math.round(n / 1e6) + ' مليون' : n >= 1e3 ? Math.round(n / 1e3) + ' ألف' : String(Math.round(n));
+  return n >= 1e9 ? (n / 1e9).toFixed(2) + 'B' : n >= 1e6 ? Math.round(n / 1e6) + 'M' : n >= 1e3 ? Math.round(n / 1e3) + 'K' : String(Math.round(n));
+}
+// Saved-report title in the current language (built from the record, not the stored English title)
+function recTitle(r) {
+  const c = (r.countries || [])[0] || '';
+  const region = r.region || String(r.title || '').split(' — ')[0];
+  if (r.kind === 'single') return tr(c + ' — Country Assessment', cN(c) + ' — تقييم الدولة');
+  if (r.kind === 'region') return tr(region + ' — Regional Assessment', rN(region) + ' — التقييم الإقليمي');
+  if ((r.countries || []).length === 1) return tr(c + ' — Full AI report (23 slides)', cN(c) + ' — تقرير الذكاء الاصطناعي الكامل (23 شريحة)');
+  return tr(r.title, rN(region) + ' — تقرير إقليمي مجمّع (ذكاء اصطناعي)');
+}
 function repDownloadBlob(blob, fileName) {
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a'); a.href = url; a.download = fileName;
@@ -2399,7 +2582,8 @@ async function repLibDownload(id) {
 }
 async function repLibDelete(id) {
   const rec = REP_LIBRARY.find(r => r.id === id);
-  if (!confirm('Remove "' + (rec ? rec.title : 'this report') + '" from the saved reports in this browser?')) return;
+  if (!confirm(tr('Remove "' + (rec ? recTitle(rec) : 'this report') + '" from the saved reports in this browser?',
+                  'حذف «' + (rec ? recTitle(rec) : 'هذا التقرير') + '» من التقارير المحفوظة في هذا المتصفح؟'))) return;
   await RepStore.del(id).catch(() => {});
   onReportsChanged();
 }
@@ -2413,12 +2597,12 @@ async function onReportsChanged() {
 
 // ── Need index (from the World Bank snapshot, so rankings are stable) ─────
 const NEED_INDS = [
-  { id:'SH.DYN.MORT',    dir: 1, label:'Under-5 mortality',     sector:'Health' },
-  { id:'SH.STA.MMRT',    dir: 1, label:'Maternal mortality',    sector:'Health' },
-  { id:'SN.ITK.DEFC.ZS', dir: 1, label:'Undernourishment',      sector:'Food security' },
-  { id:'SH.H2O.BASW.ZS', dir:-1, label:'Basic drinking water',  sector:'WASH' },
-  { id:'SH.STA.BASS.ZS', dir:-1, label:'Basic sanitation',      sector:'WASH' },
-  { id:'EG.ELC.ACCS.ZS', dir:-1, label:'Electricity access',    sector:'Energy' },
+  { id:'SH.DYN.MORT',    dir: 1, label:'Under-5 mortality',     labelAr:'وفيات الأطفال دون الخامسة', sector:'Health' },
+  { id:'SH.STA.MMRT',    dir: 1, label:'Maternal mortality',    labelAr:'وفيات الأمهات', sector:'Health' },
+  { id:'SN.ITK.DEFC.ZS', dir: 1, label:'Undernourishment',      labelAr:'نقص التغذية', sector:'Food security' },
+  { id:'SH.H2O.BASW.ZS', dir:-1, label:'Basic drinking water',  labelAr:'مياه الشرب الأساسية', sector:'WASH' },
+  { id:'SH.STA.BASS.ZS', dir:-1, label:'Basic sanitation',      labelAr:'الصرف الصحي الأساسي', sector:'WASH' },
+  { id:'EG.ELC.ACCS.ZS', dir:-1, label:'Electricity access',    labelAr:'الوصول إلى الكهرباء', sector:'Energy' },
 ];
 let NEED_CACHE = null;
 function needScores() {
@@ -2512,24 +2696,28 @@ async function repRegionLive(countries, ids) {
   }));
   return { data: out, live: ok > 0 };
 }
-function repDateStr() { return new Date().toLocaleDateString('en-US', { month:'long', year:'numeric' }); }
+function repDateStr() { return new Date().toLocaleDateString(lang === 'ar' ? 'ar-AE-u-nu-latn' : 'en-US', { month:'long', year:'numeric' }); }
 function repSnapshotStr() {
-  try { return SNAPSHOT_DATE ? new Date(SNAPSHOT_DATE).toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' }) : ''; } catch (e) { return ''; }
+  try { return SNAPSHOT_DATE ? new Date(SNAPSHOT_DATE).toLocaleDateString(LOCALE(), { day:'numeric', month:'short', year:'numeric' }) : ''; } catch (e) { return ''; }
 }
 function repLibsReady() {
-  if (typeof PptxGenJS === 'undefined' || typeof window.buildCountryDeck !== 'function' || typeof window.buildRegionDeck !== 'function')
-    throw new Error('The report library did not load. Please refresh the page and try again.');
+  if (typeof PptxGenJS === 'undefined' || typeof window.DK === 'undefined' || typeof window.buildCountryDeck !== 'function' || typeof window.buildRegionDeck !== 'function')
+    throw new Error(tr('The report library did not load. Please refresh the page and try again.', 'لم يتم تحميل مكتبة التقارير. يُرجى تحديث الصفحة والمحاولة مجدداً.'));
 }
+const repLangSuffix = () => lang === 'ar' ? '_AR' : '';
 
 async function repBuildCountryBlob(country, setStatus) {
   repLibsReady();
-  setStatus && setStatus('Loading live World Bank data for ' + country + '…');
+  setStatus && setStatus(tr('Loading live World Bank data for ' + country + '…', 'جارٍ تحميل بيانات البنك الدولي المباشرة لـ' + cN(country) + '…'));
   const d = await repCountryData(country);
-  setStatus && setStatus('Building the ' + country + ' report…');
+  setStatus && setStatus(tr('Building the ' + country + ' report…', 'جارٍ إعداد تقرير ' + cN(country) + '…'));
   const [flagData, mapData] = await Promise.all([repFlag(country), repMap(country)]);
+  const need = needScores()[country] || {};
   const blob = await window.buildCountryDeck({
     country, data: d, info: COUNTRY_INFO[country] || {}, iso2: (COUNTRY_ISO2[country] || '').toLowerCase(),
-    flagData, mapData, dateStr: repDateStr(), PptxGenJS, output: 'blob',
+    flagData, mapData, dateStr: repDateStr(), PptxGenJS, output: 'blob', lang,
+    region: repRegionOf(country), income: COUNTRY_INCOME[country] || '',
+    need: need.need != null ? { score: need.need, rank: need.rank, of: (needScores().__ranked || []).length } : null,
   });
   return { blob, data: d.__source === 'live' ? 'live' : 'snapshot' };
 }
@@ -2537,72 +2725,79 @@ async function repBuildCountryBlob(country, setStatus) {
 // ── The three report types ────────────────────────────────────────────────
 async function repRunSingle(country) {
   if (!country) return;
-  const ov = cd_progressOverlay('Country report · ' + country, 'Loading live World Bank data…');
+  const ov = cd_progressOverlay(tr('Country report · ' + country, 'تقرير الدولة · ' + cN(country)), tr('Loading live World Bank data…', 'جارٍ تحميل بيانات البنك الدولي المباشرة…'));
   try {
     const { blob, data } = await repBuildCountryBlob(country, ov.setStatus);
-    const fileName = repFileSafe(country) + '_Country_Assessment_' + repStamp() + '.pptx';
+    const fileName = repFileSafe(country) + '_Country_Assessment' + repLangSuffix() + '_' + repStamp() + '.pptx';
     const saved = await repSave({ id: repId(), kind: 'single', title: country + ' — Country Assessment', countries: [country],
-      createdAt: new Date().toISOString(), fileName, size: blob.size, data, blob });
+      createdAt: new Date().toISOString(), fileName, size: blob.size, data, blob, lang });
     repDownloadBlob(blob, fileName);
     ov.remove();
-    repToast(saved ? '✓ ' + country + ' report downloaded and saved to your reports' : '✓ ' + country + ' report downloaded (this browser could not save a copy)');
+    repToast(saved ? tr('✓ ' + country + ' report downloaded and saved to your reports', '✓ تم تنزيل تقرير ' + cN(country) + ' وحفظه في تقاريرك')
+                   : tr('✓ ' + country + ' report downloaded (this browser could not save a copy)', '✓ تم تنزيل تقرير ' + cN(country) + ' (تعذّر حفظ نسخة في هذا المتصفح)'));
     onReportsChanged();
-  } catch (e) { ov.remove(); alert('The report could not be built: ' + (e.message || e)); }
+  } catch (e) { ov.remove(); alert(tr('The report could not be built: ', 'تعذّر إعداد التقرير: ') + (e.message || e)); }
 }
 
 async function repRunBatch(countries) {
   countries = [...new Set(countries)].filter(Boolean);
-  if (!countries.length) { alert('Select at least one country first.'); return; }
-  if (countries.length > 10 && !confirm('Build ' + countries.length + ' separate reports? Each takes a few seconds, and your browser may ask once to allow several downloads.')) return;
-  const ov = cd_progressOverlay('Building ' + countries.length + ' country reports', 'Starting…');
+  if (!countries.length) { alert(tr('Select at least one country first.', 'اختر دولة واحدة على الأقل أولاً.')); return; }
+  if (countries.length > 10 && !confirm(tr('Build ' + countries.length + ' separate reports? Each takes a few seconds, and your browser may ask once to allow several downloads.',
+      'إعداد ' + countries.length + ' تقارير منفصلة؟ يستغرق كل تقرير بضع ثوانٍ، وقد يطلب المتصفح السماح بتنزيل عدة ملفات.'))) return;
+  const ov = cd_progressOverlay(tr('Building ' + countries.length + ' country reports', 'جارٍ إعداد ' + countries.length + ' تقارير دول'), tr('Starting…', 'جارٍ البدء…'));
   const failed = [];
   for (let i = 0; i < countries.length; i++) {
     const c = countries[i];
     try {
-      const { blob, data } = await repBuildCountryBlob(c, s => ov.setStatus((i + 1) + ' of ' + countries.length + ' · ' + s));
-      const fileName = repFileSafe(c) + '_Country_Assessment_' + repStamp() + '.pptx';
+      const { blob, data } = await repBuildCountryBlob(c, s => ov.setStatus(tr((i + 1) + ' of ' + countries.length, (i + 1) + ' من ' + countries.length) + ' · ' + s));
+      const fileName = repFileSafe(c) + '_Country_Assessment' + repLangSuffix() + '_' + repStamp() + '.pptx';
       await repSave({ id: repId(), kind: 'single', title: c + ' — Country Assessment', countries: [c],
-        createdAt: new Date().toISOString(), fileName, size: blob.size, data, blob, batch: true });
+        createdAt: new Date().toISOString(), fileName, size: blob.size, data, blob, batch: true, lang });
       repDownloadBlob(blob, fileName);
       await new Promise(r => setTimeout(r, 400));   // space out downloads so the browser keeps them all
     } catch (e) { failed.push(c); }
   }
   ov.remove();
   onReportsChanged();
-  repToast('✓ ' + (countries.length - failed.length) + ' of ' + countries.length + ' reports built and saved');
-  if (failed.length) alert('These reports could not be built: ' + failed.join(', ') + '. Please try them again.');
+  repToast(tr('✓ ' + (countries.length - failed.length) + ' of ' + countries.length + ' reports built and saved',
+              '✓ تم إعداد وحفظ ' + (countries.length - failed.length) + ' من ' + countries.length + ' تقارير'));
+  if (failed.length) alert(tr('These reports could not be built: ' + failed.join(', ') + '. Please try them again.',
+                              'تعذّر إعداد هذه التقارير: ' + failed.map(cN).join('، ') + '. يُرجى المحاولة مجدداً.'));
 }
 
 async function repRunRegion(region) {
   const members = (REGION_MEMBERS[region] || []).slice();
-  if (!members.length) { alert('No countries found for ' + region + '.'); return; }
-  const ov = cd_progressOverlay('Region report · ' + region, 'Loading live World Bank data for ' + members.length + ' countries — this can take up to 30 seconds…');
+  if (!members.length) { alert(tr('No countries found for ' + region + '.', 'لا توجد دول في ' + rN(region) + '.')); return; }
+  const ov = cd_progressOverlay(tr('Region report · ' + region, 'التقرير الإقليمي · ' + rN(region)),
+    tr('Loading live World Bank data for ' + members.length + ' countries — this can take up to 30 seconds…', 'جارٍ تحميل بيانات البنك الدولي المباشرة لـ' + members.length + ' دولة — قد يستغرق ذلك حتى 30 ثانية…'));
   try {
     repLibsReady();
     if (!prebakedLoaded) await loadPrebakedIndicators();
     const ids = ['SP.POP.TOTL', 'NY.GDP.PCAP.PP.CD', ...NEED_INDS.map(i => i.id)];
     const live = await repRegionLive(members, ids);
-    ov.setStatus('Fetching flags and building the ' + region + ' report…');
+    ov.setStatus(tr('Fetching flags and building the ' + region + ' report…', 'جارٍ تحميل الأعلام وإعداد تقرير ' + rN(region) + '…'));
     const need = needScores();
     const flags = await Promise.all(members.map(repFlag));
     const countries = members.map((c, i) => ({
       name: c, iso2: COUNTRY_ISO2[c] || '', income: COUNTRY_INCOME[c] || '', flagData: flags[i],
-      need: need[c] ? need[c].need : null, needRank: null,
+      need: need[c] ? need[c].need : null, needRank: null, tier: needTier(c),
       data: { ...(prebakedIndicators[c] || {}), ...(live.data[c] || {}) },
     }));
     countries.filter(c => c.need != null).sort((a, b) => b.need - a.need).forEach((c, i) => c.needRank = i + 1);
     const dataNote = live.live
-      ? 'Headline indicators were retrieved live from the World Bank API when this report was built.'
-      : 'Figures come from the dashboard’s World Bank snapshot' + (repSnapshotStr() ? ' of ' + repSnapshotStr() : '') + ' (the live API could not be reached).';
-    const blob = await window.buildRegionDeck({ region, countries, dateStr: repDateStr(), dataNote, PptxGenJS, output: 'blob' });
-    const fileName = repFileSafe(region) + '_Regional_Assessment_' + repStamp() + '.pptx';
-    const saved = await repSave({ id: repId(), kind: 'region', title: region + ' — Regional Assessment', countries: members,
-      createdAt: new Date().toISOString(), fileName, size: blob.size, data: live.live ? 'live' : 'snapshot', blob });
+      ? tr('Headline indicators were retrieved live from the World Bank API when this report was built.', 'تم استرجاع المؤشرات الرئيسية مباشرة من واجهة البنك الدولي عند إعداد هذا التقرير.')
+      : tr('Figures come from the dashboard’s World Bank snapshot' + (repSnapshotStr() ? ' of ' + repSnapshotStr() : '') + ' (the live API could not be reached).',
+           'الأرقام مأخوذة من النسخة المحفوظة من بيانات البنك الدولي' + (repSnapshotStr() ? ' بتاريخ ' + repSnapshotStr() : '') + ' (تعذّر الوصول إلى البيانات المباشرة).');
+    const blob = await window.buildRegionDeck({ region, countries, dateStr: repDateStr(), dataNote, PptxGenJS, output: 'blob', lang });
+    const fileName = repFileSafe(region) + '_Regional_Assessment' + repLangSuffix() + '_' + repStamp() + '.pptx';
+    const saved = await repSave({ id: repId(), kind: 'region', title: region + ' — Regional Assessment', region, countries: members,
+      createdAt: new Date().toISOString(), fileName, size: blob.size, data: live.live ? 'live' : 'snapshot', blob, lang });
     repDownloadBlob(blob, fileName);
     ov.remove();
-    repToast(saved ? '✓ ' + region + ' report downloaded and saved to your reports' : '✓ ' + region + ' report downloaded');
+    repToast(saved ? tr('✓ ' + region + ' report downloaded and saved to your reports', '✓ تم تنزيل تقرير ' + rN(region) + ' وحفظه في تقاريرك')
+                   : tr('✓ ' + region + ' report downloaded', '✓ تم تنزيل تقرير ' + rN(region)));
     onReportsChanged();
-  } catch (e) { ov.remove(); alert('The region report could not be built: ' + (e.message || e)); }
+  } catch (e) { ov.remove(); alert(tr('The region report could not be built: ', 'تعذّر إعداد التقرير الإقليمي: ') + (e.message || e)); }
 }
 
 // ── Full AI reports (local research server only) ──────────────────────────
@@ -2610,41 +2805,47 @@ function repServerBase() { return (localStorage.getItem('oda_eval_endpoint') || 
 async function repServerUp() {
   try { const h = await fetch(repServerBase() + '/health'); const hj = await h.json(); return !!(hj && hj.ok); } catch (e) { return false; }
 }
-const REP_AI_HELP = 'Full AI reports need the local research server.\n\nStart evaluator_score_server.py (port 8787) on your computer and open the dashboard at http://localhost:8000 — the public website cannot reach a server on your computer.\n\nThe instant report works everywhere.';
+const repAiHelp = () => tr('Full AI reports need the local research server.\n\nStart evaluator_score_server.py (port 8787) on your computer and open the dashboard at http://localhost:8000 — the public website cannot reach a server on your computer.\n\nThe instant report works everywhere.',
+  'تتطلب تقارير الذكاء الاصطناعي الكاملة تشغيل خادم البحث المحلي.\n\nشغّل evaluator_score_server.py (المنفذ 8787) على جهازك وافتح اللوحة عبر http://localhost:8000 — لا يمكن للموقع العام الوصول إلى خادم على جهازك.\n\nالتقرير الفوري يعمل في كل مكان.\n\nملاحظة: تقارير الذكاء الاصطناعي الكاملة تصدر حالياً باللغة الإنجليزية.');
 async function repRunAIBatch(countries) {
   countries = [...new Set(countries)].filter(Boolean);
-  if (!countries.length) { alert('Select at least one country first.'); return; }
-  if (!(await repServerUp())) { alert(REP_AI_HELP); return; }
-  if (!confirm('Build ' + countries.length + ' full AI report' + (countries.length > 1 ? 's' : '') + ' on the local server?\n\nEach takes about 15–25 minutes and they run one at a time. Keep this tab open.')) return;
+  if (!countries.length) { alert(tr('Select at least one country first.', 'اختر دولة واحدة على الأقل أولاً.')); return; }
+  if (!(await repServerUp())) { alert(repAiHelp()); return; }
+  if (!confirm(tr('Build ' + countries.length + ' full AI report' + (countries.length > 1 ? 's' : '') + ' on the local server?\n\nEach takes about 15–25 minutes and they run one at a time. Keep this tab open.',
+      'إعداد ' + countries.length + ' تقرير ذكاء اصطناعي كامل على الخادم المحلي؟\n\nيستغرق كل تقرير نحو 15–25 دقيقة ويتم إعدادها واحداً تلو الآخر. أبقِ هذه الصفحة مفتوحة.'))) return;
   for (let i = 0; i < countries.length; i++) {
-    const ok = await cd_generateAICountryDeck(countries[i], (i + 1) + ' of ' + countries.length, true);
-    if (!ok && i < countries.length - 1 && !confirm(countries[i] + ' failed. Continue with the rest?')) break;
+    const ok = await cd_generateAICountryDeck(countries[i], tr((i + 1) + ' of ' + countries.length, (i + 1) + ' من ' + countries.length), true);
+    if (!ok && i < countries.length - 1 && !confirm(tr(countries[i] + ' failed. Continue with the rest?', 'تعذّر إعداد ' + cN(countries[i]) + '. هل تريد متابعة البقية؟'))) break;
   }
-  repToast('Full AI reports finished — saved to Downloads on the server computer');
+  repToast(tr('Full AI reports finished — saved to Downloads on the server computer', 'اكتملت تقارير الذكاء الاصطناعي — حُفظت في مجلد التنزيلات على جهاز الخادم'));
 }
 async function repRunRegionAI(region) {
   const members = REGION_MEMBERS[region] || [];
   const ready = members.filter(c => REPORTS_MANIFEST[c] && REPORTS_MANIFEST[c].file);
-  if (!(await repServerUp())) { alert(REP_AI_HELP); return; }
-  if (!ready.length) { alert('A full AI region report combines countries that already have a full AI report.\n\nNone of the ' + members.length + ' countries in ' + region + ' has one yet — build them first under "Several countries".'); return; }
-  const ov = cd_progressOverlay('Full AI region report · ' + region, 'Combining ' + ready.length + ' of ' + members.length + ' countries…');
+  if (!(await repServerUp())) { alert(repAiHelp()); return; }
+  if (!ready.length) { alert(tr('A full AI region report combines countries that already have a full AI report.\n\nNone of the ' + members.length + ' countries in ' + region + ' has one yet — build them first under "Several countries".',
+      'يجمع التقرير الإقليمي بالذكاء الاصطناعي الدولَ التي لديها تقرير ذكاء اصطناعي كامل.\n\nلا توجد أي دولة من دول ' + rN(region) + ' (' + members.length + ') لديها تقرير بعد — أعدّها أولاً من قسم «عدة دول».')); return; }
+  const ov = cd_progressOverlay(tr('Full AI region report · ' + region, 'التقرير الإقليمي بالذكاء الاصطناعي · ' + rN(region)),
+    tr('Combining ' + ready.length + ' of ' + members.length + ' countries…', 'جارٍ دمج ' + ready.length + ' من ' + members.length + ' دولة…'));
   try {
     const title = region + ' — Regional Assessment';
     const res = await fetch(repServerBase() + '/combine_report', { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify({ title, countries: ready }) });
     const j = await res.json().catch(() => ({ ok:false, error:'HTTP ' + res.status }));
     if (!res.ok || !j.ok) throw new Error(j.error || ('HTTP ' + res.status));
     const fileName = String(j.file || '').split(/[\\/]/).pop();
-    await repSave({ id: repId(), kind: 'ai', title: title + ' (full AI)', countries: ready, createdAt: new Date().toISOString(),
-      fileName, size: null, data: 'ai', blob: null, location: 'Downloads folder on the server computer' });
+    await repSave({ id: repId(), kind: 'ai', title: title + ' (full AI)', region, countries: ready, createdAt: new Date().toISOString(),
+      fileName, size: null, data: 'ai', blob: null, location: 'Downloads folder on the server computer', lang:'en' });
     ov.remove(); onReportsChanged();
-    alert('✓ Combined report saved to Downloads:\n\n' + fileName + '\n\n' + ready.length + ' of ' + members.length + ' countries included.');
-  } catch (e) { ov.remove(); alert('Combined report failed: ' + (e.message || e)); }
+    alert(tr('✓ Combined report saved to Downloads:\n\n' + fileName + '\n\n' + ready.length + ' of ' + members.length + ' countries included.',
+             '✓ تم حفظ التقرير المجمّع في مجلد التنزيلات:\n\n' + fileName + '\n\nيشمل ' + ready.length + ' من ' + members.length + ' دولة.'));
+  } catch (e) { ov.remove(); alert(tr('Combined report failed: ', 'تعذّر إعداد التقرير المجمّع: ') + (e.message || e)); }
 }
 
 // ══════════════════════════════════════════════════════════════════════════
 // EXECUTIVE VIEW (leadership landing page) — live country data + reports
 // ══════════════════════════════════════════════════════════════════════════
-const REP_KIND_LABEL = { single:'Country', region:'Region', ai:'Full AI' };
+const repKindLabel = k => ({ single: tr('Country', 'دولة'), region: tr('Region', 'إقليم'), ai: tr('Full AI', 'ذكاء اصطناعي') }[k] || tr('Report', 'تقرير'));
+const repLangTag = r => `<span class="ex-lang-tag" title="${r.lang === 'ar' ? tr('Arabic report', 'تقرير بالعربية') : tr('English report', 'تقرير بالإنجليزية')}">${r.lang === 'ar' ? 'ع' : 'EN'}</span>`;
 function exOpenCountry(country) {
   goView('countries');
   setTimeout(() => {
@@ -2657,19 +2858,19 @@ function exOpenCountry(country) {
 function repLibRowsHtml(list, compact) {
   if (!list.length) return '';
   return list.map(r => `<div class="ex-rep">
-      <span class="ex-tag ${r.kind === 'region' ? 'lead' : 'stake'}">${REP_KIND_LABEL[r.kind] || 'Report'}</span>
+      <span class="ex-tag ${r.kind === 'region' ? 'lead' : 'stake'}">${repKindLabel(r.kind)}</span>
       <div style="min-width:0;flex:1">
-        <div style="font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${exEsc(r.title)}</div>
-        <div style="font-size:11.5px;color:var(--ex-mute)">${repFmtDate(r.createdAt)}${r.kind === 'region' ? ' · ' + r.countries.length + ' countries' : ''}${compact ? '' : ' · ' + repFmtSize(r.size)}</div>
+        <div style="font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${exEsc(recTitle(r))} ${repLangTag(r)}</div>
+        <div style="font-size:11.5px;color:var(--ex-mute)">${repFmtDate(r.createdAt)}${r.kind === 'region' ? ' · ' + r.countries.length + tr(' countries', ' دولة') : ''}${compact ? '' : ' · ' + repFmtSize(r.size)}</div>
       </div>
-      ${r.blob ? `<a href="#" onclick="repLibDownload(${qa(r.id)});return false">Download</a>` : `<span style="font-size:11.5px;color:var(--ex-mute)">In Downloads</span>`}
+      ${r.blob ? `<a href="#" onclick="repLibDownload(${qa(r.id)});return false">${tr('Download', 'تنزيل')}</a>` : `<span style="font-size:11.5px;color:var(--ex-mute)">${tr('In Downloads', 'في مجلد التنزيلات')}</span>`}
     </div>`).join('');
 }
 function repPublishedHtml(filterCountry) {
   return Object.entries(REPORTS_MANIFEST || {}).filter(([c]) => !filterCountry || c === filterCountry).map(([c, r]) => `<div class="ex-rep">
-      ${flagImg(c, 18, 12)} <div style="flex:1;min-width:0"><div style="font-weight:600">${exEsc(c)} — full AI report</div>
-      <div style="font-size:11.5px;color:var(--ex-mute)">Published · ${r.slides || 23} slides${r.generated ? ' · ' + exEsc(r.generated) : ''}</div></div>
-      <a href="reports/${encodeURIComponent(r.file)}" download>Download</a></div>`).join('');
+      ${flagImg(c, 18, 12)} <div style="flex:1;min-width:0"><div style="font-weight:600">${exEsc(tr(c + ' — full AI report', cN(c) + ' — تقرير الذكاء الاصطناعي الكامل'))} <span class="ex-lang-tag">EN</span></div>
+      <div style="font-size:11.5px;color:var(--ex-mute)">${tr('Published · ' + (r.slides || 23) + ' slides', 'منشور · ' + (r.slides || 23) + ' شريحة')}${r.generated ? ' · ' + exEsc(r.generated) : ''}</div></div>
+      <a href="reports/${encodeURIComponent(r.file)}" download>${tr('Download', 'تنزيل')}</a></div>`).join('');
 }
 
 // ══════════════════════════════════════════════════════════════════════════
@@ -2679,47 +2880,8 @@ function repPublishedHtml(filterCountry) {
 // tracked countries (worst quarter = severe … best quarter = good).
 // dir +1 = higher is worse, -1 = lower is worse; th = [severe, high, moderate] cut-offs.
 // ══════════════════════════════════════════════════════════════════════════
-const SEV_RULES = {
-  'SH.DYN.MORT':        { dir: 1, th:[75, 40, 25],          ref:'SDG target 25 per 1,000' },
-  'SH.STA.MMRT':        { dir: 1, th:[500, 200, 70],        ref:'SDG target 70 per 100,000' },
-  'SP.DYN.LE00.IN':     { dir:-1, th:[60, 65, 72],          ref:'global average ≈ 73 years' },
-  'SH.STA.STNT.ZS':     { dir: 1, th:[30, 20, 10],          ref:'WHO prevalence bands' },
-  'SN.ITK.DEFC.ZS':     { dir: 1, th:[25, 15, 5],           ref:'FAO: below 5% is low' },
-  'SH.IMM.MEAS':        { dir:-1, th:[70, 85, 95],          ref:'WHO target 95%' },
-  'SH.XPD.CHEX.GD.ZS':  { dir:-1, th:[3, 4, 5],             ref:'WHO guide 5% of GDP' },
-  'SH.MED.PHYS.ZS':     { dir:-1, th:[0.2, 0.5, 1],         ref:'WHO workforce thresholds' },
-  'SE.ADT.LITR.ZS':     { dir:-1, th:[50, 70, 90],          ref:'SDG 4.6 universal literacy' },
-  'SE.ADT.1524.LT.ZS':  { dir:-1, th:[60, 80, 95],          ref:'SDG 4.6 universal literacy' },
-  'SE.PRM.CMPT.ZS':     { dir:-1, th:[60, 75, 90],          ref:'SDG 4.1 universal completion' },
-  'SE.SEC.ENRR':        { dir:-1, th:[40, 60, 85],          ref:'SDG 4.1' },
-  'SE.PRM.PTRT.ZS':     { dir: 1, th:[45, 35, 25],          ref:'UNESCO: 40+ pupils per teacher is high' },
-  'SE.XPD.TOTL.GD.ZS':  { dir:-1, th:[2.5, 3.5, 4],         ref:'UNESCO 4–6% of GDP' },
-  'EG.ELC.ACCS.ZS':     { dir:-1, th:[40, 70, 95],          ref:'SDG 7.1 universal access' },
-  'EG.CFT.ACCS.ZS':     { dir:-1, th:[20, 50, 85],          ref:'SDG 7.1 clean cooking' },
-  'SH.H2O.BASW.ZS':     { dir:-1, th:[60, 75, 90],          ref:'SDG 6.1 universal access' },
-  'SH.H2O.SMDW.ZS':     { dir:-1, th:[30, 50, 75],          ref:'SDG 6.1 safely managed water' },
-  'SH.STA.BASS.ZS':     { dir:-1, th:[40, 60, 85],          ref:'SDG 6.2 universal sanitation' },
-  'SH.STA.SMSS.ZS':     { dir:-1, th:[20, 40, 65],          ref:'SDG 6.2 safely managed sanitation' },
-  'SH.STA.ODFC.ZS':     { dir: 1, th:[20, 10, 2],           ref:'SDG 6.2 end open defecation' },
-  'SH.STA.HYGN.ZS':     { dir:-1, th:[30, 50, 75],          ref:'SDG 6.2 basic hygiene' },
-  'SI.POV.DDAY':        { dir: 1, th:[30, 15, 5],           ref:'SDG 1.1 end extreme poverty' },
-  'SI.POV.GINI':        { dir: 1, th:[45, 40, 35],          ref:'Gini above 40 = high inequality' },
-  'FP.CPI.TOTL.ZG':     { dir: 1, th:[20, 10, 5],           ref:'IMF: under 5% is stable' },
-  'NY.GDP.MKTP.KD.ZG':  { dir:-1, th:[0, 2, 4],             ref:'growth below 2% is weak' },
-  'SL.UEM.TOTL.ZS':     { dir: 1, th:[15, 10, 6],           ref:'ILO modelled estimates' },
-  'GC.DOD.TOTL.GD.ZS':  { dir: 1, th:[90, 70, 50],          ref:'IMF debt-risk ranges' },
-  'GC.TAX.TOTL.GD.ZS':  { dir:-1, th:[10, 13, 15],          ref:'IMF: 15% of GDP tipping point' },
-  'IT.NET.USER.ZS':     { dir:-1, th:[25, 50, 75],          ref:'ITU connectivity targets' },
-  'EN.ATM.PM25.MC.M3':  { dir: 1, th:[35, 25, 15],          ref:'WHO interim air-quality targets' },
-  'AG.YLD.CREL.KG':     { dir:-1, th:[1500, 2500, 4000],    ref:'world average ≈ 4,000 kg/ha' },
-  'NY.GDP.PCAP.PP.CD':  { dir:-1, th:[3000, 7000, 15000],   ref:'income bands (PPP)' },
-  // no standard benchmark → compared with the other tracked countries
-  'SH.MED.BEDS.ZS':     { dir:-1, peers:true }, 'SE.TER.ENRR':    { dir:-1, peers:true },
-  'IT.NET.BBND.P2':     { dir:-1, peers:true }, 'IT.CEL.SETS.P2': { dir:-1, peers:true },
-  'IS.ROD.PAVE.ZS':     { dir:-1, peers:true }, 'ER.PTD.TOTL.ZS': { dir:-1, peers:true },
-  'SP.POP.DPND':        { dir: 1, peers:true }, 'SN.ITK.DFCT':    { dir: 1, peers:true },
-};
-const SEV_LABEL = ['Severe', 'High concern', 'Moderate', 'On track'];
+// SEV_RULES / SEV_LABELS / sevLevel come from severity.js (shared with the report builders).
+const sevLabel = i => SEV_LABELS[lang === 'ar' ? 'ar' : 'en'][i];
 let SEV_PEER_CACHE = {};
 function indSeverity(id, v) {
   const r = SEV_RULES[id];
@@ -2731,29 +2893,30 @@ function indSeverity(id, v) {
     const below = all.filter(x => x < v).length / all.length;          // share of countries with a lower value
     const bad = r.dir > 0 ? below : 1 - below;                          // share of countries doing better
     lvl = bad >= .75 ? 0 : bad >= .5 ? 1 : bad >= .25 ? 2 : 3;
-    return { lvl, label: SEV_LABEL[lvl], why: SEV_LABEL[lvl] + ' — compared with the other tracked countries' };
+    return { lvl, label: sevLabel(lvl), why: sevLabel(lvl) + tr(' — compared with the other tracked countries', ' — مقارنةً بالدول الأخرى المتابَعة') };
   }
-  const [a, b, c] = r.th;
-  lvl = r.dir > 0 ? (v > a ? 0 : v > b ? 1 : v > c ? 2 : 3) : (v < a ? 0 : v < b ? 1 : v < c ? 2 : 3);
-  return { lvl, label: SEV_LABEL[lvl], why: SEV_LABEL[lvl] + ' — benchmark: ' + r.ref };
+  lvl = sevLevel(id, v);
+  return { lvl, label: sevLabel(lvl), why: sevLabel(lvl) + tr(' — benchmark: ' + r.ref, ' — المرجع: ' + r.refAr) };
 }
 function sevPill(sv) { return `<span class="sev-pill sev-p${sv.lvl}">${sv.label}</span>`; }
-const SEV_LEGEND_HTML = `<div class="sev-legend">${SEV_LABEL.map((l, i) => `<span><i class="sev-dot sev-d${i}"></i>${l}</span>`).join('')}<span class="sev-legend-note">vs SDG / WHO benchmarks · hover for details</span></div>`;
+function sevLegendHtml() {
+  return `<div class="sev-legend">${[0, 1, 2, 3].map(i => `<span><i class="sev-dot sev-d${i}"></i>${sevLabel(i)}</span>`).join('')}<span class="sev-legend-note">${tr('vs SDG / WHO benchmarks · hover for details', 'مقارنةً بمعايير أهداف التنمية المستدامة ومنظمة الصحة · مرّر المؤشر للتفاصيل')}</span></div>`;
+}
 
 // ══════════════════════════════════════════════════════════════════════════
 // REGION POPUP — regional indicators: totals, medians and a colour-coded
 // country-by-indicator table. Opens on the snapshot, then refreshes live.
 // ══════════════════════════════════════════════════════════════════════════
 const REGION_INDS = [
-  { id:'SH.DYN.MORT',       lbl:'Under-5 mortality',   short:'U5 mort.',  unit:'',  d:0 },
-  { id:'SH.STA.MMRT',       lbl:'Maternal mortality',  short:'Mat. mort.',unit:'',  d:0 },
-  { id:'SN.ITK.DEFC.ZS',    lbl:'Undernourishment',    short:'Hunger',    unit:'%', d:1 },
-  { id:'SH.STA.STNT.ZS',    lbl:'Child stunting',      short:'Stunting',  unit:'%', d:1 },
-  { id:'SH.H2O.BASW.ZS',    lbl:'Basic water',         short:'Water',     unit:'%', d:0 },
-  { id:'SH.STA.BASS.ZS',    lbl:'Basic sanitation',    short:'Sanitation',unit:'%', d:0 },
-  { id:'EG.ELC.ACCS.ZS',    lbl:'Electricity access',  short:'Power',     unit:'%', d:0 },
-  { id:'SE.ADT.LITR.ZS',    lbl:'Adult literacy',      short:'Literacy',  unit:'%', d:0 },
-  { id:'NY.GDP.PCAP.PP.CD', lbl:'GDP per capita (PPP)',short:'GDP/cap',   unit:'',  d:0, money:true },
+  { id:'SH.DYN.MORT',       lbl:'Under-5 mortality',    lblAr:'وفيات الأطفال دون الخامسة', short:'U5 mort.',   shortAr:'وفيات الأطفال', unit:'',  d:0 },
+  { id:'SH.STA.MMRT',       lbl:'Maternal mortality',   lblAr:'وفيات الأمهات',            short:'Mat. mort.', shortAr:'وفيات الأمهات', unit:'',  d:0 },
+  { id:'SN.ITK.DEFC.ZS',    lbl:'Undernourishment',     lblAr:'نقص التغذية',              short:'Hunger',     shortAr:'نقص التغذية',  unit:'%', d:1 },
+  { id:'SH.STA.STNT.ZS',    lbl:'Child stunting',       lblAr:'تقزّم الأطفال',             short:'Stunting',   shortAr:'التقزّم',       unit:'%', d:1 },
+  { id:'SH.H2O.BASW.ZS',    lbl:'Basic water',          lblAr:'مياه الشرب الأساسية',      short:'Water',      shortAr:'المياه',        unit:'%', d:0 },
+  { id:'SH.STA.BASS.ZS',    lbl:'Basic sanitation',     lblAr:'الصرف الصحي الأساسي',      short:'Sanitation', shortAr:'الصرف الصحي',   unit:'%', d:0 },
+  { id:'EG.ELC.ACCS.ZS',    lbl:'Electricity access',   lblAr:'الوصول إلى الكهرباء',      short:'Power',      shortAr:'الكهرباء',      unit:'%', d:0 },
+  { id:'SE.ADT.LITR.ZS',    lbl:'Adult literacy',       lblAr:'معرفة الكبار بالقراءة والكتابة', short:'Literacy', shortAr:'محو الأمية', unit:'%', d:0 },
+  { id:'NY.GDP.PCAP.PP.CD', lbl:'GDP per capita (PPP)', lblAr:'نصيب الفرد من الناتج (تعادل القوة الشرائية)', short:'GDP/cap', shortAr:'نصيب الفرد', unit:'', d:0, money:true },
 ];
 let REGION_LIVE = {};   // region → { data:{country:{id:{value,year}}}, live:bool }
 let rpRegion = null;
@@ -2764,8 +2927,8 @@ function rpVal(c, id) {
 }
 function rpFmt(ind, v) {
   if (v == null) return '—';
-  if (ind.money) return '$' + Math.round(v).toLocaleString();
-  return (ind.d ? v.toFixed(ind.d) : Math.round(v).toLocaleString()) + ind.unit;
+  if (ind.money) return '$' + Math.round(v).toLocaleString('en-US');
+  return (ind.d ? v.toFixed(ind.d) : Math.round(v).toLocaleString('en-US')) + ind.unit;
 }
 function openRegionPopup(region) {
   rpRegion = region;
@@ -2800,14 +2963,16 @@ function renderRegionPopup() {
   const avgNeed = ns.length ? ns.reduce((s, x) => s + x, 0) / ns.length : null;
   const inc = { LIC:0, LMIC:0, UMIC:0 }; members.forEach(c => { if (inc[COUNTRY_INCOME[c]] != null) inc[COUNTRY_INCOME[c]]++; });
   const st = REGION_LIVE[region];
-  const status = !st ? '<span class="rp-status">Refreshing live data…</span>' : st.live ? '<span class="rp-status live">Live from World Bank</span>' : '<span class="rp-status">Snapshot' + (repSnapshotStr() ? ' · ' + repSnapshotStr() : '') + '</span>';
+  const status = !st ? `<span class="rp-status">${tr('Refreshing live data…', 'جارٍ تحديث البيانات المباشرة…')}</span>`
+    : st.live ? `<span class="rp-status live">${tr('Live from World Bank', 'مباشر من البنك الدولي')}</span>`
+    : `<span class="rp-status">${tr('Snapshot', 'نسخة محفوظة')}${repSnapshotStr() ? ' · ' + repSnapshotStr() : ''}</span>`;
 
   const tiles = [
-    { l:'Population', v: repFmtPeople(pop) },
-    { l:'Without electricity', v: repFmtPeople(without('EG.ELC.ACCS.ZS')), g:true },
-    { l:'Without basic water', v: repFmtPeople(without('SH.H2O.BASW.ZS')), g:true },
-    { l:'Without basic sanitation', v: repFmtPeople(without('SH.STA.BASS.ZS')), g:true },
-    { l:'Average need index', v: avgNeed != null ? Math.round(avgNeed) : '—' },
+    { l: tr('Population', 'عدد السكان'), v: repFmtPeople(pop) },
+    { l: tr('Without electricity', 'دون كهرباء'), v: repFmtPeople(without('EG.ELC.ACCS.ZS')), g:true },
+    { l: tr('Without basic water', 'دون مياه شرب أساسية'), v: repFmtPeople(without('SH.H2O.BASW.ZS')), g:true },
+    { l: tr('Without basic sanitation', 'دون صرف صحي أساسي'), v: repFmtPeople(without('SH.STA.BASS.ZS')), g:true },
+    { l: tr('Average need index', 'متوسط مؤشر الاحتياج'), v: avgNeed != null ? Math.round(avgNeed) : '—' },
   ].map(k => `<div class="ex-kpi${k.g ? ' gold' : ''}"><div class="ex-kpi-label">${k.l}</div><div class="ex-kpi-val">${k.v}</div></div>`).join('');
 
   // regional median per indicator, colour-coded on the same scale
@@ -2816,48 +2981,50 @@ function renderRegionPopup() {
     const bad = members.filter(c => { const s = indSeverity(ind.id, val(c, ind.id)); return s && s.lvl <= 1; }).length;
     const have = members.filter(c => val(c, ind.id) != null).length;
     return `<div class="rp-med${sv ? ' sev-' + sv.lvl : ''}" title="${sv ? exEsc(sv.why) : ''}">
-      <div class="rp-med-l">${ind.lbl}</div>
+      <div class="rp-med-l">${tr(ind.lbl, ind.lblAr)}</div>
       <div class="rp-med-v">${rpFmt(ind, m)}</div>
-      <div class="rp-med-s">${have ? `<b>${bad}</b> of ${have} severe or high` : 'no data'}</div></div>`;
+      <div class="rp-med-s">${have ? tr(`<b>${bad}</b> of ${have} severe or high`, `<b>${bad}</b> من ${have} في وضع حرج أو مقلق`) : tr('no data', 'لا توجد بيانات')}</div></div>`;
   }).join('');
 
   const rows = members.map(c => {
     const n = need[c];
-    return `<tr onclick="closeRegionPopup();exOpenCountry(${qa(c)})" title="Open ${exEsc(c)} profile">
-      <td class="rp-cty">${flagImg(c, 18, 12)}&nbsp; ${exEsc(c)}</td>
+    return `<tr onclick="closeRegionPopup();exOpenCountry(${qa(c)})" title="${exEsc(tr('Open ' + c + ' profile', 'فتح ملف ' + cN(c)))}">
+      <td class="rp-cty">${flagImg(c, 18, 12)}&nbsp; ${exEsc(cN(c))}</td>
       <td class="num rp-need">${n && n.need != null ? Math.round(n.need) : '—'}</td>
       ${REGION_INDS.map(ind => { const d = rpVal(c, ind.id), sv = d ? indSeverity(ind.id, d.value) : null;
-        return `<td class="num rp-cell${sv ? ' sevc-' + sv.lvl : ''}" title="${exEsc(ind.lbl)}${d ? ' · ' + d.year : ''}${sv ? ' · ' + sv.label : ''}">${d ? rpFmt(ind, d.value) : '—'}</td>`; }).join('')}
+        return `<td class="num rp-cell${sv ? ' sevc-' + sv.lvl : ''}" title="${exEsc(tr(ind.lbl, ind.lblAr))}${d ? ' · ' + d.year : ''}${sv ? ' · ' + sv.label : ''}">${d ? rpFmt(ind, d.value) : '—'}</td>`; }).join('')}
     </tr>`;
   }).join('');
 
-  ov.innerHTML = `<div class="rp-modal" role="dialog" aria-label="${exEsc(region)} indicators">
+  ov.innerHTML = `<div class="rp-modal" role="dialog" aria-label="${exEsc(rN(region))}">
     <div class="rp-hd">
       <div>
-        <div class="ex-eyebrow">Regional indicators</div>
-        <div class="rp-title">${exEsc(region)}</div>
-        <div class="rp-sub">${members.length} countries · ${inc.LIC} low-income · ${inc.LMIC} lower-middle · ${inc.UMIC} upper-middle &nbsp;${status}</div>
+        <div class="ex-eyebrow">${tr('Regional indicators', 'المؤشرات الإقليمية')}</div>
+        <div class="rp-title">${exEsc(rN(region))}</div>
+        <div class="rp-sub">${tr(`${members.length} countries · ${inc.LIC} low-income · ${inc.LMIC} lower-middle · ${inc.UMIC} upper-middle`,
+          `${members.length} دولة · ${inc.LIC} منخفضة الدخل · ${inc.LMIC} من الشريحة الدنيا · ${inc.UMIC} من الشريحة العليا`)} &nbsp;${status}</div>
       </div>
       <div class="rp-actions">
-        <button class="ex-btn primary" onclick="repRunRegion(${qa(region)})">Region report</button>
-        <button class="rp-close" onclick="closeRegionPopup()" aria-label="Close">&#x2715;</button>
+        <button class="ex-btn primary" onclick="repRunRegion(${qa(region)})">${tr('Region report', 'التقرير الإقليمي')}</button>
+        <button class="rp-close" onclick="closeRegionPopup()" aria-label="${tr('Close', 'إغلاق')}">&#x2715;</button>
       </div>
     </div>
     <div class="rp-body">
       <div class="ex-kpis" style="margin:0 0 22px">${tiles}</div>
-      <div class="ex-sub-title" style="margin-top:0">Regional median by indicator</div>
+      <div class="ex-sub-title" style="margin-top:0">${tr('Regional median by indicator', 'الوسيط الإقليمي حسب المؤشر')}</div>
       <div class="rp-meds">${medRow}</div>
-      <div class="rp-tbl-hd"><div class="ex-sub-title" style="margin:0">Country by country</div>${SEV_LEGEND_HTML}</div>
+      <div class="rp-tbl-hd"><div class="ex-sub-title" style="margin:0">${tr('Country by country', 'حسب الدولة')}</div>${sevLegendHtml()}</div>
       <div class="rp-tbl-wrap"><table class="ex-table rp-table">
-        <thead><tr><th>Country</th><th class="num">Need</th>${REGION_INDS.map(i => `<th class="num" title="${exEsc(i.lbl)}">${i.short}</th>`).join('')}</tr></thead>
+        <thead><tr><th>${tr('Country', 'الدولة')}</th><th class="num">${tr('Need', 'الاحتياج')}</th>${REGION_INDS.map(i => `<th class="num" title="${exEsc(tr(i.lbl, i.lblAr))}">${tr(i.short, i.shortAr)}</th>`).join('')}</tr></thead>
         <tbody>${rows}</tbody></table></div>
-      <div class="ex-method">Colours compare each value with SDG / WHO / UNESCO benchmarks (hover a cell for the indicator and year). Under-5 mortality per 1,000 live births; maternal mortality per 100,000. People-without figures are estimates from national access rates. Click a country to open its profile.</div>
+      <div class="ex-method">${tr('Colours compare each value with SDG / WHO / UNESCO benchmarks (hover a cell for the indicator and year). Under-5 mortality per 1,000 live births; maternal mortality per 100,000. People-without figures are estimates from national access rates. Click a country to open its profile.',
+        'تقارن الألوان كل قيمة بمعايير أهداف التنمية المستدامة ومنظمة الصحة العالمية واليونسكو (مرّر المؤشر على الخلية لعرض المؤشر والسنة). وفيات الأطفال دون الخامسة لكل 1,000 مولود حي؛ ووفيات الأمهات لكل 100,000. أعداد السكان المحرومين تقديرية بناءً على معدلات الوصول الوطنية. انقر على دولة لفتح ملفها.')}</div>
     </div></div>`;
 }
 
 // Need-index shade shared by both maps: top third / middle third / lowest third.
 const NEED_SHADES = { hi:'#0A6FD1', mid:'#2EA0F2', lo:'#9ED6FA', none:'#C3CDD6' };
-const NEED_TIER_LABEL = { hi:'Highest need', mid:'Middle', lo:'Lower', top:'Top 10' };
+const needTierLabel = t => ({ hi: tr('Highest need', 'الاحتياج الأعلى'), mid: tr('Middle', 'متوسط'), lo: tr('Lower', 'أقل'), top: tr('Top 10', 'أعلى 10') }[t]);
 // Need tier: top / middle / lowest third of ranked countries ('none' = not ranked)
 function needTier(country) {
   const need = needScores(), n = (need.__ranked || []).length, r = need[country] && need[country].rank;
@@ -2867,9 +3034,9 @@ function needTier(country) {
 function needShade(country) { return NEED_SHADES[needTier(country)]; }
 // Clickable map key — one legend item per tier; clicking filters, clicking again clears.
 function needKeyHtml(fnName, active, withTop) {
-  return ['hi', 'mid', 'lo'].concat(withTop ? ['top'] : []).map(t => `<button type="button" class="need-key${active === t ? ' on' : ''}${active && active !== t ? ' dim' : ''}" onclick="${fnName}('${t}')" title="${active === t ? 'Show all countries' : 'Show only: ' + NEED_TIER_LABEL[t]}">
-      <i style="${t === 'top' ? 'background:#fff;border:1.5px solid var(--ex-gold)' : 'background:' + NEED_SHADES[t]}"></i>${NEED_TIER_LABEL[t]}</button>`).join('')
-    + (active ? `<button type="button" class="need-key need-key-all" onclick="${fnName}(null)">Show all</button>` : '');
+  return ['hi', 'mid', 'lo'].concat(withTop ? ['top'] : []).map(t => `<button type="button" class="need-key${active === t ? ' on' : ''}${active && active !== t ? ' dim' : ''}" onclick="${fnName}('${t}')" title="${active === t ? tr('Show all countries', 'عرض جميع الدول') : tr('Show only: ', 'عرض فقط: ') + needTierLabel(t)}">
+      <i style="${t === 'top' ? 'background:#fff;border:1.5px solid var(--ex-gold)' : 'background:' + NEED_SHADES[t]}"></i>${needTierLabel(t)}</button>`).join('')
+    + (active ? `<button type="button" class="need-key need-key-all" onclick="${fnName}(null)">${tr('Show all', 'عرض الكل')}</button>` : '');
 }
 
 // Landing-page map widget — every tracked country shaded by need; click for a quick card.
@@ -2880,8 +3047,8 @@ function exInitMiniMap() {
   if (exMap) { exMap.remove(); exMap = null; }
   exMarkers = [];
   exMap = L.map(el, { zoomControl:false, attributionControl:false, scrollWheelZoom:false, keyboard:false, worldCopyJump:false, minZoom:1, maxZoom:7, zoomSnap:0.25 });
-  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', { maxZoom:12 }).addTo(exMap);
-  L.control.zoom({ position:'bottomright' }).addTo(exMap);
+  addWorldLayer(exMap, '110m');
+  L.control.zoom({ position: isAr() ? 'bottomleft' : 'bottomright' }).addTo(exMap);
   const need = needScores(), total = (need.__ranked || []).length;
   const pts = [];
   Object.entries(COUNTRY_LATLNG).forEach(([c, ll]) => {
@@ -2890,12 +3057,13 @@ function exInitMiniMap() {
     const mk = L.circleMarker(ll, { radius: top ? 7 : 5.5, color:'#fff', weight:1.5, fillColor: needShade(c), fillOpacity:.95 }).addTo(exMap);
     const ring = top ? L.circleMarker(ll, { radius:11, color:'#C9A13D', weight:1.6, fill:false, interactive:false }).addTo(exMap) : null;
     mk.bindPopup(`<div class="ex-pop">
-        <div class="ex-pop-name">${exEsc(c)}</div>
-        <div class="ex-pop-meta">${exEsc(repRegionOf(c) || '')}${n.rank ? ' · need index ' + Math.round(n.need) + ' · rank ' + n.rank + ' of ' + total : ''}</div>
+        <div class="ex-pop-name">${exEsc(cN(c))}</div>
+        <div class="ex-pop-meta">${exEsc(rN(repRegionOf(c)) || '')}${n.rank ? tr(' · need index ' + Math.round(n.need) + ' · rank ' + n.rank + ' of ' + total, ' · مؤشر الاحتياج ' + Math.round(n.need) + ' · الترتيب ' + n.rank + ' من ' + total) : ''}</div>
         <div class="ex-pop-row">
-          <button class="ex-mini" onclick="exOpenCountry(${qa(c)})">Profile</button>
-          <button class="ex-mini" onclick="repRunSingle(${qa(c)})">Instant report</button>
+          <button class="ex-mini" onclick="exOpenCountry(${qa(c)})">${tr('Profile', 'الملف')}</button>
+          <button class="ex-mini" onclick="repRunSingle(${qa(c)})">${tr('Instant report', 'تقرير فوري')}</button>
         </div></div>`, { closeButton:false, offset:[0, -2] });
+    mk.bindTooltip(cN(c), { direction:'top', offset:[0, -6], className:'ex-tip' });
     mk.on('mouseover', () => mk.setStyle({ weight:2.5 })).on('mouseout', () => mk.setStyle({ weight:1.5 }));
     exMarkers.push({ c, mk, ring, tier: needTier(c), top });
   });
@@ -2931,7 +3099,7 @@ function mapFilterTier(t) {
 function renderExecutive() {
   const el = document.getElementById('ex-scroll');
   if (!el) return;
-  if (!prebakedLoaded) { el.innerHTML = '<div class="ex-wrap"><div class="ex-empty" style="padding:40px 0">Loading country data…</div></div>'; loadPrebakedIndicators().then(renderExecutive); return; }
+  if (!prebakedLoaded) { el.innerHTML = `<div class="ex-wrap"><div class="ex-empty" style="padding:40px 0">${tr('Loading country data…', 'جارٍ تحميل بيانات الدول…')}</div></div>`; loadPrebakedIndicators().then(renderExecutive); return; }
   const names = repAllCountries();
   const need = needScores();
   const v = (c, id) => { const d = (prebakedIndicators[c] || {})[id]; return d && d.value != null ? d.value : null; };
@@ -2939,24 +3107,24 @@ function renderExecutive() {
   const noElec = names.reduce((s, c) => { const p = v(c, 'SP.POP.TOTL'), e = v(c, 'EG.ELC.ACCS.ZS'); return p && e != null ? s + p * (1 - e / 100) : s; }, 0);
   const noWater = names.reduce((s, c) => { const p = v(c, 'SP.POP.TOTL'), w = v(c, 'SH.H2O.BASW.ZS'); return p && w != null ? s + p * (1 - w / 100) : s; }, 0);
   const lic = names.filter(c => COUNTRY_INCOME[c] === 'LIC').length;
-  const regions = Object.keys(REGION_MEMBERS || {}).sort();
-  const today = new Date().toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' });
+  const regions = Object.keys(REGION_MEMBERS || {}).sort((a, b) => rN(a).localeCompare(rN(b), lang));
+  const estSub = tr('estimated from national rates', 'تقدير من المعدلات الوطنية');
 
   const kpis = [
-    { label:'Countries tracked',    val: names.length,          sub: `across ${regions.length} regions` },
-    { label:'Low-income',           val: lic,                   sub: 'World Bank income group' },
-    { label:'People covered',       val: repFmtPeople(pop),     sub: 'population of tracked countries' },
-    { label:'Without electricity',  val: repFmtPeople(noElec),  sub: 'estimated from national rates', gold:true },
-    { label:'Without basic water',  val: repFmtPeople(noWater), sub: 'estimated from national rates', gold:true },
-    { label:'Reports saved',        val: REP_LIBRARY.length,    sub: 'in this browser' },
+    { label: tr('Countries tracked', 'الدول المتابَعة'),      val: names.length,          sub: tr(`across ${regions.length} regions`, `في ${regions.length} أقاليم`) },
+    { label: tr('Low-income', 'منخفضة الدخل'),                val: lic,                   sub: tr('World Bank income group', 'تصنيف البنك الدولي للدخل') },
+    { label: tr('People covered', 'السكان المشمولون'),         val: repFmtPeople(pop),     sub: tr('population of tracked countries', 'سكان الدول المتابَعة') },
+    { label: tr('Without electricity', 'دون كهرباء'),          val: repFmtPeople(noElec),  sub: estSub, gold:true },
+    { label: tr('Without basic water', 'دون مياه شرب أساسية'), val: repFmtPeople(noWater), sub: estSub, gold:true },
+    { label: tr('Reports saved', 'التقارير المحفوظة'),         val: REP_LIBRARY.length,    sub: tr('in this browser', 'في هذا المتصفح') },
   ].map(k => `<div class="ex-kpi${k.gold ? ' gold' : ''}"><div class="ex-kpi-label">${k.label}</div><div class="ex-kpi-val">${k.val}</div><div class="ex-kpi-sub">${k.sub}</div></div>`).join('');
 
   const topRows = (need.__ranked || []).slice(0, 10).map((c, i) => {
     const n = need[c];
-    return `<div class="ex-rank" onclick="exOpenCountry(${qa(c)})" title="Open ${exEsc(c)} profile">
+    return `<div class="ex-rank" onclick="exOpenCountry(${qa(c)})" title="${exEsc(tr('Open ' + c + ' profile', 'فتح ملف ' + cN(c)))}">
       <div class="ex-rank-n">${i + 1}</div>
-      <div style="min-width:0"><div class="ex-rank-name">${flagImg(c, 18, 12)}&nbsp; ${exEsc(c)}</div>
-        <div class="ex-rank-sub">${n.worst ? 'Biggest gap: ' + exEsc(n.worst.label.toLowerCase()) : exEsc(repRegionOf(c))}</div></div>
+      <div style="min-width:0"><div class="ex-rank-name">${flagImg(c, 18, 12)}&nbsp; ${exEsc(cN(c))}</div>
+        <div class="ex-rank-sub">${n.worst ? tr('Biggest gap: ' + n.worst.label.toLowerCase(), 'الفجوة الأكبر: ' + n.worst.labelAr) : exEsc(rN(repRegionOf(c)))}</div></div>
       <div class="ex-share-track"><div class="ex-share-fill" style="width:${Math.round(n.need)}%;background:${i < 5 ? 'var(--ex-gold)' : 'var(--ex-sky)'}"></div></div>
       <div class="ex-rank-score">${Math.round(n.need)}</div>
     </div>`;
@@ -2966,62 +3134,65 @@ function renderExecutive() {
     const ms = REGION_MEMBERS[r] || [];
     const ns = ms.map(c => need[c] && need[c].need).filter(x => x != null);
     return { r, n: ms.length, avg: ns.length ? ns.reduce((s, x) => s + x, 0) / ns.length : null };
-  }).sort((a, b) => (b.avg || 0) - (a.avg || 0)).map(x => `<div class="ex-stage ex-region-row" onclick="openRegionPopup(${qa(x.r)})" title="View ${exEsc(x.r)} indicators" style="grid-template-columns:minmax(0,1.5fr) minmax(50px,1fr) 30px auto">
-      <div class="ex-stage-name" style="line-height:1.35">${exEsc(x.r)}<div style="color:var(--ex-faint);font-size:11.5px;font-weight:400">${x.n} countries · <span class="ex-region-link">View indicators</span></div></div>
+  }).sort((a, b) => (b.avg || 0) - (a.avg || 0)).map(x => `<div class="ex-stage ex-region-row" onclick="openRegionPopup(${qa(x.r)})" title="${exEsc(tr('View ' + x.r + ' indicators', 'عرض مؤشرات ' + rN(x.r)))}" style="grid-template-columns:minmax(0,1.5fr) minmax(50px,1fr) 30px auto">
+      <div class="ex-stage-name" style="line-height:1.35">${exEsc(rN(x.r))}<div style="color:var(--ex-faint);font-size:11.5px;font-weight:400">${tr(x.n + ' countries', x.n + ' دولة')} · <span class="ex-region-link">${tr('View indicators', 'عرض المؤشرات')}</span></div></div>
       <div class="ex-stage-track"><div class="ex-stage-fill" style="width:${x.avg != null ? Math.max(4, Math.round(x.avg)) : 0}%"></div></div>
       <div class="ex-rank-score" style="font-size:15px">${x.avg != null ? Math.round(x.avg) : '—'}</div>
-      <button class="ex-mini" onclick="event.stopPropagation();repRunRegion(${qa(x.r)})">Region report</button>
-    </div>`).join('') || '<div class="ex-empty">Regions not available.</div>';
+      <button class="ex-mini" onclick="event.stopPropagation();repRunRegion(${qa(x.r)})">${tr('Region report', 'تقرير إقليمي')}</button>
+    </div>`).join('') || `<div class="ex-empty">${tr('Regions not available.', 'الأقاليم غير متاحة.')}</div>`;
 
   const recent = repLibRowsHtml(REP_LIBRARY.slice(0, 5), true);
   const published = repPublishedHtml();
+  const arrow = tr('→', '←');
 
   el.innerHTML = `
     <div class="ex-hero"><div class="ex-hero-in">
       <div>
-        <div class="ex-eyebrow">Executive View · Office of Development Affairs</div>
-        <div class="ex-title">Global South at a Glance</div>
+        <div class="ex-eyebrow">${tr('Executive View · Office of Development Affairs', 'الملخص التنفيذي · مكتب الشؤون التنموية')}</div>
+        <div class="ex-title">${tr('Global South at a Glance', 'دول الجنوب العالمي في لمحة')}</div>
         <div class="ex-rule"></div>
-        <div class="ex-summary"><strong>${names.length} countries</strong> across <strong>${regions.length} regions</strong>, home to <strong>${repFmtPeople(pop)} people</strong>.
-          An estimated <strong>${repFmtPeople(noElec)}</strong> live without electricity and <strong>${repFmtPeople(noWater)}</strong> without basic drinking water.</div>
-        <div class="ex-datanote">World Bank Open Data${repSnapshotStr() ? ' · snapshot of ' + repSnapshotStr() : ''} · figures refresh live when a country is opened or a report is built</div>
+        <div class="ex-summary">${tr(
+          `<strong>${names.length} countries</strong> across <strong>${regions.length} regions</strong>, home to <strong>${repFmtPeople(pop)} people</strong>. An estimated <strong>${repFmtPeople(noElec)}</strong> live without electricity and <strong>${repFmtPeople(noWater)}</strong> without basic drinking water.`,
+          `<strong>${names.length} دولة</strong> في <strong>${regions.length} أقاليم</strong>، يقطنها <strong>${repFmtPeople(pop)} نسمة</strong>. ويُقدَّر أن <strong>${repFmtPeople(noElec)}</strong> يعيشون دون كهرباء و<strong>${repFmtPeople(noWater)}</strong> دون مياه شرب أساسية.`)}</div>
+        <div class="ex-datanote">${tr('World Bank Open Data', 'بيانات البنك الدولي المفتوحة')}${repSnapshotStr() ? tr(' · snapshot of ', ' · نسخة بتاريخ ') + repSnapshotStr() : ''} · ${tr('figures refresh live when a country is opened or a report is built', 'تُحدَّث الأرقام مباشرة عند فتح دولة أو إعداد تقرير')}</div>
       </div>
       <div class="ex-hero-actions">
-        <button class="ex-btn" onclick="window.print()">Print / PDF</button>
-        <button class="ex-btn primary" onclick="goView('reports')">New report &nbsp;→</button>
+        <button class="ex-btn" onclick="window.print()">${tr('Print / PDF', 'طباعة / PDF')}</button>
+        <button class="ex-btn primary" onclick="goView('reports')">${tr('New report', 'تقرير جديد')} &nbsp;${arrow}</button>
       </div>
     </div></div>
     <div class="ex-wrap">
       <div class="ex-kpis">${kpis}</div>
       <div class="ex-card ex-map-card" style="margin-bottom:24px">
-        <div class="ex-card-hd"><div><div class="ex-card-title">Where needs are greatest</div><div class="ex-card-note" style="margin-top:4px">Click a country for its profile or an instant report</div></div><a class="ex-link" href="#" onclick="goView('countries');return false">Open full map →</a></div>
-        <div class="ex-map" id="ex-map">
-          <div class="ex-map-legend" id="ex-map-key"></div>
+        <div class="ex-card-hd"><div><div class="ex-card-title">${tr('Where needs are greatest', 'أين يكون الاحتياج أكبر')}</div><div class="ex-card-note" style="margin-top:4px">${tr('Click a country for its profile or an instant report', 'انقر على دولة لعرض ملفها أو إعداد تقرير فوري')}</div></div><a class="ex-link" href="#" onclick="goView('countries');return false">${tr('Open full map', 'فتح الخريطة الكاملة')} ${arrow}</a></div>
+        <div class="ex-map" id="ex-map" dir="ltr">
+          <div class="ex-map-legend" id="ex-map-key" dir="${isAr() ? 'rtl' : 'ltr'}"></div>
         </div>
       </div>
       <div class="ex-grid ex-grid-even">
         <div class="ex-card">
-          <div class="ex-card-hd"><div class="ex-card-title">Highest-need countries</div><div class="ex-card-note">Need index, 0–100</div></div>
-          ${topRows || '<div class="ex-empty">Not enough data to rank countries.</div>'}
-          <div class="ex-method">The need index combines under-5 and maternal mortality, undernourishment, and lack of basic water, sanitation and electricity — each scaled across all tracked countries and averaged.</div>
+          <div class="ex-card-hd"><div class="ex-card-title">${tr('Highest-need countries', 'الدول الأعلى احتياجاً')}</div><div class="ex-card-note">${tr('Need index, 0–100', 'مؤشر الاحتياج، 0–100')}</div></div>
+          ${topRows || `<div class="ex-empty">${tr('Not enough data to rank countries.', 'لا توجد بيانات كافية لترتيب الدول.')}</div>`}
+          <div class="ex-method">${tr('The need index combines under-5 and maternal mortality, undernourishment, and lack of basic water, sanitation and electricity — each scaled across all tracked countries and averaged.',
+            'يجمع مؤشر الاحتياج بين وفيات الأطفال دون الخامسة ووفيات الأمهات ونقص التغذية، ونقص مياه الشرب الأساسية والصرف الصحي والكهرباء — تُقاس كل منها عبر جميع الدول المتابَعة ثم يُحسب متوسطها.')}</div>
         </div>
         <div class="ex-card">
-          <div class="ex-card-hd"><div class="ex-card-title">Needs by region</div><div class="ex-card-note">Average need index</div></div>
+          <div class="ex-card-hd"><div class="ex-card-title">${tr('Needs by region', 'الاحتياج حسب الإقليم')}</div><div class="ex-card-note">${tr('Average need index', 'متوسط مؤشر الاحتياج')}</div></div>
           ${regionRows}
         </div>
       </div>
       <div class="ex-grid ex-grid-even">
         <div class="ex-card">
-          <div class="ex-card-hd"><div class="ex-card-title">Recent reports</div><a class="ex-link" href="#" onclick="goView('reports');return false">All reports →</a></div>
-          ${recent || `<div class="ex-empty">No saved reports yet. <a class="ex-link" href="#" onclick="goView('reports');return false">Create the first one →</a></div>`}
+          <div class="ex-card-hd"><div class="ex-card-title">${tr('Recent reports', 'أحدث التقارير')}</div><a class="ex-link" href="#" onclick="goView('reports');return false">${tr('All reports', 'جميع التقارير')} ${arrow}</a></div>
+          ${recent || `<div class="ex-empty">${tr('No saved reports yet.', 'لا توجد تقارير محفوظة بعد.')} <a class="ex-link" href="#" onclick="goView('reports');return false">${tr('Create the first one', 'أنشئ التقرير الأول')} ${arrow}</a></div>`}
         </div>
         <div class="ex-card">
-          <div class="ex-card-hd"><div class="ex-card-title">Published full AI reports</div><div class="ex-card-note">Shared on this website</div></div>
-          ${published || '<div class="ex-empty">None published yet.</div>'}
+          <div class="ex-card-hd"><div class="ex-card-title">${tr('Published full AI reports', 'تقارير الذكاء الاصطناعي المنشورة')}</div><div class="ex-card-note">${tr('Shared on this website', 'متاحة على هذا الموقع')}</div></div>
+          ${published || `<div class="ex-empty">${tr('None published yet.', 'لا توجد تقارير منشورة بعد.')}</div>`}
         </div>
       </div>
     </div>`;
-  const hd = document.getElementById('app-header-date'); if (hd) hd.textContent = today;
+  applyStaticLang();
   exInitMiniMap();
 }
 
@@ -3031,65 +3202,72 @@ function renderExecutive() {
 let repState = { sel: new Set(), filter: '', libKind: 'all' };
 function renderReports() {
   const el = document.getElementById('rep-scroll'); if (!el) return;
-  if (!prebakedLoaded) { el.innerHTML = '<div class="ex-wrap"><div class="ex-empty" style="padding:40px 0">Loading countries…</div></div>'; loadPrebakedIndicators().then(renderReports); return; }
-  const names = repAllCountries();
-  const regions = Object.keys(REGION_MEMBERS || {}).sort();
-  const opts = names.map(c => `<option value="${exEsc(c)}">${exEsc(c)}</option>`).join('');
-  const regOpts = regions.map(r => `<option value="${exEsc(r)}">${exEsc(r)} (${(REGION_MEMBERS[r] || []).length} countries)</option>`).join('');
+  if (!prebakedLoaded) { el.innerHTML = `<div class="ex-wrap"><div class="ex-empty" style="padding:40px 0">${tr('Loading countries…', 'جارٍ تحميل الدول…')}</div></div>`; loadPrebakedIndicators().then(renderReports); return; }
+  const names = repAllCountries().slice().sort(byName);
+  const regions = Object.keys(REGION_MEMBERS || {}).sort((a, b) => rN(a).localeCompare(rN(b), lang));
+  const prevSingle = (document.getElementById('rep-single') || {}).value, prevRegion = (document.getElementById('rep-region') || {}).value;
+  const opts = names.map(c => `<option value="${exEsc(c)}"${c === prevSingle ? ' selected' : ''}>${exEsc(cN(c))}</option>`).join('');
+  const regOpts = regions.map(r => `<option value="${exEsc(r)}"${r === prevRegion ? ' selected' : ''}>${exEsc(rN(r))} (${tr((REGION_MEMBERS[r] || []).length + ' countries', (REGION_MEMBERS[r] || []).length + ' دولة')})</option>`).join('');
+  const langNote = tr('Reports are built in English. Switch to عربي at the top to build them in Arabic.', 'تُعدّ التقارير باللغة العربية. انتقل إلى EN في الأعلى لإعدادها بالإنجليزية.');
   el.innerHTML = `
     <div class="ex-hero"><div class="ex-hero-in">
       <div>
-        <div class="ex-eyebrow">Country Reports</div>
-        <div class="ex-title">Create a Report</div>
+        <div class="ex-eyebrow">${tr('Country Reports', 'تقارير الدول')}</div>
+        <div class="ex-title">${tr('Create a Report', 'إعداد تقرير')}</div>
         <div class="ex-rule"></div>
-        <div class="ex-summary"><strong>Instant reports</strong> use live World Bank data and are ready in under a minute, for anyone using this website.
-          <strong>Full AI reports</strong> research many more sources (15–25 minutes per country) and only work when the local research server is running.</div>
+        <div class="ex-summary">${tr(
+          '<strong>Instant reports</strong> use live World Bank data and are ready in under a minute, for anyone using this website. <strong>Full AI reports</strong> research many more sources (15–25 minutes per country) and only work when the local research server is running.',
+          '<strong>التقارير الفورية</strong> تستخدم بيانات البنك الدولي المباشرة وتكون جاهزة في أقل من دقيقة لأي مستخدم لهذا الموقع. أما <strong>تقارير الذكاء الاصطناعي الكاملة</strong> فتبحث في مصادر أكثر بكثير (15–25 دقيقة لكل دولة) ولا تعمل إلا عند تشغيل خادم البحث المحلي.')}</div>
+        <div class="ex-datanote">${langNote}</div>
       </div>
     </div></div>
     <div class="ex-wrap" style="padding-top:24px">
       <div class="ex-grid ex-grid-even">
         <div class="ex-card">
-          <div class="ex-card-hd"><div class="ex-card-title">Single country</div></div>
-          <div class="rep-help">A full country assessment: cover with map, cross-sector snapshot, a slide per sector with sourced indicators and suggested interventions, and a sources page.</div>
+          <div class="ex-card-hd"><div class="ex-card-title">${tr('Single country', 'دولة واحدة')}</div></div>
+          <div class="rep-help">${tr('A full country assessment: executive summary, cover with map, cross-sector snapshot, a slide per sector with sourced indicators and suggested interventions, and a sources page.',
+            'تقييم كامل للدولة: ملخص تنفيذي، وغلاف مع خريطة، ولمحة عامة عن القطاعات، وشريحة لكل قطاع تتضمن مؤشرات موثّقة المصدر وتدخلات مقترحة، وصفحة للمصادر.')}</div>
           <select id="rep-single" class="rep-input" onchange="repSingleChanged()">${opts}</select>
           <div id="rep-single-pub" class="rep-help" style="margin-top:8px"></div>
           <div class="rep-actions">
-            <button class="ex-btn primary" onclick="repRunSingle(document.getElementById('rep-single').value)">Instant report</button>
-            <button class="ex-btn" onclick="repRunAIBatch([document.getElementById('rep-single').value])">Full AI report</button>
+            <button class="ex-btn primary" onclick="repRunSingle(document.getElementById('rep-single').value)">${tr('Instant report', 'تقرير فوري')}</button>
+            <button class="ex-btn" onclick="repRunAIBatch([document.getElementById('rep-single').value])">${tr('Full AI report', 'تقرير الذكاء الاصطناعي الكامل')}</button>
           </div>
         </div>
         <div class="ex-card">
-          <div class="ex-card-hd"><div class="ex-card-title">Region</div></div>
-          <div class="rep-help">One report for a whole region: regional snapshot, need ranking, side-by-side comparison table and a one-page profile for every country.</div>
+          <div class="ex-card-hd"><div class="ex-card-title">${tr('Region', 'إقليم')}</div></div>
+          <div class="rep-help">${tr('One report for a whole region: regional snapshot, need ranking, side-by-side comparison table and a one-page profile for every country.',
+            'تقرير واحد لإقليم كامل: لمحة إقليمية، وترتيب الاحتياج، وجدول مقارنة، وملف من صفحة واحدة لكل دولة.')}</div>
           <select id="rep-region" class="rep-input">${regOpts}</select>
           <div class="rep-actions">
-            <button class="ex-btn primary" onclick="repRunRegion(document.getElementById('rep-region').value)">Instant region report</button>
-            <button class="ex-btn" onclick="repRunRegionAI(document.getElementById('rep-region').value)">Full AI region report</button>
-            <button class="ex-btn" onclick="openRegionPopup(document.getElementById('rep-region').value)">View indicators</button>
+            <button class="ex-btn primary" onclick="repRunRegion(document.getElementById('rep-region').value)">${tr('Instant region report', 'تقرير إقليمي فوري')}</button>
+            <button class="ex-btn" onclick="repRunRegionAI(document.getElementById('rep-region').value)">${tr('Full AI region report', 'تقرير إقليمي بالذكاء الاصطناعي')}</button>
+            <button class="ex-btn" onclick="openRegionPopup(document.getElementById('rep-region').value)">${tr('View indicators', 'عرض المؤشرات')}</button>
           </div>
         </div>
       </div>
       <div class="ex-card" style="margin-bottom:20px">
-        <div class="ex-card-hd"><div class="ex-card-title">Several countries — separate reports</div><div class="ex-card-note" id="rep-count"></div></div>
-        <div class="rep-help">Tick the countries you need. Each one gets its own country report file.</div>
+        <div class="ex-card-hd"><div class="ex-card-title">${tr('Several countries — separate reports', 'عدة دول — تقارير منفصلة')}</div><div class="ex-card-note" id="rep-count"></div></div>
+        <div class="rep-help">${tr('Tick the countries you need. Each one gets its own country report file.', 'اختر الدول المطلوبة، وسيُعدّ لكل منها ملف تقرير مستقل.')}</div>
         <div class="rep-qs-row">
-          <input id="rep-filter" class="rep-input" style="max-width:220px;margin:0" placeholder="Search countries…" value="${exEsc(repState.filter)}" oninput="repState.filter=this.value;repRenderGrid()">
-          ${regions.map(r => `<button class="rep-qs" onclick="repSelectGroup(REGION_MEMBERS[${qa(r)}])">${exEsc(r)}</button>`).join('')}
-          <button class="rep-qs" onclick="repSelectGroup(Object.keys(COUNTRY_INCOME).filter(c=>COUNTRY_INCOME[c]==='LIC'))">Low income</button>
-          <button class="rep-qs" onclick="repSelectGroup(Object.keys(COUNTRY_INCOME).filter(c=>COUNTRY_INCOME[c]==='LMIC'))">Lower-middle income</button>
-          <button class="rep-qs" onclick="repState.sel.clear();repRenderGrid()" style="color:#79242F">Clear</button>
+          <input id="rep-filter" class="rep-input" style="max-width:220px;margin:0" placeholder="${tr('Search countries…', 'ابحث عن دولة…')}" value="${exEsc(repState.filter)}" oninput="repState.filter=this.value;repRenderGrid()">
+          ${regions.map(r => `<button class="rep-qs" onclick="repSelectGroup(REGION_MEMBERS[${qa(r)}])">${exEsc(rN(r))}</button>`).join('')}
+          <button class="rep-qs" onclick="repSelectGroup(Object.keys(COUNTRY_INCOME).filter(c=>COUNTRY_INCOME[c]==='LIC'))">${tr('Low income', 'منخفضة الدخل')}</button>
+          <button class="rep-qs" onclick="repSelectGroup(Object.keys(COUNTRY_INCOME).filter(c=>COUNTRY_INCOME[c]==='LMIC'))">${tr('Lower-middle income', 'الشريحة الدنيا من الدخل المتوسط')}</button>
+          <button class="rep-qs" onclick="repState.sel.clear();repRenderGrid()" style="color:#8A2C36">${tr('Clear', 'مسح')}</button>
         </div>
         <div id="rep-grid" class="rep-grid"></div>
         <div class="rep-actions">
-          <button class="ex-btn primary" onclick="repRunBatch([...repState.sel])">Build separate reports</button>
-          <button class="ex-btn" onclick="repRunAIBatch([...repState.sel])">Full AI reports</button>
+          <button class="ex-btn primary" onclick="repRunBatch([...repState.sel])">${tr('Build separate reports', 'إعداد تقارير منفصلة')}</button>
+          <button class="ex-btn" onclick="repRunAIBatch([...repState.sel])">${tr('Full AI reports', 'تقارير الذكاء الاصطناعي الكاملة')}</button>
         </div>
       </div>
       <div class="ex-card">
-        <div class="ex-card-hd"><div class="ex-card-title">Saved reports</div>
-          <div class="rep-chips">${['all', 'single', 'region', 'ai'].map(k => `<button class="rep-qs${repState.libKind === k ? ' on' : ''}" onclick="repState.libKind='${k}';repRenderLibrary()">${{ all:'All', single:'Country', region:'Region', ai:'Full AI' }[k]}</button>`).join('')}</div>
+        <div class="ex-card-hd"><div class="ex-card-title">${tr('Saved reports', 'التقارير المحفوظة')}</div>
+          <div class="rep-chips">${['all', 'single', 'region', 'ai'].map(k => `<button class="rep-qs${repState.libKind === k ? ' on' : ''}" onclick="repState.libKind='${k}';repRenderLibrary()">${k === 'all' ? tr('All', 'الكل') : repKindLabel(k)}</button>`).join('')}</div>
         </div>
-        <div class="rep-help">Reports are saved in this browser only, so colleagues won't see them and clearing your browser data removes them. Download anything you need to keep or share.</div>
+        <div class="rep-help">${tr("Reports are saved in this browser only, so colleagues won't see them and clearing your browser data removes them. Download anything you need to keep or share.",
+          'تُحفظ التقارير في هذا المتصفح فقط، فلن يراها زملاؤك وستُحذف عند مسح بيانات المتصفح. نزّل أي تقرير تحتاج إلى الاحتفاظ به أو مشاركته.')}</div>
         <div id="rep-library"></div>
         <div id="rep-published"></div>
       </div>
@@ -3100,53 +3278,53 @@ function repSingleChanged() {
   const c = (document.getElementById('rep-single') || {}).value, el = document.getElementById('rep-single-pub');
   if (!el) return;
   const pub = c && REPORTS_MANIFEST[c];
-  el.innerHTML = pub ? `A published full AI report exists for ${exEsc(c)} — <a class="ex-link" href="reports/${encodeURIComponent(pub.file)}" download>download it</a>.` : '';
+  el.innerHTML = pub ? tr(`A published full AI report exists for ${exEsc(c)} — <a class="ex-link" href="reports/${encodeURIComponent(pub.file)}" download>download it</a> (English).`,
+                          `يوجد تقرير ذكاء اصطناعي منشور لـ${exEsc(cN(c))} — <a class="ex-link" href="reports/${encodeURIComponent(pub.file)}" download>تنزيله</a> (بالإنجليزية).`) : '';
 }
 function repSelectGroup(list) { (list || []).forEach(c => { if (repAllCountries().includes(c)) repState.sel.add(c); }); repRenderGrid(); }
 function repToggle(c) { if (repState.sel.has(c)) repState.sel.delete(c); else repState.sel.add(c); repRenderCount(); }
 function repRenderGrid() {
   const g = document.getElementById('rep-grid'); if (!g) return;
   const q = repState.filter.trim().toLowerCase();
-  const list = repAllCountries().filter(c => !q || c.toLowerCase().includes(q));
+  const list = repAllCountries().slice().sort(byName).filter(c => !q || c.toLowerCase().includes(q) || cN(c).includes(repState.filter.trim()));
   g.innerHTML = list.map(c => `<label class="rep-chk"><input type="checkbox" ${repState.sel.has(c) ? 'checked' : ''} onchange="repToggle(${qa(c)})">
-      <span>${exEsc(c)}</span></label>`).join('') || '<div class="ex-empty">No countries match.</div>';
+      <span>${exEsc(cN(c))}</span></label>`).join('') || `<div class="ex-empty">${tr('No countries match.', 'لا توجد دول مطابقة.')}</div>`;
   repRenderCount();
 }
 function repRenderCount() {
-  const el = document.getElementById('rep-count'); if (el) el.textContent = repState.sel.size + ' selected';
+  const el = document.getElementById('rep-count'); if (el) el.textContent = tr(repState.sel.size + ' selected', 'تم اختيار ' + repState.sel.size);
 }
 function repRenderLibrary() {
   const el = document.getElementById('rep-library'); if (!el) return;
   document.querySelectorAll('.rep-chips .rep-qs').forEach((b, i) => b.classList.toggle('on', ['all', 'single', 'region', 'ai'][i] === repState.libKind));
   const list = REP_LIBRARY.filter(r => repState.libKind === 'all' || r.kind === repState.libKind);
   el.innerHTML = list.length ? `<div style="overflow-x:auto"><table class="ex-table">
-      <thead><tr><th>Report</th><th>Type</th><th>Created</th><th>Data</th><th class="num">Size</th><th></th></tr></thead>
+      <thead><tr><th>${tr('Report', 'التقرير')}</th><th>${tr('Type', 'النوع')}</th><th>${tr('Created', 'تاريخ الإعداد')}</th><th>${tr('Data', 'البيانات')}</th><th class="num">${tr('Size', 'الحجم')}</th><th></th></tr></thead>
       <tbody>${list.map(r => `<tr style="cursor:default">
-        <td><div style="font-weight:600">${exEsc(r.title)}</div>${r.kind === 'region' || r.countries.length > 1 ? `<div style="font-size:11.5px;color:var(--ex-mute)">${r.countries.length} countries</div>` : ''}</td>
-        <td><span class="ex-tag ${r.kind === 'region' ? 'lead' : 'stake'}">${REP_KIND_LABEL[r.kind] || 'Report'}</span></td>
+        <td><div style="font-weight:600">${exEsc(recTitle(r))} ${repLangTag(r)}</div>${r.kind === 'region' || r.countries.length > 1 ? `<div style="font-size:11.5px;color:var(--ex-mute)">${tr(r.countries.length + ' countries', r.countries.length + ' دولة')}</div>` : ''}</td>
+        <td><span class="ex-tag ${r.kind === 'region' ? 'lead' : 'stake'}">${repKindLabel(r.kind)}</span></td>
         <td style="white-space:nowrap;font-size:12.5px">${repFmtDate(r.createdAt)}</td>
-        <td style="font-size:12.5px">${{ live:'Live', snapshot:'Snapshot', ai:'AI research' }[r.data] || '—'}</td>
+        <td style="font-size:12.5px">${{ live: tr('Live', 'مباشرة'), snapshot: tr('Snapshot', 'محفوظة'), ai: tr('AI research', 'بحث بالذكاء الاصطناعي') }[r.data] || '—'}</td>
         <td class="num" style="font-size:12.5px">${repFmtSize(r.size)}</td>
-        <td class="num" style="white-space:nowrap">${r.blob ? `<button class="ex-mini" onclick="repLibDownload(${qa(r.id)})">Download</button>` : `<span style="font-size:11.5px;color:var(--ex-mute)" title="${exEsc(r.location || '')}">In Downloads</span>`}
-          <button class="ex-mini danger" onclick="repLibDelete(${qa(r.id)})" title="Remove from saved reports">✕</button></td>
+        <td class="num" style="white-space:nowrap">${r.blob ? `<button class="ex-mini" onclick="repLibDownload(${qa(r.id)})">${tr('Download', 'تنزيل')}</button>` : `<span style="font-size:11.5px;color:var(--ex-mute)">${tr('In Downloads', 'في مجلد التنزيلات')}</span>`}
+          <button class="ex-mini danger" onclick="repLibDelete(${qa(r.id)})" title="${tr('Remove from saved reports', 'حذف من التقارير المحفوظة')}">✕</button></td>
       </tr>`).join('')}</tbody></table></div>`
-    : '<div class="ex-empty">No saved reports' + (repState.libKind === 'all' ? ' yet — create one above.' : ' of this type.') + '</div>';
+    : `<div class="ex-empty">${repState.libKind === 'all' ? tr('No saved reports yet — create one above.', 'لا توجد تقارير محفوظة بعد — أنشئ تقريراً من الأعلى.') : tr('No saved reports of this type.', 'لا توجد تقارير محفوظة من هذا النوع.')}</div>`;
   const pub = document.getElementById('rep-published');
-  if (pub) { const h = repPublishedHtml(); pub.innerHTML = h && (repState.libKind === 'all' || repState.libKind === 'ai') ? `<div class="ex-sub-title">Published full AI reports (shared on the website)</div>${h}` : ''; }
+  if (pub) { const h = repPublishedHtml(); pub.innerHTML = h && (repState.libKind === 'all' || repState.libKind === 'ai') ? `<div class="ex-sub-title">${tr('Published full AI reports (shared on the website)', 'تقارير الذكاء الاصطناعي المنشورة (متاحة على الموقع)')}</div>${h}` : ''; }
 }
 
-// Lightweight progress overlay for the long (2–4 min) research run.
+// Progress overlay for report building.
 function cd_progressOverlay(title, sub){
   let ov=document.getElementById('cd-ai-progress');
   if(!ov){
     ov=document.createElement('div'); ov.id='cd-ai-progress';
-    ov.style.cssText='position:fixed;inset:0;z-index:4000;background:rgba(29,37,44,.72);display:flex;align-items:center;justify-content:center';
-    ov.innerHTML='<div style="background:#fff;max-width:460px;width:90%;padding:26px 28px;border-top:3px solid #AD833B;box-shadow:0 20px 60px rgba(0,0,0,.35)">'
-      +'<div style="font-family:Lora,Georgia,serif;font-size:18px;font-weight:700;color:#1D252C" id="cd-ai-p-title"></div>'
-      +'<div style="font-size:12.5px;color:#5B6A7E;margin-top:8px;line-height:1.5" id="cd-ai-p-sub"></div>'
-      +'<div style="margin-top:16px;height:3px;background:#EEE;overflow:hidden"><div style="height:100%;width:30%;background:#AD833B;animation:cdaiwipe 1.4s ease-in-out infinite"></div></div></div>';
+    ov.style.cssText='position:fixed;inset:0;z-index:4000;background:rgba(15,42,64,.6);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(2px)';
+    ov.innerHTML='<div class="cd-prog-card">'
+      +'<div class="cd-prog-title" id="cd-ai-p-title"></div>'
+      +'<div class="cd-prog-sub" id="cd-ai-p-sub"></div>'
+      +'<div class="cd-prog-bar"><div></div></div></div>';
     document.body.appendChild(ov);
-    if(!document.getElementById('cd-ai-kf')){ const s=document.createElement('style'); s.id='cd-ai-kf'; s.textContent='@keyframes cdaiwipe{0%{margin-left:-30%}100%{margin-left:110%}}'; document.head.appendChild(s); }
   }
   ov.querySelector('#cd-ai-p-title').textContent=title;
   ov.querySelector('#cd-ai-p-sub').textContent=sub;
@@ -3157,26 +3335,27 @@ function cd_progressOverlay(title, sub){
 // Full AI report — live AI deep-research country deck via the local research server (localhost only).
 // Fills the exact 23-slide ODA country-proposal template through the server's /country_report
 // pipeline; long-running, and the file is saved to Downloads on the server computer. A record of
-// it is added to the saved-reports library. Returns true on success.
+// it is added to the saved-reports library. Returns true on success. (English only for now.)
 async function cd_generateAICountryDeck(country, label, quiet){
   const base=repServerBase();
-  const ov=cd_progressOverlay('Full AI report · '+country+(label?' ('+label+')':''),'Checking the local research server…');
+  const ov=cd_progressOverlay(tr('Full AI report · ', 'تقرير الذكاء الاصطناعي · ')+cN(country)+(label?' ('+label+')':''), tr('Checking the local research server…', 'جارٍ التحقق من خادم البحث المحلي…'));
   try{
     let up=false;
     try{ const h=await fetch(base+'/health',{method:'GET'}); const hj=await h.json(); up=!!(hj&&hj.ok&&hj.key); }catch(e){}
-    if(!up){ ov.remove(); alert(REP_AI_HELP); return false; }
+    if(!up){ ov.remove(); alert(repAiHelp()); return false; }
     const iso2=COUNTRY_ISO2[country]||'', iso3=COUNTRY_ISO[country]||'';
-    ov.setStatus('Researching '+country+' across World Bank · WHO · UNICEF · UNESCO · FAO · JMP · ITU · IEA · OCHA and national sources, then filling the 23-slide ODA template. This takes roughly 15–25 minutes — keep this tab open.');
+    ov.setStatus(tr('Researching '+country+' across World Bank · WHO · UNICEF · UNESCO · FAO · JMP · ITU · IEA · OCHA and national sources, then filling the 23-slide ODA template. This takes roughly 15–25 minutes — keep this tab open.',
+      'جارٍ البحث عن '+cN(country)+' في مصادر البنك الدولي ومنظمة الصحة واليونيسف واليونسكو والفاو وغيرها، ثم تعبئة قالب المكتب المكوّن من 23 شريحة. يستغرق ذلك نحو 15–25 دقيقة — أبقِ هذه الصفحة مفتوحة.'));
     const res=await fetch(base+'/country_report',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({country,iso2,iso3})});
     const j=await res.json().catch(()=>({ok:false,error:'HTTP '+res.status}));
     if(!res.ok||!j.ok) throw new Error(j.error||('HTTP '+res.status));
-    const fileName=String(j.file||'').split(/[\/]/).pop();
+    const fileName=String(j.file||'').split(/[\\/]/).pop();
     await repSave({ id:repId(), kind:'ai', title:country+' — Full AI report (23 slides)', countries:[country], createdAt:new Date().toISOString(),
-      fileName, size:null, data:'ai', blob:null, location:'Downloads folder on the server computer' });
+      fileName, size:null, data:'ai', blob:null, location:'Downloads folder on the server computer', lang:'en' });
     ov.remove(); onReportsChanged(); loadReportsManifest();
-    if(!quiet) alert('✓ Full AI report saved to Downloads on the server computer:\n\n'+fileName);
+    if(!quiet) alert(tr('✓ Full AI report saved to Downloads on the server computer:\n\n', '✓ تم حفظ تقرير الذكاء الاصطناعي في مجلد التنزيلات على جهاز الخادم:\n\n')+fileName);
     return true;
-  }catch(e){ ov.remove(); console.error('[CAD] Full AI report failed:',e); if(!quiet) alert('Full AI report failed: '+(e.message||e)+'\n\nCheck the server log (_score_server.log).'); return false; }
+  }catch(e){ ov.remove(); console.error('[CAD] Full AI report failed:',e); if(!quiet) alert(tr('Full AI report failed: ', 'تعذّر إعداد تقرير الذكاء الاصطناعي: ')+(e.message||e)+tr('\n\nCheck the server log (_score_server.log).', '\n\nراجع سجل الخادم (_score_server.log).')); return false; }
 }
 
 // ── Country Analysis ──────────────────────────────────────────────────────
@@ -3287,22 +3466,23 @@ async function ca_loadCountryData(country) {
 function ca_formatValue(raw, ind) {
   if (!raw || raw.value === null || raw.value === undefined) return '—';
   const v = raw.value;
+  const U = { T: tr('T', ' ترليون'), B: tr('B', ' مليار'), M: tr('M', ' مليون'), K: tr('K', ' ألف') };
   switch (ind.fmt) {
     case 'pct1': return v.toFixed(1);
-    case 'num0': return Number(v.toFixed(0)).toLocaleString();
+    case 'num0': return Number(v.toFixed(0)).toLocaleString('en-US');
     case 'num1': return v.toFixed(1);
     case 'num2': return v.toFixed(2);
     case 'big': {
-      if (v >= 1e12) return '$' + (v / 1e12).toFixed(2) + 'T';
-      if (v >= 1e9)  return '$' + (v / 1e9).toFixed(1)  + 'B';
-      if (v >= 1e6)  return '$' + (v / 1e6).toFixed(1)  + 'M';
-      return '$' + Number(v.toFixed(0)).toLocaleString();
+      if (v >= 1e12) return '$' + (v / 1e12).toFixed(2) + U.T;
+      if (v >= 1e9)  return '$' + (v / 1e9).toFixed(1)  + U.B;
+      if (v >= 1e6)  return '$' + (v / 1e6).toFixed(1)  + U.M;
+      return '$' + Number(v.toFixed(0)).toLocaleString('en-US');
     }
     case 'pop': {
-      if (v >= 1e9) return (v / 1e9).toFixed(2) + 'B';
-      if (v >= 1e6) return (v / 1e6).toFixed(1) + 'M';
-      if (v >= 1e3) return (v / 1e3).toFixed(0) + 'K';
-      return Number(v.toFixed(0)).toLocaleString();
+      if (v >= 1e9) return (v / 1e9).toFixed(2) + U.B;
+      if (v >= 1e6) return (v / 1e6).toFixed(1) + U.M;
+      if (v >= 1e3) return (v / 1e3).toFixed(0) + U.K;
+      return Number(v.toFixed(0)).toLocaleString('en-US');
     }
     default: return v.toFixed(1);
   }
@@ -3336,6 +3516,7 @@ const COUNTRY_ISO2 = {
 };
 
 // ── Init ──────────────────────────────────────────────────────────────────
+applyStaticLang();          // English / Arabic (remembered per browser) — sets dir="rtl" for Arabic
 loadPrebakedIndicators();   // World Bank indicator snapshot: need index, regions, instant first paint
 loadReportsManifest();      // published full AI reports (docs/reports/manifest.json) + saved-reports library
 restoreView();              // Executive View, or the view the user was last on

@@ -1549,6 +1549,76 @@ body {
 .map-toolbar-sub { font-size:12px; color:var(--ex-mute); }
 .cd-reports .ex-rep { padding:9px 0; font-size:12.5px; }
 
+/* Severity colour coding (0 severe · 1 high concern · 2 moderate · 3 on track) */
+:root { --sev0:#A3303B; --sev0-bg:#FBEDEE; --sev1:#B8721A; --sev1-bg:#FDF3E3; --sev2:#9A8A3A; --sev2-bg:#F8F5E6; --sev3:#2F7F58; --sev3-bg:#EAF5EE; }
+.cd-stat-card.sev-0, .ca-ind-card.sev-0 { border-left:3px solid var(--sev0); }
+.cd-stat-card.sev-1, .ca-ind-card.sev-1 { border-left:3px solid var(--sev1); }
+.cd-stat-card.sev-2, .ca-ind-card.sev-2 { border-left:3px solid var(--sev2); }
+.cd-stat-card.sev-3, .ca-ind-card.sev-3 { border-left:3px solid var(--sev3); }
+.sev-0 .cd-stat-val, .sev-0 .ca-ind-val { color:var(--sev0); }
+.sev-1 .cd-stat-val, .sev-1 .ca-ind-val { color:var(--sev1); }
+.sev-3 .cd-stat-val, .sev-3 .ca-ind-val { color:var(--sev3); }
+.sev-pill { display:inline-block; margin-left:6px; font-size:8.5px; font-weight:700; letter-spacing:.5px; text-transform:uppercase; padding:2px 6px; border-radius:10px; vertical-align:1px; white-space:nowrap; }
+.sev-p0 { background:var(--sev0-bg); color:var(--sev0); }
+.sev-p1 { background:var(--sev1-bg); color:var(--sev1); }
+.sev-p2 { background:var(--sev2-bg); color:var(--sev2); }
+.sev-p3 { background:var(--sev3-bg); color:var(--sev3); }
+.sev-legend { display:flex; flex-wrap:wrap; align-items:center; gap:6px 14px; font-size:11px; color:var(--ex-mute); margin:0 0 10px; }
+.sev-legend-note { color:var(--ex-faint); }
+.sev-dot { display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:5px; vertical-align:-1px; }
+.sev-d0 { background:var(--sev0); } .sev-d1 { background:var(--sev1); } .sev-d2 { background:var(--sev2); } .sev-d3 { background:var(--sev3); }
+.sevc-0 { background:var(--sev0-bg) !important; color:var(--sev0) !important; font-weight:700; }
+.sevc-1 { background:var(--sev1-bg) !important; color:var(--sev1) !important; font-weight:600; }
+.sevc-2 { background:var(--sev2-bg) !important; color:#6F6430 !important; }
+.sevc-3 { background:var(--sev3-bg) !important; color:var(--sev3) !important; }
+
+/* Region rows on the landing page open the popup */
+.ex-region-row { cursor:pointer; padding:8px 10px; margin:0 -10px 6px !important; border-radius:10px; transition:background .12s; }
+.ex-region-row:hover { background:var(--ex-sky-pale); }
+.ex-region-link { color:var(--ex-sky-dk); font-weight:600; }
+
+/* Region popup */
+.rp-overlay { position:fixed; inset:0; z-index:4500; background:rgba(15,42,64,.45); display:none; align-items:flex-start; justify-content:center; padding:4vh 20px; overflow-y:auto; backdrop-filter:blur(2px); }
+.rp-overlay.open { display:flex; }
+.rp-modal { background:#fff; width:100%; max-width:1180px; border-radius:18px; box-shadow:0 30px 80px rgba(15,42,64,.3); overflow:hidden; animation:rpIn .2s ease-out; }
+@keyframes rpIn { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:none; } }
+.rp-hd { display:flex; justify-content:space-between; align-items:flex-start; gap:20px; padding:28px 32px 22px; background:var(--ex-sky-pale); border-bottom:1px solid var(--ex-line); position:relative; }
+.rp-hd::after { content:''; position:absolute; left:32px; bottom:-1px; width:90px; height:2px; background:var(--ex-gold); }
+.rp-title { font-family:var(--ex-serif); font-size:30px; font-weight:600; color:var(--ex-ink); margin-top:8px; line-height:1.15; }
+.rp-sub { font-size:12.5px; color:var(--ex-mute); margin-top:8px; }
+.rp-status { display:inline-block; margin-left:6px; font-size:10.5px; font-weight:600; padding:3px 9px; border-radius:20px; background:#EEF2F6; color:var(--ex-mute); }
+.rp-status.live { background:var(--sev3-bg); color:var(--sev3); }
+.rp-actions { display:flex; gap:10px; align-items:center; flex-shrink:0; }
+.rp-close { width:38px; height:38px; border-radius:10px; border:1px solid var(--ex-line); background:#fff; color:var(--ex-mute); font-size:14px; cursor:pointer; }
+.rp-close:hover { color:var(--ex-ink); border-color:var(--ex-sky); }
+.rp-body { padding:24px 32px 28px; }
+.rp-meds { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; margin-bottom:26px; }
+.rp-med { border:1px solid var(--ex-line); border-left:3px solid var(--ex-line); border-radius:10px; padding:12px 14px; background:#fff; }
+.rp-med.sev-0 { border-left-color:var(--sev0); background:var(--sev0-bg); }
+.rp-med.sev-1 { border-left-color:var(--sev1); background:var(--sev1-bg); }
+.rp-med.sev-2 { border-left-color:var(--sev2); background:var(--sev2-bg); }
+.rp-med.sev-3 { border-left-color:var(--sev3); background:var(--sev3-bg); }
+.rp-med-l { font-size:10.5px; font-weight:600; letter-spacing:.8px; text-transform:uppercase; color:var(--ex-mute); }
+.rp-med-v { font-family:var(--ex-serif); font-size:22px; font-weight:600; color:var(--ex-ink); margin-top:6px; }
+.rp-med-s { font-size:11px; color:var(--ex-mute); margin-top:4px; }
+.rp-tbl-hd { display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:10px; }
+.rp-tbl-hd .sev-legend { margin:0; }
+.rp-tbl-wrap { overflow:auto; max-height:52vh; border:1px solid var(--ex-line); border-radius:12px; }
+.rp-table th { position:sticky; top:0; background:#fff; z-index:1; padding:12px 10px 10px; white-space:nowrap; }
+.rp-table td { padding:9px 10px; font-size:12.5px; }
+.rp-table tbody tr { cursor:pointer; }
+.rp-cty { white-space:nowrap; font-weight:600; }
+.rp-need { font-family:var(--ex-serif); font-weight:600; }
+.rp-cell { white-space:nowrap; }
+@media (max-width: 700px) {
+  .rp-overlay { padding:0; }
+  .rp-modal { border-radius:0; min-height:100%; }
+  .rp-hd { flex-direction:column; padding:20px 18px 16px; }
+  .rp-hd::after { left:18px; }
+  .rp-title { font-size:24px; }
+  .rp-body { padding:18px; }
+}
+
 @media (max-width: 1100px) {
   .ex-grid-map { grid-template-columns:1fr; }
   .ex-map { height:340px; }
@@ -2130,8 +2200,9 @@ function cdRenderOverview() {
     const hasVal = !loading && raw && raw.value !== null;
     const val = hasVal ? ca_formatValue(raw, ind) : (loading ? '…' : '—');
     const srcUrl = `https://data.worldbank.org/indicator/${ind.id}?locations=${iso}`;
-    return `<div class="cd-stat-card">
-      <div class="cd-stat-label">${ind.label}</div>
+    const sv = hasVal ? indSeverity(ind.id, raw.value) : null;
+    return `<div class="cd-stat-card${sv ? ' sev-' + sv.lvl : ''}"${sv ? ` title="${exEsc(sv.why)}"` : ''}>
+      <div class="cd-stat-label">${ind.label}${sv ? sevPill(sv) : ''}</div>
       <div class="cd-stat-val ${loading ? 'cd-stat-loading' : ''}">${val}<span class="cd-stat-unit">${hasVal ? ind.unit : ''}</span></div>
       ${hasVal ? `<div class="cd-stat-year">${raw.year}</div>` : ''}
       <div class="cd-stat-src"><a href="${srcUrl}" target="_blank">World Bank</a></div>
@@ -2149,6 +2220,7 @@ function cdRenderOverview() {
         <div class="cd-section-title">Key Indicators <span style="font-weight:500;color:var(--text3);font-size:11px;margin-left:6px">${srcLabel}</span></div>
         ${loading ? `<span class="cd-stat-loading">Loading…</span>` : `<a href="https://data.worldbank.org/country/${iso}" target="_blank" style="font-size:10px;color:var(--accent);text-decoration:none">World Bank profile →</a>`}
       </div>
+      ${SEV_LEGEND_HTML}
       <div class="cd-stat-grid">${statsHtml}</div>
     </div>
     <div class="cd-section cd-reports">
@@ -2212,15 +2284,16 @@ function cdBuildIndGrid(tabKey) {
     const val  = hasVal ? ca_formatValue(raw, ind) : '—';
     const year = hasVal ? raw.year : '';
     const srcUrl = `https://data.worldbank.org/indicator/${ind.id}?locations=${iso}`;
-    return `<div class="ca-ind-card ${!hasVal ? 'ca-no-data' : ''}">
-      <div class="ca-ind-label">${label}</div>
+    const sv = hasVal ? indSeverity(ind.id, raw.value) : null;
+    return `<div class="ca-ind-card ${!hasVal ? 'ca-no-data' : ''}${sv ? ' sev-' + sv.lvl : ''}"${sv ? ` title="${exEsc(sv.why)}"` : ''}>
+      <div class="ca-ind-label">${label}${sv ? sevPill(sv) : ''}</div>
       <div class="ca-ind-val">${val}${hasVal ? '<span class="ca-ind-unit">' + ind.unit + '</span>' : ''}</div>
       ${year ? `<div class="ca-ind-year">${year}</div>` : ''}
       <div class="ca-ind-src"><a href="${srcUrl}" target="_blank" class="ca-src-link">World Bank</a></div>
     </div>`;
   }).join('');
 
-  return `<div class="cd-ind-grid">${cards}</div>`;
+  return `${SEV_LEGEND_HTML}<div class="cd-ind-grid">${cards}</div>`;
 }
 
 
@@ -2593,6 +2666,189 @@ function repPublishedHtml(filterCountry) {
       <a href="reports/${encodeURIComponent(r.file)}" download>Download</a></div>`).join('');
 }
 
+// ══════════════════════════════════════════════════════════════════════════
+// SEVERITY — colour-codes indicator values (0 severe · 1 high · 2 moderate · 3 good)
+// Benchmarks follow SDG / WHO / UNESCO reference points where one exists; for
+// indicators without a standard benchmark the value is compared with the other
+// tracked countries (worst quarter = severe … best quarter = good).
+// dir +1 = higher is worse, -1 = lower is worse; th = [severe, high, moderate] cut-offs.
+// ══════════════════════════════════════════════════════════════════════════
+const SEV_RULES = {
+  'SH.DYN.MORT':        { dir: 1, th:[75, 40, 25],          ref:'SDG target 25 per 1,000' },
+  'SH.STA.MMRT':        { dir: 1, th:[500, 200, 70],        ref:'SDG target 70 per 100,000' },
+  'SP.DYN.LE00.IN':     { dir:-1, th:[60, 65, 72],          ref:'global average ≈ 73 years' },
+  'SH.STA.STNT.ZS':     { dir: 1, th:[30, 20, 10],          ref:'WHO prevalence bands' },
+  'SN.ITK.DEFC.ZS':     { dir: 1, th:[25, 15, 5],           ref:'FAO: below 5% is low' },
+  'SH.IMM.MEAS':        { dir:-1, th:[70, 85, 95],          ref:'WHO target 95%' },
+  'SH.XPD.CHEX.GD.ZS':  { dir:-1, th:[3, 4, 5],             ref:'WHO guide 5% of GDP' },
+  'SH.MED.PHYS.ZS':     { dir:-1, th:[0.2, 0.5, 1],         ref:'WHO workforce thresholds' },
+  'SE.ADT.LITR.ZS':     { dir:-1, th:[50, 70, 90],          ref:'SDG 4.6 universal literacy' },
+  'SE.ADT.1524.LT.ZS':  { dir:-1, th:[60, 80, 95],          ref:'SDG 4.6 universal literacy' },
+  'SE.PRM.CMPT.ZS':     { dir:-1, th:[60, 75, 90],          ref:'SDG 4.1 universal completion' },
+  'SE.SEC.ENRR':        { dir:-1, th:[40, 60, 85],          ref:'SDG 4.1' },
+  'SE.PRM.PTRT.ZS':     { dir: 1, th:[45, 35, 25],          ref:'UNESCO: 40+ pupils per teacher is high' },
+  'SE.XPD.TOTL.GD.ZS':  { dir:-1, th:[2.5, 3.5, 4],         ref:'UNESCO 4–6% of GDP' },
+  'EG.ELC.ACCS.ZS':     { dir:-1, th:[40, 70, 95],          ref:'SDG 7.1 universal access' },
+  'EG.CFT.ACCS.ZS':     { dir:-1, th:[20, 50, 85],          ref:'SDG 7.1 clean cooking' },
+  'SH.H2O.BASW.ZS':     { dir:-1, th:[60, 75, 90],          ref:'SDG 6.1 universal access' },
+  'SH.H2O.SMDW.ZS':     { dir:-1, th:[30, 50, 75],          ref:'SDG 6.1 safely managed water' },
+  'SH.STA.BASS.ZS':     { dir:-1, th:[40, 60, 85],          ref:'SDG 6.2 universal sanitation' },
+  'SH.STA.SMSS.ZS':     { dir:-1, th:[20, 40, 65],          ref:'SDG 6.2 safely managed sanitation' },
+  'SH.STA.ODFC.ZS':     { dir: 1, th:[20, 10, 2],           ref:'SDG 6.2 end open defecation' },
+  'SH.STA.HYGN.ZS':     { dir:-1, th:[30, 50, 75],          ref:'SDG 6.2 basic hygiene' },
+  'SI.POV.DDAY':        { dir: 1, th:[30, 15, 5],           ref:'SDG 1.1 end extreme poverty' },
+  'SI.POV.GINI':        { dir: 1, th:[45, 40, 35],          ref:'Gini above 40 = high inequality' },
+  'FP.CPI.TOTL.ZG':     { dir: 1, th:[20, 10, 5],           ref:'IMF: under 5% is stable' },
+  'NY.GDP.MKTP.KD.ZG':  { dir:-1, th:[0, 2, 4],             ref:'growth below 2% is weak' },
+  'SL.UEM.TOTL.ZS':     { dir: 1, th:[15, 10, 6],           ref:'ILO modelled estimates' },
+  'GC.DOD.TOTL.GD.ZS':  { dir: 1, th:[90, 70, 50],          ref:'IMF debt-risk ranges' },
+  'GC.TAX.TOTL.GD.ZS':  { dir:-1, th:[10, 13, 15],          ref:'IMF: 15% of GDP tipping point' },
+  'IT.NET.USER.ZS':     { dir:-1, th:[25, 50, 75],          ref:'ITU connectivity targets' },
+  'EN.ATM.PM25.MC.M3':  { dir: 1, th:[35, 25, 15],          ref:'WHO interim air-quality targets' },
+  'AG.YLD.CREL.KG':     { dir:-1, th:[1500, 2500, 4000],    ref:'world average ≈ 4,000 kg/ha' },
+  'NY.GDP.PCAP.PP.CD':  { dir:-1, th:[3000, 7000, 15000],   ref:'income bands (PPP)' },
+  // no standard benchmark → compared with the other tracked countries
+  'SH.MED.BEDS.ZS':     { dir:-1, peers:true }, 'SE.TER.ENRR':    { dir:-1, peers:true },
+  'IT.NET.BBND.P2':     { dir:-1, peers:true }, 'IT.CEL.SETS.P2': { dir:-1, peers:true },
+  'IS.ROD.PAVE.ZS':     { dir:-1, peers:true }, 'ER.PTD.TOTL.ZS': { dir:-1, peers:true },
+  'SP.POP.DPND':        { dir: 1, peers:true }, 'SN.ITK.DFCT':    { dir: 1, peers:true },
+};
+const SEV_LABEL = ['Severe', 'High concern', 'Moderate', 'On track'];
+let SEV_PEER_CACHE = {};
+function indSeverity(id, v) {
+  const r = SEV_RULES[id];
+  if (!r || v == null || isNaN(v)) return null;
+  let lvl;
+  if (r.peers) {
+    if (!SEV_PEER_CACHE[id]) SEV_PEER_CACHE[id] = Object.values(prebakedIndicators || {}).map(d => d && d[id] && d[id].value).filter(x => x != null).sort((a, b) => a - b);
+    const all = SEV_PEER_CACHE[id]; if (all.length < 8) return null;
+    const below = all.filter(x => x < v).length / all.length;          // share of countries with a lower value
+    const bad = r.dir > 0 ? below : 1 - below;                          // share of countries doing better
+    lvl = bad >= .75 ? 0 : bad >= .5 ? 1 : bad >= .25 ? 2 : 3;
+    return { lvl, label: SEV_LABEL[lvl], why: SEV_LABEL[lvl] + ' — compared with the other tracked countries' };
+  }
+  const [a, b, c] = r.th;
+  lvl = r.dir > 0 ? (v > a ? 0 : v > b ? 1 : v > c ? 2 : 3) : (v < a ? 0 : v < b ? 1 : v < c ? 2 : 3);
+  return { lvl, label: SEV_LABEL[lvl], why: SEV_LABEL[lvl] + ' — benchmark: ' + r.ref };
+}
+function sevPill(sv) { return `<span class="sev-pill sev-p${sv.lvl}">${sv.label}</span>`; }
+const SEV_LEGEND_HTML = `<div class="sev-legend">${SEV_LABEL.map((l, i) => `<span><i class="sev-dot sev-d${i}"></i>${l}</span>`).join('')}<span class="sev-legend-note">vs SDG / WHO benchmarks · hover for details</span></div>`;
+
+// ══════════════════════════════════════════════════════════════════════════
+// REGION POPUP — regional indicators: totals, medians and a colour-coded
+// country-by-indicator table. Opens on the snapshot, then refreshes live.
+// ══════════════════════════════════════════════════════════════════════════
+const REGION_INDS = [
+  { id:'SH.DYN.MORT',       lbl:'Under-5 mortality',   short:'U5 mort.',  unit:'',  d:0 },
+  { id:'SH.STA.MMRT',       lbl:'Maternal mortality',  short:'Mat. mort.',unit:'',  d:0 },
+  { id:'SN.ITK.DEFC.ZS',    lbl:'Undernourishment',    short:'Hunger',    unit:'%', d:1 },
+  { id:'SH.STA.STNT.ZS',    lbl:'Child stunting',      short:'Stunting',  unit:'%', d:1 },
+  { id:'SH.H2O.BASW.ZS',    lbl:'Basic water',         short:'Water',     unit:'%', d:0 },
+  { id:'SH.STA.BASS.ZS',    lbl:'Basic sanitation',    short:'Sanitation',unit:'%', d:0 },
+  { id:'EG.ELC.ACCS.ZS',    lbl:'Electricity access',  short:'Power',     unit:'%', d:0 },
+  { id:'SE.ADT.LITR.ZS',    lbl:'Adult literacy',      short:'Literacy',  unit:'%', d:0 },
+  { id:'NY.GDP.PCAP.PP.CD', lbl:'GDP per capita (PPP)',short:'GDP/cap',   unit:'',  d:0, money:true },
+];
+let REGION_LIVE = {};   // region → { data:{country:{id:{value,year}}}, live:bool }
+let rpRegion = null;
+function rpVal(c, id) {
+  const live = REGION_LIVE[rpRegion] && REGION_LIVE[rpRegion].data[c];
+  const d = (live && live[id]) || (prebakedIndicators[c] || {})[id];
+  return d && d.value != null ? d : null;
+}
+function rpFmt(ind, v) {
+  if (v == null) return '—';
+  if (ind.money) return '$' + Math.round(v).toLocaleString();
+  return (ind.d ? v.toFixed(ind.d) : Math.round(v).toLocaleString()) + ind.unit;
+}
+function openRegionPopup(region) {
+  rpRegion = region;
+  let ov = document.getElementById('rp-overlay');
+  if (!ov) {
+    ov = document.createElement('div'); ov.id = 'rp-overlay'; ov.className = 'rp-overlay';
+    ov.addEventListener('click', e => { if (e.target === ov) closeRegionPopup(); });
+    document.body.appendChild(ov);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeRegionPopup(); });
+  }
+  ov.classList.add('open');
+  renderRegionPopup();
+  if (!REGION_LIVE[region]) {
+    const members = REGION_MEMBERS[region] || [];
+    repRegionLive(members, ['SP.POP.TOTL', ...REGION_INDS.map(i => i.id)]).then(res => {
+      REGION_LIVE[region] = res;
+      if (rpRegion === region && ov.classList.contains('open')) renderRegionPopup();
+    });
+  }
+}
+function closeRegionPopup() { const ov = document.getElementById('rp-overlay'); if (ov) ov.classList.remove('open'); rpRegion = null; }
+function renderRegionPopup() {
+  const ov = document.getElementById('rp-overlay'); if (!ov || !rpRegion) return;
+  const region = rpRegion, members = (REGION_MEMBERS[region] || []).slice();
+  const need = needScores();
+  members.sort((a, b) => ((need[b] && need[b].need) || -1) - ((need[a] && need[a].need) || -1));
+  const val = (c, id) => { const d = rpVal(c, id); return d ? d.value : null; };
+  const pop = members.reduce((s, c) => s + (val(c, 'SP.POP.TOTL') || 0), 0);
+  const without = id => members.reduce((s, c) => { const p = val(c, 'SP.POP.TOTL'), v = val(c, id); return p && v != null ? s + p * (1 - v / 100) : s; }, 0);
+  const median = arr => { const a = arr.filter(x => x != null).sort((x, y) => x - y); if (!a.length) return null; const m = Math.floor(a.length / 2); return a.length % 2 ? a[m] : (a[m - 1] + a[m]) / 2; };
+  const ns = members.map(c => need[c] && need[c].need).filter(x => x != null);
+  const avgNeed = ns.length ? ns.reduce((s, x) => s + x, 0) / ns.length : null;
+  const inc = { LIC:0, LMIC:0, UMIC:0 }; members.forEach(c => { if (inc[COUNTRY_INCOME[c]] != null) inc[COUNTRY_INCOME[c]]++; });
+  const st = REGION_LIVE[region];
+  const status = !st ? '<span class="rp-status">Refreshing live data…</span>' : st.live ? '<span class="rp-status live">Live from World Bank</span>' : '<span class="rp-status">Snapshot' + (repSnapshotStr() ? ' · ' + repSnapshotStr() : '') + '</span>';
+
+  const tiles = [
+    { l:'Population', v: repFmtPeople(pop) },
+    { l:'Without electricity', v: repFmtPeople(without('EG.ELC.ACCS.ZS')), g:true },
+    { l:'Without basic water', v: repFmtPeople(without('SH.H2O.BASW.ZS')), g:true },
+    { l:'Without basic sanitation', v: repFmtPeople(without('SH.STA.BASS.ZS')), g:true },
+    { l:'Average need index', v: avgNeed != null ? Math.round(avgNeed) : '—' },
+  ].map(k => `<div class="ex-kpi${k.g ? ' gold' : ''}"><div class="ex-kpi-label">${k.l}</div><div class="ex-kpi-val">${k.v}</div></div>`).join('');
+
+  // regional median per indicator, colour-coded on the same scale
+  const medRow = REGION_INDS.map(ind => {
+    const m = median(members.map(c => val(c, ind.id))), sv = indSeverity(ind.id, m);
+    const bad = members.filter(c => { const s = indSeverity(ind.id, val(c, ind.id)); return s && s.lvl <= 1; }).length;
+    const have = members.filter(c => val(c, ind.id) != null).length;
+    return `<div class="rp-med${sv ? ' sev-' + sv.lvl : ''}" title="${sv ? exEsc(sv.why) : ''}">
+      <div class="rp-med-l">${ind.lbl}</div>
+      <div class="rp-med-v">${rpFmt(ind, m)}</div>
+      <div class="rp-med-s">${have ? `<b>${bad}</b> of ${have} severe or high` : 'no data'}</div></div>`;
+  }).join('');
+
+  const rows = members.map(c => {
+    const n = need[c];
+    return `<tr onclick="closeRegionPopup();exOpenCountry(${qa(c)})" title="Open ${exEsc(c)} profile">
+      <td class="rp-cty">${flagImg(c, 18, 12)}&nbsp; ${exEsc(c)}</td>
+      <td class="num rp-need">${n && n.need != null ? Math.round(n.need) : '—'}</td>
+      ${REGION_INDS.map(ind => { const d = rpVal(c, ind.id), sv = d ? indSeverity(ind.id, d.value) : null;
+        return `<td class="num rp-cell${sv ? ' sevc-' + sv.lvl : ''}" title="${exEsc(ind.lbl)}${d ? ' · ' + d.year : ''}${sv ? ' · ' + sv.label : ''}">${d ? rpFmt(ind, d.value) : '—'}</td>`; }).join('')}
+    </tr>`;
+  }).join('');
+
+  ov.innerHTML = `<div class="rp-modal" role="dialog" aria-label="${exEsc(region)} indicators">
+    <div class="rp-hd">
+      <div>
+        <div class="ex-eyebrow">Regional indicators</div>
+        <div class="rp-title">${exEsc(region)}</div>
+        <div class="rp-sub">${members.length} countries · ${inc.LIC} low-income · ${inc.LMIC} lower-middle · ${inc.UMIC} upper-middle &nbsp;${status}</div>
+      </div>
+      <div class="rp-actions">
+        <button class="ex-btn primary" onclick="repRunRegion(${qa(region)})">Region report</button>
+        <button class="rp-close" onclick="closeRegionPopup()" aria-label="Close">&#x2715;</button>
+      </div>
+    </div>
+    <div class="rp-body">
+      <div class="ex-kpis" style="margin:0 0 22px">${tiles}</div>
+      <div class="ex-sub-title" style="margin-top:0">Regional median by indicator</div>
+      <div class="rp-meds">${medRow}</div>
+      <div class="rp-tbl-hd"><div class="ex-sub-title" style="margin:0">Country by country</div>${SEV_LEGEND_HTML}</div>
+      <div class="rp-tbl-wrap"><table class="ex-table rp-table">
+        <thead><tr><th>Country</th><th class="num">Need</th>${REGION_INDS.map(i => `<th class="num" title="${exEsc(i.lbl)}">${i.short}</th>`).join('')}</tr></thead>
+        <tbody>${rows}</tbody></table></div>
+      <div class="ex-method">Colours compare each value with SDG / WHO / UNESCO benchmarks (hover a cell for the indicator and year). Under-5 mortality per 1,000 live births; maternal mortality per 100,000. People-without figures are estimates from national access rates. Click a country to open its profile.</div>
+    </div></div>`;
+}
+
 // Need-index shade shared by both maps: top third / middle third / lowest third.
 const NEED_SHADES = { hi:'#1B6FA8', mid:'#3E9BD6', lo:'#A9D2EE', none:'#B9C6D2' };
 function needShade(country) {
@@ -2668,11 +2924,11 @@ function renderExecutive() {
     const ms = REGION_MEMBERS[r] || [];
     const ns = ms.map(c => need[c] && need[c].need).filter(x => x != null);
     return { r, n: ms.length, avg: ns.length ? ns.reduce((s, x) => s + x, 0) / ns.length : null };
-  }).sort((a, b) => (b.avg || 0) - (a.avg || 0)).map(x => `<div class="ex-stage" style="grid-template-columns:minmax(0,1.5fr) minmax(50px,1fr) 30px auto;margin-bottom:16px">
-      <div class="ex-stage-name" style="line-height:1.35">${exEsc(x.r)}<div style="color:var(--ex-faint);font-size:11.5px;font-weight:400">${x.n} countries</div></div>
+  }).sort((a, b) => (b.avg || 0) - (a.avg || 0)).map(x => `<div class="ex-stage ex-region-row" onclick="openRegionPopup(${qa(x.r)})" title="View ${exEsc(x.r)} indicators" style="grid-template-columns:minmax(0,1.5fr) minmax(50px,1fr) 30px auto">
+      <div class="ex-stage-name" style="line-height:1.35">${exEsc(x.r)}<div style="color:var(--ex-faint);font-size:11.5px;font-weight:400">${x.n} countries · <span class="ex-region-link">View indicators</span></div></div>
       <div class="ex-stage-track"><div class="ex-stage-fill" style="width:${x.avg != null ? Math.max(4, Math.round(x.avg)) : 0}%"></div></div>
       <div class="ex-rank-score" style="font-size:15px">${x.avg != null ? Math.round(x.avg) : '—'}</div>
-      <button class="ex-mini" onclick="repRunRegion(${qa(x.r)})">Region report</button>
+      <button class="ex-mini" onclick="event.stopPropagation();repRunRegion(${qa(x.r)})">Region report</button>
     </div>`).join('') || '<div class="ex-empty">Regions not available.</div>';
 
   const recent = repLibRowsHtml(REP_LIBRARY.slice(0, 5), true);
@@ -2767,6 +3023,7 @@ function renderReports() {
           <div class="rep-actions">
             <button class="ex-btn primary" onclick="repRunRegion(document.getElementById('rep-region').value)">Instant region report</button>
             <button class="ex-btn" onclick="repRunRegionAI(document.getElementById('rep-region').value)">Full AI region report</button>
+            <button class="ex-btn" onclick="openRegionPopup(document.getElementById('rep-region').value)">View indicators</button>
           </div>
         </div>
       </div>

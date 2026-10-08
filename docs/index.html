@@ -1604,6 +1604,9 @@ body {
 .rp-med-l { font-size:10.5px; font-weight:600; letter-spacing:.8px; text-transform:uppercase; color:var(--ex-mute); }
 .rp-med-v { font-family:var(--ex-serif); font-size:22px; font-weight:600; color:var(--ex-ink); margin-top:6px; }
 .rp-med-s { font-size:11px; color:var(--ex-mute); margin-top:4px; }
+.rp-med-s a { color:var(--ex-sky-dk); text-decoration:none; font-weight:600; }
+.rp-med-s a:hover { text-decoration:underline; }
+.cd-key-meds { margin-bottom:4px; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); }
 .rp-tbl-hd { display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:10px; }
 .rp-tbl-hd .sev-legend { margin:0; }
 .rp-tbl-wrap { overflow:auto; max-height:52vh; border:1px solid var(--ex-line); border-radius:12px; }
@@ -2187,28 +2190,28 @@ function cdRenderOverview() {
   const data = countryDataCache[cdCountry] || {};
   const loading = !data || data.__loading || Object.keys(data).length === 0;
 
-  // Key overview indicators to show
-  const keyInds = [
-    { id:'SP.POP.TOTL',       label:'Population',         fmt:'pop',  unit:'' },
-    { id:'NY.GDP.PCAP.PP.CD', label:'GDP/Capita PPP',     fmt:'num0', unit:' USD' },
-    { id:'NY.GDP.MKTP.KD.ZG', label:'GDP Growth',         fmt:'pct1', unit:'%' },
-    { id:'SP.DYN.LE00.IN',    label:'Life Expectancy',    fmt:'num1', unit:' yrs' },
-    { id:'SH.DYN.MORT',       label:'Under-5 Mortality',  fmt:'num0', unit:' /1k' },
-    { id:'SN.ITK.DEFC.ZS',    label:'Undernourishment',   fmt:'pct1', unit:'%' },
-    { id:'SH.H2O.BASW.ZS',    label:'Basic Water Access', fmt:'pct1', unit:'%' },
-    { id:'EG.ELC.ACCS.ZS',    label:'Electricity Access', fmt:'pct1', unit:'%' },
-  ];
+  // Key indicators — same set and card design as the regional indicators popup,
+  // each with the country's regional median for comparison.
+  const region = repRegionOf(cdCountry), members = REGION_MEMBERS[region] || [];
+  const regMedian = id => {
+    const a = members.map(c => { const d = (prebakedIndicators[c] || {})[id]; return d && d.value != null ? d.value : null; })
+      .filter(x => x != null).sort((x, y) => x - y);
+    if (!a.length) return null; const m = Math.floor(a.length / 2); return a.length % 2 ? a[m] : (a[m - 1] + a[m]) / 2;
+  };
+  const keyInds = [{ id:'SP.POP.TOTL', lbl:'Population', pop:true }].concat(REGION_INDS);
   const statsHtml = keyInds.map(ind => {
     const raw = data[ind.id];
-    const hasVal = !loading && raw && raw.value !== null;
-    const val = hasVal ? ca_formatValue(raw, ind) : (loading ? '…' : '—');
-    const srcUrl = `https://data.worldbank.org/indicator/${ind.id}?locations=${iso}`;
+    const hasVal = !loading && raw && raw.value != null;
     const sv = hasVal ? indSeverity(ind.id, raw.value) : null;
-    return `<div class="cd-stat-card${sv ? ' sev-' + sv.lvl : ''}"${sv ? ` title="${exEsc(sv.why)}"` : ''}>
-      <div class="cd-stat-label">${ind.label}${sv ? sevPill(sv) : ''}</div>
-      <div class="cd-stat-val ${loading ? 'cd-stat-loading' : ''}">${val}<span class="cd-stat-unit">${hasVal ? ind.unit : ''}</span></div>
-      ${hasVal ? `<div class="cd-stat-year">${raw.year}</div>` : ''}
-      <div class="cd-stat-src"><a href="${srcUrl}" target="_blank">World Bank</a></div>
+    const fmt = v => ind.pop ? repFmtPeople(v) : rpFmt(ind, v);
+    const val = hasVal ? fmt(raw.value) : (loading ? '…' : '—');
+    const med = ind.pop ? null : regMedian(ind.id);
+    const srcUrl = `https://data.worldbank.org/indicator/${ind.id}?locations=${iso}`;
+    return `<div class="rp-med${sv ? ' sev-' + sv.lvl : ''}"${sv ? ` title="${exEsc(sv.why)}"` : ''}>
+      <div class="rp-med-l">${ind.lbl}</div>
+      <div class="rp-med-v">${val}</div>
+      <div class="rp-med-s">${sv ? `<b>${sv.label}</b> · ` : ''}${hasVal ? raw.year + ' · ' : ''}<a href="${srcUrl}" target="_blank" title="World Bank Open Data">Source</a></div>
+      ${med != null ? `<div class="rp-med-s">Region median: ${fmt(med)}</div>` : ''}
     </div>`;
   }).join('');
   const srcLabel = data.__source === 'live' ? 'Live from World Bank' : data.__source === 'baked' ? 'Snapshot · refreshing live…' : '';
@@ -2224,7 +2227,7 @@ function cdRenderOverview() {
         ${loading ? `<span class="cd-stat-loading">Loading…</span>` : `<a href="https://data.worldbank.org/country/${iso}" target="_blank" style="font-size:10px;color:var(--accent);text-decoration:none">World Bank profile →</a>`}
       </div>
       ${SEV_LEGEND_HTML}
-      <div class="cd-stat-grid">${statsHtml}</div>
+      <div class="rp-meds cd-key-meds">${statsHtml}</div>
     </div>
     <div class="cd-section cd-reports">
       <div class="cd-section-hd">

@@ -1699,7 +1699,8 @@ body {
 [dir="rtl"] .ex-map-legend { left:auto; right:16px; }
 [dir="rtl"] .ex-pop, [dir="rtl"] .leaflet-tooltip { direction:rtl; text-align:right; font-family:'IBM Plex Sans Arabic',sans-serif; }
 [dir="rtl"] .ex-pop-name { font-family:var(--ex-serif); }
-[dir="rtl"] .need-key-col { align-items:flex-end; }
+[dir="rtl"] .need-key-col { align-items:flex-start; }   /* start = right in RTL, same edge as the other key items */
+.need-key-col .need-key { gap:8px; }
 [dir="rtl"] .map-legend { direction:rtl; text-align:right; }
 
 @media (max-width: 1100px) {

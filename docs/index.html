@@ -1409,6 +1409,88 @@ body {
   font-family: inherit; transition: all .15s; display: flex; align-items: center; gap: 4px;
 }
 .csv-btn:hover { background: var(--accent-lt); }
+
+/* ── Executive View (leadership landing page) — white / sky blue / gold ── */
+#view-executive {
+  --ex-sky:#3E9BD6; --ex-sky-dk:#1B6FA8; --ex-sky-lt:#D7ECF9; --ex-sky-pale:#F1F8FD;
+  --ex-gold:#B8913A; --ex-gold-lt:#F6EED9; --ex-ink:#14324A; --ex-mute:#5E7387; --ex-line:#E1ECF4;
+  background:#FFFFFF;
+}
+.ex-scroll { flex:1; overflow-y:auto; }
+.ex-wrap { max-width:1240px; margin:0 auto; padding:0 32px 40px; }
+.ex-hero { background:var(--ex-sky-pale); border-bottom:1px solid var(--ex-line); }
+.ex-hero-in { max-width:1240px; margin:0 auto; padding:28px 32px 24px; display:flex; justify-content:space-between; align-items:flex-end; gap:20px; flex-wrap:wrap; }
+.ex-eyebrow { font-size:11px; font-weight:700; letter-spacing:1.4px; text-transform:uppercase; color:var(--ex-gold); }
+.ex-title { font-family:'Lora',Georgia,serif; font-size:30px; font-weight:700; color:var(--ex-ink); margin-top:6px; line-height:1.15; }
+.ex-rule { width:56px; height:3px; background:var(--ex-gold); margin:12px 0 12px; }
+.ex-summary { font-size:15px; color:var(--ex-mute); line-height:1.55; max-width:720px; }
+.ex-summary strong { color:var(--ex-ink); }
+.ex-hero-actions { display:flex; gap:8px; align-items:center; }
+.ex-date { font-size:12px; color:var(--ex-mute); margin-right:6px; }
+.ex-btn { display:inline-flex; align-items:center; gap:6px; padding:8px 14px; border-radius:8px; font:600 12px 'Inter',sans-serif; cursor:pointer; border:1px solid var(--ex-sky); background:#fff; color:var(--ex-sky-dk); transition:background .15s; }
+.ex-btn:hover { background:var(--ex-sky-pale); }
+.ex-btn.primary { background:var(--ex-sky-dk); border-color:var(--ex-sky-dk); color:#fff; }
+.ex-btn.primary:hover { background:#155C8D; }
+
+.ex-kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin:24px 0 28px; }
+.ex-kpi { background:#fff; border:1px solid var(--ex-line); border-top:3px solid var(--ex-sky); border-radius:10px; padding:16px 18px; }
+.ex-kpi.gold { border-top-color:var(--ex-gold); }
+.ex-kpi-label { font-size:11px; font-weight:600; letter-spacing:.5px; text-transform:uppercase; color:var(--ex-mute); }
+.ex-kpi-val { font-size:32px; font-weight:800; color:var(--ex-ink); margin-top:6px; line-height:1; font-variant-numeric:tabular-nums; }
+.ex-kpi-sub { font-size:12px; color:var(--ex-mute); margin-top:6px; }
+
+.ex-grid { display:grid; grid-template-columns:minmax(0,1.35fr) minmax(0,1fr); gap:20px; margin-bottom:20px; }
+.ex-card { background:#fff; border:1px solid var(--ex-line); border-radius:12px; padding:18px 20px; }
+.ex-card-hd { display:flex; justify-content:space-between; align-items:baseline; gap:10px; margin-bottom:14px; }
+.ex-card-title { font-family:'Lora',Georgia,serif; font-size:17px; font-weight:700; color:var(--ex-ink); }
+.ex-card-note { font-size:12px; color:var(--ex-mute); }
+.ex-empty { font-size:13px; color:var(--ex-mute); padding:10px 0; }
+
+.ex-dec { display:flex; align-items:center; gap:14px; padding:12px 14px; border:1px solid var(--ex-line); border-left:3px solid var(--ex-gold); border-radius:8px; margin-bottom:10px; cursor:pointer; transition:background .15s; }
+.ex-dec:hover { background:var(--ex-gold-lt); }
+.ex-dec-main { flex:1; min-width:0; }
+.ex-dec-title { font-size:14px; font-weight:700; color:var(--ex-ink); }
+.ex-dec-meta { font-size:12px; color:var(--ex-mute); margin-top:3px; display:flex; align-items:center; gap:6px; flex-wrap:wrap; }
+.ex-dec-verdict { font-size:11px; font-weight:600; color:#7A5A12; background:var(--ex-gold-lt); border-radius:4px; padding:1px 6px; }
+.ex-dec-cost { font-size:16px; font-weight:800; color:var(--ex-ink); white-space:nowrap; font-variant-numeric:tabular-nums; }
+.ex-tag { font-size:10px; font-weight:700; letter-spacing:.4px; text-transform:uppercase; padding:3px 8px; border-radius:20px; white-space:nowrap; }
+.ex-tag.lead { background:var(--ex-gold-lt); color:#7A5A12; }
+.ex-tag.stake { background:var(--ex-sky-lt); color:var(--ex-sky-dk); }
+
+.ex-stage { display:grid; grid-template-columns:130px 1fr 74px; align-items:center; gap:10px; margin-bottom:10px; font-size:13px; }
+.ex-stage-name { color:var(--ex-ink); font-weight:500; }
+.ex-stage-track { height:22px; background:var(--ex-sky-pale); border-radius:4px; overflow:hidden; }
+.ex-stage-fill { height:100%; background:var(--ex-sky); border-radius:4px; display:flex; align-items:center; padding-left:8px; color:#fff; font-size:11px; font-weight:700; min-width:0; }
+.ex-stage-fill.gold { background:var(--ex-gold); }
+.ex-stage-val { text-align:right; color:var(--ex-mute); font-variant-numeric:tabular-nums; }
+
+.ex-table { width:100%; border-collapse:collapse; font-size:13px; }
+.ex-table th { text-align:left; font-size:11px; font-weight:600; letter-spacing:.4px; text-transform:uppercase; color:var(--ex-mute); padding:0 8px 8px; border-bottom:1px solid var(--ex-line); }
+.ex-table td { padding:10px 8px; border-bottom:1px solid var(--ex-line); color:var(--ex-ink); vertical-align:middle; }
+.ex-table tr:last-child td { border-bottom:none; }
+.ex-table tbody tr { cursor:pointer; }
+.ex-table tbody tr:hover td { background:var(--ex-sky-pale); }
+.ex-table .num { text-align:right; font-variant-numeric:tabular-nums; }
+.ex-share { display:flex; align-items:center; gap:8px; }
+.ex-share-track { flex:1; height:6px; background:var(--ex-sky-pale); border-radius:3px; overflow:hidden; min-width:60px; }
+.ex-share-fill { height:100%; background:var(--ex-sky); }
+
+.ex-rep { display:flex; align-items:center; gap:10px; padding:10px 0; border-bottom:1px solid var(--ex-line); font-size:13px; color:var(--ex-ink); }
+.ex-rep:last-child { border-bottom:none; }
+.ex-rep a { margin-left:auto; color:var(--ex-sky-dk); font-weight:600; text-decoration:none; font-size:12px; }
+.ex-rep a:hover { text-decoration:underline; }
+
+@media (max-width: 900px) {
+  .ex-grid { grid-template-columns:1fr; }
+  .ex-wrap, .ex-hero-in { padding-left:16px; padding-right:16px; }
+  .ex-title { font-size:24px; }
+  .ex-stage { grid-template-columns:96px 1fr 56px; }
+}
+@media print {
+  .app-header, .sidebar, #pipeline-panel, .ex-hero-actions { display:none !important; }
+  .app-body, .main-content, #view-executive, .ex-scroll { overflow:visible !important; height:auto !important; display:block !important; }
+  .ex-card, .ex-kpi, .ex-dec { break-inside:avoid; }
+}
 </style>
 </head>
 <body>
@@ -1424,7 +1506,10 @@ body {
 <nav class="sidebar">
   <div class="sb-logo" title="Country Assessment Dashboard">CAD</div>
   <div class="sb-nav">
-    <div class="sb-icon active" data-view="overview" onclick="switchView('overview',this)" title="Home">
+    <div class="sb-icon active" data-view="executive" onclick="switchView('executive',this)" title="Executive View">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    </div>
+    <div class="sb-icon" data-view="overview" onclick="switchView('overview',this)" title="Home">
       <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
     </div>
     <div class="sb-icon" data-view="reports" onclick="switchView('reports',this)" title="Country Reports">
@@ -1558,8 +1643,13 @@ body {
     <div class="ov-scroll" id="rep-scroll"></div>
   </div>
 
+  <!-- ── VIEW: Executive View (leadership landing page) ── -->
+  <div id="view-executive" class="view active">
+    <div class="ex-scroll" id="ex-scroll"></div>
+  </div>
+
   <!-- ── VIEW: Home ── -->
-  <div id="view-overview" class="view active">
+  <div id="view-overview" class="view">
     <div class="view-header">
       <div>
         <div class="view-title">Home</div>
@@ -2180,6 +2270,7 @@ function switchView(view, navEl) {
   if (view === 'settings')  renderSettings(currentSettingsTab);
   if (view === 'documents') renderDocuments();
   if (view === 'overview')  renderOverview();
+  if (view === 'executive') renderExecutive();
   if (view === 'reports')   renderReports();
   if (view === 'evaluation') {
     const f = document.getElementById('evaluator-frame');
@@ -2193,17 +2284,22 @@ function switchView(view, navEl) {
 }
 
 function restoreView() {
+  // Executive View is the landing page. A link ending in #executive always opens it;
+  // otherwise a returning user goes back to the view they were last on.
+  const landing = () => goView('executive');
   try {
+    if (location.hash === '#executive') return landing();
     const v = localStorage.getItem('cad_view');
-    if (!v || v === 'overview') return;
+    if (!v || v === 'executive') return landing();
     if (v === 'project') {
       const id = parseInt(localStorage.getItem('cad_project'), 10);
       if (!isNaN(id) && requests.find(r => r.id === id)) { openProject(id); return; }
-      return;
+      return landing();
     }
     const el = document.querySelector('.sb-icon[data-view="' + v + '"]');
     if (el && document.getElementById('view-' + v)) switchView(v, el);
-  } catch (e) {}
+    else landing();
+  } catch (e) { landing(); }
 }
 
 // ── Language ──────────────────────────────────────────────────────────────
@@ -3777,6 +3873,7 @@ async function loadReportsManifest() {
     const r = await fetch('reports/manifest.json?v=' + Date.now());
     if (r.ok) { const j = await r.json(); REPORTS_MANIFEST = j.reports || {}; }
   } catch (e) { /* no manifest — fall back to client-side generation */ }
+  if (document.getElementById('view-executive').classList.contains('active')) renderExecutive();
 }
 
 async function cd_exportCountryPPT(country) {
@@ -6330,6 +6427,176 @@ function renderOverview() {
       <div>
         <div class="ov-section-title">Recent Activity</div>
         <div class="ov-card">${recentActivity}</div>
+      </div>
+    </div>`;
+}
+
+// ── Executive View (leadership landing page) ──────────────────────────────
+// Read-only summary built from the live `requests` / `requestMeta` data:
+// headline numbers, decisions awaiting leadership, stage funnel, country and sector mix.
+function exMoney(m) {
+  if (m >= 1000) return '$' + (m / 1000).toFixed(1).replace(/\.0$/, '') + 'B';
+  return '$' + (Math.round(m * 10) / 10) + 'M';
+}
+function exCostM(r) {
+  const s = String(r.cost || '');
+  const n = parseFloat(s.replace(/[^0-9.]/g, '')) || 0;
+  return /B/i.test(s) ? n * 1000 : n;
+}
+function exPeople(str) {
+  const m = String(str || '').match(/([\d.,]+)\s*(M|K)?/i);
+  if (!m) return 0;
+  const n = parseFloat(m[1].replace(/,/g, '')) || 0;
+  return m[2] ? n * (m[2].toUpperCase() === 'M' ? 1e6 : 1e3) : n;
+}
+function exFmtPeople(n) {
+  if (n >= 1e6) return (n / 1e6).toFixed(1).replace(/\.0$/, '') + 'M';
+  if (n >= 1e3) return Math.round(n / 1e3) + 'K';
+  return String(n);
+}
+function exEsc(s) {
+  return String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]));
+}
+function exOpenCountry(country) {
+  goView('pipeline');
+  setTimeout(() => openCountryDrawer(country), 120);
+}
+
+function renderExecutive() {
+  const el = document.getElementById('ex-scroll');
+  if (!el) return;
+  const steps = T.en.steps;
+  const live = requests.filter(r => r.substatus !== 'cancelled');
+  const totalVal = live.reduce((s, r) => s + exCostM(r), 0);
+  const countries = [...new Set(live.map(r => r.country))];
+  const approved = live.filter(r => r.status >= 5);
+  const people = live.reduce((s, r) => s + exPeople((requestMeta[r.id] || {}).beneficiaries), 0);
+
+  // Awaiting a decision: Leadership Review (4) first, then Stakeholder Engagement (3)
+  const decisions = live
+    .filter(r => r.substatus !== 'paused' && (r.status === 3 || r.status === 4))
+    .sort((a, b) => (b.status - a.status) || (exCostM(b) - exCostM(a)));
+  const decVal = decisions.reduce((s, r) => s + exCostM(r), 0);
+
+  const today = new Date().toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' });
+  const summary = live.length
+    ? `<strong>${live.length} programme${live.length === 1 ? '' : 's'}</strong> worth <strong>${exMoney(totalVal)}</strong> across <strong>${countries.length} countr${countries.length === 1 ? 'y' : 'ies'}</strong>. `
+      + (decisions.length
+        ? `<strong>${decisions.length}</strong> (${exMoney(decVal)}) ${decisions.length === 1 ? 'is' : 'are'} at review stage and awaiting a decision.`
+        : 'Nothing is currently awaiting a leadership decision.')
+    : 'No programmes in the pipeline yet.';
+
+  const kpis = [
+    { label:'Pipeline value',       val: exMoney(totalVal),  sub: `${live.length} programmes in total` },
+    { label:'Awaiting decision',    val: decisions.length,   sub: `${exMoney(decVal)} at review stage`, gold:true },
+    { label:'Approved',             val: approved.length,    sub: `${exMoney(approved.reduce((s, r) => s + exCostM(r), 0))} approved` },
+    { label:'Countries',            val: countries.length,   sub: 'with active requests' },
+    { label:'People to be reached', val: people ? exFmtPeople(people) : '—', sub: 'estimated, where stated' },
+  ].map(k => `<div class="ex-kpi${k.gold ? ' gold' : ''}">
+      <div class="ex-kpi-label">${k.label}</div>
+      <div class="ex-kpi-val">${k.val}</div>
+      <div class="ex-kpi-sub">${k.sub}</div>
+    </div>`).join('');
+
+  const decisionRows = decisions.map(r => {
+    const ev = (requestMeta[r.id] || {}).evaluation;
+    const tag = r.status === 4
+      ? '<span class="ex-tag lead">Leadership review</span>'
+      : '<span class="ex-tag stake">Stakeholder engagement</span>';
+    return `<div class="ex-dec" onclick="openProject(${r.id})" title="Open programme">
+      <div class="ex-dec-main">
+        <div class="ex-dec-title">${exEsc(r.titleEn)}</div>
+        <div class="ex-dec-meta"><span style="display:inline-flex;align-items:center;gap:5px">${flagImg(r.country, 16, 11)} ${exEsc(r.country)}</span> · ${exEsc(r.sector)} · ${r.path === 'C' ? 'Program Evaluation' : 'Sector Assessment'}
+          ${ev ? `<span class="ex-dec-verdict">Evaluation ${ev.score}/100 · ${exEsc(ev.verdict)}</span>` : ''}</div>
+      </div>
+      ${tag}
+      <div class="ex-dec-cost">${exEsc(r.cost)}</div>
+    </div>`;
+  }).join('') || '<div class="ex-empty">No programmes are waiting on leadership right now.</div>';
+
+  const stageRows = steps.map((name, i) => {
+    const rs = live.filter(r => Math.min(r.status, 5) === i);
+    return { name, n: rs.length, val: rs.reduce((s, r) => s + exCostM(r), 0), i };
+  });
+  const stageMax = Math.max(1, ...stageRows.map(s => s.n));
+  const stageHtml = stageRows.map(s => `<div class="ex-stage">
+      <div class="ex-stage-name">${s.name}</div>
+      <div class="ex-stage-track">${s.n ? `<div class="ex-stage-fill${s.i === 4 ? ' gold' : ''}" style="width:${Math.max(12, Math.round(s.n / stageMax * 100))}%">${s.n}</div>` : ''}</div>
+      <div class="ex-stage-val">${s.n ? exMoney(s.val) : '—'}</div>
+    </div>`).join('');
+
+  const byCountry = countries.map(c => {
+    const rs = live.filter(r => r.country === c);
+    return { c, n: rs.length, val: rs.reduce((s, r) => s + exCostM(r), 0), dec: rs.filter(r => decisions.includes(r)).length };
+  }).sort((a, b) => b.val - a.val);
+  const countryRows = byCountry.map(x => `<tr onclick="exOpenCountry('${x.c.replace(/'/g, "\\'")}')" title="Open country profile">
+      <td>${flagImg(x.c, 18, 12)} &nbsp;${exEsc(x.c)}</td>
+      <td class="num">${x.n}</td>
+      <td class="num">${exMoney(x.val)}</td>
+      <td><div class="ex-share"><div class="ex-share-track"><div class="ex-share-fill" style="width:${totalVal ? Math.round(x.val / totalVal * 100) : 0}%"></div></div><span style="color:var(--ex-mute);font-size:12px;width:34px;text-align:right">${totalVal ? Math.round(x.val / totalVal * 100) : 0}%</span></div></td>
+      <td class="num">${x.dec ? `<span class="ex-tag lead">${x.dec}</span>` : '<span style="color:var(--ex-mute)">—</span>'}</td>
+    </tr>`).join('');
+
+  const secMap = {};
+  live.forEach(r => { secMap[r.sector] = (secMap[r.sector] || 0) + exCostM(r); });
+  const secEntries = Object.entries(secMap).sort((a, b) => b[1] - a[1]);
+  const secMax = Math.max(1, ...secEntries.map(([, v]) => v));
+  const sectorHtml = secEntries.map(([sec, v]) => `<div class="ex-stage">
+      <div class="ex-stage-name" title="${exEsc(sec)}" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${exEsc(sec)}</div>
+      <div class="ex-stage-track"><div class="ex-stage-fill" style="width:${Math.max(4, Math.round(v / secMax * 100))}%"></div></div>
+      <div class="ex-stage-val">${exMoney(v)}</div>
+    </div>`).join('') || '<div class="ex-empty">No sectors yet.</div>';
+
+  const reps = Object.entries(REPORTS_MANIFEST || {});
+  const repHtml = reps.map(([c, r]) => `<div class="ex-rep">${flagImg(c, 18, 12)} <span>${exEsc(c)}</span>
+      <span style="color:var(--ex-mute);font-size:12px">${r.slides ? r.slides + ' slides' : ''}${r.generated ? ' · ' + exEsc(r.generated) : ''}</span>
+      <a href="reports/${encodeURIComponent(r.file)}" download>Download</a></div>`).join('')
+    || '<div class="ex-empty">No finished country reports yet.</div>';
+
+  el.innerHTML = `
+    <div class="ex-hero"><div class="ex-hero-in">
+      <div>
+        <div class="ex-eyebrow">Executive View · Office of Development Affairs</div>
+        <div class="ex-title">Programme Portfolio at a Glance</div>
+        <div class="ex-rule"></div>
+        <div class="ex-summary">${summary}</div>
+      </div>
+      <div class="ex-hero-actions">
+        <span class="ex-date">As of ${today}</span>
+        <button class="ex-btn" onclick="window.print()">Print / PDF</button>
+        <button class="ex-btn primary" onclick="goView('pipeline')">Open full pipeline →</button>
+      </div>
+    </div></div>
+    <div class="ex-wrap">
+      <div class="ex-kpis">${kpis}</div>
+      <div class="ex-grid">
+        <div class="ex-card">
+          <div class="ex-card-hd"><div class="ex-card-title">Awaiting leadership decision</div><div class="ex-card-note">Click a programme for details</div></div>
+          ${decisionRows}
+        </div>
+        <div class="ex-card">
+          <div class="ex-card-hd"><div class="ex-card-title">Pipeline by stage</div><div class="ex-card-note">Count · value</div></div>
+          ${stageHtml}
+        </div>
+      </div>
+      <div class="ex-grid">
+        <div class="ex-card">
+          <div class="ex-card-hd"><div class="ex-card-title">Portfolio by country</div><div class="ex-card-note">Click a country for its profile</div></div>
+          <div style="overflow-x:auto"><table class="ex-table">
+            <thead><tr><th>Country</th><th class="num">Programmes</th><th class="num">Value</th><th>Share of pipeline</th><th class="num">Awaiting</th></tr></thead>
+            <tbody>${countryRows}</tbody>
+          </table></div>
+        </div>
+        <div>
+          <div class="ex-card" style="margin-bottom:20px">
+            <div class="ex-card-hd"><div class="ex-card-title">Value by sector</div></div>
+            ${sectorHtml}
+          </div>
+          <div class="ex-card">
+            <div class="ex-card-hd"><div class="ex-card-title">Country reports ready</div><div class="ex-card-note">${reps.length} available</div></div>
+            ${repHtml}
+          </div>
+        </div>
       </div>
     </div>`;
 }

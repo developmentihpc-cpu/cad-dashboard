@@ -304,9 +304,10 @@ body {
   box-shadow: 0 1px 4px rgba(0,0,0,.18);
 }
 /* shaded by need index (colorMapPins) */
-.map-pin.need-hi  { width: 12px; height: 12px; background: #1B6FA8; }
-.map-pin.need-mid { width: 12px; height: 12px; background: #3E9BD6; }
-.map-pin.need-lo  { width: 12px; height: 12px; background: #A9D2EE; }
+.map-pin.need-hi  { width: 12px; height: 12px; background: #0A6FD1; }
+.map-pin.need-mid { width: 12px; height: 12px; background: #2EA0F2; }
+.map-pin.need-lo  { width: 12px; height: 12px; background: #9ED6FA; }
+.map-pin { transition: transform .15s, background .15s, opacity .2s; }
 .map-pin:hover { transform: scale(1.4); }
 .map-pin.sel {
   background: #C9952A !important; border-color: #fff;
@@ -1488,6 +1489,7 @@ body {
 .ex-map { flex:none; height:460px; background:#EEF3F7; position:relative; }
 .ex-map-legend { position:absolute; left:16px; bottom:16px; z-index:500; background:rgba(255,255,255,.94); border:1px solid var(--ex-line); border-radius:10px; padding:8px 12px; display:flex; gap:14px; font-size:11px; color:var(--ex-mute); box-shadow:0 4px 14px rgba(15,42,64,.08); }
 .ex-map-legend i { display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:6px; vertical-align:-1px; }
+.need-key { display:inline-flex; align-items:center; gap:6px; font:500 11px 'Inter',sans-serif; color:var(--ex-mute); background:none; border:1px solid transparent; border-radius:20px; padding:3px 8px; cursor:pointer; transition:all .15s; white-space:nowrap; }.need-key i { display:inline-block; width:10px; height:10px; border-radius:50%; flex-shrink:0; }.need-key:hover { border-color:var(--ex-line); color:var(--ex-ink); background:#fff; }.need-key.on { border-color:var(--ex-sky); color:var(--ex-ink); background:var(--ex-sky-pale); font-weight:600; }.need-key.dim { opacity:.45; }.need-key-all { color:var(--ex-sky-dk); font-weight:600; }.ex-map-legend { gap:2px !important; padding:5px 6px !important; flex-wrap:wrap; }.need-key-col { display:flex; flex-direction:column; align-items:flex-start; gap:1px; margin:0 -8px 2px; }
 .ex-pop { font-family:'Inter',sans-serif; min-width:190px; }
 .ex-pop-name { font-family:var(--ex-serif); font-size:16px; font-weight:600; color:var(--ex-ink); }
 .ex-pop-meta { font-size:11.5px; color:var(--ex-mute); margin:3px 0 10px; }
@@ -1550,27 +1552,28 @@ body {
 .cd-reports .ex-rep { padding:9px 0; font-size:12.5px; }
 
 /* Severity colour coding (0 severe · 1 high concern · 2 moderate · 3 on track) */
-:root { --sev0:#A3303B; --sev0-bg:#FBEDEE; --sev1:#B8721A; --sev1-bg:#FDF3E3; --sev2:#9A8A3A; --sev2-bg:#F8F5E6; --sev3:#2F7F58; --sev3-bg:#EAF5EE; }
+:root { --sev0:#E5484D; --sev0-bg:#FFECEC; --sev0-tx:#C8282E; --sev1:#F5871F; --sev1-bg:#FFF1E2; --sev1-tx:#C2620A; --sev2:#F5C518; --sev2-bg:#FFF8D9; --sev2-tx:#8C6A00; --sev3:#1FAF6B; --sev3-bg:#E3F7EC; --sev3-tx:#13804C; }
 .cd-stat-card.sev-0, .ca-ind-card.sev-0 { border-left:3px solid var(--sev0); }
 .cd-stat-card.sev-1, .ca-ind-card.sev-1 { border-left:3px solid var(--sev1); }
 .cd-stat-card.sev-2, .ca-ind-card.sev-2 { border-left:3px solid var(--sev2); }
 .cd-stat-card.sev-3, .ca-ind-card.sev-3 { border-left:3px solid var(--sev3); }
-.sev-0 .cd-stat-val, .sev-0 .ca-ind-val { color:var(--sev0); }
-.sev-1 .cd-stat-val, .sev-1 .ca-ind-val { color:var(--sev1); }
-.sev-3 .cd-stat-val, .sev-3 .ca-ind-val { color:var(--sev3); }
+.sev-0 .cd-stat-val, .sev-0 .ca-ind-val { color:var(--sev0-tx); }
+.sev-1 .cd-stat-val, .sev-1 .ca-ind-val { color:var(--sev1-tx); }
+.sev-2 .cd-stat-val, .sev-2 .ca-ind-val { color:var(--sev2-tx); }
+.sev-3 .cd-stat-val, .sev-3 .ca-ind-val { color:var(--sev3-tx); }
 .sev-pill { display:inline-block; margin-left:6px; font-size:8.5px; font-weight:700; letter-spacing:.5px; text-transform:uppercase; padding:2px 6px; border-radius:10px; vertical-align:1px; white-space:nowrap; }
-.sev-p0 { background:var(--sev0-bg); color:var(--sev0); }
-.sev-p1 { background:var(--sev1-bg); color:var(--sev1); }
-.sev-p2 { background:var(--sev2-bg); color:var(--sev2); }
-.sev-p3 { background:var(--sev3-bg); color:var(--sev3); }
+.sev-p0 { background:var(--sev0); color:#fff; }
+.sev-p1 { background:var(--sev1); color:#fff; }
+.sev-p2 { background:var(--sev2); color:#5C4600; }
+.sev-p3 { background:var(--sev3); color:#fff; }
 .sev-legend { display:flex; flex-wrap:wrap; align-items:center; gap:6px 14px; font-size:11px; color:var(--ex-mute); margin:0 0 10px; }
 .sev-legend-note { color:var(--ex-faint); }
 .sev-dot { display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:5px; vertical-align:-1px; }
 .sev-d0 { background:var(--sev0); } .sev-d1 { background:var(--sev1); } .sev-d2 { background:var(--sev2); } .sev-d3 { background:var(--sev3); }
-.sevc-0 { background:var(--sev0-bg) !important; color:var(--sev0) !important; font-weight:700; }
-.sevc-1 { background:var(--sev1-bg) !important; color:var(--sev1) !important; font-weight:600; }
-.sevc-2 { background:var(--sev2-bg) !important; color:#6F6430 !important; }
-.sevc-3 { background:var(--sev3-bg) !important; color:var(--sev3) !important; }
+.sevc-0 { background:var(--sev0-bg) !important; color:var(--sev0-tx) !important; font-weight:700; box-shadow:inset 3px 0 0 var(--sev0); }
+.sevc-1 { background:var(--sev1-bg) !important; color:var(--sev1-tx) !important; font-weight:600; box-shadow:inset 3px 0 0 var(--sev1); }
+.sevc-2 { background:var(--sev2-bg) !important; color:var(--sev2-tx) !important; box-shadow:inset 3px 0 0 var(--sev2); }
+.sevc-3 { background:var(--sev3-bg) !important; color:var(--sev3-tx) !important; box-shadow:inset 3px 0 0 var(--sev3); }
 
 /* Region rows on the landing page open the popup */
 .ex-region-row { cursor:pointer; padding:8px 10px; margin:0 -10px 6px !important; border-radius:10px; transition:background .12s; }
@@ -1710,11 +1713,9 @@ body {
     <div class="map-wrap">
       <div id="map"></div>
       <div class="map-legend">
-        <div class="leg-title">Need index</div>
-        <div class="leg-item"><div class="leg-dot" style="background:#1B6FA8"></div><span>Highest third</span></div>
-        <div class="leg-item"><div class="leg-dot" style="background:#3E9BD6"></div><span>Middle third</span></div>
-        <div class="leg-item"><div class="leg-dot" style="background:#A9D2EE"></div><span>Lowest third</span></div>
-        <div class="leg-item"><div class="leg-dot" style="background:#9EB3C8"></div><span>Not ranked</span></div>
+        <div class="leg-title">Need index · click to filter</div>
+        <div id="map-need-key" class="need-key-col"></div>
+        <div class="leg-item"><div class="leg-dot" style="background:#C3CDD6"></div><span>Not ranked</span></div>
         <div class="leg-item"><div class="leg-dot" style="background:#C9952A"></div><span>Selected</span></div>
       </div>
       <div class="drawer" id="drawer">
@@ -2138,6 +2139,8 @@ function colorMapPins() {
     if (r) el.classList.add(r <= n / 3 ? 'need-hi' : r <= 2 * n / 3 ? 'need-mid' : 'need-lo');
     el.title = c + (r ? ' · need index ' + Math.round(need[c].need) + ' (rank ' + r + ' of ' + n + ')' : '');
   });
+  const key = document.getElementById('map-need-key');
+  if (key) key.innerHTML = needKeyHtml('mapFilterTier', mapTier, false);
 }
 
 function mapJumpTo(country) {
@@ -2850,19 +2853,29 @@ function renderRegionPopup() {
 }
 
 // Need-index shade shared by both maps: top third / middle third / lowest third.
-const NEED_SHADES = { hi:'#1B6FA8', mid:'#3E9BD6', lo:'#A9D2EE', none:'#B9C6D2' };
-function needShade(country) {
+const NEED_SHADES = { hi:'#0A6FD1', mid:'#2EA0F2', lo:'#9ED6FA', none:'#C3CDD6' };
+const NEED_TIER_LABEL = { hi:'Highest need', mid:'Middle', lo:'Lower', top:'Top 10' };
+// Need tier: top / middle / lowest third of ranked countries ('none' = not ranked)
+function needTier(country) {
   const need = needScores(), n = (need.__ranked || []).length, r = need[country] && need[country].rank;
-  if (!r) return NEED_SHADES.none;
-  return r <= n / 3 ? NEED_SHADES.hi : r <= 2 * n / 3 ? NEED_SHADES.mid : NEED_SHADES.lo;
+  if (!r) return 'none';
+  return r <= n / 3 ? 'hi' : r <= 2 * n / 3 ? 'mid' : 'lo';
+}
+function needShade(country) { return NEED_SHADES[needTier(country)]; }
+// Clickable map key — one legend item per tier; clicking filters, clicking again clears.
+function needKeyHtml(fnName, active, withTop) {
+  return ['hi', 'mid', 'lo'].concat(withTop ? ['top'] : []).map(t => `<button type="button" class="need-key${active === t ? ' on' : ''}${active && active !== t ? ' dim' : ''}" onclick="${fnName}('${t}')" title="${active === t ? 'Show all countries' : 'Show only: ' + NEED_TIER_LABEL[t]}">
+      <i style="${t === 'top' ? 'background:#fff;border:1.5px solid var(--ex-gold)' : 'background:' + NEED_SHADES[t]}"></i>${NEED_TIER_LABEL[t]}</button>`).join('')
+    + (active ? `<button type="button" class="need-key need-key-all" onclick="${fnName}(null)">Show all</button>` : '');
 }
 
 // Landing-page map widget — every tracked country shaded by need; click for a quick card.
-let exMap = null;
+let exMap = null, exMarkers = [], exTier = null;
 function exInitMiniMap() {
   const el = document.getElementById('ex-map');
   if (!el || typeof L === 'undefined') return;
   if (exMap) { exMap.remove(); exMap = null; }
+  exMarkers = [];
   exMap = L.map(el, { zoomControl:false, attributionControl:false, scrollWheelZoom:false, keyboard:false, worldCopyJump:false, minZoom:1, maxZoom:7, zoomSnap:0.25 });
   L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', { maxZoom:12 }).addTo(exMap);
   L.control.zoom({ position:'bottomright' }).addTo(exMap);
@@ -2870,9 +2883,9 @@ function exInitMiniMap() {
   const pts = [];
   Object.entries(COUNTRY_LATLNG).forEach(([c, ll]) => {
     pts.push(ll);
-    const n = need[c] || {};
-    const mk = L.circleMarker(ll, { radius: n.rank && n.rank <= 10 ? 7 : 5.5, color:'#fff', weight:1.5, fillColor: needShade(c), fillOpacity:.95 }).addTo(exMap);
-    if (n.rank && n.rank <= 10) L.circleMarker(ll, { radius:11, color:'#B08A3E', weight:1.2, fill:false, interactive:false }).addTo(exMap);
+    const n = need[c] || {}, top = !!(n.rank && n.rank <= 10);
+    const mk = L.circleMarker(ll, { radius: top ? 7 : 5.5, color:'#fff', weight:1.5, fillColor: needShade(c), fillOpacity:.95 }).addTo(exMap);
+    const ring = top ? L.circleMarker(ll, { radius:11, color:'#C9A13D', weight:1.6, fill:false, interactive:false }).addTo(exMap) : null;
     mk.bindPopup(`<div class="ex-pop">
         <div class="ex-pop-name">${exEsc(c)}</div>
         <div class="ex-pop-meta">${exEsc(repRegionOf(c) || '')}${n.rank ? ' · need index ' + Math.round(n.need) + ' · rank ' + n.rank + ' of ' + total : ''}</div>
@@ -2881,9 +2894,35 @@ function exInitMiniMap() {
           <button class="ex-mini" onclick="repRunSingle(${qa(c)})">Instant report</button>
         </div></div>`, { closeButton:false, offset:[0, -2] });
     mk.on('mouseover', () => mk.setStyle({ weight:2.5 })).on('mouseout', () => mk.setStyle({ weight:1.5 }));
+    exMarkers.push({ c, mk, ring, tier: needTier(c), top });
   });
   exMap.fitBounds(L.latLngBounds(pts).pad(0.03));
   setTimeout(() => exMap && exMap.invalidateSize(), 200);
+  exFilterTier(exTier, true);
+}
+function exFilterTier(t, keep) {
+  if (!keep) exTier = (t && exTier !== t) ? t : null;
+  exMarkers.forEach(m => {
+    const on = !exTier || (exTier === 'top' ? m.top : m.tier === exTier);
+    m.mk.setStyle({ fillOpacity: on ? .95 : .07, opacity: on ? 1 : .12 });
+    if (on) m.mk.bringToFront();
+    if (m.ring) m.ring.setStyle({ opacity: on ? 1 : .1 });
+  });
+  const key = document.getElementById('ex-map-key');
+  if (key) key.innerHTML = needKeyHtml('exFilterTier', exTier, true);
+}
+
+// Full map: same clickable key, applied to the Leaflet pin elements.
+let mapTier = null;
+function mapFilterTier(t) {
+  mapTier = (t && mapTier !== t) ? t : null;
+  Object.entries(mapMarkers).forEach(([c, { el }]) => {
+    const on = !mapTier || needTier(c) === mapTier;
+    el.style.opacity = on ? '1' : '0.12';
+    el.style.pointerEvents = on ? '' : 'none';
+  });
+  const key = document.getElementById('map-need-key');
+  if (key) key.innerHTML = needKeyHtml('mapFilterTier', mapTier, false);
 }
 
 function renderExecutive() {
@@ -2954,7 +2993,7 @@ function renderExecutive() {
       <div class="ex-card ex-map-card" style="margin-bottom:24px">
         <div class="ex-card-hd"><div><div class="ex-card-title">Where needs are greatest</div><div class="ex-card-note" style="margin-top:4px">Click a country for its profile or an instant report</div></div><a class="ex-link" href="#" onclick="goView('countries');return false">Open full map →</a></div>
         <div class="ex-map" id="ex-map">
-          <div class="ex-map-legend"><span><i style="background:${NEED_SHADES.hi}"></i>Highest need</span><span><i style="background:${NEED_SHADES.mid}"></i>Middle</span><span><i style="background:${NEED_SHADES.lo}"></i>Lower</span><span><i style="background:#fff;border:1.5px solid var(--ex-gold)"></i>Top 10</span></div>
+          <div class="ex-map-legend" id="ex-map-key"></div>
         </div>
       </div>
       <div class="ex-grid ex-grid-even">

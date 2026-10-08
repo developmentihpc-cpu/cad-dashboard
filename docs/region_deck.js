@@ -51,7 +51,7 @@ function buildRegionDeck(opts){
   ];
   const sev = (ind,v) => { if(v==null) return 3; const [a,b,c]=ind.th;
     return ind.dir>0 ? (v>a?0:v>b?1:v>c?2:3) : (v<a?0:v<b?1:v<c?2:3); };          // 0 severe … 3 good
-  const SEV_FILL = ['F2D9DC','F6E6D0','F4F5F7','E3F0E8'], SEV_TXT=[BORDEAUX,'8A5A12',INK,GREEN];
+  const SEV_FILL = ['FFE0E1','FFE9D2','FFF5CC','DDF4E7'], SEV_TXT=['C8282E','C2620A','8C6A00','13804C'];   // severe · high · moderate · on track (matches the dashboard)
 
   // ── regional aggregates ──
   const totPop = C.reduce((s,c)=>s+(gv(c,'SP.POP.TOTL')||0),0);

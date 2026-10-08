@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Country Assessment Dashboard</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:wght@500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
 <link  href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
@@ -1403,128 +1403,188 @@ body {
 }
 .csv-btn:hover { background: var(--accent-lt); }
 
-/* ── Executive View (leadership landing page) — white / sky blue / gold ── */
+/* ══ Executive look — white / sky blue / gold ══════════════════════════════ */
 :root {
-  --ex-sky:#3E9BD6; --ex-sky-dk:#1B6FA8; --ex-sky-lt:#D7ECF9; --ex-sky-pale:#F1F8FD;
-  --ex-gold:#B8913A; --ex-gold-lt:#F6EED9; --ex-ink:#14324A; --ex-mute:#5E7387; --ex-line:#E1ECF4;
+  --ex-sky:#3E9BD6; --ex-sky-dk:#1B6FA8; --ex-sky-lt:#DCEDF9; --ex-sky-pale:#F3F8FC;
+  --ex-gold:#B08A3E; --ex-gold-lt:#F5EEDF; --ex-gold-dk:#7E6024;
+  --ex-ink:#0F2A40; --ex-mute:#5D7186; --ex-faint:#8DA0B3; --ex-line:#E4ECF3;
+  --ex-serif:'Lora',Georgia,'Times New Roman',serif;
+  --ex-shadow:0 1px 2px rgba(15,42,64,.04), 0 10px 30px rgba(15,42,64,.05);
+  /* app-wide accent follows the sky palette */
+  --accent:#1B6FA8; --accent-lt:#EAF4FB; --accent-mid:#3E9BD6;
 }
-#view-executive, #view-reports { background:#FFFFFF; }
-.ex-datanote { font-size:12px; color:var(--ex-mute); margin-top:10px; }
-.ex-method { font-size:11.5px; color:var(--ex-mute); margin-top:12px; line-height:1.5; }
+
+/* Frame: header + sidebar */
+.app-header { height:64px; padding:0 28px; border-bottom:1px solid var(--ex-line); background:#fff; }
+.app-header img { height:34px !important; }
+.app-header-title { margin-left:22px; padding-left:22px; border-left:1px solid var(--ex-gold); font-family:var(--ex-serif); font-size:17px; font-weight:600; color:var(--ex-ink); letter-spacing:.01em; }
+.app-header-date { margin-left:auto; font-size:12px; color:var(--ex-faint); letter-spacing:.3px; }
+.sidebar { width:68px; background:#fff; border-right:1px solid var(--ex-line); padding:18px 0; }
+.sb-nav { gap:6px; padding:0 10px; }
+.sb-icon { width:48px; height:46px; border-radius:12px; color:var(--ex-faint); position:relative; }
+.sb-icon:hover { background:var(--ex-sky-pale); color:var(--ex-sky-dk); }
+.sb-icon.active { background:var(--ex-sky-pale); color:var(--ex-sky-dk); }
+.sb-icon.active::before { content:''; position:absolute; left:-10px; top:11px; bottom:11px; width:3px; border-radius:0 3px 3px 0; background:var(--ex-gold); }
+.sb-icon::after { content:attr(data-label); position:absolute; left:58px; top:50%; transform:translateY(-50%); background:var(--ex-ink); color:#fff; font:500 12px 'Inter',sans-serif; padding:6px 10px; border-radius:6px; white-space:nowrap; opacity:0; pointer-events:none; transition:opacity .15s; z-index:999; }
+.sb-icon:hover::after { opacity:1; }
+
+#view-executive, #view-reports { background:#fff; }
+.ex-scroll { flex:1; overflow-y:auto; }
+.ex-wrap { max-width:1280px; margin:0 auto; padding:0 40px 56px; }
+
+/* Hero */
+.ex-hero { background:var(--ex-sky-pale); border-bottom:1px solid var(--ex-line); position:relative; }
+.ex-hero::after { content:''; position:absolute; left:0; right:0; bottom:-1px; height:2px; background:linear-gradient(90deg, var(--ex-gold) 0, var(--ex-gold) 120px, transparent 120px); }
+.ex-hero-in { max-width:1280px; margin:0 auto; padding:44px 40px 36px; display:flex; justify-content:space-between; align-items:flex-end; gap:28px; flex-wrap:wrap; }
+.ex-eyebrow { font-size:11px; font-weight:600; letter-spacing:2.6px; text-transform:uppercase; color:var(--ex-gold); }
+.ex-title { font-family:var(--ex-serif); font-size:42px; font-weight:600; color:var(--ex-ink); margin-top:10px; line-height:1.08; letter-spacing:-.01em; }
+.ex-rule { width:48px; height:2px; background:var(--ex-gold); margin:18px 0 16px; }
+.ex-summary { font-size:16px; color:var(--ex-mute); line-height:1.65; max-width:700px; font-weight:400; }
+.ex-summary strong { color:var(--ex-ink); font-weight:600; }
+.ex-datanote { font-size:12px; color:var(--ex-faint); margin-top:12px; letter-spacing:.2px; }
+.ex-hero-actions { display:flex; gap:10px; align-items:center; }
+.ex-date { font-size:12px; color:var(--ex-faint); margin-right:6px; }
+
+/* Buttons */
+.ex-btn { display:inline-flex; align-items:center; gap:8px; padding:10px 18px; border-radius:10px; font:600 12.5px 'Inter',sans-serif; letter-spacing:.2px; cursor:pointer; border:1px solid var(--ex-line); background:#fff; color:var(--ex-ink); transition:all .15s; }
+.ex-btn:hover { border-color:var(--ex-sky); color:var(--ex-sky-dk); }
+.ex-btn.primary { background:var(--ex-ink); border-color:var(--ex-ink); color:#fff; }
+.ex-btn.primary:hover { background:var(--ex-sky-dk); border-color:var(--ex-sky-dk); color:#fff; }
+.ex-mini { font:600 11.5px 'Inter',sans-serif; padding:6px 11px; border-radius:8px; border:1px solid var(--ex-line); background:#fff; color:var(--ex-sky-dk); cursor:pointer; white-space:nowrap; transition:all .15s; }
+.ex-mini:hover { border-color:var(--ex-sky); background:var(--ex-sky-pale); }
+.ex-mini.danger { color:#8A2C36; padding:6px 9px; }
+.ex-mini.danger:hover { border-color:#E3C9CC; background:#FBF2F3; }
 .ex-link { color:var(--ex-sky-dk); font-weight:600; font-size:12.5px; text-decoration:none; }
 .ex-link:hover { text-decoration:underline; }
-.ex-mini { font:600 11.5px 'Inter',sans-serif; padding:5px 10px; border-radius:6px; border:1px solid var(--ex-sky); background:#fff; color:var(--ex-sky-dk); cursor:pointer; white-space:nowrap; }
-.ex-mini:hover { background:var(--ex-sky-pale); }
-.ex-mini.danger { border-color:#E3C9CC; color:#79242F; padding:5px 8px; }
-.ex-mini.danger:hover { background:#FBF0F1; }
-.ex-sub-title { font-size:11px; font-weight:700; letter-spacing:.6px; text-transform:uppercase; color:var(--ex-mute); margin:18px 0 4px; }
 
-/* Reports view */
+/* KPI strip — one surface, hairline dividers, serif numerals */
+.ex-kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); margin:32px 0; background:#fff; border:1px solid var(--ex-line); border-radius:16px; box-shadow:var(--ex-shadow); overflow:hidden; }
+.ex-kpi { padding:22px 24px; border-left:1px solid var(--ex-line); position:relative; }
+.ex-kpi:first-child { border-left:none; }
+.ex-kpi.gold::before { content:''; position:absolute; left:24px; top:0; width:28px; height:2px; background:var(--ex-gold); }
+.ex-kpi-label { font-size:10.5px; font-weight:600; letter-spacing:1.4px; text-transform:uppercase; color:var(--ex-faint); }
+.ex-kpi-val { font-family:var(--ex-serif); font-size:34px; font-weight:600; color:var(--ex-ink); margin-top:10px; line-height:1; font-variant-numeric:lining-nums tabular-nums; }
+.ex-kpi.gold .ex-kpi-val { color:var(--ex-gold-dk); }
+.ex-kpi-sub { font-size:11.5px; color:var(--ex-mute); margin-top:8px; line-height:1.4; }
+
+/* Cards */
+.ex-grid { display:grid; grid-template-columns:minmax(0,1.35fr) minmax(0,1fr); gap:24px; margin-bottom:24px; }
+.ex-grid-map { grid-template-columns:minmax(0,1.65fr) minmax(0,1fr); }
 .ex-grid-even { grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
-.rep-help { font-size:12.5px; color:var(--ex-mute); line-height:1.5; margin-bottom:12px; }
-.rep-input { width:100%; box-sizing:border-box; padding:9px 11px; border:1.5px solid var(--ex-line); border-radius:8px; font:13px 'Inter',sans-serif; color:var(--ex-ink); background:#fff; }
-.rep-input:focus { outline:none; border-color:var(--ex-sky); }
-.rep-actions { display:flex; gap:8px; flex-wrap:wrap; margin-top:14px; }
-.rep-qs-row { display:flex; gap:6px; flex-wrap:wrap; align-items:center; margin-bottom:12px; }
-.rep-qs { font:500 11.5px 'Inter',sans-serif; padding:5px 11px; border:1px solid var(--ex-line); border-radius:20px; background:#fff; color:var(--ex-mute); cursor:pointer; }
-.rep-qs:hover { border-color:var(--ex-sky); color:var(--ex-sky-dk); }
-.rep-qs.on { background:var(--ex-sky-dk); border-color:var(--ex-sky-dk); color:#fff; }
-.rep-chips { display:flex; gap:6px; flex-wrap:wrap; }
-.rep-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:2px 14px; max-height:260px; overflow:auto; border:1px solid var(--ex-line); border-radius:8px; padding:10px 12px; }
-.rep-chk { display:flex; align-items:center; gap:8px; font-size:12.5px; color:var(--ex-ink); cursor:pointer; padding:3px 0; }
-.rep-chk input { accent-color:var(--ex-sky-dk); }
-.rep-chk span { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-.rep-toast { position:fixed; left:50%; bottom:24px; transform:translate(-50%,20px); background:var(--ex-ink); color:#fff; font-size:13px; padding:11px 18px; border-radius:8px; border-left:3px solid var(--ex-gold); box-shadow:0 8px 28px rgba(0,0,0,.25); opacity:0; pointer-events:none; transition:all .25s; z-index:5000; max-width:90vw; }
-.rep-toast.show { opacity:1; transform:translate(-50%,0); }
-
-/* Countries view */
-#view-countries { flex-direction:column; }
-.map-toolbar { display:flex; justify-content:space-between; align-items:center; gap:12px; padding:12px 20px; background:#fff; border-bottom:1px solid var(--border); flex-shrink:0; flex-wrap:wrap; }
-.map-toolbar-title { font-family:'Lora',Georgia,serif; font-size:18px; font-weight:700; color:var(--ex-ink); }
-.map-toolbar-sub { font-size:12px; color:var(--ex-mute); }
-.cd-reports .ex-rep { padding:8px 0; font-size:12.5px; }
-.ex-scroll { flex:1; overflow-y:auto; }
-.ex-wrap { max-width:1240px; margin:0 auto; padding:0 32px 40px; }
-.ex-hero { background:var(--ex-sky-pale); border-bottom:1px solid var(--ex-line); }
-.ex-hero-in { max-width:1240px; margin:0 auto; padding:28px 32px 24px; display:flex; justify-content:space-between; align-items:flex-end; gap:20px; flex-wrap:wrap; }
-.ex-eyebrow { font-size:11px; font-weight:700; letter-spacing:1.4px; text-transform:uppercase; color:var(--ex-gold); }
-.ex-title { font-family:'Lora',Georgia,serif; font-size:30px; font-weight:700; color:var(--ex-ink); margin-top:6px; line-height:1.15; }
-.ex-rule { width:56px; height:3px; background:var(--ex-gold); margin:12px 0 12px; }
-.ex-summary { font-size:15px; color:var(--ex-mute); line-height:1.55; max-width:720px; }
-.ex-summary strong { color:var(--ex-ink); }
-.ex-hero-actions { display:flex; gap:8px; align-items:center; }
-.ex-date { font-size:12px; color:var(--ex-mute); margin-right:6px; }
-.ex-btn { display:inline-flex; align-items:center; gap:6px; padding:8px 14px; border-radius:8px; font:600 12px 'Inter',sans-serif; cursor:pointer; border:1px solid var(--ex-sky); background:#fff; color:var(--ex-sky-dk); transition:background .15s; }
-.ex-btn:hover { background:var(--ex-sky-pale); }
-.ex-btn.primary { background:var(--ex-sky-dk); border-color:var(--ex-sky-dk); color:#fff; }
-.ex-btn.primary:hover { background:#155C8D; }
-
-.ex-kpis { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin:24px 0 28px; }
-.ex-kpi { background:#fff; border:1px solid var(--ex-line); border-top:3px solid var(--ex-sky); border-radius:10px; padding:16px 18px; }
-.ex-kpi.gold { border-top-color:var(--ex-gold); }
-.ex-kpi-label { font-size:11px; font-weight:600; letter-spacing:.5px; text-transform:uppercase; color:var(--ex-mute); }
-.ex-kpi-val { font-size:32px; font-weight:800; color:var(--ex-ink); margin-top:6px; line-height:1; font-variant-numeric:tabular-nums; }
-.ex-kpi-sub { font-size:12px; color:var(--ex-mute); margin-top:6px; }
-
-.ex-grid { display:grid; grid-template-columns:minmax(0,1.35fr) minmax(0,1fr); gap:20px; margin-bottom:20px; }
-.ex-card { background:#fff; border:1px solid var(--ex-line); border-radius:12px; padding:18px 20px; }
-.ex-card-hd { display:flex; justify-content:space-between; align-items:baseline; gap:10px; margin-bottom:14px; }
-.ex-card-title { font-family:'Lora',Georgia,serif; font-size:17px; font-weight:700; color:var(--ex-ink); }
-.ex-card-note { font-size:12px; color:var(--ex-mute); }
+.ex-card { background:#fff; border:1px solid var(--ex-line); border-radius:16px; padding:24px 26px; box-shadow:var(--ex-shadow); min-width:0; }
+.ex-card-hd { display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin-bottom:18px; }
+.ex-card-title { font-family:var(--ex-serif); font-size:20px; font-weight:600; color:var(--ex-ink); letter-spacing:-.005em; }
+.ex-card-note { font-size:12px; color:var(--ex-faint); }
 .ex-empty { font-size:13px; color:var(--ex-mute); padding:10px 0; }
-
-.ex-dec { display:flex; align-items:center; gap:14px; padding:12px 14px; border:1px solid var(--ex-line); border-left:3px solid var(--ex-gold); border-radius:8px; margin-bottom:10px; cursor:pointer; transition:background .15s; }
-.ex-dec:hover { background:var(--ex-gold-lt); }
-.ex-dec-main { flex:1; min-width:0; }
-.ex-dec-title { font-size:14px; font-weight:700; color:var(--ex-ink); }
-.ex-dec-meta { font-size:12px; color:var(--ex-mute); margin-top:3px; display:flex; align-items:center; gap:6px; flex-wrap:wrap; }
-.ex-dec-verdict { font-size:11px; font-weight:600; color:#7A5A12; background:var(--ex-gold-lt); border-radius:4px; padding:1px 6px; }
-.ex-dec-cost { font-size:16px; font-weight:800; color:var(--ex-ink); white-space:nowrap; font-variant-numeric:tabular-nums; }
-.ex-tag { font-size:10px; font-weight:700; letter-spacing:.4px; text-transform:uppercase; padding:3px 8px; border-radius:20px; white-space:nowrap; }
-.ex-tag.lead { background:var(--ex-gold-lt); color:#7A5A12; }
+.ex-method { font-size:11.5px; color:var(--ex-faint); margin-top:16px; line-height:1.55; padding-top:14px; border-top:1px solid var(--ex-line); }
+.ex-sub-title { font-size:10.5px; font-weight:600; letter-spacing:1.4px; text-transform:uppercase; color:var(--ex-faint); margin:22px 0 6px; }
+.ex-tag { font-size:9.5px; font-weight:700; letter-spacing:.8px; text-transform:uppercase; padding:4px 9px; border-radius:20px; white-space:nowrap; }
+.ex-tag.lead { background:var(--ex-gold-lt); color:var(--ex-gold-dk); }
 .ex-tag.stake { background:var(--ex-sky-lt); color:var(--ex-sky-dk); }
 
-.ex-stage { display:grid; grid-template-columns:130px 1fr 74px; align-items:center; gap:10px; margin-bottom:10px; font-size:13px; }
-.ex-stage-name { color:var(--ex-ink); font-weight:500; }
-.ex-stage-track { height:22px; background:var(--ex-sky-pale); border-radius:4px; overflow:hidden; }
-.ex-stage-fill { height:100%; background:var(--ex-sky); border-radius:4px; display:flex; align-items:center; padding-left:8px; color:#fff; font-size:11px; font-weight:700; min-width:0; }
-.ex-stage-fill.gold { background:var(--ex-gold); }
-.ex-stage-val { text-align:right; color:var(--ex-mute); font-variant-numeric:tabular-nums; }
+/* Map widget */
+.ex-map-card { padding:0; overflow:hidden; display:flex; flex-direction:column; }
+.ex-map-card .ex-card-hd { padding:22px 26px 0; margin-bottom:14px; }
+.ex-map { flex:none; height:460px; background:#EEF3F7; position:relative; }
+.ex-map-legend { position:absolute; left:16px; bottom:16px; z-index:500; background:rgba(255,255,255,.94); border:1px solid var(--ex-line); border-radius:10px; padding:8px 12px; display:flex; gap:14px; font-size:11px; color:var(--ex-mute); box-shadow:0 4px 14px rgba(15,42,64,.08); }
+.ex-map-legend i { display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:6px; vertical-align:-1px; }
+.ex-pop { font-family:'Inter',sans-serif; min-width:190px; }
+.ex-pop-name { font-family:var(--ex-serif); font-size:16px; font-weight:600; color:var(--ex-ink); }
+.ex-pop-meta { font-size:11.5px; color:var(--ex-mute); margin:3px 0 10px; }
+.ex-pop-row { display:flex; gap:6px; }
+.leaflet-popup-content-wrapper { border-radius:12px !important; box-shadow:0 12px 32px rgba(15,42,64,.18) !important; }
 
+/* Ranked list (highest need) */
+.ex-rank { display:grid; grid-template-columns:22px minmax(0,1fr) 110px 28px; align-items:center; gap:12px; padding:9px 4px; border-bottom:1px solid var(--ex-line); cursor:pointer; border-radius:8px; transition:background .12s; }
+.ex-rank:last-of-type { border-bottom:none; }
+.ex-rank:hover { background:var(--ex-sky-pale); }
+.ex-rank-n { font-family:var(--ex-serif); font-size:14px; color:var(--ex-faint); text-align:right; }
+.ex-rank-name { font-size:13.5px; font-weight:600; color:var(--ex-ink); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.ex-rank-sub { font-size:11.5px; color:var(--ex-mute); font-weight:400; margin-top:1px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.ex-rank-score { font-family:var(--ex-serif); font-size:16px; font-weight:600; color:var(--ex-ink); text-align:right; }
+
+/* Bars + tables */
+.ex-stage { display:grid; grid-template-columns:130px 1fr 74px; align-items:center; gap:12px; margin-bottom:12px; font-size:13px; }
+.ex-stage-name { color:var(--ex-ink); font-weight:500; }
+.ex-stage-track { height:6px; background:var(--ex-sky-pale); border-radius:3px; overflow:hidden; }
+.ex-stage-fill { height:100%; background:var(--ex-sky); border-radius:3px; }
+.ex-stage-val { text-align:right; color:var(--ex-mute); font-variant-numeric:tabular-nums; }
+.ex-share { display:flex; align-items:center; gap:8px; }
+.ex-share-track { flex:1; height:6px; background:var(--ex-sky-pale); border-radius:3px; overflow:hidden; min-width:50px; }
+.ex-share-fill { height:100%; background:var(--ex-sky); border-radius:3px; }
 .ex-table { width:100%; border-collapse:collapse; font-size:13px; }
-.ex-table th { text-align:left; font-size:11px; font-weight:600; letter-spacing:.4px; text-transform:uppercase; color:var(--ex-mute); padding:0 8px 8px; border-bottom:1px solid var(--ex-line); }
-.ex-table td { padding:10px 8px; border-bottom:1px solid var(--ex-line); color:var(--ex-ink); vertical-align:middle; }
+.ex-table th { text-align:left; font-size:10.5px; font-weight:600; letter-spacing:1.2px; text-transform:uppercase; color:var(--ex-faint); padding:0 10px 10px; border-bottom:1px solid var(--ex-line); }
+.ex-table td { padding:13px 10px; border-bottom:1px solid var(--ex-line); color:var(--ex-ink); vertical-align:middle; }
 .ex-table tr:last-child td { border-bottom:none; }
-.ex-table tbody tr { cursor:pointer; }
 .ex-table tbody tr:hover td { background:var(--ex-sky-pale); }
 .ex-table .num { text-align:right; font-variant-numeric:tabular-nums; }
-.ex-share { display:flex; align-items:center; gap:8px; }
-.ex-share-track { flex:1; height:6px; background:var(--ex-sky-pale); border-radius:3px; overflow:hidden; min-width:60px; }
-.ex-share-fill { height:100%; background:var(--ex-sky); }
 
-.ex-rep { display:flex; align-items:center; gap:10px; padding:10px 0; border-bottom:1px solid var(--ex-line); font-size:13px; color:var(--ex-ink); }
+/* Report rows */
+.ex-rep { display:flex; align-items:center; gap:12px; padding:12px 0; border-bottom:1px solid var(--ex-line); font-size:13px; color:var(--ex-ink); }
 .ex-rep:last-child { border-bottom:none; }
 .ex-rep a { margin-left:auto; color:var(--ex-sky-dk); font-weight:600; text-decoration:none; font-size:12px; }
 .ex-rep a:hover { text-decoration:underline; }
 
+/* Reports view */
+.rep-help { font-size:13px; color:var(--ex-mute); line-height:1.6; margin-bottom:16px; }
+.rep-input { width:100%; box-sizing:border-box; padding:11px 13px; border:1px solid var(--ex-line); border-radius:10px; font:13.5px 'Inter',sans-serif; color:var(--ex-ink); background:#fff; transition:border-color .15s, box-shadow .15s; }
+.rep-input:focus { outline:none; border-color:var(--ex-sky); box-shadow:0 0 0 3px var(--ex-sky-lt); }
+.rep-actions { display:flex; gap:10px; flex-wrap:wrap; margin-top:18px; }
+.rep-qs-row { display:flex; gap:6px; flex-wrap:wrap; align-items:center; margin-bottom:14px; }
+.rep-qs { font:500 11.5px 'Inter',sans-serif; padding:6px 12px; border:1px solid var(--ex-line); border-radius:20px; background:#fff; color:var(--ex-mute); cursor:pointer; transition:all .15s; }
+.rep-qs:hover { border-color:var(--ex-sky); color:var(--ex-sky-dk); }
+.rep-qs.on { background:var(--ex-ink); border-color:var(--ex-ink); color:#fff; }
+.rep-chips { display:flex; gap:6px; flex-wrap:wrap; }
+.rep-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:2px 16px; max-height:270px; overflow:auto; border:1px solid var(--ex-line); border-radius:12px; padding:12px 14px; background:#FCFDFE; }
+.rep-chk { display:flex; align-items:center; gap:9px; font-size:13px; color:var(--ex-ink); cursor:pointer; padding:4px 0; }
+.rep-chk input { accent-color:var(--ex-sky-dk); }
+.rep-chk span { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.rep-toast { position:fixed; left:50%; bottom:28px; transform:translate(-50%,20px); background:var(--ex-ink); color:#fff; font-size:13px; padding:13px 20px; border-radius:12px; border-left:3px solid var(--ex-gold); box-shadow:0 12px 32px rgba(0,0,0,.22); opacity:0; pointer-events:none; transition:all .25s; z-index:5000; max-width:90vw; }
+.rep-toast.show { opacity:1; transform:translate(-50%,0); }
+
+/* Countries view */
+#view-countries { flex-direction:column; }
+.map-toolbar { display:flex; justify-content:space-between; align-items:center; gap:12px; padding:16px 28px; background:#fff; border-bottom:1px solid var(--ex-line); flex-shrink:0; flex-wrap:wrap; }
+.map-toolbar-title { font-family:var(--ex-serif); font-size:22px; font-weight:600; color:var(--ex-ink); }
+.map-toolbar-sub { font-size:12px; color:var(--ex-mute); }
+.cd-reports .ex-rep { padding:9px 0; font-size:12.5px; }
+
+@media (max-width: 1100px) {
+  .ex-grid-map { grid-template-columns:1fr; }
+  .ex-map { height:340px; }
+}
 @media (max-width: 900px) {
   .ex-grid, .ex-grid-even { grid-template-columns:1fr; }
   .ex-wrap, .ex-hero-in { padding-left:16px; padding-right:16px; }
-  .ex-title { font-size:24px; }
+  .ex-hero-in { padding-top:28px; padding-bottom:24px; }
+  .ex-title { font-size:30px; }
+  .ex-kpis { grid-template-columns:1fr 1fr; }
+  .ex-kpi { border-left:none; border-top:1px solid var(--ex-line); padding:16px 18px; }
+  .ex-kpi-val { font-size:26px; }
+  .ex-rank { grid-template-columns:20px minmax(0,1fr) 48px 26px; gap:8px; }
+  .ex-card { padding:20px 18px; }
+  .ex-card.ex-map-card { padding:0; }
+  .ex-map-legend { left:10px; bottom:10px; right:56px; gap:8px; font-size:10px; padding:6px 9px; flex-wrap:wrap; }
+  .ex-map-card .ex-card-hd { padding:18px 18px 0; }
   .ex-stage { grid-template-columns:96px 1fr 56px; }
+  .app-header { padding:0 16px; }
+  .app-header-title { font-size:14px; margin-left:12px; padding-left:12px; }
+  .app-header-date { display:none; }
+  .sb-icon::after { display:none; }
 }
 @media print {
   .app-header, .sidebar, .ex-hero-actions, .ex-mini { display:none !important; }
   .app-body, .main-content, #view-executive, .ex-scroll { overflow:visible !important; height:auto !important; display:block !important; }
-  .ex-card, .ex-kpi, .ex-dec { break-inside:avoid; }
+  .ex-card, .ex-kpi { break-inside:avoid; box-shadow:none; }
 }
 </style>
 </head>
 <body>
 
 <header class="app-header">
-  <img src="logo.png" alt="Office of Development Affairs" style="height:36px;width:auto;display:block">
-  <div style="margin-left:18px;padding-left:18px;border-left:1px solid var(--border2);font-size:15px;font-weight:600;color:var(--text2);letter-spacing:0.01em;">Country Assessment Dashboard</div>
+  <img src="logo.png" alt="Office of Development Affairs" style="height:34px;width:auto;display:block">
+  <div class="app-header-title">Country Assessment Dashboard</div>
+  <div class="app-header-date" id="app-header-date"></div>
 </header>
 
 <div class="app-body">
@@ -1533,17 +1593,17 @@ body {
 <nav class="sidebar">
   <div class="sb-logo" title="Country Assessment Dashboard">CAD</div>
   <div class="sb-nav">
-    <div class="sb-icon active" data-view="executive" onclick="switchView('executive',this)" title="Executive View">
-      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+    <div class="sb-icon active" data-view="executive" data-label="Executive View" aria-label="Executive View" onclick="switchView('executive',this)">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
     </div>
-    <div class="sb-icon" data-view="reports" onclick="switchView('reports',this)" title="Country Reports">
-      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+    <div class="sb-icon" data-view="countries" data-label="Countries map" aria-label="Countries map" onclick="switchView('countries',this)">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
     </div>
-    <div class="sb-icon" data-view="evaluation" onclick="switchView('evaluation',this)" title="Program Evaluations">
-      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+    <div class="sb-icon" data-view="reports" data-label="Country Reports" aria-label="Country Reports" onclick="switchView('reports',this)">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
     </div>
-    <div class="sb-icon" data-view="countries" onclick="switchView('countries',this)" title="Countries map">
-      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+    <div class="sb-icon" data-view="evaluation" data-label="Program Evaluations" aria-label="Program Evaluations" onclick="switchView('evaluation',this)">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
     </div>
   </div>
 </nav>
@@ -2533,6 +2593,43 @@ function repPublishedHtml(filterCountry) {
       <a href="reports/${encodeURIComponent(r.file)}" download>Download</a></div>`).join('');
 }
 
+// Need-index shade shared by both maps: top third / middle third / lowest third.
+const NEED_SHADES = { hi:'#1B6FA8', mid:'#3E9BD6', lo:'#A9D2EE', none:'#B9C6D2' };
+function needShade(country) {
+  const need = needScores(), n = (need.__ranked || []).length, r = need[country] && need[country].rank;
+  if (!r) return NEED_SHADES.none;
+  return r <= n / 3 ? NEED_SHADES.hi : r <= 2 * n / 3 ? NEED_SHADES.mid : NEED_SHADES.lo;
+}
+
+// Landing-page map widget — every tracked country shaded by need; click for a quick card.
+let exMap = null;
+function exInitMiniMap() {
+  const el = document.getElementById('ex-map');
+  if (!el || typeof L === 'undefined') return;
+  if (exMap) { exMap.remove(); exMap = null; }
+  exMap = L.map(el, { zoomControl:false, attributionControl:false, scrollWheelZoom:false, keyboard:false, worldCopyJump:false, minZoom:1, maxZoom:7, zoomSnap:0.25 });
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', { maxZoom:12 }).addTo(exMap);
+  L.control.zoom({ position:'bottomright' }).addTo(exMap);
+  const need = needScores(), total = (need.__ranked || []).length;
+  const pts = [];
+  Object.entries(COUNTRY_LATLNG).forEach(([c, ll]) => {
+    pts.push(ll);
+    const n = need[c] || {};
+    const mk = L.circleMarker(ll, { radius: n.rank && n.rank <= 10 ? 7 : 5.5, color:'#fff', weight:1.5, fillColor: needShade(c), fillOpacity:.95 }).addTo(exMap);
+    if (n.rank && n.rank <= 10) L.circleMarker(ll, { radius:11, color:'#B08A3E', weight:1.2, fill:false, interactive:false }).addTo(exMap);
+    mk.bindPopup(`<div class="ex-pop">
+        <div class="ex-pop-name">${exEsc(c)}</div>
+        <div class="ex-pop-meta">${exEsc(repRegionOf(c) || '')}${n.rank ? ' · need index ' + Math.round(n.need) + ' · rank ' + n.rank + ' of ' + total : ''}</div>
+        <div class="ex-pop-row">
+          <button class="ex-mini" onclick="exOpenCountry(${qa(c)})">Profile</button>
+          <button class="ex-mini" onclick="repRunSingle(${qa(c)})">Instant report</button>
+        </div></div>`, { closeButton:false, offset:[0, -2] });
+    mk.on('mouseover', () => mk.setStyle({ weight:2.5 })).on('mouseout', () => mk.setStyle({ weight:1.5 }));
+  });
+  exMap.fitBounds(L.latLngBounds(pts).pad(0.03));
+  setTimeout(() => exMap && exMap.invalidateSize(), 200);
+}
+
 function renderExecutive() {
   const el = document.getElementById('ex-scroll');
   if (!el) return;
@@ -2545,43 +2642,40 @@ function renderExecutive() {
   const noWater = names.reduce((s, c) => { const p = v(c, 'SP.POP.TOTL'), w = v(c, 'SH.H2O.BASW.ZS'); return p && w != null ? s + p * (1 - w / 100) : s; }, 0);
   const lic = names.filter(c => COUNTRY_INCOME[c] === 'LIC').length;
   const regions = Object.keys(REGION_MEMBERS || {}).sort();
-  const saved = REP_LIBRARY.length;
-  const today = new Date().toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' });
+  const today = new Date().toLocaleDateString('en-GB', { day:'numeric', month:'long', year:'numeric' });
 
   const kpis = [
-    { label:'Countries tracked',     val: names.length,         sub: `across ${regions.length} regions` },
-    { label:'Low-income countries',  val: lic,                  sub: 'World Bank income group' },
-    { label:'People covered',        val: repFmtPeople(pop),    sub: 'population of tracked countries' },
-    { label:'Without electricity',   val: repFmtPeople(noElec), sub: 'estimated, from national rates', gold:true },
-    { label:'Without basic water',   val: repFmtPeople(noWater),sub: 'estimated, from national rates', gold:true },
-    { label:'Reports saved',         val: saved,                sub: 'in this browser' },
+    { label:'Countries tracked',    val: names.length,          sub: `across ${regions.length} regions` },
+    { label:'Low-income',           val: lic,                   sub: 'World Bank income group' },
+    { label:'People covered',       val: repFmtPeople(pop),     sub: 'population of tracked countries' },
+    { label:'Without electricity',  val: repFmtPeople(noElec),  sub: 'estimated from national rates', gold:true },
+    { label:'Without basic water',  val: repFmtPeople(noWater), sub: 'estimated from national rates', gold:true },
+    { label:'Reports saved',        val: REP_LIBRARY.length,    sub: 'in this browser' },
   ].map(k => `<div class="ex-kpi${k.gold ? ' gold' : ''}"><div class="ex-kpi-label">${k.label}</div><div class="ex-kpi-val">${k.val}</div><div class="ex-kpi-sub">${k.sub}</div></div>`).join('');
 
-  const top = (need.__ranked || []).slice(0, 10);
-  const topRows = top.map((c, i) => {
+  const topRows = (need.__ranked || []).slice(0, 10).map((c, i) => {
     const n = need[c];
-    return `<tr onclick="exOpenCountry(${qa(c)})" title="Open ${exEsc(c)} profile">
-      <td class="num" style="color:var(--ex-mute);width:28px">${i + 1}</td>
-      <td><div style="white-space:nowrap">${flagImg(c, 18, 12)} &nbsp;${exEsc(c)}</div><div style="color:var(--ex-mute);font-size:11.5px;margin-top:2px">${exEsc(repRegionOf(c))}</div></td>
-      <td><div class="ex-share"><div class="ex-share-track"><div class="ex-share-fill" style="width:${Math.round(n.need)}%;${i < 5 ? 'background:var(--ex-gold)' : ''}"></div></div><span style="font-weight:700;width:26px;text-align:right">${Math.round(n.need)}</span></div></td>
-      <td style="font-size:12px;color:var(--ex-mute)">${n.worst ? exEsc(n.worst.label) : '—'}</td>
-      <td class="num"><button class="ex-mini" onclick="event.stopPropagation();repRunSingle(${qa(c)})">Report</button></td>
-    </tr>`;
+    return `<div class="ex-rank" onclick="exOpenCountry(${qa(c)})" title="Open ${exEsc(c)} profile">
+      <div class="ex-rank-n">${i + 1}</div>
+      <div style="min-width:0"><div class="ex-rank-name">${flagImg(c, 18, 12)}&nbsp; ${exEsc(c)}</div>
+        <div class="ex-rank-sub">${n.worst ? 'Biggest gap: ' + exEsc(n.worst.label.toLowerCase()) : exEsc(repRegionOf(c))}</div></div>
+      <div class="ex-share-track"><div class="ex-share-fill" style="width:${Math.round(n.need)}%;background:${i < 5 ? 'var(--ex-gold)' : 'var(--ex-sky)'}"></div></div>
+      <div class="ex-rank-score">${Math.round(n.need)}</div>
+    </div>`;
   }).join('');
 
   const regionRows = regions.map(r => {
     const ms = REGION_MEMBERS[r] || [];
     const ns = ms.map(c => need[c] && need[c].need).filter(x => x != null);
-    const avg = ns.length ? ns.reduce((s, x) => s + x, 0) / ns.length : null;
-    return { r, n: ms.length, avg };
-  }).sort((a, b) => (b.avg || 0) - (a.avg || 0)).map(x => `<div class="ex-stage" style="grid-template-columns:minmax(0,1.5fr) minmax(50px,1fr) 30px auto;margin-bottom:12px">
-      <div class="ex-stage-name" style="line-height:1.3">${exEsc(x.r)}<div style="color:var(--ex-mute);font-size:11.5px">${x.n} countries</div></div>
+    return { r, n: ms.length, avg: ns.length ? ns.reduce((s, x) => s + x, 0) / ns.length : null };
+  }).sort((a, b) => (b.avg || 0) - (a.avg || 0)).map(x => `<div class="ex-stage" style="grid-template-columns:minmax(0,1.5fr) minmax(50px,1fr) 30px auto;margin-bottom:16px">
+      <div class="ex-stage-name" style="line-height:1.35">${exEsc(x.r)}<div style="color:var(--ex-faint);font-size:11.5px;font-weight:400">${x.n} countries</div></div>
       <div class="ex-stage-track"><div class="ex-stage-fill" style="width:${x.avg != null ? Math.max(4, Math.round(x.avg)) : 0}%"></div></div>
-      <div class="ex-stage-val" style="font-weight:700;color:var(--ex-ink)">${x.avg != null ? Math.round(x.avg) : '—'}</div>
+      <div class="ex-rank-score" style="font-size:15px">${x.avg != null ? Math.round(x.avg) : '—'}</div>
       <button class="ex-mini" onclick="repRunRegion(${qa(x.r)})">Region report</button>
     </div>`).join('') || '<div class="ex-empty">Regions not available.</div>';
 
-  const recent = repLibRowsHtml(REP_LIBRARY.slice(0, 6), true);
+  const recent = repLibRowsHtml(REP_LIBRARY.slice(0, 5), true);
   const published = repPublishedHtml();
 
   el.innerHTML = `
@@ -2590,43 +2684,47 @@ function renderExecutive() {
         <div class="ex-eyebrow">Executive View · Office of Development Affairs</div>
         <div class="ex-title">Global South at a Glance</div>
         <div class="ex-rule"></div>
-        <div class="ex-summary"><strong>${names.length} countries</strong> tracked across <strong>${regions.length} regions</strong>, home to <strong>${repFmtPeople(pop)} people</strong>.
-          An estimated <strong>${repFmtPeople(noElec)}</strong> of them live without electricity and <strong>${repFmtPeople(noWater)}</strong> without basic drinking water.</div>
-        <div class="ex-datanote">World Bank Open Data${repSnapshotStr() ? ' · snapshot of ' + repSnapshotStr() : ''} · opening a country or building a report refreshes figures live</div>
+        <div class="ex-summary"><strong>${names.length} countries</strong> across <strong>${regions.length} regions</strong>, home to <strong>${repFmtPeople(pop)} people</strong>.
+          An estimated <strong>${repFmtPeople(noElec)}</strong> live without electricity and <strong>${repFmtPeople(noWater)}</strong> without basic drinking water.</div>
+        <div class="ex-datanote">World Bank Open Data${repSnapshotStr() ? ' · snapshot of ' + repSnapshotStr() : ''} · figures refresh live when a country is opened or a report is built</div>
       </div>
       <div class="ex-hero-actions">
-        <span class="ex-date">As of ${today}</span>
         <button class="ex-btn" onclick="window.print()">Print / PDF</button>
-        <button class="ex-btn primary" onclick="goView('reports')">New report →</button>
+        <button class="ex-btn primary" onclick="goView('reports')">New report &nbsp;→</button>
       </div>
     </div></div>
     <div class="ex-wrap">
       <div class="ex-kpis">${kpis}</div>
-      <div class="ex-grid">
+      <div class="ex-card ex-map-card" style="margin-bottom:24px">
+        <div class="ex-card-hd"><div><div class="ex-card-title">Where needs are greatest</div><div class="ex-card-note" style="margin-top:4px">Click a country for its profile or an instant report</div></div><a class="ex-link" href="#" onclick="goView('countries');return false">Open full map →</a></div>
+        <div class="ex-map" id="ex-map">
+          <div class="ex-map-legend"><span><i style="background:${NEED_SHADES.hi}"></i>Highest need</span><span><i style="background:${NEED_SHADES.mid}"></i>Middle</span><span><i style="background:${NEED_SHADES.lo}"></i>Lower</span><span><i style="background:#fff;border:1.5px solid var(--ex-gold)"></i>Top 10</span></div>
+        </div>
+      </div>
+      <div class="ex-grid ex-grid-even">
         <div class="ex-card">
-          <div class="ex-card-hd"><div class="ex-card-title">Highest-need countries</div><div class="ex-card-note">ODA need index · click a country</div></div>
-          <div style="overflow-x:auto"><table class="ex-table">
-            <thead><tr><th class="num">#</th><th>Country</th><th style="min-width:120px">Need index</th><th>Biggest gap</th><th></th></tr></thead>
-            <tbody>${topRows || '<tr><td colspan="5" class="ex-empty">Not enough data to rank countries.</td></tr>'}</tbody>
-          </table></div>
-          <div class="ex-method">Need index (0–100): under-5 and maternal mortality, undernourishment, and lack of basic water, sanitation and electricity — each scaled across all tracked countries and averaged.</div>
+          <div class="ex-card-hd"><div class="ex-card-title">Highest-need countries</div><div class="ex-card-note">Need index, 0–100</div></div>
+          ${topRows || '<div class="ex-empty">Not enough data to rank countries.</div>'}
+          <div class="ex-method">The need index combines under-5 and maternal mortality, undernourishment, and lack of basic water, sanitation and electricity — each scaled across all tracked countries and averaged.</div>
         </div>
         <div class="ex-card">
-          <div class="ex-card-hd"><div class="ex-card-title">Needs by region</div><div class="ex-card-note">Average need index · countries</div></div>
+          <div class="ex-card-hd"><div class="ex-card-title">Needs by region</div><div class="ex-card-note">Average need index</div></div>
           ${regionRows}
         </div>
       </div>
-      <div class="ex-grid">
+      <div class="ex-grid ex-grid-even">
         <div class="ex-card">
           <div class="ex-card-hd"><div class="ex-card-title">Recent reports</div><a class="ex-link" href="#" onclick="goView('reports');return false">All reports →</a></div>
-          ${recent || `<div class="ex-empty">No reports yet. <a class="ex-link" href="#" onclick="goView('reports');return false">Create the first one →</a></div>`}
+          ${recent || `<div class="ex-empty">No saved reports yet. <a class="ex-link" href="#" onclick="goView('reports');return false">Create the first one →</a></div>`}
         </div>
         <div class="ex-card">
-          <div class="ex-card-hd"><div class="ex-card-title">Published full AI reports</div><div class="ex-card-note">${Object.keys(REPORTS_MANIFEST || {}).length} available</div></div>
+          <div class="ex-card-hd"><div class="ex-card-title">Published full AI reports</div><div class="ex-card-note">Shared on this website</div></div>
           ${published || '<div class="ex-empty">None published yet.</div>'}
         </div>
       </div>
     </div>`;
+  const hd = document.getElementById('app-header-date'); if (hd) hd.textContent = today;
+  exInitMiniMap();
 }
 
 // ══════════════════════════════════════════════════════════════════════════

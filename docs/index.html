@@ -2313,7 +2313,7 @@ function needScores() {
 }
 
 // ── Data gathering for decks ──────────────────────────────────────────────
-async function repCountryData(country, ms = 10000) {
+async function repCountryData(country, ms = 20000) {
   await Promise.race([ca_loadCountryData(country), new Promise(r => setTimeout(r, ms))]);
   return countryDataCache[country] || {};
 }
@@ -2359,7 +2359,7 @@ async function repRegionLive(countries, ids) {
   await Promise.all(ids.map(async id => {
     try {
       const url = `https://api.worldbank.org/v2/country/${isos.join(';')}/indicator/${id}?format=json&mrv=5&per_page=5000`;
-      const r = await Promise.race([fetch(url), new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), 12000))]);
+      const r = await Promise.race([fetch(url), new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), 25000))]);   // the WB API can take 10s+
       if (!r.ok) return;
       const j = await r.json(); if (!j || !j[1]) return;
       ok++;
@@ -2437,7 +2437,7 @@ async function repRunBatch(countries) {
 async function repRunRegion(region) {
   const members = (REGION_MEMBERS[region] || []).slice();
   if (!members.length) { alert('No countries found for ' + region + '.'); return; }
-  const ov = cd_progressOverlay('Region report · ' + region, 'Loading live World Bank data for ' + members.length + ' countries…');
+  const ov = cd_progressOverlay('Region report · ' + region, 'Loading live World Bank data for ' + members.length + ' countries — this can take up to 30 seconds…');
   try {
     repLibsReady();
     if (!prebakedLoaded) await loadPrebakedIndicators();

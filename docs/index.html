@@ -2883,52 +2883,80 @@ let DHS_CC = null;
 const SUB_CACHE = {};
 const subFetch = (u, ms = 20000) => Promise.race([fetch(u).then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }),
   new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), ms))]);
+// Survey figures and region outlines for one country, straight from the DHS Program.
+// Returns { sectorKey: { id, survey, year, type, national, regions:[{ name, v, geom }] } }.
+async function subLive(country) {
+  const out = {};
+  const iso = COUNTRY_ISO[country]; if (!iso) return out;
+  if (!DHS_CC) DHS_CC = subFetch('https://api.dhsprogram.com/rest/dhs/countries?f=json&returnFields=DHS_CountryCode,ISO3_CountryCode')
+    .then(j => Object.fromEntries((j.Data || []).map(c => [c.ISO3_CountryCode, c.DHS_CountryCode]))).catch(e => { DHS_CC = null; throw e; });
+  const cc = (await DHS_CC)[iso]; if (!cc) return out;
+  const ids = [...new Set(Object.values(SUBNAT).flat().map(x => x.id))];
+  const base = `https://api.dhsprogram.com/rest/dhs/data?countryIds=${cc}&indicatorIds=${ids.join(',')}&surveyYearStart=${new Date().getFullYear() - DK.STALE_YEARS}&f=json&perpage=5000`;
+  const [sub, nat] = await Promise.all([
+    subFetch(base + '&breakdown=subnational&returnFields=IndicatorId,SurveyId,SurveyYear,SurveyType,RegionId,CharacteristicLabel,Value'),
+    subFetch(base + '&breakdown=national&returnFields=IndicatorId,SurveyId,Value').catch(() => ({ Data:[] }))]);
+  const rows = (sub.Data || []).filter(r => r.Value != null && r.RegionId);
+  const yr = {}; rows.forEach(r => { yr[r.SurveyId] = +r.SurveyYear; });
+  const surveys = Object.keys(yr).sort((a, b) => yr[b] - yr[a]);           // newest first
+  const geoOf = {};
+  const geo = prefix => geoOf[prefix] || (geoOf[prefix] = subFetch('https://gis.dhsprogram.com/arcgis/rest/services/Geometry/SDR_Regions/MapServer/0/query?where='
+    + encodeURIComponent(`REG_ID LIKE '${prefix}%'`) + '&outFields=REG_ID,DHSREGEN,LEVELRNK&returnGeometry=true&maxAllowableOffset=0.01&outSR=4326&f=geojson', 25000)
+    .then(g => g.features || []).catch(() => []));
+  for (const [key, choices] of Object.entries(SUBNAT)) {
+    search: for (const ind of choices) {
+      for (const sid of surveys) {
+        const rs = rows.filter(r => r.SurveyId === sid && r.IndicatorId === ind.id);
+        if (rs.length < 3) continue;
+        const feats = await geo(rs[0].RegionId.slice(0, 9));                 // e.g. KEDHS2022 — the survey's region-ID prefix
+        const val = {}; rs.forEach(r => { val[r.RegionId] = r; });
+        const levels = {}; feats.forEach(f => { (levels[f.properties.LEVELRNK] = levels[f.properties.LEVELRNK] || []).push(f); });
+        let best = null;
+        Object.values(levels).forEach(fs => { const m = fs.filter(f => val[f.properties.REG_ID]).length; if (!best || m > best.m) best = { fs, m }; });
+        if (!best || best.m < 3 || best.m / best.fs.length < 0.8) continue;   // not enough regions measured — no map
+        const regions = best.fs.map(f => { const r = val[f.properties.REG_ID];
+          return { id: f.properties.REG_ID, name: String(r ? r.CharacteristicLabel : f.properties.DHSREGEN).replace(/^\.+/, '').replace(/\s*\((19|20)\d\d\)$/, '').trim(), v: r ? +r.Value : null, geom: f.geometry }; });
+        const n = (nat.Data || []).find(x => x.SurveyId === sid && x.IndicatorId === ind.id);
+        out[key] = { id: ind.id, survey: sid, year: yr[sid], type: rs[0].SurveyType || sid.slice(6), national: n ? +n.Value : null, regions };
+        break search;
+      }
+    }
+  }
+  return out;
+}
+// Pre-downloaded copy in data/subnational/ — fast, and works even when the DHS website is slow or down.
+// index.json lists every country that has maps; a country not listed has no recent regional survey.
+// Returns null when the copy can't be read, so the live lookup is used instead.
+let SUB_INDEX = null;
+async function subSnapshot(country) {
+  const iso = COUNTRY_ISO[country];
+  if (!SUB_INDEX) SUB_INDEX = subFetch('data/subnational/index.json', 8000).catch(e => { SUB_INDEX = null; throw e; });
+  try {
+    const idx = await SUB_INDEX;
+    if (!(idx.countries || []).includes(iso)) return {};
+    const j = await subFetch(`data/subnational/${iso}.json`, 15000), shapes = j.shapes || {};
+    Object.values(j.sectors || {}).forEach(s => s.regions.forEach(r => { r.geom = shapes[r.id]; }));   // outlines are stored once, shared by sectors
+    return j.sectors || null;
+  } catch (e) { return null; }
+}
 function repSubnational(country) {
   if (SUB_CACHE[country]) return SUB_CACHE[country];
   const job = (async () => {
-    const out = {};
-    const iso = COUNTRY_ISO[country]; if (!iso) return out;
-    if (!DHS_CC) DHS_CC = subFetch('https://api.dhsprogram.com/rest/dhs/countries?f=json&returnFields=DHS_CountryCode,ISO3_CountryCode')
-      .then(j => Object.fromEntries((j.Data || []).map(c => [c.ISO3_CountryCode, c.DHS_CountryCode]))).catch(e => { DHS_CC = null; throw e; });
-    const cc = (await DHS_CC)[iso]; if (!cc) return out;
-    const ids = [...new Set(Object.values(SUBNAT).flat().map(x => x.id))];
-    const base = `https://api.dhsprogram.com/rest/dhs/data?countryIds=${cc}&indicatorIds=${ids.join(',')}&surveyYearStart=${new Date().getFullYear() - DK.STALE_YEARS}&f=json&perpage=5000`;
-    const [sub, nat] = await Promise.all([
-      subFetch(base + '&breakdown=subnational&returnFields=IndicatorId,SurveyId,SurveyYear,SurveyType,RegionId,CharacteristicLabel,Value'),
-      subFetch(base + '&breakdown=national&returnFields=IndicatorId,SurveyId,Value').catch(() => ({ Data:[] }))]);
-    const rows = (sub.Data || []).filter(r => r.Value != null && r.RegionId);
-    const yr = {}; rows.forEach(r => { yr[r.SurveyId] = +r.SurveyYear; });
-    const surveys = Object.keys(yr).sort((a, b) => yr[b] - yr[a]);           // newest first
-    const geoOf = {};
-    const geo = prefix => geoOf[prefix] || (geoOf[prefix] = subFetch('https://gis.dhsprogram.com/arcgis/rest/services/Geometry/SDR_Regions/MapServer/0/query?where='
-      + encodeURIComponent(`REG_ID LIKE '${prefix}%'`) + '&outFields=REG_ID,DHSREGEN,LEVELRNK&returnGeometry=true&maxAllowableOffset=0.01&outSR=4326&f=geojson', 25000)
-      .then(g => g.features || []).catch(() => []));
-    for (const [key, choices] of Object.entries(SUBNAT)) {
-      search: for (const ind of choices) {
-        for (const sid of surveys) {
-          const rs = rows.filter(r => r.SurveyId === sid && r.IndicatorId === ind.id);
-          if (rs.length < 3) continue;
-          const feats = await geo(rs[0].RegionId.slice(0, 9));                 // e.g. KEDHS2022 — the survey's region-ID prefix
-          const val = {}; rs.forEach(r => { val[r.RegionId] = r; });
-          const levels = {}; feats.forEach(f => { (levels[f.properties.LEVELRNK] = levels[f.properties.LEVELRNK] || []).push(f); });
-          let best = null;
-          Object.values(levels).forEach(fs => { const m = fs.filter(f => val[f.properties.REG_ID]).length; if (!best || m > best.m) best = { fs, m }; });
-          if (!best || best.m < 3 || best.m / best.fs.length < 0.8) continue;   // not enough regions measured — no map
-          const regions = best.fs.map(f => { const r = val[f.properties.REG_ID];
-            return { name: String(r ? r.CharacteristicLabel : f.properties.DHSREGEN).replace(/^\.+/, '').replace(/\s*\((19|20)\d\d\)$/, '').trim(), v: r ? +r.Value : null, geom: f.geometry }; });
-          const n = (nat.Data || []).find(x => x.SurveyId === sid && x.IndicatorId === ind.id);
-          const vs = regions.filter(r => r.v != null).map(r => r.v), lo = Math.min(...vs), hi = Math.max(...vs);
-          const step = (hi - lo) / 5 || 1, breaks = [0, 1, 2, 3, 4, 5].map(i => lo + i * step);
-          const cols = ind.worse === 'high' ? SUB_RAMP.slice() : SUB_RAMP.slice().reverse();   // colour per class, low → high value
-          const cls = v => Math.min(4, Math.floor((v - lo) / step));
-          const e = { ...ind, survey: sid, year: yr[sid], type: rs[0].SurveyType || sid.slice(6), national: n ? +n.Value : null, breaks, cols };
-          e.mapData = await repSubMapImage(regions, v => v == null ? null : cols[cls(v)], DK.MAP_SLOTS.sub);
-          if (!e.mapData) continue;
-          e.regions = regions.map(r => ({ name: r.name, v: r.v }));
-          out[key] = e;
-          break search;
-        }
-      }
+    let raw = await subSnapshot(country);
+    if (raw === null) raw = await subLive(country);
+    const out = {}, minYear = new Date().getFullYear() - DK.STALE_YEARS;
+    for (const [key, s] of Object.entries(raw || {})) {
+      const ind = (SUBNAT[key] || []).find(x => x.id === s.id);
+      if (!ind || !s.regions || s.year < minYear) continue;                  // survey now too old — chart only
+      const vs = s.regions.filter(r => r.v != null).map(r => r.v), lo = Math.min(...vs), hi = Math.max(...vs);
+      const step = (hi - lo) / 5 || 1, breaks = [0, 1, 2, 3, 4, 5].map(i => lo + i * step);
+      const cols = ind.worse === 'high' ? SUB_RAMP.slice() : SUB_RAMP.slice().reverse();   // colour per class, low → high value
+      const cls = v => Math.min(4, Math.floor((v - lo) / step));
+      const e = { ...ind, survey: s.survey, year: s.year, type: s.type, national: s.national, breaks, cols };
+      e.mapData = await repSubMapImage(s.regions, v => v == null ? null : cols[cls(v)], DK.MAP_SLOTS.sub);
+      if (!e.mapData) continue;
+      e.regions = s.regions.map(r => ({ name: r.name, v: r.v }));
+      out[key] = e;
     }
     return out;
   })().catch(e => { console.warn('[CAD] sub-national data unavailable', e); delete SUB_CACHE[country]; return {}; });

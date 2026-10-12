@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Country Assessment Dashboard</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:wght@500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:wght@500;600;700&family=Montserrat:wght@400;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
 <link  href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet">
@@ -13,6 +13,7 @@
 <script src="severity.js"></script>
 <script src="deck_kit.js"></script>
 <script src="country_deck.js"></script>
+<script src="pdf_deck.js"></script>
 <script src="region_deck.js"></script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -1636,6 +1637,42 @@ body {
 .ex-lang-tag { display:inline-block; font:700 9px 'Inter',sans-serif; color:var(--ex-faint); border:1px solid var(--ex-line); border-radius:4px; padding:0 4px; margin-inline-start:4px; vertical-align:1px; }
 .ex-tip { font:500 12px 'Inter',sans-serif; }
 
+/* header country search */
+.hdr-search { position:relative; margin-inline-start:auto; display:flex; align-items:center; gap:7px; width:260px; height:36px; padding:0 12px;
+  border:1px solid var(--ex-line); border-radius:20px; background:var(--ex-sky-pale, #F3F8FC); color:var(--ex-faint); transition:border-color .15s, box-shadow .15s, background .15s; }
+.hdr-search:focus-within { border-color:var(--ex-sky, #3E9BD6); background:#fff; box-shadow:0 0 0 3px rgba(62,155,214,.15); color:var(--ex-sky-dk, #1B6FA8); }
+.hdr-search input { flex:1; min-width:0; border:none; outline:none; background:none; font:500 13px 'Inter','IBM Plex Sans Arabic',sans-serif; color:var(--ex-ink); }
+.hdr-search input::-webkit-search-cancel-button { cursor:pointer; }
+.hs-res { position:absolute; top:calc(100% + 6px); inset-inline:0; z-index:3000; background:#fff; border:1px solid var(--ex-line); border-radius:12px;
+  box-shadow:0 14px 36px rgba(15,42,64,.16); padding:5px; max-height:340px; overflow:auto; }
+.hs-item { display:flex; align-items:baseline; justify-content:space-between; gap:10px; width:100%; border:none; background:none; text-align:start;
+  padding:8px 10px; border-radius:8px; cursor:pointer; font:500 13px 'Inter','IBM Plex Sans Arabic',sans-serif; color:var(--ex-ink); }
+.hs-item.on, .hs-item:hover { background:var(--ex-sky-pale, #F3F8FC); }
+.hs-item.on .hs-name { color:var(--ex-sky-dk, #1B6FA8); }
+.hs-reg { font-size:11px; color:var(--ex-faint); white-space:nowrap; }
+.hs-empty { padding:10px; font-size:12.5px; color:var(--ex-faint); }
+.app-header .app-header-date { margin-left:18px; }
+[dir="rtl"] .app-header .app-header-date { margin-left:0; margin-right:18px; }
+@media (max-width: 760px) { .hdr-search { width:150px; } }
+
+/* export format chooser */
+.fmt-overlay { position:fixed; inset:0; z-index:4100; background:rgba(15,42,64,.55); backdrop-filter:blur(2px); display:flex; align-items:center; justify-content:center; padding:16px; }
+.fmt-card { background:#fff; width:100%; max-width:440px; border-radius:16px; border-top:3px solid var(--ex-gold); box-shadow:0 24px 64px rgba(15,42,64,.3); padding:24px 24px 18px; }
+.fmt-eyebrow { font:700 10.5px 'Inter',sans-serif; letter-spacing:.14em; text-transform:uppercase; color:var(--ex-gold); }
+[dir="rtl"] .fmt-eyebrow { letter-spacing:0; text-transform:none; font-family:'IBM Plex Sans Arabic',sans-serif; font-size:12px; }
+.fmt-title { font-family:var(--ex-serif); font-size:20px; font-weight:600; color:var(--ex-ink); margin-top:4px; }
+.fmt-what { font-size:12.5px; color:var(--ex-mute); margin:4px 0 16px; }
+.fmt-opt { display:flex; align-items:center; gap:14px; width:100%; text-align:start; background:#fff; border:1.5px solid var(--ex-line); border-radius:12px;
+  padding:13px 14px; margin-bottom:10px; cursor:pointer; transition:border-color .15s, background .15s; font-family:inherit; }
+.fmt-opt:hover, .fmt-opt:focus-visible { border-color:var(--ex-sky, #3E9BD6); background:var(--ex-sky-pale, #F3F8FC); outline:none; }
+.fmt-opt.on { border-color:var(--ex-gold); }
+.fmt-ic { flex:none; width:46px; height:46px; border-radius:10px; display:flex; align-items:center; justify-content:center; font:800 12px 'Inter',sans-serif; letter-spacing:.04em; color:#fff; background:#C55A2B; }
+.fmt-opt[data-k="pdf"] .fmt-ic { background:#B8282E; }
+.fmt-tx { display:flex; flex-direction:column; gap:3px; }
+.fmt-tx b { font-size:14px; color:var(--ex-ink); }
+.fmt-tx span { font-size:12px; color:var(--ex-mute); line-height:1.45; }
+.fmt-foot { display:flex; justify-content:flex-end; margin-top:6px; }
+
 /* progress overlay */
 .cd-prog-card { background:#fff; max-width:460px; width:90%; padding:26px 28px; border-radius:16px; border-top:3px solid var(--ex-gold); box-shadow:0 24px 64px rgba(15,42,64,.3); }
 .cd-prog-title { font-family:var(--ex-serif); font-size:19px; font-weight:600; color:var(--ex-ink); }
@@ -1739,6 +1776,12 @@ body {
 <header class="app-header">
   <img src="logo.png" alt="Office of Development Affairs" style="height:34px;width:auto;display:block">
   <div class="app-header-title" data-ar="لوحة تقييم الدول">Country Assessment Dashboard</div>
+  <div class="hdr-search" role="search">
+    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+    <input id="hdr-search-in" type="search" autocomplete="off" placeholder="Search countries…" aria-label="Search countries…"
+      oninput="hdrSearchInput(this.value)" onkeydown="hdrSearchKey(event)" onfocus="hdrSearchInput(this.value)" onblur="setTimeout(()=>hdrSearchInput(''),150)">
+    <div id="hdr-search-res" class="hs-res" hidden></div>
+  </div>
   <div class="app-header-date" id="app-header-date"></div>
   <div class="lang-toggle" role="group" aria-label="Language">
     <button type="button" class="lang-opt" data-lang="en" onclick="setLang('en')">EN</button>
@@ -2163,6 +2206,42 @@ function applyStaticLang() {
   document.querySelectorAll('.lang-opt').forEach(b => b.classList.toggle('on', b.dataset.lang === lang));
   const hd = document.getElementById('app-header-date');
   if (hd) hd.textContent = new Date().toLocaleDateString(LOCALE(), { day:'numeric', month:'long', year:'numeric' });
+  const hs = document.getElementById('hdr-search-in');
+  if (hs) { hs.placeholder = ar ? 'ابحث عن دولة…' : 'Search countries…'; hs.setAttribute('aria-label', hs.placeholder); }
+}
+
+// ── Header country search: type a name (English or Arabic) → opens that country's profile on the map ──
+const srchNorm = s => String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ًͯ-ْـ]/g, '')
+  .replace(/[أإآ]/g, 'ا').replace(/ة/g, 'ه').replace(/ى/g, 'ي').replace(/[^a-z0-9؀-ۿ]+/g, ' ').trim();
+let srchHits = [], srchIdx = 0;
+function hdrSearchInput(v) {
+  const box = document.getElementById('hdr-search-res'); if (!box) return;
+  const q = srchNorm(v);
+  if (!q) { box.hidden = true; srchHits = []; return; }
+  const all = (typeof repAllCountries === 'function' && repAllCountries().length ? repAllCountries() : Object.keys(COUNTRY_ISO));
+  const score = c => { const n = [srchNorm(c), srchNorm(AR_COUNTRY[c] || '')];
+    return n.some(x => x.startsWith(q)) ? 0 : n.some(x => x.split(' ').some(w => w.startsWith(q))) ? 1 : n.some(x => x.includes(q)) ? 2 : 9; };
+  srchHits = all.map(c => [c, score(c)]).filter(x => x[1] < 9).sort((a, b) => a[1] - b[1] || cN(a[0]).localeCompare(cN(b[0]), lang)).slice(0, 8).map(x => x[0]);
+  srchIdx = 0;
+  box.innerHTML = srchHits.length ? srchHits.map((c, i) => `<button type="button" class="hs-item${i === 0 ? ' on' : ''}" onmousedown="event.preventDefault();hdrSearchGo(${qa(c)})">
+      <span class="hs-name">${exEsc(cN(c))}</span><span class="hs-reg">${exEsc(rN(repRegionOf(c) || ''))}</span></button>`).join('')
+    : `<div class="hs-empty">${tr('No country matches', 'لا توجد دولة مطابقة')}</div>`;
+  box.hidden = false;
+}
+function hdrSearchKey(e) {
+  const box = document.getElementById('hdr-search-res');
+  if (e.key === 'Escape') { e.target.value = ''; hdrSearchInput(''); e.target.blur(); return; }
+  if (!srchHits.length) return;
+  if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+    e.preventDefault(); srchIdx = (srchIdx + (e.key === 'ArrowDown' ? 1 : -1) + srchHits.length) % srchHits.length;
+    box.querySelectorAll('.hs-item').forEach((b, i) => b.classList.toggle('on', i === srchIdx));
+  } else if (e.key === 'Enter') { e.preventDefault(); hdrSearchGo(srchHits[srchIdx]); }
+}
+function hdrSearchGo(c) {
+  const inp = document.getElementById('hdr-search-in'); if (inp) { inp.value = ''; inp.blur(); }
+  hdrSearchInput('');
+  goView('countries');
+  setTimeout(() => mapJumpTo(c), 120);
 }
 
 function setLang(l) {
@@ -3028,7 +3107,36 @@ function repLibsReady() {
 }
 const repLangSuffix = () => lang === 'ar' ? '_AR' : '';
 
-async function repBuildCountryBlob(country, setStatus) {
+// Ask which file format to export. Resolves 'pptx' | 'pdf', or null if cancelled.
+// The last choice is pre-selected (kept in this browser only).
+function repAskFormat(what) {
+  return new Promise(resolve => {
+    let last = 'pptx'; try { last = localStorage.getItem('oda_rep_format') || 'pptx'; } catch (e) {}
+    const ov = document.createElement('div'); ov.className = 'fmt-overlay';
+    const opt = (k, icon, title, sub) => `<button type="button" class="fmt-opt${k === last ? ' on' : ''}" data-k="${k}">
+        <span class="fmt-ic">${icon}</span><span class="fmt-tx"><b>${title}</b><span>${sub}</span></span></button>`;
+    ov.innerHTML = `<div class="fmt-card" role="dialog" aria-modal="true">
+      <div class="fmt-eyebrow">${tr('Export', 'تصدير')}</div>
+      <div class="fmt-title">${tr('Choose a file format', 'اختر صيغة الملف')}</div>
+      <div class="fmt-what">${exEsc(what || '')}</div>
+      ${opt('pptx', 'PPT', tr('PowerPoint (.pptx)', 'باوربوينت (.pptx)'), tr('Editable slides: change text, reuse slides in other decks.', 'شرائح قابلة للتعديل: تغيير النصوص وإعادة استخدام الشرائح.'))}
+      ${opt('pdf', 'PDF', tr('PDF (.pdf)', 'PDF (.pdf)'), tr('Fixed layout: easy to read, print and email; looks the same everywhere.', 'تنسيق ثابت: سهل القراءة والطباعة والإرسال، ويظهر بالشكل نفسه على كل الأجهزة.'))}
+      <div class="fmt-foot"><button type="button" class="ex-btn" data-k="">${tr('Cancel', 'إلغاء')}</button></div></div>`;
+    const done = k => { ov.remove(); document.removeEventListener('keydown', esc); if (k) { try { localStorage.setItem('oda_rep_format', k); } catch (e) {} } resolve(k || null); };
+    const esc = e => { if (e.key === 'Escape') done(null); };
+    ov.addEventListener('click', e => { const b = e.target.closest('[data-k]'); if (b) done(b.dataset.k); else if (e.target === ov) done(null); });
+    document.addEventListener('keydown', esc);
+    document.body.appendChild(ov);
+    const first = ov.querySelector('.fmt-opt.on'); if (first) first.focus();
+  });
+}
+const repExt = fmt => fmt === 'pdf' ? '.pdf' : '.pptx';
+function repDeckCtor(fmt) {
+  if (fmt === 'pdf') { if (typeof PdfDeck === 'undefined') throw new Error(tr('The PDF tool did not load. Please refresh the page.', 'لم يتم تحميل أداة PDF. يُرجى تحديث الصفحة.')); return PdfDeck; }
+  return PptxGenJS;
+}
+
+async function repBuildCountryBlob(country, setStatus, fmt) {
   repLibsReady();
   setStatus && setStatus(tr('Loading live World Bank data for ' + country + '…', 'جارٍ تحميل بيانات البنك الدولي المباشرة لـ' + cN(country) + '…'));
   const d = await repCountryData(country);
@@ -3041,7 +3149,7 @@ async function repBuildCountryBlob(country, setStatus) {
   const blob = await window.buildCountryDeck({
     country, data: Object.assign({}, d, pol ? pol.wgi : {}), info: COUNTRY_INFO[country] || {}, iso2: (COUNTRY_ISO2[country] || '').toLowerCase(),
     politics: pol && pol.ok ? { hos: pol.hos, hog: pol.hog, gov: pol.gov, office: pol.office, hosSince: pol.hosSince } : null,
-    flagData, flagRatio, mapData, logo, subnational, dateStr: repDateStr(), PptxGenJS, output: 'blob', lang,
+    flagData, flagRatio, mapData, logo, subnational, dateStr: repDateStr(), PptxGenJS: repDeckCtor(fmt), output: 'blob', lang,
     region: repRegionOf(country), income: COUNTRY_INCOME[country] || '',
     need: need.need != null ? { score: need.need, rank: need.rank, of: (needScores().__ranked || []).length } : null,
   });
@@ -3051,12 +3159,13 @@ async function repBuildCountryBlob(country, setStatus) {
 // ── The three report types ────────────────────────────────────────────────
 async function repRunSingle(country) {
   if (!country) return;
+  const fmt = await repAskFormat(tr(country + ' — country report', cN(country) + ' — تقرير الدولة')); if (!fmt) return;
   const ov = cd_progressOverlay(tr('Country report · ' + country, 'تقرير الدولة · ' + cN(country)), tr('Loading live World Bank data…', 'جارٍ تحميل بيانات البنك الدولي المباشرة…'));
   try {
-    const { blob, data } = await repBuildCountryBlob(country, ov.setStatus);
-    const fileName = repFileSafe(country) + '_Country_Assessment' + repLangSuffix() + '_' + repStamp() + '.pptx';
+    const { blob, data } = await repBuildCountryBlob(country, ov.setStatus, fmt);
+    const fileName = repFileSafe(country) + '_Country_Assessment' + repLangSuffix() + '_' + repStamp() + repExt(fmt);
     const saved = await repSave({ id: repId(), kind: 'single', title: country + ' — Country Assessment', countries: [country],
-      createdAt: new Date().toISOString(), fileName, size: blob.size, data, blob, lang });
+      createdAt: new Date().toISOString(), fileName, size: blob.size, data, blob, lang, fmt });
     repDownloadBlob(blob, fileName);
     ov.remove();
     repToast(saved ? tr('✓ ' + country + ' report downloaded and saved to your reports', '✓ تم تنزيل تقرير ' + cN(country) + ' وحفظه في تقاريرك')
@@ -3070,15 +3179,16 @@ async function repRunBatch(countries) {
   if (!countries.length) { alert(tr('Select at least one country first.', 'اختر دولة واحدة على الأقل أولاً.')); return; }
   if (countries.length > 10 && !confirm(tr('Build ' + countries.length + ' separate reports? Each takes a few seconds, and your browser may ask once to allow several downloads.',
       'إعداد ' + countries.length + ' تقارير منفصلة؟ يستغرق كل تقرير بضع ثوانٍ، وقد يطلب المتصفح السماح بتنزيل عدة ملفات.'))) return;
+  const fmt = await repAskFormat(tr(countries.length + ' separate country reports', countries.length + ' تقارير دول منفصلة')); if (!fmt) return;
   const ov = cd_progressOverlay(tr('Building ' + countries.length + ' country reports', 'جارٍ إعداد ' + countries.length + ' تقارير دول'), tr('Starting…', 'جارٍ البدء…'));
   const failed = [];
   for (let i = 0; i < countries.length; i++) {
     const c = countries[i];
     try {
-      const { blob, data } = await repBuildCountryBlob(c, s => ov.setStatus(tr((i + 1) + ' of ' + countries.length, (i + 1) + ' من ' + countries.length) + ' · ' + s));
-      const fileName = repFileSafe(c) + '_Country_Assessment' + repLangSuffix() + '_' + repStamp() + '.pptx';
+      const { blob, data } = await repBuildCountryBlob(c, s => ov.setStatus(tr((i + 1) + ' of ' + countries.length, (i + 1) + ' من ' + countries.length) + ' · ' + s), fmt);
+      const fileName = repFileSafe(c) + '_Country_Assessment' + repLangSuffix() + '_' + repStamp() + repExt(fmt);
       await repSave({ id: repId(), kind: 'single', title: c + ' — Country Assessment', countries: [c],
-        createdAt: new Date().toISOString(), fileName, size: blob.size, data, blob, batch: true, lang });
+        createdAt: new Date().toISOString(), fileName, size: blob.size, data, blob, batch: true, lang, fmt });
       repDownloadBlob(blob, fileName);
       await new Promise(r => setTimeout(r, 400));   // space out downloads so the browser keeps them all
     } catch (e) { failed.push(c); }
@@ -3094,6 +3204,7 @@ async function repRunBatch(countries) {
 async function repRunRegion(region) {
   const members = (REGION_MEMBERS[region] || []).slice();
   if (!members.length) { alert(tr('No countries found for ' + region + '.', 'لا توجد دول في ' + rN(region) + '.')); return; }
+  const fmt = await repAskFormat(tr(region + ' — regional report', rN(region) + ' — التقرير الإقليمي')); if (!fmt) return;
   const ov = cd_progressOverlay(tr('Region report · ' + region, 'التقرير الإقليمي · ' + rN(region)),
     tr('Loading live World Bank data for ' + members.length + ' countries — this can take up to 30 seconds…', 'جارٍ تحميل بيانات البنك الدولي المباشرة لـ' + members.length + ' دولة — قد يستغرق ذلك حتى 30 ثانية…'));
   try {
@@ -3118,11 +3229,11 @@ async function repRunRegion(region) {
       ? tr('Headline indicators were retrieved live from the World Bank API when this report was built.', 'تم استرجاع المؤشرات الرئيسية مباشرة من واجهة البنك الدولي عند إعداد هذا التقرير.')
       : tr('Figures come from the dashboard’s World Bank snapshot' + (repSnapshotStr() ? ' of ' + repSnapshotStr() : '') + ' (the live API could not be reached).',
            'الأرقام مأخوذة من النسخة المحفوظة من بيانات البنك الدولي' + (repSnapshotStr() ? ' بتاريخ ' + repSnapshotStr() : '') + ' (تعذّر الوصول إلى البيانات المباشرة).');
-    const blob = await window.buildRegionDeck({ region, countries, dateStr: repDateStr(), dataNote, PptxGenJS, output: 'blob', lang, mapData, logo,
+    const blob = await window.buildRegionDeck({ region, countries, dateStr: repDateStr(), dataNote, PptxGenJS: repDeckCtor(fmt), output: 'blob', lang, mapData, logo,
       needShades: { hi: NEED_SHADES.hi.slice(1), mid: NEED_SHADES.mid.slice(1), lo: NEED_SHADES.lo.slice(1), none: NEED_SHADES.none.slice(1) } });
-    const fileName = repFileSafe(region) + '_Regional_Assessment' + repLangSuffix() + '_' + repStamp() + '.pptx';
+    const fileName = repFileSafe(region) + '_Regional_Assessment' + repLangSuffix() + '_' + repStamp() + repExt(fmt);
     const saved = await repSave({ id: repId(), kind: 'region', title: region + ' — Regional Assessment', region, countries: members,
-      createdAt: new Date().toISOString(), fileName, size: blob.size, data: live.live ? 'live' : 'snapshot', blob, lang });
+      createdAt: new Date().toISOString(), fileName, size: blob.size, data: live.live ? 'live' : 'snapshot', blob, lang, fmt });
     repDownloadBlob(blob, fileName);
     ov.remove();
     repToast(saved ? tr('✓ ' + region + ' report downloaded and saved to your reports', '✓ تم تنزيل تقرير ' + rN(region) + ' وحفظه في تقاريرك')
@@ -3615,7 +3726,7 @@ function repRenderLibrary() {
   el.innerHTML = list.length ? `<div style="overflow-x:auto"><table class="ex-table">
       <thead><tr><th>${tr('Report', 'التقرير')}</th><th>${tr('Type', 'النوع')}</th><th>${tr('Created', 'تاريخ الإعداد')}</th><th>${tr('Data', 'البيانات')}</th><th class="num">${tr('Size', 'الحجم')}</th><th></th></tr></thead>
       <tbody>${list.map(r => `<tr style="cursor:default">
-        <td><div style="font-weight:600">${exEsc(recTitle(r))} ${repLangTag(r)}</div>${r.kind === 'region' || r.countries.length > 1 ? `<div style="font-size:11.5px;color:var(--ex-mute)">${tr(r.countries.length + ' countries', r.countries.length + ' دولة')}</div>` : ''}</td>
+        <td><div style="font-weight:600">${exEsc(recTitle(r))} ${repLangTag(r)}<span class="ex-lang-tag">${/\.pdf$/i.test(r.fileName || '') ? 'PDF' : 'PPT'}</span></div>${r.kind === 'region' || r.countries.length > 1 ? `<div style="font-size:11.5px;color:var(--ex-mute)">${tr(r.countries.length + ' countries', r.countries.length + ' دولة')}</div>` : ''}</td>
         <td><span class="ex-tag ${r.kind === 'region' ? 'lead' : 'stake'}">${repKindLabel(r.kind)}</span></td>
         <td style="white-space:nowrap;font-size:12.5px">${repFmtDate(r.createdAt)}</td>
         <td style="font-size:12.5px">${{ live: tr('Live', 'مباشرة'), snapshot: tr('Snapshot', 'محفوظة'), ai: tr('AI research', 'بحث بالذكاء الاصطناعي') }[r.data] || '—'}</td>

@@ -1703,6 +1703,7 @@ body {
 .need-key-col .need-key { gap:8px; }
 [dir="rtl"] .map-legend { direction:rtl; text-align:right; }
 
+/* Country panel: opens to about half the page; overview block on top */.drawer { height:56%; max-height:none !important; }.cd-ov { display:grid; grid-template-columns:minmax(240px, 34%) minmax(0, 1fr); gap:22px; align-items:start; }.cd-ov-map { position:relative; border-radius:12px; overflow:hidden; background:#EAF2F8; aspect-ratio:4 / 3; }.cd-ov-map img#cd-ov-map-img { width:100%; height:100%; object-fit:contain; display:block; opacity:0; transition:opacity .3s; }.cd-ov-map img#cd-ov-map-img.on { opacity:1; }.cd-ov-flag { position:absolute; top:10px; inset-inline-start:10px; background:#fff; padding:3px; border-radius:4px; box-shadow:0 2px 8px rgba(15,42,64,.18); line-height:0; }.cd-ov-flag img { height:30px; width:auto; display:block; border-radius:2px; }.cd-ov-body { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:18px; }.cd-ov-facts { display:grid; grid-template-columns:1fr 1fr; gap:12px 16px; align-content:start; }.cd-ov-k { font-size:10.5px; font-weight:600; letter-spacing:.8px; text-transform:uppercase; color:var(--ex-faint); }.cd-ov-v { font-size:13.5px; font-weight:600; color:var(--ex-ink); margin-top:3px; line-height:1.35; }.cd-ov-since, .cd-ov-wait { font-weight:400; color:var(--ex-mute); font-size:11.5px; }.cd-ov-pol { background:var(--ex-sky-pale); border-radius:12px; padding:12px 14px; }.cd-ov-pol-hd { font-size:11px; font-weight:700; letter-spacing:.8px; text-transform:uppercase; color:var(--ex-gold); margin-bottom:8px; }.cd-ov-pol-hd span { display:block; text-transform:none; letter-spacing:0; font-weight:500; color:var(--ex-mute); font-size:11px; margin-top:2px; }.cd-ov-wgi { display:grid; grid-template-columns:minmax(0,1.4fr) minmax(40px,1fr) 26px; gap:8px; align-items:center; padding:4px 0; font-size:12px; color:var(--ex-ink); }.cd-ov-wgi-t { height:6px; background:#fff; border-radius:3px; overflow:hidden; display:block; }.cd-ov-wgi-t i { display:block; height:100%; border-radius:3px; }.cd-ov-wgi-v { font-weight:700; text-align:end; font-variant-numeric:tabular-nums; }.cd-ov-src { font-size:10.5px; color:var(--ex-faint); margin-top:8px; }[dir="rtl"] .cd-ov-k, [dir="rtl"] .cd-ov-pol-hd { letter-spacing:0; text-transform:none; font-size:12px; }@media (max-width: 1100px) { .cd-ov-body { grid-template-columns:1fr; } }@media (max-width: 760px) { .cd-ov { grid-template-columns:1fr; } .drawer { height:70%; } }
 @media (max-width: 1100px) {
   .ex-grid-map { grid-template-columns:1fr; }
   .ex-map { height:340px; }
@@ -2184,10 +2185,20 @@ function setLang(l) {
 // World outline drawn from Natural Earth (world-atlas TopoJSON) instead of map tiles, so
 // the map carries no baked-in English text; country labels come from us, in the chosen language.
 const WORLD_GEO = {};
+// Russia and Fiji straddle the 180° line; drawn as-is their outlines streak across the whole
+// map. Shift those rings' western points by +360° so each shape stays in one piece.
+function geoFixDateline(g) {
+  const fixRing = ring => { let mn = Infinity, mx = -Infinity;
+    ring.forEach(p => { if (p[0] < mn) mn = p[0]; if (p[0] > mx) mx = p[0]; });
+    if (mx - mn > 180) ring.forEach(p => { if (p[0] < 0) p[0] += 360; }); };
+  g.features.forEach(f => { const gm = f.geometry; if (!gm) return;
+    (gm.type === 'Polygon' ? [gm.coordinates] : gm.type === 'MultiPolygon' ? gm.coordinates : []).forEach(poly => poly.forEach(fixRing)); });
+  return g;
+}
 function loadWorld(res) {
   if (!WORLD_GEO[res]) WORLD_GEO[res] = fetch(`https://cdn.jsdelivr.net/npm/world-atlas@2/countries-${res}.json`)
     .then(r => r.json()).then(t => topojson.feature(t, t.objects.countries))
-    .then(g => { g.features = g.features.filter(f => f.id !== '010'); return g; });   // drop Antarctica
+    .then(g => { g.features = g.features.filter(f => f.id !== '010'); return geoFixDateline(g); });   // drop Antarctica
   return WORLD_GEO[res];
 }
 function addWorldLayer(m, res) {
@@ -2272,54 +2283,73 @@ function relTime(iso) {
 }
 
 // ── Map ───────────────────────────────────────────────────────────────────
+// Both dashboard maps use the report map style: every tracked country is drawn from its
+// Natural Earth outline and filled by need tier (same shades as the reports). Very small
+// countries also get a dot so they stay easy to click.
+const geoName = c => (typeof GEO_NAME !== 'undefined' && GEO_NAME[c]) || c;
+function trackedCountryLayer(m, res, style, bind) {
+  return loadWorld(res).then(geo => {
+    if (!m._panes || !m._panes.overlayPane || !m.getContainer().isConnected) return {};
+    const byGeo = {}; Object.keys(COUNTRY_LATLNG).forEach(c => { byGeo[geoName(c)] = c; });
+    const out = {};
+    L.geoJSON({ type:'FeatureCollection', features: geo.features.filter(f => byGeo[f.properties.name]) }, {
+      style: f => style(byGeo[f.properties.name]),
+      onEachFeature: (f, layer) => { const c = byGeo[f.properties.name]; out[c] = { layer }; bind(c, layer); },
+    }).addTo(m);
+    Object.keys(COUNTRY_LATLNG).forEach(c => {
+      const o = out[c] || (out[c] = {});
+      const b = o.layer && o.layer.getBounds();
+      if (!o.layer || (b.getNorth() - b.getSouth() < 2.2 && b.getEast() - b.getWest() < 2.2)) {
+        o.dot = L.circleMarker(COUNTRY_LATLNG[c], { radius:5.5, weight:1.5, color:'#FFFFFF', fillColor: NEED_SHADES[needTier(c)], fillOpacity:1 }).addTo(m);
+        bind(c, o.dot);
+      }
+    });
+    return out;
+  });
+}
+const needTip = c => { const n = needScores()[c] || {}, total = (needScores().__ranked || []).length;
+  return `<b>${exEsc(cN(c))}</b>` + (n.rank ? tr(` · need index ${Math.round(n.need)} · rank ${n.rank} of ${total}`, ` · مؤشر الاحتياج ${Math.round(n.need)} · الترتيب ${n.rank} من ${total}`) : ''); };
+const applyStyle = (o, s, dotExtra) => { if (o.layer) o.layer.setStyle(s); if (o.dot) o.dot.setStyle(Object.assign({}, s, { weight:1.5, color: s.color === '#FFFFFF' ? '#FFFFFF' : s.color }, dotExtra || {})); };
+
+// Full Countries map
+let mapCountries = {}, mapSel = null;
+function mapStyle(c) {
+  const t = needTier(c), on = !mapTier || t === mapTier, sel = c === mapSel;
+  return { color: sel ? '#C9A13D' : '#FFFFFF', weight: sel ? 3 : 0.9, fillColor: NEED_SHADES[t], fillOpacity: on ? 0.92 : 0.12, opacity: on ? 1 : 0.35 };
+}
 function initMap() {
   if (mapInitialized) return;
   mapInitialized = true;
-  map = L.map('map', { zoomControl:false, attributionControl:false }).setView([12,25],3);
-  addWorldLayer(map, '50m');   // clean vector world outline; labels added by mapApplyLang()
+  map = L.map('map', { zoomControl:false, attributionControl:false, worldCopyJump:false, minZoom:2 }).setView([12, 25], 3);
+  addWorldLayer(map, '50m');   // grey world outline underneath
   L.control.zoom({ position:'bottomright' }).addTo(map);
   const zoomCls = () => map.getContainer().classList.toggle('map-z-low', map.getZoom() < 3);
   map.on('zoomend', zoomCls); zoomCls();
-
-  // Plot every country in the catalogue; colour comes from the need index (colorMapPins)
-  Object.entries(COUNTRY_LATLNG).forEach(([country, [lat, lng]]) => {
-    const el = document.createElement('div');
-    el.className = 'map-pin';
-    el.title = country;
-    el.addEventListener('click', (e) => {
-      e.stopPropagation();
-      document.querySelectorAll('.map-pin').forEach(m => m.classList.remove('sel'));
-      el.classList.add('sel');
-      openCountryDrawer(country);
-    });
-    const marker = L.marker([lat, lng], {
-      icon: L.divIcon({ html: el, className: '', iconSize: [12, 12], iconAnchor: [6, 6] })
-    }).addTo(map);
-    mapMarkers[country] = { marker, el };
-  });
-  mapApplyLang();   // English reference labels or Arabic labels, pin tooltips, country list
+  trackedCountryLayer(map, '50m', mapStyle, (c, l) => {
+    l.on('click', e => { L.DomEvent.stopPropagation(e); mapJumpTo(c, true); });
+    l.bindTooltip(() => needTip(c), { sticky:true, className:'ex-tip', direction:'top' });
+    l.on('mouseover', () => { if (c !== mapSel) l.setStyle({ weight:2.2, color:'#0F2A40' }); })
+     .on('mouseout',  () => l.setStyle(mapStyle(c)));
+  }).then(o => { mapCountries = o; colorMapPins(); });
+  mapApplyLang();   // country labels + "go to country" list in the current language
 }
-
-// Shade pins by need index: top third = high, middle = medium, rest = lower.
+// Re-shade the full map (need tiers, tier filter, selection) and refresh its key
 function colorMapPins() {
   if (!mapInitialized || !prebakedLoaded) return;
-  const need = needScores(), ranked = need.__ranked || [];
-  const n = ranked.length;
-  Object.entries(mapMarkers).forEach(([c, { el }]) => {
-    el.classList.remove('need-hi', 'need-mid', 'need-lo');
-    const r = need[c] && need[c].rank;
-    if (r) el.classList.add(r <= n / 3 ? 'need-hi' : r <= 2 * n / 3 ? 'need-mid' : 'need-lo');
-    el.title = cN(c) + (r ? tr(' · need index ', ' · مؤشر الاحتياج ') + Math.round(need[c].need) + tr(' (rank ' + r + ' of ' + n + ')', ' (الترتيب ' + r + ' من ' + n + ')') : '');
-  });
+  Object.entries(mapCountries).forEach(([c, o]) => applyStyle(o, mapStyle(c)));
+  if (mapSel && mapCountries[mapSel]) { const o = mapCountries[mapSel]; if (o.layer) o.layer.bringToFront(); }
   const key = document.getElementById('map-need-key');
   if (key) key.innerHTML = needKeyHtml('mapFilterTier', mapTier, false);
 }
-
-function mapJumpTo(country) {
+function mapJumpTo(country, keepView) {
   if (!country) return;
-  const mk = mapMarkers[country];
-  document.querySelectorAll('.map-pin').forEach(m => m.classList.remove('sel'));
-  if (mk) { mk.el.classList.add('sel'); if (map) map.setView(mk.marker.getLatLng(), 4); }
+  mapSel = country; colorMapPins();
+  const o = mapCountries[country];
+  if (map) {
+    const box = map.getContainer().getBoundingClientRect();
+    if (o && o.layer) map.fitBounds(o.layer.getBounds(), { maxZoom:5, paddingTopLeft:[40, 30], paddingBottomRight:[40, Math.round(box.height * 0.58)] });
+    else if (COUNTRY_LATLNG[country]) map.setView(COUNTRY_LATLNG[country], 5);
+  }
   openCountryDrawer(country);
 }
 
@@ -2353,6 +2383,52 @@ function cdSwitchTab(tab, btn) {
   if (btn) btn.classList.add('active');
   if (tab === 'overview')        cdRenderOverview();
   else if (tab === 'indicators') cdRenderIndicators();
+}
+
+// Country overview block (top of the panel): accurate map + flag, capital, population,
+// leaders and the political situation. Map and political data load once, then re-render.
+const CD_MAP = {}, POL_DONE = {};
+function cdOverviewHtml(c, data) {
+  const country = c;
+  if (!CD_MAP[c]) { CD_MAP[c] = 'loading'; repMapImage({ focus:[c], slot:{ w:4, h:3 } }).then(src => { CD_MAP[c] = src || 'none';
+    const img = document.getElementById('cd-ov-map-img'); if (img && cdCountry === c && src) { img.src = src; img.classList.add('on'); } }); }
+  if (!POL_DONE[c]) repPolitics(c).then(p => { POL_DONE[c] = p; if (cdCountry === c && cdActiveTab === 'overview') cdRenderOverview(); });
+  const pol = POL_DONE[c];
+  const info = isAr() && AR_INFO[c] ? { capital: AR_INFO[c][0] } : (COUNTRY_INFO[c] || {});
+  const pop = data && data['SP.POP.TOTL'] && data['SP.POP.TOTL'].value != null ? repFmtPeople(data['SP.POP.TOTL'].value) + ' · ' + data['SP.POP.TOTL'].year : '—';
+  const n = needScores()[c] || {}, total = (needScores().__ranked || []).length;
+  const waiting = `<span class="cd-ov-wait">${tr('Loading…', 'جارٍ التحميل…')}</span>`;
+  const fact = (k, v) => `<div class="cd-ov-fact"><div class="cd-ov-k">${k}</div><div class="cd-ov-v">${v || '—'}</div></div>`;
+  const office = pol && pol.office.length ? tr(pol.office[0].en, pol.office[0].ar) : '';
+  const hos = pol ? (pol.hos.length ? exEsc(polName(pol.hos)) + (pol.hosSince ? ` <span class="cd-ov-since">${tr('since', 'منذ')} ${polSince(pol.hosSince)}</span>` : '')
+    + (office ? `<div class="cd-ov-since">${exEsc(office)}</div>` : '') : '—') : waiting;
+  const hog = pol ? (pol.hog.length && polName(pol.hog) !== polName(pol.hos) ? exEsc(polName(pol.hog)) : (pol.hog.length ? tr('Same as head of state', 'رئيس الدولة نفسه') : '—')) : waiting;
+  const gov = pol ? (pol.gov.length ? exEsc(pol.gov.slice(0, 2).map(x => tr(x.en, x.ar)).join(' · ')) : '—') : waiting;
+  const wgiRows = WGI_INDS.map(w => { const d = pol && pol.wgi[w.id], sv = d ? indSeverity(w.id, d.value) : null;
+    return `<div class="cd-ov-wgi" title="${sv ? exEsc(sv.why) : ''}"><span class="cd-ov-wgi-l">${tr(w.en, w.ar)}</span>
+      <span class="cd-ov-wgi-t"><i style="width:${d ? Math.max(3, Math.round(d.value)) : 0}%;background:${sv ? 'var(--sev' + sv.lvl + ')' : 'var(--ex-sky)'}"></i></span>
+      <span class="cd-ov-wgi-v">${d ? Math.round(d.value) : (pol ? '—' : '…')}</span></div>`; }).join('');
+  const wgiYear = pol && Object.values(pol.wgi)[0] ? Object.values(pol.wgi)[0].year : '';
+  const mapSrc = CD_MAP[c] && CD_MAP[c] !== 'loading' && CD_MAP[c] !== 'none' ? CD_MAP[c] : '';
+  return `<div class="cd-section cd-ov">
+    <div class="cd-ov-map"><img id="cd-ov-map-img" class="${mapSrc ? 'on' : ''}" src="${mapSrc}" alt="${exEsc(cN(c))}">
+      <div class="cd-ov-flag">${CUSTOM_FLAGS[c] ? `<img src="${CUSTOM_FLAGS[c]}" alt="">` : COUNTRY_ISO2[c] ? `<img src="https://flagcdn.com/w160/${COUNTRY_ISO2[c].toLowerCase()}.png" alt="">` : ''}</div></div>
+    <div class="cd-ov-body">
+      <div class="cd-ov-facts">
+        ${fact(tr('Capital', 'العاصمة'), exEsc(info.capital || ''))}
+        ${fact(tr('Population', 'عدد السكان'), pop)}
+        ${fact(tr('Head of state', 'رئيس الدولة'), hos)}
+        ${fact(tr('Head of government', 'رئيس الحكومة'), hog)}
+        ${pol && !pol.gov.length ? fact(tr('Region', 'الإقليم'), exEsc(rN(repRegionOf(c)))) : fact(tr('System of government', 'نظام الحكم'), gov)}
+        ${fact(tr('ODA need index', 'مؤشر الاحتياج'), n.rank ? `<b>${Math.round(n.need)}</b>/100 · ${tr('rank ' + n.rank + ' of ' + total, 'الترتيب ' + n.rank + ' من ' + total)}` : '—')}
+      </div>
+      <div class="cd-ov-pol">
+        <div class="cd-ov-pol-hd">${tr('Political situation', 'الوضع السياسي')} <span>${tr('governance scores, 0–100 (higher is better)', 'مؤشرات الحوكمة، 0–100 (الأعلى أفضل)')}</span></div>
+        ${wgiRows}
+        <div class="cd-ov-src">${tr('World Bank Worldwide Governance Indicators', 'مؤشرات الحوكمة العالمية — البنك الدولي')}${wgiYear ? ' ' + wgiYear : ''} · ${tr('leaders: Wikidata (live)', 'القادة: ويكي بيانات (مباشر)')}</div>
+      </div>
+    </div>
+  </div>`;
 }
 
 function cdRenderOverview() {
@@ -2392,7 +2468,7 @@ function cdRenderOverview() {
   const mine = REP_LIBRARY.filter(r => r.countries.includes(cdCountry)).slice(0, 6);
   const repsHtml = repLibRowsHtml(mine, true) + repPublishedHtml(cdCountry);
 
-  document.getElementById('drawer-body').innerHTML = `
+  document.getElementById('drawer-body').innerHTML = cdOverviewHtml(cdCountry, data) + `
     <div class="cd-section">
       <div class="cd-section-hd">
         <div class="cd-section-title">${tr('Key Indicators', 'المؤشرات الرئيسية')} <span style="font-weight:500;color:var(--text3);font-size:11px;margin-inline-start:6px">${srcLabel}</span></div>
@@ -2477,7 +2553,7 @@ function cdBuildIndGrid(tabKey) {
 
 function closeDrawer() {
   document.getElementById('drawer').classList.remove('open');
-  document.querySelectorAll('.map-pin').forEach(m => m.classList.remove('sel'));
+  mapSel = null; colorMapPins();
   cdCountry = null;
   cdActiveTab = 'overview';
   cdActiveIndTab = 'overview';
@@ -2641,6 +2717,80 @@ async function repCountryData(country, ms = 20000) {
   await Promise.race([ca_loadCountryData(country), new Promise(r => setTimeout(r, ms))]);
   return countryDataCache[country] || {};
 }
+// ── Political situation: leaders (Wikidata) + governance scores (World Bank WGI) ──
+const WGI_INDS = [
+  { id:'GOV_WGI_PV.SC', en:'Political stability',      ar:'الاستقرار السياسي' },
+  { id:'GOV_WGI_VA.SC', en:'Voice & accountability',   ar:'المشاركة والمساءلة' },
+  { id:'GOV_WGI_GE.SC', en:'Government effectiveness', ar:'فعالية الحكومة' },
+  { id:'GOV_WGI_RL.SC', en:'Rule of law',              ar:'سيادة القانون' },
+  { id:'GOV_WGI_CC.SC', en:'Control of corruption',    ar:'مكافحة الفساد' },
+];
+const POLITICS = {};
+function repPolitics(country) {
+  if (POLITICS[country]) return POLITICS[country];
+  const job = (async () => {
+    const iso = COUNTRY_ISO[country], out = { wgi:{}, hos:[], hog:[], gov:[], office:[], hosSince:null, hogSince:null, ok:false };
+    if (!iso || iso.length !== 3) return out;
+    const timeout = ms => new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), ms));
+    // World Bank governance scores — one retry, as the API can be slow
+    const wgiOne = async w => {
+      for (let attempt = 0; attempt < 2 && !out.wgi[w.id]; attempt++) {
+        try {
+          const r = await Promise.race([fetch(`https://api.worldbank.org/v2/country/${iso}/indicator/${w.id}?source=3&format=json&mrv=4`), timeout(15000)]);
+          const j = await r.json(); const row = (j[1] || []).find(x => x.value != null);
+          if (row) out.wgi[w.id] = { value: row.value, year: row.date };
+        } catch (e) {}
+      }
+    };
+    const wgi = Promise.all(WGI_INDS.map(wgiOne));
+    // Leaders — Wikidata. Country statements can be stale (an outgoing leader never closed off),
+    // so we also read who currently holds each office and keep whoever took office most recently.
+    const sparql = async q => {
+      const r = await Promise.race([fetch('https://query.wikidata.org/sparql?format=json&query=' + encodeURIComponent(q), { headers:{ Accept:'application/sparql-results+json' } }), timeout(15000)]);
+      return (await r.json()).results.bindings;
+    };
+    const lbl = (en, a) => `OPTIONAL { ${en.v} rdfs:label ${en.n} FILTER(lang(${en.n})='en') } OPTIONAL { ${en.v} rdfs:label ${a} FILTER(lang(${a})='ar') }`;
+    const wd = (async () => {
+      try {
+        const rows = await sparql(`SELECT ?role ?p ?pEn ?pAr ?start ?hosOff ?hogOff ?offEn ?offAr ?govEn ?govAr WHERE { ?c wdt:P298 "${iso}" .
+          { VALUES ?prop { p:P35 p:P6 } ?c ?prop ?s . BIND(IF(?prop = p:P35, "hos", "hog") AS ?role)
+            { ?s ps:P35 ?p } UNION { ?s ps:P6 ?p } FILTER NOT EXISTS { ?s pq:P582 ?e } OPTIONAL { ?s pq:P580 ?start } ${lbl({ v:'?p', n:'?pEn' }, '?pAr')} }
+          UNION { ?c wdt:P1906 ?hosOff . ${lbl({ v:'?hosOff', n:'?offEn' }, '?offAr')} }
+          UNION { ?c wdt:P1313 ?hogOff . }
+          UNION { ?c wdt:P122 ?gov . ${lbl({ v:'?gov', n:'?govEn' }, '?govAr')} } }`);
+        const cand = { hos:[], hog:[] }, offices = {};
+        const addGov = (en, a) => { if (en && !out.gov.some(x => x.en === en)) out.gov.push({ en, ar: a || en }); };
+        rows.forEach(b => {
+          if (b.role && b.pEn) cand[b.role.value].push({ id: b.p.value, en: b.pEn.value, ar: (b.pAr || b.pEn).value, start: b.start ? b.start.value.slice(0, 10) : '' });
+          if (b.hosOff) { offices.hos = b.hosOff.value.split('/').pop(); if (b.offEn && !out.office.length) out.office.push({ en: b.offEn.value, ar: (b.offAr || b.offEn).value }); }
+          if (b.hogOff) offices.hog = b.hogOff.value.split('/').pop();
+          if (b.govEn) addGov(b.govEn.value, b.govAr && b.govAr.value);
+        });
+        const offIds = Object.entries(offices).filter(([, id]) => id);
+        if (offIds.length) {
+          const held = await sparql(`SELECT ?office ?p ?pEn ?pAr ?start WHERE { VALUES ?office { ${offIds.map(([, id]) => 'wd:' + id).join(' ')} }
+            ?st ps:P39 ?office . ?p p:P39 ?st . FILTER NOT EXISTS { ?st pq:P582 ?e } FILTER NOT EXISTS { ?p wdt:P570 ?died }
+            OPTIONAL { ?st pq:P580 ?start } ${lbl({ v:'?p', n:'?pEn' }, '?pAr')} }`).catch(() => []);
+          held.forEach(b => { const id = b.office.value.split('/').pop();
+            offIds.forEach(([role, oid]) => { if (oid === id && b.pEn) cand[role].push({ id: b.p.value, en: b.pEn.value, ar: (b.pAr || b.pEn).value, start: b.start ? b.start.value.slice(0, 10) : '' }); }); });
+        }
+        ['hos', 'hog'].forEach(role => {
+          const best = cand[role].filter(x => x.start).sort((a, b) => b.start.localeCompare(a.start))[0] || cand[role][0];
+          if (best) { out[role] = [{ en: best.en, ar: best.ar }]; out[role + 'Since'] = best.start || null; }
+        });
+      } catch (e) {}
+    })();
+    await Promise.all([wgi, wd]);
+    out.ok = !!(out.hos.length || Object.keys(out.wgi).length);
+    if (!Object.keys(out.wgi).length || !out.hos.length) setTimeout(() => { if (POLITICS[country] === job) delete POLITICS[country]; }, 0);   // retry next time
+    return out;
+  })();
+  POLITICS[country] = job;
+  return job;
+}
+const polName = list => (list || []).slice(0, 2).map(x => tr(x.en, x.ar)).join(tr(' & ', ' و'));
+// Wikidata stores year-only dates as 1 January — show just the year in that case
+const polSince = d => { try { return !d ? '' : /-01-01$/.test(d) ? d.slice(0, 4) : new Date(d).toLocaleDateString(LOCALE(), { month:'short', year:'numeric' }); } catch (e) { return ''; } };
 async function repFetchDataUrl(url, ms) {
   const r = await Promise.race([fetch(url), new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), ms))]);
   if (!r.ok) throw new Error('HTTP ' + r.status);
@@ -2752,11 +2902,13 @@ async function repBuildCountryBlob(country, setStatus) {
   setStatus && setStatus(tr('Loading live World Bank data for ' + country + '…', 'جارٍ تحميل بيانات البنك الدولي المباشرة لـ' + cN(country) + '…'));
   const d = await repCountryData(country);
   setStatus && setStatus(tr('Building the ' + country + ' report…', 'جارٍ إعداد تقرير ' + cN(country) + '…'));
-  const [flagData, mapData, logo] = await Promise.all([repFlag(country), repMap(country), repLogo()]);
+  const [flagData, mapData, logo, pol] = await Promise.all([repFlag(country), repMap(country), repLogo(),
+    Promise.race([repPolitics(country), new Promise(r => setTimeout(() => r(null), 20000))])]);
   const flagRatio = await repImgRatio(flagData);
   const need = needScores()[country] || {};
   const blob = await window.buildCountryDeck({
-    country, data: d, info: COUNTRY_INFO[country] || {}, iso2: (COUNTRY_ISO2[country] || '').toLowerCase(),
+    country, data: Object.assign({}, d, pol ? pol.wgi : {}), info: COUNTRY_INFO[country] || {}, iso2: (COUNTRY_ISO2[country] || '').toLowerCase(),
+    politics: pol && pol.ok ? { hos: pol.hos, hog: pol.hog, gov: pol.gov, office: pol.office, hosSince: pol.hosSince } : null,
     flagData, flagRatio, mapData, logo, dateStr: repDateStr(), PptxGenJS, output: 'blob', lang,
     region: repRegionOf(country), income: COUNTRY_INCOME[country] || '',
     need: need.need != null ? { score: need.need, rank: need.rank, of: (needScores().__ranked || []).length } : null,
@@ -2895,12 +3047,7 @@ const repKindLabel = k => ({ single: tr('Country', 'دولة'), region: tr('Regi
 const repLangTag = r => `<span class="ex-lang-tag" title="${r.lang === 'ar' ? tr('Arabic report', 'تقرير بالعربية') : tr('English report', 'تقرير بالإنجليزية')}">${r.lang === 'ar' ? 'ع' : 'EN'}</span>`;
 function exOpenCountry(country) {
   goView('countries');
-  setTimeout(() => {
-    document.querySelectorAll('.map-pin').forEach(m => m.classList.remove('sel'));
-    const mk = mapMarkers[country];
-    if (mk) { mk.el.classList.add('sel'); if (map) map.setView(mk.marker.getLatLng(), 4); }
-    openCountryDrawer(country);
-  }, 150);
+  setTimeout(() => mapJumpTo(country), 150);
 }
 function repLibRowsHtml(list, compact) {
   if (!list.length) return '';
@@ -3086,61 +3233,50 @@ function needKeyHtml(fnName, active, withTop) {
     + (active ? `<button type="button" class="need-key need-key-all" onclick="${fnName}(null)">${tr('Show all', 'عرض الكل')}</button>` : '');
 }
 
-// Landing-page map widget — every tracked country shaded by need; click for a quick card.
-let exMap = null, exMarkers = [], exTier = null;
+// Landing-page map widget — same report-style choropleth; click a country for a quick card.
+let exMap = null, exCountries = {}, exTier = null;
+const exTop10 = c => { const n = needScores()[c]; return !!(n && n.rank && n.rank <= 10); };
+function exStyle(c) {
+  const t = needTier(c), on = !exTier || (exTier === 'top' ? exTop10(c) : t === exTier), top = exTop10(c);
+  return { color: top ? '#C9A13D' : '#FFFFFF', weight: top ? 1.8 : 0.8, fillColor: NEED_SHADES[t], fillOpacity: on ? 0.92 : 0.1, opacity: on ? 1 : 0.3 };
+}
 function exInitMiniMap() {
   const el = document.getElementById('ex-map');
   if (!el || typeof L === 'undefined') return;
   if (exMap) { exMap.remove(); exMap = null; }
-  exMarkers = [];
+  exCountries = {};
   exMap = L.map(el, { zoomControl:false, attributionControl:false, scrollWheelZoom:false, keyboard:false, worldCopyJump:false, minZoom:1, maxZoom:7, zoomSnap:0.25 });
   addWorldLayer(exMap, '110m');
   L.control.zoom({ position: isAr() ? 'bottomleft' : 'bottomright' }).addTo(exMap);
-  const need = needScores(), total = (need.__ranked || []).length;
-  const pts = [];
-  Object.entries(COUNTRY_LATLNG).forEach(([c, ll]) => {
-    pts.push(ll);
-    const n = need[c] || {}, top = !!(n.rank && n.rank <= 10);
-    const mk = L.circleMarker(ll, { radius: top ? 7 : 5.5, color:'#fff', weight:1.5, fillColor: needShade(c), fillOpacity:.95 }).addTo(exMap);
-    const ring = top ? L.circleMarker(ll, { radius:11, color:'#C9A13D', weight:1.6, fill:false, interactive:false }).addTo(exMap) : null;
-    mk.bindPopup(`<div class="ex-pop">
-        <div class="ex-pop-name">${exEsc(cN(c))}</div>
+  const total = (needScores().__ranked || []).length;
+  exMap.fitBounds(L.latLngBounds(Object.values(COUNTRY_LATLNG)).pad(0.03));
+  trackedCountryLayer(exMap, '110m', exStyle, (c, l) => {
+    const n = needScores()[c] || {};
+    l.bindPopup(`<div class="ex-pop">
+        <div class="ex-pop-name">${flagImg(c, 20, 14)}&nbsp; ${exEsc(cN(c))}</div>
         <div class="ex-pop-meta">${exEsc(rN(repRegionOf(c)) || '')}${n.rank ? tr(' · need index ' + Math.round(n.need) + ' · rank ' + n.rank + ' of ' + total, ' · مؤشر الاحتياج ' + Math.round(n.need) + ' · الترتيب ' + n.rank + ' من ' + total) : ''}</div>
         <div class="ex-pop-row">
-          <button class="ex-mini" onclick="exOpenCountry(${qa(c)})">${tr('Profile', 'الملف')}</button>
+          <button class="ex-mini" onclick="exOpenCountry(${qa(c)})">${tr('Country overview', 'نظرة عامة')}</button>
           <button class="ex-mini" onclick="repRunSingle(${qa(c)})">${tr('Instant report', 'تقرير فوري')}</button>
-        </div></div>`, { closeButton:false, offset:[0, -2] });
-    mk.bindTooltip(cN(c), { direction:'top', offset:[0, -6], className:'ex-tip' });
-    mk.on('mouseover', () => mk.setStyle({ weight:2.5 })).on('mouseout', () => mk.setStyle({ weight:1.5 }));
-    exMarkers.push({ c, mk, ring, tier: needTier(c), top });
-  });
-  exMap.fitBounds(L.latLngBounds(pts).pad(0.03));
+        </div></div>`, { closeButton:false });
+    l.bindTooltip(cN(c), { sticky:true, direction:'top', className:'ex-tip' });
+    l.on('mouseover', () => l.setStyle({ weight:2.2, color:'#0F2A40' })).on('mouseout', () => l.setStyle(exStyle(c)));
+  }).then(o => { exCountries = o; exFilterTier(exTier, true); });
   setTimeout(() => exMap && exMap.invalidateSize(), 200);
   exFilterTier(exTier, true);
 }
 function exFilterTier(t, keep) {
   if (!keep) exTier = (t && exTier !== t) ? t : null;
-  exMarkers.forEach(m => {
-    const on = !exTier || (exTier === 'top' ? m.top : m.tier === exTier);
-    m.mk.setStyle({ fillOpacity: on ? .95 : .07, opacity: on ? 1 : .12 });
-    if (on) m.mk.bringToFront();
-    if (m.ring) m.ring.setStyle({ opacity: on ? 1 : .1 });
-  });
+  Object.entries(exCountries).forEach(([c, o]) => applyStyle(o, exStyle(c)));
   const key = document.getElementById('ex-map-key');
   if (key) key.innerHTML = needKeyHtml('exFilterTier', exTier, true);
 }
 
-// Full map: same clickable key, applied to the Leaflet pin elements.
+// Full map tier filter (shares the styling above)
 let mapTier = null;
 function mapFilterTier(t) {
   mapTier = (t && mapTier !== t) ? t : null;
-  Object.entries(mapMarkers).forEach(([c, { el }]) => {
-    const on = !mapTier || needTier(c) === mapTier;
-    el.style.opacity = on ? '1' : '0.12';
-    el.style.pointerEvents = on ? '' : 'none';
-  });
-  const key = document.getElementById('map-need-key');
-  if (key) key.innerHTML = needKeyHtml('mapFilterTier', mapTier, false);
+  colorMapPins();
 }
 
 function renderExecutive() {
@@ -3204,7 +3340,6 @@ function renderExecutive() {
         <div class="ex-datanote">${tr('World Bank Open Data', 'بيانات البنك الدولي المفتوحة')}${repSnapshotStr() ? tr(' · snapshot of ', ' · نسخة بتاريخ ') + repSnapshotStr() : ''} · ${tr('figures refresh live when a country is opened or a report is built', 'تُحدَّث الأرقام مباشرة عند فتح دولة أو إعداد تقرير')}</div>
       </div>
       <div class="ex-hero-actions">
-        <button class="ex-btn" onclick="window.print()">${tr('Print / PDF', 'طباعة / PDF')}</button>
         <button class="ex-btn primary" onclick="goView('reports')">${tr('New report', 'تقرير جديد')} &nbsp;${arrow}</button>
       </div>
     </div></div>

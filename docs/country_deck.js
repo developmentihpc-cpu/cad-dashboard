@@ -1,6 +1,6 @@
 /* country_deck.js — ODA instant country assessment deck (English or Arabic).
  *
- * 10 slides: cover · country overview (map, key facts, status by sector) · executive summary · six sector slides (health, education,
+ * 11 slides: cover · country overview (map, flag, leaders, political situation, status by sector) · executive summary · seven sector slides (health, education,
  * food security & agriculture, WASH, energy & connectivity, economy) · method & sources.
  *
  * Every rating uses the shared severity scale (severity.js) — the same one the
@@ -38,7 +38,8 @@ function buildCountryDeck(opts){
     'SE.ADT.LITR.ZS':'UNESCO UIS', 'SE.PRM.CMPT.ZS':'UNESCO UIS', 'SE.SEC.ENRR':'UNESCO UIS', 'SE.XPD.TOTL.GD.ZS':'UNESCO · World Bank', 'SE.PRM.PTRT.ZS':'UNESCO UIS',
     'AG.YLD.CREL.KG':'FAO', 'NV.AGR.TOTL.ZS':'World Bank', 'SH.H2O.BASW.ZS':'WHO/UNICEF JMP', 'SH.H2O.SMDW.ZS':'WHO/UNICEF JMP', 'SH.STA.BASS.ZS':'WHO/UNICEF JMP',
     'SH.STA.SMSS.ZS':'WHO/UNICEF JMP', 'SH.STA.ODFC.ZS':'WHO/UNICEF JMP', 'EG.ELC.ACCS.ZS':'World Bank · IEA', 'EG.CFT.ACCS.ZS':'WHO', 'IT.NET.USER.ZS':'ITU',
-    'EG.FEC.RNEW.ZS':'IEA · World Bank' };
+    'EG.FEC.RNEW.ZS':'IEA · World Bank', 'GOV_WGI_PV.SC':'World Bank WGI', 'GOV_WGI_VA.SC':'World Bank WGI', 'GOV_WGI_GE.SC':'World Bank WGI',
+    'GOV_WGI_RL.SC':'World Bank WGI', 'GOV_WGI_CC.SC':'World Bank WGI' };
   const srcTxt = s => ar && typeof arSource === 'function' ? arSource(s) : s;
 
   // ── indicator catalogue (labels both languages, how to format) ──
@@ -75,6 +76,11 @@ function buildCountryDeck(opts){
     'SI.POV.DDAY':       { en:'Extreme poverty (<$2.15/day)', ar:'الفقر المدقع (أقل من 2.15 دولار يومياً)', f: r => F.pct(r, 1) },
     'GC.DOD.TOTL.GD.ZS': { en:'Government debt (% of GDP)', ar:'الدين الحكومي (% من الناتج)', f: r => F.pct(r) },
     'SP.POP.TOTL':       { en:'Population', ar:'عدد السكان', f: r => F.pop(r) },
+    'GOV_WGI_PV.SC':     { en:'Political stability (0–100)', ar:'الاستقرار السياسي (0–100)', f: r => F.num(r) },
+    'GOV_WGI_VA.SC':     { en:'Voice & accountability (0–100)', ar:'المشاركة والمساءلة (0–100)', f: r => F.num(r) },
+    'GOV_WGI_GE.SC':     { en:'Government effectiveness (0–100)', ar:'فعالية الحكومة (0–100)', f: r => F.num(r) },
+    'GOV_WGI_RL.SC':     { en:'Rule of law (0–100)', ar:'سيادة القانون (0–100)', f: r => F.num(r) },
+    'GOV_WGI_CC.SC':     { en:'Control of corruption (0–100)', ar:'مكافحة الفساد (0–100)', f: r => F.num(r) },
   };
   const lbl = id => T(I[id].en, I[id].ar);
   const val = id => { const r = R(id); return r ? I[id].f(r) + (I[id].u ? I[id].u[ar ? 1 : 0] : '') : '—'; };
@@ -144,6 +150,13 @@ function buildCountryDeck(opts){
              ['SL.UEM.TOTL.ZS',1,'Job creation: SME finance and skills for young people.','خلق فرص العمل: تمويل المنشآت الصغيرة ومهارات الشباب.'],
              ['SI.POV.DDAY',1,'Expand social protection for households in extreme poverty.','توسيع الحماية الاجتماعية للأسر في الفقر المدقع.'],
              [null,3,'Deepen financial inclusion and private investment.','تعميق الشمول المالي والاستثمار الخاص.'] ] },
+    { key:'governance', en:'Governance & Stability', ar:'الحوكمة والاستقرار', short:['Governance & stability','الحوكمة والاستقرار'],
+      stats:['GOV_WGI_PV.SC','GOV_WGI_GE.SC','GOV_WGI_RL.SC','GOV_WGI_CC.SC'], bars:['GOV_WGI_PV.SC','GOV_WGI_VA.SC','GOV_WGI_GE.SC','GOV_WGI_RL.SC','GOV_WGI_CC.SC'],
+      acts:[ ['GOV_WGI_PV.SC',1,'Deliver through UN agencies and trusted NGOs; build conflict-sensitivity into every programme.','التنفيذ عبر وكالات الأمم المتحدة والمنظمات الموثوقة، ومراعاة حساسية النزاع في كل برنامج.'],
+             ['GOV_WGI_CC.SC',1,'Use ring-fenced financing, third-party monitoring and results-based payments.','استخدام تمويل مخصّص ومراقبة من طرف ثالث ودفعات مرتبطة بالنتائج.'],
+             ['GOV_WGI_GE.SC',1,'Pair investment with public-sector capacity building in the delivering ministry.','ربط الاستثمار ببناء قدرات القطاع العام في الوزارة المنفّذة.'],
+             ['GOV_WGI_RL.SC',2,'Support justice, land-registration and contract-enforcement reforms.','دعم إصلاحات العدالة وتسجيل الأراضي وإنفاذ العقود.'],
+             [null,3,'Work through national systems where governance scores allow.','العمل عبر الأنظمة الوطنية حيثما تسمح مؤشرات الحوكمة.'] ] },
   ];
   // sector status = worst current level among its benchmarked indicators
   SECTORS.forEach(s => {
@@ -208,7 +221,7 @@ function buildCountryDeck(opts){
     rows.forEach((id, i) => {
       const r = R(id), L = DK.sevLvl(id, r.v), tg = target(id);
       const ry = y + 0.38 + i * rh, bx = x, bw = w, by = ry + 0.3, bh = 0.2;
-      const max = /%/.test(I[id].f({ v:1 })) && rule(id).dir < 0 ? 100 : Math.max(r.v, tg) * 1.3;
+      const max = (/%/.test(I[id].f({ v:1 })) && rule(id).dir < 0) || /^GOV_WGI/.test(id) ? 100 : Math.max(r.v, tg) * 1.3;   // percentages and 0–100 scores use a fixed 0–100 scale
       sl.text(lbl(id), { x, y:ry, w:w * 0.7, h:0.26, fontFace:BODY, fontSize:9, bold:true, color:C.INK, valign:'bottom' });
       sl.text(val(id) + (r.stale ? T(' (' + r.y + ')', ' (' + r.y + ')') : ''), { x:x + w * 0.5, y:ry, w:w * 0.5, h:0.26, fontFace:BODY, fontSize:9, bold:true, color: L != null && L <= 1 ? SEV.text[L] : C.INK, align:'right', valign:'bottom' });
       sl.shape(p.ShapeType.rect, { x:bx, y:by, w:bw, h:bh, fill:{ color:C.SKY_PALE }, line:{ type:'none' } });
@@ -247,46 +260,72 @@ function buildCountryDeck(opts){
     sl.text(T('Office of Development Affairs', 'مكتب الشؤون التنموية'), { x:7.7, y:7.05, w:5.03, h:0.4, fontFace:BODY, fontSize:10, color:C.SKY_LT, align:'right', valign:'middle' });
   });
 
-  // ══ 2 · COUNTRY OVERVIEW — map, key facts, people, status per sector ══
+  // ══ 2 · COUNTRY OVERVIEW — map + flag, capital, population, leaders, political situation, status by sector ══
   S.push(() => {
     const sl = newSlide(C.WHITE);
-    head(sl, T('Country overview', 'نظرة عامة على الدولة'), NAME, T('location, key figures and status by sector', 'الموقع والأرقام الرئيسية والوضع حسب القطاع'));
-    // map — accurate borders, rendered at exactly this slot's aspect ratio (never stretched)
+    head(sl, T('Country overview', 'نظرة عامة على الدولة'), NAME, T('location, leadership, political situation and status by sector', 'الموقع والقيادة والوضع السياسي والوضع حسب القطاع'));
+    // map — accurate borders, rendered at exactly this slot's aspect ratio (never stretched); flag in the corner
     const M = DK.MAP_SLOTS.country, mx = 0.5, my = 1.35;
     if (opts.mapData) sl.image({ data:opts.mapData, x:mx, y:my, w:M.w, h:M.h });
     else { sl.shape(p.ShapeType.rect, { x:mx, y:my, w:M.w, h:M.h, fill:{ color:C.SKY_PALE }, line:{ type:'none' } });
       sl.text(T('Map unavailable', 'الخريطة غير متاحة'), { x:mx, y:my + M.h / 2 - 0.2, w:M.w, h:0.4, fontFace:BODY, fontSize:11, color:C.FAINT, align:'center' }); }
-    sl.shape(p.ShapeType.rect, { x:mx, y:my + M.h + 0.1, w:0.16, h:0.12, fill:{ color:C.SKY_DK }, line:{ type:'none' } });
-    sl.text(NAME + T(' · national borders (Natural Earth)', ' · الحدود الوطنية (Natural Earth)'), { x:mx + 0.24, y:my + M.h + 0.04, w:M.w - 0.3, h:0.24, fontFace:BODY, fontSize:7.6, color:C.FAINT, valign:'middle' });
+    if (opts.flagData) { const f = DK.contain(opts.flagRatio, mx + 0.2, my + 0.2, 1.1, 0.75);
+      sl.shape(p.ShapeType.rect, { x:f.x - 0.04, y:f.y - 0.04, w:f.w + 0.08, h:f.h + 0.08, fill:{ color:C.WHITE }, line:{ color:C.LINE, width:0.5 } });
+      sl.image({ data:opts.flagData, x:f.x, y:f.y, w:f.w, h:f.h }); }
+    sl.text(NAME + T(' · national borders (Natural Earth)', ' · الحدود الوطنية (Natural Earth)'), { x:mx, y:my + M.h + 0.04, w:M.w, h:0.24, fontFace:BODY, fontSize:7.6, color:C.FAINT, valign:'middle' });
     // right column
-    const RX = 6.85, RW = 13.333 - RX - 0.5;
-    const info = ar && typeof AR_INFO !== 'undefined' && AR_INFO[country] ? { capital:AR_INFO[country][0], currency:AR_INFO[country][1], languages:AR_INFO[country][2] } : (opts.info || {});
-    const facts = [[T('Region', 'الإقليم'), REGION], [T('Income group', 'فئة الدخل'), INCOME], [T('Capital', 'العاصمة'), info.capital], [T('Currency', 'العملة'), info.currency], [T('Languages', 'اللغات'), info.languages]].filter(f => f[1]);
+    const RX = 6.85, RW = 13.333 - RX - 0.5, pol = opts.politics;
+    const info = ar && typeof AR_INFO !== 'undefined' && AR_INFO[country] ? { capital:AR_INFO[country][0] } : (opts.info || {});
+    const nm = list => (list || []).slice(0, 2).map(x => T(x.en, x.ar)).join(T(' & ', ' و'));
+    const since = pol && pol.hosSince ? (/-01-01$/.test(pol.hosSince) ? pol.hosSince.slice(0, 4) : (() => { try { return new Date(pol.hosSince).toLocaleDateString(ar ? 'ar-AE-u-nu-latn' : 'en-GB', { month:'short', year:'numeric' }); } catch (e) { return ''; } })()) : '';
+    const hos = pol && pol.hos && pol.hos.length ? nm(pol.hos) + (since ? T(' (since ' + since + ')', ' (منذ ' + since + ')') : '') : '—';
+    const office = pol && pol.office && pol.office.length ? T(pol.office[0].en, pol.office[0].ar) : '';
+    const hog = pol && pol.hog && pol.hog.length ? (nm(pol.hog) === nm(pol.hos) ? T('Same as head of state', 'رئيس الدولة نفسه') : nm(pol.hog)) : '—';
+    const facts = [
+      [T('Capital', 'العاصمة'), info.capital || '—'],
+      [T('Population', 'عدد السكان'), R('SP.POP.TOTL') ? F.pop(R('SP.POP.TOTL')) + ' (' + R('SP.POP.TOTL').y + ')' : '—'],
+      [T('Head of state', 'رئيس الدولة'), hos, office],
+      [T('Head of government', 'رئيس الحكومة'), hog],
+      pol && pol.gov && pol.gov.length ? [T('System of government', 'نظام الحكم'), pol.gov.slice(0, 2).map(x => T(x.en, x.ar)).join(' · ')] : [T('Region', 'الإقليم'), REGION || '—'],
+      [T('Income group', 'فئة الدخل'), INCOME || '—'],
+    ];
     eyebrow(sl, T('Key facts', 'معلومات أساسية'), RX, 1.35, RW, C.SKY_DK);
-    facts.forEach(([k, v], i) => {
-      const fx = RX + (i % 2) * (RW / 2), fy = 1.65 + Math.floor(i / 2) * 0.42;
-      sl.text([{ text:k + ':  ', options:{ color:C.MUTE } }, { text:v, options:{ color:C.INK, bold:true } }], { x:fx, y:fy, w:RW / 2 - 0.1, h:0.36, fontFace:BODY, fontSize:9.4, valign:'middle' });
+    facts.forEach(([k, v, sub], i) => {
+      const fx = RX + (i % 2) * (RW / 2 + 0.05), fy = 1.66 + Math.floor(i / 2) * 0.6, fw = RW / 2 - 0.1;
+      sl.text(k, { x:fx, y:fy, w:fw, h:0.2, fontFace:BODY, fontSize:7.6, bold:true, color:C.FAINT, charSpacing:1 });
+      sl.text(v, { x:fx, y:fy + 0.19, w:fw, h:0.24, fontFace:BODY, fontSize:10.2, bold:true, color:C.INK, valign:'top' });
+      if (sub) sl.text(sub, { x:fx, y:fy + 0.4, w:fw, h:0.18, fontFace:BODY, fontSize:7.4, color:C.MUTE, valign:'top' });
     });
-    eyebrow(sl, T('People & living conditions', 'السكان والظروف المعيشية'), RX, 2.95, RW, C.SKY_DK);
-    const tiles = ['SP.POP.TOTL', 'NY.GDP.PCAP.PP.CD', 'SH.DYN.MORT', 'SN.ITK.DEFC.ZS', 'SH.H2O.BASW.ZS', 'EG.ELC.ACCS.ZS'];
-    const tw = (RW - 0.3) / 3, th = 0.98;
-    tiles.forEach((id, i) => statCard(sl, id, RX + (i % 3) * (tw + 0.15), 3.25 + Math.floor(i / 3) * (th + 0.12), tw, th, true));
-    // need index + sector status
-    const by = 5.5, bh = 1.45;
-    sl.shape(p.ShapeType.rect, { x:RX, y:by, w:1.75, h:bh, fill:{ color:C.SKY_PALE }, line:{ type:'none' } });
-    sl.text(T('NEED INDEX', 'مؤشر الاحتياج'), { x:RX + 0.15, y:by + 0.12, w:1.5, h:0.22, fontFace:BODY, fontSize:8, bold:true, color:C.GOLD, charSpacing:1.4 });
+    // political situation — WGI governance scores, coloured on the shared severity scale
+    const py = 3.52, ph = 1.62;
+    sl.shape(p.ShapeType.rect, { x:RX, y:py, w:RW, h:ph, fill:{ color:C.SKY_PALE }, line:{ type:'none' } });
+    sl.text(T('POLITICAL SITUATION', 'الوضع السياسي'), { x:RX + 0.18, y:py + 0.1, w:RW * 0.5, h:0.22, fontFace:BODY, fontSize:8, bold:true, color:C.GOLD, charSpacing:1.4 });
+    sl.text(T('governance scores, 0–100 (higher is better)', 'مؤشرات الحوكمة، 0–100 (الأعلى أفضل)'), { x:RX + RW * 0.45, y:py + 0.1, w:RW * 0.55 - 0.18, h:0.22, fontFace:BODY, fontSize:7.4, color:C.MUTE, align:'right' });
+    const W5 = [['GOV_WGI_PV.SC', 'Political stability', 'الاستقرار السياسي'], ['GOV_WGI_VA.SC', 'Voice & accountability', 'المشاركة والمساءلة'],
+                ['GOV_WGI_GE.SC', 'Government effectiveness', 'فعالية الحكومة'], ['GOV_WGI_RL.SC', 'Rule of law', 'سيادة القانون'], ['GOV_WGI_CC.SC', 'Control of corruption', 'مكافحة الفساد']];
+    W5.forEach(([id, en, a], i) => {
+      const r = R(id), L = r ? DK.sevLvl(id, r.v) : null, ry = py + 0.4 + i * 0.25, lw = 2.3, bx = RX + 0.18 + lw, bw = RW - lw - 0.95;
+      sl.text(T(en, a), { x:RX + 0.18, y:ry, w:lw, h:0.22, fontFace:BODY, fontSize:8.6, color:C.INK, valign:'middle' });
+      sl.shape(p.ShapeType.rect, { x:bx, y:ry + 0.07, w:bw, h:0.09, fill:{ color:C.WHITE }, line:{ type:'none' } });
+      if (r) sl.shape(p.ShapeType.rect, { x:bx, y:ry + 0.07, w:Math.max(0.04, bw * Math.min(1, r.v / 100)), h:0.09, fill:{ color: L == null ? C.SKY : SEV.fill[L] }, line:{ type:'none' } });
+      sl.text(r ? String(Math.round(r.v)) : '—', { x:bx + bw + 0.08, y:ry, w:0.5, h:0.22, fontFace:BODY, fontSize:9, bold:true, color: L != null && L <= 1 ? SEV.text[L] : C.INK, valign:'middle' });
+    });
+    // need index + status by sector
+    const by = 5.28, bh = 1.68;
+    sl.shape(p.ShapeType.rect, { x:RX, y:by, w:1.6, h:bh, fill:{ color:C.GOLD_PALE }, line:{ type:'none' } });
+    sl.text(T('NEED INDEX', 'مؤشر الاحتياج'), { x:RX + 0.14, y:by + 0.12, w:1.4, h:0.22, fontFace:BODY, fontSize:7.8, bold:true, color:C.GOLD, charSpacing:1.4 });
     if (opts.need) {
-      sl.text(String(Math.round(opts.need.score)), { x:RX + 0.15, y:by + 0.36, w:1.5, h:0.6, fontFace:HEAD, fontSize:34, bold:true, color:C.INK, valign:'middle' });
-      sl.text(T('of 100 · rank ' + opts.need.rank + '/' + opts.need.of, 'من 100 · الترتيب ' + opts.need.rank + ' من ' + opts.need.of), { x:RX + 0.15, y:by + 1.0, w:1.5, h:0.32, fontFace:BODY, fontSize:8.4, color:C.MUTE });
-    } else sl.text(T('Not ranked', 'غير مصنّفة'), { x:RX + 0.15, y:by + 0.5, w:1.5, h:0.4, fontFace:BODY, fontSize:10, color:C.MUTE });
-    const sx = RX + 1.95, sw = RW - 1.95;
-    sl.text(T('STATUS BY SECTOR', 'الوضع حسب القطاع'), { x:sx, y:by - 0.02, w:sw, h:0.22, fontFace:BODY, fontSize:8, bold:true, color:C.GOLD, charSpacing:1.4 });
+      sl.text(String(Math.round(opts.need.score)), { x:RX + 0.14, y:by + 0.38, w:1.4, h:0.62, fontFace:HEAD, fontSize:32, bold:true, color:C.INK, valign:'middle' });
+      sl.text(T('of 100 · rank ' + opts.need.rank + '/' + opts.need.of, 'من 100 · الترتيب ' + opts.need.rank + ' من ' + opts.need.of), { x:RX + 0.14, y:by + 1.06, w:1.4, h:0.4, fontFace:BODY, fontSize:8, color:C.MUTE, valign:'top' });
+    } else sl.text(T('Not ranked', 'غير مصنّفة'), { x:RX + 0.14, y:by + 0.5, w:1.4, h:0.4, fontFace:BODY, fontSize:10, color:C.MUTE });
+    const sx = RX + 1.78, sw = RW - 1.78;
+    sl.text(T('STATUS BY SECTOR', 'الوضع حسب القطاع'), { x:sx, y:by - 0.02, w:sw, h:0.2, fontFace:BODY, fontSize:7.8, bold:true, color:C.GOLD, charSpacing:1.4 });
     SECTORS.forEach((s, i) => {
-      const yy = by + 0.24 + i * 0.205;
-      sl.text(T(s.short[0], s.short[1]), { x:sx, y:yy, w:sw - 1.3, h:0.19, fontFace:BODY, fontSize:8.4, color:C.INK, valign:'middle' });
+      const yy = by + 0.22 + i * 0.205;
+      sl.text(T(s.short[0], s.short[1]), { x:sx, y:yy, w:sw - 1.3, h:0.19, fontFace:BODY, fontSize:8.2, color:C.INK, valign:'middle' });
       badge(sl, s.level, sx + sw - 1.2, yy + 0.015, 1.2, 0.165);
     });
-    foot(sl, T('World Bank Open Data · Natural Earth (borders) · ', 'بيانات البنك الدولي · Natural Earth (الحدود) · ') + DATE);
+    foot(sl, T('World Bank Open Data & WGI · Wikidata (leaders) · Natural Earth (borders) · ', 'بيانات البنك الدولي ومؤشرات الحوكمة · ويكي بيانات (القادة) · Natural Earth (الحدود) · ') + DATE);
   });
 
   // ══ 3 · EXECUTIVE SUMMARY ══
@@ -301,7 +340,7 @@ function buildCountryDeck(opts){
       n ? T(`${NAME} scores ${Math.round(n.score)}/100 on the ODA need index — rank ${n.rank} of ${n.of}, ${tierTxt} need among the countries ODA tracks.`,
             `تسجّل ${NAME} ${Math.round(n.score)} من 100 على مؤشر الاحتياج — الترتيب ${n.rank} من ${n.of}، أي ${tierTxt} احتياجاً بين الدول التي يتابعها المكتب.`) : null,
       priorities.length === SECTORS.length ? T(`All ${SECTORS.length} sectors are rated severe or high concern — needs are broad-based, not confined to one area.`,
-                                               `جميع القطاعات الستة مصنّفة حرجة أو مقلقة — أي أن الاحتياجات واسعة ولا تقتصر على مجال واحد.`)
+                                               `جميع القطاعات (${SECTORS.length}) مصنّفة حرجة أو مقلقة — أي أن الاحتياجات واسعة ولا تقتصر على مجال واحد.`)
       : priorities.length ? T(`${priorities.length} of ${SECTORS.length} sectors are rated severe or high concern: ${priorities.map(s => s.en.toLowerCase()).join(', ')}.`,
                              `${priorities.length} من ${SECTORS.length} قطاعات مصنّفة حرجة أو مقلقة: ${priorities.map(s => s.ar).join('، ')}.`)
                         : T('No sector is rated severe or high concern on current data.', 'لا يوجد قطاع مصنّف حرجاً أو مقلقاً وفق البيانات الحالية.'),
@@ -351,7 +390,7 @@ function buildCountryDeck(opts){
     foot(sl, T('ODA need index and SDG/WHO benchmarks · World Bank Open Data · ', 'مؤشر الاحتياج ومعايير أهداف التنمية المستدامة · بيانات البنك الدولي · ') + DATE);
   });
 
-  // ══ 4–9 · SECTOR SLIDES ══
+  // ══ 4–10 · SECTOR SLIDES (incl. governance & stability) ══
   SECTORS.forEach(s => S.push(() => {
     const sl = newSlide(C.WHITE);
     const st = s.level == null ? T('no current benchmarked data', 'لا توجد بيانات حديثة قابلة للمقارنة')
@@ -385,7 +424,7 @@ function buildCountryDeck(opts){
     foot(sl, srcs + ' · ' + DATE);
   }));
 
-  // ══ 10 · METHOD & SOURCES ══
+  // ══ 11 · METHOD & SOURCES ══
   S.push(() => {
     const sl = newSlide(C.NAVY);
     sl.text(T('METHOD & SOURCES', 'المنهجية والمصادر'), { x:0.6, y:0.6, w:9, h:0.3, fontFace:BODY, fontSize:10, bold:true, color:C.GOLD_LT, charSpacing:2.6 });
@@ -398,7 +437,7 @@ function buildCountryDeck(opts){
         `تُعرض الأرقام الأقدم من ${DK.STALE_YEARS} سنوات مع سنتها لكنها تُستبعد من التصنيف والسرد. وتُعرض القيم المفقودة أو غير المعقولة (مثل إنفاق 0%) بعلامة «—» دون تقدير.`)],
       [T('ODA need index', 'مؤشر الاحتياج'), T('Combines under-5 and maternal mortality, undernourishment and lack of basic water, sanitation and electricity, each scaled across all tracked countries (0–100).',
         'يجمع بين وفيات الأطفال دون الخامسة ووفيات الأمهات ونقص التغذية ونقص مياه الشرب الأساسية والصرف الصحي والكهرباء، مع قياس كل منها عبر جميع الدول المتابَعة (0–100).')],
-      [T('Sources', 'المصادر'), [T('World Bank Open Data', 'بيانات البنك الدولي المفتوحة'), 'IMF', 'WHO', 'UN IGME (UNICEF/WHO)', 'UNESCO UIS', 'FAO', 'WHO/UNICEF JMP', 'ITU', 'IEA', 'ILO'].map(x => ar ? srcTxt(x) : x).join(' · ') +
+      [T('Sources', 'المصادر'), [T('World Bank Open Data', 'بيانات البنك الدولي المفتوحة'), T('World Bank Worldwide Governance Indicators', 'مؤشرات الحوكمة العالمية'), 'IMF', 'WHO', 'UN IGME (UNICEF/WHO)', 'UNESCO UIS', 'FAO', 'WHO/UNICEF JMP', 'ITU', 'IEA', 'ILO', T('Wikidata (heads of state and government)', 'ويكي بيانات (رؤساء الدول والحكومات)')].map(x => ar ? srcTxt(x) : x).join(' · ') +
         T(` — retrieved live on building this report (${DATE}).`, ` — استُرجعت مباشرة عند إعداد هذا التقرير (${DATE}).`)],
     ];
     blocks.forEach(([h, t], i) => {

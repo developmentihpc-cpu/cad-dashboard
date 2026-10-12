@@ -42,6 +42,12 @@ const SEV_RULES = {
   'EN.ATM.PM25.MC.M3':  { dir: 1, th:[35, 25, 15],        ref:'WHO interim air-quality targets',   refAr:'أهداف جودة الهواء المرحلية لمنظمة الصحة' },
   'AG.YLD.CREL.KG':     { dir:-1, th:[1500, 2500, 4000],  ref:'world average ≈ 4,000 kg/ha',       refAr:'المتوسط العالمي ≈ 4,000 كغ/هكتار' },
   'NY.GDP.PCAP.PP.CD':  { dir:-1, th:[3000, 7000, 15000], ref:'income bands (PPP)',                refAr:'فئات الدخل (تعادل القوة الشرائية)' },
+  // Worldwide Governance Indicators (World Bank), score 0–100 — higher is better
+  'GOV_WGI_PV.SC':      { dir:-1, th:[25, 40, 60],        ref:'WGI governance score (0–100)',      refAr:'مؤشر الحوكمة العالمي (0–100)' },
+  'GOV_WGI_VA.SC':      { dir:-1, th:[25, 40, 60],        ref:'WGI governance score (0–100)',      refAr:'مؤشر الحوكمة العالمي (0–100)' },
+  'GOV_WGI_GE.SC':      { dir:-1, th:[25, 40, 60],        ref:'WGI governance score (0–100)',      refAr:'مؤشر الحوكمة العالمي (0–100)' },
+  'GOV_WGI_RL.SC':      { dir:-1, th:[25, 40, 60],        ref:'WGI governance score (0–100)',      refAr:'مؤشر الحوكمة العالمي (0–100)' },
+  'GOV_WGI_CC.SC':      { dir:-1, th:[25, 40, 60],        ref:'WGI governance score (0–100)',      refAr:'مؤشر الحوكمة العالمي (0–100)' },
   // no standard benchmark → compared with the other tracked countries (dashboard only)
   'SH.MED.BEDS.ZS':     { dir:-1, peers:true }, 'SE.TER.ENRR':    { dir:-1, peers:true },
   'IT.NET.BBND.P2':     { dir:-1, peers:true }, 'IT.CEL.SETS.P2': { dir:-1, peers:true },

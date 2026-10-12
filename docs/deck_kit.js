@@ -92,7 +92,7 @@ const DK = (() => {
 
   // Map slots (inches). The dashboard renders each map image at exactly this aspect ratio,
   // and the decks place it at exactly this size — so maps are never stretched.
-  const MAP_SLOTS = { country: { w:6.0, h:5.05 }, region: { w:7.55, h:5.35 } };
+  const MAP_SLOTS = { country: { w:6.0, h:5.05 }, region: { w:7.55, h:5.35 }, sub: { w:7.3, h:5.4 } };
   // Fit an image of the given width/height ratio inside a box, centred, without distortion
   const contain = (ratio, x, y, w, h) => {
     const r = ratio || w / h; let iw = w, ih = w / r;

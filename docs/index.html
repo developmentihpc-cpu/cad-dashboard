@@ -2865,6 +2865,109 @@ async function repMapImage({ focus = [], fill = {}, labels = false, slot }) {
   } catch (e) { console.warn('[CAD] map render failed', e); return null; }
 }
 async function repMap(country) { return repMapImage({ focus:[country], slot: DK.MAP_SLOTS.country }); }
+
+// ── Sub-national maps — official DHS household-survey figures only ──
+// The DHS Program publishes each survey's results by province/region together with the exact region
+// outlines that survey used, linked by region ID (not by name). So every shaded area is a measured value.
+// A sector only gets a map if a survey from the last DK.STALE_YEARS years covers at least 80% of regions.
+const SUBNAT = {
+  health:    [{ id:'CH_VACC_C_BAS', worse:'low',  pct:true,  en:'Children with all basic vaccinations', ar:'الأطفال الحاصلون على جميع التطعيمات الأساسية' },
+              { id:'CM_ECMR_C_U5M', worse:'high', pct:false, en:'Under-5 mortality (per 1,000 births)', ar:'وفيات الأطفال دون الخامسة (لكل 1,000 مولود)' }],
+  education: [{ id:'ED_LITR_W_LIT', worse:'low',  pct:true,  en:'Women who can read', ar:'النساء الملمّات بالقراءة' }],
+  food:      [{ id:'CN_NUTS_C_HA2', worse:'high', pct:true,  en:'Child stunting (under 5)', ar:'تقزّم الأطفال دون الخامسة' }],
+  wash:      [{ id:'WS_SRCE_H_IMP', worse:'low',  pct:true,  en:'Households with an improved water source', ar:'الأسر التي تستخدم مصدر مياه محسّناً' },
+              { id:'WS_TLET_H_IMP', worse:'low',  pct:true,  en:'Households with improved sanitation', ar:'الأسر التي لديها مرافق صرف صحي محسّنة' }],
+};
+const SUB_RAMP = ['FFF3C4', 'FBD06B', 'F5A13A', 'E8642C', 'B8282E'];   // light = least need → dark = greatest need
+let DHS_CC = null;
+const SUB_CACHE = {};
+const subFetch = (u, ms = 20000) => Promise.race([fetch(u).then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }),
+  new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), ms))]);
+function repSubnational(country) {
+  if (SUB_CACHE[country]) return SUB_CACHE[country];
+  const job = (async () => {
+    const out = {};
+    const iso = COUNTRY_ISO[country]; if (!iso) return out;
+    if (!DHS_CC) DHS_CC = subFetch('https://api.dhsprogram.com/rest/dhs/countries?f=json&returnFields=DHS_CountryCode,ISO3_CountryCode')
+      .then(j => Object.fromEntries((j.Data || []).map(c => [c.ISO3_CountryCode, c.DHS_CountryCode]))).catch(e => { DHS_CC = null; throw e; });
+    const cc = (await DHS_CC)[iso]; if (!cc) return out;
+    const ids = [...new Set(Object.values(SUBNAT).flat().map(x => x.id))];
+    const base = `https://api.dhsprogram.com/rest/dhs/data?countryIds=${cc}&indicatorIds=${ids.join(',')}&surveyYearStart=${new Date().getFullYear() - DK.STALE_YEARS}&f=json&perpage=5000`;
+    const [sub, nat] = await Promise.all([
+      subFetch(base + '&breakdown=subnational&returnFields=IndicatorId,SurveyId,SurveyYear,SurveyType,RegionId,CharacteristicLabel,Value'),
+      subFetch(base + '&breakdown=national&returnFields=IndicatorId,SurveyId,Value').catch(() => ({ Data:[] }))]);
+    const rows = (sub.Data || []).filter(r => r.Value != null && r.RegionId);
+    const yr = {}; rows.forEach(r => { yr[r.SurveyId] = +r.SurveyYear; });
+    const surveys = Object.keys(yr).sort((a, b) => yr[b] - yr[a]);           // newest first
+    const geoOf = {};
+    const geo = prefix => geoOf[prefix] || (geoOf[prefix] = subFetch('https://gis.dhsprogram.com/arcgis/rest/services/Geometry/SDR_Regions/MapServer/0/query?where='
+      + encodeURIComponent(`REG_ID LIKE '${prefix}%'`) + '&outFields=REG_ID,DHSREGEN,LEVELRNK&returnGeometry=true&maxAllowableOffset=0.01&outSR=4326&f=geojson', 25000)
+      .then(g => g.features || []).catch(() => []));
+    for (const [key, choices] of Object.entries(SUBNAT)) {
+      search: for (const ind of choices) {
+        for (const sid of surveys) {
+          const rs = rows.filter(r => r.SurveyId === sid && r.IndicatorId === ind.id);
+          if (rs.length < 3) continue;
+          const feats = await geo(rs[0].RegionId.slice(0, 9));                 // e.g. KEDHS2022 — the survey's region-ID prefix
+          const val = {}; rs.forEach(r => { val[r.RegionId] = r; });
+          const levels = {}; feats.forEach(f => { (levels[f.properties.LEVELRNK] = levels[f.properties.LEVELRNK] || []).push(f); });
+          let best = null;
+          Object.values(levels).forEach(fs => { const m = fs.filter(f => val[f.properties.REG_ID]).length; if (!best || m > best.m) best = { fs, m }; });
+          if (!best || best.m < 3 || best.m / best.fs.length < 0.8) continue;   // not enough regions measured — no map
+          const regions = best.fs.map(f => { const r = val[f.properties.REG_ID];
+            return { name: String(r ? r.CharacteristicLabel : f.properties.DHSREGEN).replace(/^\.+/, '').replace(/\s*\((19|20)\d\d\)$/, '').trim(), v: r ? +r.Value : null, geom: f.geometry }; });
+          const n = (nat.Data || []).find(x => x.SurveyId === sid && x.IndicatorId === ind.id);
+          const vs = regions.filter(r => r.v != null).map(r => r.v), lo = Math.min(...vs), hi = Math.max(...vs);
+          const step = (hi - lo) / 5 || 1, breaks = [0, 1, 2, 3, 4, 5].map(i => lo + i * step);
+          const cols = ind.worse === 'high' ? SUB_RAMP.slice() : SUB_RAMP.slice().reverse();   // colour per class, low → high value
+          const cls = v => Math.min(4, Math.floor((v - lo) / step));
+          const e = { ...ind, survey: sid, year: yr[sid], type: rs[0].SurveyType || sid.slice(6), national: n ? +n.Value : null, breaks, cols };
+          e.mapData = await repSubMapImage(regions, v => v == null ? null : cols[cls(v)], DK.MAP_SLOTS.sub);
+          if (!e.mapData) continue;
+          e.regions = regions.map(r => ({ name: r.name, v: r.v }));
+          out[key] = e;
+          break search;
+        }
+      }
+    }
+    return out;
+  })().catch(e => { console.warn('[CAD] sub-national data unavailable', e); delete SUB_CACHE[country]; return {}; });
+  SUB_CACHE[country] = job;
+  return job;
+}
+// Draws survey regions shaded by value, neighbours in grey for context; same projection rules as repMapImage.
+async function repSubMapImage(regions, colOf, slot) {
+  try {
+    const polys = g => !g ? [] : g.type === 'Polygon' ? [g.coordinates] : g.type === 'MultiPolygon' ? g.coordinates : [];
+    let x0 = 180, x1 = -180, y0 = 90, y1 = -90;
+    regions.forEach(r => polys(r.geom).forEach(p => p[0].forEach(([x, y]) => { x0 = Math.min(x0, x); x1 = Math.max(x1, x); y0 = Math.min(y0, y); y1 = Math.max(y1, y); })));
+    if (x1 <= x0) return null;
+    const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2, hx = (x1 - x0) / 2 * 1.06, hy = (y1 - y0) / 2 * 1.06;
+    const k = Math.cos(cy * Math.PI / 180), W = 1600, H = Math.round(W * slot.h / slot.w);
+    const scale = Math.min(W / (2 * hx * k), H / (2 * hy));
+    const px = lon => W / 2 + (lon - cx) * k * scale, py = lat => H / 2 - (lat - cy) * scale;
+    const cv = document.createElement('canvas'); cv.width = W; cv.height = H;
+    const g = cv.getContext('2d');
+    g.fillStyle = '#EAF2F8'; g.fillRect(0, 0, W, H);
+    const path = geom => { g.beginPath(); polys(geom).forEach(p => p.forEach(ring => ring.forEach(([x, y], i) => i ? g.lineTo(px(x), py(y)) : g.moveTo(px(x), py(y))))); };
+    const world = await loadWorld('50m').catch(() => null);
+    if (world) world.features.forEach(f => { path(f.geometry); g.fillStyle = '#D5DDE6'; g.fill('evenodd'); g.strokeStyle = '#FFFFFF'; g.lineWidth = 1.6; g.stroke(); });
+    regions.forEach(r => { const c = colOf(r.v); path(r.geom); g.fillStyle = c ? '#' + c : '#C9D1DA'; g.fill('evenodd'); g.strokeStyle = '#FFFFFF'; g.lineWidth = 1.4; g.lineJoin = 'round'; g.stroke(); });
+    // region names on the map when there are few enough to read
+    if (regions.length <= 16) {
+      const ringArea = r => r.reduce((s, p, i) => { const q = r[(i + 1) % r.length]; return s + p[0] * q[1] - q[0] * p[1]; }, 0) / 2;
+      g.textAlign = 'center'; g.textBaseline = 'middle'; g.font = '600 21px Inter, "IBM Plex Sans Arabic", sans-serif';
+      regions.forEach(r => {
+        const ring = polys(r.geom).map(p => p[0]).sort((a, b) => Math.abs(ringArea(b)) - Math.abs(ringArea(a)))[0]; if (!ring) return;
+        const A = ringArea(ring); if (!A) return;
+        let sx = 0, sy = 0; ring.forEach((p, i) => { const q = ring[(i + 1) % ring.length], c = p[0] * q[1] - q[0] * p[1]; sx += (p[0] + q[0]) * c; sy += (p[1] + q[1]) * c; });
+        const x = px(sx / (6 * A)), y = py(sy / (6 * A));
+        g.lineWidth = 5; g.strokeStyle = 'rgba(255,255,255,.85)'; g.strokeText(r.name, x, y); g.fillStyle = '#0F2A40'; g.fillText(r.name, x, y);
+      });
+    }
+    return cv.toDataURL('image/png');
+  } catch (e) { console.warn('[CAD] sub-national map failed', e); return null; }
+}
 // Live headline indicators for many countries at once — one World Bank call per indicator.
 async function repRegionLive(countries, ids) {
   const isoToName = {}, isos = [];
@@ -2902,14 +3005,15 @@ async function repBuildCountryBlob(country, setStatus) {
   setStatus && setStatus(tr('Loading live World Bank data for ' + country + '…', 'جارٍ تحميل بيانات البنك الدولي المباشرة لـ' + cN(country) + '…'));
   const d = await repCountryData(country);
   setStatus && setStatus(tr('Building the ' + country + ' report…', 'جارٍ إعداد تقرير ' + cN(country) + '…'));
-  const [flagData, mapData, logo, pol] = await Promise.all([repFlag(country), repMap(country), repLogo(),
-    Promise.race([repPolitics(country), new Promise(r => setTimeout(() => r(null), 20000))])]);
+  const [flagData, mapData, logo, pol, subnational] = await Promise.all([repFlag(country), repMap(country), repLogo(),
+    Promise.race([repPolitics(country), new Promise(r => setTimeout(() => r(null), 20000))]),
+    Promise.race([repSubnational(country), new Promise(r => setTimeout(() => r({}), 45000))])]);
   const flagRatio = await repImgRatio(flagData);
   const need = needScores()[country] || {};
   const blob = await window.buildCountryDeck({
     country, data: Object.assign({}, d, pol ? pol.wgi : {}), info: COUNTRY_INFO[country] || {}, iso2: (COUNTRY_ISO2[country] || '').toLowerCase(),
     politics: pol && pol.ok ? { hos: pol.hos, hog: pol.hog, gov: pol.gov, office: pol.office, hosSince: pol.hosSince } : null,
-    flagData, flagRatio, mapData, logo, dateStr: repDateStr(), PptxGenJS, output: 'blob', lang,
+    flagData, flagRatio, mapData, logo, subnational, dateStr: repDateStr(), PptxGenJS, output: 'blob', lang,
     region: repRegionOf(country), income: COUNTRY_INCOME[country] || '',
     need: need.need != null ? { score: need.need, rank: need.rank, of: (needScores().__ranked || []).length } : null,
   });

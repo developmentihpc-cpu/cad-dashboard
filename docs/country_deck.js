@@ -1,7 +1,9 @@
 /* country_deck.js — ODA instant country assessment deck (English or Arabic).
  *
  * 11 slides: cover · country overview (map, flag, leaders, political situation, status by sector) · executive summary · seven sector slides (health, education,
- * food security & agriculture, WASH, energy & connectivity, economy) · method & sources.
+ * food security & agriculture, WASH, energy & connectivity, economy, governance) · method & sources.
+ * Health, education, food and WASH get an extra "where the need is" map slide when a recent DHS
+ * survey measured the indicator region by region (opts.subnational, built in index.html).
  *
  * Every rating uses the shared severity scale (severity.js) — the same one the
  * dashboard shows. Narrative sentences are generated from each value's severity,
@@ -390,8 +392,70 @@ function buildCountryDeck(opts){
     foot(sl, T('ODA need index and SDG/WHO benchmarks · World Bank Open Data · ', 'مؤشر الاحتياج ومعايير أهداف التنمية المستدامة · بيانات البنك الدولي · ') + DATE);
   });
 
+  // ══ "Where the need is" — sub-national map after a sector slide, only when an official DHS survey
+  //    measured the indicator region by region (opts.subnational[sector key]) ══
+  const SUBN = opts.subnational || {};
+  const SURVEY_AR = { DHS:'المسح الديموغرافي والصحي', MIS:'مسح مؤشرات الملاريا', AIS:'مسح مؤشرات الإيدز' };
+  function subSlide(s) {
+    const e = SUBN[s.key]; if (!e || !e.mapData || !e.regions) return;
+    S.push(() => {
+      const sl = newSlide(C.WHITE);
+      const fv = v => v == null ? '—' : e.pct ? F.pct({ v }, 1) : F.num({ v });
+      const svy = T(country + ' ' + e.type + ' ' + e.year, (SURVEY_AR[e.type] || e.type) + ' ' + e.year);
+      const ind = T(e.en, e.ar);
+      head(sl, T('Where the need is', 'أين تتركز الاحتياجات'), s.name, T(e.en.toLowerCase() + ', by region', e.ar + ' حسب المنطقة'));
+      // map — rendered at the slot's exact aspect ratio
+      const M = DK.MAP_SLOTS.sub, mx = 0.5, my = 1.35;
+      sl.image({ data:e.mapData, x:mx, y:my, w:M.w, h:M.h });
+      sl.text(T('Each area is shaded by its measured survey value; grey = no estimate. Boundaries: DHS Spatial Data Repository.',
+                'تُلوَّن كل منطقة وفق القيمة المقيسة في المسح؛ الرمادي = لا يوجد تقدير. الحدود: مستودع البيانات المكانية لبرنامج DHS.'),
+        { x:mx, y:my + M.h + 0.04, w:M.w, h:0.24, fontFace:BODY, fontSize:7.6, color:C.FAINT, valign:'middle' });
+      // right column
+      const RX = 8.15, RW = 13.333 - RX - 0.5;
+      const bad = v => e.worse === 'high' ? v : -v;                       // larger = greater need
+      const ranked = e.regions.filter(r => r.v != null).sort((a, b) => bad(b.v) - bad(a.v));
+      const worst = ranked[0], best = ranked[ranked.length - 1];
+      sl.shape(p.ShapeType.rect, { x:RX, y:1.35, w:RW, h:1.05, fill:{ color:C.SKY_PALE }, line:{ type:'none' } });
+      sl.text(e.national != null ? fv(e.national) : '—', { x:RX + 0.18, y:1.42, w:1.7, h:0.6, fontFace:HEAD, fontSize:26, bold:true, color:C.INK, valign:'middle' });
+      sl.text(ind, { x:RX + 1.9, y:1.45, w:RW - 2.05, h:0.5, fontFace:BODY, fontSize:9, bold:true, color:C.INK, valign:'middle' });
+      sl.text(T('National average · ', 'المتوسط الوطني · ') + svy, { x:RX + 0.18, y:2.04, w:RW - 0.3, h:0.24, fontFace:BODY, fontSize:7.6, color:C.MUTE, valign:'middle' });
+      const gap = worst && best && Math.min(worst.v, best.v) > 0 ? Math.max(worst.v, best.v) / Math.min(worst.v, best.v) : null;
+      const above = e.national != null ? ranked.filter(r => bad(r.v) > bad(e.national)).length : null;
+      sl.text(T(`Ranges from ${fv(best.v)} in ${best.name} to ${fv(worst.v)} in ${worst.name}` + (gap && gap >= 1.3 ? ` — a ${gap.toFixed(1)}× gap.` : '.')
+                + (above != null ? ` ${above} of ${ranked.length} regions are worse than the national average.` : ''),
+                `يتراوح بين ${fv(best.v)} في ${best.name} و${fv(worst.v)} في ${worst.name}` + (gap && gap >= 1.3 ? ` — أي فجوة بمقدار ${gap.toFixed(1)} أضعاف.` : '.')
+                + (above != null ? ` ${above} من ${ranked.length} مناطق أسوأ من المتوسط الوطني.` : '')),
+        { x:RX, y:2.5, w:RW, h:0.62, fontFace:BODY, fontSize:9, color:C.INK, valign:'top', wrap:true });
+      // legend — five equal value bands, colour darkens with need
+      eyebrow(sl, T('Legend', 'دليل الألوان'), RX, 3.18, RW, C.SKY_DK);
+      const lw = RW / 5;
+      e.cols.forEach((col, i) => {
+        sl.shape(p.ShapeType.rect, { x:RX + i * lw, y:3.46, w:lw - 0.03, h:0.16, fill:{ color:col }, line:{ type:'none' } });
+        sl.text(fv(e.breaks[i]).replace(/\.0(%?)$/, '$1') + '–' + fv(e.breaks[i + 1]).replace(/\.0(%?)$/, '$1'), { x:RX + i * lw, y:3.63, w:lw, h:0.2, fontFace:BODY, fontSize:6.8, color:C.MUTE, align:'center' });
+      });
+      // highest / lowest need regions, bars on the same scale
+      const max = e.pct ? 100 : Math.max(...ranked.map(r => r.v)) * 1.1;
+      const list = (title, items, y) => {
+        eyebrow(sl, title, RX, y, RW, C.GOLD);
+        items.forEach((r, i) => {
+          const ry = y + 0.28 + i * 0.27, nw = 1.75, bx = RX + nw + 0.05, bw = RW - nw - 0.75;
+          const col = e.cols[Math.min(4, Math.floor((r.v - e.breaks[0]) / ((e.breaks[5] - e.breaks[0]) / 5 || 1)))];
+          sl.text(r.name, { x:RX, y:ry, w:nw, h:0.22, fontFace:BODY, fontSize:8.4, color:C.INK, valign:'middle', fit:'shrink' });
+          sl.shape(p.ShapeType.rect, { x:bx, y:ry + 0.06, w:bw, h:0.1, fill:{ color:C.SKY_PALE }, line:{ type:'none' } });
+          sl.shape(p.ShapeType.rect, { x:bx, y:ry + 0.06, w:Math.max(0.04, bw * Math.min(1, r.v / max)), h:0.1, fill:{ color:col }, line:{ type:'none' } });
+          sl.text(fv(r.v), { x:bx + bw + 0.05, y:ry, w:0.65, h:0.22, fontFace:BODY, fontSize:8.6, bold:true, color:C.INK, valign:'middle', align:'right' });
+        });
+        return y + 0.28 + items.length * 0.27;
+      };
+      const nTop = Math.min(5, Math.ceil(ranked.length / 2)), nBot = Math.min(3, ranked.length - nTop);
+      const y2 = list(T('Greatest need', 'الاحتياج الأكبر'), ranked.slice(0, nTop), 4.0);
+      if (nBot > 0) list(T('Least need', 'الاحتياج الأقل'), ranked.slice(-nBot).reverse(), y2 + 0.14);
+      foot(sl, T('The DHS Program (ICF, USAID) · ', 'برنامج المسوح الديموغرافية والصحية (DHS) · ') + svy + ' · ' + DATE);
+    });
+  }
+
   // ══ 4–10 · SECTOR SLIDES (incl. governance & stability) ══
-  SECTORS.forEach(s => S.push(() => {
+  SECTORS.forEach(s => { S.push(() => {
     const sl = newSlide(C.WHITE);
     const st = s.level == null ? T('no current benchmarked data', 'لا توجد بيانات حديثة قابلة للمقارنة')
       : s.level === 0 ? T('severe gaps against benchmarks', 'فجوات حرجة مقارنةً بالمعايير')
@@ -422,7 +486,7 @@ function buildCountryDeck(opts){
     benchBars(sl, s.bars, 7.95, 1.38, 4.88, 5.5);
     const srcs = [...new Set(s.stats.concat(s.bars).map(id => SRC[id]).filter(Boolean).flatMap(x => x.split(' · ')))].slice(0, 5).map(srcTxt).join(' · ');
     foot(sl, srcs + ' · ' + DATE);
-  }));
+  }); subSlide(s); });
 
   // ══ 11 · METHOD & SOURCES ══
   S.push(() => {
@@ -437,7 +501,7 @@ function buildCountryDeck(opts){
         `تُعرض الأرقام الأقدم من ${DK.STALE_YEARS} سنوات مع سنتها لكنها تُستبعد من التصنيف والسرد. وتُعرض القيم المفقودة أو غير المعقولة (مثل إنفاق 0%) بعلامة «—» دون تقدير.`)],
       [T('ODA need index', 'مؤشر الاحتياج'), T('Combines under-5 and maternal mortality, undernourishment and lack of basic water, sanitation and electricity, each scaled across all tracked countries (0–100).',
         'يجمع بين وفيات الأطفال دون الخامسة ووفيات الأمهات ونقص التغذية ونقص مياه الشرب الأساسية والصرف الصحي والكهرباء، مع قياس كل منها عبر جميع الدول المتابَعة (0–100).')],
-      [T('Sources', 'المصادر'), [T('World Bank Open Data', 'بيانات البنك الدولي المفتوحة'), T('World Bank Worldwide Governance Indicators', 'مؤشرات الحوكمة العالمية'), 'IMF', 'WHO', 'UN IGME (UNICEF/WHO)', 'UNESCO UIS', 'FAO', 'WHO/UNICEF JMP', 'ITU', 'IEA', 'ILO', T('Wikidata (heads of state and government)', 'ويكي بيانات (رؤساء الدول والحكومات)')].map(x => ar ? srcTxt(x) : x).join(' · ') +
+      [T('Sources', 'المصادر'), [T('World Bank Open Data', 'بيانات البنك الدولي المفتوحة'), T('World Bank Worldwide Governance Indicators', 'مؤشرات الحوكمة العالمية'), 'IMF', 'WHO', 'UN IGME (UNICEF/WHO)', 'UNESCO UIS', 'FAO', 'WHO/UNICEF JMP', 'ITU', 'IEA', 'ILO', T('Wikidata (heads of state and government)', 'ويكي بيانات (رؤساء الدول والحكومات)'), T('The DHS Program (regional maps)', 'برنامج المسوح الديموغرافية والصحية DHS (الخرائط حسب المنطقة)')].map(x => ar ? srcTxt(x) : x).join(' · ') +
         T(` — retrieved live on building this report (${DATE}).`, ` — استُرجعت مباشرة عند إعداد هذا التقرير (${DATE}).`)],
     ];
     blocks.forEach(([h, t], i) => {

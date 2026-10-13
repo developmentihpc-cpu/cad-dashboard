@@ -3117,6 +3117,10 @@ const WGI_INDS = [
   { id:'GOV_WGI_CC.SC', en:'Control of corruption',    ar:'مكافحة الفساد' },
 ];
 const POLITICS = {};
+// Where two administrations claim the same office, the UN-recognised one is shown (review if the situation changes)
+const LEADER_OVERRIDE = {
+  'Libya': { hog: { en: 'Abdul Hamid Dbeibah', ar: 'عبد الحميد الدبيبة', since: '2021-03-15' } },   // Government of National Unity (Tripoli)
+};
 function repPolitics(country) {
   if (POLITICS[country]) return POLITICS[country];
   const job = (async () => {
@@ -3140,12 +3144,13 @@ function repPolitics(country) {
       const r = await Promise.race([fetch('https://query.wikidata.org/sparql?format=json&query=' + encodeURIComponent(q), { headers:{ Accept:'application/sparql-results+json' } }), timeout(15000)]);
       return (await r.json()).results.bindings;
     };
-    const lbl = (en, a) => `OPTIONAL { ${en.v} rdfs:label ${en.n} FILTER(lang(${en.n})='en') } OPTIONAL { ${en.v} rdfs:label ${a} FILTER(lang(${a})='ar') }`;
+    // English name, falling back to Wikidata's language-neutral "mul" label (many people now only have that)
+    const lbl = (en, a) => `OPTIONAL { ${en.v} rdfs:label ${en.n}_e FILTER(lang(${en.n}_e)='en') } OPTIONAL { ${en.v} rdfs:label ${en.n}_m FILTER(lang(${en.n}_m)='mul') } BIND(COALESCE(${en.n}_e, ${en.n}_m) AS ${en.n}) OPTIONAL { ${en.v} rdfs:label ${a} FILTER(lang(${a})='ar') }`;
     const wd = (async () => {
       try {
-        const rows = await sparql(`SELECT ?role ?p ?pEn ?pAr ?start ?hosOff ?hogOff ?offEn ?offAr ?govEn ?govAr WHERE { ?c wdt:P298 "${iso}" .
+        const rows = await sparql(`SELECT ?role ?p ?pEn ?pAr ?start ?hosOff ?hogOff ?offEn ?offAr ?govEn ?govAr WHERE { ${iso === 'XKX' ? 'VALUES ?c { wd:Q1246 }' : `?c wdt:P298 "${iso}"`} .
           { VALUES ?prop { p:P35 p:P6 } ?c ?prop ?s . BIND(IF(?prop = p:P35, "hos", "hog") AS ?role)
-            { ?s ps:P35 ?p } UNION { ?s ps:P6 ?p } FILTER NOT EXISTS { ?s pq:P582 ?e } OPTIONAL { ?s pq:P580 ?start } ${lbl({ v:'?p', n:'?pEn' }, '?pAr')} }
+            { ?s ps:P35 ?p } UNION { ?s ps:P6 ?p } FILTER NOT EXISTS { ?s pq:P582 ?e } FILTER NOT EXISTS { ?p wdt:P570 ?died } OPTIONAL { ?s pq:P580 ?start } ${lbl({ v:'?p', n:'?pEn' }, '?pAr')} }
           UNION { ?c wdt:P1906 ?hosOff . ${lbl({ v:'?hosOff', n:'?offEn' }, '?offAr')} }
           UNION { ?c wdt:P1313 ?hogOff . }
           UNION { ?c wdt:P122 ?gov . ${lbl({ v:'?gov', n:'?govEn' }, '?govAr')} } }`);
@@ -3169,6 +3174,9 @@ function repPolitics(country) {
           const best = cand[role].filter(x => x.start).sort((a, b) => b.start.localeCompare(a.start))[0] || cand[role][0];
           if (best) { out[role] = [{ en: best.en, ar: best.ar }]; out[role + 'Since'] = best.start || null; }
         });
+        // Contested governments: Wikidata lists rival office-holders, so show the internationally recognised one
+        const fix = LEADER_OVERRIDE[country];
+        if (fix) Object.entries(fix).forEach(([role, v]) => { out[role] = [{ en: v.en, ar: v.ar }]; out[role + 'Since'] = v.since; });
       } catch (e) {}
     })();
     await Promise.all([wgi, wd]);

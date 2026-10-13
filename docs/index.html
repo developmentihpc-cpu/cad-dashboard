@@ -11,6 +11,7 @@
 <script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
 <script src="i18n_ar.js"></script>
 <script src="severity.js"></script>
+<script src="ind_defs.js"></script>
 <script src="deck_kit.js"></script>
 <script src="country_deck.js"></script>
 <script src="pdf_deck.js"></script>
@@ -1326,6 +1327,12 @@ body {
 .ix-row b { text-align: end; color: var(--text); }
 .ca-group-hd { font-family: var(--ex-serif); font-size: 15px; font-weight: 600; color: var(--ex-ink); margin: 20px 0 3px; }
 .ca-group-note { font-size: 11.5px; color: var(--text3); line-height: 1.5; margin-bottom: 10px; max-width: 720px; }
+/* outdated figures (older than DK.STALE_YEARS): shown for reference, not rated */
+.ca-stale { display: inline-block; font-size: 10px; font-weight: 700; color: #A0471B; background: #FFF1E6; border-radius: 4px; padding: 1px 6px; }
+.ca-stale-card .ca-ind-val { color: var(--text4); }
+.idm-val .ca-stale { font-size: 11px; }
+.idm-stale { margin-top: 10px; font-size: 12px; line-height: 1.55; color: #7A3A14; background: #FFF6EE; border: 1px solid #F6D9C2; border-radius: 8px; padding: 8px 10px; }
+.rp-cell.rp-old { color: var(--text4); font-style: italic; }
 /* ODA need index panel */
 .np { border: 1px solid var(--ex-line); border-radius: 12px; padding: 14px 16px 10px; margin-bottom: 14px; background: linear-gradient(180deg, #fff, var(--ex-sky-pale, #F3F8FC)); }
 .np-hd { display: flex; justify-content: space-between; align-items: flex-end; gap: 14px; flex-wrap: wrap; }
@@ -2135,7 +2142,7 @@ const CA_INDICATORS = {
     { id:'NY.GDP.MKTP.KD.ZG',  label:'GDP Growth Rate',           labelAr:'معدل نمو الناتج المحلي الإجمالي',   unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/NY.GDP.MKTP.KD.ZG' },
     { id:'NY.GDP.PCAP.PP.CD',  label:'GDP per Capita (PPP)',       labelAr:'نصيب الفرد من الناتج المحلي (ت.ق.ش)', unit:' USD',   fmt:'num0', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD' },
     { id:'FP.CPI.TOTL.ZG',    label:'Inflation Rate',             labelAr:'معدل التضخم',                        unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/FP.CPI.TOTL.ZG' },
-    { id:'GC.DOD.TOTL.GD.ZS', label:'Government Debt (% GDP)',    labelAr:'الدين الحكومي (% من الناتج المحلي)',  unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/GC.DOD.TOTL.GD.ZS' },
+    { id:'IMF.GGXWDG_NGDP',   label:'Government Debt (% GDP)',    labelAr:'الدين الحكومي (% من الناتج المحلي)',  unit:'%',        fmt:'pct1', src:'IMF' },
     { id:'BN.CAB.XOKA.GD.ZS', label:'Current Account (% GDP)',    labelAr:'الحساب الجاري (% من الناتج المحلي)',  unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/BN.CAB.XOKA.GD.ZS' },
     { id:'NY.GNI.MKTP.CD',    label:'GNI (Atlas method)',         labelAr:'إجمالي الدخل القومي',                 unit:'',         fmt:'big',  src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/NY.GNI.MKTP.CD' },
     { id:'SL.UEM.TOTL.ZS',    label:'Unemployment Rate',          labelAr:'معدل البطالة',                        unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SL.UEM.TOTL.ZS' },
@@ -2609,7 +2616,7 @@ function cdRenderOverview() {
   // each with the country's regional median for comparison.
   const region = repRegionOf(cdCountry), members = REGION_MEMBERS[region] || [];
   const regMedian = id => {
-    const a = members.map(c => { const d = (prebakedIndicators[c] || {})[id]; return d && d.value != null ? d.value : null; })
+    const a = members.map(c => { const d = (prebakedIndicators[c] || {})[id]; return d && d.value != null && !isStale(d) ? d.value : null; })
       .filter(x => x != null).sort((x, y) => x - y);
     if (!a.length) return null; const m = Math.floor(a.length / 2); return a.length % 2 ? a[m] : (a[m - 1] + a[m]) / 2;
   };
@@ -2617,7 +2624,7 @@ function cdRenderOverview() {
   const statsHtml = keyInds.map(ind => {
     const raw = data[ind.id];
     const hasVal = !loading && raw && raw.value != null;
-    const sv = hasVal ? indSeverity(ind.id, raw.value) : null;
+    const sv = hasVal && !isStale(raw) ? indSeverity(ind.id, raw.value) : null;
     const fmt = v => ind.pop ? repFmtPeople(v) : rpFmt(ind, v);
     const val = hasVal ? fmt(raw.value) : (loading ? '…' : '—');
     const med = ind.pop ? null : regMedian(ind.id);
@@ -2625,7 +2632,7 @@ function cdRenderOverview() {
     return `<div class="rp-med ca-click${sv ? ' sev-' + sv.lvl : ''}" ${indCardAttrs(ind.id)}>
       <div class="rp-med-l">${tr(ind.lbl, ind.lblAr)}</div>
       <div class="rp-med-v">${val}</div>
-      <div class="rp-med-s">${sv ? `<b>${sv.label}</b> · ` : ''}${hasVal ? raw.year + ' · ' : ''}<a href="${srcUrl}" target="_blank" onclick="event.stopPropagation()" title="${tr('World Bank Open Data', 'بيانات البنك الدولي المفتوحة')}">${tr('Source', 'المصدر')}</a></div>
+      <div class="rp-med-s">${sv ? `<b>${sv.label}</b> · ` : ''}${hasVal ? (isStale(raw) ? staleTag(raw) : raw.year) + ' · ' : ''}<a href="${srcUrl}" target="_blank" onclick="event.stopPropagation()" title="${tr('World Bank Open Data', 'بيانات البنك الدولي المفتوحة')}">${tr('Source', 'المصدر')}</a></div>
       ${med != null ? `<div class="rp-med-s">${tr('Region median', 'وسيط الإقليم')}: ${fmt(med)}</div>` : ''}
     </div>`;
   }).join('');
@@ -2705,9 +2712,13 @@ function indRaw(ind, iso, data) {
   const d = data[ind.id]; return d && d.value != null ? d : null;
 }
 function indSrc(ind, iso) {
-  return ind.id.startsWith('uis:') ? { url: 'https://databrowser.uis.unesco.org/', name: tr('UNESCO UIS', 'معهد اليونسكو للإحصاء') }
-    : { url: `https://data.worldbank.org/indicator/${ind.id}?locations=${iso}`, name: tr('World Bank', 'البنك الدولي') };
+  if (ind.id.startsWith('uis:')) return { url: 'https://databrowser.uis.unesco.org/', name: tr('UNESCO UIS', 'معهد اليونسكو للإحصاء') };
+  if (ind.id.startsWith('IMF.')) return { url: `https://www.imf.org/external/datamapper/${ind.id.slice(4)}@WEO/${iso}`, name: tr('IMF World Economic Outlook', 'آفاق الاقتصاد العالمي — صندوق النقد الدولي') };
+  return { url: `https://data.worldbank.org/indicator/${ind.id}?locations=${iso}`, name: tr('World Bank', 'البنك الدولي') };
 }
+// Same rule as the reports: a figure older than DK.STALE_YEARS is shown with its year but not rated or compared.
+function isStale(d) { const y = d && d.year ? Number(String(d.year).slice(0, 4)) : 0; return !!y && new Date().getFullYear() - y > (window.DK ? DK.STALE_YEARS : 8); }
+const staleTag = d => `<span class="ca-stale">${tr('Outdated · ' + d.year, 'بيانات قديمة · ' + d.year)}</span>`;
 const indCardAttrs = id => `role="button" tabindex="0" onclick="cdIndDetail(${qa(id)})" onkeydown="if(event.key==='Enter')cdIndDetail(${qa(id)})"`;
 // Ranking-based level (lower share = better) with its own wording, for the two environment rankings
 const rankPill = (lvl, labels) => `<span class="sev-pill sev-p${lvl}">${labels[lvl]}</span>`;
@@ -2821,11 +2832,12 @@ function cdBuildIndGrid(tabKey) {
     const val  = hasVal ? ca_formatValue(raw, ind) : (ind.id.startsWith('uis:') && !EXTRA.uis ? '…' : '—');
     const year = hasVal ? raw.year : '';
     const src = indSrc(ind, iso);
-    const sv = hasVal ? indSeverity(ind.id, raw.value) : null;
-    return `<div class="ca-ind-card ca-click ${!hasVal ? 'ca-no-data' : ''}${sv ? ' sev-' + sv.lvl : ''}" ${indCardAttrs(ind.id)}>
+    const stale = hasVal && isStale(raw);
+    const sv = hasVal && !stale ? indSeverity(ind.id, raw.value) : null;
+    return `<div class="ca-ind-card ca-click ${!hasVal ? 'ca-no-data' : ''}${stale ? ' ca-stale-card' : ''}${sv ? ' sev-' + sv.lvl : ''}" ${indCardAttrs(ind.id)}>
       <div class="ca-ind-label">${label}${sv ? sevPill(sv) : ''}</div>
       <div class="ca-ind-val">${val}${hasVal ? '<span class="ca-ind-unit">' + unitN(ind.unit) + '</span>' : ''}</div>
-      ${year ? `<div class="ca-ind-year">${year}</div>` : ''}
+      ${year ? `<div class="ca-ind-year">${stale ? staleTag(raw) : year}</div>` : ''}
       <div class="ca-ind-src"><a href="${src.url}" target="_blank" class="ca-src-link" onclick="event.stopPropagation()">${src.name}</a><span class="ca-more">${tr('Details', 'التفاصيل')} ›</span></div>
     </div>`;
   };
@@ -2856,9 +2868,10 @@ async function cdIndDetail(id) {
   const ind = Object.values(CA_INDICATORS).flat().find(x => x.id === id) || (() => { const r = REGION_INDS.find(x => x.id === id);
     return r ? { id, label: r.lbl, labelAr: r.lblAr, unit: '', fmt: 'region', _r: r } : { id, label: id, labelAr: id, unit: '', fmt: 'num1' }; })();
   const iso = ca_getIso(c), data = countryDataCache[c] || {}, uis = id.startsWith('uis:');
-  const raw = indRaw(ind, iso, data);
+  const raw = indRaw(ind, iso, data), imf = id.startsWith('IMF.');
+  const stale = raw && isStale(raw);
   const fv = v => v == null ? '—' : ind._r ? rpFmt(ind._r, v) : ca_formatValue({ value: v }, ind) + unitN(ind.unit);
-  const sv = raw ? indSeverity(id, raw.value) : null, rule = SEV_RULES[id];
+  const sv = raw && !stale ? indSeverity(id, raw.value) : null, rule = SEV_RULES[id];
   // rating thresholds in words
   let rating = '';
   if (rule && !rule.peers) {
@@ -2868,42 +2881,45 @@ async function cdIndDetail(id) {
     rating = `<div class="idm-sec">${tr('How it is rated', 'آلية التصنيف')} <span>${exEsc(tr(rule.ref, rule.refAr))}</span></div>
       <div class="idm-th">${lines.map(([l, t]) => `<div class="${sv && sv.lvl === l ? 'on' : ''}"><i class="sev-dot sev-d${l}"></i>${sevLabel(l)}<b>${t}</b></div>`).join('')}</div>`;
   } else if (rule && rule.peers) rating = `<div class="idm-sec">${tr('How it is rated', 'آلية التصنيف')}</div><div class="idm-p">${tr('There is no international benchmark, so the colour compares this country with the other tracked countries (quarters).', 'لا يوجد معيار دولي، لذا يقارن اللون هذه الدولة بالدول المتابَعة الأخرى (أرباع).')}</div>`;
-  // regional comparison
+  const staleNote = stale ? `<div class="idm-stale">${tr(`The latest figure available is from ${raw.year} — more than ${DK.STALE_YEARS} years old — so it is shown for reference only. It is not rated and is left out of the regional comparison.`,
+    `أحدث رقم متاح يعود إلى عام ${raw.year}، أي أقدم من ${DK.STALE_YEARS} سنوات، لذا يُعرض للاطلاع فقط ولا يُصنَّف ولا يدخل في المقارنة الإقليمية.`)}</div>` : '';
+  // regional comparison — current figures only
   const region = repRegionOf(c), members = REGION_MEMBERS[region] || [];
-  const peerVal = m => { if (m === c) return raw ? raw.value : null;
-    if (uis) { const u = EXTRA.uis && EXTRA.uis[COUNTRY_ISO[m]]; const d = u && u[id.slice(4)]; return d ? d.value : null; }
-    const d = (prebakedIndicators[m] || {})[id]; return d && d.value != null ? d.value : null; };
-  const peers = members.map(m => [m, peerVal(m)]).filter(x => x[1] != null).sort((x, y) => y[1] - x[1]);
+  const peerRec = m => { if (m === c) return raw;
+    if (uis) { const u = EXTRA.uis && EXTRA.uis[COUNTRY_ISO[m]]; return u && u[id.slice(4)] || null; }
+    const d = (prebakedIndicators[m] || {})[id]; return d && d.value != null ? d : null; };
+  const recs = members.map(m => [m, peerRec(m)]).filter(x => x[1]);
+  const peers = recs.filter(x => !isStale(x[1])).map(([m, d]) => [m, d.value]).sort((x, y) => y[1] - x[1]);
+  const nOld = recs.length - peers.length;
   const pmax = Math.max(...peers.map(x => Math.abs(x[1])), 0) || 1;
   const med = peers.length ? (() => { const s = peers.map(x => x[1]).sort((a, b) => a - b), k = Math.floor(s.length / 2); return s.length % 2 ? s[k] : (s[k - 1] + s[k]) / 2; })() : null;
   const regionHtml = peers.length > 1 ? `<div class="idm-sec">${tr('Compared with ' + region, 'مقارنةً بـ' + rN(region))} <span>${tr('median', 'الوسيط')} ${fv(med)}</span></div>
     <div class="idm-peers">${peers.map(([m, v]) => { const s = indSeverity(id, v);
-      return `<div class="idm-peer${m === c ? ' me' : ''}"><span>${exEsc(cN(m))}</span><span class="ix-bar"><i style="width:${Math.max(2, Math.abs(v) / pmax * 100)}%;background:${s ? 'var(--sev' + s.lvl + ')' : 'var(--ex-sky)'}"></i></span><b>${fv(v)}</b></div>`; }).join('')}</div>` : '';
+      return `<div class="idm-peer${m === c ? ' me' : ''}"><span>${exEsc(cN(m))}</span><span class="ix-bar"><i style="width:${Math.max(2, Math.abs(v) / pmax * 100)}%;background:${s ? 'var(--sev' + s.lvl + ')' : 'var(--ex-sky)'}"></i></span><b>${fv(v)}</b></div>`; }).join('')}</div>
+    ${nOld ? `<div class="idm-org">${tr(nOld + (nOld === 1 ? ' country' : ' countries') + ' with figures older than ' + DK.STALE_YEARS + ' years not shown.', nOld + ' دولة لديها أرقام أقدم من ' + DK.STALE_YEARS + ' سنوات لم تُعرض.')}</div>` : ''}` : '';
   const src = indSrc(ind, iso);
+  const def = (window.IND_DEFS || {})[id];
+  const wbDef = !uis && !imf ? `<div class="idm-org"><a href="https://data.worldbank.org/indicator/${id}" target="_blank">${tr('Full official definition (World Bank) ↗', 'التعريف الرسمي الكامل (البنك الدولي، بالإنجليزية) ↗')}</a></div>` : '';
   cdModal(`<div class="idm-eyebrow">${exEsc(cN(c))}</div>
     <div class="idm-title">${exEsc(tr(ind.label, ind.labelAr))}</div>
-    <div class="idm-val">${raw ? fv(raw.value) : '—'}${raw ? `<span>${raw.year}</span>` : ''}${sv ? sevPill(sv) : ''}</div>
+    <div class="idm-val">${raw ? fv(raw.value) : '—'}${raw ? (stale ? staleTag(raw) : `<span>${raw.year}${imf ? tr(' · IMF estimate where not yet final', ' · تقدير الصندوق إن لم يكن نهائياً') : ''}</span>`) : ''}${sv ? sevPill(sv) : ''}</div>
+    ${staleNote}
+    <div class="idm-sec">${tr('What it measures', 'ماذا يقيس')}</div>
+    <div class="idm-p">${def ? exEsc(isAr() ? def[1] : def[0]) : tr('See the source for the full definition.', 'راجع المصدر للاطلاع على التعريف الكامل.')}</div>${wbDef}
     ${rating}
-    <div class="idm-sec">${tr('Trend', 'الاتجاه')}</div><div id="idm-trend" class="idm-p idm-wait">${tr('Loading the trend (the World Bank service can take up to a minute)…', 'جارٍ تحميل الاتجاه (قد تستغرق خدمة البنك الدولي حتى دقيقة)…')}</div>
+    <div class="idm-sec">${tr('Trend', 'الاتجاه')}</div><div id="idm-trend" class="idm-p idm-wait">${imf ? '' : tr('Loading the trend (the source can take up to a minute)…', 'جارٍ تحميل الاتجاه (قد يستغرق المصدر حتى دقيقة)…')}</div>
     ${regionHtml}
-    <div class="idm-sec">${tr('What it measures', 'ماذا يقيس')}</div><div id="idm-def" class="idm-p idm-wait">${tr('Loading…', 'جارٍ التحميل…')}</div>
     <div class="idm-src"><a href="${src.url}" target="_blank">${tr('Source', 'المصدر')}: ${src.name} ↗</a></div>`);
-  // definition + time series (live; cached per session)
+  // time series (live; cached per session)
   const setHtml = (elId, h) => { const el = document.getElementById(elId); if (el && cdCountry === c) { el.innerHTML = h; el.classList.remove('idm-wait'); } };
+  if (imf) { setHtml('idm-trend', `<a href="${src.url}" target="_blank">${tr('See the full series on IMF DataMapper ↗', 'اعرض السلسلة الكاملة على موقع صندوق النقد الدولي ↗')}</a>`); return; }
   const T = ms => new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), ms));
-  const defJob = IND_DEF_CACHE[id] || (IND_DEF_CACHE[id] = (uis
-    ? Promise.resolve({ text: tr('UNESCO Institute for Statistics, the official source for SDG 4 education data. Figures come from national school censuses and population estimates.',
-        'معهد اليونسكو للإحصاء، المصدر الرسمي لبيانات الهدف 4 للتعليم. تُستمد الأرقام من التعدادات المدرسية الوطنية وتقديرات السكان.'), org: 'UNESCO UIS' })
-    : Promise.race([fetch(`https://api.worldbank.org/v2/indicator/${id}?format=json`).then(r => r.json()), T(45000)])
-        .then(j => ({ text: j[1][0].sourceNote, org: j[1][0].sourceOrganization })).catch(() => { delete IND_DEF_CACHE[id]; return null; })));
-  const orgTidy = o => String(o).replace(/,?\s*(uri|publisher|note):[^;]*/gi, '').replace(/\s+;/g, ';').replace(/;\s*$/, '').slice(0, 220);
-  defJob.then(d => setHtml('idm-def', d ? exEsc(d.text) + (d.org ? `<div class="idm-org">${exEsc(orgTidy(d.org))}</div>` : '') + (isAr() && !uis ? `<div class="idm-org">${tr('', '(التعريف باللغة الإنجليزية من البنك الدولي)')}</div>` : '')
-    : tr('The definition could not be loaded right now.', 'تعذّر تحميل التعريف حالياً.')));
   const sKey = id + '|' + iso;
   const serJob = IND_SERIES_CACHE[sKey] || (IND_SERIES_CACHE[sKey] = (uis
     ? Promise.race([fetch(`https://api.uis.unesco.org/api/public/data/indicators?indicator=${id.slice(4)}&geoUnit=${iso}&start=2000`).then(r => r.json()), T(20000)])
         .then(j => (j.records || []).map(r => [+r.year, r.value]))
-    : Promise.race([fetch(`https://api.worldbank.org/v2/country/${iso}/indicator/${id}?format=json&per_page=80&date=2000:2030`).then(r => r.json()), T(45000)])        .then(j => (j[1] || []).filter(r => r.value != null).map(r => [+r.date, r.value])))
+    : Promise.race([fetch(`https://api.worldbank.org/v2/country/${iso}/indicator/${id}?format=json&per_page=80&date=2000:2030`).then(r => r.json()), T(45000)])
+        .then(j => (j[1] || []).filter(r => r.value != null).map(r => [+r.date, r.value])))
     .then(s => s.sort((a, b) => a[0] - b[0])).catch(() => { delete IND_SERIES_CACHE[sKey]; return null; }));
   serJob.then(s => setHtml('idm-trend', !s ? tr('The trend could not be loaded right now. ', 'تعذّر تحميل الاتجاه حالياً. ') + `<a href="#" onclick="event.preventDefault();cdIndDetail(${qa(id)})">${tr('Try again', 'إعادة المحاولة')}</a>` : s.length < 2 ? tr('Only one data point is available.', 'تتوفر نقطة بيانات واحدة فقط.') : sparkHtml(s, fv, rule)));
 }
@@ -3688,7 +3704,7 @@ function renderRegionPopup() {
   const region = rpRegion, members = (REGION_MEMBERS[region] || []).slice();
   const need = needScores();
   members.sort((a, b) => ((need[b] && need[b].need) || -1) - ((need[a] && need[a].need) || -1));
-  const val = (c, id) => { const d = rpVal(c, id); return d ? d.value : null; };
+  const val = (c, id) => { const d = rpVal(c, id); return d && !isStale(d) ? d.value : null; };   // outdated figures are left out of totals, medians and counts
   const pop = members.reduce((s, c) => s + (val(c, 'SP.POP.TOTL') || 0), 0);
   const without = id => members.reduce((s, c) => { const p = val(c, 'SP.POP.TOTL'), v = val(c, id); return p && v != null ? s + p * (1 - v / 100) : s; }, 0);
   const median = arr => { const a = arr.filter(x => x != null).sort((x, y) => x - y); if (!a.length) return null; const m = Math.floor(a.length / 2); return a.length % 2 ? a[m] : (a[m - 1] + a[m]) / 2; };
@@ -3724,8 +3740,8 @@ function renderRegionPopup() {
     return `<tr onclick="closeRegionPopup();exOpenCountry(${qa(c)})" title="${exEsc(tr('Open ' + c + ' profile', 'فتح ملف ' + cN(c)))}">
       <td class="rp-cty">${flagImg(c, 18, 12)}&nbsp; ${exEsc(cN(c))}</td>
       <td class="num rp-need">${n && n.need != null ? Math.round(n.need) : '—'}</td>
-      ${REGION_INDS.map(ind => { const d = rpVal(c, ind.id), sv = d ? indSeverity(ind.id, d.value) : null;
-        return `<td class="num rp-cell${sv ? ' sevc-' + sv.lvl : ''}" title="${exEsc(tr(ind.lbl, ind.lblAr))}${d ? ' · ' + d.year : ''}${sv ? ' · ' + sv.label : ''}">${d ? rpFmt(ind, d.value) : '—'}</td>`; }).join('')}
+      ${REGION_INDS.map(ind => { const d = rpVal(c, ind.id), old = d && isStale(d), sv = d && !old ? indSeverity(ind.id, d.value) : null;
+        return `<td class="num rp-cell${sv ? ' sevc-' + sv.lvl : ''}${old ? ' rp-old' : ''}" title="${exEsc(tr(ind.lbl, ind.lblAr))}${d ? ' · ' + d.year : ''}${old ? exEsc(tr(' · outdated, not rated', ' · بيانات قديمة غير مصنّفة')) : ''}${sv ? ' · ' + sv.label : ''}">${d ? rpFmt(ind, d.value) : '—'}</td>`; }).join('')}
     </tr>`;
   }).join('');
 
@@ -4162,7 +4178,7 @@ async function ca_loadCountryData(country) {
   const allIds = new Set();
   for (const tab of CA_TABS) {
     for (const ind of CA_INDICATORS[tab] || []) {
-      if (/^[A-Z]/.test(ind.id)) allIds.add(ind.id);   // World Bank ids only (uis: and __ cards come from saved files)
+      if (/^[A-Z]/.test(ind.id) && !ind.id.startsWith('IMF.')) allIds.add(ind.id);   // World Bank ids only (uis:, IMF. and __ cards come from saved files)
     }
   }
 

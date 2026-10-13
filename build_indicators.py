@@ -85,6 +85,31 @@ def parse_indicator_ids(html: str) -> list:
     return ordered
 
 
+IMF_DEBT_ID = "IMF.GGXWDG_NGDP"   # general government gross debt, % of GDP (IMF World Economic Outlook)
+IMF_URL = "https://www.imf.org/external/datamapper/api/v1/GGXWDG_NGDP"
+IMF_ALIAS = {"XKX": "UVK"}        # Kosovo's code in IMF data
+
+
+def fetch_imf_debt(country_isos) -> dict:
+    """Return {iso3: {'value', 'year'}} with the latest IMF figure up to last year
+    (the WEO also publishes projections, which are skipped). Empty dict on failure."""
+    try:
+        resp = requests.get(IMF_URL, timeout=TIMEOUT, headers={"User-Agent": "Mozilla/5.0 (CAD dashboard refresh)"})
+        resp.raise_for_status()
+        series = resp.json()["values"]["GGXWDG_NGDP"]
+    except Exception as e:  # noqa: BLE001
+        print(f"  ! IMF debt: request failed ({e}) - keeping previous values")
+        return {}
+    cap = datetime.now(timezone.utc).year - 1
+    out = {}
+    for iso3 in country_isos:
+        ser = series.get(IMF_ALIAS.get(iso3, iso3)) or {}
+        years = sorted((int(y) for y, v in ser.items() if v is not None and int(y) <= cap), reverse=True)
+        if years:
+            out[iso3] = {"value": ser[str(years[0])], "year": str(years[0])}
+    return out
+
+
 def fetch_indicator_all_countries(indicator_id: str) -> dict:
     """Return {iso3: {'value': float, 'year': 'YYYY'}} for one indicator, all countries.
 
@@ -168,6 +193,21 @@ def main() -> None:
                 hits += 1
                 filled += 1
         print(f"  [{n:>2}/{len(indicator_ids)}] {ind:<22} {hits} countries")
+
+    print("Fetching IMF government debt...")
+    imf = fetch_imf_debt(country_iso.values())
+    previous = {}
+    if OUT_PATH.exists():
+        try:
+            previous = json.loads(OUT_PATH.read_text(encoding="utf-8"))
+        except Exception:  # noqa: BLE001
+            previous = {}
+    for name, iso3 in country_iso.items():
+        rec = imf.get(iso3) or (previous.get(name) or {}).get(IMF_DEBT_ID)   # keep last good value if the IMF is unreachable
+        if rec:
+            out[name][IMF_DEBT_ID] = rec
+            filled += 1
+    print(f"  IMF debt: {len(imf)} fetched, {sum(1 for n in out if IMF_DEBT_ID in out[n])} countries in snapshot")
 
     print("Fetching World Bank regions...")
     regions = fetch_regions(country_iso)

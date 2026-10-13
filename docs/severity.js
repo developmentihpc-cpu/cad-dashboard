@@ -50,6 +50,7 @@ const SEV_RULES = {
   'AG.YLD.CREL.KG':     { dir:-1, th:[1500, 2500, 4000],  ref:'world average ≈ 4,000 kg/ha',       refAr:'المتوسط العالمي ≈ 4,000 كغ/هكتار' },
   'NY.GDP.PCAP.PP.CD':  { dir:-1, th:[3000, 7000, 15000], ref:'income bands (PPP)',                refAr:'فئات الدخل (تعادل القوة الشرائية)' },
   // Worldwide Governance Indicators (World Bank), score 0–100 — higher is better
+  'IMF.GGXWDG_NGDP':    { dir: 1, th:[90, 70, 50],        ref:'IMF debt-risk ranges',              refAr:'نطاقات مخاطر الدين لصندوق النقد' },
   'GOV_WGI_PV.SC':      { dir:-1, th:[25, 40, 60],        ref:'WGI governance score (0–100)',      refAr:'مؤشر الحوكمة العالمي (0–100)' },
   'GOV_WGI_VA.SC':      { dir:-1, th:[25, 40, 60],        ref:'WGI governance score (0–100)',      refAr:'مؤشر الحوكمة العالمي (0–100)' },
   'GOV_WGI_GE.SC':      { dir:-1, th:[25, 40, 60],        ref:'WGI governance score (0–100)',      refAr:'مؤشر الحوكمة العالمي (0–100)' },

@@ -14,7 +14,8 @@ drift from what the dashboard actually displays.
 
 Efficiency: instead of country x indicator individual calls, it makes ONE request per
 indicator against country/all (mrv=5), then keeps the most recent non-null value per
-country. ~70 requests total.
+country. ~70 requests total. Government debt comes from the IMF World Economic Outlook
+(DataMapper API) and keeps the previous values if the IMF cannot be reached.
 
 Output shape (matches the dashboard's countryDataCache exactly):
     {

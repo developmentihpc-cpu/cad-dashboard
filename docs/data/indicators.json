@@ -1,10 +1,10 @@
 {
  "_meta": {
-  "generated": "2026-10-13T09:42:20+00:00",
+  "generated": "2026-10-13T09:53:37+00:00",
   "source": "World Bank Open Data API (api.worldbank.org)",
   "countries": 86,
   "indicators": 65,
-  "datapoints": 4676
+  "datapoints": 5193
  },
  "_regions": {
   "East Asia & Pacific": [
@@ -119,6 +119,14 @@
    "value": -6.60118564073725,
    "year": "2024"
   },
+  "BN.CAB.XOKA.GD.ZS": {
+   "value": -15.7183027911684,
+   "year": "2020"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 16782782231.3781,
+   "year": "2024"
+  },
   "SL.UEM.TOTL.ZS": {
    "value": 13.351,
    "year": "2025"
@@ -175,9 +183,21 @@
    "value": 59.6136016845703,
    "year": "2023"
   },
+  "SE.TER.ENRR": {
+   "value": 10.85435962677,
+   "year": "2020"
+  },
   "SE.ADT.LITR.ZS": {
    "value": 37.2700004577637,
    "year": "2021"
+  },
+  "SE.XPD.TOTL.GD.ZS": {
+   "value": 4.34319019317627,
+   "year": "2017"
+  },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 48.78979,
+   "year": "2018"
   },
   "SE.PRM.CMPT.ZS": {
    "value": 90.3076095581055,
@@ -194,6 +214,10 @@
   "EG.FEC.RNEW.ZS": {
    "value": 20,
    "year": "2022"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 0.2829802981146,
+   "year": "2024"
   },
   "EG.CFT.ACCS.ZS": {
    "value": 30,
@@ -239,6 +263,10 @@
    "value": 0.144466918556362,
    "year": "2021"
   },
+  "GC.TAX.TOTL.GD.ZS": {
+   "value": 9.89845089688421,
+   "year": "2017"
+  },
   "SH.H2O.SMDW.ZS": {
    "value": 30.5547223111169,
    "year": "2024"
@@ -267,6 +295,10 @@
    "value": 27.8,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 77.8,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 16.09499931,
    "year": "2024"
@@ -283,6 +315,10 @@
    "value": 41.0575140034026,
    "year": "2024"
   },
+  "TX.VAL.ICTG.ZS.UN": {
+   "value": 0.01,
+   "year": "2019"
+  },
   "IT.MLT.MAIN.P2": {
    "value": 0.438943551019387,
    "year": "2023"
@@ -298,6 +334,10 @@
   "EN.ATM.PM25.MC.M3": {
    "value": 37.9483109911724,
    "year": "2023"
+  },
+  "LP.LPI.INFR.XQ": {
+   "value": 1.7,
+   "year": "2022"
   },
   "IS.AIR.PSGR": {
    "value": 1031379,
@@ -327,6 +367,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": -0.526880926102865,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 28328665983.7585,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -373,6 +417,10 @@
    "value": 81,
    "year": "2024"
   },
+  "SH.STA.STNT.ZS": {
+   "value": 11.3,
+   "year": "2017"
+  },
   "SE.PRM.ENRR": {
    "value": 111.511650085449,
    "year": "2024"
@@ -393,6 +441,10 @@
    "value": 3.09153008460998,
    "year": "2023"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 17.57287,
+   "year": "2018"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 107.345321655273,
    "year": "2024"
@@ -411,6 +463,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 887.721393754829,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 1.7852214941728,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -465,6 +521,14 @@
    "value": 18.0152934113212,
    "year": "2024"
   },
+  "SI.POV.GINI": {
+   "value": 29.4,
+   "year": "2020"
+  },
+  "SI.POV.DDAY": {
+   "value": 0.3,
+   "year": "2020"
+  },
   "SH.H2O.SMDW.ZS": {
    "value": 70.7937363898968,
    "year": "2024"
@@ -487,6 +551,10 @@
   },
   "SN.ITK.DEFC.ZS": {
    "value": 5.6,
+   "year": "2024"
+  },
+  "SN.ITK.MSFI.ZS": {
+   "value": 31.8,
    "year": "2024"
   },
   "IT.NET.USER.ZS": {
@@ -525,6 +593,10 @@
    "value": 15.5141032036885,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.7,
+   "year": "2022"
+  },
   "IS.AIR.PSGR": {
    "value": 374800,
    "year": "2023"
@@ -557,6 +629,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": -8.8140015755314,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 277628499044.06,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -595,9 +671,17 @@
    "value": 1.66,
    "year": "2022"
   },
+  "SH.MED.BEDS.ZS": {
+   "value": 1.61,
+   "year": "2017"
+  },
   "SH.IMM.MEAS": {
    "value": 94,
    "year": "2024"
+  },
+  "SH.STA.STNT.ZS": {
+   "value": 9.8,
+   "year": "2019"
   },
   "SE.PRM.ENRR": {
    "value": 105.480690694811,
@@ -615,6 +699,10 @@
    "value": 8.97772026062012,
    "year": "2024"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 24.32018,
+   "year": "2018"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 98.2448647385429,
    "year": "2025"
@@ -629,6 +717,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 1546.32644663511,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 3.98080005796518,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -707,6 +799,10 @@
    "value": 2.5,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 17.6,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 77.4178009,
    "year": "2024"
@@ -723,6 +819,10 @@
    "value": 119.343855301674,
    "year": "2024"
   },
+  "TX.VAL.ICTG.ZS.UN": {
+   "value": 0.03,
+   "year": "2017"
+  },
   "IT.MLT.MAIN.P2": {
    "value": 14.8068449500525,
    "year": "2024"
@@ -738,6 +838,10 @@
   "EN.ATM.PM25.MC.M3": {
    "value": 16.5394687279881,
    "year": "2023"
+  },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.1,
+   "year": "2022"
   },
   "IS.AIR.PSGR": {
    "value": 7160662.35,
@@ -771,6 +875,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": 0.342125613104209,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 111626608228.735,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -857,6 +965,10 @@
    "value": 424.144493457304,
    "year": "2024"
   },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 0.741712294740973,
+   "year": "2024"
+  },
   "EG.USE.ELEC.KH.PC": {
    "value": 353.45651089936,
    "year": "2024"
@@ -909,6 +1021,14 @@
    "value": 7.58797309525612,
    "year": "2024"
   },
+  "SI.POV.GINI": {
+   "value": 51.3,
+   "year": "2018"
+  },
+  "SI.POV.DDAY": {
+   "value": 39.3,
+   "year": "2018"
+  },
   "SH.H2O.BASW.ZS": {
    "value": 67.9607422242112,
    "year": "2024"
@@ -927,6 +1047,10 @@
   },
   "SN.ITK.DEFC.ZS": {
    "value": 17.4,
+   "year": "2024"
+  },
+  "SN.ITK.MSFI.ZS": {
+   "value": 75.4,
    "year": "2024"
   },
   "IT.NET.USER.ZS": {
@@ -965,6 +1089,10 @@
    "value": 19.9075690536367,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.1,
+   "year": "2022"
+  },
   "IS.AIR.PSGR": {
    "value": 1321412,
    "year": "2023"
@@ -997,6 +1125,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": -1.14011851807954,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 671607598881.955,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -1043,6 +1175,10 @@
    "value": 82,
    "year": "2024"
   },
+  "SH.STA.STNT.ZS": {
+   "value": 8.7,
+   "year": "2018"
+  },
   "SE.PRM.ENRR": {
    "value": 102.535244031037,
    "year": "2023"
@@ -1081,6 +1217,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 1736.70249657787,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 4.01066531653131,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -1147,6 +1287,10 @@
    "value": 2.8,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 31.7,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 89.66715228,
    "year": "2024"
@@ -1183,6 +1327,10 @@
    "value": 14.3465949932455,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.8,
+   "year": "2022"
+  },
   "IS.AIR.PSGR": {
    "value": 21057811,
    "year": "2023"
@@ -1215,6 +1363,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": -8.73237801945946,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 27847238236.5587,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -1281,6 +1433,10 @@
    "value": 2.43869996070862,
    "year": "2023"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 15.41859,
+   "year": "2018"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 98.213668887244,
    "year": "2024"
@@ -1299,6 +1455,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 1311.69583988006,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 2.47028185264546,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -1389,6 +1549,10 @@
    "value": 2.5,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 7.1,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 81.33930206,
    "year": "2024"
@@ -1425,6 +1589,10 @@
    "value": 28.5532304553511,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.6,
+   "year": "2022"
+  },
   "IS.AIR.PSGR": {
    "value": 1311506,
    "year": "2023"
@@ -1453,6 +1621,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": 4.57619393620153,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 75415932652.4457,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -1523,6 +1695,10 @@
    "value": 3.66036009788513,
    "year": "2023"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 15.42982,
+   "year": "2018"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 97.2039767305857,
    "year": "2024"
@@ -1541,6 +1717,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 1731.91325811015,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 3.81144251153847,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -1623,6 +1803,10 @@
    "value": 2.5,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 14.6,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 90.80000181,
    "year": "2025"
@@ -1687,6 +1871,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": -0.0445219313220335,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 499348445171.716,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -1757,6 +1945,10 @@
    "value": 2.0343847791384,
    "year": "2024"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 30.05459,
+   "year": "2018"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 94.3021681436472,
    "year": "2024"
@@ -1775,6 +1967,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 288.332721713123,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 0.715539343541092,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -1865,6 +2061,10 @@
    "value": 8.2,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 26.2,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 53.42171316,
    "year": "2024"
@@ -1881,6 +2081,10 @@
    "value": 527.061270034326,
    "year": "2024"
   },
+  "TX.VAL.ICTG.ZS.UN": {
+   "value": 0.03,
+   "year": "2018"
+  },
   "IT.MLT.MAIN.P2": {
    "value": 0.164060913574558,
    "year": "2024"
@@ -1896,6 +2100,10 @@
   "EN.ATM.PM25.MC.M3": {
    "value": 69.2525518340174,
    "year": "2023"
+  },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.3,
+   "year": "2022"
   },
   "IS.AIR.PSGR": {
    "value": 6628497,
@@ -1929,6 +2137,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": -0.708088461963961,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 55619934850.5473,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -1991,6 +2203,10 @@
    "value": 7.53980016708374,
    "year": "2024"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 17.79827,
+   "year": "2018"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 90.9584503173828,
    "year": "2024"
@@ -2009,6 +2225,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 833.274531843194,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 2.29073378062186,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -2087,6 +2307,10 @@
    "value": 19.5,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 29.6,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 79.70469666,
    "year": "2024"
@@ -2123,6 +2347,10 @@
    "value": 28.1374394437756,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.4,
+   "year": "2022"
+  },
   "IS.AIR.PSGR": {
    "value": 5601302.305,
    "year": "2023"
@@ -2151,6 +2379,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": 2.92737228193996,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 18929674037.7319,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -2209,6 +2441,10 @@
    "value": 21.4087908549348,
    "year": "2024"
   },
+  "SE.XPD.TOTL.GD.ZS": {
+   "value": 8.05833660991541,
+   "year": "2020"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 101.532181974812,
    "year": "2022"
@@ -2223,6 +2459,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 1346.55805820489,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 2.73749285541178,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -2297,6 +2537,10 @@
    "value": 18.2,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 52,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 57.45950036,
    "year": "2024"
@@ -2333,6 +2577,10 @@
    "value": 13.2435593608353,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 3.1,
+   "year": "2022"
+  },
   "IS.AIR.PSGR": {
    "value": 172720,
    "year": "2023"
@@ -2362,6 +2610,10 @@
   "BN.CAB.XOKA.GD.ZS": {
    "value": -3.96877055984496,
    "year": "2024"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 23552325383.2538,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 3.477,
@@ -2431,6 +2683,10 @@
    "value": 5.32757840997187,
    "year": "2023"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 39.72173,
+   "year": "2018"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 51.9892903102133,
    "year": "2024"
@@ -2449,6 +2705,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 332.704707445489,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 0.274990879570369,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -2535,6 +2795,10 @@
    "value": 11.7,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 41.2,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 28.25270081,
    "year": "2024"
@@ -2571,6 +2835,10 @@
    "value": 37.3246424541393,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.3,
+   "year": "2022"
+  },
   "IS.AIR.PSGR": {
    "value": 103592,
    "year": "2023"
@@ -2599,6 +2867,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": -13.7148163176015,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 3456259228.57366,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -2665,6 +2937,14 @@
    "value": 4.5040397644043,
    "year": "2025"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 42.52383,
+   "year": "2018"
+  },
+  "SE.PRM.CMPT.ZS": {
+   "value": 47.609493213452,
+   "year": "2020"
+  },
   "SE.ADT.1524.LT.ZS": {
    "value": 88.3979336343743,
    "year": "2020"
@@ -2676,6 +2956,10 @@
   "EG.FEC.RNEW.ZS": {
    "value": 83,
    "year": "2022"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 0.0689574855425617,
+   "year": "2024"
   },
   "EG.CFT.ACCS.ZS": {
    "value": 0,
@@ -2721,6 +3005,14 @@
    "value": 12.6719556010603,
    "year": "2021"
   },
+  "SI.POV.GINI": {
+   "value": 37.5,
+   "year": "2020"
+  },
+  "SI.POV.DDAY": {
+   "value": 74.2,
+   "year": "2020"
+  },
   "SH.H2O.BASW.ZS": {
    "value": 65.9191041847553,
    "year": "2024"
@@ -2736,6 +3028,10 @@
   "SH.STA.HYGN.ZS": {
    "value": 6.35970783900224,
    "year": "2023"
+  },
+  "SN.ITK.MSFI.ZS": {
+   "value": 70.8,
+   "year": "2024"
   },
   "IT.NET.USER.ZS": {
    "value": 8.595999718,
@@ -2773,6 +3069,10 @@
    "value": 35.6918123934643,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 1.95,
+   "year": "2018"
+  },
   "SP.URB.TOTL.IN.ZS": {
    "value": 25.6870184681663,
    "year": "2025"
@@ -2797,6 +3097,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": -3.71585120005856,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 49148017451.331,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -2835,6 +3139,10 @@
    "value": 0.211,
    "year": "2019"
   },
+  "SH.MED.BEDS.ZS": {
+   "value": 0.73,
+   "year": "2018"
+  },
   "SH.IMM.MEAS": {
    "value": 83,
    "year": "2024"
@@ -2863,6 +3171,10 @@
    "value": 2.1809128340295,
    "year": "2023"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 41.7035,
+   "year": "2018"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 90.9948884997473,
    "year": "2024"
@@ -2881,6 +3193,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 593.191898209516,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 1.10207037315065,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -2963,6 +3279,10 @@
    "value": 4.7,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 36.4,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 68.47530365,
    "year": "2024"
@@ -2999,6 +3319,10 @@
    "value": 19.4262068786841,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.1,
+   "year": "2022"
+  },
   "IS.AIR.PSGR": {
    "value": 675283,
    "year": "2023"
@@ -3032,6 +3356,10 @@
   "BN.CAB.XOKA.GD.ZS": {
    "value": -3.28354247246706,
    "year": "2024"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 55430407744.8586,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 3.602,
@@ -3073,6 +3401,10 @@
    "value": 71,
    "year": "2024"
   },
+  "SH.STA.STNT.ZS": {
+   "value": 28.9,
+   "year": "2018"
+  },
   "SE.PRM.ENRR": {
    "value": 114.407278765947,
    "year": "2024"
@@ -3085,13 +3417,25 @@
    "value": 16.6614294830602,
    "year": "2024"
   },
+  "SE.ADT.LITR.ZS": {
+   "value": 72.5500030517578,
+   "year": "2018"
+  },
   "SE.XPD.TOTL.GD.ZS": {
    "value": 2.83907623667935,
    "year": "2023"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 44.83412,
+   "year": "2018"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 75.2884678128093,
    "year": "2024"
+  },
+  "SE.ADT.1524.LT.ZS": {
+   "value": 81.8899993896484,
+   "year": "2018"
   },
   "EG.ELC.ACCS.ZS": {
    "value": 72,
@@ -3103,6 +3447,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 329.792954485533,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 0.353419532873246,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -3185,6 +3533,10 @@
    "value": 4.9,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 60.9,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 46.25880051,
    "year": "2024"
@@ -3221,6 +3573,10 @@
    "value": 55.603592684544,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.1,
+   "year": "2022"
+  },
   "IS.AIR.PSGR": {
    "value": 331025,
    "year": "2023"
@@ -3249,6 +3605,10 @@
   },
   "FP.CPI.TOTL.ZG": {
    "value": -3.91198124406589,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 20371137552.1732,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -3307,6 +3667,14 @@
    "value": 23.49298947746,
    "year": "2024"
   },
+  "SE.TER.ENRR": {
+   "value": 4.39665967267065,
+   "year": "2020"
+  },
+  "SE.ADT.LITR.ZS": {
+   "value": 30.6299991607666,
+   "year": "2019"
+  },
   "SE.XPD.TOTL.GD.ZS": {
    "value": 3.20149725837724,
    "year": "2023"
@@ -3314,6 +3682,10 @@
   "SE.PRM.CMPT.ZS": {
    "value": 41.849262823527,
    "year": "2021"
+  },
+  "SE.ADT.1524.LT.ZS": {
+   "value": 45.1300010681152,
+   "year": "2019"
   },
   "EG.ELC.ACCS.ZS": {
    "value": 13.4,
@@ -3325,6 +3697,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 170.935156324537,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 0.142508619707364,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -3411,6 +3787,10 @@
    "value": 33.6,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 65,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 12.62689972,
    "year": "2024"
@@ -3443,6 +3823,10 @@
    "value": 42.9595249298994,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.37,
+   "year": "2018"
+  },
   "SP.URB.TOTL.IN.ZS": {
    "value": 27.5658786336865,
    "year": "2025"
@@ -3467,6 +3851,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": -2.40960750831304,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 422261113748.829,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -3529,6 +3917,14 @@
    "value": 95.3399963378906,
    "year": "2024"
   },
+  "SE.XPD.TOTL.GD.ZS": {
+   "value": 5.26166009902954,
+   "year": "2020"
+  },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 23.3015,
+   "year": "2018"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 97.1171035766602,
    "year": "2022"
@@ -3547,6 +3943,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 843.88310618328,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 1.79780371737796,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -3637,6 +4037,10 @@
    "value": 4.1,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 28,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 79.34543299,
    "year": "2024"
@@ -3673,6 +4077,10 @@
    "value": 18.3566187713727,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.9,
+   "year": "2022"
+  },
   "IS.AIR.PSGR": {
    "value": 42399044,
    "year": "2023"
@@ -3701,6 +4109,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": -4.33288123454985,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 81325840125.1058,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -3755,6 +4167,10 @@
    "value": 55.4860992431641,
    "year": "2023"
   },
+  "SE.TER.ENRR": {
+   "value": 6.37987995147705,
+   "year": "2020"
+  },
   "SE.ADT.LITR.ZS": {
    "value": 68.5,
    "year": "2023"
@@ -3781,6 +4197,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 401.529674643877,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 0.0568247825820182,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -3835,6 +4255,14 @@
    "value": 10.6622824647321,
    "year": "2022"
   },
+  "SI.POV.GINI": {
+   "value": 44.7,
+   "year": "2020"
+  },
+  "SI.POV.DDAY": {
+   "value": 85.3,
+   "year": "2020"
+  },
   "SH.H2O.SMDW.ZS": {
    "value": 11.8726481819387,
    "year": "2024"
@@ -3861,6 +4289,10 @@
   },
   "SN.ITK.DEFC.ZS": {
    "value": 39.5,
+   "year": "2024"
+  },
+  "SN.ITK.MSFI.ZS": {
+   "value": 81.7,
    "year": "2024"
   },
   "IT.NET.USER.ZS": {
@@ -3899,9 +4331,17 @@
    "value": 35.8125021813766,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.3,
+   "year": "2022"
+  },
   "IS.AIR.PSGR": {
    "value": 1150169.673,
    "year": "2023"
+  },
+  "IS.SHP.GOOD.TU": {
+   "value": 42211,
+   "year": "2019"
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 45.1135633042151,
@@ -3928,6 +4368,10 @@
   "BN.CAB.XOKA.GD.ZS": {
    "value": -4.46811097764034,
    "year": "2024"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 90950348318.1906,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 2.323,
@@ -3993,6 +4437,10 @@
    "value": 3.61279988288879,
    "year": "2024"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 41.8223,
+   "year": "2018"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 80.237080416679,
    "year": "2024"
@@ -4011,6 +4459,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 477.312891583561,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 0.589054440955677,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -4101,6 +4553,10 @@
    "value": 11.4,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 37.9,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 41.43219902,
    "year": "2024"
@@ -4137,6 +4593,10 @@
    "value": 20.3873194822538,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.89,
+   "year": "2018"
+  },
   "IS.AIR.PSGR": {
    "value": 716233,
    "year": "2023"
@@ -4169,6 +4629,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": 5.85633911539229,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 125987697144.577,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -4239,6 +4703,10 @@
    "value": 3.69074988365173,
    "year": "2024"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 24.26216,
+   "year": "2018"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 100.199679503356,
    "year": "2023"
@@ -4257,6 +4725,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 926.80037984727,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 2.64474970000791,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -4347,6 +4819,10 @@
    "value": 10.8,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 31.1,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 77.17273115,
    "year": "2024"
@@ -4383,6 +4859,10 @@
    "value": 18.6084478897872,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.72,
+   "year": "2018"
+  },
   "IS.AIR.PSGR": {
    "value": 4567423,
    "year": "2023"
@@ -4415,6 +4895,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": -3.81547628555514,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 386415347562.581,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -4481,6 +4965,10 @@
    "value": 79.4531619498685,
    "year": "2022"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 23.67945,
+   "year": "2018"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 98.2100688782627,
    "year": "2024"
@@ -4499,6 +4987,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 883.225527063276,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 2.50251380967098,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -4585,6 +5077,10 @@
    "value": 8.4,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 29.9,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 74.64839935,
    "year": "2024"
@@ -4621,6 +5117,10 @@
    "value": 43.1460553382462,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 3,
+   "year": "2022"
+  },
   "IS.AIR.PSGR": {
    "value": 16672111.302,
    "year": "2023"
@@ -4653,6 +5153,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": -3.54162941770512,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 34423620806.5454,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -4723,6 +5227,10 @@
    "value": 3.31666994094849,
    "year": "2024"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 26.89473,
+   "year": "2018"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 82.6281692393825,
    "year": "2024"
@@ -4741,6 +5249,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 786.897521045268,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 1.50569728627702,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -4827,6 +5339,10 @@
    "value": 5.3,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 41.7,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 66.47769928,
    "year": "2024"
@@ -4862,6 +5378,10 @@
   "EN.ATM.PM25.MC.M3": {
    "value": 29.5862475987305,
    "year": "2023"
+  },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.2,
+   "year": "2022"
   },
   "IS.AIR.PSGR": {
    "value": 3263923,
@@ -4933,6 +5453,10 @@
    "value": 44.0441284179688,
    "year": "2022"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 38.74092,
+   "year": "2018"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 61.2794189453125,
    "year": "2022"
@@ -4947,6 +5471,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 294.476825590693,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 0.220047329974547,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -4981,6 +5509,10 @@
    "value": 55.4760411515685,
    "year": "2025"
   },
+  "IT.NET.USER.ZS": {
+   "value": 14.34939957,
+   "year": "2020"
+  },
   "IT.NET.BBND.P2": {
    "value": 0.165393390775689,
    "year": "2022"
@@ -5009,9 +5541,17 @@
    "value": 33.6567997168068,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 1.86,
+   "year": "2018"
+  },
   "IS.AIR.PSGR": {
    "value": 45104.031,
    "year": "2020"
+  },
+  "IS.SHP.GOOD.TU": {
+   "value": 27452.8,
+   "year": "2019"
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 34.5404504255216,
@@ -5038,6 +5578,10 @@
   "BN.CAB.XOKA.GD.ZS": {
    "value": -2.53176480495897,
    "year": "2024"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 150631713447.265,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 3.323,
@@ -5079,6 +5623,10 @@
    "value": 72,
    "year": "2024"
   },
+  "SH.STA.STNT.ZS": {
+   "value": 36.8,
+   "year": "2019"
+  },
   "SE.PRM.ENRR": {
    "value": 84.4160102082984,
    "year": "2024"
@@ -5109,6 +5657,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 393.244926602842,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 0.146636636122491,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -5199,6 +5751,10 @@
    "value": 19.9,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 60.1,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 21.94129944,
    "year": "2024"
@@ -5265,6 +5821,10 @@
    "value": 8.22421088927033,
    "year": "2025"
   },
+  "NY.GNP.ATLS.CD": {
+   "value": 92262900069.4531,
+   "year": "2025"
+  },
   "SL.UEM.TOTL.ZS": {
    "value": 2.979,
    "year": "2025"
@@ -5329,6 +5889,10 @@
    "value": 2.90963831638452,
    "year": "2022"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 26.99486,
+   "year": "2019"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 97.5019836425781,
    "year": "2024"
@@ -5347,6 +5911,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 394.91900074267,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 0.702085843566409,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -5429,6 +5997,10 @@
    "value": 6.4,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 43.5,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 72.17569733,
    "year": "2024"
@@ -5465,6 +6037,10 @@
    "value": 28.143601284493,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.4,
+   "year": "2022"
+  },
   "IS.AIR.PSGR": {
    "value": 440680,
    "year": "2023"
@@ -5497,6 +6073,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": 4.71679018369724,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 118762933106.9,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -5567,6 +6147,10 @@
    "value": 3.07588005065918,
    "year": "2024"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 20.26228,
+   "year": "2018"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 86.5089663572102,
    "year": "2024"
@@ -5585,6 +6169,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 940.072417588269,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 1.1066501528086,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -5663,8 +6251,16 @@
    "value": 0.991336482432204,
    "year": "2024"
   },
+  "SH.STA.HYGN.ZS": {
+   "value": 76.7664212338674,
+   "year": "2019"
+  },
   "SN.ITK.DEFC.ZS": {
    "value": 12.7,
+   "year": "2024"
+  },
+  "SN.ITK.MSFI.ZS": {
+   "value": 49,
    "year": "2024"
   },
   "IT.NET.USER.ZS": {
@@ -5703,6 +6299,10 @@
    "value": 29.6792763049113,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.4,
+   "year": "2022"
+  },
   "IS.AIR.PSGR": {
    "value": 221478,
    "year": "2023"
@@ -5736,6 +6336,10 @@
   "BN.CAB.XOKA.GD.ZS": {
    "value": -1.56673613616474,
    "year": "2024"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 26169739415.6211,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 5.163,
@@ -5781,9 +6385,25 @@
    "value": 26.1,
    "year": "2022"
   },
+  "SE.PRM.ENRR": {
+   "value": 100.474517822266,
+   "year": "2020"
+  },
+  "SE.ADT.LITR.ZS": {
+   "value": 39.6199989318848,
+   "year": "2018"
+  },
   "SE.XPD.TOTL.GD.ZS": {
    "value": 1.72470879088585,
    "year": "2023"
+  },
+  "SE.PRM.CMPT.ZS": {
+   "value": 59.8791389465332,
+   "year": "2020"
+  },
+  "SE.ADT.1524.LT.ZS": {
+   "value": 53.939998626709,
+   "year": "2018"
   },
   "EG.ELC.ACCS.ZS": {
    "value": 53.8,
@@ -5792,6 +6412,10 @@
   "EG.FEC.RNEW.ZS": {
    "value": 66.6,
    "year": "2022"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 0.352794025802477,
+   "year": "2024"
   },
   "EG.CFT.ACCS.ZS": {
    "value": 2,
@@ -5836,6 +6460,14 @@
   "BX.KLT.DINV.WD.GD.ZS": {
    "value": 27.3881497796204,
    "year": "2025"
+  },
+  "SI.POV.GINI": {
+   "value": 29.6,
+   "year": "2018"
+  },
+  "SI.POV.DDAY": {
+   "value": 11.7,
+   "year": "2018"
   },
   "SH.H2O.BASW.ZS": {
    "value": 74.1924841600776,
@@ -5889,6 +6521,10 @@
    "value": 27.2639917651602,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.4,
+   "year": "2022"
+  },
   "IS.SHP.GOOD.TU": {
    "value": 286286,
    "year": "2023"
@@ -5918,6 +6554,10 @@
   "BN.CAB.XOKA.GD.ZS": {
    "value": -0.598367468302651,
    "year": "2024"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 23878905823.3467,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 14.944,
@@ -5967,9 +6607,17 @@
    "value": 22,
    "year": "2023"
   },
+  "SE.ADT.LITR.ZS": {
+   "value": 68.0100021362305,
+   "year": "2017"
+  },
   "SE.XPD.TOTL.GD.ZS": {
    "value": 0.964648012977964,
    "year": "2023"
+  },
+  "SE.ADT.1524.LT.ZS": {
+   "value": 88.870002746582,
+   "year": "2017"
   },
   "EG.ELC.ACCS.ZS": {
    "value": 53.9,
@@ -5981,6 +6629,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 324.944490322283,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 0.298473814991934,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -6051,6 +6703,10 @@
    "value": 51.4,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 83.5,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 47.8614006,
    "year": "2024"
@@ -6082,6 +6738,10 @@
   "EN.ATM.PM25.MC.M3": {
    "value": 15.8127594459366,
    "year": "2023"
+  },
+  "LP.LPI.INFR.XQ": {
+   "value": 1.8,
+   "year": "2022"
   },
   "IS.AIR.PSGR": {
    "value": 74542,
@@ -6115,6 +6775,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": 2.49442773307032,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 36016705981.3295,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -6161,6 +6825,10 @@
    "value": 79,
    "year": "2024"
   },
+  "SH.STA.STNT.ZS": {
+   "value": 18.7,
+   "year": "2019"
+  },
   "SE.PRM.ENRR": {
    "value": 78.9690848390083,
    "year": "2024"
@@ -6181,6 +6849,10 @@
    "value": 4.54962037172702,
    "year": "2023"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 25.59773,
+   "year": "2017"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 71.9894641150556,
    "year": "2024"
@@ -6199,6 +6871,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 585.759928671743,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 1.13551979026212,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -6285,6 +6961,10 @@
    "value": 14.3,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 39.3,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 58.62269974,
    "year": "2024"
@@ -6321,6 +7001,10 @@
    "value": 30.7188969730187,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.7,
+   "year": "2022"
+  },
   "IS.AIR.PSGR": {
    "value": 428443,
    "year": "2023"
@@ -6353,6 +7037,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": -0.511308076227287,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 4036219061833.14,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -6423,6 +7111,10 @@
    "value": 4.09865814174589,
    "year": "2022"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 32.74955,
+   "year": "2017"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 90.2563989745259,
    "year": "2025"
@@ -6441,6 +7133,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 776.537171149878,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 2.17365173535787,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -6567,6 +7263,10 @@
    "value": 54.0522242217331,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 3.2,
+   "year": "2022"
+  },
   "IS.AIR.PSGR": {
    "value": 180415784.228,
    "year": "2023"
@@ -6599,6 +7299,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": -0.0866434374916221,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 1463075840794.36,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -6669,6 +7373,10 @@
    "value": 1.27517088245674,
    "year": "2023"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 17.03493,
+   "year": "2018"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 99.9521715181012,
    "year": "2023"
@@ -6687,6 +7395,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 1019.84395166686,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 2.86503978188758,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -6769,6 +7481,10 @@
    "value": 6.3,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 4.2,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 72.78075544,
    "year": "2024"
@@ -6805,6 +7521,10 @@
    "value": 20.8444642120249,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.9,
+   "year": "2022"
+  },
   "IS.AIR.PSGR": {
    "value": 97045784.754,
    "year": "2023"
@@ -6837,6 +7557,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": 1.93529990885233,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 267451466645.237,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -6875,9 +7599,17 @@
    "value": 1.022,
    "year": "2022"
   },
+  "SH.MED.BEDS.ZS": {
+   "value": 1.06,
+   "year": "2018"
+  },
   "SH.IMM.MEAS": {
    "value": 91,
    "year": "2024"
+  },
+  "SH.STA.STNT.ZS": {
+   "value": 12.6,
+   "year": "2018"
   },
   "SE.ADT.LITR.ZS": {
    "value": 84.0648941705243,
@@ -6897,6 +7629,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 1539.59635077851,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 5.18375227496016,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -6946,6 +7682,10 @@
   "BX.KLT.DINV.WD.GD.ZS": {
    "value": -2.99496051321083,
    "year": "2025"
+  },
+  "GC.TAX.TOTL.GD.ZS": {
+   "value": 1.34459361810327,
+   "year": "2019"
   },
   "SI.POV.GINI": {
    "value": 29.8,
@@ -7015,9 +7755,17 @@
    "value": 49.4713662187955,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.2,
+   "year": "2022"
+  },
   "IS.AIR.PSGR": {
    "value": 3756178,
    "year": "2023"
+  },
+  "IS.SHP.GOOD.TU": {
+   "value": 932728.6,
+   "year": "2019"
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 69.9396739468105,
@@ -7044,6 +7792,10 @@
   "BN.CAB.XOKA.GD.ZS": {
    "value": -5.33366328480028,
    "year": "2024"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 60553733002.0688,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 16.535,
@@ -7113,6 +7865,10 @@
    "value": 3.23356008529663,
    "year": "2024"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 18.53699,
+   "year": "2018"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 97.0489098281018,
    "year": "2024"
@@ -7131,6 +7887,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 780.333404484477,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 2.0898692239058,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -7241,6 +8001,10 @@
    "value": 32.6320116469358,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.72,
+   "year": "2018"
+  },
   "IS.AIR.PSGR": {
    "value": 3731345,
    "year": "2023"
@@ -7273,6 +8037,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": -4.06579066364776,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 286454301446.764,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -7335,6 +8103,10 @@
    "value": 4.86469984054565,
    "year": "2023"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 17.21457,
+   "year": "2019"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 98.0850637477144,
    "year": "2025"
@@ -7349,6 +8121,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 3618.91142005439,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 12.5678187536661,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -7427,8 +8203,16 @@
    "value": 0,
    "year": "2024"
   },
+  "SH.STA.HYGN.ZS": {
+   "value": 99.0098274702943,
+   "year": "2019"
+  },
   "SN.ITK.DEFC.ZS": {
    "value": 2.5,
+   "year": "2024"
+  },
+  "SN.ITK.MSFI.ZS": {
+   "value": 1.4,
    "year": "2024"
   },
   "IT.NET.USER.ZS": {
@@ -7467,6 +8251,10 @@
    "value": 19.5961413356991,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.5,
+   "year": "2022"
+  },
   "IS.AIR.PSGR": {
    "value": 11884241.039,
    "year": "2023"
@@ -7495,6 +8283,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": -2.12391242301486,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 126581506051.836,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -7571,6 +8363,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 563.477191509506,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 0.38344092060836,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -7657,6 +8453,10 @@
    "value": 34.9,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 71.7,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 34.97622513,
    "year": "2024"
@@ -7693,6 +8493,10 @@
    "value": 20.252365609383,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.55,
+   "year": "2018"
+  },
   "IS.AIR.PSGR": {
    "value": 5138290,
    "year": "2023"
@@ -7725,6 +8529,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": -8.0999587831887,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 12244090007.1433,
    "year": "2025"
   },
   "SP.POP.TOTL": {
@@ -7771,6 +8579,10 @@
    "value": 10,
    "year": "2022"
   },
+  "IT.NET.USER.ZS": {
+   "value": 89.4430319734879,
+   "year": "2018"
+  },
   "IT.CEL.SETS.P2": {
    "value": 34.5402009143477,
    "year": "2022"
@@ -7804,6 +8616,10 @@
   "BN.CAB.XOKA.GD.ZS": {
    "value": -22.6410105179247,
    "year": "2024"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 20593390720.6417,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 3.526,
@@ -7869,6 +8685,10 @@
    "value": 6.82694680798777,
    "year": "2023"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 24.98946,
+   "year": "2018"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 95.3120817772793,
    "year": "2025"
@@ -7883,6 +8703,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 707.865923868593,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 1.48784220370685,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -7973,6 +8797,10 @@
    "value": 4.8,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 7.4,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 92.0286026,
    "year": "2024"
@@ -8009,6 +8837,10 @@
    "value": 20.1239014514257,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.4,
+   "year": "2022"
+  },
   "IS.AIR.PSGR": {
    "value": 804478.2,
    "year": "2023"
@@ -8037,6 +8869,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": 11.0738899074397,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 16925181295.4267,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -8107,6 +8943,10 @@
    "value": 1.23375160355741,
    "year": "2023"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 22.33717,
+   "year": "2018"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 85.2487998761162,
    "year": "2025"
@@ -8125,6 +8965,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 842.008268032179,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 3.35435098295083,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -8211,6 +9055,10 @@
    "value": 10,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 34.4,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 65.59269714,
    "year": "2024"
@@ -8247,6 +9095,10 @@
    "value": 25.9762899979383,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.3,
+   "year": "2022"
+  },
   "IS.AIR.PSGR": {
    "value": 842280.306,
    "year": "2023"
@@ -8276,6 +9128,10 @@
   "BN.CAB.XOKA.GD.ZS": {
    "value": -28.103669636709,
    "year": "2023"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 20665122958.7256,
+   "year": "2024"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 10.985,
@@ -8337,13 +9193,25 @@
    "value": 54.4012561547071,
    "year": "2023"
   },
+  "SE.ADT.LITR.ZS": {
+   "value": 92.0099744752418,
+   "year": "2019"
+  },
   "SE.XPD.TOTL.GD.ZS": {
    "value": 1.22490869993085,
    "year": "2024"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 12.48274,
+   "year": "2017"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 67.2665475619853,
    "year": "2023"
+  },
+  "SE.ADT.1524.LT.ZS": {
+   "value": 96.6653219716309,
+   "year": "2019"
   },
   "EG.ELC.ACCS.ZS": {
    "value": 100,
@@ -8355,6 +9223,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 732.726084530186,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 1.89531037233795,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -8441,6 +9313,10 @@
    "value": 11.1,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 44.3,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 80.63400269,
    "year": "2024"
@@ -8477,6 +9353,10 @@
    "value": 26.6948532836253,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.64,
+   "year": "2018"
+  },
   "IS.AIR.PSGR": {
    "value": 2693218,
    "year": "2023"
@@ -8510,6 +9390,10 @@
   "BN.CAB.XOKA.GD.ZS": {
    "value": 2.5063227720412,
    "year": "2024"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 4756570606.01339,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 2.884,
@@ -8555,13 +9439,25 @@
    "value": 82,
    "year": "2024"
   },
+  "SH.STA.STNT.ZS": {
+   "value": 29.8,
+   "year": "2019"
+  },
   "SE.PRM.ENRR": {
    "value": 66.5939255094706,
    "year": "2022"
   },
+  "SE.SEC.ENRR": {
+   "value": 37.7416801452637,
+   "year": "2020"
+  },
   "SE.XPD.TOTL.GD.ZS": {
    "value": 2.2665256232687,
    "year": "2023"
+  },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 22.32254,
+   "year": "2017"
   },
   "SE.PRM.CMPT.ZS": {
    "value": 57.8457350008007,
@@ -8574,6 +9470,10 @@
   "EG.FEC.RNEW.ZS": {
    "value": 92.8,
    "year": "2022"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 0.154485706553412,
+   "year": "2024"
   },
   "EG.CFT.ACCS.ZS": {
    "value": 1,
@@ -8635,6 +9535,10 @@
    "value": 37.3,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 79,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 32.23360062,
    "year": "2024"
@@ -8671,6 +9575,14 @@
    "value": 17.9178293051068,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.4,
+   "year": "2022"
+  },
+  "IS.SHP.GOOD.TU": {
+   "value": 91453.84,
+   "year": "2019"
+  },
   "SP.URB.TOTL.IN.ZS": {
    "value": 56.0819747159338,
    "year": "2025"
@@ -8696,6 +9608,10 @@
   "BN.CAB.XOKA.GD.ZS": {
    "value": 4.23506448409627,
    "year": "2023"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 54068321265.9255,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 18.758,
@@ -8729,6 +9645,10 @@
    "value": 7.80515862,
    "year": "2023"
   },
+  "SH.MED.PHYS.ZS": {
+   "value": 2.042,
+   "year": "2017"
+  },
   "SH.MED.BEDS.ZS": {
    "value": 3.5,
    "year": "2022"
@@ -8751,6 +9671,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 3321.94419630276,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 8.66457129316627,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -8825,6 +9749,10 @@
    "value": 18.7,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 31.6,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 81.95449829,
    "year": "2024"
@@ -8841,6 +9769,10 @@
    "value": 388.564024255174,
    "year": "2024"
   },
+  "TX.VAL.ICTG.ZS.UN": {
+   "value": 0,
+   "year": "2019"
+  },
   "IT.MLT.MAIN.P2": {
    "value": 16.8634120107063,
    "year": "2022"
@@ -8856,6 +9788,10 @@
   "EN.ATM.PM25.MC.M3": {
    "value": 20.014492731108,
    "year": "2023"
+  },
+  "LP.LPI.INFR.XQ": {
+   "value": 1.7,
+   "year": "2022"
   },
   "IS.AIR.PSGR": {
    "value": 1094579.418,
@@ -8889,6 +9825,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": -5.19846332669653,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 18200845480.2653,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -8955,6 +9895,10 @@
    "value": 3.04770386693564,
    "year": "2023"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 39.81169,
+   "year": "2018"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 60.7106953292253,
    "year": "2024"
@@ -8973,6 +9917,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 302.380143290119,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 0.146494805123461,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -9063,6 +10011,10 @@
    "value": 41.8,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 61.1,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 18.67790031,
    "year": "2024"
@@ -9099,9 +10051,17 @@
    "value": 12.3865755564591,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 1.8,
+   "year": "2022"
+  },
   "IS.AIR.PSGR": {
    "value": 313313,
    "year": "2023"
+  },
+  "IS.SHP.GOOD.TU": {
+   "value": 199712.5,
+   "year": "2019"
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 32.9017070836898,
@@ -9127,6 +10087,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": -13.9500422460937,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 13395537252.0569,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -9193,6 +10157,10 @@
    "value": 2.74888371105811,
    "year": "2022"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 58.67919,
+   "year": "2018"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 70.1399332330763,
    "year": "2024"
@@ -9208,6 +10176,10 @@
   "EG.FEC.RNEW.ZS": {
    "value": 62.9,
    "year": "2022"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 0.221419380007265,
+   "year": "2024"
   },
   "EG.CFT.ACCS.ZS": {
    "value": 2,
@@ -9257,6 +10229,14 @@
    "value": 15.5978477117661,
    "year": "2024"
   },
+  "SI.POV.GINI": {
+   "value": 38.5,
+   "year": "2019"
+  },
+  "SI.POV.DDAY": {
+   "value": 75.4,
+   "year": "2019"
+  },
   "SH.H2O.SMDW.ZS": {
    "value": 18.1816539742083,
    "year": "2024"
@@ -9283,6 +10263,10 @@
   },
   "SN.ITK.DEFC.ZS": {
    "value": 24.5,
+   "year": "2024"
+  },
+  "SN.ITK.MSFI.ZS": {
+   "value": 81.6,
    "year": "2024"
   },
   "IT.NET.USER.ZS": {
@@ -9321,6 +10305,10 @@
    "value": 16.7211601349048,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.18,
+   "year": "2018"
+  },
   "IS.AIR.PSGR": {
    "value": 3506.999,
    "year": "2023"
@@ -9350,6 +10338,10 @@
   "BN.CAB.XOKA.GD.ZS": {
    "value": -4.32974251221218,
    "year": "2024"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 28294760029.312,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 2.831,
@@ -9387,6 +10379,10 @@
    "value": 0.188,
    "year": "2023"
   },
+  "SH.MED.BEDS.ZS": {
+   "value": 0.25,
+   "year": "2018"
+  },
   "SH.IMM.MEAS": {
    "value": 72,
    "year": "2024"
@@ -9411,6 +10407,10 @@
    "value": 4.18465094218116,
    "year": "2023"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 37.82669,
+   "year": "2018"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 48.4277284647973,
    "year": "2023"
@@ -9426,6 +10426,10 @@
   "EG.FEC.RNEW.ZS": {
    "value": 71.1,
    "year": "2022"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 0.302799241541437,
+   "year": "2024"
   },
   "EG.CFT.ACCS.ZS": {
    "value": 2,
@@ -9507,6 +10511,10 @@
    "value": 12.1,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 20.6,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 36.80149841,
    "year": "2024"
@@ -9543,6 +10551,10 @@
    "value": 35.5240450338273,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2,
+   "year": "2022"
+  },
   "SP.URB.TOTL.IN.ZS": {
    "value": 32.2127137183989,
    "year": "2025"
@@ -9568,6 +10580,10 @@
   "BN.CAB.XOKA.GD.ZS": {
    "value": -9.55383541959397,
    "year": "2024"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 11765197591.7506,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 10.319,
@@ -9617,6 +10633,14 @@
    "value": 105.434763333022,
    "year": "2024"
   },
+  "SE.SEC.ENRR": {
+   "value": 36.0277030077074,
+   "year": "2020"
+  },
+  "SE.TER.ENRR": {
+   "value": 5.97194330025359,
+   "year": "2020"
+  },
   "SE.ADT.LITR.ZS": {
    "value": 59.5299987792969,
    "year": "2020"
@@ -9624,6 +10648,14 @@
   "SE.XPD.TOTL.GD.ZS": {
    "value": 7.61007976531982,
    "year": "2024"
+  },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 34.27814,
+   "year": "2018"
+  },
+  "SE.PRM.CMPT.ZS": {
+   "value": 73.4478403637282,
+   "year": "2020"
   },
   "SE.ADT.1524.LT.ZS": {
    "value": 70.8600006103516,
@@ -9636,6 +10668,10 @@
   "EG.FEC.RNEW.ZS": {
    "value": 19.6,
    "year": "2022"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 0.969475151347498,
+   "year": "2024"
   },
   "EG.CFT.ACCS.ZS": {
    "value": 56,
@@ -9681,6 +10717,14 @@
    "value": 5.42882056128538,
    "year": "2025"
   },
+  "SI.POV.GINI": {
+   "value": 32,
+   "year": "2019"
+  },
+  "SI.POV.DDAY": {
+   "value": 10.2,
+   "year": "2019"
+  },
   "SH.H2O.BASW.ZS": {
    "value": 77.2846491375388,
    "year": "2024"
@@ -9699,6 +10743,10 @@
   },
   "SN.ITK.DEFC.ZS": {
    "value": 11,
+   "year": "2024"
+  },
+  "SN.ITK.MSFI.ZS": {
+   "value": 65.1,
    "year": "2024"
   },
   "IT.NET.USER.ZS": {
@@ -9737,9 +10785,17 @@
    "value": 46.5013986975929,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2,
+   "year": "2022"
+  },
   "IS.AIR.PSGR": {
    "value": 328992,
    "year": "2023"
+  },
+  "IS.SHP.GOOD.TU": {
+   "value": 84457.99,
+   "year": "2019"
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 61.4888190537696,
@@ -9765,6 +10821,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": -0.510910143793841,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 1811632434693.89,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -9835,6 +10895,10 @@
    "value": 4.05987977981567,
    "year": "2022"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 26.55228,
+   "year": "2017"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 102.283569335938,
    "year": "2024"
@@ -9853,6 +10917,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 1498.0538093923,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 3.63738680384754,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -9943,6 +11011,10 @@
    "value": 3.1,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 16.5,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 83.12233799,
    "year": "2024"
@@ -9979,6 +11051,10 @@
    "value": 16.6099613756465,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.8,
+   "year": "2022"
+  },
   "IS.AIR.PSGR": {
    "value": 78763320,
    "year": "2023"
@@ -10011,6 +11087,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": -19.6440561573093,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 18992377136.882,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -10073,6 +11153,10 @@
    "value": 6.55709981918335,
    "year": "2023"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 17.92314,
+   "year": "2018"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 108.061881105591,
    "year": "2024"
@@ -10087,6 +11171,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 1431.60033132306,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 3.41675873098598,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -10169,6 +11257,10 @@
    "value": 2.5,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 26.4,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 77.3687973,
    "year": "2024"
@@ -10205,9 +11297,17 @@
    "value": 14.9450916480619,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 1.9,
+   "year": "2022"
+  },
   "IS.AIR.PSGR": {
    "value": 827604.333,
    "year": "2023"
+  },
+  "IS.SHP.GOOD.TU": {
+   "value": 818,
+   "year": "2019"
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 43.7336240404545,
@@ -10233,6 +11333,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": -8.35644837491189,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 22152045448.2486,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -10303,6 +11407,10 @@
    "value": 5.21229982376099,
    "year": "2024"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 30.38318,
+   "year": "2018"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 93.48303548023,
    "year": "2024"
@@ -10321,6 +11429,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 2396.06319283261,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 7.84665630954259,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -10411,6 +11523,10 @@
    "value": 2.5,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 4.7,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 85.12349701,
    "year": "2024"
@@ -10447,6 +11563,10 @@
    "value": 42.6916874423772,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.3,
+   "year": "2022"
+  },
   "IS.AIR.PSGR": {
    "value": 773702,
    "year": "2023"
@@ -10475,6 +11595,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": -2.49808221535456,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 170058565051.037,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -10521,6 +11645,10 @@
    "value": 98,
    "year": "2024"
   },
+  "SH.STA.STNT.ZS": {
+   "value": 14.2,
+   "year": "2019"
+  },
   "SE.PRM.ENRR": {
    "value": 116.588650279809,
    "year": "2024"
@@ -10537,6 +11665,10 @@
    "value": 6.02096928801329,
    "year": "2023"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 26.80065,
+   "year": "2018"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 106.370769185132,
    "year": "2024"
@@ -10551,6 +11683,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 612.459035811145,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 1.83925269318779,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -10665,6 +11801,10 @@
    "value": 18.7206508843713,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.43,
+   "year": "2018"
+  },
   "IS.AIR.PSGR": {
    "value": 9354197,
    "year": "2023"
@@ -10697,6 +11837,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": -14.2390317968037,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 20432988742.2453,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -10751,6 +11895,14 @@
    "value": 119.162225223393,
    "year": "2022"
   },
+  "SE.SEC.ENRR": {
+   "value": 37.2411918640137,
+   "year": "2017"
+  },
+  "SE.TER.ENRR": {
+   "value": 7.4630510423433,
+   "year": "2018"
+  },
   "SE.ADT.LITR.ZS": {
    "value": 61.6653441678133,
    "year": "2022"
@@ -10758,6 +11910,10 @@
   "SE.XPD.TOTL.GD.ZS": {
    "value": 5.97607342054314,
    "year": "2022"
+  },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 55.27379,
+   "year": "2018"
   },
   "SE.PRM.CMPT.ZS": {
    "value": 72.3655686845574,
@@ -10777,6 +11933,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 363.803821505375,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 0.292006477521244,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -10929,6 +12089,18 @@
    "value": 6011.53492175516,
    "year": "2025"
   },
+  "FP.CPI.TOTL.ZG": {
+   "value": 8.82506696804558,
+   "year": "2019"
+  },
+  "BN.CAB.XOKA.GD.ZS": {
+   "value": 0.0902156578672671,
+   "year": "2019"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 72296997359.293,
+   "year": "2025"
+  },
   "SL.UEM.TOTL.ZS": {
    "value": 3.047,
    "year": "2025"
@@ -10973,9 +12145,37 @@
    "value": 71,
    "year": "2024"
   },
+  "SH.STA.STNT.ZS": {
+   "value": 26.7,
+   "year": "2018"
+  },
+  "SE.PRM.ENRR": {
+   "value": 120.214569091797,
+   "year": "2018"
+  },
+  "SE.SEC.ENRR": {
+   "value": 77.0191497802734,
+   "year": "2018"
+  },
+  "SE.TER.ENRR": {
+   "value": 20.3723297119141,
+   "year": "2018"
+  },
   "SE.ADT.LITR.ZS": {
    "value": 93.527395549521,
    "year": "2020"
+  },
+  "SE.XPD.TOTL.GD.ZS": {
+   "value": 1.99976003170013,
+   "year": "2019"
+  },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 24.3599,
+   "year": "2018"
+  },
+  "SE.PRM.CMPT.ZS": {
+   "value": 105.356811523438,
+   "year": "2018"
   },
   "SE.ADT.1524.LT.ZS": {
    "value": 96.3616999952531,
@@ -10991,6 +12191,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 417.001450267681,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 0.575463259318228,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -11037,6 +12241,18 @@
    "value": 1.30618121918243,
    "year": "2025"
   },
+  "GC.TAX.TOTL.GD.ZS": {
+   "value": 6.01765247726484,
+   "year": "2019"
+  },
+  "SI.POV.GINI": {
+   "value": 30.7,
+   "year": "2017"
+  },
+  "SI.POV.DDAY": {
+   "value": 10.3,
+   "year": "2017"
+  },
   "SH.H2O.SMDW.ZS": {
    "value": 59.7239750772507,
    "year": "2024"
@@ -11064,6 +12280,14 @@
   "SN.ITK.DEFC.ZS": {
    "value": 4.6,
    "year": "2024"
+  },
+  "SN.ITK.MSFI.ZS": {
+   "value": 31.3,
+   "year": "2024"
+  },
+  "IT.NET.USER.ZS": {
+   "value": 45.4477005,
+   "year": "2020"
   },
   "IT.NET.BBND.P2": {
    "value": 2.86965759378273,
@@ -11096,6 +12320,10 @@
   "EN.ATM.PM25.MC.M3": {
    "value": 35.0665284656219,
    "year": "2023"
+  },
+  "LP.LPI.INFR.XQ": {
+   "value": 1.99,
+   "year": "2018"
   },
   "IS.AIR.PSGR": {
    "value": 3541244,
@@ -11130,6 +12358,10 @@
   "BN.CAB.XOKA.GD.ZS": {
    "value": -13.41295330042,
    "year": "2024"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 13432459327.0569,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 19.291,
@@ -11191,6 +12423,10 @@
    "value": 9.08440819434816,
    "year": "2024"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 25.09173,
+   "year": "2018"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 88.5636912842189,
    "year": "2024"
@@ -11209,6 +12445,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 676.858430985439,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 1.20450237960009,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -11275,8 +12515,16 @@
    "value": 34.6775080592689,
    "year": "2024"
   },
+  "SH.STA.HYGN.ZS": {
+   "value": 44.5999027077591,
+   "year": "2017"
+  },
   "SN.ITK.DEFC.ZS": {
    "value": 20.1,
+   "year": "2024"
+  },
+  "SN.ITK.MSFI.ZS": {
+   "value": 54,
    "year": "2024"
   },
   "IT.NET.USER.ZS": {
@@ -11315,6 +12563,10 @@
    "value": 14.2253008498779,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.8,
+   "year": "2022"
+  },
   "IS.AIR.PSGR": {
    "value": 60304,
    "year": "2023"
@@ -11347,6 +12599,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": 10.6730207923179,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 46491459103.9338,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -11409,13 +12665,25 @@
    "value": 21.2915596292014,
    "year": "2024"
   },
+  "SE.ADT.LITR.ZS": {
+   "value": 68.7099990844727,
+   "year": "2019"
+  },
   "SE.XPD.TOTL.GD.ZS": {
    "value": 3.68849173764595,
    "year": "2024"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 19.74396,
+   "year": "2019"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 109.435240565289,
    "year": "2025"
+  },
+  "SE.ADT.1524.LT.ZS": {
+   "value": 94.2399978637695,
+   "year": "2019"
   },
   "EG.ELC.ACCS.ZS": {
    "value": 97.9,
@@ -11427,6 +12695,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 450.61409165692,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 0.535964084109792,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -11517,6 +12789,10 @@
    "value": 5.2,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 35,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 46.32189941,
    "year": "2024"
@@ -11553,6 +12829,10 @@
    "value": 53.2003436952498,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.19,
+   "year": "2018"
+  },
   "IS.AIR.PSGR": {
    "value": 4289298,
    "year": "2023"
@@ -11582,6 +12862,10 @@
   "BN.CAB.XOKA.GD.ZS": {
    "value": 4.1511238055786,
    "year": "2024"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 19948941410.9756,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 5.04,
@@ -11614,6 +12898,10 @@
   "SH.XPD.CHEX.GD.ZS": {
    "value": 8.29879284,
    "year": "2023"
+  },
+  "SH.MED.PHYS.ZS": {
+   "value": 0.682,
+   "year": "2018"
   },
   "SH.MED.BEDS.ZS": {
    "value": 0.97,
@@ -11653,6 +12941,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 613.285552323857,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 0.829841501184187,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -11747,6 +13039,10 @@
    "value": 20.4180839334698,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 1.9,
+   "year": "2022"
+  },
   "IS.SHP.GOOD.TU": {
    "value": 167682,
    "year": "2024"
@@ -11776,6 +13072,10 @@
   "BN.CAB.XOKA.GD.ZS": {
    "value": -6.08945443545421,
    "year": "2024"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 20861896385.0615,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 0.394,
@@ -11833,6 +13133,10 @@
    "value": 19.8664761204349,
    "year": "2024"
   },
+  "SE.TER.ENRR": {
+   "value": 4.15170730347346,
+   "year": "2019"
+  },
   "SE.ADT.LITR.ZS": {
    "value": 35.6100006103516,
    "year": "2022"
@@ -11840,6 +13144,10 @@
   "SE.XPD.TOTL.GD.ZS": {
    "value": 4.07412707618114,
    "year": "2023"
+  },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 36.33661,
+   "year": "2017"
   },
   "SE.PRM.CMPT.ZS": {
    "value": 40.7638928475593,
@@ -11859,6 +13167,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 173.465461932095,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 0.118901709547783,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -11941,6 +13253,10 @@
    "value": 12.9,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 50.3,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 15.55760002,
    "year": "2024"
@@ -11977,6 +13293,10 @@
    "value": 65.2302894952218,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2,
+   "year": "2018"
+  },
   "IS.AIR.PSGR": {
    "value": 5775,
    "year": "2023"
@@ -12005,6 +13325,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": 4.82784315736378,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 323613159410.885,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -12081,6 +13405,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 317.317463122234,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 0.566917637661195,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -12163,6 +13491,10 @@
    "value": 22.2,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 76.5,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 41.21139908,
    "year": "2024"
@@ -12199,6 +13531,10 @@
    "value": 65.740618883028,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.4,
+   "year": "2022"
+  },
   "IS.AIR.PSGR": {
    "value": 5269403.776,
    "year": "2023"
@@ -12231,6 +13567,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": -0.109990047825719,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 382039634350.829,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -12277,6 +13617,10 @@
    "value": 86,
    "year": "2024"
   },
+  "SH.STA.STNT.ZS": {
+   "value": 37.6,
+   "year": "2018"
+  },
   "SE.PRM.ENRR": {
    "value": 83.726068200404,
    "year": "2024"
@@ -12297,6 +13641,10 @@
    "value": 1.94658005237579,
    "year": "2023"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 44.0773,
+   "year": "2018"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 74.135301829596,
    "year": "2024"
@@ -12315,6 +13663,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 388.740076359679,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 0.811831809174961,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -12397,6 +13749,10 @@
    "value": 16.1,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 22.9,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 57.253,
    "year": "2024"
@@ -12433,6 +13789,10 @@
    "value": 58.3745179541935,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.2,
+   "year": "2018"
+  },
   "IS.AIR.PSGR": {
    "value": 7153419,
    "year": "2023"
@@ -12467,6 +13827,10 @@
    "value": -15.8215746940007,
    "year": "2025"
   },
+  "NY.GNP.ATLS.CD": {
+   "value": 17595377478.8411,
+   "year": "2025"
+  },
   "SL.UEM.TOTL.ZS": {
    "value": 24.42,
    "year": "2022"
@@ -12499,6 +13863,10 @@
    "value": 10.73343945,
    "year": "2023"
   },
+  "SH.MED.PHYS.ZS": {
+   "value": 2.168,
+   "year": "2018"
+  },
   "SH.MED.BEDS.ZS": {
    "value": 1.3,
    "year": "2022"
@@ -12530,6 +13898,10 @@
   "SE.XPD.TOTL.GD.ZS": {
    "value": 5.43442010879517,
    "year": "2021"
+  },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 24.45322,
+   "year": "2018"
   },
   "SE.PRM.CMPT.ZS": {
    "value": 91.1695163220973,
@@ -12619,6 +13991,10 @@
    "value": 94.913291755727,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 27.4,
+   "year": "2022"
+  },
   "IT.NET.USER.ZS": {
    "value": 86.63765334,
    "year": "2023"
@@ -12676,6 +14052,10 @@
   "BN.CAB.XOKA.GD.ZS": {
    "value": 15.4763748159171,
    "year": "2024"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 31152668674.5634,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 2.571,
@@ -12753,6 +14133,10 @@
    "value": 54.6,
    "year": "2022"
   },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 0.516966762734976,
+   "year": "2024"
+  },
   "EG.CFT.ACCS.ZS": {
    "value": 12,
    "year": "2024"
@@ -12821,6 +14205,10 @@
    "value": 30.5,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 57.3,
+   "year": "2019"
+  },
   "IT.NET.USER.ZS": {
    "value": 18.81159973,
    "year": "2024"
@@ -12857,6 +14245,10 @@
    "value": 14.1117516188413,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.4,
+   "year": "2022"
+  },
   "IS.AIR.PSGR": {
    "value": 1547502,
    "year": "2023"
@@ -12889,6 +14281,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": -2.52541776486957,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 47372445972.4938,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -12969,6 +14365,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 1056.34840135257,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 1.1581935050359,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -13059,6 +14459,10 @@
    "value": 4.1,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 25.8,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 81.57806793,
    "year": "2024"
@@ -13095,6 +14499,10 @@
    "value": 15.327993717276,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.5,
+   "year": "2022"
+  },
   "IS.AIR.PSGR": {
    "value": 407865,
    "year": "2023"
@@ -13127,6 +14535,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": 3.58499497152416,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 291496369273.915,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -13185,6 +14597,10 @@
    "value": 108.289047241211,
    "year": "2024"
   },
+  "SE.TER.ENRR": {
+   "value": 71.2404708862305,
+   "year": "2017"
+  },
   "SE.ADT.LITR.ZS": {
    "value": 93.6600036621094,
    "year": "2024"
@@ -13192,6 +14608,14 @@
   "SE.XPD.TOTL.GD.ZS": {
    "value": 4.35778999328613,
    "year": "2024"
+  },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 17.38724,
+   "year": "2018"
+  },
+  "SE.PRM.CMPT.ZS": {
+   "value": 94.9881591796875,
+   "year": "2019"
   },
   "SE.ADT.1524.LT.ZS": {
    "value": 99.4899978637695,
@@ -13207,6 +14631,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 840.212474217747,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 2.02424185179617,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -13293,6 +14721,10 @@
    "value": 5.7,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 33.6,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 81.95705992,
    "year": "2024"
@@ -13329,6 +14761,10 @@
    "value": 31.0938536450575,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.5,
+   "year": "2022"
+  },
   "IS.AIR.PSGR": {
    "value": 17717402.523,
    "year": "2023"
@@ -13361,6 +14797,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": -3.45957773375444,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 566821516470.645,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -13431,6 +14871,10 @@
    "value": 3.96922646675346,
    "year": "2025"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 29.08352,
+   "year": "2017"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 91.4486011868973,
    "year": "2024"
@@ -13449,6 +14893,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 612.344447871875,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 1.5030109111702,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -13539,6 +14987,10 @@
    "value": 3.4,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 32.7,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 67.26300914,
    "year": "2024"
@@ -13575,6 +15027,10 @@
    "value": 22.2053003753671,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 3.2,
+   "year": "2022"
+  },
   "IS.AIR.PSGR": {
    "value": 41501834,
    "year": "2023"
@@ -13608,6 +15064,10 @@
   "BN.CAB.XOKA.GD.ZS": {
    "value": -11.9618864449723,
    "year": "2024"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 16684518087.5892,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 11.363,
@@ -13677,6 +15137,10 @@
    "value": 4.61476993560791,
    "year": "2024"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 59.50859,
+   "year": "2018"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 66.8181034887911,
    "year": "2024"
@@ -13695,6 +15159,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 359.465866628946,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 0.162128792997641,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -13813,6 +15281,10 @@
    "value": 36.0064247681194,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.9,
+   "year": "2022"
+  },
   "IS.AIR.PSGR": {
    "value": 1537007.678,
    "year": "2023"
@@ -13842,6 +15314,10 @@
   "BN.CAB.XOKA.GD.ZS": {
    "value": -19.7803402658787,
    "year": "2023"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 33645368127.6457,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 2.735,
@@ -13911,6 +15387,10 @@
    "value": 6.16277045366329,
    "year": "2023"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 36.31817,
+   "year": "2018"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 62.8559370532489,
    "year": "2024"
@@ -13929,6 +15409,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 323.63763163023,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 0.767609570951958,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -14019,6 +15503,10 @@
    "value": 5.3,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 27.7,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 60.11780167,
    "year": "2024"
@@ -14055,6 +15543,10 @@
    "value": 41.6483649398667,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.22,
+   "year": "2018"
+  },
   "IS.AIR.PSGR": {
    "value": 1070960.665,
    "year": "2023"
@@ -14088,6 +15580,10 @@
   "BN.CAB.XOKA.GD.ZS": {
    "value": -14.1190349801252,
    "year": "2024"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 7337527324.10664,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 3.15,
@@ -14141,13 +15637,25 @@
    "value": 86.9079513549805,
    "year": "2023"
   },
+  "SE.ADT.LITR.ZS": {
+   "value": 43.5800018310547,
+   "year": "2019"
+  },
   "SE.XPD.TOTL.GD.ZS": {
    "value": 2.62455277942046,
    "year": "2023"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 27.52246,
+   "year": "2018"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 99.2019664463165,
    "year": "2024"
+  },
+  "SE.ADT.1524.LT.ZS": {
+   "value": 72.9899978637695,
+   "year": "2019"
   },
   "EG.ELC.ACCS.ZS": {
    "value": 39.2,
@@ -14156,6 +15664,10 @@
   "EG.FEC.RNEW.ZS": {
    "value": 71.6,
    "year": "2022"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 0.16915022896262,
+   "year": "2024"
   },
   "EG.CFT.ACCS.ZS": {
    "value": 2,
@@ -14201,6 +15713,14 @@
    "value": 2.37188844698482,
    "year": "2025"
   },
+  "SI.POV.GINI": {
+   "value": 35.7,
+   "year": "2018"
+  },
+  "SI.POV.DDAY": {
+   "value": 41.5,
+   "year": "2018"
+  },
   "SH.H2O.SMDW.ZS": {
    "value": 10.8953836036255,
    "year": "2024"
@@ -14229,6 +15749,10 @@
    "value": 25.3,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 88.1,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 25.10499954,
    "year": "2024"
@@ -14244,6 +15768,10 @@
   "IT.NET.SECR.P6": {
    "value": 11.339938731931,
    "year": "2024"
+  },
+  "TX.VAL.ICTG.ZS.UN": {
+   "value": 0.02,
+   "year": "2018"
   },
   "IT.MLT.MAIN.P2": {
    "value": 0.00325004557917081,
@@ -14261,6 +15789,14 @@
    "value": 22.461260523478,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 1.82,
+   "year": "2018"
+  },
+  "IS.SHP.GOOD.TU": {
+   "value": 78413,
+   "year": "2019"
+  },
   "SP.URB.TOTL.IN.ZS": {
    "value": 45.9267781356681,
    "year": "2025"
@@ -14277,6 +15813,10 @@
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 1642.77032278186,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 12527631434.4785,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -14346,6 +15886,10 @@
   "EG.FEC.RNEW.ZS": {
    "value": 95.4,
    "year": "2022"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 0.0455149206821494,
+   "year": "2024"
   },
   "EG.CFT.ACCS.ZS": {
    "value": 5,
@@ -14447,8 +15991,16 @@
    "value": 18.5402586086237,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 1.9,
+   "year": "2022"
+  },
   "IS.AIR.PSGR": {
    "value": 34065.5568461863,
+   "year": "2019"
+  },
+  "IS.SHP.GOOD.TU": {
+   "value": 92238,
    "year": "2019"
   },
   "SP.URB.TOTL.IN.ZS": {
@@ -14471,6 +16023,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": -0.422766754018983,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 406212611809.2,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -14513,6 +16069,10 @@
    "value": 76,
    "year": "2024"
   },
+  "SH.STA.STNT.ZS": {
+   "value": 21.3,
+   "year": "2017"
+  },
   "SE.PRM.ENRR": {
    "value": 101.772235793474,
    "year": "2023"
@@ -14551,6 +16111,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 1906.81435905063,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 6.87684962627712,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -14641,6 +16205,10 @@
    "value": 11.2,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 20.9,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 78.35759735,
    "year": "2024"
@@ -14676,6 +16244,10 @@
   "EN.ATM.PM25.MC.M3": {
    "value": 27.7247110277789,
    "year": "2023"
+  },
+  "LP.LPI.INFR.XQ": {
+   "value": 3.6,
+   "year": "2022"
   },
   "IS.AIR.PSGR": {
    "value": 15454595.699,
@@ -14815,6 +16387,14 @@
    "value": 19.1,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 88.8,
+   "year": "2024"
+  },
+  "IT.NET.USER.ZS": {
+   "value": 6.671000004,
+   "year": "2019"
+  },
   "IT.NET.BBND.P2": {
    "value": 0.00174164840403178,
    "year": "2023"
@@ -14867,6 +16447,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": 1.57989637194729,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 101604622866.381,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -14937,6 +16521,10 @@
    "value": 1.82774571561927,
    "year": "2023"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 21.73735,
+   "year": "2018"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 94.542850980354,
    "year": "2023"
@@ -14955,6 +16543,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 439.074958517371,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 1.06473352801606,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -15009,6 +16601,14 @@
    "value": 9.87891768094967,
    "year": "2023"
   },
+  "SI.POV.GINI": {
+   "value": 37.7,
+   "year": "2019"
+  },
+  "SI.POV.DDAY": {
+   "value": 2.7,
+   "year": "2019"
+  },
   "SH.H2O.SMDW.ZS": {
    "value": 46.9329705143603,
    "year": "2024"
@@ -15031,6 +16631,10 @@
   },
   "SN.ITK.DEFC.ZS": {
    "value": 4.9,
+   "year": "2024"
+  },
+  "SN.ITK.MSFI.ZS": {
+   "value": 10.1,
    "year": "2024"
   },
   "IT.NET.USER.ZS": {
@@ -15069,6 +16673,10 @@
    "value": 22.6820308390395,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.4,
+   "year": "2022"
+  },
   "IS.AIR.PSGR": {
    "value": 3866001,
    "year": "2023"
@@ -15103,6 +16711,10 @@
    "value": -8.46205728143248,
    "year": "2025"
   },
+  "NY.GNP.ATLS.CD": {
+   "value": 46322247658.6986,
+   "year": "2025"
+  },
   "SL.UEM.TOTL.ZS": {
    "value": 7.53,
    "year": "2022"
@@ -15135,6 +16747,10 @@
    "value": 2.85165739,
    "year": "2023"
   },
+  "SH.MED.PHYS.ZS": {
+   "value": 0.25,
+   "year": "2017"
+  },
   "SH.MED.BEDS.ZS": {
    "value": 0.66,
    "year": "2021"
@@ -15142,6 +16758,18 @@
   "SH.IMM.MEAS": {
    "value": 46,
    "year": "2024"
+  },
+  "SE.PRM.ENRR": {
+   "value": 72.3981094360352,
+   "year": "2019"
+  },
+  "SE.SEC.ENRR": {
+   "value": 43.5378608703613,
+   "year": "2019"
+  },
+  "SE.PRM.CMPT.ZS": {
+   "value": 60.1234397888184,
+   "year": "2019"
   },
   "EG.ELC.ACCS.ZS": {
    "value": 66,
@@ -15153,6 +16781,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 358.533287581608,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 0.433463815698253,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -15223,6 +16855,10 @@
    "value": 10.9,
    "year": "2021"
   },
+  "IT.NET.USER.ZS": {
+   "value": 18.60000038,
+   "year": "2017"
+  },
   "IT.NET.BBND.P2": {
    "value": 0.0604394040047428,
    "year": "2022"
@@ -15234,6 +16870,10 @@
   "IT.NET.SECR.P6": {
    "value": 2.3984635719866,
    "year": "2024"
+  },
+  "TX.VAL.ICTG.ZS.UN": {
+   "value": 0.01,
+   "year": "2018"
   },
   "IT.MLT.MAIN.P2": {
    "value": 0.315495025387709,
@@ -15250,6 +16890,10 @@
   "EN.ATM.PM25.MC.M3": {
    "value": 37.6123871383607,
    "year": "2023"
+  },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.3,
+   "year": "2022"
   },
   "IS.AIR.PSGR": {
    "value": 911089.799,
@@ -15275,6 +16919,14 @@
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 4905.15252202552,
+   "year": "2022"
+  },
+  "FP.CPI.TOTL.ZG": {
+   "value": 13.417565322857,
+   "year": "2019"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 16239912194.218,
    "year": "2022"
   },
   "SL.UEM.TOTL.ZS": {
@@ -15353,6 +17005,10 @@
    "value": 332.778600467355,
    "year": "2024"
   },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 1.27467701221914,
+   "year": "2024"
+  },
   "EG.USE.ELEC.KH.PC": {
    "value": 660.323368767823,
    "year": "2024"
@@ -15421,6 +17077,10 @@
    "value": 40.8,
    "year": "2024"
   },
+  "IT.NET.USER.ZS": {
+   "value": 33.77000046,
+   "year": "2018"
+  },
   "IT.NET.BBND.P2": {
    "value": 6.86124546257849,
    "year": "2023"
@@ -15448,6 +17108,10 @@
   "EN.ATM.PM25.MC.M3": {
    "value": 32.0552019474512,
    "year": "2023"
+  },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.2,
+   "year": "2022"
   },
   "IS.AIR.PSGR": {
    "value": 610744.721,
@@ -15481,6 +17145,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": 17.0983293460641,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 22386738821.0013,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -15547,6 +17215,18 @@
    "value": 5.43682120015444,
    "year": "2023"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 22.30051,
+   "year": "2017"
+  },
+  "SE.PRM.CMPT.ZS": {
+   "value": 91.5831604003906,
+   "year": "2017"
+  },
+  "SE.ADT.1524.LT.ZS": {
+   "value": 98.81,
+   "year": "2017"
+  },
   "EG.ELC.ACCS.ZS": {
    "value": 99.9,
    "year": "2024"
@@ -15557,6 +17237,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 419.772696145071,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 0.922478268427306,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -15643,6 +17327,10 @@
    "value": 8,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 24,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 55.79339981,
    "year": "2024"
@@ -15679,6 +17367,10 @@
    "value": 33.3455362132125,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.5,
+   "year": "2022"
+  },
   "IS.AIR.PSGR": {
    "value": 690677.377,
    "year": "2023"
@@ -15708,6 +17400,10 @@
   "BN.CAB.XOKA.GD.ZS": {
    "value": -3.00342879227062,
    "year": "2024"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 87001412675.6328,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 1.572,
@@ -15777,6 +17473,10 @@
    "value": 3.15504437906936,
    "year": "2024"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 50.63304,
+   "year": "2018"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 77.3311793094267,
    "year": "2024"
@@ -15795,6 +17495,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 389.104714969659,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 0.311205530057348,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -15849,6 +17553,14 @@
    "value": 12.260929249686,
    "year": "2024"
   },
+  "SI.POV.GINI": {
+   "value": 40.5,
+   "year": "2018"
+  },
+  "SI.POV.DDAY": {
+   "value": 51.3,
+   "year": "2018"
+  },
   "SH.H2O.SMDW.ZS": {
    "value": 31.3253989476029,
    "year": "2024"
@@ -15875,6 +17587,10 @@
   },
   "SN.ITK.DEFC.ZS": {
    "value": 19.1,
+   "year": "2024"
+  },
+  "SN.ITK.MSFI.ZS": {
+   "value": 57,
    "year": "2024"
   },
   "IT.NET.USER.ZS": {
@@ -15947,6 +17663,10 @@
    "value": 3.020571304444,
    "year": "2025"
   },
+  "NY.GNP.ATLS.CD": {
+   "value": 550619242439.191,
+   "year": "2025"
+  },
   "SL.UEM.TOTL.ZS": {
    "value": 0.781,
    "year": "2025"
@@ -16015,6 +17735,10 @@
    "value": 2.52122219628772,
    "year": "2023"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 16.63844,
+   "year": "2018"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 107.071112896746,
    "year": "2025"
@@ -16033,6 +17757,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 1834.72066147325,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 3.96005269352319,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -16119,6 +17847,10 @@
    "value": 5.4,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 4.5,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 90.86718789,
    "year": "2024"
@@ -16155,6 +17887,10 @@
    "value": 23.4870743016258,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 3.7,
+   "year": "2022"
+  },
   "IS.AIR.PSGR": {
    "value": 51920692,
    "year": "2023"
@@ -16187,6 +17923,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": -36.8713347686307,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 2139909866.59421,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -16241,6 +17981,10 @@
    "value": 119.652693100113,
    "year": "2023"
   },
+  "SE.SEC.ENRR": {
+   "value": 84.7410404382553,
+   "year": "2020"
+  },
   "SE.TER.ENRR": {
    "value": 30.9611108169641,
    "year": "2023"
@@ -16252,6 +17996,10 @@
   "SE.XPD.TOTL.GD.ZS": {
    "value": 5.24052834781801,
    "year": "2023"
+  },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 26.94886,
+   "year": "2018"
   },
   "SE.PRM.CMPT.ZS": {
    "value": 93.210472040185,
@@ -16268,6 +18016,10 @@
   "EG.FEC.RNEW.ZS": {
    "value": 11.4,
    "year": "2022"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 0.499343870436187,
+   "year": "2024"
   },
   "EG.CFT.ACCS.ZS": {
    "value": 19,
@@ -16337,6 +18089,10 @@
    "value": 16.9,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 53.7,
+   "year": "2021"
+  },
   "IT.NET.USER.ZS": {
    "value": 35.04199982,
    "year": "2021"
@@ -16373,6 +18129,10 @@
    "value": 11.9874398587491,
    "year": "2023"
   },
+  "IS.SHP.GOOD.TU": {
+   "value": 53289,
+   "year": "2019"
+  },
   "SP.URB.TOTL.IN.ZS": {
    "value": 28.7864318960935,
    "year": "2025"
@@ -16393,6 +18153,14 @@
   },
   "FP.CPI.TOTL.ZG": {
    "value": 0.433183451279108,
+   "year": "2025"
+  },
+  "BN.CAB.XOKA.GD.ZS": {
+   "value": -0.277018884474411,
+   "year": "2020"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 11641154760.3289,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -16439,6 +18207,10 @@
    "value": 81,
    "year": "2024"
   },
+  "SH.STA.STNT.ZS": {
+   "value": 23.8,
+   "year": "2017"
+  },
   "SE.PRM.ENRR": {
    "value": 114.272773524266,
    "year": "2024"
@@ -16447,6 +18219,10 @@
    "value": 63.4192515229188,
    "year": "2023"
   },
+  "SE.TER.ENRR": {
+   "value": 14.9029897765252,
+   "year": "2020"
+  },
   "SE.ADT.LITR.ZS": {
    "value": 72.5999984741211,
    "year": "2022"
@@ -16454,6 +18230,10 @@
   "SE.XPD.TOTL.GD.ZS": {
    "value": 4.14281885166484,
    "year": "2023"
+  },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 40.14504,
+   "year": "2018"
   },
   "SE.PRM.CMPT.ZS": {
    "value": 91.2193185348845,
@@ -16473,6 +18253,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 493.499694104455,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 0.312565499458875,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -16563,6 +18347,10 @@
    "value": 10.2,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 56.3,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 39.48320007,
    "year": "2024"
@@ -16599,6 +18387,10 @@
    "value": 34.3346739146749,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.3,
+   "year": "2022"
+  },
   "IS.AIR.PSGR": {
    "value": 2175165.332,
    "year": "2023"
@@ -16631,6 +18423,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": -2.31787417954113,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 53039468645.821,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -16677,6 +18473,10 @@
    "value": 96,
    "year": "2024"
   },
+  "SH.STA.STNT.ZS": {
+   "value": 8.4,
+   "year": "2018"
+  },
   "SE.PRM.ENRR": {
    "value": 104.424217224121,
    "year": "2023"
@@ -16692,6 +18492,10 @@
   "SE.XPD.TOTL.GD.ZS": {
    "value": 6.73398856321206,
    "year": "2023"
+  },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 16.87168,
+   "year": "2018"
   },
   "SE.PRM.CMPT.ZS": {
    "value": 93.6258392333984,
@@ -16711,6 +18515,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 840.779895502158,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 2.62113010481539,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -16797,6 +18605,10 @@
    "value": 2.8,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 24.2,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 76.5,
    "year": "2024"
@@ -16833,6 +18645,10 @@
    "value": 18.874792802061,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.1,
+   "year": "2018"
+  },
   "IS.AIR.PSGR": {
    "value": 4110265,
    "year": "2023"
@@ -16865,6 +18681,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": -1.89933817058389,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 1399760949063.39,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -16911,6 +18731,10 @@
    "value": 95,
    "year": "2024"
   },
+  "SH.STA.STNT.ZS": {
+   "value": 6,
+   "year": "2018"
+  },
   "SE.PRM.ENRR": {
    "value": 102.43807220459,
    "year": "2023"
@@ -16931,6 +18755,10 @@
    "value": 3.09571003913879,
    "year": "2022"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 16.97782,
+   "year": "2017"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 90.6154174804688,
    "year": "2023"
@@ -16949,6 +18777,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 1935.79865959431,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 5.37926453268486,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -17067,6 +18899,10 @@
    "value": 26.4041601035213,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 3.4,
+   "year": "2022"
+  },
   "IS.AIR.PSGR": {
    "value": 125940241,
    "year": "2023"
@@ -17091,6 +18927,10 @@
   },
   "NY.GDP.PCAP.PP.CD": {
    "value": 22601.5518373128,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 48269008638.9355,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -17137,6 +18977,10 @@
    "value": 99,
    "year": "2024"
   },
+  "SH.STA.STNT.ZS": {
+   "value": 7.2,
+   "year": "2019"
+  },
   "SE.PRM.ENRR": {
    "value": 95.6921775462619,
    "year": "2024"
@@ -17175,6 +19019,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 4682.13294336012,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 10.8623686336296,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -17277,6 +19125,10 @@
    "value": 31.2475628480692,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.23,
+   "year": "2018"
+  },
   "IS.AIR.PSGR": {
    "value": 1078118.391,
    "year": "2023"
@@ -17305,6 +19157,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": -5.16439637842892,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 57752365612.5768,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -17351,6 +19207,10 @@
    "value": 24.4,
    "year": "2022"
   },
+  "SE.PRM.ENRR": {
+   "value": 106.169578552246,
+   "year": "2017"
+  },
   "SE.ADT.LITR.ZS": {
    "value": 77.0400009155273,
    "year": "2024"
@@ -17358,6 +19218,14 @@
   "SE.XPD.TOTL.GD.ZS": {
    "value": 2.56105027176925,
    "year": "2022"
+  },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 42.65911,
+   "year": "2017"
+  },
+  "SE.PRM.CMPT.ZS": {
+   "value": 53.3121795654297,
+   "year": "2017"
   },
   "SE.ADT.1524.LT.ZS": {
    "value": 85.1500015258789,
@@ -17373,6 +19241,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 503.233028189785,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 0.165048181856788,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -17463,6 +19335,10 @@
    "value": 20.9,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 51.6,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 8.949831061,
    "year": "2024"
@@ -17499,6 +19375,10 @@
    "value": 31.2148242708861,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.19,
+   "year": "2018"
+  },
   "IS.AIR.PSGR": {
    "value": 21650.2,
    "year": "2023"
@@ -17527,6 +19407,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": -13.4591579737267,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 201387308835.169,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -17589,6 +19473,10 @@
    "value": 5.14010000228882,
    "year": "2021"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 12.98011,
+   "year": "2018"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 94.5724487304688,
    "year": "2024"
@@ -17603,6 +19491,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 1642.14679833332,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 3.12934781865114,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -17657,6 +19549,14 @@
    "value": 21.0177678568632,
    "year": "2024"
   },
+  "SI.POV.GINI": {
+   "value": 25.6,
+   "year": "2020"
+  },
+  "SI.POV.DDAY": {
+   "value": 0,
+   "year": "2020"
+  },
   "SH.H2O.SMDW.ZS": {
    "value": 87.8683769430978,
    "year": "2024"
@@ -17683,6 +19583,10 @@
   },
   "SN.ITK.DEFC.ZS": {
    "value": 10.8,
+   "year": "2024"
+  },
+  "SN.ITK.MSFI.ZS": {
+   "value": 32,
    "year": "2024"
   },
   "IT.NET.USER.ZS": {
@@ -17721,6 +19625,10 @@
    "value": 14.854701604932,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.4,
+   "year": "2022"
+  },
   "IS.AIR.PSGR": {
    "value": 452343.767,
    "year": "2022"
@@ -17753,6 +19661,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": -3.90545611798258,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 136057977530.407,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -17823,6 +19735,10 @@
    "value": 5.47287597270024,
    "year": "2023"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 21.50664,
+   "year": "2018"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 83.576937421175,
    "year": "2025"
@@ -17841,6 +19757,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 1502.77557525323,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 4.08501666540206,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -17967,6 +19887,10 @@
    "value": 32.7713715610547,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.4,
+   "year": "2022"
+  },
   "IS.AIR.PSGR": {
    "value": 4849939,
    "year": "2023"
@@ -17987,6 +19911,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": 0.570934072538219,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 110021867707.733,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -18021,6 +19949,10 @@
    "value": 3.77611423,
    "year": "2023"
   },
+  "SH.MED.PHYS.ZS": {
+   "value": 1.664,
+   "year": "2017"
+  },
   "SH.MED.BEDS.ZS": {
    "value": 0.99,
    "year": "2020"
@@ -18037,9 +19969,17 @@
    "value": 97.7908172607422,
    "year": "2024"
   },
+  "SE.ADT.LITR.ZS": {
+   "value": 97.1837183128414,
+   "year": "2017"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 103.043952941895,
    "year": "2024"
+  },
+  "SE.ADT.1524.LT.ZS": {
+   "value": 98.748038069113,
+   "year": "2017"
   },
   "EG.ELC.ACCS.ZS": {
    "value": 100,
@@ -18051,6 +19991,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 1457.49043766322,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 3.39410515757435,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -18145,6 +20089,10 @@
    "value": 19.1983096563552,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.4,
+   "year": "2022"
+  },
   "IS.AIR.PSGR": {
    "value": 1783667,
    "year": "2023"
@@ -18173,6 +20121,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": 6.43776554908569,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 505329764881.417,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -18211,6 +20163,10 @@
    "value": 1.107,
    "year": "2021"
   },
+  "SH.MED.BEDS.ZS": {
+   "value": 2.52,
+   "year": "2017"
+  },
   "SH.IMM.MEAS": {
    "value": 98,
    "year": "2024"
@@ -18239,6 +20195,10 @@
    "value": 2.88738689372749,
    "year": "2022"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 20.27696,
+   "year": "2018"
+  },
   "SE.PRM.CMPT.ZS": {
    "value": 100.588170556547,
    "year": "2024"
@@ -18257,6 +20217,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 1188.22158716501,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 4.26605675468195,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -18343,6 +20307,10 @@
    "value": 6.1,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 9.4,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 84.15,
    "year": "2024"
@@ -18379,6 +20347,10 @@
    "value": 24.7845479100313,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 3.2,
+   "year": "2022"
+  },
   "IS.AIR.PSGR": {
    "value": 55114832,
    "year": "2023"
@@ -18397,6 +20369,14 @@
   }
  },
  "Yemen": {
+  "NY.GDP.MKTP.KD.ZG": {
+   "value": 0.752447592962554,
+   "year": "2018"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 25287123596.9464,
+   "year": "2018"
+  },
   "SL.UEM.TOTL.ZS": {
    "value": 17.322,
    "year": "2025"
@@ -18457,6 +20437,10 @@
    "value": 149.193480318763,
    "year": "2024"
   },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 0.260706631942251,
+   "year": "2024"
+  },
   "EG.USE.ELEC.KH.PC": {
    "value": 99.0065732676733,
    "year": "2024"
@@ -18464,6 +20448,10 @@
   "EG.CFT.ACCS.ZS": {
    "value": 47,
    "year": "2024"
+  },
+  "NV.AGR.TOTL.ZS": {
+   "value": 28.7451403146812,
+   "year": "2018"
   },
   "AG.LND.ARBL.ZS": {
    "value": 2.16071807382266,
@@ -18489,6 +20477,14 @@
    "value": 31.6169333772096,
    "year": "2025"
   },
+  "NE.TRD.GNFS.ZS": {
+   "value": 56.0778227215077,
+   "year": "2018"
+  },
+  "BX.KLT.DINV.WD.GD.ZS": {
+   "value": -0.0361008145854707,
+   "year": "2018"
+  },
   "SH.H2O.BASW.ZS": {
    "value": 75.0357620960457,
    "year": "2024"
@@ -18508,6 +20504,14 @@
   "SH.STA.HYGN.ZS": {
    "value": 63.3468892689192,
    "year": "2024"
+  },
+  "SN.ITK.MSFI.ZS": {
+   "value": 74.4,
+   "year": "2024"
+  },
+  "IT.NET.USER.ZS": {
+   "value": 17.49099922,
+   "year": "2019"
   },
   "IT.NET.BBND.P2": {
    "value": 1.27124133725573,
@@ -18537,6 +20541,10 @@
    "value": 46.8359781444582,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 1.9,
+   "year": "2022"
+  },
   "IS.AIR.PSGR": {
    "value": 618613.038,
    "year": "2023"
@@ -18565,6 +20573,10 @@
   },
   "BN.CAB.XOKA.GD.ZS": {
    "value": -5.46209555842148,
+   "year": "2025"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 26194383694.6581,
    "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
@@ -18607,6 +20619,10 @@
    "value": 88,
    "year": "2024"
   },
+  "SH.STA.STNT.ZS": {
+   "value": 34.6,
+   "year": "2018"
+  },
   "SE.PRM.ENRR": {
    "value": 115.550919335782,
    "year": "2024"
@@ -18623,6 +20639,10 @@
    "value": 4.07374933049157,
    "year": "2023"
   },
+  "SE.PRM.ENRL.TC.ZS": {
+   "value": 42.05996,
+   "year": "2017"
+  },
   "SE.ADT.1524.LT.ZS": {
    "value": 77.6500015258789,
    "year": "2024"
@@ -18637,6 +20657,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 812.488968726832,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 0.542961477377669,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -18719,6 +20743,10 @@
    "value": 41,
    "year": "2024"
   },
+  "SN.ITK.MSFI.ZS": {
+   "value": 45.8,
+   "year": "2024"
+  },
   "IT.NET.USER.ZS": {
    "value": 17.10099983,
    "year": "2024"
@@ -18755,6 +20783,10 @@
    "value": 20.2430489112714,
    "year": "2023"
   },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.3,
+   "year": "2018"
+  },
   "IS.AIR.PSGR": {
    "value": 321738.797,
    "year": "2023"
@@ -18784,6 +20816,10 @@
   "BN.CAB.XOKA.GD.ZS": {
    "value": 1.2070735013076,
    "year": "2024"
+  },
+  "NY.GNP.ATLS.CD": {
+   "value": 45031135041.6054,
+   "year": "2025"
   },
   "SL.UEM.TOTL.ZS": {
    "value": 9.293,
@@ -18837,6 +20873,10 @@
    "value": 7.74912957845971,
    "year": "2024"
   },
+  "SE.ADT.LITR.ZS": {
+   "value": 93.2300033569336,
+   "year": "2019"
+  },
   "SE.XPD.TOTL.GD.ZS": {
    "value": 0.384771297211919,
    "year": "2023"
@@ -18844,6 +20884,10 @@
   "SE.PRM.CMPT.ZS": {
    "value": 85.9607634950894,
    "year": "2024"
+  },
+  "SE.ADT.1524.LT.ZS": {
+   "value": 92.5100021362305,
+   "year": "2019"
   },
   "EG.ELC.ACCS.ZS": {
    "value": 62,
@@ -18855,6 +20899,10 @@
   },
   "EG.USE.PCAP.KG.OE": {
    "value": 490.239091680467,
+   "year": "2024"
+  },
+  "EN.GHG.CO2.PC.CE.AR5": {
+   "value": 0.772821434267465,
    "year": "2024"
   },
   "EG.USE.ELEC.KH.PC": {
@@ -18905,6 +20953,18 @@
    "value": 1.88418992013239,
    "year": "2025"
   },
+  "GC.TAX.TOTL.GD.ZS": {
+   "value": 7.21476804985273,
+   "year": "2018"
+  },
+  "SI.POV.GINI": {
+   "value": 50.3,
+   "year": "2019"
+  },
+  "SI.POV.DDAY": {
+   "value": 49.2,
+   "year": "2019"
+  },
   "SH.H2O.SMDW.ZS": {
    "value": 25.460563358156,
    "year": "2024"
@@ -18931,6 +20991,10 @@
   },
   "SN.ITK.DEFC.ZS": {
    "value": 18.4,
+   "year": "2024"
+  },
+  "SN.ITK.MSFI.ZS": {
+   "value": 70.1,
    "year": "2024"
   },
   "IT.NET.USER.ZS": {
@@ -18968,6 +21032,10 @@
   "EN.ATM.PM25.MC.M3": {
    "value": 15.0254734850511,
    "year": "2023"
+  },
+  "LP.LPI.INFR.XQ": {
+   "value": 2.4,
+   "year": "2022"
   },
   "IS.AIR.PSGR": {
    "value": 92494.376,

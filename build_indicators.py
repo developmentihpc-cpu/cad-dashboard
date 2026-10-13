@@ -13,7 +13,7 @@ Single source of truth: the country list (COUNTRY_ISO) and the indicator IDs
 drift from what the dashboard actually displays.
 
 Efficiency: instead of country x indicator individual calls, it makes ONE request per
-indicator against country/all (mrv=5), then keeps the most recent non-null value per
+indicator against country/all (last 10 years), then keeps the most recent non-null value per
 country. ~70 requests total. Government debt comes from the IMF World Economic Outlook
 (DataMapper API) and keeps the previous values if the IMF cannot be reached.
 
@@ -38,9 +38,10 @@ INDEX_HTML = ROOT / "docs" / "index.html"
 OUT_PATH = ROOT / "docs" / "data" / "indicators.json"
 
 WB_BASE = "https://api.worldbank.org/v2"
-MRV = 5            # most-recent 5 values per country; we keep the newest non-null
-PER_PAGE = 20000   # one page covers ~260 economies x 5 = ~1,300 rows comfortably
-TIMEOUT = 30
+YEARS_BACK = 9     # look back 10 calendar years (survey data such as stunting or poverty is only
+                   # collected every few years); the dashboard flags anything older than 8 years
+PER_PAGE = 20000   # one page covers ~260 economies x 10 years = ~2,700 rows comfortably
+TIMEOUT = 60
 RETRIES = 3
 
 
@@ -117,7 +118,8 @@ def fetch_indicator_all_countries(indicator_id: str) -> dict:
     Keeps the most recent non-null observation per country.
     """
     url = f"{WB_BASE}/country/all/indicator/{indicator_id}"
-    params = {"format": "json", "mrv": MRV, "per_page": PER_PAGE}
+    this_year = datetime.now(timezone.utc).year
+    params = {"format": "json", "date": f"{this_year - YEARS_BACK}:{this_year}", "per_page": PER_PAGE}
     last_err = None
     for attempt in range(1, RETRIES + 1):
         try:
@@ -182,6 +184,13 @@ def main() -> None:
     print(f"Countries: {len(country_iso)} | Indicators: {len(indicator_ids)}")
     print(f"Fetching from {WB_BASE} (one request per indicator)...")
 
+    previous = {}   # last snapshot: fallback when a source cannot be reached this run
+    if OUT_PATH.exists():
+        try:
+            previous = json.loads(OUT_PATH.read_text(encoding="utf-8"))
+        except Exception:  # noqa: BLE001
+            previous = {}
+
     out: dict = {name: {} for name in country_iso}
     filled = 0
     for n, ind in enumerate(indicator_ids, 1):
@@ -193,16 +202,19 @@ def main() -> None:
                 out[name][ind] = rec
                 hits += 1
                 filled += 1
+        if not by_iso:   # request failed: keep the previous snapshot's values rather than blanking the indicator
+            for name in country_iso:
+                rec = (previous.get(name) or {}).get(ind)
+                if rec:
+                    out[name][ind] = rec
+                    hits += 1
+                    filled += 1
+            print(f"  [{n:>2}/{len(indicator_ids)}] {ind:<22} {hits} countries (kept from previous snapshot)")
+            continue
         print(f"  [{n:>2}/{len(indicator_ids)}] {ind:<22} {hits} countries")
 
     print("Fetching IMF government debt...")
     imf = fetch_imf_debt(country_iso.values())
-    previous = {}
-    if OUT_PATH.exists():
-        try:
-            previous = json.loads(OUT_PATH.read_text(encoding="utf-8"))
-        except Exception:  # noqa: BLE001
-            previous = {}
     for name, iso3 in country_iso.items():
         rec = imf.get(iso3) or (previous.get(name) or {}).get(IMF_DEBT_ID)   # keep last good value if the IMF is unreachable
         if rec:

@@ -21,7 +21,7 @@ const SEV_RULES = {
   'SE.ADT.1524.LT.ZS':  { dir:-1, th:[60, 80, 95],        ref:'SDG 4.6 universal literacy',        refAr:'الهدف 4.6 محو الأمية الشامل' },
   'SE.PRM.CMPT.ZS':     { dir:-1, th:[60, 75, 90],        ref:'SDG 4.1 universal completion',      refAr:'الهدف 4.1 الإتمام الشامل' },
   'SE.SEC.ENRR':        { dir:-1, th:[40, 60, 85],        ref:'SDG 4.1',                           refAr:'الهدف 4.1' },
-  'SE.PRM.PTRT.ZS':     { dir: 1, th:[45, 35, 25],        ref:'UNESCO: 40+ pupils per teacher is high', refAr:'اليونسكو: أكثر من 40 تلميذاً لكل معلم مرتفع' },
+  'SE.PRM.ENRL.TC.ZS':     { dir: 1, th:[45, 35, 25],        ref:'UNESCO: 40+ pupils per teacher is high', refAr:'اليونسكو: أكثر من 40 تلميذاً لكل معلم مرتفع' },
   'SE.XPD.TOTL.GD.ZS':  { dir:-1, th:[2.5, 3.5, 4],       ref:'UNESCO 4–6% of GDP',                refAr:'اليونسكو 4–6% من الناتج' },
   // UNESCO UIS — school access and school conditions (SDG 4.1 and 4.a.1)
   'uis:ROFST.1.CP':     { dir: 1, th:[20, 10, 5],         ref:'SDG 4.1: every child in school',    refAr:'الهدف 4.1: كل طفل في المدرسة' },
@@ -59,8 +59,8 @@ const SEV_RULES = {
   // no standard benchmark → compared with the other tracked countries (dashboard only)
   'SH.MED.BEDS.ZS':     { dir:-1, peers:true }, 'SE.TER.ENRR':    { dir:-1, peers:true },
   'IT.NET.BBND.P2':     { dir:-1, peers:true }, 'IT.CEL.SETS.P2': { dir:-1, peers:true },
-  'IS.ROD.PAVE.ZS':     { dir:-1, peers:true }, 'ER.PTD.TOTL.ZS': { dir:-1, peers:true },
-  'SP.POP.DPND':        { dir: 1, peers:true }, 'SN.ITK.DFCT':    { dir: 1, peers:true },
+  'LP.LPI.INFR.XQ':     { dir:-1, peers:true }, 'ER.PTD.TOTL.ZS': { dir:-1, peers:true },
+  'SP.POP.DPND':        { dir: 1, peers:true }, 'SN.ITK.MSFI.ZS': { dir: 1, peers:true },
 };
 const SEV_LABELS = {
   en: ['Severe', 'High concern', 'Moderate', 'On track'],

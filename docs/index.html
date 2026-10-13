@@ -1300,6 +1300,82 @@ body {
 .ca-src-link:hover { text-decoration: underline; }
 .ca-src-link-big { font-size: 12px; font-weight: 600; }
 .ca-ind-oec-link { margin: 4px 0 2px; }
+/* clickable indicator cards + wide data cards (trade partners, environment rankings) */
+.ca-click { cursor: pointer; }
+.ca-click:focus-visible { outline: 2px solid var(--ex-sky, #3E9BD6); outline-offset: 1px; }
+.ca-ind-src { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.ca-more { font-size: 10px; font-weight: 600; color: var(--text4); }
+.ca-click:hover .ca-more { color: var(--accent); }
+.cd-ind-grid .ca-wide { grid-column: span 2; }
+@media (max-width: 520px) { .cd-ind-grid .ca-wide { grid-column: 1 / -1; } }
+.tp-head { font-size: 12px; color: var(--text3); margin: 2px 0 2px; }
+.tp-head b { font-size: 17px; color: var(--accent); font-weight: 800; margin-inline-end: 3px; }
+.tp-sub { font-size: 9.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--text4); margin: 4px 0 2px; }
+[dir="rtl"] .tp-sub { letter-spacing: 0; text-transform: none; }
+.tp-row { display: grid; grid-template-columns: 14px minmax(0, 1.3fr) minmax(0, 1fr) 42px; align-items: center; gap: 8px; font-size: 12px; padding: 3px 0; }
+.tp-n { font-size: 10px; color: var(--text4); font-weight: 700; }
+.tp-name { display: flex; align-items: center; gap: 6px; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text); font-weight: 600; }
+.tp-name img { width: 18px; height: 12px; object-fit: cover; border-radius: 2px; box-shadow: 0 0 0 1px rgba(0,0,0,.08); flex: none; }
+.tp-bar, .ix-bar { display: block; height: 7px; background: var(--ex-sky-pale, #F3F8FC); border-radius: 4px; overflow: hidden; }
+.tp-bar i, .ix-bar i { display: block; height: 100%; border-radius: 4px; background: var(--ex-sky, #3E9BD6); }
+.tp-v { text-align: end; font-weight: 700; font-size: 12px; color: var(--text); }
+.ix-meta { font-size: 11.5px; color: var(--text3); }
+.ix-meta b { color: var(--text); }
+.ix-note { font-size: 11px; color: var(--text4); line-height: 1.45; margin: 2px 0 4px; }
+.ix-row { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) 40px; align-items: center; gap: 8px; font-size: 11.5px; color: var(--text2, #44566A); padding: 2px 0; }
+.ix-row b { text-align: end; color: var(--text); }
+.ca-group-hd { font-family: var(--ex-serif); font-size: 15px; font-weight: 600; color: var(--ex-ink); margin: 20px 0 3px; }
+.ca-group-note { font-size: 11.5px; color: var(--text3); line-height: 1.5; margin-bottom: 10px; max-width: 720px; }
+/* ODA need index panel */
+.np { border: 1px solid var(--ex-line); border-radius: 12px; padding: 14px 16px 10px; margin-bottom: 14px; background: linear-gradient(180deg, #fff, var(--ex-sky-pale, #F3F8FC)); }
+.np-hd { display: flex; justify-content: space-between; align-items: flex-end; gap: 14px; flex-wrap: wrap; }
+.np-k { font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--ex-gold); }
+[dir="rtl"] .np-k { letter-spacing: 0; text-transform: none; font-size: 12px; }
+.np-score { font-family: var(--ex-serif); font-size: 34px; font-weight: 700; color: var(--ex-ink); line-height: 1.05; }
+.np-score span { font-size: 13px; color: var(--text4); font-family: 'Inter', sans-serif; font-weight: 500; margin-inline-start: 2px; }
+.np-rank { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; text-align: end; }
+.np-rank b { font-size: 14px; color: var(--ex-ink); }
+.np-rank span { font-size: 11px; color: var(--text3); }
+.np-sub { font-size: 11px; color: var(--text3); margin: 10px 0 4px; }
+.np-row { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(60px, 1fr) 28px; align-items: center; gap: 8px; font-size: 12px; padding: 3px 0; }
+.np-l { color: var(--text); font-weight: 600; }
+.np-v { color: var(--text3); font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.np-row b { text-align: end; color: var(--ex-ink); }
+.np-how { margin-top: 8px; border-top: 1px solid var(--ex-line); padding-top: 8px; }
+.np-how summary { cursor: pointer; font-size: 12.5px; font-weight: 600; color: var(--ex-sky-dk, #1B6FA8); }
+.np-how ol { margin: 8px 0 6px; padding-inline-start: 20px; font-size: 12.5px; line-height: 1.6; color: var(--text2, #44566A); }
+.np-how li { margin-bottom: 4px; }
+.np-src { font-size: 10.5px; color: var(--text4); }
+@media (max-width: 520px) { .np-row { grid-template-columns: minmax(0, 1fr) 70px 26px; } .np-v { display: none; } }
+.cd-ov-how { display: block; margin-top: 3px; border: none; background: none; padding: 0; font: 600 11px 'Inter', 'IBM Plex Sans Arabic', sans-serif; color: var(--ex-sky-dk, #1B6FA8); cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
+/* indicator details panel */
+.idm-ov { position: fixed; inset: 0; z-index: 4200; background: rgba(15,42,64,.5); backdrop-filter: blur(2px); display: flex; align-items: center; justify-content: center; padding: 16px; }
+.idm { position: relative; background: #fff; width: 100%; max-width: 580px; max-height: 88vh; overflow: auto; border-radius: 16px; border-top: 3px solid var(--ex-gold); box-shadow: 0 24px 64px rgba(15,42,64,.3); padding: 22px 24px 18px; }
+.idm-x { position: absolute; top: 12px; inset-inline-end: 12px; border: none; background: var(--ex-sky-pale, #F3F8FC); width: 30px; height: 30px; border-radius: 50%; cursor: pointer; color: var(--text3); font-size: 13px; }
+.idm-x:hover { background: var(--ex-line); color: var(--ex-ink); }
+.idm-eyebrow { font-size: 10.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--ex-gold); }
+[dir="rtl"] .idm-eyebrow { letter-spacing: 0; text-transform: none; font-size: 12px; }
+.idm-title { font-family: var(--ex-serif); font-size: 20px; font-weight: 600; color: var(--ex-ink); margin: 2px 32px 6px 0; }
+[dir="rtl"] .idm-title { margin: 2px 0 6px 32px; }
+.idm-val { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; font-size: 28px; font-weight: 800; color: var(--accent); }
+.idm-val > span { font-size: 12px; font-weight: 500; color: var(--text4); }
+.idm-sec { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin: 16px 0 6px; font-size: 10.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--ex-sky-dk, #1B6FA8); border-bottom: 1px solid var(--ex-line); padding-bottom: 4px; }
+[dir="rtl"] .idm-sec { letter-spacing: 0; text-transform: none; font-size: 12px; }
+.idm-sec span { font-weight: 500; letter-spacing: 0; text-transform: none; color: var(--text3); font-size: 11.5px; }
+.idm-p { font-size: 12.5px; line-height: 1.6; color: var(--text2, #44566A); }
+.idm-wait { color: var(--text4); }
+.idm-org { font-size: 11px; color: var(--text4); margin-top: 4px; }
+.idm-th { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 14px; font-size: 12px; }
+.idm-th div { display: flex; align-items: center; gap: 6px; padding: 4px 6px; border-radius: 6px; color: var(--text2, #44566A); }
+.idm-th div b { margin-inline-start: auto; font-weight: 600; color: var(--text); }
+.idm-th div.on { background: var(--ex-sky-pale, #F3F8FC); box-shadow: inset 0 0 0 1px var(--ex-line); font-weight: 700; }
+.idm-spark { width: 100%; height: auto; display: block; }
+.idm-peers { display: flex; flex-direction: column; gap: 2px; max-height: 260px; overflow: auto; }
+.idm-peer { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) 76px; align-items: center; gap: 8px; font-size: 12px; padding: 3px 6px; border-radius: 6px; color: var(--text2, #44566A); }
+.idm-peer b { text-align: end; color: var(--text); font-weight: 600; }
+.idm-peer.me { background: var(--ex-gold-pale, #F5EEDF); color: var(--ex-ink); font-weight: 700; }
+.idm-src { margin-top: 14px; font-size: 12px; }
+.idm-src a { color: var(--ex-sky-dk, #1B6FA8); font-weight: 600; text-decoration: none; }
 [dir="rtl"] .ca-card-header { flex-direction: row-reverse; }
 [dir="rtl"] .ca-ind-unit { margin-left: 0; margin-right: 3px; }
 
@@ -2067,8 +2143,8 @@ const CA_INDICATORS = {
     { id:'EN.POP.DNST',       label:'Population Density',         labelAr:'الكثافة السكانية',                    unit:' /km²',    fmt:'num1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/EN.POP.DNST' },
     { id:'SP.DYN.LE00.IN',    label:'Life Expectancy',            labelAr:'متوسط العمر المتوقع',                 unit:' yrs',     fmt:'num1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SP.DYN.LE00.IN' },
     { id:'SP.POP.DPND',       label:'Age Dependency Ratio',       labelAr:'نسبة الإعالة',                        unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SP.POP.DPND' },
-    { id:'__oec_exports',     label:'Top Export Partners',        labelAr:'أبرز شركاء التصدير',                 unit:'',         fmt:'oec',  src:'OEC',        srcUrl:'__oec' },
-    { id:'__oec_imports',     label:'Top Import Partners',        labelAr:'أبرز شركاء الاستيراد',               unit:'',         fmt:'oec',  src:'OEC',        srcUrl:'__oec' },
+    { id:'__trade_exports',   label:'Top Export Partners',        labelAr:'أبرز شركاء التصدير',                 unit:'',         fmt:'trade', wide:true },
+    { id:'__trade_imports',   label:'Top Import Partners',        labelAr:'أبرز شركاء الاستيراد',               unit:'',         fmt:'trade', wide:true },
   ],
   health: [
     { id:'SP.DYN.LE00.IN',    label:'Life Expectancy at Birth',   labelAr:'متوسط العمر المتوقع عند الولادة',    unit:' yrs',     fmt:'num1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SP.DYN.LE00.IN' },
@@ -2089,6 +2165,13 @@ const CA_INDICATORS = {
     { id:'SE.PRM.PTRT.ZS',    label:'Pupil-Teacher Ratio (primary)', labelAr:'نسبة الطلاب للمعلمين (ابتدائي)', unit:'',         fmt:'num1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SE.PRM.PTRT.ZS' },
     { id:'SE.PRM.CMPT.ZS',    label:'Primary Completion Rate',    labelAr:'معدل إتمام التعليم الابتدائي',        unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SE.PRM.CMPT.ZS' },
     { id:'SE.ADT.1524.LT.ZS', label:'Youth Literacy Rate (15–24)', labelAr:'معدل محو أمية الشباب (15–24)', unit:'%',            fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SE.ADT.1524.LT.ZS' },
+    // Are there enough schools? — UNESCO UIS (no global dataset counts schools per area; these show access and school conditions)
+    { id:'uis:ROFST.1.CP',      label:'Out-of-School Rate (primary age)',        labelAr:'معدل عدم الالتحاق بالمدرسة (سن الابتدائي)',     unit:'%', fmt:'pct1', group:'schools' },
+    { id:'uis:ROFST.2.CP',      label:'Out-of-School Rate (lower-secondary age)', labelAr:'معدل عدم الالتحاق بالمدرسة (سن الإعدادي)',     unit:'%', fmt:'pct1', group:'schools' },
+    { id:'uis:PTRHC.1.TRAINED', label:'Pupils per Trained Teacher (primary)',    labelAr:'التلاميذ لكل معلم مدرَّب (ابتدائي)',            unit:'',  fmt:'num1', group:'schools' },
+    { id:'uis:SCHBSP.1.WELEC',  label:'Primary Schools with Electricity',        labelAr:'المدارس الابتدائية المزوّدة بالكهرباء',          unit:'%', fmt:'pct1', group:'schools' },
+    { id:'uis:SCHBSP.1.WWATA',  label:'Primary Schools with Drinking Water',     labelAr:'المدارس الابتدائية المزوّدة بمياه الشرب',        unit:'%', fmt:'pct1', group:'schools' },
+    { id:'uis:SCHBSP.1.WTOILA', label:'Primary Schools with Separate Toilets',   labelAr:'المدارس الابتدائية ذات دورات مياه منفصلة',      unit:'%', fmt:'pct1', group:'schools' },
   ],
   energy: [
     { id:'EG.ELC.ACCS.ZS',    label:'Access to Electricity',      labelAr:'الوصول إلى الكهرباء',                unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/EG.ELC.ACCS.ZS' },
@@ -2105,6 +2188,7 @@ const CA_INDICATORS = {
     { id:'AG.YLD.CREL.KG',    label:'Cereal Yield',               labelAr:'إنتاجية الحبوب',                     unit:' kg/ha',   fmt:'num0', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/AG.YLD.CREL.KG' },
     { id:'AG.PRD.FOOD.XD',    label:'Food Production Index',      labelAr:'مؤشر إنتاج الغذاء',                  unit:'',         fmt:'num1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/AG.PRD.FOOD.XD' },
     { id:'SP.RUR.TOTL.ZS',    label:'Rural Population (%)',       labelAr:'سكان الريف (%)',                      unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SP.RUR.TOTL.ZS' },
+    { id:'SL.AGR.EMPL.ZS',    label:'Employment in Agriculture (% of jobs)', labelAr:'العاملون في الزراعة (% من الوظائف)', unit:'%', fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SL.AGR.EMPL.ZS' },
   ],
   economy: [
     { id:'NY.GDP.MKTP.PP.CD', label:'GDP PPP (current)',          labelAr:'الناتج المحلي الإجمالي (تعادل القوة الشرائية)', unit:'', fmt:'big', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/NY.GDP.MKTP.PP.CD' },
@@ -2115,6 +2199,9 @@ const CA_INDICATORS = {
     { id:'SI.POV.DDAY',       label:'Poverty Rate (<$2.15/day)',  labelAr:'معدل الفقر (أقل من 2.15 دولار/يوم)',  unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SI.POV.DDAY' },
     { id:'NY.GDP.MKTP.KD.ZG', label:'GDP Growth Rate',           labelAr:'معدل النمو الاقتصادي',                unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/NY.GDP.MKTP.KD.ZG' },
     { id:'FP.CPI.TOTL.ZG',    label:'Inflation Rate',            labelAr:'معدل التضخم',                         unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/FP.CPI.TOTL.ZG' },
+    { id:'SL.UEM.TOTL.ZS',    label:'Unemployment Rate',          labelAr:'معدل البطالة',                        unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SL.UEM.TOTL.ZS' },
+    { id:'__trade_exports',   label:'Top Export Partners',        labelAr:'أبرز شركاء التصدير',                 unit:'',         fmt:'trade', wide:true },
+    { id:'__trade_imports',   label:'Top Import Partners',        labelAr:'أبرز شركاء الاستيراد',               unit:'',         fmt:'trade', wide:true },
   ],
   wash: [
     { id:'SH.H2O.SMDW.ZS',   label:'Safely Managed Drinking Water', labelAr:'مياه الشرب المُدارة بشكل آمن',   unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.H2O.SMDW.ZS' },
@@ -2147,6 +2234,8 @@ const CA_INDICATORS = {
     { id:'ER.PTD.TOTL.ZS',   label:'Terrestrial Protected Areas (%)', labelAr:'المحميات الطبيعية البرية (%)', unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/ER.PTD.TOTL.ZS' },
     { id:'EN.ATM.PM25.MC.M3',label:'PM2.5 Air Pollution (mean)', labelAr:'تلوث الهواء PM2.5 (متوسط)',         unit:' µg/m³',   fmt:'num1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/EN.ATM.PM25.MC.M3' },
     { id:'AG.LND.ARBL.ZS',   label:'Arable Land (% total)',      labelAr:'الأراضي الصالحة للزراعة (%)',       unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/AG.LND.ARBL.ZS' },
+    { id:'__wri',            label:'Natural Disaster Risk (WorldRiskIndex)', labelAr:'مخاطر الكوارث الطبيعية (مؤشر المخاطر العالمي)', unit:'', fmt:'wri', wide:true },
+    { id:'__epi',            label:'Environmental Performance Index (EPI)', labelAr:'مؤشر الأداء البيئي (EPI)', unit:'', fmt:'epi', wide:true },
   ],
   infrastructure: [
     { id:'IS.ROD.PAVE.ZS',   label:'Paved Roads (%)',             labelAr:'الطرق المعبدة (%)',                 unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/IS.ROD.PAVE.ZS' },
@@ -2387,7 +2476,7 @@ function trackedCountryLayer(m, res, style, bind) {
   });
 }
 const needTip = c => { const n = needScores()[c] || {}, total = (needScores().__ranked || []).length;
-  return `<b>${exEsc(cN(c))}</b>` + (n.rank ? tr(` · need index ${Math.round(n.need)} · rank ${n.rank} of ${total}`, ` · مؤشر الاحتياج ${Math.round(n.need)} · الترتيب ${n.rank} من ${total}`) : ''); };
+  return `<b>${exEsc(cN(c))}</b>` + (n.rank ? tr(` · Need index ${Math.round(n.need)} · Rank ${n.rank} of ${total}`, ` · مؤشر الاحتياج ${Math.round(n.need)} · الترتيب ${n.rank} من ${total}`) : ''); };
 const applyStyle = (o, s, dotExtra) => { if (o.layer) o.layer.setStyle(s); if (o.dot) o.dot.setStyle(Object.assign({}, s, { weight:1.5, color: s.color === '#FFFFFF' ? '#FFFFFF' : s.color }, dotExtra || {})); };
 
 // Full Countries map
@@ -2442,7 +2531,7 @@ function openCountryDrawer(country) {
   document.getElementById('drawer-title').textContent = cN(country);
   document.getElementById('drawer-sub').textContent =
     [rN(repRegionOf(country)), incN(COUNTRY_INCOME[country]),
-     need.rank ? tr('Need index ' + Math.round(need.need) + ' · rank ' + need.rank + ' of ' + total,
+     need.rank ? tr('Need index ' + Math.round(need.need) + ' · Rank ' + need.rank + ' of ' + total,
                     'مؤشر الاحتياج ' + Math.round(need.need) + ' · الترتيب ' + need.rank + ' من ' + total) : ''].filter(Boolean).join(' · ') || '—';
 
   // Reset main tabs
@@ -2499,7 +2588,7 @@ function cdOverviewHtml(c, data) {
         ${fact(tr('Head of state', 'رئيس الدولة'), hos)}
         ${fact(tr('Head of government', 'رئيس الحكومة'), hog)}
         ${pol && !pol.gov.length ? fact(tr('Region', 'الإقليم'), exEsc(rN(repRegionOf(c)))) : fact(tr('System of government', 'نظام الحكم'), gov)}
-        ${fact(tr('ODA need index', 'مؤشر الاحتياج'), n.rank ? `<b>${Math.round(n.need)}</b>/100 · ${tr('rank ' + n.rank + ' of ' + total, 'الترتيب ' + n.rank + ' من ' + total)}` : '—')}
+        ${fact(tr('ODA need index', 'مؤشر الاحتياج'), (n.rank ? `<b>${Math.round(n.need)}</b>/100 · ${tr('Rank ' + n.rank + ' of ' + total, 'الترتيب ' + n.rank + ' من ' + total)}` : '—') + `<button type="button" class="cd-ov-how" onclick="cdOpenNeedHow()">${tr('How is it calculated?', 'كيف يُحتسب؟')}</button>`)}
       </div>
       <div class="cd-ov-pol">
         <div class="cd-ov-pol-hd">${tr('Political situation', 'الوضع السياسي')} <span>${tr('governance scores, 0–100 (higher is better)', 'مؤشرات الحوكمة، 0–100 (الأعلى أفضل)')}</span></div>
@@ -2533,10 +2622,10 @@ function cdRenderOverview() {
     const val = hasVal ? fmt(raw.value) : (loading ? '…' : '—');
     const med = ind.pop ? null : regMedian(ind.id);
     const srcUrl = `https://data.worldbank.org/indicator/${ind.id}?locations=${iso}`;
-    return `<div class="rp-med${sv ? ' sev-' + sv.lvl : ''}"${sv ? ` title="${exEsc(sv.why)}"` : ''}>
+    return `<div class="rp-med ca-click${sv ? ' sev-' + sv.lvl : ''}" ${indCardAttrs(ind.id)}>
       <div class="rp-med-l">${tr(ind.lbl, ind.lblAr)}</div>
       <div class="rp-med-v">${val}</div>
-      <div class="rp-med-s">${sv ? `<b>${sv.label}</b> · ` : ''}${hasVal ? raw.year + ' · ' : ''}<a href="${srcUrl}" target="_blank" title="${tr('World Bank Open Data', 'بيانات البنك الدولي المفتوحة')}">${tr('Source', 'المصدر')}</a></div>
+      <div class="rp-med-s">${sv ? `<b>${sv.label}</b> · ` : ''}${hasVal ? raw.year + ' · ' : ''}<a href="${srcUrl}" target="_blank" onclick="event.stopPropagation()" title="${tr('World Bank Open Data', 'بيانات البنك الدولي المفتوحة')}">${tr('Source', 'المصدر')}</a></div>
       ${med != null ? `<div class="rp-med-s">${tr('Region median', 'وسيط الإقليم')}: ${fmt(med)}</div>` : ''}
     </div>`;
   }).join('');
@@ -2594,39 +2683,246 @@ function cdSwitchIndTab(key, btn) {
   if (body) body.innerHTML = cdBuildIndGrid(key);
 }
 
+// ── Saved extra datasets: trade partners (UN Comtrade), environment rankings (EPI 2026,
+//    WorldRiskIndex 2025) and UNESCO school data. Loaded once, then the open panel re-renders.
+const EXTRA = { trade:null, env:null, uis:null };
+let EXTRA_JOB = null;
+function loadExtras() {
+  if (!EXTRA_JOB) EXTRA_JOB = Promise.all(['trade_partners', 'environment', 'uis'].map(f =>
+      fetch('data/' + f + '.json').then(r => r.ok ? r.json() : null).catch(() => null)))
+    .then(([t, e, u]) => { EXTRA.trade = t || {}; EXTRA.env = e || {}; EXTRA.uis = u || {};
+      if (cdCountry && cdActiveTab === 'indicators') cdRenderIndicators(); });
+  return EXTRA_JOB;
+}
+const _dn = {};
+function placeName(iso2, fallback) {    // country name in the page language, from its ISO code
+  if (!iso2 || iso2.length !== 2) return fallback;
+  try { _dn[lang] = _dn[lang] || new Intl.DisplayNames([lang === 'ar' ? 'ar' : 'en'], { type:'region' }); return _dn[lang].of(iso2) || fallback; } catch (e) { return fallback; }
+}
+// A card's value: World Bank ids from the live/snapshot cache, uis: ids from the UNESCO file
+function indRaw(ind, iso, data) {
+  if (ind.id.startsWith('uis:')) { const d = EXTRA.uis && EXTRA.uis[iso] && EXTRA.uis[iso][ind.id.slice(4)]; return d ? { value: d.value, year: d.year } : null; }
+  const d = data[ind.id]; return d && d.value != null ? d : null;
+}
+function indSrc(ind, iso) {
+  return ind.id.startsWith('uis:') ? { url: 'https://databrowser.uis.unesco.org/', name: tr('UNESCO UIS', 'معهد اليونسكو للإحصاء') }
+    : { url: `https://data.worldbank.org/indicator/${ind.id}?locations=${iso}`, name: tr('World Bank', 'البنك الدولي') };
+}
+const indCardAttrs = id => `role="button" tabindex="0" onclick="cdIndDetail(${qa(id)})" onkeydown="if(event.key==='Enter')cdIndDetail(${qa(id)})"`;
+// Ranking-based level (lower share = better) with its own wording, for the two environment rankings
+const rankPill = (lvl, labels) => `<span class="sev-pill sev-p${lvl}">${labels[lvl]}</span>`;
+const fmtUsdBig = v => ca_formatValue({ value: v }, { fmt:'big' });
+const bar100 = (v, col) => `<span class="ix-bar"><i style="width:${Math.max(2, Math.min(100, v))}%;background:${col || 'var(--ex-sky)'}"></i></span>`;
+
+function tradeCardHtml(ind, iso) {
+  const flow = ind.id === '__trade_exports' ? 'exports' : 'imports', label = tr(ind.label, ind.labelAr);
+  if (!EXTRA.trade) return `<div class="ca-ind-card ca-wide"><div class="ca-ind-label">${label}</div><div class="ca-ind-year">${tr('Loading…', 'جارٍ التحميل…')}</div></div>`;
+  const t = EXTRA.trade[iso] && EXTRA.trade[iso][flow];
+  if (!t || !t.top || !t.top.length) return `<div class="ca-ind-card ca-wide ca-no-data"><div class="ca-ind-label">${label}</div><div class="ca-ind-val">—</div>
+    <div class="ca-ind-year">${tr('No recent trade figures available', 'لا تتوفر بيانات تجارية حديثة')}</div></div>`;
+  const max = Math.max(...t.top.map(p => p.share));
+  const rows = t.top.map((p, i) => `<div class="tp-row"><span class="tp-n">${i + 1}</span>
+      <span class="tp-name">${p.iso2 && p.iso2.length === 2 ? `<img src="https://flagcdn.com/w40/${p.iso2.toLowerCase()}.png" alt="">` : ''}${exEsc(placeName(p.iso2, p.name))}</span>
+      <span class="tp-bar"><i style="width:${Math.max(3, p.share / max * 100)}%"></i></span><span class="tp-v">${p.share.toFixed(1)}%</span></div>`).join('');
+  return `<div class="ca-ind-card ca-wide">
+    <div class="ca-ind-label">${label}</div>
+    <div class="tp-head"><b>${fmtUsdBig(t.total)}</b> ${tr(flow === 'exports' ? 'total goods exports' : 'total goods imports', flow === 'exports' ? 'إجمالي صادرات السلع' : 'إجمالي واردات السلع')} · ${t.year}</div>
+    <div class="tp-sub">${tr('Share of total', 'الحصة من الإجمالي')}</div>
+    ${rows}
+    <div class="ca-ind-src"><span><a href="https://wits.worldbank.org/" target="_blank" class="ca-src-link">${tr('World Bank WITS (UN Comtrade)', 'البنك الدولي WITS (قاعدة بيانات الأمم المتحدة)')}</a>${t.mirror ? ' · ' + tr('as reported by partner countries', 'وفق ما أبلغت عنه الدول الشريكة') : ''}</span></div>
+  </div>`;
+}
+const EPI_LBL = { en:['Bottom quarter', 'Below middle', 'Above middle', 'Top quarter'], ar:['الربع الأدنى', 'دون الوسط', 'فوق الوسط', 'الربع الأعلى'] };
+const WRI_LBL = { en:['Very high risk', 'High risk', 'Medium risk', 'Lower risk'], ar:['خطر مرتفع جداً', 'خطر مرتفع', 'خطر متوسط', 'خطر أقل'] };
+function envCardHtml(ind, iso) {
+  const label = tr(ind.label, ind.labelAr), L = isAr() ? 'ar' : 'en';
+  if (!EXTRA.env) return `<div class="ca-ind-card ca-wide"><div class="ca-ind-label">${label}</div><div class="ca-ind-year">${tr('Loading…', 'جارٍ التحميل…')}</div></div>`;
+  const meta = EXTRA.env._meta || {}, row = EXTRA.env[iso] || {};
+  if (ind.id === '__epi') {
+    const e = row.epi, of = meta.epi ? meta.epi.of : 177;
+    if (!e) return `<div class="ca-ind-card ca-wide ca-no-data"><div class="ca-ind-label">${label}</div><div class="ca-ind-val">—</div><div class="ca-ind-year">${tr('Not covered by the 2026 EPI', 'غير مشمولة في مؤشر 2026')}</div></div>`;
+    const p = e.rank / of, lvl = p > .75 ? 0 : p > .5 ? 1 : p > .25 ? 2 : 3;
+    const sub = [[tr('Ecosystem vitality', 'حيوية النظم البيئية'), e.eco], [tr('Environmental health', 'الصحة البيئية'), e.hlt], [tr('Climate change', 'تغيّر المناخ'), e.pcc]]
+      .filter(x => x[1] != null).map(([k, v]) => `<div class="ix-row"><span>${k}</span>${bar100(v, 'var(--sev' + (v < 30 ? 0 : v < 45 ? 1 : v < 60 ? 2 : 3) + ')')}<b>${v.toFixed(1)}</b></div>`).join('');
+    return `<div class="ca-ind-card ca-wide sev-${lvl}">
+      <div class="ca-ind-label">${label}${rankPill(lvl, EPI_LBL[L])}</div>
+      <div class="ca-ind-val">${e.score.toFixed(1)}<span class="ca-ind-unit">/100</span></div>
+      <div class="ix-meta"><b>${tr('Rank ' + e.rank + ' of ' + of, 'الترتيب ' + e.rank + ' من ' + of)}</b>${e.chg != null ? ' · ' + tr('10-year change ', 'التغيّر خلال 10 سنوات ') + (e.chg > 0 ? '+' : '') + e.chg.toFixed(1) : ''}${e.rgnMean != null ? ' · ' + tr('regional average ', 'متوسط الإقليم ') + e.rgnMean.toFixed(1) : ''}</div>
+      <div class="ix-note">${tr('Higher is better. 47 indicators on climate, environmental health and ecosystems, scored 0–100.', 'الأعلى أفضل. 47 مؤشراً عن المناخ والصحة البيئية والنظم البيئية، من 0 إلى 100.')}</div>
+      ${sub}
+      <div class="ca-ind-src"><a href="${meta.epi ? meta.epi.url : 'https://epi.yale.edu'}" target="_blank" class="ca-src-link">${tr('Yale EPI 2026', 'مؤشر ييل للأداء البيئي 2026')}</a></div>
+    </div>`;
+  }
+  const w = row.wri, of = meta.wri ? meta.wri.of : 193;
+  if (!w) return `<div class="ca-ind-card ca-wide ca-no-data"><div class="ca-ind-label">${label}</div><div class="ca-ind-val">—</div></div>`;
+  const p = w.rank / of, lvl = p <= .1 ? 0 : p <= .25 ? 1 : p <= .5 ? 2 : 3;
+  const sub = [[tr('Exposure to natural hazards', 'التعرّض للمخاطر الطبيعية'), w.exposure], [tr('Vulnerability of society', 'هشاشة المجتمع'), w.vulnerability]]
+    .map(([k, v]) => `<div class="ix-row"><span>${k}</span>${bar100(v, 'var(--sev' + (v >= 50 ? 0 : v >= 30 ? 1 : v >= 15 ? 2 : 3) + ')')}<b>${v.toFixed(1)}</b></div>`).join('');
+  return `<div class="ca-ind-card ca-wide sev-${lvl}">
+    <div class="ca-ind-label">${label}${rankPill(lvl, WRI_LBL[L])}</div>
+    <div class="ca-ind-val">${w.score.toFixed(2)}<span class="ca-ind-unit">${tr('risk score', 'درجة الخطر')}</span></div>
+    <div class="ix-meta"><b>${tr('Rank ' + w.rank + ' of ' + of, 'الترتيب ' + w.rank + ' من ' + of)}</b> · ${tr('Rank 1 = highest risk', 'الترتيب 1 = الخطر الأعلى')} · 2025</div>
+    <div class="ix-note">${tr('Combines exposure to earthquakes, tsunamis, coastal and river floods, cyclones, droughts and sea-level rise with how vulnerable society is (0–100 each).',
+      'يجمع بين التعرّض للزلازل والتسونامي والفيضانات الساحلية والنهرية والأعاصير والجفاف وارتفاع مستوى البحر، ومدى هشاشة المجتمع (0–100 لكل منهما).')}</div>
+    ${sub}
+    <div class="ca-ind-src"><a href="${meta.wri ? meta.wri.url : '#'}" target="_blank" class="ca-src-link">${tr('WorldRiskReport 2025 (via World Population Review)', 'تقرير المخاطر العالمي 2025 (عبر World Population Review)')}</a></div>
+  </div>`;
+}
+
+// ODA need index — score, rank, this country's six components and how it is calculated
+function needPanelHtml(c, open) {
+  const n = needScores()[c] || {}, total = (needScores().__ranked || []).length, d = prebakedIndicators[c] || {};
+  const tier = needTier(c), tierLbl = { hi: tr('Highest-need third', 'الثلث الأعلى احتياجاً'), mid: tr('Middle third', 'الثلث الأوسط'), lo: tr('Lower-need third', 'الثلث الأقل احتياجاً'), none: tr('Not ranked', 'غير مصنّفة') }[tier];
+  const fmtV = id => { const r = d[id]; if (!r || r.value == null) return '—'; const ind = REGION_INDS.find(x => x.id === id);
+    return (ind ? rpFmt(ind, r.value) : (+r.value).toFixed(1)) + ' · ' + r.year; };
+  const comps = NEED_INDS.map(i => { const s = n.parts && n.parts[i.id];
+    return `<div class="np-row"><span class="np-l">${tr(i.label, i.labelAr)}</span><span class="np-v">${fmtV(i.id)}</span>
+      ${s != null ? bar100(s, NEED_SHADES.hi) + `<b>${Math.round(s)}</b>` : `<span class="ix-bar"></span><b>—</b>`}</div>`; }).join('');
+  const snap = repSnapshotStr();
+  return `<div class="np">
+    <div class="np-hd">
+      <div><div class="np-k">${tr('ODA need index', 'مؤشر الاحتياج')}</div>
+        <div class="np-score">${n.need != null ? Math.round(n.need) : '—'}<span>/100</span></div></div>
+      <div class="np-rank">${n.rank ? `<b>${tr('Rank ' + n.rank + ' of ' + total, 'الترتيب ' + n.rank + ' من ' + total)}</b><span>${tierLbl} · ${tr('Rank 1 = greatest need', 'الترتيب 1 = الاحتياج الأكبر')}</span>` : `<b>${tierLbl}</b><span>${tr('Fewer than 4 of the 6 indicators available', 'تتوفر أقل من 4 من المؤشرات الستة')}</span>`}</div>
+    </div>
+    <div class="np-sub">${tr('Need score per indicator (0 = best among tracked countries, 100 = worst)', 'درجة الاحتياج لكل مؤشر (0 = الأفضل بين الدول المتابَعة، 100 = الأسوأ)')}</div>
+    ${comps}
+    <details class="np-how"${open ? ' open' : ''}><summary>${tr('How is the need index calculated?', 'كيف يُحتسب مؤشر الاحتياج؟')}</summary>
+      <ol>
+        <li>${tr('It uses six indicators of unmet basic needs: under-5 mortality, maternal mortality, undernourishment, and the share of people <b>without</b> basic drinking water, basic sanitation and electricity.',
+                 'يعتمد على ستة مؤشرات للاحتياجات الأساسية غير الملبّاة: وفيات الأطفال دون الخامسة، ووفيات الأمهات، ونقص التغذية، ونسبة السكان <b>المحرومين</b> من مياه الشرب الأساسية والصرف الصحي الأساسي والكهرباء.')}</li>
+        <li>${tr(`Each indicator is rescaled from 0 to 100 across the ${total} ranked countries: 100 is the worst value among them and 0 the best.`,
+                 `يُعاد قياس كل مؤشر من 0 إلى 100 عبر الدول المصنّفة (${total} دولة): 100 لأسوأ قيمة بينها و0 لأفضلها.`)}</li>
+        <li>${tr('The index is the simple average of the available scores, so each indicator counts equally. A country needs at least 4 of the 6 to be ranked.',
+                 'المؤشر هو المتوسط البسيط للدرجات المتاحة، أي أن لكل مؤشر الوزن نفسه. ويجب توفر 4 مؤشرات على الأقل من 6 لتصنيف الدولة.')}</li>
+        <li>${tr('Countries are ranked from greatest need (Rank 1) downwards. The map splits the ranking into thirds: highest, middle and lower need.',
+                 'تُرتَّب الدول من الاحتياج الأكبر (الترتيب 1) نزولاً، وتقسم الخريطة الترتيب إلى ثلاثة أثلاث: احتياج أعلى ومتوسط وأقل.')}</li>
+        <li>${tr('It is a <b>relative</b> measure: it compares the tracked countries with each other, not with a global target. A low score means fewer gaps than the others, not that needs are met.',
+                 'هو مقياس <b>نسبي</b>: يقارن الدول المتابَعة ببعضها لا بهدف عالمي. فالدرجة المنخفضة تعني فجوات أقل من غيرها، لا أن الاحتياجات ملبّاة.')}</li>
+      </ol>
+      <div class="np-src">${tr('Data: World Bank Open Data (UN IGME, WHO, FAO, WHO/UNICEF JMP, IEA)', 'البيانات: البنك الدولي (UN IGME، منظمة الصحة العالمية، الفاو، برنامج الرصد المشترك، وكالة الطاقة الدولية)')}${snap ? tr(' · snapshot of ' + snap, ' · نسخة ' + snap) : ''}</div>
+    </details>
+  </div>`;
+}
+function cdOpenNeedHow() { cdModal(`<div class="idm-title">${exEsc(cN(cdCountry))}</div>` + needPanelHtml(cdCountry, true)); }
+
 function cdBuildIndGrid(tabKey) {
+  if (!EXTRA_JOB) loadExtras();
   const inds = CA_INDICATORS[tabKey] || [];
   const data = countryDataCache[cdCountry] || {};
   const iso  = ca_getIso(cdCountry);
-  const oecUrl = `https://oec.world/en/profile/country/${iso.toLowerCase()}`;
 
-  const cards = inds.map(ind => {
+  const card = ind => {
     const label = lang === 'ar' ? ind.labelAr : ind.label;
-    if (ind.id.startsWith('__')) {
-      const linkText = lang === 'ar'
-        ? (ind.id === '__oec_exports' ? 'شركاء التصدير →' : 'شركاء الاستيراد →')
-        : (ind.id === '__oec_exports' ? 'Export partners →' : 'Import partners →');
-      return `<div class="ca-ind-card ca-oec-card">
-        <div class="ca-ind-label">${label}</div>
-        <div class="ca-ind-oec-link"><a href="${oecUrl}" target="_blank" class="ca-src-link ca-src-link-big">${linkText}</a></div>
-        <div class="ca-ind-src"><a href="${oecUrl}" target="_blank" class="ca-src-link">OEC</a></div>
-      </div>`;
-    }
-    const raw = data[ind.id];
-    const hasVal = raw && raw.value !== null && raw.value !== undefined;
-    const val  = hasVal ? ca_formatValue(raw, ind) : '—';
+    if (ind.fmt === 'trade') return tradeCardHtml(ind, iso);
+    if (ind.fmt === 'epi' || ind.fmt === 'wri') return envCardHtml(ind, iso);
+    const raw = indRaw(ind, iso, data);
+    const hasVal = !!raw;
+    const val  = hasVal ? ca_formatValue(raw, ind) : (ind.id.startsWith('uis:') && !EXTRA.uis ? '…' : '—');
     const year = hasVal ? raw.year : '';
-    const srcUrl = `https://data.worldbank.org/indicator/${ind.id}?locations=${iso}`;
+    const src = indSrc(ind, iso);
     const sv = hasVal ? indSeverity(ind.id, raw.value) : null;
-    return `<div class="ca-ind-card ${!hasVal ? 'ca-no-data' : ''}${sv ? ' sev-' + sv.lvl : ''}"${sv ? ` title="${exEsc(sv.why)}"` : ''}>
+    return `<div class="ca-ind-card ca-click ${!hasVal ? 'ca-no-data' : ''}${sv ? ' sev-' + sv.lvl : ''}" ${indCardAttrs(ind.id)}>
       <div class="ca-ind-label">${label}${sv ? sevPill(sv) : ''}</div>
       <div class="ca-ind-val">${val}${hasVal ? '<span class="ca-ind-unit">' + unitN(ind.unit) + '</span>' : ''}</div>
       ${year ? `<div class="ca-ind-year">${year}</div>` : ''}
-      <div class="ca-ind-src"><a href="${srcUrl}" target="_blank" class="ca-src-link">${tr('World Bank', 'البنك الدولي')}</a></div>
+      <div class="ca-ind-src"><a href="${src.url}" target="_blank" class="ca-src-link" onclick="event.stopPropagation()">${src.name}</a><span class="ca-more">${tr('Details', 'التفاصيل')} ›</span></div>
     </div>`;
-  }).join('');
+  };
+  const main = inds.filter(i => !i.group).map(card).join('');
+  const schools = inds.filter(i => i.group === 'schools');
+  const schoolsHtml = schools.length ? `<div class="ca-group-hd">${tr('Are there enough schools?', 'هل تكفي المدارس؟')}</div>
+    <div class="ca-group-note">${tr('No international dataset counts schools per area. These UNESCO measures show whether children can get a school place and whether schools are equipped (SDG 4.1 and 4.a).',
+      'لا توجد بيانات دولية تحصي عدد المدارس لكل منطقة. تُظهر مؤشرات اليونسكو هذه ما إذا كان الأطفال يحصلون على مقعد دراسي وما إذا كانت المدارس مجهّزة (الهدفان 4.1 و4.أ).')}</div>
+    <div class="cd-ind-grid">${schools.map(card).join('')}</div>` : '';
+  const needHtml = tabKey === 'overview' ? needPanelHtml(cdCountry) : '';
+  return `${needHtml}${sevLegendHtml()}<div class="cd-ind-grid">${main}</div>${schoolsHtml}`;
+}
 
-  return `${sevLegendHtml()}<div class="cd-ind-grid">${cards}</div>`;
+// ── Indicator details (opens on click): value, rating and its thresholds, definition,
+//    trend over time and how the country compares with the rest of its region ──
+function cdModal(html) {
+  let ov = document.getElementById('idm-ov');
+  if (!ov) { ov = document.createElement('div'); ov.id = 'idm-ov'; ov.className = 'idm-ov';
+    ov.addEventListener('click', e => { if (e.target === ov || e.target.closest('.idm-x')) ov.remove(); });
+    document.body.appendChild(ov); }
+  ov.innerHTML = `<div class="idm" role="dialog" aria-modal="true"><button type="button" class="idm-x" aria-label="${tr('Close', 'إغلاق')}">✕</button><div id="idm-body">${html}</div></div>`;
+  return ov;
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { const o = document.getElementById('idm-ov'); if (o) o.remove(); } });
+const IND_DEF_CACHE = {}, IND_SERIES_CACHE = {};
+async function cdIndDetail(id) {
+  const c = cdCountry; if (!c) return;
+  const ind = Object.values(CA_INDICATORS).flat().find(x => x.id === id) || (() => { const r = REGION_INDS.find(x => x.id === id);
+    return r ? { id, label: r.lbl, labelAr: r.lblAr, unit: '', fmt: 'region', _r: r } : { id, label: id, labelAr: id, unit: '', fmt: 'num1' }; })();
+  const iso = ca_getIso(c), data = countryDataCache[c] || {}, uis = id.startsWith('uis:');
+  const raw = indRaw(ind, iso, data);
+  const fv = v => v == null ? '—' : ind._r ? rpFmt(ind._r, v) : ca_formatValue({ value: v }, ind) + unitN(ind.unit);
+  const sv = raw ? indSeverity(id, raw.value) : null, rule = SEV_RULES[id];
+  // rating thresholds in words
+  let rating = '';
+  if (rule && !rule.peers) {
+    const [a, b, cc] = rule.th, hi = rule.dir > 0, f = v => fv(v);
+    const lines = hi ? [[0, '> ' + f(a)], [1, f(b) + ' – ' + f(a)], [2, f(cc) + ' – ' + f(b)], [3, '≤ ' + f(cc)]]
+                     : [[0, '< ' + f(a)], [1, f(a) + ' – ' + f(b)], [2, f(b) + ' – ' + f(cc)], [3, '≥ ' + f(cc)]];
+    rating = `<div class="idm-sec">${tr('How it is rated', 'آلية التصنيف')} <span>${exEsc(tr(rule.ref, rule.refAr))}</span></div>
+      <div class="idm-th">${lines.map(([l, t]) => `<div class="${sv && sv.lvl === l ? 'on' : ''}"><i class="sev-dot sev-d${l}"></i>${sevLabel(l)}<b>${t}</b></div>`).join('')}</div>`;
+  } else if (rule && rule.peers) rating = `<div class="idm-sec">${tr('How it is rated', 'آلية التصنيف')}</div><div class="idm-p">${tr('There is no international benchmark, so the colour compares this country with the other tracked countries (quarters).', 'لا يوجد معيار دولي، لذا يقارن اللون هذه الدولة بالدول المتابَعة الأخرى (أرباع).')}</div>`;
+  // regional comparison
+  const region = repRegionOf(c), members = REGION_MEMBERS[region] || [];
+  const peerVal = m => { if (m === c) return raw ? raw.value : null;
+    if (uis) { const u = EXTRA.uis && EXTRA.uis[COUNTRY_ISO[m]]; const d = u && u[id.slice(4)]; return d ? d.value : null; }
+    const d = (prebakedIndicators[m] || {})[id]; return d && d.value != null ? d.value : null; };
+  const peers = members.map(m => [m, peerVal(m)]).filter(x => x[1] != null).sort((x, y) => y[1] - x[1]);
+  const pmax = Math.max(...peers.map(x => Math.abs(x[1])), 0) || 1;
+  const med = peers.length ? (() => { const s = peers.map(x => x[1]).sort((a, b) => a - b), k = Math.floor(s.length / 2); return s.length % 2 ? s[k] : (s[k - 1] + s[k]) / 2; })() : null;
+  const regionHtml = peers.length > 1 ? `<div class="idm-sec">${tr('Compared with ' + region, 'مقارنةً بـ' + rN(region))} <span>${tr('median', 'الوسيط')} ${fv(med)}</span></div>
+    <div class="idm-peers">${peers.map(([m, v]) => { const s = indSeverity(id, v);
+      return `<div class="idm-peer${m === c ? ' me' : ''}"><span>${exEsc(cN(m))}</span><span class="ix-bar"><i style="width:${Math.max(2, Math.abs(v) / pmax * 100)}%;background:${s ? 'var(--sev' + s.lvl + ')' : 'var(--ex-sky)'}"></i></span><b>${fv(v)}</b></div>`; }).join('')}</div>` : '';
+  const src = indSrc(ind, iso);
+  cdModal(`<div class="idm-eyebrow">${exEsc(cN(c))}</div>
+    <div class="idm-title">${exEsc(tr(ind.label, ind.labelAr))}</div>
+    <div class="idm-val">${raw ? fv(raw.value) : '—'}${raw ? `<span>${raw.year}</span>` : ''}${sv ? sevPill(sv) : ''}</div>
+    ${rating}
+    <div class="idm-sec">${tr('Trend', 'الاتجاه')}</div><div id="idm-trend" class="idm-p idm-wait">${tr('Loading the trend (the World Bank service can take up to a minute)…', 'جارٍ تحميل الاتجاه (قد تستغرق خدمة البنك الدولي حتى دقيقة)…')}</div>
+    ${regionHtml}
+    <div class="idm-sec">${tr('What it measures', 'ماذا يقيس')}</div><div id="idm-def" class="idm-p idm-wait">${tr('Loading…', 'جارٍ التحميل…')}</div>
+    <div class="idm-src"><a href="${src.url}" target="_blank">${tr('Source', 'المصدر')}: ${src.name} ↗</a></div>`);
+  // definition + time series (live; cached per session)
+  const setHtml = (elId, h) => { const el = document.getElementById(elId); if (el && cdCountry === c) { el.innerHTML = h; el.classList.remove('idm-wait'); } };
+  const T = ms => new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), ms));
+  const defJob = IND_DEF_CACHE[id] || (IND_DEF_CACHE[id] = (uis
+    ? Promise.resolve({ text: tr('UNESCO Institute for Statistics, the official source for SDG 4 education data. Figures come from national school censuses and population estimates.',
+        'معهد اليونسكو للإحصاء، المصدر الرسمي لبيانات الهدف 4 للتعليم. تُستمد الأرقام من التعدادات المدرسية الوطنية وتقديرات السكان.'), org: 'UNESCO UIS' })
+    : Promise.race([fetch(`https://api.worldbank.org/v2/indicator/${id}?format=json`).then(r => r.json()), T(45000)])
+        .then(j => ({ text: j[1][0].sourceNote, org: j[1][0].sourceOrganization })).catch(() => { delete IND_DEF_CACHE[id]; return null; })));
+  const orgTidy = o => String(o).replace(/,?\s*(uri|publisher|note):[^;]*/gi, '').replace(/\s+;/g, ';').replace(/;\s*$/, '').slice(0, 220);
+  defJob.then(d => setHtml('idm-def', d ? exEsc(d.text) + (d.org ? `<div class="idm-org">${exEsc(orgTidy(d.org))}</div>` : '') + (isAr() && !uis ? `<div class="idm-org">${tr('', '(التعريف باللغة الإنجليزية من البنك الدولي)')}</div>` : '')
+    : tr('The definition could not be loaded right now.', 'تعذّر تحميل التعريف حالياً.')));
+  const sKey = id + '|' + iso;
+  const serJob = IND_SERIES_CACHE[sKey] || (IND_SERIES_CACHE[sKey] = (uis
+    ? Promise.race([fetch(`https://api.uis.unesco.org/api/public/data/indicators?indicator=${id.slice(4)}&geoUnit=${iso}&start=2000`).then(r => r.json()), T(20000)])
+        .then(j => (j.records || []).map(r => [+r.year, r.value]))
+    : Promise.race([fetch(`https://api.worldbank.org/v2/country/${iso}/indicator/${id}?format=json&per_page=80&date=2000:2030`).then(r => r.json()), T(45000)])        .then(j => (j[1] || []).filter(r => r.value != null).map(r => [+r.date, r.value])))
+    .then(s => s.sort((a, b) => a[0] - b[0])).catch(() => { delete IND_SERIES_CACHE[sKey]; return null; }));
+  serJob.then(s => setHtml('idm-trend', !s ? tr('The trend could not be loaded right now. ', 'تعذّر تحميل الاتجاه حالياً. ') + `<a href="#" onclick="event.preventDefault();cdIndDetail(${qa(id)})">${tr('Try again', 'إعادة المحاولة')}</a>` : s.length < 2 ? tr('Only one data point is available.', 'تتوفر نقطة بيانات واحدة فقط.') : sparkHtml(s, fv, rule)));
+}
+function sparkHtml(s, fv, rule) {
+  const W = 520, H = 120, P = 26, xs = s.map(p => p[0]), ys = s.map(p => p[1]);
+  const x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys), y1 = Math.max(...ys), dy = (y1 - y0) || 1;
+  const X = x => P + (x - x0) / ((x1 - x0) || 1) * (W - 2 * P), Y = y => H - 22 - (y - y0) / dy * (H - 44);
+  const pts = s.map(([x, y]) => X(x).toFixed(1) + ',' + Y(y).toFixed(1)).join(' ');
+  const first = s[0], last = s[s.length - 1], chg = last[1] - first[1];
+  const better = rule && !rule.peers ? (rule.dir > 0 ? chg < 0 : chg > 0) : null;
+  const ltr = isAr() ? ' style="direction:ltr"' : '';
+  return `<svg viewBox="0 0 ${W} ${H}" class="idm-spark"${ltr}>
+      <polyline points="${pts}" fill="none" stroke="var(--ex-sky-dk, #1B6FA8)" stroke-width="2.5" stroke-linejoin="round"/>
+      ${s.map(([x, y]) => `<circle cx="${X(x).toFixed(1)}" cy="${Y(y).toFixed(1)}" r="2.6" fill="var(--ex-sky-dk, #1B6FA8)"/>`).join('')}
+      <text x="${P}" y="${H - 4}" font-size="11" fill="#8DA0B3">${first[0]}</text><text x="${W - P}" y="${H - 4}" font-size="11" fill="#8DA0B3" text-anchor="end">${last[0]}</text>
+      <text x="${X(first[0])}" y="${Y(first[1]) - 8}" font-size="11.5" font-weight="700" fill="#0F2A40">${exEsc(fv(first[1]))}</text>
+      <text x="${X(last[0])}" y="${Y(last[1]) - 8}" font-size="11.5" font-weight="700" fill="#0F2A40" text-anchor="end">${exEsc(fv(last[1]))}</text>
+    </svg>
+    <div class="idm-org">${tr(`${first[0]}–${last[0]}: `, `${first[0]}–${last[0]}: `)}${better == null ? '' : better ? tr('improving', 'في تحسّن') : tr('worsening', 'في تراجع')} (${chg > 0 ? '+' : ''}${exEsc(fv(chg).replace(/^\$-/, '-$'))})</div>`;
 }
 
 
@@ -3336,8 +3632,8 @@ function indSeverity(id, v) {
   return { lvl, label: sevLabel(lvl), why: sevLabel(lvl) + tr(' — benchmark: ' + r.ref, ' — المرجع: ' + r.refAr) };
 }
 function sevPill(sv) { return `<span class="sev-pill sev-p${sv.lvl}">${sv.label}</span>`; }
-function sevLegendHtml() {
-  return `<div class="sev-legend">${[0, 1, 2, 3].map(i => `<span><i class="sev-dot sev-d${i}"></i>${sevLabel(i)}</span>`).join('')}<span class="sev-legend-note">${tr('vs SDG / WHO benchmarks · hover for details', 'مقارنةً بمعايير أهداف التنمية المستدامة ومنظمة الصحة · مرّر المؤشر للتفاصيل')}</span></div>`;
+function sevLegendHtml(noClick) {
+  return `<div class="sev-legend">${[0, 1, 2, 3].map(i => `<span><i class="sev-dot sev-d${i}"></i>${sevLabel(i)}</span>`).join('')}<span class="sev-legend-note">${noClick ? tr('vs SDG / WHO benchmarks', 'مقارنةً بمعايير أهداف التنمية المستدامة ومنظمة الصحة') : tr('vs SDG / WHO benchmarks · click any indicator for details', 'مقارنةً بمعايير أهداف التنمية المستدامة ومنظمة الصحة · انقر على أي مؤشر للتفاصيل')}</span></div>`;
 }
 
 // ══════════════════════════════════════════════════════════════════════════
@@ -3450,7 +3746,7 @@ function renderRegionPopup() {
       <div class="ex-kpis" style="margin:0 0 22px">${tiles}</div>
       <div class="ex-sub-title" style="margin-top:0">${tr('Regional median by indicator', 'الوسيط الإقليمي حسب المؤشر')}</div>
       <div class="rp-meds">${medRow}</div>
-      <div class="rp-tbl-hd"><div class="ex-sub-title" style="margin:0">${tr('Country by country', 'حسب الدولة')}</div>${sevLegendHtml()}</div>
+      <div class="rp-tbl-hd"><div class="ex-sub-title" style="margin:0">${tr('Country by country', 'حسب الدولة')}</div>${sevLegendHtml(true)}</div>
       <div class="rp-tbl-wrap"><table class="ex-table rp-table">
         <thead><tr><th>${tr('Country', 'الدولة')}</th><th class="num">${tr('Need', 'الاحتياج')}</th>${REGION_INDS.map(i => `<th class="num" title="${exEsc(tr(i.lbl, i.lblAr))}">${tr(i.short, i.shortAr)}</th>`).join('')}</tr></thead>
         <tbody>${rows}</tbody></table></div>
@@ -3497,7 +3793,7 @@ function exInitMiniMap() {
     const n = needScores()[c] || {};
     l.bindPopup(`<div class="ex-pop">
         <div class="ex-pop-name">${flagImg(c, 20, 14)}&nbsp; ${exEsc(cN(c))}</div>
-        <div class="ex-pop-meta">${exEsc(rN(repRegionOf(c)) || '')}${n.rank ? tr(' · need index ' + Math.round(n.need) + ' · rank ' + n.rank + ' of ' + total, ' · مؤشر الاحتياج ' + Math.round(n.need) + ' · الترتيب ' + n.rank + ' من ' + total) : ''}</div>
+        <div class="ex-pop-meta">${exEsc(rN(repRegionOf(c)) || '')}${n.rank ? tr(' · Need index ' + Math.round(n.need) + ' · Rank ' + n.rank + ' of ' + total, ' · مؤشر الاحتياج ' + Math.round(n.need) + ' · الترتيب ' + n.rank + ' من ' + total) : ''}</div>
         <div class="ex-pop-row">
           <button class="ex-mini" onclick="exOpenCountry(${qa(c)})">${tr('Country overview', 'نظرة عامة')}</button>
           <button class="ex-mini" onclick="repRunSingle(${qa(c)})">${tr('Instant report', 'تقرير فوري')}</button>
@@ -3866,7 +4162,7 @@ async function ca_loadCountryData(country) {
   const allIds = new Set();
   for (const tab of CA_TABS) {
     for (const ind of CA_INDICATORS[tab] || []) {
-      if (!ind.id.startsWith('__')) allIds.add(ind.id);
+      if (/^[A-Z]/.test(ind.id)) allIds.add(ind.id);   // World Bank ids only (uis: and __ cards come from saved files)
     }
   }
 

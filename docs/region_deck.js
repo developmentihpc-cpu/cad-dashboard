@@ -222,7 +222,7 @@ function buildRegionDeck(opts){
     sl.shape(p.ShapeType.rect, { x:10.33, y:0.5, w:2.5, h:0.92, fill:{ color: hi ? C.GOLD_PALE : C.SKY_PALE }, line:{ type:'none' } });
     sl.text(T('NEED INDEX', 'مؤشر الاحتياج'), { x:10.45, y:0.56, w:2.3, h:0.2, fontFace:BODY, fontSize:7.5, bold:true, color:C.MUTE, charSpacing:1.4 });
     sl.text(c.need == null ? '—' : String(Math.round(c.need)), { x:10.45, y:0.76, w:1.0, h:0.58, fontFace:HEAD, fontSize:26, bold:true, color: hi ? C.GOLD : C.INK, valign:'middle' });
-    sl.text(c.needRank ? T(`rank ${c.needRank} of ${ranked.length} in region`, `الترتيب ${c.needRank} من ${ranked.length} في الإقليم`) : T('not ranked', 'غير مصنّفة'), { x:11.3, y:0.8, w:1.5, h:0.5, fontFace:BODY, fontSize:8.6, color:C.MUTE, valign:'middle', fit:'shrink' });
+    sl.text(c.needRank ? T(`Rank ${c.needRank} of ${ranked.length} in region`, `الترتيب ${c.needRank} من ${ranked.length} في الإقليم`) : T('not ranked', 'غير مصنّفة'), { x:11.3, y:0.8, w:1.5, h:0.5, fontFace:BODY, fontSize:8.6, color:C.MUTE, valign:'middle', fit:'shrink' });
     // left: stat cards 3×2
     const cw = 2.25, ch = 1.15, X0 = 0.5, Y0 = 1.65;
     IND.forEach((ind, i) => { const r = c.R(ind.id), L = r ? DK.sevLvl(ind.id, r.v) : null;

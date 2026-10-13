@@ -23,6 +23,13 @@ const SEV_RULES = {
   'SE.SEC.ENRR':        { dir:-1, th:[40, 60, 85],        ref:'SDG 4.1',                           refAr:'الهدف 4.1' },
   'SE.PRM.PTRT.ZS':     { dir: 1, th:[45, 35, 25],        ref:'UNESCO: 40+ pupils per teacher is high', refAr:'اليونسكو: أكثر من 40 تلميذاً لكل معلم مرتفع' },
   'SE.XPD.TOTL.GD.ZS':  { dir:-1, th:[2.5, 3.5, 4],       ref:'UNESCO 4–6% of GDP',                refAr:'اليونسكو 4–6% من الناتج' },
+  // UNESCO UIS — school access and school conditions (SDG 4.1 and 4.a.1)
+  'uis:ROFST.1.CP':     { dir: 1, th:[20, 10, 5],         ref:'SDG 4.1: every child in school',    refAr:'الهدف 4.1: كل طفل في المدرسة' },
+  'uis:ROFST.2.CP':     { dir: 1, th:[30, 15, 7],         ref:'SDG 4.1: every child in school',    refAr:'الهدف 4.1: كل طفل في المدرسة' },
+  'uis:SCHBSP.1.WELEC': { dir:-1, th:[50, 75, 95],        ref:'SDG 4.a.1: all schools equipped',   refAr:'الهدف 4.أ.1: تجهيز جميع المدارس' },
+  'uis:SCHBSP.1.WWATA': { dir:-1, th:[50, 75, 95],        ref:'SDG 4.a.1: all schools equipped',   refAr:'الهدف 4.أ.1: تجهيز جميع المدارس' },
+  'uis:SCHBSP.1.WTOILA':{ dir:-1, th:[50, 75, 95],        ref:'SDG 4.a.1: all schools equipped',   refAr:'الهدف 4.أ.1: تجهيز جميع المدارس' },
+  'uis:PTRHC.1.TRAINED':{ dir: 1, th:[60, 45, 35],        ref:'UNESCO: 40+ pupils per trained teacher is high', refAr:'اليونسكو: أكثر من 40 تلميذاً لكل معلم مدرَّب مرتفع' },
   'EG.ELC.ACCS.ZS':     { dir:-1, th:[40, 70, 95],        ref:'SDG 7.1 universal access',          refAr:'الهدف 7.1 الوصول الشامل' },
   'EG.CFT.ACCS.ZS':     { dir:-1, th:[20, 50, 85],        ref:'SDG 7.1 clean cooking',             refAr:'الهدف 7.1 الطهي النظيف' },
   'SH.H2O.BASW.ZS':     { dir:-1, th:[60, 75, 90],        ref:'SDG 6.1 universal access',          refAr:'الهدف 6.1 الوصول الشامل' },

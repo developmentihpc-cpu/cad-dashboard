@@ -302,6 +302,10 @@
   "SP.URB.TOTL.IN.ZS": {
    "value": 25.9401644699898,
    "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 51.629,
+   "year": "2025"
   }
  },
  "Albania": {
@@ -528,6 +532,10 @@
   "SP.URB.TOTL.IN.ZS": {
    "value": 58.871474331067,
    "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 30.772,
+   "year": "2025"
   }
  },
  "Algeria": {
@@ -733,6 +741,10 @@
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 75.8187358069877,
+   "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 9.485,
    "year": "2025"
   }
  },
@@ -952,6 +964,10 @@
   "SP.URB.TOTL.IN.ZS": {
    "value": 71.4615915176085,
    "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 51.949,
+   "year": "2025"
   }
  },
  "Argentina": {
@@ -1161,6 +1177,10 @@
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 92.3519221615173,
+   "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 7.001,
    "year": "2025"
   }
  },
@@ -1396,6 +1416,10 @@
   "SP.URB.TOTL.IN.ZS": {
    "value": 65.9287015589872,
    "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 26.972,
+   "year": "2025"
   }
  },
  "Azerbaijan": {
@@ -1621,6 +1645,10 @@
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 58.6371024281175,
+   "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 34.227,
    "year": "2025"
   }
  },
@@ -1856,6 +1884,10 @@
   "SP.URB.TOTL.IN.ZS": {
    "value": 33.2395847043975,
    "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 44.26,
+   "year": "2025"
   }
  },
  "Bolivia": {
@@ -2070,6 +2102,10 @@
   "SP.URB.TOTL.IN.ZS": {
    "value": 71.5631037265869,
    "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 24.714,
+   "year": "2025"
   }
  },
  "Botswana": {
@@ -2275,6 +2311,10 @@
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 67.9559561532102,
+   "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 18.029,
    "year": "2025"
   }
  },
@@ -2510,6 +2550,10 @@
   "SP.URB.TOTL.IN.ZS": {
    "value": 28.9226360719085,
    "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 51.775,
+   "year": "2025"
   }
  },
  "Burundi": {
@@ -2699,6 +2743,10 @@
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 25.6870184681663,
+   "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 85.341,
    "year": "2025"
   }
  },
@@ -2930,6 +2978,10 @@
   "SP.URB.TOTL.IN.ZS": {
    "value": 41.10561939401,
    "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 33.405,
+   "year": "2025"
   }
  },
  "Cameroon": {
@@ -3144,6 +3196,10 @@
   "SP.URB.TOTL.IN.ZS": {
    "value": 55.6692041661323,
    "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 41.854,
+   "year": "2025"
   }
  },
  "Chad": {
@@ -3349,6 +3405,10 @@
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 27.5658786336865,
+   "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 71.736,
    "year": "2025"
   }
  },
@@ -3584,6 +3644,10 @@
   "SP.URB.TOTL.IN.ZS": {
    "value": 78.7827914751151,
    "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 14.158,
+   "year": "2025"
   }
  },
  "Congo, Dem. Rep.": {
@@ -3801,6 +3865,10 @@
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 45.1135633042151,
+   "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 58.524,
    "year": "2025"
   }
  },
@@ -4035,6 +4103,10 @@
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 54.5489501450761,
+   "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 45.367,
    "year": "2025"
   }
  },
@@ -4274,6 +4346,10 @@
   "SP.URB.TOTL.IN.ZS": {
    "value": 63.3918189058262,
    "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 32.481,
+   "year": "2025"
   }
  },
  "Egypt": {
@@ -4503,6 +4579,10 @@
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 42.9043204925248,
+   "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 17.525,
    "year": "2025"
   }
  },
@@ -4742,6 +4822,10 @@
   "SP.URB.TOTL.IN.ZS": {
    "value": 75.5237123209951,
    "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 13.853,
+   "year": "2025"
   }
  },
  "Eritrea": {
@@ -4883,6 +4967,10 @@
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 34.5404504255216,
+   "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 55.476,
    "year": "2025"
   }
  },
@@ -5101,6 +5189,10 @@
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 24.1096952088946,
+   "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 60.143,
    "year": "2025"
   }
  },
@@ -5327,6 +5419,10 @@
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 58.9246861473125,
+   "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 34.574,
    "year": "2025"
   }
  },
@@ -5558,6 +5654,10 @@
   "SP.URB.TOTL.IN.ZS": {
    "value": 56.2972033013999,
    "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 29.053,
+   "year": "2025"
   }
  },
  "Guinea": {
@@ -5731,6 +5831,10 @@
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 38.5165334466562,
+   "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 47.358,
    "year": "2025"
   }
  },
@@ -5921,6 +6025,10 @@
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 55.6148855859942,
+   "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 46.615,
    "year": "2025"
   }
  },
@@ -6151,6 +6259,10 @@
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 59.2517075900659,
+   "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 22.424,
    "year": "2025"
   }
  },
@@ -6390,6 +6502,10 @@
   "SP.URB.TOTL.IN.ZS": {
    "value": 35.689155772396,
    "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 41.625,
+   "year": "2025"
   }
  },
  "Indonesia": {
@@ -6620,6 +6736,10 @@
   "SP.URB.TOTL.IN.ZS": {
    "value": 59.3929063969984,
    "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 27.297,
+   "year": "2025"
   }
  },
  "Iraq": {
@@ -6817,6 +6937,10 @@
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 69.9396739468105,
+   "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 8.169,
    "year": "2025"
   }
  },
@@ -7044,6 +7168,10 @@
   "SP.URB.TOTL.IN.ZS": {
    "value": 93.2085150119551,
    "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 3.116,
+   "year": "2025"
   }
  },
  "Kazakhstan": {
@@ -7261,6 +7389,10 @@
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 62.3855569507987,
+   "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 11.32,
    "year": "2025"
   }
  },
@@ -7483,6 +7615,10 @@
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 32.2121192871745,
+   "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 45.788,
    "year": "2025"
   }
  },
@@ -7792,6 +7928,10 @@
   "SP.URB.TOTL.IN.ZS": {
    "value": 34.7463537261057,
    "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 15.445,
+   "year": "2025"
   }
  },
  "Laos": {
@@ -8018,6 +8158,10 @@
   "SP.URB.TOTL.IN.ZS": {
    "value": 40.3129835040701,
    "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 68.597,
+   "year": "2025"
   }
  },
  "Lebanon": {
@@ -8240,6 +8384,10 @@
   "SP.URB.TOTL.IN.ZS": {
    "value": 90.9602314263044,
    "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 3.513,
+   "year": "2023"
   }
  },
  "Liberia": {
@@ -8417,6 +8565,10 @@
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 56.0819747159338,
+   "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 41.121,
    "year": "2025"
   }
  },
@@ -8599,6 +8751,10 @@
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 87.9112413015221,
+   "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 9.997,
    "year": "2025"
   }
  },
@@ -8830,6 +8986,10 @@
   "SP.URB.TOTL.IN.ZS": {
    "value": 32.9017070836898,
    "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 69.209,
+   "year": "2025"
   }
  },
  "Malawi": {
@@ -9048,6 +9208,10 @@
   "SP.URB.TOTL.IN.ZS": {
    "value": 17.5949868386317,
    "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 64.978,
+   "year": "2025"
   }
  },
  "Mali": {
@@ -9258,6 +9422,10 @@
   "SP.URB.TOTL.IN.ZS": {
    "value": 32.2127137183989,
    "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 63.014,
+   "year": "2025"
   }
  },
  "Mauritania": {
@@ -9447,6 +9615,10 @@
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 61.4888190537696,
+   "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 32.123,
    "year": "2025"
   }
  },
@@ -9690,6 +9862,10 @@
   "SP.URB.TOTL.IN.ZS": {
    "value": 80.0408930629723,
    "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 11.4,
+   "year": "2025"
   }
  },
  "Moldova": {
@@ -9907,6 +10083,10 @@
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 43.7336240404545,
+   "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 50.502,
    "year": "2025"
   }
  },
@@ -10146,6 +10326,10 @@
   "SP.URB.TOTL.IN.ZS": {
    "value": 71.1450719126123,
    "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 27.004,
+   "year": "2025"
   }
  },
  "Morocco": {
@@ -10359,6 +10543,10 @@
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 63.1278612260269,
+   "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 27.892,
    "year": "2025"
   }
  },
@@ -10594,6 +10782,10 @@
   "SP.URB.TOTL.IN.ZS": {
    "value": 37.2077944927189,
    "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 73.006,
+   "year": "2025"
   }
  },
  "Myanmar": {
@@ -10783,6 +10975,10 @@
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 30.5836915476767,
+   "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 44.955,
    "year": "2025"
   }
  },
@@ -10993,6 +11189,10 @@
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 50.8666984399326,
+   "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 22.338,
    "year": "2025"
   }
  },
@@ -11224,6 +11424,10 @@
   "SP.URB.TOTL.IN.ZS": {
    "value": 66.999424884859,
    "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 22.912,
+   "year": "2025"
   }
  },
  "Nicaragua": {
@@ -11409,6 +11613,10 @@
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 59.4435892957332,
+   "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 30.472,
    "year": "2025"
   }
  },
@@ -11632,6 +11840,10 @@
   "SP.URB.TOTL.IN.ZS": {
    "value": 18.3740697195469,
    "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 72.993,
+   "year": "2025"
   }
  },
  "Nigeria": {
@@ -11849,6 +12061,10 @@
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 63.7754180467872,
+   "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 33.534,
    "year": "2025"
   }
  },
@@ -12075,6 +12291,10 @@
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 39.5256010979606,
+   "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 36.23,
    "year": "2025"
   }
  },
@@ -12492,6 +12712,10 @@
   "SP.URB.TOTL.IN.ZS": {
    "value": 15.7797448680276,
    "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 36.862,
+   "year": "2025"
   }
  },
  "Paraguay": {
@@ -12722,6 +12946,10 @@
   "SP.URB.TOTL.IN.ZS": {
    "value": 70.3897639855864,
    "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 15.965,
+   "year": "2025"
   }
  },
  "Peru": {
@@ -12951,6 +13179,10 @@
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 85.5963484845463,
+   "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 23.135,
    "year": "2025"
   }
  },
@@ -13190,6 +13422,10 @@
   "SP.URB.TOTL.IN.ZS": {
    "value": 55.7732907605332,
    "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 20.488,
+   "year": "2025"
   }
  },
  "Rwanda": {
@@ -13415,6 +13651,10 @@
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 30.9133840928162,
+   "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 35.051,
    "year": "2025"
   }
  },
@@ -13654,6 +13894,10 @@
   "SP.URB.TOTL.IN.ZS": {
    "value": 55.7672494455246,
    "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 29.576,
+   "year": "2025"
   }
  },
  "Sierra Leone": {
@@ -13844,6 +14088,10 @@
   "SP.URB.TOTL.IN.ZS": {
    "value": 45.9267781356681,
    "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 44.494,
+   "year": "2025"
   }
  },
  "Somalia": {
@@ -13912,7 +14160,7 @@
    "year": "2022"
   },
   "SE.XPD.TOTL.GD.ZS": {
-   "value": 8.14262404011e-06,
+   "value": 0.00000814262404011,
    "year": "2023"
   },
   "SE.ADT.1524.LT.ZS": {
@@ -14029,6 +14277,10 @@
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 55.1399062872976,
+   "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 30.029,
    "year": "2025"
   }
  },
@@ -14264,6 +14516,10 @@
   "SP.URB.TOTL.IN.ZS": {
    "value": 63.8154011002522,
    "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 5.407,
+   "year": "2025"
   }
  },
  "South Sudan": {
@@ -14422,6 +14678,10 @@
   "SP.URB.TOTL.IN.ZS": {
    "value": 21.6843599017401,
    "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 63.761,
+   "year": "2023"
   }
  },
  "Sri Lanka": {
@@ -14647,6 +14907,10 @@
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 20.4501355167937,
+   "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 25.857,
    "year": "2025"
   }
  },
@@ -15020,6 +15284,10 @@
   "SP.URB.TOTL.IN.ZS": {
    "value": 72.0836286208518,
    "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 16.297,
+   "year": "2025"
   }
  },
  "Tajikistan": {
@@ -15233,6 +15501,10 @@
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 26.16476270853,
+   "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 43.273,
    "year": "2025"
   }
  },
@@ -15463,6 +15735,10 @@
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 36.8833115936643,
+   "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 64.572,
    "year": "2025"
   }
  },
@@ -15702,6 +15978,10 @@
   "SP.URB.TOTL.IN.ZS": {
    "value": 62.7993377136296,
    "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 28.557,
+   "year": "2025"
   }
  },
  "Timor-Leste": {
@@ -15903,6 +16183,10 @@
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 28.7864318960935,
+   "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 46.019,
    "year": "2025"
   }
  },
@@ -16130,6 +16414,10 @@
   "SP.URB.TOTL.IN.ZS": {
    "value": 44.3949892074399,
    "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 37.592,
+   "year": "2025"
   }
  },
  "Tunisia": {
@@ -16355,6 +16643,10 @@
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 70.7029326009864,
+   "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 12.459,
    "year": "2025"
   }
  },
@@ -16586,6 +16878,10 @@
   "SP.URB.TOTL.IN.ZS": {
    "value": 89.494060002186,
    "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 14.22,
+   "year": "2025"
   }
  },
  "Turkmenistan": {
@@ -16787,6 +17083,10 @@
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 47.1053608253747,
+   "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 21.933,
    "year": "2025"
   }
  },
@@ -16997,6 +17297,10 @@
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 31.9399557536617,
+   "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 64.854,
    "year": "2025"
   }
  },
@@ -17454,6 +17758,10 @@
   "SP.URB.TOTL.IN.ZS": {
    "value": 51.0173495084299,
    "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 25.198,
+   "year": "2025"
   }
  },
  "Venezuela": {
@@ -17623,6 +17931,10 @@
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 89.3219112298988,
+   "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 8.875,
    "year": "2025"
   }
  },
@@ -17854,6 +18166,10 @@
   "SP.URB.TOTL.IN.ZS": {
    "value": 38.8299160351294,
    "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 25.043,
+   "year": "2025"
   }
  },
  "Yemen": {
@@ -18011,6 +18327,10 @@
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 37.0336664607078,
+   "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 31.617,
    "year": "2025"
   }
  },
@@ -18226,6 +18546,10 @@
   "SP.URB.TOTL.IN.ZS": {
    "value": 45.9171510161461,
    "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 54.529,
+   "year": "2025"
   }
  },
  "Zimbabwe": {
@@ -18431,6 +18755,10 @@
   },
   "SP.URB.TOTL.IN.ZS": {
    "value": 40.4951287431452,
+   "year": "2025"
+  },
+  "SL.AGR.EMPL.ZS": {
+   "value": 54.312,
    "year": "2025"
   }
  }

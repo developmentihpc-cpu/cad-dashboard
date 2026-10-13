@@ -318,7 +318,7 @@ function buildCountryDeck(opts){
     sl.text(T('NEED INDEX', 'مؤشر الاحتياج'), { x:RX + 0.14, y:by + 0.12, w:1.4, h:0.22, fontFace:BODY, fontSize:7.8, bold:true, color:C.GOLD, charSpacing:1.4 });
     if (opts.need) {
       sl.text(String(Math.round(opts.need.score)), { x:RX + 0.14, y:by + 0.38, w:1.4, h:0.62, fontFace:HEAD, fontSize:32, bold:true, color:C.INK, valign:'middle' });
-      sl.text(T('of 100 · rank ' + opts.need.rank + '/' + opts.need.of, 'من 100 · الترتيب ' + opts.need.rank + ' من ' + opts.need.of), { x:RX + 0.14, y:by + 1.06, w:1.4, h:0.4, fontFace:BODY, fontSize:8, color:C.MUTE, valign:'top' });
+      sl.text(T('of 100 · Rank ' + opts.need.rank + '/' + opts.need.of, 'من 100 · الترتيب ' + opts.need.rank + ' من ' + opts.need.of), { x:RX + 0.14, y:by + 1.06, w:1.4, h:0.4, fontFace:BODY, fontSize:8, color:C.MUTE, valign:'top' });
     } else sl.text(T('Not ranked', 'غير مصنّفة'), { x:RX + 0.14, y:by + 0.5, w:1.4, h:0.4, fontFace:BODY, fontSize:10, color:C.MUTE });
     const sx = RX + 1.78, sw = RW - 1.78;
     sl.text(T('STATUS BY SECTOR', 'الوضع حسب القطاع'), { x:sx, y:by - 0.02, w:sw, h:0.2, fontFace:BODY, fontSize:7.8, bold:true, color:C.GOLD, charSpacing:1.4 });

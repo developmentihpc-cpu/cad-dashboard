@@ -16,6 +16,7 @@ Efficiency: instead of country x indicator individual calls, it makes ONE reques
 indicator against country/all (last 10 years), then keeps the most recent non-null value per
 country. ~70 requests total. Government debt comes from the IMF World Economic Outlook
 (DataMapper API) and keeps the previous values if the IMF cannot be reached.
+It also rebuilds docs/data/sme_jobs.json (jobs by business size) from ILOSTAT labour force surveys.
 
 Output shape (matches the dashboard's countryDataCache exactly):
     {
@@ -147,6 +148,98 @@ def fetch_indicator_all_countries(indicator_id: str) -> dict:
     return {}
 
 
+SME_PATH = ROOT / "docs" / "data" / "sme_jobs.json"
+ILO_SME_URL = ("https://sdmx.ilo.org/rest/data/ILO,DF_EMP_TEMP_SEX_EST_NB/.A..SEX_T."
+               "?startPeriod={start}&format=csvfilewithlabels")
+SME_MIN_KNOWN = 50   # % of workers whose business size is known; below this the shares would mislead
+
+
+def build_sme_jobs(country_isos) -> bool:
+    """Write docs/data/sme_jobs.json: share of workers by size of the business they work in
+    (ILOSTAT labour force surveys, 'Employment by sex and establishment size').
+
+    For each country, the latest year with the aggregate bands (1-4, 5-49, 50+) is used.
+    Shares are of workers whose business size is known; countries where it is known for
+    fewer than SME_MIN_KNOWN % of workers are left out. ILO bands stop at 50+, so medium
+    firms (50-249) are counted with large ones. Returns False (and leaves the previous
+    file untouched) if the ILO cannot be reached.
+    """
+    import csv
+    import io
+
+    wanted = set(country_isos)
+    start = datetime.now(timezone.utc).year - 14
+    try:
+        resp = requests.get(ILO_SME_URL.format(start=start), timeout=120,
+                            headers={"User-Agent": "Mozilla/5.0 (CAD dashboard refresh)"})
+        resp.raise_for_status()
+        rows = list(csv.DictReader(io.StringIO(resp.content.decode("utf-8-sig"))))
+    except Exception as e:  # noqa: BLE001
+        print(f"  ! ILO business size: request failed ({e}) - keeping previous file")
+        return False
+
+    data: dict = {}   # iso3 -> year -> band -> persons (thousands)
+    for r in rows:
+        iso, band, year, val = r.get("REF_AREA"), r.get("EST"), r.get("TIME_PERIOD"), r.get("OBS_VALUE")
+        if iso not in wanted or not band or not year or val in (None, ""):
+            continue
+        try:
+            data.setdefault(iso, {}).setdefault(year, {})[band] = float(val)
+        except ValueError:
+            continue
+
+    def r1(v):
+        return round(v * 10) / 10
+
+    out = {}
+    for iso, years in data.items():
+        usable = [y for y, b in years.items() if "EST_AGGREGATE_S5-49" in b and b.get("EST_AGGREGATE_TOTAL")]
+        if not usable:
+            continue
+        year = max(usable)
+        b = years[year]
+        total, unknown = b["EST_AGGREGATE_TOTAL"], b.get("EST_AGGREGATE_X", 0.0)
+        known = total - unknown
+        if known <= 0 or 100 * unknown / total > 100 - SME_MIN_KNOWN:
+            continue
+
+        def pc(v):
+            return None if v is None else r1(100 * v / known)
+
+        rec = {
+            "year": int(year),
+            "under50": pc(b.get("EST_AGGREGATE_S1-4", 0.0) + b.get("EST_AGGREGATE_S5-49", 0.0)),
+            "s1_4": pc(b.get("EST_AGGREGATE_S1-4")),
+            "s5_49": pc(b.get("EST_AGGREGATE_S5-49")),
+            "s50plus": pc(b.get("EST_AGGREGATE_SGE50")),
+        }
+        if "EST_DETAILS_S1" in b and "EST_DETAILS_S2-4" in b:
+            rec["s1"], rec["s2_4"] = pc(b["EST_DETAILS_S1"]), pc(b["EST_DETAILS_S2-4"])
+        if all(k in b for k in ("EST_DETAILS_S5-9", "EST_DETAILS_S10-19", "EST_DETAILS_S20-49")):
+            rec["s5_9"] = pc(b["EST_DETAILS_S5-9"])
+            rec["s10_49"] = pc(b["EST_DETAILS_S10-19"] + b["EST_DETAILS_S20-49"])
+        rec["coverage"] = round(100 - 100 * unknown / total)
+        out[iso] = rec
+
+    if not out:
+        print("  ! ILO business size: no usable rows - keeping previous file")
+        return False
+    payload = {
+        "_meta": {
+            "generated": datetime.now(timezone.utc).date().isoformat(),
+            "source": "ILOSTAT, Employment by sex and establishment size (DF_EMP_TEMP_SEX_EST_NB), from national labour force surveys",
+            "url": "https://ilostat.ilo.org/data/",
+            "note": ("Shares of employment whose establishment size is known. ILO size bands stop at 50+, so medium-sized "
+                     "firms (50–249) are counted with large ones. Countries are included only where firm size is known "
+                     f"for at least {SME_MIN_KNOWN}% of all workers (coverage = that share)."),
+        },
+        **dict(sorted(out.items())),
+    }
+    SME_PATH.write_text(json.dumps(payload, ensure_ascii=False), encoding="utf-8")
+    print(f"  business size: {len(out)} countries -> {SME_PATH.name}")
+    return True
+
+
 def fetch_regions(country_iso: dict) -> dict:
     """Return {region_name: [display names present]} from WB country metadata.
 
@@ -243,6 +336,9 @@ def main() -> None:
     OUT_PATH.write_text(json.dumps(payload, ensure_ascii=False, indent=1), encoding="utf-8")
     size_kb = OUT_PATH.stat().st_size / 1024
     print(f"\nWrote {OUT_PATH} ({size_kb:.0f} KB, {filled} datapoints)")
+
+    print("Fetching ILO jobs by business size...")
+    build_sme_jobs(country_iso.values())
 
 
 if __name__ == "__main__":

@@ -2736,7 +2736,7 @@ function smeCardHtml(ind, iso) {
   if (!EXTRA.sme) return `<div class="ca-ind-card ca-wide"><div class="ca-ind-label">${label}</div><div class="ca-ind-year">${tr('Loading…', 'جارٍ التحميل…')}</div></div>`;
   const s = EXTRA.sme[iso];
   if (!s) return `<div class="ca-ind-card ca-wide ca-no-data"><div class="ca-ind-label">${label}</div><div class="ca-ind-val">—</div>
-    <div class="ca-ind-year">${tr('No labour force survey reports business size for this country', 'لا يوجد مسح للقوى العاملة يرصد حجم المنشآت لهذا البلد')}</div></div>`;
+    <div class="ca-ind-year">${tr('No reliable survey figures on business size for this country', 'لا تتوفر أرقام مسحية موثوقة عن حجم المنشآت لهذا البلد')}</div></div>`;
   const bands = s.s1 != null && s.s5_9 != null
     ? [[tr('Working alone (1 person)', 'يعملون بمفردهم (شخص واحد)'), s.s1], [tr('Micro (2–4 workers)', 'متناهية الصغر (2–4 عاملين)'), s.s2_4], [tr('Small (5–9)', 'صغيرة (5–9)'), s.s5_9], [tr('Small (10–49)', 'صغيرة (10–49)'), s.s10_49], [tr('50 or more workers', '50 عاملاً فأكثر'), s.s50plus]]
     : [[tr('Micro (1–4 workers)', 'متناهية الصغر (1–4 عاملين)'), s.s1_4], [tr('Small (5–49)', 'صغيرة (5–49)'), s.s5_49], [tr('50 or more workers', '50 عاملاً فأكثر'), s.s50plus]];
@@ -2744,7 +2744,7 @@ function smeCardHtml(ind, iso) {
       <span class="tp-bar"><i style="width:${Math.max(2, v)}%"></i></span><span class="tp-v">${v.toFixed(1)}%</span></div>`).join('');
   return `<div class="ca-ind-card ca-wide">
     <div class="ca-ind-label">${label}</div>
-    <div class="tp-head"><b>${s.under50.toFixed(0)}%</b> ${tr('of jobs are in businesses with fewer than 50 workers', 'من الوظائف في منشآت يقل عدد عامليها عن 50')} · ${s.year}</div>
+    <div class="tp-head"><b>${s.under50.toFixed(0)}%</b> ${tr('of jobs are in businesses with fewer than 50 workers', 'من الوظائف في منشآت يقل عدد عامليها عن 50')} · ${isStale(s) ? staleTag(s) : s.year}</div>
     <div class="tp-sub">${tr('Share of workers by size of the business they work in', 'توزيع العاملين حسب حجم المنشأة التي يعملون فيها')}</div>
     ${rows}
     <div class="ca-ind-src"><span><a href="https://ilostat.ilo.org/data/" target="_blank" class="ca-src-link">${tr('ILOSTAT labour force surveys', 'مسوح القوى العاملة — منظمة العمل الدولية')}</a> · ${tr('business size known for ' + s.coverage + '% of workers; medium firms (50–249) are counted with large', 'حجم المنشأة معروف لـ' + s.coverage + '% من العاملين؛ وتُحتسب المنشآت المتوسطة (50–249) مع الكبيرة')}</span></div>

@@ -193,7 +193,9 @@ def build_sme_jobs(country_isos) -> bool:
 
     out = {}
     for iso, years in data.items():
-        usable = [y for y, b in years.items() if "EST_AGGREGATE_S5-49" in b and b.get("EST_AGGREGATE_TOTAL")]
+        # all three size bands must be reported, otherwise a missing band would inflate the others
+        usable = [y for y, b in years.items() if b.get("EST_AGGREGATE_TOTAL")
+                  and all(k in b for k in ("EST_AGGREGATE_S1-4", "EST_AGGREGATE_S5-49", "EST_AGGREGATE_SGE50"))]
         if not usable:
             continue
         year = max(usable)

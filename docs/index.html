@@ -1314,6 +1314,7 @@ body {
 .tp-sub { font-size: 9.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--text4); margin: 4px 0 2px; }
 [dir="rtl"] .tp-sub { letter-spacing: 0; text-transform: none; }
 .tp-row { display: grid; grid-template-columns: 14px minmax(0, 1.3fr) minmax(0, 1fr) 42px; align-items: center; gap: 8px; font-size: 12px; padding: 3px 0; }
+.tp-row.sz { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) 42px; }   /* business-size rows: no rank column */
 .tp-n { font-size: 10px; color: var(--text4); font-weight: 700; }
 .tp-name { display: flex; align-items: center; gap: 6px; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text); font-weight: 600; }
 .tp-name img { width: 18px; height: 12px; object-fit: cover; border-radius: 2px; box-shadow: 0 0 0 1px rgba(0,0,0,.08); flex: none; }
@@ -2212,6 +2213,7 @@ const CA_INDICATORS = {
     { id:'SL.TLF.CACT.FE.ZS', label:'Women in the Labour Force (%)', labelAr:'مشاركة المرأة في القوى العاملة (%)', unit:'%',      fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SL.TLF.CACT.FE.ZS' },
     { id:'SL.EMP.VULN.ZS',    label:'Vulnerable Employment (%)',  labelAr:'العمالة الهشة (%)',                    unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SL.EMP.VULN.ZS' },
     { id:'FX.OWN.TOTL.ZS',    label:'Adults with a Bank or Mobile-Money Account', labelAr:'البالغون الذين لديهم حساب مصرفي أو محفظة إلكترونية', unit:'%', fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/FX.OWN.TOTL.ZS' },
+    { id:'__sme',            label:'Jobs by Business Size',      labelAr:'الوظائف حسب حجم المنشأة',             unit:'',         fmt:'sme', wide:true },
     { id:'SI.POV.GINI',       label:'Gini Index (inequality)',    labelAr:'مؤشر جيني (التفاوت)',                 unit:'',         fmt:'num1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SI.POV.GINI' },
   ],
   business: [
@@ -2676,12 +2678,12 @@ function cdSwitchIndTab(key, btn) {
 
 // ── Saved extra datasets: trade partners (UN Comtrade), environment rankings (EPI 2026,
 //    WorldRiskIndex 2025) and UNESCO school data. Loaded once, then the open panel re-renders.
-const EXTRA = { trade:null, env:null, uis:null };
+const EXTRA = { trade:null, env:null, uis:null, sme:null };
 let EXTRA_JOB = null;
 function loadExtras() {
-  if (!EXTRA_JOB) EXTRA_JOB = Promise.all(['trade_partners', 'environment', 'uis'].map(f =>
+  if (!EXTRA_JOB) EXTRA_JOB = Promise.all(['trade_partners', 'environment', 'uis', 'sme_jobs'].map(f =>
       fetch('data/' + f + '.json').then(r => r.ok ? r.json() : null).catch(() => null)))
-    .then(([t, e, u]) => { EXTRA.trade = t || {}; EXTRA.env = e || {}; EXTRA.uis = u || {};
+    .then(([t, e, u, s]) => { EXTRA.trade = t || {}; EXTRA.env = e || {}; EXTRA.uis = u || {}; EXTRA.sme = s || {};
       if (cdCountry && cdActiveTab === 'indicators') cdRenderIndicators(); });
   return EXTRA_JOB;
 }
@@ -2725,6 +2727,27 @@ function tradeCardHtml(ind, iso) {
     <div class="tp-sub">${tr('Share of total', 'الحصة من الإجمالي')}</div>
     ${rows}
     <div class="ca-ind-src"><span><a href="https://wits.worldbank.org/" target="_blank" class="ca-src-link">${tr('World Bank WITS (UN Comtrade)', 'البنك الدولي WITS (قاعدة بيانات الأمم المتحدة)')}</a>${t.mirror ? ' · ' + tr('as reported by partner countries', 'وفق ما أبلغت عنه الدول الشريكة') : ''}</span></div>
+  </div>`;
+}
+// Jobs by business size (ILOSTAT labour force surveys, data/sme_jobs.json): share of workers in businesses
+// with fewer than 50 people, split by size band. ILO bands stop at 50+, so medium firms sit with large ones.
+function smeCardHtml(ind, iso) {
+  const label = tr(ind.label, ind.labelAr);
+  if (!EXTRA.sme) return `<div class="ca-ind-card ca-wide"><div class="ca-ind-label">${label}</div><div class="ca-ind-year">${tr('Loading…', 'جارٍ التحميل…')}</div></div>`;
+  const s = EXTRA.sme[iso];
+  if (!s) return `<div class="ca-ind-card ca-wide ca-no-data"><div class="ca-ind-label">${label}</div><div class="ca-ind-val">—</div>
+    <div class="ca-ind-year">${tr('No labour force survey reports business size for this country', 'لا يوجد مسح للقوى العاملة يرصد حجم المنشآت لهذا البلد')}</div></div>`;
+  const bands = s.s1 != null && s.s5_9 != null
+    ? [[tr('Working alone (1 person)', 'يعملون بمفردهم (شخص واحد)'), s.s1], [tr('Micro (2–4 workers)', 'متناهية الصغر (2–4 عاملين)'), s.s2_4], [tr('Small (5–9)', 'صغيرة (5–9)'), s.s5_9], [tr('Small (10–49)', 'صغيرة (10–49)'), s.s10_49], [tr('50 or more workers', '50 عاملاً فأكثر'), s.s50plus]]
+    : [[tr('Micro (1–4 workers)', 'متناهية الصغر (1–4 عاملين)'), s.s1_4], [tr('Small (5–49)', 'صغيرة (5–49)'), s.s5_49], [tr('50 or more workers', '50 عاملاً فأكثر'), s.s50plus]];
+  const rows = bands.filter(b => b[1] != null).map(([n, v]) => `<div class="tp-row sz"><span class="tp-name">${n}</span>
+      <span class="tp-bar"><i style="width:${Math.max(2, v)}%"></i></span><span class="tp-v">${v.toFixed(1)}%</span></div>`).join('');
+  return `<div class="ca-ind-card ca-wide">
+    <div class="ca-ind-label">${label}</div>
+    <div class="tp-head"><b>${s.under50.toFixed(0)}%</b> ${tr('of jobs are in businesses with fewer than 50 workers', 'من الوظائف في منشآت يقل عدد عامليها عن 50')} · ${s.year}</div>
+    <div class="tp-sub">${tr('Share of workers by size of the business they work in', 'توزيع العاملين حسب حجم المنشأة التي يعملون فيها')}</div>
+    ${rows}
+    <div class="ca-ind-src"><span><a href="https://ilostat.ilo.org/data/" target="_blank" class="ca-src-link">${tr('ILOSTAT labour force surveys', 'مسوح القوى العاملة — منظمة العمل الدولية')}</a> · ${tr('business size known for ' + s.coverage + '% of workers; medium firms (50–249) are counted with large', 'حجم المنشأة معروف لـ' + s.coverage + '% من العاملين؛ وتُحتسب المنشآت المتوسطة (50–249) مع الكبيرة')}</span></div>
   </div>`;
 }
 const EPI_LBL = { en:['Bottom quarter', 'Below middle', 'Above middle', 'Top quarter'], ar:['الربع الأدنى', 'دون الوسط', 'فوق الوسط', 'الربع الأعلى'] };
@@ -2811,6 +2834,7 @@ function cdBuildIndGrid(tabKey) {
     const label = lang === 'ar' ? ind.labelAr : ind.label;
     if (ind.fmt === 'trade') return tradeCardHtml(ind, iso);
     if (ind.fmt === 'epi' || ind.fmt === 'wri') return envCardHtml(ind, iso);
+    if (ind.fmt === 'sme') return smeCardHtml(ind, iso);
     const raw = indRaw(ind, iso, data);
     const hasVal = !!raw;
     const val  = hasVal ? ca_formatValue(raw, ind) : (ind.id.startsWith('uis:') && !EXTRA.uis ? '…' : '—');
@@ -3512,6 +3536,8 @@ function repDeckCtor(fmt) {
   return PptxGenJS;
 }
 
+// Share of jobs in businesses under 50 workers (ILOSTAT, data/sme_jobs.json) as a report data point
+const smeData = country => { const s = (EXTRA.sme || {})[COUNTRY_ISO[country]]; return s ? { 'ILO.SME.U50': { value: s.under50, year: s.year } } : {}; };
 // Main trading partners for the report's Trade slide (World Bank WITS file), names in the report language
 async function repTrade(country) {
   await Promise.race([loadExtras(), new Promise(r => setTimeout(r, 8000))]);
@@ -3521,6 +3547,7 @@ async function repTrade(country) {
 }
 async function repBuildCountryBlob(country, setStatus, fmt) {
   repLibsReady();
+  await Promise.race([loadExtras(), new Promise(r => setTimeout(r, 8000))]);   // trade partners and SME jobs files
   setStatus && setStatus(tr('Loading live World Bank data for ' + country + '…', 'جارٍ تحميل بيانات البنك الدولي المباشرة لـ' + cN(country) + '…'));
   const d = await repCountryData(country);
   setStatus && setStatus(tr('Building the ' + country + ' report…', 'جارٍ إعداد تقرير ' + cN(country) + '…'));
@@ -3530,7 +3557,7 @@ async function repBuildCountryBlob(country, setStatus, fmt) {
   const flagRatio = await repImgRatio(flagData);
   const need = needScores()[country] || {};
   const blob = await window.buildCountryDeck({
-    country, data: Object.assign({}, d, pol ? pol.wgi : {}), info: COUNTRY_INFO[country] || {}, iso2: (COUNTRY_ISO2[country] || '').toLowerCase(),
+    country, data: Object.assign({}, d, pol ? pol.wgi : {}, smeData(country)), sme: (EXTRA.sme || {})[COUNTRY_ISO[country]] || null, info: COUNTRY_INFO[country] || {}, iso2: (COUNTRY_ISO2[country] || '').toLowerCase(),
     politics: pol && pol.ok ? { hos: pol.hos, hog: pol.hog, gov: pol.gov, office: pol.office, hogOffice: pol.hogOffice,
       hosSince: pol.hosSince, hosUntil: pol.hosUntil, hogSince: pol.hogSince, hogUntil: pol.hogUntil, hosTerm: pol.hosTerm, hogTerm: pol.hogTerm } : null,
     flagData, flagRatio, mapData, logo, subnational, dateStr: repDateStr(), PptxGenJS: repDeckCtor(fmt), output: 'blob', lang,

@@ -48,7 +48,7 @@ function buildCountryDeck(opts){
     'SH.STA.SMSS.ZS':'WHO/UNICEF JMP', 'SH.STA.ODFC.ZS':'WHO/UNICEF JMP', 'EG.ELC.ACCS.ZS':'World Bank · IEA', 'EG.CFT.ACCS.ZS':'WHO', 'IT.NET.USER.ZS':'ITU',
     'EG.FEC.RNEW.ZS':'IEA · World Bank', 'GOV_WGI_PV.SC':'World Bank WGI', 'GOV_WGI_VA.SC':'World Bank WGI', 'GOV_WGI_GE.SC':'World Bank WGI',
     'GOV_WGI_RL.SC':'World Bank WGI', 'GOV_WGI_CC.SC':'World Bank WGI',
-    'SL.UEM.1524.ZS':'ILO', 'SL.TLF.CACT.FE.ZS':'ILO', 'SL.EMP.VULN.ZS':'ILO', 'FX.OWN.TOTL.ZS':'World Bank Global Findex', 'SI.POV.GINI':'World Bank',
+    'ILO.SME.U50':'ILOSTAT',     'SL.UEM.1524.ZS':'ILO', 'SL.TLF.CACT.FE.ZS':'ILO', 'SL.EMP.VULN.ZS':'ILO', 'FX.OWN.TOTL.ZS':'World Bank Global Findex', 'SI.POV.GINI':'World Bank',
     'SN.ITK.MSFI.ZS':'FAO', 'FS.AST.PRVT.GD.ZS':'IMF · World Bank', 'BX.KLT.DINV.WD.GD.ZS':'IMF · World Bank', 'FR.INR.LEND':'IMF',
     'IC.FRM.BKWC.ZS':'World Bank Enterprise Surveys', 'IC.ELC.OUTG.ZS':'World Bank Enterprise Surveys', 'IC.BUS.NDNS.ZS':'World Bank', 'LP.LPI.OVRL.XQ':'World Bank LPI',
     'NE.EXP.GNFS.ZS':'World Bank', 'TM.TAX.MRCH.WM.AR.ZS':'World Bank WITS', 'BN.CAB.XOKA.GD.ZS':'IMF', 'TX.VAL.MANF.ZS.UN':'UN Comtrade · World Bank' };
@@ -94,6 +94,7 @@ function buildCountryDeck(opts){
     'GOV_WGI_RL.SC':     { en:'Rule of law (0–100)', ar:'سيادة القانون (0–100)', f: r => F.num(r) },
     'GOV_WGI_CC.SC':     { en:'Control of corruption (0–100)', ar:'مكافحة الفساد (0–100)', f: r => F.num(r) },
     // Economic empowerment · Business enablement · Trade
+    'ILO.SME.U50':       { en:'Jobs in businesses under 50 workers', ar:'الوظائف في منشآت يقل عدد عامليها عن 50', f: r => F.pct(r) },
     'SL.UEM.1524.ZS':    { en:'Youth unemployment (15–24)', ar:'بطالة الشباب (15–24)', f: r => F.pct(r, 1) },
     'SL.TLF.CACT.FE.ZS': { en:'Women in the labour force', ar:'مشاركة المرأة في القوى العاملة', f: r => F.pct(r) },
     'SL.EMP.VULN.ZS':    { en:'Vulnerable employment', ar:'العمالة الهشة', f: r => F.pct(r) },
@@ -381,7 +382,7 @@ function buildCountryDeck(opts){
       inv:[ [() => off('SH.MED.PHYS.ZS', 1) || off('SH.DYN.MORT', 0), 'Co-invest with private operators in diagnostic centres and district hospitals (PPP), and in local production of essential medicines and medical supplies.',
              'الاستثمار المشترك مع مشغّلين من القطاع الخاص في مراكز التشخيص والمستشفيات الإقليمية (شراكة بين القطاعين)، وفي التصنيع المحلي للأدوية والمستلزمات الطبية الأساسية.'] ] },
     { key:'econ', en:'Economic Empowerment', ar:'التمكين الاقتصادي', short:['Economic empowerment','التمكين الاقتصادي'],
-      stats:['SI.POV.DDAY','SL.UEM.TOTL.ZS','SL.TLF.CACT.FE.ZS','FX.OWN.TOTL.ZS'], bars:['SI.POV.DDAY','SL.UEM.TOTL.ZS','SL.UEM.1524.ZS','SL.TLF.CACT.FE.ZS','SL.EMP.VULN.ZS','FX.OWN.TOTL.ZS','SI.POV.GINI'],
+      stats:['SI.POV.DDAY','SL.UEM.TOTL.ZS','SL.TLF.CACT.FE.ZS','FX.OWN.TOTL.ZS','ILO.SME.U50'], bars:['SI.POV.DDAY','SL.UEM.TOTL.ZS','SL.UEM.1524.ZS','SL.TLF.CACT.FE.ZS','SL.EMP.VULN.ZS','FX.OWN.TOTL.ZS','SI.POV.GINI'],
       acts:[ ['SI.POV.DDAY',1,'Expand social protection and cash transfers for households in extreme poverty.','توسيع الحماية الاجتماعية والتحويلات النقدية للأسر في الفقر المدقع.'],
              ['SL.UEM.1524.ZS',1,'Youth employment: vocational skills, apprenticeships and job-matching services.','تشغيل الشباب: المهارات المهنية والتدريب المهني وخدمات المواءمة مع الوظائف.'],
              ['SL.TLF.CACT.FE.ZS',1,'Women’s economic empowerment: childcare, skills and finance for women entrepreneurs.','التمكين الاقتصادي للمرأة: رعاية الأطفال والمهارات والتمويل لرائدات الأعمال.'],
@@ -787,6 +788,14 @@ function buildCountryDeck(opts){
     const RX = 7.85, RW = 13.333 - RX - 0.5;
     eyebrow(sl, T('Key insights', 'أبرز الملاحظات'), RX, 1.38, RW, C.SKY_DK);
     let ins = s.ranked.filter(id => lvl(id) <= 2).map(id => insight(id, id === s.mapId)).filter(Boolean).slice(0, 3);
+    // Economic empowerment: where people work — small businesses (ILOSTAT), shown second so it is never crowded out
+    if (s.key === 'econ' && opts.sme && opts.sme.under50 != null && !(R('ILO.SME.U50') || {}).stale) {
+      const sm = opts.sme, micro = sm.s1_4 != null ? Math.round(sm.s1_4) : null;
+      ins.splice(Math.min(1, ins.length), 0, { L: 2, head: T(`Small businesses · ${Math.round(sm.under50)}% of jobs`, `المنشآت الصغيرة · ${Math.round(sm.under50)}% من الوظائف`),
+        body: T(`${Math.round(sm.under50)}% of workers are in businesses with fewer than 50 people${micro != null ? `, including ${micro}% in micro units of 1–4 people` : ''} (${sm.year}). Small firms are where most people earn a living, so finance, skills and market access for them reach the most jobs and households.`,
+                `${Math.round(sm.under50)}% من العاملين في منشآت يقل عدد عامليها عن 50${micro != null ? `، منهم ${micro}% في وحدات متناهية الصغر من 1–4 أشخاص` : ''} (${sm.year}). فالمنشآت الصغيرة هي مصدر رزق معظم الناس، لذا يصل التمويل والمهارات والنفاذ إلى الأسواق لها إلى أكبر عدد من الوظائف والأسر.`) });
+      ins = ins.slice(0, 3);
+    }
     // Trade: what the export base looks like (manufactured vs food share) — a structural point, not a benchmark rating
     if (s.key === 'trade') {
       const m = R('TX.VAL.MANF.ZS.UN'), fd = R('TX.VAL.FOOD.ZS.UN'), tp = opts.trade && opts.trade.exports;

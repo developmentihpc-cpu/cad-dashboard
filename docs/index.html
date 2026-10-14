@@ -2187,13 +2187,13 @@ const CA_INDICATORS = {
     { id:'SE.PRM.ENRL.TC.ZS',    label:'Pupil-Teacher Ratio (primary)', labelAr:'نسبة الطلاب للمعلمين (ابتدائي)', unit:'',         fmt:'num1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SE.PRM.ENRL.TC.ZS' },
     { id:'SE.PRM.CMPT.ZS',    label:'Primary Completion Rate',    labelAr:'معدل إتمام التعليم الابتدائي',        unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SE.PRM.CMPT.ZS' },
     { id:'SE.ADT.1524.LT.ZS', label:'Youth Literacy Rate (15–24)', labelAr:'معدل محو أمية الشباب (15–24)', unit:'%',            fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SE.ADT.1524.LT.ZS' },
-    // Are there enough schools? — UNESCO UIS (no global dataset counts schools per area; these show access and school conditions)
-    { id:'uis:ROFST.1.CP',      label:'Out-of-School Rate (primary age)',        labelAr:'معدل عدم الالتحاق بالمدرسة (سن الابتدائي)',     unit:'%', fmt:'pct1', group:'schools' },
-    { id:'uis:ROFST.2.CP',      label:'Out-of-School Rate (lower-secondary age)', labelAr:'معدل عدم الالتحاق بالمدرسة (سن الإعدادي)',     unit:'%', fmt:'pct1', group:'schools' },
-    { id:'uis:PTRHC.1.TRAINED', label:'Pupils per Trained Teacher (primary)',    labelAr:'التلاميذ لكل معلم مدرَّب (ابتدائي)',            unit:'',  fmt:'num1', group:'schools' },
-    { id:'uis:SCHBSP.1.WELEC',  label:'Primary Schools with Electricity',        labelAr:'المدارس الابتدائية المزوّدة بالكهرباء',          unit:'%', fmt:'pct1', group:'schools' },
-    { id:'uis:SCHBSP.1.WWATA',  label:'Primary Schools with Drinking Water',     labelAr:'المدارس الابتدائية المزوّدة بمياه الشرب',        unit:'%', fmt:'pct1', group:'schools' },
-    { id:'uis:SCHBSP.1.WTOILA', label:'Primary Schools with Separate Toilets',   labelAr:'المدارس الابتدائية ذات دورات مياه منفصلة',      unit:'%', fmt:'pct1', group:'schools' },
+    // UNESCO UIS: school access and conditions
+    { id:'uis:ROFST.1.CP',      label:'Out-of-School Rate (primary age)',        labelAr:'معدل عدم الالتحاق بالمدرسة (سن الابتدائي)',     unit:'%', fmt:'pct1' },
+    { id:'uis:ROFST.2.CP',      label:'Out-of-School Rate (lower-secondary age)', labelAr:'معدل عدم الالتحاق بالمدرسة (سن الإعدادي)',     unit:'%', fmt:'pct1' },
+    { id:'uis:PTRHC.1.TRAINED', label:'Pupils per Trained Teacher (primary)',    labelAr:'التلاميذ لكل معلم مدرَّب (ابتدائي)',            unit:'',  fmt:'num1' },
+    { id:'uis:SCHBSP.1.WELEC',  label:'Primary Schools with Electricity',        labelAr:'المدارس الابتدائية المزوّدة بالكهرباء',          unit:'%', fmt:'pct1' },
+    { id:'uis:SCHBSP.1.WWATA',  label:'Primary Schools with Drinking Water',     labelAr:'المدارس الابتدائية المزوّدة بمياه الشرب',        unit:'%', fmt:'pct1' },
+    { id:'uis:SCHBSP.1.WTOILA', label:'Primary Schools with Separate Toilets',   labelAr:'المدارس الابتدائية ذات دورات مياه منفصلة',      unit:'%', fmt:'pct1' },
   ],
   health: [
     { id:'SP.DYN.LE00.IN',    label:'Life Expectancy at Birth',   labelAr:'متوسط العمر المتوقع عند الولادة',    unit:' yrs',     fmt:'num1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SP.DYN.LE00.IN' },
@@ -2825,14 +2825,8 @@ function cdBuildIndGrid(tabKey) {
       <div class="ca-ind-src"><a href="${src.url}" target="_blank" class="ca-src-link" onclick="event.stopPropagation()">${src.name}</a><span class="ca-more">${tr('Details', 'التفاصيل')} ›</span></div>
     </div>`;
   };
-  const main = inds.filter(i => !i.group).map(card).join('');
-  const schools = inds.filter(i => i.group === 'schools');
-  const schoolsHtml = schools.length ? `<div class="ca-group-hd">${tr('Are there enough schools?', 'هل تكفي المدارس؟')}</div>
-    <div class="ca-group-note">${tr('No international dataset counts schools per area. These UNESCO measures show whether children can get a school place and whether schools are equipped (SDG 4.1 and 4.a).',
-      'لا توجد بيانات دولية تحصي عدد المدارس لكل منطقة. تُظهر مؤشرات اليونسكو هذه ما إذا كان الأطفال يحصلون على مقعد دراسي وما إذا كانت المدارس مجهّزة (الهدفان 4.1 و4.أ).')}</div>
-    <div class="cd-ind-grid">${schools.map(card).join('')}</div>` : '';
   const needHtml = tabKey === 'overview' ? needPanelHtml(cdCountry) : '';
-  return `${needHtml}${sevLegendHtml()}<div class="cd-ind-grid">${main}</div>${schoolsHtml}`;
+  return `${needHtml}${sevLegendHtml()}<div class="cd-ind-grid">${inds.map(card).join('')}</div>`;
 }
 
 // ── Indicator details (opens on click): value, rating and its thresholds, definition,

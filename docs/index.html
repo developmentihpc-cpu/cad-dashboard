@@ -379,6 +379,7 @@ body {
 }
 .drawer-title  { font-size: 15px; font-weight: 700; }
 .drawer-sub    { font-size: 11px; color: var(--text3); margin-top: 1px; }
+.need-fn       { font-size: 10px; line-height: 1.35; color: var(--text3); margin-top: 4px; max-width: 620px; }
 .drawer-tabs   { display: flex; gap: 4px; }
 .dtab {
   padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600;
@@ -1580,6 +1581,7 @@ body {
 .ex-pop { font-family:'Inter',sans-serif; min-width:190px; }
 .ex-pop-name { font-family:var(--ex-serif); font-size:16px; font-weight:600; color:var(--ex-ink); }
 .ex-pop-meta { font-size:11.5px; color:var(--ex-mute); margin:3px 0 10px; }
+.ex-pop-fn { margin:-4px 0 10px; max-width:300px; }
 .ex-pop-row { display:flex; gap:6px; }
 .leaflet-popup-content-wrapper { border-radius:12px !important; box-shadow:0 12px 32px rgba(15,42,64,.18) !important; }
 
@@ -1936,6 +1938,7 @@ body {
           <div>
             <div class="drawer-title" id="drawer-title">Country</div>
             <div class="drawer-sub"   id="drawer-sub">—</div>
+            <div class="need-fn" id="drawer-fn" hidden></div>
           </div>
           <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end">
             <button class="cd-export-btn" onclick="repRunSingle(cdCountry)">
@@ -2468,8 +2471,13 @@ function trackedCountryLayer(m, res, style, bind) {
     return out;
   });
 }
+// Need index wording, the same everywhere a country is shown: the score and what the rank is a rank of, with a footnote
+const needRankTxt = (n, total, star = '*') => tr(`Need index${star} ${Math.round(n.need)}/100 · Rank ${n.rank} of ${total} in terms of need${star}`,
+  `مؤشر الاحتياج${star} ${Math.round(n.need)}/100 · الترتيب ${n.rank} من ${total} من حيث الاحتياج${star}`);
+const needFootnote = total => tr(`* Need index: ODA's score from 0 to 100 combining under-5 and maternal mortality, undernourishment and the share of people without basic water, sanitation and electricity; higher means greater need. Rank compares the ${total} tracked countries on this index: 1 = greatest need.`,
+  `* مؤشر الاحتياج: درجة من 0 إلى 100 يحسبها المكتب وتجمع وفيات الأطفال دون الخامسة ووفيات الأمهات ونقص التغذية ونسبة السكان المحرومين من مياه الشرب الأساسية والصرف الصحي والكهرباء؛ والأعلى يعني احتياجاً أكبر. ويقارن الترتيب بين الدول المتابَعة (${total}) وفق هذا المؤشر: 1 = الاحتياج الأكبر.`);
 const needTip = c => { const n = needScores()[c] || {}, total = (needScores().__ranked || []).length;
-  return `<b>${exEsc(cN(c))}</b>` + (n.rank ? tr(` · Need index ${Math.round(n.need)} · Rank ${n.rank} of ${total}`, ` · مؤشر الاحتياج ${Math.round(n.need)} · الترتيب ${n.rank} من ${total}`) : ''); };
+  return `<b>${exEsc(cN(c))}</b>` + (n.rank ? ' · ' + needRankTxt(n, total, '') + tr(' (1 = greatest need)', ' (1 = الاحتياج الأكبر)') : ''); };
 const applyStyle = (o, s, dotExtra) => { if (o.layer) o.layer.setStyle(s); if (o.dot) o.dot.setStyle(Object.assign({}, s, { weight:1.5, color: s.color === '#FFFFFF' ? '#FFFFFF' : s.color }, dotExtra || {})); };
 
 // Full Countries map
@@ -2524,8 +2532,9 @@ function openCountryDrawer(country) {
   document.getElementById('drawer-title').textContent = cN(country);
   document.getElementById('drawer-sub').textContent =
     [rN(repRegionOf(country)), incN(COUNTRY_INCOME[country]),
-     need.rank ? tr('Need index ' + Math.round(need.need) + ' · Rank ' + need.rank + ' of ' + total,
-                    'مؤشر الاحتياج ' + Math.round(need.need) + ' · الترتيب ' + need.rank + ' من ' + total) : ''].filter(Boolean).join(' · ') || '—';
+     need.rank ? needRankTxt(need, total) : ''].filter(Boolean).join(' · ') || '—';
+  const fn = document.getElementById('drawer-fn');
+  if (fn) { fn.textContent = need.rank ? needFootnote(total) : ''; fn.hidden = !need.rank; }
 
   // Reset main tabs
   document.querySelectorAll('#cd-main-tabs .dtab').forEach(b => b.classList.remove('active'));
@@ -2581,7 +2590,7 @@ function cdOverviewHtml(c, data) {
         ${fact(tr('Head of state', 'رئيس الدولة'), hos)}
         ${fact(tr('Head of government', 'رئيس الحكومة'), hog)}
         ${pol && !pol.gov.length ? fact(tr('Region', 'الإقليم'), exEsc(rN(repRegionOf(c)))) : fact(tr('System of government', 'نظام الحكم'), gov)}
-        ${fact(tr('ODA need index', 'مؤشر الاحتياج'), (n.rank ? `<b>${Math.round(n.need)}</b>/100 · ${tr('Rank ' + n.rank + ' of ' + total, 'الترتيب ' + n.rank + ' من ' + total)}` : '—') + `<button type="button" class="cd-ov-how" onclick="cdOpenNeedHow()">${tr('How is it calculated?', 'كيف يُحتسب؟')}</button>`)}
+        ${fact(tr('ODA need index', 'مؤشر الاحتياج'), (n.rank ? `<b>${Math.round(n.need)}</b>/100 · ${tr('Rank ' + n.rank + ' of ' + total + ' in terms of need (1 = greatest)', 'الترتيب ' + n.rank + ' من ' + total + ' من حيث الاحتياج (1 = الأكبر)')}` : '—') + `<button type="button" class="cd-ov-how" onclick="cdOpenNeedHow()">${tr('How is it calculated?', 'كيف يُحتسب؟')}</button>`)}
       </div>
       <div class="cd-ov-pol">
         <div class="cd-ov-pol-hd">${tr('Political situation', 'الوضع السياسي')} <span>${tr('governance scores, 0–100 (higher is better)', 'مؤشرات الحوكمة، 0–100 (الأعلى أفضل)')}</span></div>
@@ -3909,7 +3918,8 @@ function exInitMiniMap() {
     const n = needScores()[c] || {};
     l.bindPopup(`<div class="ex-pop">
         <div class="ex-pop-name">${flagImg(c, 20, 14)}&nbsp; ${exEsc(cN(c))}</div>
-        <div class="ex-pop-meta">${exEsc(rN(repRegionOf(c)) || '')}${n.rank ? tr(' · Need index ' + Math.round(n.need) + ' · Rank ' + n.rank + ' of ' + total, ' · مؤشر الاحتياج ' + Math.round(n.need) + ' · الترتيب ' + n.rank + ' من ' + total) : ''}</div>
+        <div class="ex-pop-meta">${exEsc(rN(repRegionOf(c)) || '')}${n.rank ? ' · ' + needRankTxt(n, total) : ''}</div>
+        ${n.rank ? `<div class="need-fn ex-pop-fn">${needFootnote(total)}</div>` : ''}
         <div class="ex-pop-row">
           <button class="ex-mini" onclick="exOpenCountry(${qa(c)})">${tr('Country overview', 'نظرة عامة')}</button>
           <button class="ex-mini" onclick="repRunSingle(${qa(c)})">${tr('Instant report', 'تقرير فوري')}</button>

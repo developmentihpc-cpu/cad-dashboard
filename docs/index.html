@@ -3124,7 +3124,7 @@ const LEADER_OVERRIDE = {
 function repPolitics(country) {
   if (POLITICS[country]) return POLITICS[country];
   const job = (async () => {
-    const iso = COUNTRY_ISO[country], out = { wgi:{}, hos:[], hog:[], gov:[], office:[], hosSince:null, hogSince:null, ok:false };
+    const iso = COUNTRY_ISO[country], out = { wgi:{}, hos:[], hog:[], gov:[], office:[], hogOffice:[], hosSince:null, hogSince:null, hosUntil:null, hogUntil:null, ok:false };
     if (!iso || iso.length !== 3) return out;
     const timeout = ms => new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), ms));
     // World Bank governance scores — one retry, as the API can be slow
@@ -3148,38 +3148,45 @@ function repPolitics(country) {
     const lbl = (en, a) => `OPTIONAL { ${en.v} rdfs:label ${en.n}_e FILTER(lang(${en.n}_e)='en') } OPTIONAL { ${en.v} rdfs:label ${en.n}_m FILTER(lang(${en.n}_m)='mul') } BIND(COALESCE(${en.n}_e, ${en.n}_m) AS ${en.n}) OPTIONAL { ${en.v} rdfs:label ${a} FILTER(lang(${a})='ar') }`;
     const wd = (async () => {
       try {
-        const rows = await sparql(`SELECT ?role ?p ?pEn ?pAr ?start ?hosOff ?hogOff ?offEn ?offAr ?govEn ?govAr WHERE { ${iso === 'XKX' ? 'VALUES ?c { wd:Q1246 }' : `?c wdt:P298 "${iso}"`} .
+        const rows = await sparql(`SELECT ?role ?p ?pEn ?pAr ?start ?end ?hosOff ?hogOff ?offEn ?offAr ?hogEn ?hogAr ?govEn ?govAr WHERE { ${iso === 'XKX' ? 'VALUES ?c { wd:Q1246 }' : `?c wdt:P298 "${iso}"`} .
           { VALUES ?prop { p:P35 p:P6 } ?c ?prop ?s . BIND(IF(?prop = p:P35, "hos", "hog") AS ?role)
-            { ?s ps:P35 ?p } UNION { ?s ps:P6 ?p } FILTER NOT EXISTS { ?s pq:P582 ?e } FILTER NOT EXISTS { ?p wdt:P570 ?died } OPTIONAL { ?s pq:P580 ?start } ${lbl({ v:'?p', n:'?pEn' }, '?pAr')} }
+            { ?s ps:P35 ?p } UNION { ?s ps:P6 ?p } OPTIONAL { ?s pq:P582 ?end } FILTER(!BOUND(?end) || ?end > NOW()) FILTER NOT EXISTS { ?p wdt:P570 ?died } OPTIONAL { ?s pq:P580 ?start } ${lbl({ v:'?p', n:'?pEn' }, '?pAr')} }
           UNION { ?c wdt:P1906 ?hosOff . ${lbl({ v:'?hosOff', n:'?offEn' }, '?offAr')} }
-          UNION { ?c wdt:P1313 ?hogOff . }
+          UNION { ?c wdt:P1313 ?hogOff . ${lbl({ v:'?hogOff', n:'?hogEn' }, '?hogAr')} }
           UNION { ?c wdt:P122 ?gov . ${lbl({ v:'?gov', n:'?govEn' }, '?govAr')} } }`);
         const cand = { hos:[], hog:[] }, offices = {};
         const addGov = (en, a) => { if (en && !out.gov.some(x => x.en === en)) out.gov.push({ en, ar: a || en }); };
         rows.forEach(b => {
-          if (b.role && b.pEn) cand[b.role.value].push({ id: b.p.value, en: b.pEn.value, ar: (b.pAr || b.pEn).value, start: b.start ? b.start.value.slice(0, 10) : '' });
+          if (b.role && b.pEn) cand[b.role.value].push({ id: b.p.value, en: b.pEn.value, ar: (b.pAr || b.pEn).value, start: b.start ? b.start.value.slice(0, 10) : '', end: b.end ? b.end.value.slice(0, 10) : '' });
           if (b.hosOff) { offices.hos = b.hosOff.value.split('/').pop(); if (b.offEn && !out.office.length) out.office.push({ en: b.offEn.value, ar: (b.offAr || b.offEn).value }); }
-          if (b.hogOff) offices.hog = b.hogOff.value.split('/').pop();
+          if (b.hogOff) { offices.hog = b.hogOff.value.split('/').pop(); if (b.hogEn && !out.hogOffice.length) out.hogOffice.push({ en: b.hogEn.value, ar: (b.hogAr || b.hogEn).value }); }
           if (b.govEn) addGov(b.govEn.value, b.govAr && b.govAr.value);
         });
         const offIds = Object.entries(offices).filter(([, id]) => id);
         if (offIds.length) {
-          const held = await sparql(`SELECT ?office ?p ?pEn ?pAr ?start WHERE { VALUES ?office { ${offIds.map(([, id]) => 'wd:' + id).join(' ')} }
-            ?st ps:P39 ?office . ?p p:P39 ?st . FILTER NOT EXISTS { ?st pq:P582 ?e } FILTER NOT EXISTS { ?p wdt:P570 ?died }
+          const held = await sparql(`SELECT ?office ?p ?pEn ?pAr ?start ?end WHERE { VALUES ?office { ${offIds.map(([, id]) => 'wd:' + id).join(' ')} }
+            ?st ps:P39 ?office . ?p p:P39 ?st . OPTIONAL { ?st pq:P582 ?end } FILTER(!BOUND(?end) || ?end > NOW()) FILTER NOT EXISTS { ?p wdt:P570 ?died }
             OPTIONAL { ?st pq:P580 ?start } ${lbl({ v:'?p', n:'?pEn' }, '?pAr')} }`).catch(() => []);
           held.forEach(b => { const id = b.office.value.split('/').pop();
-            offIds.forEach(([role, oid]) => { if (oid === id && b.pEn) cand[role].push({ id: b.p.value, en: b.pEn.value, ar: (b.pAr || b.pEn).value, start: b.start ? b.start.value.slice(0, 10) : '' }); }); });
+            offIds.forEach(([role, oid]) => { if (oid === id && b.pEn) cand[role].push({ id: b.p.value, en: b.pEn.value, ar: (b.pAr || b.pEn).value, start: b.start ? b.start.value.slice(0, 10) : '', end: b.end ? b.end.value.slice(0, 10) : '' }); }); });
         }
         ['hos', 'hog'].forEach(role => {
           const best = cand[role].filter(x => x.start).sort((a, b) => b.start.localeCompare(a.start))[0] || cand[role][0];
-          if (best) { out[role] = [{ en: best.en, ar: best.ar }]; out[role + 'Since'] = best.start || null; }
+          if (best) { out[role] = [{ en: best.en, ar: best.ar }]; out[role + 'Since'] = best.start || null; out[role + 'Until'] = best.end || null; }
         });
         // Contested governments: Wikidata lists rival office-holders, so show the internationally recognised one
         const fix = LEADER_OVERRIDE[country];
-        if (fix) Object.entries(fix).forEach(([role, v]) => { out[role] = [{ en: v.en, ar: v.ar }]; out[role + 'Since'] = v.since; });
+        if (fix) Object.entries(fix).forEach(([role, v]) => { out[role] = [{ en: v.en, ar: v.ar }]; out[role + 'Since'] = v.since; out[role + 'Until'] = v.until || null; });
       } catch (e) {}
     })();
     await Promise.all([wgi, wd]);
+    // Term of office (researched table): attached only while the researched leader is the person Wikidata reports today
+    const terms = (await loadLeaderTerms())[country];
+    if (terms) ['hos', 'hog'].forEach(role => {
+      const t = terms[role];
+      if (!t || t.same || !t.name || !out[role].length || !samePerson(out[role][0].en, t.name)) return;
+      out[role + 'Term'] = { since: t.since || null, years: t.termYears || null, end: t.termEnd || null };
+    });
     out.ok = !!(out.hos.length || Object.keys(out.wgi).length);
     if (!Object.keys(out.wgi).length || !out.hos.length) setTimeout(() => { if (POLITICS[country] === job) delete POLITICS[country]; }, 0);   // retry next time
     return out;
@@ -3187,7 +3194,15 @@ function repPolitics(country) {
   POLITICS[country] = job;
   return job;
 }
-const polName = list => (list || []).slice(0, 2).map(x => tr(x.en, x.ar)).join(tr(' & ', ' و'));
+// Terms of office — docs/data/leader_terms.json (researched; Wikidata rarely records term lengths or scheduled ends).
+// Matched to the live leader by name, so an entry that has gone out of date is simply not shown.
+let LEADER_TERMS = null;
+const loadLeaderTerms = () => LEADER_TERMS || (LEADER_TERMS = fetch('data/leader_terms.json', { cache:'no-cache' })
+  .then(r => r.ok ? r.json() : {}).catch(() => ({})));
+const NAME_COMMON = new Set(['mohamed', 'mohammed', 'muhammad', 'mohammad', 'ahmed', 'ahmad', 'abdel', 'abdul', 'king', 'ould', 'bin', 'ibn', 'abu', 'and']);
+const nameKey = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().split(/[^a-z]+/).filter(w => w.length >= 3 && !NAME_COMMON.has(w));
+const samePerson = (a, b) => { const A = nameKey(a); return nameKey(b).some(w => A.includes(w)); };
+const polName = list =>(list || []).slice(0, 2).map(x => tr(x.en, x.ar)).join(tr(' & ', ' و'));
 // Wikidata stores year-only dates as 1 January — show just the year in that case
 const polSince = d => { try { return !d ? '' : /-01-01$/.test(d) ? d.slice(0, 4) : new Date(d).toLocaleDateString(LOCALE(), { month:'short', year:'numeric' }); } catch (e) { return ''; } };
 async function repFetchDataUrl(url, ms) {
@@ -3218,7 +3233,66 @@ async function repLogo() {
 // so PowerPoint places it 1:1. Maps only show what we know precisely: where the country is,
 // and — for regions — each country's need-index tier. Everything else is shown as charts.
 const GEO_NAME = { 'Congo, Dem. Rep.':'Dem. Rep. Congo', 'South Sudan':'S. Sudan' };   // our name → world-atlas name
-async function repMapImage({ focus = [], fill = {}, labels = false, slot }) {
+// Names on a single-country report map: the country itself and every neighbour with enough of its area in view,
+// in the report's language. Each name goes at the point deepest inside the visible part of its shape (found on a
+// grid), clear of the flag corner; a name that would collide with one already placed is left out.
+const GEO_NAME_OURS = Object.fromEntries(Object.entries(GEO_NAME).map(([ours, geo]) => [geo, ours]));
+function geoLabel(name) {   // world-atlas name → display name
+  if (lang !== 'ar') return name;
+  return AR_COUNTRY[GEO_NAME_OURS[name] || name] || (typeof AR_NE_NAME !== 'undefined' && AR_NE_NAME[name]) || name;
+}
+function mapNameCountries(g, features, focusF, polys, px, py, W, H) {
+  const STEP = 20, nx = Math.ceil(W / STEP), ny = Math.ceil(H / STEP);
+  const flagW = Math.round(W * 1.45 / DK.MAP_SLOTS.country.w), flagH = Math.round(W * 1.0 / DK.MAP_SLOTS.country.w);   // flag sits in the top corner of the slide map
+  const placed = [lang === 'ar' ? { x0:W - flagW, x1:W, y0:0, y1:flagH } : { x0:0, x1:flagW, y0:0, y1:flagH }];
+  const spots = f => {
+    let a = Infinity, b = -Infinity, c = Infinity, d = -Infinity;
+    polys(f).forEach(p => p[0].forEach(([x, y]) => { const X = px(x), Y = py(y); a = Math.min(a, X); b = Math.max(b, X); c = Math.min(c, Y); d = Math.max(d, Y); }));
+    if (b < 0 || a > W || d < 0 || c > H) return null;                      // not in view
+    const path = new Path2D();
+    polys(f).forEach(p => p.forEach(ring => ring.forEach(([x, y], i) => i ? path.lineTo(px(x), py(y)) : path.moveTo(px(x), py(y)))));
+    const inside = new Uint8Array(nx * ny); let n = 0;
+    const i0 = Math.max(0, Math.floor(a / STEP)), i1 = Math.min(nx - 1, Math.ceil(b / STEP)), j0 = Math.max(0, Math.floor(c / STEP)), j1 = Math.min(ny - 1, Math.ceil(d / STEP));
+    for (let j = j0; j <= j1; j++) for (let i = i0; i <= i1; i++)
+      if (g.isPointInPath(path, i * STEP + STEP / 2, j * STEP + STEP / 2, 'evenodd')) { inside[j * nx + i] = 1; n++; }
+    if (n < 6) return null;                                                  // only a sliver in view
+    // depth of each inside cell = distance (in cells) to the nearest cell outside the shape or off the map
+    const out = [];
+    for (let j = j0; j <= j1; j++) for (let i = i0; i <= i1; i++) {
+      if (!inside[j * nx + i]) continue;
+      let r = 1;
+      for (; r < 10; r++) {
+        let hit = false;
+        for (let dj = -r; dj <= r && !hit; dj++) for (let di = -r; di <= r && !hit; di += (Math.abs(dj) === r ? 1 : 2 * r)) {
+          const ii = i + di, jj = j + dj;
+          if (ii < 0 || jj < 0 || ii >= nx || jj >= ny || !inside[jj * nx + ii]) hit = true;
+        }
+        if (hit) break;
+      }
+      out.push({ x: i * STEP + STEP / 2, y: j * STEP + STEP / 2, r });
+    }
+    return out.sort((p, q) => q.r - p.r);
+  };
+  const put = (f, text, size, weight, fill, halo, minR) => {
+    const cs = spots(f); if (!cs) return;
+    g.font = `${weight} ${size}px ` + (lang === 'ar' ? '"IBM Plex Sans Arabic", sans-serif' : 'Inter, sans-serif');
+    g.textAlign = 'center'; g.textBaseline = 'middle';
+    const tw = g.measureText(text).width;
+    for (const c of cs.slice(0, 60)) {
+      if (c.r < minR) break;
+      const box = { x0:c.x - tw / 2 - 8, x1:c.x + tw / 2 + 8, y0:c.y - size / 2 - 6, y1:c.y + size / 2 + 6 };
+      if (box.x0 < 6 || box.x1 > W - 6 || box.y0 < 6 || box.y1 > H - 6) continue;
+      if (placed.some(q => q.x0 < box.x1 && box.x0 < q.x1 && q.y0 < box.y1 && box.y0 < q.y1)) continue;
+      placed.push(box);
+      g.lineJoin = 'round'; g.lineWidth = 7; g.strokeStyle = halo; g.strokeText(text, c.x, c.y);
+      g.fillStyle = fill; g.fillText(text, c.x, c.y);
+      return;
+    }
+  };
+  put(focusF, geoLabel(focusF.properties.name), 38, 700, '#FFFFFF', 'rgba(15,42,64,.55)', 1);
+  features.filter(f => f !== focusF).forEach(f => put(f, geoLabel(f.properties.name), 27, 600, '#4A5E72', 'rgba(255,255,255,.9)', 2));
+}
+async function repMapImage({ focus = [], fill = {}, labels = false, neighbours = false, slot }) {
   try {
     const geo = await loadWorld('50m');
     const byName = {}; geo.features.forEach(f => { byName[f.properties.name] = f; });
@@ -3253,6 +3327,7 @@ async function repMapImage({ focus = [], fill = {}, labels = false, slot }) {
     geo.features.forEach(f => draw(f, '#D5DDE6', '#FFFFFF', 1.6));
     Object.entries(fill).forEach(([c, col]) => { const f = feat(c); if (f) draw(f, col, '#FFFFFF', 1.8); });
     if (single) draw(focusF[0], '#1B6FA8', '#0F2A40', 3);
+    if (single && neighbours) mapNameCountries(g, geo.features, focusF[0], polys, px, py, W, H);
     if (labels) {   // member-country names, in the report's language
       g.textAlign = 'center'; g.textBaseline = 'middle';
       g.font = (lang === 'ar' ? '600 26px "IBM Plex Sans Arabic"' : '600 22px Inter') + ', sans-serif';
@@ -3263,7 +3338,7 @@ async function repMapImage({ focus = [], fill = {}, labels = false, slot }) {
     return cv.toDataURL('image/png');
   } catch (e) { console.warn('[CAD] map render failed', e); return null; }
 }
-async function repMap(country) { return repMapImage({ focus:[country], slot: DK.MAP_SLOTS.country }); }
+async function repMap(country) { return repMapImage({ focus:[country], neighbours:true, slot: DK.MAP_SLOTS.country }); }
 
 // ── Sub-national maps — official DHS household-survey figures only ──
 // The DHS Program publishes each survey's results by province/region together with the exact region
@@ -3468,7 +3543,8 @@ async function repBuildCountryBlob(country, setStatus, fmt) {
   const need = needScores()[country] || {};
   const blob = await window.buildCountryDeck({
     country, data: Object.assign({}, d, pol ? pol.wgi : {}), info: COUNTRY_INFO[country] || {}, iso2: (COUNTRY_ISO2[country] || '').toLowerCase(),
-    politics: pol && pol.ok ? { hos: pol.hos, hog: pol.hog, gov: pol.gov, office: pol.office, hosSince: pol.hosSince } : null,
+    politics: pol && pol.ok ? { hos: pol.hos, hog: pol.hog, gov: pol.gov, office: pol.office, hogOffice: pol.hogOffice,
+      hosSince: pol.hosSince, hosUntil: pol.hosUntil, hogSince: pol.hogSince, hogUntil: pol.hogUntil, hosTerm: pol.hosTerm, hogTerm: pol.hogTerm } : null,
     flagData, flagRatio, mapData, logo, subnational, dateStr: repDateStr(), PptxGenJS: repDeckCtor(fmt), output: 'blob', lang,
     region: repRegionOf(country), income: COUNTRY_INCOME[country] || '',
     need: need.need != null ? { score: need.need, rank: need.rank, of: (needScores().__ranked || []).length } : null,

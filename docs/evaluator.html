@@ -755,7 +755,7 @@ function lensColor(cls){ return cls==='rec-approve'?'#1F7A52':cls==='rec-reject'
 function sevColor(s){ s=(s||'').toLowerCase(); return s==='high'?'var(--bordeaux)':s==='medium'?'#9a7a1e':'var(--slate)'; }
 function scoreBand(n){ n=+n||0; return n>=75?'Strong':n>=55?'Good':n>=35?'Moderate':'Weak'; }
 /* ─── country profile (Scenario A) — from the dashboard's indicator data ─── */
-const CPROF_INDS=[['SI.POV.DDAY','Poverty ($2.15/day)','%'],['SH.DYN.MORT','Under-5 mortality','/1,000'],['NY.GDP.PCAP.PP.CD','GDP per capita (PPP)','$'],['SE.ADT.LITR.ZS','Adult literacy','%'],['EG.ELC.ACCS.ZS','Electricity access','%'],['NY.GDP.MKTP.KD.ZG','GDP growth','%'],['FP.CPI.TOTL.ZG','Inflation','%'],['SP.POP.TOTL','Population','']];
+const CPROF_INDS=[['SI.POV.DDAY','Poverty ($3.00/day)','%'],['SH.DYN.MORT','Under-5 mortality','/1,000'],['NY.GDP.PCAP.PP.CD','GDP per capita (PPP)','$'],['SE.ADT.LITR.ZS','Adult literacy','%'],['EG.ELC.ACCS.ZS','Electricity access','%'],['NY.GDP.MKTP.KD.ZG','GDP growth','%'],['FP.CPI.TOTL.ZG','Inflation','%'],['SP.POP.TOTL','Population','']];
 function buildCountryProfile(){ const c=(selectedCountries&&selectedCountries[0])||''; countryProfile=null;
   if(!c||!INDIC||!INDIC[c])return;
   const d=INDIC[c], inds=CPROF_INDS.map(([code,label,unit])=>{ const v=d[code]; if(!v||v.value==null)return null;

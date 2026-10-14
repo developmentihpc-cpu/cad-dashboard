@@ -30,9 +30,9 @@ function buildRegionDeck(opts){
   const IND = [
     { id:'SH.DYN.MORT',    en:'Under-5 mortality',  ar:'وفيات الأطفال دون الخامسة', f:r => F.num(r),    u:['/1k','لكل ألف'],     sector:['Health','الصحة'] },
     { id:'SH.STA.MMRT',    en:'Maternal mortality', ar:'وفيات الأمهات',             f:r => F.num(r),    u:['/100k','لكل 100 ألف'], sector:['Health','الصحة'] },
-    { id:'SN.ITK.DEFC.ZS', en:'Undernourishment',   ar:'نقص التغذية',              f:r => F.pct(r, 1), sector:['Food security','الأمن الغذائي'] },
-    { id:'SH.H2O.BASW.ZS', en:'Basic drinking water', ar:'مياه الشرب الأساسية',     f:r => F.pct(r),    sector:['WASH','المياه والصرف الصحي'] },
-    { id:'SH.STA.BASS.ZS', en:'Basic sanitation',   ar:'الصرف الصحي الأساسي',      f:r => F.pct(r),    sector:['WASH','المياه والصرف الصحي'] },
+    { id:'SN.ITK.DEFC.ZS', en:'Undernourishment',   ar:'نقص التغذية',              f:r => F.pct(r, 1), sector:['Agriculture & food security','الزراعة والأمن الغذائي'] },
+    { id:'SH.H2O.BASW.ZS', en:'Basic drinking water', ar:'مياه الشرب الأساسية',     f:r => F.pct(r),    sector:['Water','المياه'] },
+    { id:'SH.STA.BASS.ZS', en:'Basic sanitation',   ar:'الصرف الصحي الأساسي',      f:r => F.pct(r),    sector:['Water','المياه'] },
     { id:'EG.ELC.ACCS.ZS', en:'Electricity access', ar:'الوصول إلى الكهرباء',      f:r => F.pct(r),    sector:['Energy','الطاقة'] },
   ];
   const lbl = ind => T(ind.en, ind.ar);

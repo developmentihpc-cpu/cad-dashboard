@@ -23,7 +23,7 @@ snapshot plus live API calls. No build step, no backend for the public site.
 | `severity.js` | **The one severity scale** used everywhere: `SEV_RULES`, `sevLevel()`, `SEV_COLORS`, `SEV_LABELS` (0 Severe · 1 High concern · 2 Moderate · 3 On track) |
 | `ind_defs.js` | `IND_DEFS[id] = [English, Arabic]` plain-language indicator definitions |
 | `deck_kit.js` | `DK` — shared deck palette, fonts, value hygiene (missing / impossible / outdated), RTL mirroring, `STALE_YEARS = 8`, map slots |
-| `country_deck.js` | `buildCountryDeck(opts)` — 11-slide country report (+ DHS "where the need is" map slides) |
+| `country_deck.js` | `buildCountryDeck(opts)` — 12-slide country report: cover, overview, executive summary, eight sector slides, method (+ DHS "where the need is" map slides) |
 | `region_deck.js` | `buildRegionDeck(opts)` — regional needs-assessment report |
 | `pdf_deck.js` | `PdfDeck` — drop-in stand-in for the PptxGenJS constructor that renders the same deck to PDF (canvas + jsPDF, loaded on demand) |
 | `evaluator.html` | Program Evaluation tool, loaded lazily in an iframe by the Evaluation view |
@@ -79,7 +79,7 @@ shortcut when you don't have the nav element.
 `openCountryDrawer(country)` — subtitle shows region · income group · need index and rank.
 Tabs (`cdSwitchTab`):
 - **Overview** (`cdRenderOverview`) — accurate country map + flag, capital, population, leaders (Wikidata) and governance (WGI), need-index panel, saved/published reports.
-- **Indicators** (`cdRenderIndicators`) — sub-tabs from `CA_TABS` (overview, health, education, energy, agriculture, economy, wash, food, digital, environment, infrastructure). Cards show value, year, severity pill, regional median; outdated figures are flagged. Clicking a card opens `cdIndDetail(id)` (definition, source, sparkline series). Trade, environment/risk and UIS cards come from the extra data files (`loadExtras()`).
+- **Indicators** (`cdRenderIndicators`) — sub-tabs from `CA_TABS`: Overview + the eight ODA sectors (water, energy, agrifood, education, health, econ, business, trade). Cards show value, year, severity pill, regional median; outdated figures are flagged. Clicking a card opens `cdIndDetail(id)` (definition, source, sparkline series). Trade, environment/risk and UIS cards come from the extra data files (`loadExtras()`).
 
 ---
 
@@ -133,6 +133,15 @@ agree — never add a separate colour scale.
   `evaluator_score_server.py` on port 8787 (endpoint overridable via `oda_eval_endpoint`); they do
   not work from the public site.
 - Every async step has a timeout — keep it that way so one slow API never hangs a report.
+
+### The eight sectors (dashboard tabs and report slides use the same list)
+Water · Energy · Agriculture & Food Security · Education · Health · Economic Empowerment · Business Enablement · Trade.
+There is **no governance sector**: WGI governance scores appear only in the overview slide's political-situation box and the
+drawer overview. Digital and environment indicators were removed on purpose. Report sector keys: `wash`, `energy`, `food`,
+`education`, `health`, `econ`, `business`, `trade` (`wash`/`food`/`education`/`health` also key the DHS maps in `SUBNAT`).
+The Trade slide also shows the top export markets and import sources (`repTrade` → `opts.trade`, from `trade_partners.json`).
+When adding an indicator: `CA_INDICATORS` (index.html), a benchmark in `severity.js` (or `peers:true`), a definition in
+`ind_defs.js`, and for the report the catalogue `I`, `SRC`, and `WHY`/`DP` in `country_deck.js`.
 
 ### Deck rules (country_deck.js / region_deck.js)
 - 13.333 × 7.5 in grid. Arabic decks mirror every element (`x → W − x − w`), right-align text and use Sakkal Majalla +2 pt.

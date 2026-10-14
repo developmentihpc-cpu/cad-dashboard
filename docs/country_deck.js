@@ -1,9 +1,10 @@
 /* country_deck.js — ODA instant country assessment deck (English or Arabic).
  *
- * 11 slides: cover · country overview (map with neighbours, flag, leaders and terms, political situation
+ * 12 slides: cover · country overview (map with neighbours, flag, leaders and terms, political situation
  * with colour key, need index, status by sector) · executive summary (priority sectors and their most
- * urgent gaps) · seven sector slides (health, education, food security & agriculture, WASH, energy &
- * connectivity, economy, governance) · method & sources.
+ * urgent gaps) · eight sector slides (water, energy, agriculture & food security, education, health,
+ * economic empowerment, business enablement, trade) · method & sources. Governance appears only in the
+ * overview slide's political-situation box.
  * A sector gets an extra "where the need is" map slide only when a recent DHS survey measured, region by
  * region, one of that sector's two most critical issues (opts.subnational, built in index.html); that
  * issue then leads the sector slide so the map continues its story.
@@ -46,7 +47,11 @@ function buildCountryDeck(opts){
     'AG.YLD.CREL.KG':'FAO', 'NV.AGR.TOTL.ZS':'World Bank', 'SH.H2O.BASW.ZS':'WHO/UNICEF JMP', 'SH.H2O.SMDW.ZS':'WHO/UNICEF JMP', 'SH.STA.BASS.ZS':'WHO/UNICEF JMP',
     'SH.STA.SMSS.ZS':'WHO/UNICEF JMP', 'SH.STA.ODFC.ZS':'WHO/UNICEF JMP', 'EG.ELC.ACCS.ZS':'World Bank · IEA', 'EG.CFT.ACCS.ZS':'WHO', 'IT.NET.USER.ZS':'ITU',
     'EG.FEC.RNEW.ZS':'IEA · World Bank', 'GOV_WGI_PV.SC':'World Bank WGI', 'GOV_WGI_VA.SC':'World Bank WGI', 'GOV_WGI_GE.SC':'World Bank WGI',
-    'GOV_WGI_RL.SC':'World Bank WGI', 'GOV_WGI_CC.SC':'World Bank WGI' };
+    'GOV_WGI_RL.SC':'World Bank WGI', 'GOV_WGI_CC.SC':'World Bank WGI',
+    'SL.UEM.1524.ZS':'ILO', 'SL.TLF.CACT.FE.ZS':'ILO', 'SL.EMP.VULN.ZS':'ILO', 'FX.OWN.TOTL.ZS':'World Bank Global Findex', 'SI.POV.GINI':'World Bank',
+    'SN.ITK.MSFI.ZS':'FAO', 'FS.AST.PRVT.GD.ZS':'IMF · World Bank', 'BX.KLT.DINV.WD.GD.ZS':'IMF · World Bank', 'FR.INR.LEND':'IMF',
+    'IC.FRM.BKWC.ZS':'World Bank Enterprise Surveys', 'IC.ELC.OUTG.ZS':'World Bank Enterprise Surveys', 'IC.BUS.NDNS.ZS':'World Bank', 'LP.LPI.OVRL.XQ':'World Bank LPI',
+    'NE.EXP.GNFS.ZS':'World Bank', 'TM.TAX.MRCH.WM.AR.ZS':'World Bank WITS', 'BN.CAB.XOKA.GD.ZS':'IMF', 'TX.VAL.MANF.ZS.UN':'UN Comtrade · World Bank' };
   const srcTxt = s => ar && typeof arSource === 'function' ? arSource(s) : s;
 
   // ── indicator catalogue (labels both languages, how to format) ──
@@ -80,7 +85,7 @@ function buildCountryDeck(opts){
     'GC.TAX.TOTL.GD.ZS': { en:'Tax revenue (% of GDP)', ar:'الإيرادات الضريبية (% من الناتج)', f: r => F.pct(r, 1) },
     'NY.GDP.PCAP.PP.CD': { en:'GDP per capita (PPP)', ar:'نصيب الفرد من الناتج (تعادل القوة الشرائية)', f: r => F.money(r) },
     'SL.UEM.TOTL.ZS':    { en:'Unemployment', ar:'البطالة', f: r => F.pct(r, 1) },
-    'SI.POV.DDAY':       { en:'Extreme poverty (<$2.15/day)', ar:'الفقر المدقع (أقل من 2.15 دولار يومياً)', f: r => F.pct(r, 1) },
+    'SI.POV.DDAY':       { en:'Extreme poverty (<$3.00/day)', ar:'الفقر المدقع (أقل من 3.00 دولار يومياً)', f: r => F.pct(r, 1) },
     'GC.DOD.TOTL.GD.ZS': { en:'Government debt (% of GDP)', ar:'الدين الحكومي (% من الناتج)', f: r => F.pct(r) },
     'SP.POP.TOTL':       { en:'Population', ar:'عدد السكان', f: r => F.pop(r) },
     'GOV_WGI_PV.SC':     { en:'Political stability (0–100)', ar:'الاستقرار السياسي (0–100)', f: r => F.num(r) },
@@ -88,6 +93,24 @@ function buildCountryDeck(opts){
     'GOV_WGI_GE.SC':     { en:'Government effectiveness (0–100)', ar:'فعالية الحكومة (0–100)', f: r => F.num(r) },
     'GOV_WGI_RL.SC':     { en:'Rule of law (0–100)', ar:'سيادة القانون (0–100)', f: r => F.num(r) },
     'GOV_WGI_CC.SC':     { en:'Control of corruption (0–100)', ar:'مكافحة الفساد (0–100)', f: r => F.num(r) },
+    // Economic empowerment · Business enablement · Trade
+    'SL.UEM.1524.ZS':    { en:'Youth unemployment (15–24)', ar:'بطالة الشباب (15–24)', f: r => F.pct(r, 1) },
+    'SL.TLF.CACT.FE.ZS': { en:'Women in the labour force', ar:'مشاركة المرأة في القوى العاملة', f: r => F.pct(r) },
+    'SL.EMP.VULN.ZS':    { en:'Vulnerable employment', ar:'العمالة الهشة', f: r => F.pct(r) },
+    'FX.OWN.TOTL.ZS':    { en:'Adults with an account', ar:'البالغون الذين لديهم حساب', f: r => F.pct(r) },
+    'SI.POV.GINI':       { en:'Inequality (Gini index)', ar:'عدم المساواة (مؤشر جيني)', f: r => F.num(r, 1) },
+    'SN.ITK.MSFI.ZS':    { en:'Moderate or severe food insecurity', ar:'انعدام الأمن الغذائي المتوسط أو الشديد', f: r => F.pct(r) },
+    'FS.AST.PRVT.GD.ZS': { en:'Private-sector credit (% of GDP)', ar:'الائتمان للقطاع الخاص (% من الناتج)', f: r => F.pct(r) },
+    'BX.KLT.DINV.WD.GD.ZS': { en:'Foreign direct investment (% of GDP)', ar:'الاستثمار الأجنبي المباشر (% من الناتج)', f: r => F.pct(r, 1) },
+    'FR.INR.LEND':       { en:'Lending interest rate', ar:'سعر الفائدة على القروض', f: r => F.pct(r, 1) },
+    'IC.FRM.BKWC.ZS':    { en:'Firms using bank credit', ar:'الشركات التي تستخدم الائتمان المصرفي', f: r => F.pct(r) },
+    'IC.ELC.OUTG.ZS':    { en:'Firms hit by power outages', ar:'الشركات المتأثرة بانقطاع الكهرباء', f: r => F.pct(r) },
+    'IC.BUS.NDNS.ZS':    { en:'New businesses per 1,000 adults', ar:'الشركات الجديدة لكل 1,000 بالغ', f: r => F.num(r, 2) },
+    'LP.LPI.OVRL.XQ':    { en:'Logistics performance (1–5)', ar:'الأداء اللوجستي (1–5)', f: r => F.num(r, 2) },
+    'NE.EXP.GNFS.ZS':    { en:'Exports (% of GDP)', ar:'الصادرات (% من الناتج)', f: r => F.pct(r) },
+    'TM.TAX.MRCH.WM.AR.ZS': { en:'Average import tariff', ar:'متوسط التعريفة الجمركية', f: r => F.pct(r, 1) },
+    'BN.CAB.XOKA.GD.ZS': { en:'Current account balance (% of GDP)', ar:'رصيد الحساب الجاري (% من الناتج)', f: r => F.pct(r, 1) },
+    'TX.VAL.MANF.ZS.UN': { en:'Manufactured goods (% of exports)', ar:'السلع المصنّعة (% من الصادرات)', f: r => F.pct(r) },
   };
   const lbl = id => T(I[id].en, I[id].ar);
   const val = id => { const r = R(id); return r ? I[id].f(r) + (I[id].u ? I[id].u[ar ? 1 : 0] : '') : '—'; };
@@ -102,7 +125,7 @@ function buildCountryDeck(opts){
   const cite = id => { const r = R(id); const s = srcTxt(SRC[id] || 'World Bank');
     return r ? (r.stale ? s + ' · ' + r.y + T(' · outdated', ' · بيانات قديمة') : s + (r.y ? ' · ' + r.y : '')) : T('No recent data', 'لا توجد بيانات حديثة'); };
 
-  const isPts = id => (/%$/.test(I[id].f({ v:1 })) && !/\.GD\.ZS$/.test(id)) || /^GOV_WGI/.test(id);   // shares of people and 0–100 scores: gap in points; % of GDP: relative gap
+  const isPts = id => (/%$/.test(I[id].f({ v:1 })) && !/\.GD\.ZS$/.test(id)) || /^GOV_WGI/.test(id) || id === 'BN.CAB.XOKA.GD.ZS';   // shares of people and 0–100 scores: gap in points; % of GDP: relative gap
   // gap against the benchmark — short for stat cards ("3.9× higher"), long for insights ("3.9× the benchmark")
   function gap(id, long) {
     const r = R(id), t = target(id), L = lvl(id);
@@ -149,6 +172,17 @@ function buildCountryDeck(opts){
     'SL.UEM.TOTL.ZS':    v => T(`unemployment at ${v}`, `بطالة بنسبة ${v}`),
     'GOV_WGI_PV.SC':     v => T(`a political-stability score of ${v}/100`, `درجة استقرار سياسي ${v} من 100`),
     'GOV_WGI_GE.SC':     v => T(`a government-effectiveness score of ${v}/100`, `درجة فعالية حكومية ${v} من 100`),
+    'GOV_WGI_RL.SC':     v => T(`a rule-of-law score of ${v}/100`, `درجة سيادة القانون ${v} من 100`),
+    'SE.SEC.ENRR':       v => T(`secondary enrolment of ${v}`, `التحاق بالتعليم الثانوي بنسبة ${v}`),
+    'SE.ADT.LITR.ZS':    v => T(`adult literacy of ${v}`, `معرفة الكبار بالقراءة والكتابة بنسبة ${v}`),
+    'NY.GDP.MKTP.KD.ZG': v => T(`GDP growth of ${v}`, `نمو اقتصادي بنسبة ${v}`),
+    'SL.TLF.CACT.FE.ZS': v => T(`only ${v} of women in the labour force`, `${v} فقط من النساء في القوى العاملة`),
+    'SL.AGR.EMPL.ZS':    v => T(`${v} of jobs in farming`, `${v} من الوظائف في الزراعة`),
+    'FS.AST.PRVT.GD.ZS': v => T(`private-sector credit of only ${v} of GDP`, `ائتمان للقطاع الخاص لا يتجاوز ${v} من الناتج`),
+    'FR.INR.LEND':       v => T(`lending rates of ${v}`, `أسعار فائدة على القروض تبلغ ${v}`),
+    'IC.FRM.BKWC.ZS':    v => T(`only ${v} of firms using bank credit`, `${v} فقط من الشركات تستخدم الائتمان المصرفي`),
+    'IC.ELC.OUTG.ZS':    v => T(`${v} of firms hit by power outages`, `${v} من الشركات تعاني انقطاع الكهرباء`),
+    'LP.LPI.OVRL.XQ':    v => T(`a logistics score of ${v}/5`, `درجة أداء لوجستي ${v} من 5`),
   };
   const WHY = {
     'SH.DYN.MORT': { d:['SH.MED.PHYS.ZS','SH.IMM.MEAS','SH.H2O.BASW.ZS','SH.STA.STNT.ZS','SH.STA.BASS.ZS','SH.XPD.CHEX.GD.ZS'],
@@ -247,6 +281,48 @@ function buildCountryDeck(opts){
     'GOV_WGI_CC.SC': { d:[],
       so:['High corruption risk calls for ring-fenced funds, third-party monitoring and payment on results.',
           'يستدعي ارتفاع خطر الفساد تمويلاً مخصصاً ورقابة من طرف ثالث ودفعات مرتبطة بالنتائج.'] },
+    // Economic empowerment
+    'SL.UEM.1524.ZS': { d:['SE.SEC.ENRR','NY.GDP.MKTP.KD.ZG'],
+      so:['Young people are the fastest-growing part of the labour force; without work or skills they are the group most likely to migrate or be drawn into instability.',
+          'الشباب هم الشريحة الأسرع نمواً في القوى العاملة؛ ومن دون عمل أو مهارات يكونون الأكثر عرضة للهجرة أو الانجرار إلى عدم الاستقرار.'] },
+    'SL.TLF.CACT.FE.ZS': { d:['SE.ADT.LITR.ZS','FX.OWN.TOTL.ZS'],
+      so:['Getting more women into paid work raises household income and increases spending on children’s health and schooling.',
+          'إن إدخال مزيد من النساء إلى العمل المأجور يرفع دخل الأسرة ويزيد الإنفاق على صحة الأطفال وتعليمهم.'] },
+    'SL.EMP.VULN.ZS': { d:['SI.POV.DDAY','SL.AGR.EMPL.ZS'],
+      so:['Most people earn a living without a contract or social protection, so one illness or bad harvest can push a family into poverty.',
+          'يكسب معظم الناس رزقهم دون عقد أو حماية اجتماعية، لذا قد يدفع مرض واحد أو موسم حصاد سيئ الأسرة إلى الفقر.'] },
+    'FX.OWN.TOTL.ZS': { d:['SL.TLF.CACT.FE.ZS','SI.POV.DDAY'],
+      so:['Without an account, people cannot save safely, borrow, or receive wages and transfers digitally — a basic building block for cash and livelihoods programmes.',
+          'من دون حساب لا يستطيع الناس الادخار بأمان أو الاقتراض أو تلقي الأجور والتحويلات رقمياً، وهو أساس لبرامج الدعم النقدي وسبل العيش.'] },
+    'SI.POV.GINI': { d:['SI.POV.DDAY'],
+      so:['The gains from growth are shared unevenly, so programmes need explicit targeting to reach the poorest households.',
+          'تتوزع ثمار النمو بشكل غير متكافئ، لذا تحتاج البرامج إلى استهداف صريح للوصول إلى الأسر الأفقر.'] },
+    // Business enablement
+    'FS.AST.PRVT.GD.ZS': { d:['FR.INR.LEND','IC.FRM.BKWC.ZS'],
+      so:['Businesses have little access to bank finance, so they cannot invest, grow or hire; small firms are hit hardest.',
+          'تحظى الأعمال بقدر ضئيل من التمويل المصرفي، فلا تستطيع الاستثمار أو النمو أو التوظيف، والشركات الصغيرة هي الأكثر تضرراً.'] },
+    'BX.KLT.DINV.WD.GD.ZS': { d:['LP.LPI.OVRL.XQ','IC.ELC.OUTG.ZS','GOV_WGI_RL.SC'],
+      so:['Little foreign investment arrives, which limits new jobs, technology and access to export markets.',
+          'يصل قدر ضئيل من الاستثمار الأجنبي، مما يحدّ من فرص العمل الجديدة والتقنية والوصول إلى أسواق التصدير.'] },
+    'FR.INR.LEND': { d:['FP.CPI.TOTL.ZG'],
+      so:['Credit is expensive, so only short-term, high-margin activity gets financed and productive investment is held back.',
+          'الائتمان مكلف، فلا يُموَّل إلا النشاط قصير الأجل مرتفع الهامش، ويتعطل الاستثمار المنتج.'] },
+    'IC.FRM.BKWC.ZS': { d:['FS.AST.PRVT.GD.ZS','FR.INR.LEND'],
+      so:['Most firms rely on their own cash to operate, which caps how fast they can grow.',
+          'تعتمد معظم الشركات على أموالها الخاصة لتسيير أعمالها، مما يحدّ من سرعة نموها.'] },
+    'IC.ELC.OUTG.ZS': { d:['EG.ELC.ACCS.ZS'],
+      so:['Frequent outages force firms to run generators or stop production, raising costs and deterring investment.',
+          'تجبر الانقطاعات المتكررة الشركات على تشغيل المولدات أو وقف الإنتاج، مما يرفع التكاليف ويُنفّر الاستثمار.'] },
+    'LP.LPI.OVRL.XQ': { d:[],
+      so:['Slow, costly customs and transport raise the price of every import and export and keep firms out of regional supply chains.',
+          'تؤدي الإجراءات الجمركية والنقل البطيئة والمكلفة إلى رفع سعر كل واردات وصادرات، وتُبقي الشركات خارج سلاسل الإمداد الإقليمية.'] },
+    // Trade
+    'TM.TAX.MRCH.WM.AR.ZS': { d:['LP.LPI.OVRL.XQ'],
+      so:['High tariffs raise the cost of imported inputs and everyday goods and limit integration into regional markets.',
+          'ترفع التعريفات المرتفعة كلفة المدخلات المستوردة والسلع اليومية وتحدّ من الاندماج في الأسواق الإقليمية.'] },
+    'BN.CAB.XOKA.GD.ZS': { d:['FP.CPI.TOTL.ZG'],
+      so:['The country spends far more abroad than it earns, which strains foreign-exchange reserves and the currency and makes imports such as food and fuel dearer.',
+          'ينفق البلد في الخارج أكثر بكثير مما يكسب، مما يضغط على احتياطيات النقد الأجنبي والعملة ويرفع كلفة الواردات مثل الغذاء والوقود.'] },
   };
   const andList = xs => xs.length < 2 ? xs.join('') : xs.slice(0, -1).join(T(', ', '، ')) + T(' and ', ' و') + xs[xs.length - 1];
   // one insight: heading (indicator + gap) and body (linked factors in the data + what it means)
@@ -266,23 +342,20 @@ function buildCountryDeck(opts){
   // ── sectors ── acts: [indicator that triggers it, worst level it applies to, English, Arabic] (null = always)
   //               inv:  development-investment angles, only where the data makes them relevant
   const SECTORS = [
-    { key:'health', en:'Health', ar:'الصحة', short:['Health','الصحة'], stats:['SH.DYN.MORT','SH.STA.MMRT','SP.DYN.LE00.IN','SH.XPD.CHEX.GD.ZS'], bars:['SH.DYN.MORT','SH.STA.MMRT','SP.DYN.LE00.IN','SH.IMM.MEAS','SH.XPD.CHEX.GD.ZS','SH.MED.PHYS.ZS'],
-      acts:[ ['SH.DYN.MORT',1,'Scale up community health workers and integrated child-health services.','توسيع نطاق العاملين الصحيين المجتمعيين وخدمات صحة الطفل المتكاملة.'],
-             ['SH.STA.MMRT',1,'Expand skilled birth attendance and emergency obstetric care.','توسيع الولادة بإشراف كوادر مؤهلة ورعاية التوليد الطارئة.'],
-             ['SH.IMM.MEAS',2,'Close immunisation gaps through outreach and cold-chain investment.','سد فجوات التحصين عبر الوصول الميداني والاستثمار في سلسلة التبريد.'],
-             ['SH.XPD.CHEX.GD.ZS',2,'Support higher, more predictable public health financing.','دعم تمويل صحي عام أعلى وأكثر استقراراً.'],
-             [null,3,'Strengthen primary-care quality and reach in underserved areas.','تعزيز جودة الرعاية الأولية ووصولها إلى المناطق المحرومة.'] ],
-      inv:[ [() => off('SH.MED.PHYS.ZS', 1) || off('SH.DYN.MORT', 0), 'Co-invest with private operators in diagnostic centres and district hospitals (PPP), and in local production of essential medicines and medical supplies.',
-             'الاستثمار المشترك مع مشغّلين من القطاع الخاص في مراكز التشخيص والمستشفيات الإقليمية (شراكة بين القطاعين)، وفي التصنيع المحلي للأدوية والمستلزمات الطبية الأساسية.'] ] },
-    { key:'education', en:'Education', ar:'التعليم', short:['Education','التعليم'], stats:['SE.ADT.LITR.ZS','SE.PRM.CMPT.ZS','SE.SEC.ENRR','SE.XPD.TOTL.GD.ZS'], bars:['SE.ADT.LITR.ZS','SE.PRM.CMPT.ZS','SE.SEC.ENRR','SE.PRM.ENRL.TC.ZS','SE.XPD.TOTL.GD.ZS'],
-      acts:[ ['SE.PRM.CMPT.ZS',1,'Keep children in primary school to completion (school feeding, fee support).','إبقاء الأطفال في المدرسة حتى إتمام المرحلة الابتدائية (التغذية المدرسية ودعم الرسوم).'],
-             ['SE.SEC.ENRR',1,'Expand secondary places and support girls’ transition to secondary school.','زيادة مقاعد التعليم الثانوي ودعم انتقال الفتيات إليه.'],
-             ['SE.ADT.LITR.ZS',1,'Fund adult and youth literacy programmes.','تمويل برامج محو الأمية للشباب والكبار.'],
-             ['SE.PRM.ENRL.TC.ZS',1,'Recruit and train teachers to bring class sizes down.','توظيف المعلمين وتدريبهم لخفض أعداد الطلاب في الفصول.'],
-             [null,3,'Invest in teacher quality and learning assessment.','الاستثمار في جودة المعلمين وتقييم التعلّم.'] ],
-      inv:[ [() => off('SE.SEC.ENRR', 1) && off('SL.UEM.TOTL.ZS', 2), 'Technical and vocational training co-designed and co-funded with employers in growth sectors, so skills lead to jobs.',
-             'تدريب تقني ومهني يُصمَّم ويُموَّل بالشراكة مع أصحاب العمل في القطاعات الواعدة، لتقود المهارات إلى وظائف.'] ] },
-    { key:'food', en:'Food Security & Agriculture', ar:'الأمن الغذائي والزراعة', short:['Food & agriculture','الغذاء والزراعة'], stats:['SN.ITK.DEFC.ZS','SH.STA.STNT.ZS','AG.YLD.CREL.KG','NV.AGR.TOTL.ZS'], bars:['SN.ITK.DEFC.ZS','SH.STA.STNT.ZS','AG.YLD.CREL.KG'],
+    { key:'wash', en:'Water', ar:'المياه', short:['Water','المياه'], stats:['SH.H2O.BASW.ZS','SH.H2O.SMDW.ZS','SH.STA.BASS.ZS','SH.STA.SMSS.ZS'], bars:['SH.H2O.BASW.ZS','SH.H2O.SMDW.ZS','SH.STA.BASS.ZS','SH.STA.SMSS.ZS','SH.STA.ODFC.ZS'],
+      acts:[ ['SH.H2O.BASW.ZS',1,'Extend basic water points and piped supply to unserved communities.','توصيل مياه الشرب الأساسية والشبكات إلى المجتمعات غير المخدومة.'],
+             ['SH.STA.BASS.ZS',1,'Fund household and school sanitation; end open defecation.','تمويل الصرف الصحي للمنازل والمدارس وإنهاء التغوط في العراء.'],
+             ['SH.H2O.SMDW.ZS',2,'Upgrade water treatment so supply is safely managed.','تحسين معالجة المياه لتصبح مُدارة بأمان.'],
+             [null,3,'Climate-proof water sources and utilities.','حماية مصادر المياه ومرافقها من آثار المناخ.'] ],
+      inv:[ [() => off('SH.H2O.BASW.ZS', 1) || off('SH.H2O.SMDW.ZS', 1), 'Results-based concessions or PPPs for water utilities, desalination or treatment plants and water-kiosk operators, using blended finance.',
+             'امتيازات قائمة على النتائج أو شراكات بين القطاعين لمرافق المياه ومحطات التحلية أو المعالجة ومشغّلي أكشاك المياه، بتمويل مختلط.'] ] },
+    { key:'energy', en:'Energy', ar:'الطاقة', short:['Energy','الطاقة'], stats:['EG.ELC.ACCS.ZS','EG.CFT.ACCS.ZS','EG.FEC.RNEW.ZS'], bars:['EG.ELC.ACCS.ZS','EG.CFT.ACCS.ZS'],
+      acts:[ ['EG.ELC.ACCS.ZS',1,'Off-grid and mini-grid solar for rural households, clinics and schools.','الطاقة الشمسية خارج الشبكة والشبكات المصغّرة للأرياف والعيادات والمدارس.'],
+             ['EG.CFT.ACCS.ZS',1,'Clean-cooking programmes to cut household air pollution.','برامج الطهي النظيف للحد من تلوث الهواء المنزلي.'],
+             [null,3,'Improve grid reliability and cut transmission losses.','تحسين موثوقية الشبكة وخفض فواقد النقل.'] ],
+      inv:[ [() => off('EG.ELC.ACCS.ZS', 1), 'Blended finance for solar power producers, mini-grid concessions and pay-as-you-go solar companies.',
+             'تمويل مختلط لمنتجي الطاقة الشمسية وامتيازات الشبكات المصغّرة وشركات الطاقة الشمسية بنظام الدفع حسب الاستخدام.'] ] },
+    { key:'food', en:'Agriculture & Food Security', ar:'الزراعة والأمن الغذائي', short:['Agriculture & food security','الزراعة والأمن الغذائي'], stats:['SN.ITK.DEFC.ZS','SH.STA.STNT.ZS','AG.YLD.CREL.KG','NV.AGR.TOTL.ZS'], bars:['SN.ITK.DEFC.ZS','SH.STA.STNT.ZS','AG.YLD.CREL.KG','SN.ITK.MSFI.ZS'],
       acts:[ ['SN.ITK.DEFC.ZS',1,'Scale food assistance and social safety nets for vulnerable households.','توسيع المساعدات الغذائية وشبكات الأمان الاجتماعي للأسر الهشة.'],
              ['SH.STA.STNT.ZS',1,'Fund early-childhood and maternal nutrition programmes.','تمويل برامج تغذية الأمهات والطفولة المبكرة.'],
              ['AG.YLD.CREL.KG',1,'Raise smallholder yields: irrigation, improved seed, extension services.','رفع إنتاجية صغار المزارعين: الري والبذور المحسّنة والإرشاد الزراعي.'],
@@ -291,37 +364,53 @@ function buildCountryDeck(opts){
              'اتفاقيات شراء مسبق للمحاصيل مع مشترين، منهم مستوردو الغذاء في الإمارات، تضمن لصغار المزارعين سوقاً لإنتاجهم، مدعومة بتمويل المدخلات ومراكز التجميع.'],
             [() => off('SN.ITK.DEFC.ZS', 1) || off('AG.YLD.CREL.KG', 1), 'Invest in storage, cold chain and agro-processing to cut post-harvest losses and keep more value in the country.',
              'الاستثمار في التخزين وسلاسل التبريد والتصنيع الزراعي لخفض فاقد ما بعد الحصاد والإبقاء على قيمة أكبر داخل البلد.'] ] },
-    { key:'wash', en:'Water, Sanitation & Hygiene', ar:'المياه والصرف الصحي والنظافة', short:['Water & sanitation','المياه والصرف'], stats:['SH.H2O.BASW.ZS','SH.H2O.SMDW.ZS','SH.STA.BASS.ZS','SH.STA.SMSS.ZS'], bars:['SH.H2O.BASW.ZS','SH.H2O.SMDW.ZS','SH.STA.BASS.ZS','SH.STA.SMSS.ZS','SH.STA.ODFC.ZS'],
-      acts:[ ['SH.H2O.BASW.ZS',1,'Extend basic water points and piped supply to unserved communities.','توصيل مياه الشرب الأساسية والشبكات إلى المجتمعات غير المخدومة.'],
-             ['SH.STA.BASS.ZS',1,'Fund household and school sanitation; end open defecation.','تمويل الصرف الصحي للمنازل والمدارس وإنهاء التغوط في العراء.'],
-             ['SH.H2O.SMDW.ZS',2,'Upgrade water treatment so supply is safely managed.','تحسين معالجة المياه لتصبح مُدارة بأمان.'],
-             [null,3,'Climate-proof water sources and utilities.','حماية مصادر المياه ومرافقها من آثار المناخ.'] ],
-      inv:[ [() => off('SH.H2O.BASW.ZS', 1) || off('SH.H2O.SMDW.ZS', 1), 'Results-based concessions or PPPs for water utilities, desalination or treatment plants and water-kiosk operators, using blended finance.',
-             'امتيازات قائمة على النتائج أو شراكات بين القطاعين لمرافق المياه ومحطات التحلية أو المعالجة ومشغّلي أكشاك المياه، بتمويل مختلط.'] ] },
-    { key:'energy', en:'Energy & Connectivity', ar:'الطاقة والاتصال', short:['Energy & connectivity','الطاقة والاتصال'], stats:['EG.ELC.ACCS.ZS','EG.CFT.ACCS.ZS','IT.NET.USER.ZS','EG.FEC.RNEW.ZS'], bars:['EG.ELC.ACCS.ZS','EG.CFT.ACCS.ZS','IT.NET.USER.ZS'],
-      acts:[ ['EG.ELC.ACCS.ZS',1,'Off-grid and mini-grid solar for rural households, clinics and schools.','الطاقة الشمسية خارج الشبكة والشبكات المصغّرة للأرياف والعيادات والمدارس.'],
-             ['EG.CFT.ACCS.ZS',1,'Clean-cooking programmes to cut household air pollution.','برامج الطهي النظيف للحد من تلوث الهواء المنزلي.'],
-             ['IT.NET.USER.ZS',1,'Expand affordable broadband and digital public services.','توسيع النطاق العريض الميسور والخدمات الحكومية الرقمية.'],
-             [null,3,'Improve grid reliability and cut transmission losses.','تحسين موثوقية الشبكة وخفض فواقد النقل.'] ],
-      inv:[ [() => off('EG.ELC.ACCS.ZS', 1), 'Blended finance for solar power producers, mini-grid concessions and pay-as-you-go solar companies.',
-             'تمويل مختلط لمنتجي الطاقة الشمسية وامتيازات الشبكات المصغّرة وشركات الطاقة الشمسية بنظام الدفع حسب الاستخدام.'],
-            [() => off('IT.NET.USER.ZS', 1), 'Co-invest with telecom operators in fibre backbone and rural mobile towers.',
-             'الاستثمار المشترك مع مشغّلي الاتصالات في شبكات الألياف الضوئية الرئيسية وأبراج الاتصال في الأرياف.'] ] },
-    { key:'economy', en:'Economy', ar:'الاقتصاد', short:['Economy','الاقتصاد'], stats:['NY.GDP.PCAP.PP.CD','NY.GDP.MKTP.KD.ZG','FP.CPI.TOTL.ZG','GC.TAX.TOTL.GD.ZS'], bars:['NY.GDP.MKTP.KD.ZG','FP.CPI.TOTL.ZG','GC.TAX.TOTL.GD.ZS','SL.UEM.TOTL.ZS','SI.POV.DDAY'],
-      acts:[ ['GC.TAX.TOTL.GD.ZS',1,'Support domestic revenue mobilisation and public financial management.','دعم تعبئة الإيرادات المحلية وإدارة المالية العامة.'],
-             ['FP.CPI.TOTL.ZG',1,'Protect vulnerable households from high inflation (targeted transfers).','حماية الأسر الهشة من التضخم المرتفع (تحويلات موجّهة).'],
-             ['SL.UEM.TOTL.ZS',1,'Job creation: SME finance and skills for young people.','خلق فرص العمل: تمويل المنشآت الصغيرة ومهارات الشباب.'],
-             ['SI.POV.DDAY',1,'Expand social protection for households in extreme poverty.','توسيع الحماية الاجتماعية للأسر في الفقر المدقع.'],
-             [null,3,'Deepen financial inclusion and private investment.','تعميق الشمول المالي والاستثمار الخاص.'] ],
-      inv:[ [() => off('SL.UEM.TOTL.ZS', 2) || off('NY.GDP.MKTP.KD.ZG', 1), 'Credit lines and partial guarantees through local banks to unlock lending to small and medium-sized businesses.',
-             'خطوط ائتمان وضمانات جزئية عبر البنوك المحلية لفتح الإقراض أمام المنشآت الصغيرة والمتوسطة.'] ] },
-    { key:'governance', en:'Governance & Stability', ar:'الحوكمة والاستقرار', short:['Governance & stability','الحوكمة والاستقرار'],
-      stats:['GOV_WGI_PV.SC','GOV_WGI_GE.SC','GOV_WGI_RL.SC','GOV_WGI_CC.SC'], bars:['GOV_WGI_PV.SC','GOV_WGI_VA.SC','GOV_WGI_GE.SC','GOV_WGI_RL.SC','GOV_WGI_CC.SC'],
-      acts:[ ['GOV_WGI_PV.SC',1,'Deliver through UN agencies and trusted NGOs; build conflict-sensitivity into every programme.','التنفيذ عبر وكالات الأمم المتحدة والمنظمات الموثوقة، ومراعاة حساسية النزاع في كل برنامج.'],
-             ['GOV_WGI_CC.SC',1,'Use ring-fenced financing, third-party monitoring and results-based payments.','استخدام تمويل مخصّص ومراقبة من طرف ثالث ودفعات مرتبطة بالنتائج.'],
-             ['GOV_WGI_GE.SC',1,'Pair investment with public-sector capacity building in the delivering ministry.','ربط الاستثمار ببناء قدرات القطاع العام في الوزارة المنفّذة.'],
-             ['GOV_WGI_RL.SC',2,'Support justice, land-registration and contract-enforcement reforms.','دعم إصلاحات العدالة وتسجيل الأراضي وإنفاذ العقود.'],
-             [null,3,'Work through national systems where governance scores allow.','العمل عبر الأنظمة الوطنية حيثما تسمح مؤشرات الحوكمة.'] ], inv:[] },
+    { key:'education', en:'Education', ar:'التعليم', short:['Education','التعليم'], stats:['SE.ADT.LITR.ZS','SE.PRM.CMPT.ZS','SE.SEC.ENRR','SE.XPD.TOTL.GD.ZS'], bars:['SE.ADT.LITR.ZS','SE.PRM.CMPT.ZS','SE.SEC.ENRR','SE.PRM.ENRL.TC.ZS','SE.XPD.TOTL.GD.ZS'],
+      acts:[ ['SE.PRM.CMPT.ZS',1,'Keep children in primary school to completion (school feeding, fee support).','إبقاء الأطفال في المدرسة حتى إتمام المرحلة الابتدائية (التغذية المدرسية ودعم الرسوم).'],
+             ['SE.SEC.ENRR',1,'Expand secondary places and support girls’ transition to secondary school.','زيادة مقاعد التعليم الثانوي ودعم انتقال الفتيات إليه.'],
+             ['SE.ADT.LITR.ZS',1,'Fund adult and youth literacy programmes.','تمويل برامج محو الأمية للشباب والكبار.'],
+             ['SE.PRM.ENRL.TC.ZS',1,'Recruit and train teachers to bring class sizes down.','توظيف المعلمين وتدريبهم لخفض أعداد الطلاب في الفصول.'],
+             [null,3,'Invest in teacher quality and learning assessment.','الاستثمار في جودة المعلمين وتقييم التعلّم.'] ],
+      inv:[ [() => off('SE.SEC.ENRR', 1) && off('SL.UEM.TOTL.ZS', 2), 'Technical and vocational training co-designed and co-funded with employers in growth sectors, so skills lead to jobs.',
+             'تدريب تقني ومهني يُصمَّم ويُموَّل بالشراكة مع أصحاب العمل في القطاعات الواعدة، لتقود المهارات إلى وظائف.'] ] },
+    { key:'health', en:'Health', ar:'الصحة', short:['Health','الصحة'], stats:['SH.DYN.MORT','SH.STA.MMRT','SP.DYN.LE00.IN','SH.XPD.CHEX.GD.ZS'], bars:['SH.DYN.MORT','SH.STA.MMRT','SP.DYN.LE00.IN','SH.IMM.MEAS','SH.XPD.CHEX.GD.ZS','SH.MED.PHYS.ZS'],
+      acts:[ ['SH.DYN.MORT',1,'Scale up community health workers and integrated child-health services.','توسيع نطاق العاملين الصحيين المجتمعيين وخدمات صحة الطفل المتكاملة.'],
+             ['SH.STA.MMRT',1,'Expand skilled birth attendance and emergency obstetric care.','توسيع الولادة بإشراف كوادر مؤهلة ورعاية التوليد الطارئة.'],
+             ['SH.IMM.MEAS',2,'Close immunisation gaps through outreach and cold-chain investment.','سد فجوات التحصين عبر الوصول الميداني والاستثمار في سلسلة التبريد.'],
+             ['SH.XPD.CHEX.GD.ZS',2,'Support higher, more predictable public health financing.','دعم تمويل صحي عام أعلى وأكثر استقراراً.'],
+             [null,3,'Strengthen primary-care quality and reach in underserved areas.','تعزيز جودة الرعاية الأولية ووصولها إلى المناطق المحرومة.'] ],
+      inv:[ [() => off('SH.MED.PHYS.ZS', 1) || off('SH.DYN.MORT', 0), 'Co-invest with private operators in diagnostic centres and district hospitals (PPP), and in local production of essential medicines and medical supplies.',
+             'الاستثمار المشترك مع مشغّلين من القطاع الخاص في مراكز التشخيص والمستشفيات الإقليمية (شراكة بين القطاعين)، وفي التصنيع المحلي للأدوية والمستلزمات الطبية الأساسية.'] ] },
+    { key:'econ', en:'Economic Empowerment', ar:'التمكين الاقتصادي', short:['Economic empowerment','التمكين الاقتصادي'],
+      stats:['SI.POV.DDAY','SL.UEM.TOTL.ZS','SL.TLF.CACT.FE.ZS','FX.OWN.TOTL.ZS'], bars:['SI.POV.DDAY','SL.UEM.TOTL.ZS','SL.UEM.1524.ZS','SL.TLF.CACT.FE.ZS','SL.EMP.VULN.ZS','FX.OWN.TOTL.ZS','SI.POV.GINI'],
+      acts:[ ['SI.POV.DDAY',1,'Expand social protection and cash transfers for households in extreme poverty.','توسيع الحماية الاجتماعية والتحويلات النقدية للأسر في الفقر المدقع.'],
+             ['SL.UEM.1524.ZS',1,'Youth employment: vocational skills, apprenticeships and job-matching services.','تشغيل الشباب: المهارات المهنية والتدريب المهني وخدمات المواءمة مع الوظائف.'],
+             ['SL.TLF.CACT.FE.ZS',1,'Women’s economic empowerment: childcare, skills and finance for women entrepreneurs.','التمكين الاقتصادي للمرأة: رعاية الأطفال والمهارات والتمويل لرائدات الأعمال.'],
+             ['FX.OWN.TOTL.ZS',1,'Widen financial inclusion through mobile money and agent banking.','توسيع الشمول المالي عبر الأموال عبر الهاتف والخدمات المصرفية عبر الوكلاء.'],
+             ['SL.EMP.VULN.ZS',1,'Help informal workers formalise: registration, savings and social insurance.','مساعدة العاملين في القطاع غير الرسمي على الانتقال إلى الاقتصاد الرسمي: التسجيل والادخار والتأمين الاجتماعي.'],
+             [null,3,'Link households to savings groups, skills and decent jobs.','ربط الأسر بمجموعات الادخار والمهارات وفرص العمل اللائق.'] ],
+      inv:[ [() => off('FX.OWN.TOTL.ZS', 1) || off('SL.TLF.CACT.FE.ZS', 1), 'Invest in microfinance institutions and digital lenders that serve women and low-income households.',
+             'الاستثمار في مؤسسات التمويل الأصغر والمقرضين الرقميين الذين يخدمون النساء والأسر منخفضة الدخل.'],
+            [() => off('SL.UEM.1524.ZS', 1) || off('SL.UEM.TOTL.ZS', 1), 'Co-invest with employers in skills-to-jobs programmes in labour-intensive sectors such as agro-processing, construction and tourism.',
+             'الاستثمار المشترك مع أصحاب العمل في برامج تربط المهارات بالوظائف في القطاعات كثيفة العمالة مثل التصنيع الزراعي والبناء والسياحة.'] ] },
+    { key:'business', en:'Business Enablement', ar:'تمكين الأعمال', short:['Business enablement','تمكين الأعمال'],
+      stats:['FS.AST.PRVT.GD.ZS','BX.KLT.DINV.WD.GD.ZS','FR.INR.LEND','LP.LPI.OVRL.XQ'], bars:['FS.AST.PRVT.GD.ZS','BX.KLT.DINV.WD.GD.ZS','FR.INR.LEND','IC.FRM.BKWC.ZS','IC.ELC.OUTG.ZS','LP.LPI.OVRL.XQ','IC.BUS.NDNS.ZS'],
+      acts:[ ['FS.AST.PRVT.GD.ZS',1,'Partial credit guarantees and credit bureaus to widen bank lending to small businesses.','ضمانات ائتمان جزئية ومكاتب استعلام ائتماني لتوسيع الإقراض المصرفي للأعمال الصغيرة.'],
+             ['FR.INR.LEND',1,'Support financial-sector reforms that bring down the cost of credit.','دعم إصلاحات القطاع المالي التي تخفض كلفة الائتمان.'],
+             ['IC.ELC.OUTG.ZS',1,'Reliable power for industrial zones and small-business clusters.','كهرباء موثوقة للمناطق الصناعية وتجمعات الأعمال الصغيرة.'],
+             ['LP.LPI.OVRL.XQ',1,'Customs modernisation and a single window for trade paperwork.','تحديث الجمارك ونافذة موحدة لإجراءات التجارة.'],
+             ['BX.KLT.DINV.WD.GD.ZS',1,'Investment-climate reform: a one-stop shop for investors and clear licensing rules.','إصلاح مناخ الاستثمار: مركز خدمة شامل للمستثمرين وقواعد ترخيص واضحة.'],
+             [null,3,'Simplify business registration, licensing and tax filing.','تبسيط تسجيل الأعمال والترخيص والإقرارات الضريبية.'] ],
+      inv:[ [() => off('FS.AST.PRVT.GD.ZS', 1) || off('IC.FRM.BKWC.ZS', 1) || off('FR.INR.LEND', 1), 'Credit lines and partial guarantees through local banks to unlock lending to small and medium-sized businesses.',
+             'خطوط ائتمان وضمانات جزئية عبر البنوك المحلية لفتح الإقراض أمام المنشآت الصغيرة والمتوسطة.'],
+            [() => off('BX.KLT.DINV.WD.GD.ZS', 2) || off('LP.LPI.OVRL.XQ', 2), 'Co-invest with private developers in special economic zones, industrial parks and logistics hubs.',
+             'الاستثمار المشترك مع المطورين من القطاع الخاص في المناطق الاقتصادية الخاصة والمجمعات الصناعية والمراكز اللوجستية.'] ] },
+    { key:'trade', en:'Trade', ar:'التجارة', short:['Trade','التجارة'],
+      stats:['NE.EXP.GNFS.ZS','BN.CAB.XOKA.GD.ZS','TM.TAX.MRCH.WM.AR.ZS','TX.VAL.MANF.ZS.UN'], bars:['BN.CAB.XOKA.GD.ZS','TM.TAX.MRCH.WM.AR.ZS'],
+      acts:[ ['TM.TAX.MRCH.WM.AR.ZS',1,'Support tariff reform and regional trade agreements that open neighbouring markets.','دعم إصلاح التعريفات واتفاقيات التجارة الإقليمية التي تفتح أسواق الجوار.'],
+             ['BN.CAB.XOKA.GD.ZS',1,'Export promotion and diversification to narrow the trade gap.','تشجيع الصادرات وتنويعها لتضييق الفجوة التجارية.'],
+             [null,3,'Help exporters meet international standards and certification to reach new markets.','مساعدة المصدّرين على استيفاء المعايير والشهادات الدولية للوصول إلى أسواق جديدة.'] ],
+      inv:[ [() => off('BN.CAB.XOKA.GD.ZS', 2) || (R('TX.VAL.MANF.ZS.UN') && !R('TX.VAL.MANF.ZS.UN').stale && R('TX.VAL.MANF.ZS.UN').v < 30), 'Co-invest in export-oriented processing (agro-processing, light manufacturing) and in port, storage and logistics capacity, including with UAE trade and logistics partners.',
+             'الاستثمار المشترك في التصنيع الموجّه للتصدير (التصنيع الزراعي والصناعات الخفيفة) وفي قدرات الموانئ والتخزين والخدمات اللوجستية، بما في ذلك مع شركاء التجارة والخدمات اللوجستية في الإمارات.'] ] },
   ];
   // "where the need is" maps: the DHS survey indicator ↔ the national indicator it measures
   const SUB_LINK = { CM_ECMR_C_U5M:'SH.DYN.MORT', CH_VACC_C_BAS:'SH.IMM.MEAS', ED_LITR_W_LIT:'SE.ADT.LITR.ZS', CN_NUTS_C_HA2:'SH.STA.STNT.ZS', WS_SRCE_H_IMP:'SH.H2O.BASW.ZS', WS_TLET_H_IMP:'SH.STA.BASS.ZS' };
@@ -519,9 +608,9 @@ function buildCountryDeck(opts){
     const sx = RX + 1.78, sw = RW - 1.78, shown = SECTORS.filter(s => s.level != null);
     sl.text(T('STATUS BY SECTOR', 'الوضع حسب القطاع'), { x:sx, y:by - 0.02, w:sw, h:0.2, fontFace:BODY, fontSize:7.8, bold:true, color:C.GOLD, charSpacing:1.4 });
     shown.forEach((s, i) => {
-      const yy = by + 0.22 + i * 0.205;
+      const yy = by + 0.21 + i * Math.min(0.205, 1.42 / Math.max(1, shown.length));   // up to eight sectors fit
       sl.text(T(s.short[0], s.short[1]), { x:sx, y:yy, w:sw - 1.3, h:0.19, fontFace:BODY, fontSize:8.2, color:C.INK, valign:'middle' });
-      badge(sl, s.level, sx + sw - 1.2, yy + 0.015, 1.2, 0.165);
+      badge(sl, s.level, sx + sw - 1.2, yy + 0.015, 1.2, 0.15);
     });
     foot(sl, T('World Bank Open Data & WGI · Wikidata (leaders) · Natural Earth (borders) · ', 'بيانات البنك الدولي ومؤشرات الحوكمة · ويكي بيانات (القادة) · Natural Earth (الحدود) · ') + DATE);
   });
@@ -698,6 +787,17 @@ function buildCountryDeck(opts){
     const RX = 7.85, RW = 13.333 - RX - 0.5;
     eyebrow(sl, T('Key insights', 'أبرز الملاحظات'), RX, 1.38, RW, C.SKY_DK);
     let ins = s.ranked.filter(id => lvl(id) <= 2).map(id => insight(id, id === s.mapId)).filter(Boolean).slice(0, 3);
+    // Trade: what the export base looks like (manufactured vs food share) — a structural point, not a benchmark rating
+    if (s.key === 'trade') {
+      const m = R('TX.VAL.MANF.ZS.UN'), fd = R('TX.VAL.FOOD.ZS.UN'), tp = opts.trade && opts.trade.exports;
+      const narrow = (m && !m.stale && m.v < 30) || (fd && !fd.stale && fd.v >= 40);
+      if (narrow) {
+        const mk = tp && tp.top.length ? T(' Main markets: ', ' أبرز الأسواق: ') + andList(tp.top.slice(0, 3).map(x => x.name)) + '.' : '';
+        ins = ins.concat([{ L: 2, head: T('Narrow export base', 'قاعدة صادرات ضيقة'),
+          body: T(`Manufactured goods are ${m ? Math.round(m.v) + '%' : 'a small share'} of exports${fd ? ` and food ${Math.round(fd.v)}%` : ''}, so earnings depend on a few primary products and swing with world prices and the weather.`,
+                  `تشكّل السلع المصنّعة ${m ? Math.round(m.v) + '%' : 'نسبة صغيرة'} من الصادرات${fd ? ` والأغذية ${Math.round(fd.v)}%` : ''}، لذا تعتمد الإيرادات على عدد قليل من المنتجات الأولية وتتقلب مع الأسعار العالمية والطقس.`) + mk }]).slice(0, 3);
+      }
+    }
     let y = 1.7;
     if (!ins.length) {
       const msg = s.level === 3 ? T('Key indicators meet their benchmarks. The priority is to protect these gains and reach the communities still left behind.',
@@ -714,6 +814,23 @@ function buildCountryDeck(opts){
       sl.text(it.body, { x:RX + 0.18, y:y + hh, w:RW - 0.2, h:bh, fontFace:BODY, fontSize:9.6, color:C.INK, valign:'top', wrap:true });
       y += total + 0.2;
     });
+    // Trade: main trading partners (World Bank WITS / UN Comtrade), under the insights
+    if (s.key === 'trade' && opts.trade && (opts.trade.exports || opts.trade.imports) && y + 1.75 <= 6.98) {
+      const cols = [[T('Top export markets', 'أبرز أسواق التصدير'), opts.trade.exports], [T('Top import sources', 'أبرز مصادر الاستيراد'), opts.trade.imports]].filter(c => c[1]);
+      const cw2 = (RW - 0.2 * (cols.length - 1)) / cols.length;
+      cols.forEach(([title, side], ci) => {
+        const cx = RX + ci * (cw2 + 0.2);
+        eyebrow(sl, title, cx, y, cw2, C.SKY_DK);
+        sl.text(T('Share of goods trade, ', 'الحصة من تجارة السلع، ') + side.year, { x:cx, y:y + 0.22, w:cw2, h:0.18, fontFace:BODY, fontSize:7, color:C.FAINT });
+        side.top.forEach((pt, i) => {
+          const ry = y + 0.44 + i * 0.25, nw = cw2 * 0.5, bx = cx + nw, bw = cw2 - nw - 0.5;
+          sl.text(pt.name, { x:cx, y:ry, w:nw - 0.05, h:0.22, fontFace:BODY, fontSize:8.4, color:C.INK, valign:'middle', fit:'shrink' });
+          sl.shape(p.ShapeType.rect, { x:bx, y:ry + 0.07, w:bw, h:0.09, fill:{ color:C.SKY_PALE }, line:{ type:'none' } });
+          sl.shape(p.ShapeType.rect, { x:bx, y:ry + 0.07, w:Math.max(0.03, bw * Math.min(1, pt.share / 50)), h:0.09, fill:{ color:C.SKY }, line:{ type:'none' } });
+          sl.text(pt.share.toFixed(1) + '%', { x:bx + bw + 0.04, y:ry, w:0.46, h:0.22, fontFace:BODY, fontSize:8.4, bold:true, color:C.INK, valign:'middle', align:'right' });
+        });
+      });
+    }
     const srcs = [...new Set(s.ids.map(id => SRC[id]).filter(Boolean).flatMap(x => x.split(' · ')))].slice(0, 5).map(srcTxt).join(' · ');
     foot(sl, srcs + ' · ' + DATE);
   }); subSlide(s); });
@@ -731,7 +848,7 @@ function buildCountryDeck(opts){
         `تُعرض الأرقام الأقدم من ${DK.STALE_YEARS} سنوات مع سنتها لكنها تُستبعد من التصنيف والسرد. وتُعرض القيم المفقودة أو غير المعقولة (مثل إنفاق 0%) بعلامة «—» دون تقدير.`)],
       [T('ODA need index', 'مؤشر الاحتياج'), T('A 0–100 score (higher = greater need). Combines under-5 and maternal mortality, undernourishment and lack of basic water, sanitation and electricity, each scaled across all tracked countries (0–100).',
         'درجة من 0 إلى 100 (الأعلى = احتياج أكبر). تجمع بين وفيات الأطفال دون الخامسة ووفيات الأمهات ونقص التغذية ونقص مياه الشرب الأساسية والصرف الصحي والكهرباء، مع قياس كل منها عبر جميع الدول المتابَعة (0–100).')],
-      [T('Sources', 'المصادر'), [T('World Bank Open Data', 'بيانات البنك الدولي المفتوحة'), T('World Bank Worldwide Governance Indicators', 'مؤشرات الحوكمة العالمية'), 'IMF', 'WHO', 'UN IGME (UNICEF/WHO)', 'UNESCO UIS', 'FAO', 'WHO/UNICEF JMP', 'ITU', 'IEA', 'ILO', T('Wikidata (heads of state and government)', 'ويكي بيانات (رؤساء الدول والحكومات)'), T('The DHS Program (regional maps)', 'برنامج المسوح الديموغرافية والصحية DHS (الخرائط حسب المنطقة)')].map(x => ar ? srcTxt(x) : x).join(' · ') +
+      [T('Sources', 'المصادر'), [T('World Bank Open Data', 'بيانات البنك الدولي المفتوحة'), T('World Bank Worldwide Governance Indicators', 'مؤشرات الحوكمة العالمية'), 'IMF', 'WHO', 'UN IGME (UNICEF/WHO)', 'UNESCO UIS', 'FAO', 'WHO/UNICEF JMP', 'ITU', 'IEA', 'ILO', T('Wikidata (heads of state and government)', 'ويكي بيانات (رؤساء الدول والحكومات)'), T('The DHS Program (regional maps)', 'برنامج المسوح الديموغرافية والصحية DHS (الخرائط حسب المنطقة)'), T('ILO', 'منظمة العمل الدولية'), T('World Bank Global Findex, Enterprise Surveys and Logistics Performance Index', 'مؤشر الشمول المالي ومسوح المؤسسات ومؤشر الأداء اللوجستي للبنك الدولي'), T('World Bank WITS', 'نظام WITS للبنك الدولي')].map(x => ar ? srcTxt(x) : x).join(' · ') +
         T(` — retrieved live on building this report (${DATE}).`, ` — استُرجعت مباشرة عند إعداد هذا التقرير (${DATE}).`)],
     ];
     blocks.forEach(([h, t], i) => {

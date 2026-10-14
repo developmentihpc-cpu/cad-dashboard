@@ -49,6 +49,21 @@ const SEV_RULES = {
   'EN.ATM.PM25.MC.M3':  { dir: 1, th:[35, 25, 15],        ref:'WHO interim air-quality targets',   refAr:'أهداف جودة الهواء المرحلية لمنظمة الصحة' },
   'AG.YLD.CREL.KG':     { dir:-1, th:[1500, 2500, 4000],  ref:'world average ≈ 4,000 kg/ha',       refAr:'المتوسط العالمي ≈ 4,000 كغ/هكتار' },
   'NY.GDP.PCAP.PP.CD':  { dir:-1, th:[3000, 7000, 15000], ref:'income bands (PPP)',                refAr:'فئات الدخل (تعادل القوة الشرائية)' },
+  // Economic empowerment
+  'SL.UEM.1524.ZS':     { dir: 1, th:[30, 20, 12],        ref:'ILO: over 20% is high',             refAr:'منظمة العمل الدولية: أعلى من 20% مرتفع' },
+  'SL.TLF.CACT.FE.ZS':  { dir:-1, th:[25, 40, 55],        ref:'global average ≈ 49%',              refAr:'المتوسط العالمي ≈ 49%' },
+  'SL.EMP.VULN.ZS':     { dir: 1, th:[70, 50, 30],        ref:'ILO decent-work benchmark',         refAr:'معيار العمل اللائق لمنظمة العمل الدولية' },
+  'FX.OWN.TOTL.ZS':     { dir:-1, th:[30, 50, 75],        ref:'Global Findex: universal access',   refAr:'مؤشر الشمول المالي: الوصول الشامل' },
+  // Business enablement
+  'FS.AST.PRVT.GD.ZS':  { dir:-1, th:[15, 30, 50],        ref:'financial-depth bands',             refAr:'فئات العمق المالي' },
+  'BX.KLT.DINV.WD.GD.ZS':{ dir:-1, th:[0.5, 1.5, 3],      ref:'developing-country average ≈ 2–3%', refAr:'متوسط الدول النامية ≈ 2–3%' },
+  'FR.INR.LEND':        { dir: 1, th:[25, 15, 10],        ref:'above 15% makes credit costly',     refAr:'أعلى من 15% يجعل الائتمان مكلفاً' },
+  'IC.FRM.BKWC.ZS':     { dir:-1, th:[10, 20, 30],        ref:'Enterprise Surveys average ≈ 30%',  refAr:'متوسط مسوح المؤسسات ≈ 30%' },
+  'IC.ELC.OUTG.ZS':     { dir: 1, th:[70, 50, 30],        ref:'Enterprise Surveys average ≈ 50%',  refAr:'متوسط مسوح المؤسسات ≈ 50%' },
+  'LP.LPI.OVRL.XQ':     { dir:-1, th:[2.3, 2.6, 3.0],     ref:'world median ≈ 3.0 (1–5 scale)',    refAr:'الوسيط العالمي ≈ 3.0 (مقياس 1–5)' },
+  // Trade
+  'BN.CAB.XOKA.GD.ZS':  { dir:-1, th:[-10, -5, -3],      ref:'deficits beyond 5% of GDP are a risk', refAr:'العجز الذي يتجاوز 5% من الناتج يمثل خطراً' },
+  'TM.TAX.MRCH.WM.AR.ZS':{ dir: 1, th:[12, 8, 5],         ref:'world average ≈ 5%',                refAr:'المتوسط العالمي ≈ 5%' },
   // Worldwide Governance Indicators (World Bank), score 0–100 — higher is better
   'IMF.GGXWDG_NGDP':    { dir: 1, th:[90, 70, 50],        ref:'IMF debt-risk ranges',              refAr:'نطاقات مخاطر الدين لصندوق النقد' },
   'GOV_WGI_PV.SC':      { dir:-1, th:[25, 40, 60],        ref:'WGI governance score (0–100)',      refAr:'مؤشر الحوكمة العالمي (0–100)' },
@@ -61,6 +76,8 @@ const SEV_RULES = {
   'IT.NET.BBND.P2':     { dir:-1, peers:true }, 'IT.CEL.SETS.P2': { dir:-1, peers:true },
   'LP.LPI.INFR.XQ':     { dir:-1, peers:true }, 'ER.PTD.TOTL.ZS': { dir:-1, peers:true },
   'SP.POP.DPND':        { dir: 1, peers:true }, 'SN.ITK.MSFI.ZS': { dir: 1, peers:true },
+  'IC.BUS.NDNS.ZS':     { dir:-1, peers:true }, 'NE.TRD.GNFS.ZS': { dir:-1, peers:true },
+  'NE.EXP.GNFS.ZS':     { dir:-1, peers:true }, 'TX.VAL.MANF.ZS.UN': { dir:-1, peers:true },
 };
 const SEV_LABELS = {
   en: ['Severe', 'High concern', 'Moderate', 'On track'],

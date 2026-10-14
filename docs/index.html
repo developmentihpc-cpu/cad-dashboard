@@ -2129,15 +2129,13 @@ const COUNTRY_ISO = {
 };
 
 // ── Country Analysis indicator catalogue ──────────────────────────────────
-const CA_TABS = ['overview','health','education','energy','agriculture','economy','wash','food','digital','environment','infrastructure'];
+// Dashboard indicator tabs: Overview + the eight ODA sectors (same sectors as the country report)
+const CA_TABS = ['overview','water','energy','agrifood','education','health','econ','business','trade'];
 const CA_TAB_LABELS = {
-  en: { overview:'Overview', health:'Health', education:'Education', energy:'Energy',
-        agriculture:'Agriculture', economy:'Economy', wash:'WASH', food:'Food Security',
-        digital:'Digital', environment:'Environment', infrastructure:'Infrastructure' },
-  ar: { overview:'نظرة عامة', health:'الصحة', education:'التعليم', energy:'الطاقة',
-        agriculture:'الزراعة', economy:'الاقتصاد', wash:'المياه والصرف',
-        food:'الأمن الغذائي', digital:'الرقمي', environment:'البيئة',
-        infrastructure:'البنية التحتية' }
+  en: { overview:'Overview', water:'Water', energy:'Energy', agrifood:'Agriculture & Food Security', education:'Education',
+        health:'Health', econ:'Economic Empowerment', business:'Business Enablement', trade:'Trade' },
+  ar: { overview:'نظرة عامة', water:'المياه', energy:'الطاقة', agrifood:'الزراعة والأمن الغذائي', education:'التعليم',
+        health:'الصحة', econ:'التمكين الاقتصادي', business:'تمكين الأعمال', trade:'التجارة' }
 };
 const CA_INDICATORS = {
   overview: [
@@ -2145,25 +2143,40 @@ const CA_INDICATORS = {
     { id:'NY.GDP.PCAP.PP.CD',  label:'GDP per Capita (PPP)',       labelAr:'نصيب الفرد من الناتج المحلي (ت.ق.ش)', unit:' USD',   fmt:'num0', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD' },
     { id:'FP.CPI.TOTL.ZG',    label:'Inflation Rate',             labelAr:'معدل التضخم',                        unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/FP.CPI.TOTL.ZG' },
     { id:'IMF.GGXWDG_NGDP',   label:'Government Debt (% GDP)',    labelAr:'الدين الحكومي (% من الناتج المحلي)',  unit:'%',        fmt:'pct1', src:'IMF' },
-    { id:'BN.CAB.XOKA.GD.ZS', label:'Current Account (% GDP)',    labelAr:'الحساب الجاري (% من الناتج المحلي)',  unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/BN.CAB.XOKA.GD.ZS' },
+    { id:'GC.TAX.TOTL.GD.ZS', label:'Tax Revenue (% GDP)',        labelAr:'الإيرادات الضريبية (% من الناتج المحلي)', unit:'%',   fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/GC.TAX.TOTL.GD.ZS' },
     { id:'NY.GNP.ATLS.CD',    label:'GNI (Atlas method)',         labelAr:'إجمالي الدخل القومي',                 unit:'',         fmt:'big',  src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/NY.GNP.ATLS.CD' },
-    { id:'SL.UEM.TOTL.ZS',    label:'Unemployment Rate',          labelAr:'معدل البطالة',                        unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SL.UEM.TOTL.ZS' },
+    { id:'NY.GDP.MKTP.PP.CD', label:'GDP PPP (current)',          labelAr:'الناتج المحلي الإجمالي (تعادل القوة الشرائية)', unit:'', fmt:'big', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/NY.GDP.MKTP.PP.CD' },
     { id:'SP.POP.TOTL',       label:'Total Population',           labelAr:'إجمالي السكان',                       unit:'',         fmt:'pop',  src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SP.POP.TOTL' },
     { id:'EN.POP.DNST',       label:'Population Density',         labelAr:'الكثافة السكانية',                    unit:' /km²',    fmt:'num1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/EN.POP.DNST' },
     { id:'SP.DYN.LE00.IN',    label:'Life Expectancy',            labelAr:'متوسط العمر المتوقع',                 unit:' yrs',     fmt:'num1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SP.DYN.LE00.IN' },
     { id:'SP.POP.DPND',       label:'Age Dependency Ratio',       labelAr:'نسبة الإعالة',                        unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SP.POP.DPND' },
-    { id:'__trade_exports',   label:'Top Export Partners',        labelAr:'أبرز شركاء التصدير',                 unit:'',         fmt:'trade', wide:true },
-    { id:'__trade_imports',   label:'Top Import Partners',        labelAr:'أبرز شركاء الاستيراد',               unit:'',         fmt:'trade', wide:true },
   ],
-  health: [
-    { id:'SP.DYN.LE00.IN',    label:'Life Expectancy at Birth',   labelAr:'متوسط العمر المتوقع عند الولادة',    unit:' yrs',     fmt:'num1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SP.DYN.LE00.IN' },
-    { id:'SH.DYN.MORT',       label:'Under-5 Mortality Rate',     labelAr:'وفيات الأطفال دون 5 سنوات',          unit:' /1,000',  fmt:'num1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.DYN.MORT' },
-    { id:'SH.STA.MMRT',       label:'Maternal Mortality Ratio',   labelAr:'معدل وفيات الأمهات',                 unit:' /100k',   fmt:'num0', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.STA.MMRT' },
-    { id:'SH.XPD.CHEX.GD.ZS',label:'Health Expenditure (% GDP)', labelAr:'الإنفاق الصحي (% من الناتج المحلي)', unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.XPD.CHEX.GD.ZS' },
-    { id:'SH.MED.PHYS.ZS',    label:'Physicians (per 1,000)',     labelAr:'الأطباء (لكل ألف)',                   unit:' /1k',     fmt:'num2', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.MED.PHYS.ZS' },
-    { id:'SH.MED.BEDS.ZS',    label:'Hospital Beds (per 1,000)', labelAr:'أسرة المستشفيات (لكل ألف)',           unit:' /1k',     fmt:'num1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.MED.BEDS.ZS' },
-    { id:'SH.IMM.MEAS',       label:'Measles Immunisation (%)',   labelAr:'تحصين الحصبة (%)',                    unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.IMM.MEAS' },
+  water: [
+    { id:'SH.H2O.BASW.ZS',   label:'Basic Drinking Water Access', labelAr:'الوصول إلى مياه الشرب الأساسية',   unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.H2O.BASW.ZS' },
+    { id:'SH.H2O.SMDW.ZS',   label:'Safely Managed Drinking Water', labelAr:'مياه الشرب المُدارة بشكل آمن',   unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.H2O.SMDW.ZS' },
+    { id:'SH.STA.BASS.ZS',   label:'Basic Sanitation Services',   labelAr:'خدمات الصرف الصحي الأساسية',       unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.STA.BASS.ZS' },
+    { id:'SH.STA.SMSS.ZS',   label:'Safely Managed Sanitation',   labelAr:'خدمات الصرف الصحي الآمنة',         unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.STA.SMSS.ZS' },
+    { id:'SH.STA.ODFC.ZS',   label:'Open Defecation (%)',         labelAr:'التغوط في العراء (%)',               unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.STA.ODFC.ZS' },
+    { id:'SH.STA.HYGN.ZS',   label:'Handwashing with Soap (%)',   labelAr:'غسل اليدين بالصابون (%)',           unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.STA.HYGN.ZS' },
+  ],
+  energy: [
+    { id:'EG.ELC.ACCS.ZS',    label:'Access to Electricity',      labelAr:'الوصول إلى الكهرباء',                unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/EG.ELC.ACCS.ZS' },
+    { id:'EG.CFT.ACCS.ZS',    label:'Clean Fuels for Cooking',    labelAr:'الوقود النظيف للطهو',                unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/EG.CFT.ACCS.ZS' },
+    { id:'EG.FEC.RNEW.ZS',    label:'Renewable Energy (% final)', labelAr:'الطاقة المتجددة (% من إجمالي الطاقة)', unit:'%',      fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/EG.FEC.RNEW.ZS' },
+    { id:'EG.USE.ELEC.KH.PC', label:'Electric Power Consumption', labelAr:'استهلاك الكهرباء للفرد',             unit:' kWh/cap', fmt:'num0', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/EG.USE.ELEC.KH.PC' },
+    { id:'EG.USE.PCAP.KG.OE', label:'Energy Use per Capita',      labelAr:'استهلاك الطاقة للفرد',               unit:' kg oil eq', fmt:'num0', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/EG.USE.PCAP.KG.OE' },
+  ],
+  agrifood: [
+    { id:'SN.ITK.DEFC.ZS',   label:'Prevalence of Undernourishment', labelAr:'معدل انتشار سوء التغذية',       unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SN.ITK.DEFC.ZS' },
+    { id:'SN.ITK.MSFI.ZS',   label:'Moderate or Severe Food Insecurity', labelAr:'انعدام الأمن الغذائي المتوسط أو الشديد', unit:'%', fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SN.ITK.MSFI.ZS' },
     { id:'SH.STA.STNT.ZS',    label:'Stunting Prevalence (%)',    labelAr:'معدل التقزم لدى الأطفال (%)',         unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.STA.STNT.ZS' },
+    { id:'AG.YLD.CREL.KG',    label:'Cereal Yield',               labelAr:'إنتاجية الحبوب',                     unit:' kg/ha',   fmt:'num0', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/AG.YLD.CREL.KG' },
+    { id:'AG.PRD.FOOD.XD',    label:'Food Production Index',      labelAr:'مؤشر إنتاج الغذاء',                  unit:'',         fmt:'num1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/AG.PRD.FOOD.XD' },
+    { id:'NV.AGR.TOTL.ZS',    label:'Agriculture Value Added (% GDP)', labelAr:'القيمة المضافة الزراعية (% من الناتج المحلي)', unit:'%', fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/NV.AGR.TOTL.ZS' },
+    { id:'SL.AGR.EMPL.ZS',    label:'Employment in Agriculture (% of jobs)', labelAr:'العاملون في الزراعة (% من الوظائف)', unit:'%', fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SL.AGR.EMPL.ZS' },
+    { id:'AG.LND.ARBL.ZS',    label:'Arable Land (% total)',      labelAr:'الأراضي الصالحة للزراعة (% من الإجمالي)', unit:'%',    fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/AG.LND.ARBL.ZS' },
+    { id:'AG.LND.AGRI.ZS',    label:'Agricultural Land (% total)', labelAr:'الأراضي الزراعية (% من الإجمالي)', unit:'%',          fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/AG.LND.AGRI.ZS' },
+    { id:'SP.RUR.TOTL.ZS',    label:'Rural Population (%)',       labelAr:'سكان الريف (%)',                      unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SP.RUR.TOTL.ZS' },
   ],
   education: [
     { id:'SE.PRM.ENRR',       label:'Primary Enrollment (gross)', labelAr:'الالتحاق بالتعليم الابتدائي (إجمالي)', unit:'%',      fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SE.PRM.ENRR' },
@@ -2182,77 +2195,46 @@ const CA_INDICATORS = {
     { id:'uis:SCHBSP.1.WWATA',  label:'Primary Schools with Drinking Water',     labelAr:'المدارس الابتدائية المزوّدة بمياه الشرب',        unit:'%', fmt:'pct1', group:'schools' },
     { id:'uis:SCHBSP.1.WTOILA', label:'Primary Schools with Separate Toilets',   labelAr:'المدارس الابتدائية ذات دورات مياه منفصلة',      unit:'%', fmt:'pct1', group:'schools' },
   ],
-  energy: [
-    { id:'EG.ELC.ACCS.ZS',    label:'Access to Electricity',      labelAr:'الوصول إلى الكهرباء',                unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/EG.ELC.ACCS.ZS' },
-    { id:'EG.FEC.RNEW.ZS',    label:'Renewable Energy (% final)', labelAr:'الطاقة المتجددة (% من إجمالي الطاقة)', unit:'%',      fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/EG.FEC.RNEW.ZS' },
-    { id:'EG.USE.PCAP.KG.OE', label:'Energy Use per Capita',      labelAr:'استهلاك الطاقة للفرد',               unit:' kg oil eq', fmt:'num0', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/EG.USE.PCAP.KG.OE' },
-    { id:'EN.GHG.CO2.PC.CE.AR5',    label:'CO₂ Emissions per Capita',   labelAr:'انبعاثات ثاني أكسيد الكربون للفرد', unit:' t',        fmt:'num2', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/EN.GHG.CO2.PC.CE.AR5' },
-    { id:'EG.USE.ELEC.KH.PC', label:'Electric Power Consumption', labelAr:'استهلاك الكهرباء للفرد',             unit:' kWh/cap', fmt:'num0', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/EG.USE.ELEC.KH.PC' },
-    { id:'EG.CFT.ACCS.ZS',    label:'Clean Fuels for Cooking',    labelAr:'الوقود النظيف للطهو',                unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/EG.CFT.ACCS.ZS' },
+  health: [
+    { id:'SP.DYN.LE00.IN',    label:'Life Expectancy at Birth',   labelAr:'متوسط العمر المتوقع عند الولادة',    unit:' yrs',     fmt:'num1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SP.DYN.LE00.IN' },
+    { id:'SH.DYN.MORT',       label:'Under-5 Mortality Rate',     labelAr:'وفيات الأطفال دون 5 سنوات',          unit:' /1,000',  fmt:'num1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.DYN.MORT' },
+    { id:'SH.STA.MMRT',       label:'Maternal Mortality Ratio',   labelAr:'معدل وفيات الأمهات',                 unit:' /100k',   fmt:'num0', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.STA.MMRT' },
+    { id:'SH.XPD.CHEX.GD.ZS',label:'Health Expenditure (% GDP)', labelAr:'الإنفاق الصحي (% من الناتج المحلي)', unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.XPD.CHEX.GD.ZS' },
+    { id:'SH.MED.PHYS.ZS',    label:'Physicians (per 1,000)',     labelAr:'الأطباء (لكل ألف)',                   unit:' /1k',     fmt:'num2', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.MED.PHYS.ZS' },
+    { id:'SH.MED.BEDS.ZS',    label:'Hospital Beds (per 1,000)', labelAr:'أسرة المستشفيات (لكل ألف)',           unit:' /1k',     fmt:'num1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.MED.BEDS.ZS' },
+    { id:'SH.IMM.MEAS',       label:'Measles Immunisation (%)',   labelAr:'تحصين الحصبة (%)',                    unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.IMM.MEAS' },
+    { id:'SH.STA.STNT.ZS',    label:'Stunting Prevalence (%)',    labelAr:'معدل التقزم لدى الأطفال (%)',         unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.STA.STNT.ZS' },
   ],
-  agriculture: [
-    { id:'NV.AGR.TOTL.ZS',    label:'Agriculture Value Added (% GDP)', labelAr:'القيمة المضافة الزراعية (% من الناتج المحلي)', unit:'%', fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/NV.AGR.TOTL.ZS' },
-    { id:'AG.LND.ARBL.ZS',    label:'Arable Land (% total)',      labelAr:'الأراضي الصالحة للزراعة (% من الإجمالي)', unit:'%',    fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/AG.LND.ARBL.ZS' },
-    { id:'AG.LND.AGRI.ZS',    label:'Agricultural Land (% total)', labelAr:'الأراضي الزراعية (% من الإجمالي)', unit:'%',          fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/AG.LND.AGRI.ZS' },
-    { id:'AG.YLD.CREL.KG',    label:'Cereal Yield',               labelAr:'إنتاجية الحبوب',                     unit:' kg/ha',   fmt:'num0', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/AG.YLD.CREL.KG' },
-    { id:'AG.PRD.FOOD.XD',    label:'Food Production Index',      labelAr:'مؤشر إنتاج الغذاء',                  unit:'',         fmt:'num1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/AG.PRD.FOOD.XD' },
-    { id:'SP.RUR.TOTL.ZS',    label:'Rural Population (%)',       labelAr:'سكان الريف (%)',                      unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SP.RUR.TOTL.ZS' },
-    { id:'SL.AGR.EMPL.ZS',    label:'Employment in Agriculture (% of jobs)', labelAr:'العاملون في الزراعة (% من الوظائف)', unit:'%', fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SL.AGR.EMPL.ZS' },
-  ],
-  economy: [
-    { id:'NY.GDP.MKTP.PP.CD', label:'GDP PPP (current)',          labelAr:'الناتج المحلي الإجمالي (تعادل القوة الشرائية)', unit:'', fmt:'big', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/NY.GDP.MKTP.PP.CD' },
-    { id:'NE.TRD.GNFS.ZS',    label:'Trade (% GDP)',              labelAr:'التجارة (% من الناتج المحلي)',        unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/NE.TRD.GNFS.ZS' },
-    { id:'BX.KLT.DINV.WD.GD.ZS', label:'FDI Net Inflows (% GDP)', labelAr:'صافي تدفقات الاستثمار الأجنبي (% من الناتج المحلي)', unit:'%', fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/BX.KLT.DINV.WD.GD.ZS' },
-    { id:'GC.TAX.TOTL.GD.ZS', label:'Tax Revenue (% GDP)',        labelAr:'الإيرادات الضريبية (% من الناتج المحلي)', unit:'%',   fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/GC.TAX.TOTL.GD.ZS' },
-    { id:'SI.POV.GINI',       label:'Gini Index (inequality)',    labelAr:'مؤشر جيني (التفاوت)',                 unit:'',         fmt:'num1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SI.POV.GINI' },
-    { id:'SI.POV.DDAY',       label:'Poverty Rate (<$2.15/day)',  labelAr:'معدل الفقر (أقل من 2.15 دولار/يوم)',  unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SI.POV.DDAY' },
-    { id:'NY.GDP.MKTP.KD.ZG', label:'GDP Growth Rate',           labelAr:'معدل النمو الاقتصادي',                unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/NY.GDP.MKTP.KD.ZG' },
-    { id:'FP.CPI.TOTL.ZG',    label:'Inflation Rate',            labelAr:'معدل التضخم',                         unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/FP.CPI.TOTL.ZG' },
+  econ: [
+    { id:'SI.POV.DDAY',       label:'Poverty Rate (<$3.00/day)',  labelAr:'معدل الفقر (أقل من 3.00 دولار/يوم)',  unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SI.POV.DDAY' },
     { id:'SL.UEM.TOTL.ZS',    label:'Unemployment Rate',          labelAr:'معدل البطالة',                        unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SL.UEM.TOTL.ZS' },
+    { id:'SL.UEM.1524.ZS',    label:'Youth Unemployment (15–24)', labelAr:'بطالة الشباب (15–24)',                 unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SL.UEM.1524.ZS' },
+    { id:'SL.TLF.CACT.FE.ZS', label:'Women in the Labour Force (%)', labelAr:'مشاركة المرأة في القوى العاملة (%)', unit:'%',      fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SL.TLF.CACT.FE.ZS' },
+    { id:'SL.EMP.VULN.ZS',    label:'Vulnerable Employment (%)',  labelAr:'العمالة الهشة (%)',                    unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SL.EMP.VULN.ZS' },
+    { id:'FX.OWN.TOTL.ZS',    label:'Adults with a Bank or Mobile-Money Account', labelAr:'البالغون الذين لديهم حساب مصرفي أو محفظة إلكترونية', unit:'%', fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/FX.OWN.TOTL.ZS' },
+    { id:'SI.POV.GINI',       label:'Gini Index (inequality)',    labelAr:'مؤشر جيني (التفاوت)',                 unit:'',         fmt:'num1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SI.POV.GINI' },
+  ],
+  business: [
+    { id:'FS.AST.PRVT.GD.ZS', label:'Bank Credit to Private Sector (% GDP)', labelAr:'الائتمان المصرفي للقطاع الخاص (% من الناتج)', unit:'%', fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/FS.AST.PRVT.GD.ZS' },
+    { id:'BX.KLT.DINV.WD.GD.ZS', label:'FDI Net Inflows (% GDP)', labelAr:'صافي تدفقات الاستثمار الأجنبي (% من الناتج المحلي)', unit:'%', fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/BX.KLT.DINV.WD.GD.ZS' },
+    { id:'FR.INR.LEND',       label:'Lending Interest Rate',      labelAr:'سعر الفائدة على القروض',               unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/FR.INR.LEND' },
+    { id:'IC.BUS.NDNS.ZS',    label:'New Businesses Registered (per 1,000 adults)', labelAr:'الشركات الجديدة المسجلة (لكل 1,000 بالغ)', unit:'', fmt:'num2', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/IC.BUS.NDNS.ZS' },
+    { id:'IC.FRM.BKWC.ZS',    label:'Firms Using Bank Credit for Working Capital', labelAr:'الشركات التي تموّل رأس مالها العامل بقروض مصرفية', unit:'%', fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/IC.FRM.BKWC.ZS' },
+    { id:'IC.ELC.OUTG.ZS',    label:'Firms Hit by Power Outages (%)', labelAr:'الشركات المتأثرة بانقطاع الكهرباء (%)', unit:'%',      fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/IC.ELC.OUTG.ZS' },
+    { id:'LP.LPI.OVRL.XQ',    label:'Logistics Performance (LPI, 1–5)', labelAr:'الأداء اللوجستي (1–5)',          unit:' /5',      fmt:'num2', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/LP.LPI.OVRL.XQ' },
+    { id:'LP.LPI.INFR.XQ',   label:'Infrastructure Quality (LPI, 1–5)', labelAr:'جودة البنية التحتية (مؤشر الأداء اللوجستي، 1–5)', unit:' /5', fmt:'num2', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/LP.LPI.INFR.XQ' },
+  ],
+  trade: [
+    { id:'NE.TRD.GNFS.ZS',    label:'Trade (% GDP)',              labelAr:'التجارة (% من الناتج المحلي)',        unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/NE.TRD.GNFS.ZS' },
+    { id:'NE.EXP.GNFS.ZS',    label:'Exports (% GDP)',            labelAr:'الصادرات (% من الناتج المحلي)',       unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/NE.EXP.GNFS.ZS' },
+    { id:'NE.IMP.GNFS.ZS',    label:'Imports (% GDP)',            labelAr:'الواردات (% من الناتج المحلي)',       unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/NE.IMP.GNFS.ZS' },
+    { id:'BN.CAB.XOKA.GD.ZS', label:'Current Account (% GDP)',    labelAr:'الحساب الجاري (% من الناتج المحلي)',  unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/BN.CAB.XOKA.GD.ZS' },
+    { id:'TM.TAX.MRCH.WM.AR.ZS', label:'Average Import Tariff (%)', labelAr:'متوسط التعريفة الجمركية على الواردات (%)', unit:'%', fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/TM.TAX.MRCH.WM.AR.ZS' },
+    { id:'TX.VAL.MANF.ZS.UN', label:'Manufactured Goods (% of exports)', labelAr:'السلع المصنّعة (% من الصادرات)', unit:'%',       fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/TX.VAL.MANF.ZS.UN' },
+    { id:'TX.VAL.FOOD.ZS.UN', label:'Food (% of exports)',        labelAr:'الأغذية (% من الصادرات)',              unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/TX.VAL.FOOD.ZS.UN' },
+    { id:'IS.SHP.GOOD.TU',   label:'Container Port Traffic (TEU)', labelAr:'حركة موانئ الحاويات (TEU)',       unit:'',         fmt:'pop',  src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/IS.SHP.GOOD.TU' },
     { id:'__trade_exports',   label:'Top Export Partners',        labelAr:'أبرز شركاء التصدير',                 unit:'',         fmt:'trade', wide:true },
     { id:'__trade_imports',   label:'Top Import Partners',        labelAr:'أبرز شركاء الاستيراد',               unit:'',         fmt:'trade', wide:true },
-  ],
-  wash: [
-    { id:'SH.H2O.SMDW.ZS',   label:'Safely Managed Drinking Water', labelAr:'مياه الشرب المُدارة بشكل آمن',   unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.H2O.SMDW.ZS' },
-    { id:'SH.H2O.BASW.ZS',   label:'Basic Drinking Water Access', labelAr:'الوصول إلى مياه الشرب الأساسية',   unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.H2O.BASW.ZS' },
-    { id:'SH.STA.SMSS.ZS',   label:'Safely Managed Sanitation',   labelAr:'خدمات الصرف الصحي الآمنة',         unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.STA.SMSS.ZS' },
-    { id:'SH.STA.BASS.ZS',   label:'Basic Sanitation Services',   labelAr:'خدمات الصرف الصحي الأساسية',       unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.STA.BASS.ZS' },
-    { id:'SH.STA.ODFC.ZS',   label:'Open Defecation (%)',         labelAr:'التغوط في العراء (%)',               unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.STA.ODFC.ZS' },
-    { id:'SH.STA.HYGN.ZS',   label:'Handwashing with Soap (%)',   labelAr:'غسل اليدين بالصابون (%)',           unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.STA.HYGN.ZS' },
-  ],
-  food: [
-    { id:'SN.ITK.DEFC.ZS',   label:'Prevalence of Undernourishment', labelAr:'معدل انتشار سوء التغذية',       unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SN.ITK.DEFC.ZS' },
-    { id:'SN.ITK.MSFI.ZS',   label:'Moderate or Severe Food Insecurity', labelAr:'انعدام الأمن الغذائي المتوسط أو الشديد', unit:'%', fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SN.ITK.MSFI.ZS' },
-    { id:'AG.PRD.FOOD.XD',   label:'Food Production Index',       labelAr:'مؤشر إنتاج الغذاء',               unit:'',         fmt:'num1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/AG.PRD.FOOD.XD' },
-    { id:'AG.YLD.CREL.KG',   label:'Cereal Yield',                labelAr:'إنتاجية الحبوب',                   unit:' kg/ha',   fmt:'num0', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/AG.YLD.CREL.KG' },
-    { id:'SH.STA.STNT.ZS',   label:'Child Stunting Rate',         labelAr:'معدل التقزم لدى الأطفال',          unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.STA.STNT.ZS' },
-    { id:'NV.AGR.TOTL.ZS',   label:'Agriculture Value Added (% GDP)', labelAr:'القيمة المضافة الزراعية (% من الناتج المحلي)', unit:'%', fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/NV.AGR.TOTL.ZS' },
-  ],
-  digital: [
-    { id:'IT.NET.USER.ZS',   label:'Internet Users (%)',          labelAr:'مستخدمو الإنترنت (%)',              unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/IT.NET.USER.ZS' },
-    { id:'IT.NET.BBND.P2',   label:'Fixed Broadband (per 100)',   labelAr:'الإنترنت الثابت (لكل 100)',         unit:' /100',    fmt:'num2', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/IT.NET.BBND.P2' },
-    { id:'IT.CEL.SETS.P2',   label:'Mobile Subscriptions (per 100)', labelAr:'اشتراكات الجوال (لكل 100)',     unit:' /100',    fmt:'num1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/IT.CEL.SETS.P2' },
-    { id:'IT.NET.SECR.P6',   label:'Secure Internet Servers (/M)', labelAr:'خوادم الإنترنت الآمنة (لكل مليون)', unit:' /M',   fmt:'num1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/IT.NET.SECR.P6' },
-    { id:'TX.VAL.ICTG.ZS.UN',label:'ICT Goods Exports (% total)', labelAr:'صادرات سلع الاتصالات وتقنية المعلومات (%)', unit:'%', fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/TX.VAL.ICTG.ZS.UN' },
-    { id:'IT.MLT.MAIN.P2',   label:'Fixed Telephone Lines (per 100)', labelAr:'خطوط الهاتف الثابت (لكل 100)', unit:' /100',   fmt:'num2', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/IT.MLT.MAIN.P2' },
-  ],
-  environment: [
-    { id:'EN.GHG.CO2.PC.CE.AR5',   label:'CO₂ Emissions per Capita',   labelAr:'انبعاثات ثاني أكسيد الكربون للفرد', unit:' t',       fmt:'num2', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/EN.GHG.CO2.PC.CE.AR5' },
-    { id:'AG.LND.FRST.ZS',   label:'Forest Area (% total land)', labelAr:'مساحة الغابات (% من مجموع الأراضي)', unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/AG.LND.FRST.ZS' },
-    { id:'EG.CFT.ACCS.ZS',   label:'Clean Fuels for Cooking',    labelAr:'الوقود النظيف للطهو',               unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/EG.CFT.ACCS.ZS' },
-    { id:'ER.PTD.TOTL.ZS',   label:'Terrestrial Protected Areas (%)', labelAr:'المحميات الطبيعية البرية (%)', unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/ER.PTD.TOTL.ZS' },
-    { id:'EN.ATM.PM25.MC.M3',label:'PM2.5 Air Pollution (mean)', labelAr:'تلوث الهواء PM2.5 (متوسط)',         unit:' µg/m³',   fmt:'num1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/EN.ATM.PM25.MC.M3' },
-    { id:'AG.LND.ARBL.ZS',   label:'Arable Land (% total)',      labelAr:'الأراضي الصالحة للزراعة (%)',       unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/AG.LND.ARBL.ZS' },
-    { id:'__wri',            label:'Natural Disaster Risk (WorldRiskIndex)', labelAr:'مخاطر الكوارث الطبيعية (مؤشر المخاطر العالمي)', unit:'', fmt:'wri', wide:true },
-    { id:'__epi',            label:'Environmental Performance Index (EPI)', labelAr:'مؤشر الأداء البيئي (EPI)', unit:'', fmt:'epi', wide:true },
-  ],
-  infrastructure: [
-    { id:'LP.LPI.INFR.XQ',   label:'Infrastructure Quality (LPI, 1–5)', labelAr:'جودة البنية التحتية (مؤشر الأداء اللوجستي، 1–5)', unit:' /5', fmt:'num2', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/LP.LPI.INFR.XQ' },
-    { id:'EG.ELC.ACCS.ZS',   label:'Access to Electricity',      labelAr:'الوصول إلى الكهرباء',               unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/EG.ELC.ACCS.ZS' },
-    { id:'IS.AIR.PSGR',      label:'Air Transport (passengers)',  labelAr:'النقل الجوي (الركاب)',               unit:'',         fmt:'pop',  src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/IS.AIR.PSGR' },
-    { id:'IS.SHP.GOOD.TU',   label:'Container Port Traffic (TEU)', labelAr:'حركة موانئ الحاويات (TEU)',       unit:'',         fmt:'big',  src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/IS.SHP.GOOD.TU' },
-    { id:'IT.CEL.SETS.P2',   label:'Mobile Subscriptions (per 100)', labelAr:'اشتراكات الجوال (لكل 100)',     unit:' /100',    fmt:'num1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/IT.CEL.SETS.P2' },
-    { id:'SP.URB.TOTL.IN.ZS',label:'Urban Population (%)',        labelAr:'سكان الحضر (%)',                    unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SP.URB.TOTL.IN.ZS' },
   ]
 };
 
@@ -3069,9 +3051,9 @@ async function onReportsChanged() {
 const NEED_INDS = [
   { id:'SH.DYN.MORT',    dir: 1, label:'Under-5 mortality',     labelAr:'وفيات الأطفال دون الخامسة', sector:'Health' },
   { id:'SH.STA.MMRT',    dir: 1, label:'Maternal mortality',    labelAr:'وفيات الأمهات', sector:'Health' },
-  { id:'SN.ITK.DEFC.ZS', dir: 1, label:'Undernourishment',      labelAr:'نقص التغذية', sector:'Food security' },
-  { id:'SH.H2O.BASW.ZS', dir:-1, label:'Basic drinking water',  labelAr:'مياه الشرب الأساسية', sector:'WASH' },
-  { id:'SH.STA.BASS.ZS', dir:-1, label:'Basic sanitation',      labelAr:'الصرف الصحي الأساسي', sector:'WASH' },
+  { id:'SN.ITK.DEFC.ZS', dir: 1, label:'Undernourishment',      labelAr:'نقص التغذية', sector:'Agriculture & food security' },
+  { id:'SH.H2O.BASW.ZS', dir:-1, label:'Basic drinking water',  labelAr:'مياه الشرب الأساسية', sector:'Water' },
+  { id:'SH.STA.BASS.ZS', dir:-1, label:'Basic sanitation',      labelAr:'الصرف الصحي الأساسي', sector:'Water' },
   { id:'EG.ELC.ACCS.ZS', dir:-1, label:'Electricity access',    labelAr:'الوصول إلى الكهرباء', sector:'Energy' },
 ];
 let NEED_CACHE = null;
@@ -3536,6 +3518,13 @@ function repDeckCtor(fmt) {
   return PptxGenJS;
 }
 
+// Main trading partners for the report's Trade slide (World Bank WITS file), names in the report language
+async function repTrade(country) {
+  await Promise.race([loadExtras(), new Promise(r => setTimeout(r, 8000))]);
+  const t = (EXTRA.trade || {})[COUNTRY_ISO[country]]; if (!t) return null;
+  const side = s => s && s.top && s.top.length ? { year: s.year, total: s.total, top: s.top.slice(0, 5).map(p => ({ name: placeName(p.iso2, p.name), share: p.share })) } : null;
+  return { exports: side(t.exports), imports: side(t.imports) };
+}
 async function repBuildCountryBlob(country, setStatus, fmt) {
   repLibsReady();
   setStatus && setStatus(tr('Loading live World Bank data for ' + country + '…', 'جارٍ تحميل بيانات البنك الدولي المباشرة لـ' + cN(country) + '…'));
@@ -3551,6 +3540,7 @@ async function repBuildCountryBlob(country, setStatus, fmt) {
     politics: pol && pol.ok ? { hos: pol.hos, hog: pol.hog, gov: pol.gov, office: pol.office, hogOffice: pol.hogOffice,
       hosSince: pol.hosSince, hosUntil: pol.hosUntil, hogSince: pol.hogSince, hogUntil: pol.hogUntil, hosTerm: pol.hosTerm, hogTerm: pol.hogTerm } : null,
     flagData, flagRatio, mapData, logo, subnational, dateStr: repDateStr(), PptxGenJS: repDeckCtor(fmt), output: 'blob', lang,
+    trade: await repTrade(country),
     region: repRegionOf(country), income: COUNTRY_INCOME[country] || '',
     need: need.need != null ? { score: need.need, rank: need.rank, of: (needScores().__ranked || []).length } : null,
   });

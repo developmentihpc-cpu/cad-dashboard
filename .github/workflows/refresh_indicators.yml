@@ -4,9 +4,9 @@ on:
   schedule:
     - cron: '0 3 1 * *'      # 03:00 UTC on the 1st of each month
   workflow_dispatch:          # allow manual trigger from GitHub UI
-  push:                       # rebuild whenever the builder itself changes
+  push:                       # rebuild whenever the builder or the country/indicator lists change
     branches: [main]
-    paths: ['build_indicators.py']
+    paths: ['build_indicators.py', 'docs/index.html']   # the country list and indicator IDs are read from index.html
 
 permissions:
   contents: write             # needed to commit the refreshed JSON back

@@ -2,7 +2,7 @@
 
 ## Project Overview
 A bilingual (English / Arabic) dashboard for the Office of Development Affairs that shows
-development needs across ~86 tracked Global South countries and builds country and regional
+development needs across 132 tracked countries — every World Bank low- and middle-income economy, plus Somaliland (high-income countries are excluded) — and builds country and regional
 assessment reports (PowerPoint or PDF) in the browser. Data comes from a pre-baked World Bank
 snapshot plus live API calls. No build step, no backend for the public site.
 
@@ -96,6 +96,7 @@ Keep these in sync when adding a country (all keyed by the **English display nam
 | `AR_COUNTRY` | `i18n_ar.js` | Arabic name |
 | `GEO_NAME` | `index.html` | Only if the world-atlas name differs (e.g. `'Congo, Dem. Rep.' → 'Dem. Rep. Congo'`) |
 
+Countries with no outline in the 50m world map (Tuvalu) show as a dot on the map and "Map unavailable" in reports.
 Regions come from `indicators.json → _regions` (World Bank regions) into `REGION_MEMBERS`.
 After adding a country, re-run the snapshot (Actions → "CAD — Refresh Indicator Snapshot").
 

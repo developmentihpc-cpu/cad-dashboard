@@ -3141,7 +3141,7 @@ function repPolitics(country) {
   if (POLITICS[country]) return POLITICS[country];
   const job = (async () => {
     const iso = COUNTRY_ISO[country], out = { wgi:{}, hos:[], hog:[], gov:[], office:[], hogOffice:[], hosSince:null, hogSince:null, hosUntil:null, hogUntil:null, ok:false };
-    if (!iso || iso.length !== 3) return out;
+    if (!iso || iso.length !== 3) { applyLeaderTerms(out, (await loadLeaderTerms())[country]); out.ok = !!out.hos.length; return out; }   // e.g. Somaliland
     const timeout = ms => new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), ms));
     // World Bank governance scores — one retry, as the API can be slow
     const wgiOne = async w => {
@@ -3196,13 +3196,7 @@ function repPolitics(country) {
       } catch (e) {}
     })();
     await Promise.all([wgi, wd]);
-    // Term of office (researched table): attached only while the researched leader is the person Wikidata reports today
-    const terms = (await loadLeaderTerms())[country];
-    if (terms) ['hos', 'hog'].forEach(role => {
-      const t = terms[role];
-      if (!t || t.same || !t.name || !out[role].length || !samePerson(out[role][0].en, t.name)) return;
-      out[role + 'Term'] = { since: t.since || null, years: t.termYears || null, end: t.termEnd || null };
-    });
+    applyLeaderTerms(out, (await loadLeaderTerms())[country]);
     out.ok = !!(out.hos.length || Object.keys(out.wgi).length);
     if (!Object.keys(out.wgi).length || !out.hos.length) setTimeout(() => { if (POLITICS[country] === job) delete POLITICS[country]; }, 0);   // retry next time
     return out;
@@ -3211,12 +3205,45 @@ function repPolitics(country) {
   return job;
 }
 // Terms of office — docs/data/leader_terms.json (researched; Wikidata rarely records term lengths or scheduled ends).
-// Matched to the live leader by name, so an entry that has gone out of date is simply not shown.
-let LEADER_TERMS = null;
+// Reconciled with the live Wikidata leader in applyLeaderTerms().
+let LEADER_TERMS = null, LEADER_TERMS_META = null;
 const loadLeaderTerms = () => LEADER_TERMS || (LEADER_TERMS = fetch('data/leader_terms.json', { cache:'no-cache' })
-  .then(r => r.ok ? r.json() : {}).catch(() => ({})));
+  .then(r => r.ok ? r.json() : {}).then(j => { LEADER_TERMS_META = j._meta || null; return j; }).catch(() => ({})));
 const NAME_COMMON = new Set(['mohamed', 'mohammed', 'muhammad', 'mohammad', 'ahmed', 'ahmad', 'abdel', 'abdul', 'king', 'ould', 'bin', 'ibn', 'abu', 'and']);
-const nameKey = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().split(/[^a-z]+/).filter(w => w.length >= 3 && !NAME_COMMON.has(w));
+const ROMAN = /^(i|ii|iii|iv|v|vi|vii|viii|ix|x)$/;   // regnal numbers, e.g. "Mohammed VI"
+const nameKey = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().split(/[^a-z]+/)
+  .filter(w => (w.length >= 3 || ROMAN.test(w)) && !NAME_COMMON.has(w));
+// Who holds each office and for how long. Wikidata is live but often lags behind changes of government;
+// the researched table (leader_terms.json, dated) is current as of its research date but goes stale.
+// When the two name the same person, the term is added. When they disagree, whoever reports the more recent
+// start in office wins: a newer Wikidata entry means the table is out of date (term hidden), an older one
+// means Wikidata has not caught up (the table's leader and term are shown). If Wikidata has nobody, the table fills in.
+function applyLeaderTerms(out, terms) {
+  if (!terms) return;
+  const yr = d => d ? Number(String(d).slice(0, 4)) : 0;
+  const asOf = yr((LEADER_TERMS_META || {}).asOf);
+  const useTable = (role, t) => {
+    out[role] = [{ en: t.name, ar: t.name }]; out[role + 'Since'] = t.since ? String(t.since) : null; out[role + 'Until'] = null;
+    if (role === 'hog') out.hogOffice = [];   // Wikidata's office title may belong to the old arrangement
+    out[role + 'Term'] = { since: t.since || null, years: t.termYears || null, end: t.termEnd || null };
+  };
+  ['hos', 'hog'].forEach(role => {
+    const t = terms[role]; if (!t) return;
+    const wd = out[role][0], wdYear = yr(out[role + 'Since']);
+    if (t.same) {   // the head of state also heads the government
+      if (role === 'hog' && out.hos.length && (!wd || wdYear <= asOf)) { out.hog = out.hos.slice(); out.hogSince = out.hosSince; }
+      return;
+    }
+    if (!t.name) return;
+    if (/^vacant/i.test(t.name)) {   // office vacant (e.g. Haiti): say so, unless Wikidata reports a newer appointment
+      if (!wd || wdYear <= (t.since || 0)) { out[role] = [{ en: 'Vacant — executive led by the prime minister', ar: 'شاغر — يتولى رئيس الوزراء السلطة التنفيذية' }];
+        out[role + 'Since'] = null; out[role + 'Until'] = null; out[role + 'Term'] = null; if (role === 'hos') out.office = []; }
+      return;
+    }
+    if (wd && samePerson(wd.en, t.name)) out[role + 'Term'] = { since: t.since || null, years: t.termYears || null, end: t.termEnd || null };
+    else if (!wd || wdYear <= (t.since || 0)) useTable(role, t);
+  });
+}
 const samePerson = (a, b) => { const A = nameKey(a); return nameKey(b).some(w => A.includes(w)); };
 const polName = list =>(list || []).slice(0, 2).map(x => tr(x.en, x.ar)).join(tr(' & ', ' و'));
 // Wikidata stores year-only dates as 1 January — show just the year in that case

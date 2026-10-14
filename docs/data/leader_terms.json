@@ -1751,12 +1751,12 @@
                         },
     "Serbia":  {
                    "hos":  {
-                               "name":  "Aleksandar Vučić",
-                               "since":  2017,
-                               "termYears":  5,
-                               "termEnd":  2027,
-                               "note":  "Second and final term ends 2027; has said he will lead SNS list in snap election and may seek to become PM.",
-                               "source":  "https://n1info.rs/english/news/vucic-calls-parliamentary-elections-for-october-25/"
+                               "name":  "Ana Brnabic",
+                               "since":  2026,
+                               "termYears":  null,
+                               "termEnd":  null,
+                               "note":  "Acting president since 28 Sep 2026 after Aleksandar Vucic resigned; as Speaker of the National Assembly she holds the office until a presidential election, which must be held within 90 days.",
+                               "source":  "https://en.wikipedia.org/wiki/Ana_Brnabi%C4%87"
                            },
                    "hog":  {
                                "name":  "Đuro Macut",

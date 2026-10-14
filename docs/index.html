@@ -1826,7 +1826,8 @@ body {
 .need-key-col .need-key { gap:8px; }
 [dir="rtl"] .map-legend { direction:rtl; text-align:right; }
 
-/* Country panel: opens to about half the page; overview block on top */.drawer { height:56%; max-height:none !important; }.cd-ov { display:grid; grid-template-columns:minmax(240px, 34%) minmax(0, 1fr); gap:22px; align-items:start; }.cd-ov-map { position:relative; border-radius:12px; overflow:hidden; background:#EAF2F8; aspect-ratio:4 / 3; }.cd-ov-map img#cd-ov-map-img { width:100%; height:100%; object-fit:contain; display:block; opacity:0; transition:opacity .3s; }.cd-ov-map img#cd-ov-map-img.on { opacity:1; }.cd-ov-flag { position:absolute; top:10px; inset-inline-start:10px; background:#fff; padding:3px; border-radius:4px; box-shadow:0 2px 8px rgba(15,42,64,.18); line-height:0; }.cd-ov-flag img { height:30px; width:auto; display:block; border-radius:2px; }.cd-ov-body { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:18px; }.cd-ov-facts { display:grid; grid-template-columns:1fr 1fr; gap:12px 16px; align-content:start; }.cd-ov-k { font-size:10.5px; font-weight:600; letter-spacing:.8px; text-transform:uppercase; color:var(--ex-faint); }.cd-ov-v { font-size:13.5px; font-weight:600; color:var(--ex-ink); margin-top:3px; line-height:1.35; }.cd-ov-since, .cd-ov-wait { font-weight:400; color:var(--ex-mute); font-size:11.5px; }.cd-ov-pol { background:var(--ex-sky-pale); border-radius:12px; padding:12px 14px; }.cd-ov-pol-hd { font-size:11px; font-weight:700; letter-spacing:.8px; text-transform:uppercase; color:var(--ex-gold); margin-bottom:8px; }.cd-ov-pol-hd span { display:block; text-transform:none; letter-spacing:0; font-weight:500; color:var(--ex-mute); font-size:11px; margin-top:2px; }.cd-ov-wgi { display:grid; grid-template-columns:minmax(0,1.4fr) minmax(40px,1fr) 26px; gap:8px; align-items:center; padding:4px 0; font-size:12px; color:var(--ex-ink); }.cd-ov-wgi-t { height:6px; background:#fff; border-radius:3px; overflow:hidden; display:block; }.cd-ov-wgi-t i { display:block; height:100%; border-radius:3px; }.cd-ov-wgi-v { font-weight:700; text-align:end; font-variant-numeric:tabular-nums; }.cd-ov-src { font-size:10.5px; color:var(--ex-faint); margin-top:8px; }[dir="rtl"] .cd-ov-k, [dir="rtl"] .cd-ov-pol-hd { letter-spacing:0; text-transform:none; font-size:12px; }@media (max-width: 1100px) { .cd-ov-body { grid-template-columns:1fr; } }@media (max-width: 760px) { .cd-ov { grid-template-columns:1fr; } .drawer { height:70%; } }
+/* Country panel: opens to about half the page; overview block on top */.drawer { height:56%; max-height:none !important; }.cd-ov { display:grid; grid-template-columns:minmax(240px, 34%) minmax(0, 1fr); gap:22px; align-items:start; }.cd-ov-map { position:relative; border-radius:12px; overflow:hidden; background:#EAF2F8; aspect-ratio:4 / 3; }.cd-ov-map img#cd-ov-map-img { width:100%; height:100%; object-fit:contain; display:block; opacity:0; transition:opacity .3s; }.cd-ov-map img#cd-ov-map-img.on { opacity:1; }.cd-ov-flag { position:absolute; top:10px; inset-inline-start:10px; background:#fff; padding:3px; border-radius:4px; box-shadow:0 2px 8px rgba(15,42,64,.18); line-height:0; }.cd-ov-flag img { height:30px; width:auto; display:block; border-radius:2px; }.cd-ov-body { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:18px; }.cd-ov-facts { display:grid; grid-template-columns:1fr 1fr; gap:12px 16px; align-content:start; }.cd-ov-k { font-size:10.5px; font-weight:600; letter-spacing:.8px; text-transform:uppercase; color:var(--ex-faint); }.cd-ov-v { font-size:13.5px; font-weight:600; color:var(--ex-ink); margin-top:3px; line-height:1.35; }
+.cd-ov-term { font-size:11px; font-weight:700; color:var(--ex-sky-dk, #1B6FA8); margin-top:2px; }.cd-ov-since, .cd-ov-wait { font-weight:400; color:var(--ex-mute); font-size:11.5px; }.cd-ov-pol { background:var(--ex-sky-pale); border-radius:12px; padding:12px 14px; }.cd-ov-pol-hd { font-size:11px; font-weight:700; letter-spacing:.8px; text-transform:uppercase; color:var(--ex-gold); margin-bottom:8px; }.cd-ov-pol-hd span { display:block; text-transform:none; letter-spacing:0; font-weight:500; color:var(--ex-mute); font-size:11px; margin-top:2px; }.cd-ov-wgi { display:grid; grid-template-columns:minmax(0,1.4fr) minmax(40px,1fr) 26px; gap:8px; align-items:center; padding:4px 0; font-size:12px; color:var(--ex-ink); }.cd-ov-wgi-t { height:6px; background:#fff; border-radius:3px; overflow:hidden; display:block; }.cd-ov-wgi-t i { display:block; height:100%; border-radius:3px; }.cd-ov-wgi-v { font-weight:700; text-align:end; font-variant-numeric:tabular-nums; }.cd-ov-src { font-size:10.5px; color:var(--ex-faint); margin-top:8px; }[dir="rtl"] .cd-ov-k, [dir="rtl"] .cd-ov-pol-hd { letter-spacing:0; text-transform:none; font-size:12px; }@media (max-width: 1100px) { .cd-ov-body { grid-template-columns:1fr; } }@media (max-width: 760px) { .cd-ov { grid-template-columns:1fr; } .drawer { height:70%; } }
 @media (max-width: 1100px) {
   .ex-grid-map { grid-template-columns:1fr; }
   .ex-map { height:340px; }
@@ -2569,11 +2570,15 @@ function cdOverviewHtml(c, data) {
   const n = needScores()[c] || {}, total = (needScores().__ranked || []).length;
   const waiting = `<span class="cd-ov-wait">${tr('Loading…', 'جارٍ التحميل…')}</span>`;
   const fact = (k, v) => `<div class="cd-ov-fact"><div class="cd-ov-k">${k}</div><div class="cd-ov-v">${v || '—'}</div></div>`;
-  const office = pol && pol.office.length ? tr(pol.office[0].en, pol.office[0].ar) : '';
-  const hos = pol ? (pol.hos.length ? exEsc(polName(pol.hos)) + (pol.hosSince ? ` <span class="cd-ov-since">${tr('since', 'منذ')} ${polSince(pol.hosSince)}</span>` : '')
-    + (office ? `<div class="cd-ov-since">${exEsc(office)}</div>` : '') : '—') : waiting;
-  const hog = pol ? (pol.hog.length && polName(pol.hog) !== polName(pol.hos) ? exEsc(polName(pol.hog)) : (pol.hog.length ? tr('Same as head of state', 'رئيس الدولة نفسه') : '—')) : waiting;
-  const gov = pol ? (pol.gov.length ? exEsc(pol.gov.slice(0, 2).map(x => tr(x.en, x.ar)).join(' · ')) : '—') : waiting;
+  const offTxt = o => o && o.length ? tr(o[0].en, o[0].ar) : '';
+  // name, then office title and term ("In office 2018–2031 · 5-year term"), as on the report's overview slide
+  const leader = (list, office, since, until, term) => exEsc(polName(list))
+    + (office ? `<div class="cd-ov-since">${exEsc(office)}</div>` : '')
+    + ((term && term.since) || since ? `<div class="cd-ov-term">${exEsc(polTerm(since, until, term))}</div>` : '');
+  const hos = pol ? (pol.hos.length ? leader(pol.hos, offTxt(pol.office), pol.hosSince, pol.hosUntil, pol.hosTerm) : '—') : waiting;
+  const hog = pol ? (pol.hog.length && polName(pol.hog) !== polName(pol.hos) ? leader(pol.hog, offTxt(pol.hogOffice), pol.hogSince, pol.hogUntil, pol.hogTerm)
+    : (pol.hog.length ? tr('Same as head of state', 'رئيس الدولة نفسه') : '—')) : waiting;
+  const gov = pol ? (pol.gov.length ? exEsc(pol.gov.slice(0, 2).map(x => { const t = tr(x.en, x.ar); return t.charAt(0).toUpperCase() + t.slice(1); }).join(' · ')) : '—') : waiting;
   const wgiRows = WGI_INDS.map(w => { const d = pol && pol.wgi[w.id], sv = d ? indSeverity(w.id, d.value) : null;
     return `<div class="cd-ov-wgi" title="${sv ? exEsc(sv.why) : ''}"><span class="cd-ov-wgi-l">${tr(w.en, w.ar)}</span>
       <span class="cd-ov-wgi-t"><i style="width:${d ? Math.max(3, Math.round(d.value)) : 0}%;background:${sv ? 'var(--sev' + sv.lvl + ')' : 'var(--ex-sky)'}"></i></span>
@@ -3215,6 +3220,13 @@ const nameKey = s => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').to
 const samePerson = (a, b) => { const A = nameKey(a); return nameKey(b).some(w => A.includes(w)); };
 const polName = list =>(list || []).slice(0, 2).map(x => tr(x.en, x.ar)).join(tr(' & ', ' و'));
 // Wikidata stores year-only dates as 1 January — show just the year in that case
+// Term in office as years: start of tenure – end of the current term (researched leader_terms.json, else Wikidata)
+const polTerm = (since, until, term) => {
+  const y0 = (term && term.since) || (since ? String(since).slice(0, 4) : ''); if (!y0) return '';
+  const end = (term && term.end) || (until ? String(until).slice(0, 4) : '');
+  return tr('In office ', 'في المنصب ') + y0 + '–' + (end || tr('present', 'الآن'))
+    + (term && term.years ? '  ·  ' + tr(`${term.years}-year term`, `ولاية مدتها ${term.years} سنوات`) : '');
+};
 const polSince = d => { try { return !d ? '' : /-01-01$/.test(d) ? d.slice(0, 4) : new Date(d).toLocaleDateString(LOCALE(), { month:'short', year:'numeric' }); } catch (e) { return ''; } };
 async function repFetchDataUrl(url, ms) {
   const r = await Promise.race([fetch(url), new Promise((_, rej) => setTimeout(() => rej(new Error('timeout')), ms))]);

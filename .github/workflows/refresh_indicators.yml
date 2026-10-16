@@ -8,9 +8,9 @@ on:
     branches: [main]
     paths: ['build_indicators.py', 'docs/index.html']   # the country list and indicator IDs are read from index.html
 
-concurrency:                  # a newer run replaces one still in progress
+concurrency:                  # runs queue one after another (a long trade download is never cut short)
   group: refresh-indicators
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 permissions:
   contents: write             # needed to commit the refreshed JSON back

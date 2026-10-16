@@ -468,6 +468,19 @@ function buildCountryDeck(opts){
     sl.shape(p.ShapeType.roundRect, { x, y, w, h, rectRadius:0.06, fill:{ color: L == null ? C.LINE : SEV.fill[L] }, line:{ type:'none' } });
     sl.text(ar ? lab : lab.toUpperCase(), { x, y, w, h, fontFace:BODY, fontSize: h < 0.2 ? 6.4 : 7.5, bold:true, color: L == null ? C.MUTE : SEV.onFill[L], align:'center', valign:'middle' });
   };
+  // colour key for the severity colours, right-aligned so it ends at xr: "■ Severe ■ High concern ■ Moderate ■ On track [■ No benchmark]"
+  const sevKey = (sl, xr, y, withGold) => {
+    const items = [0, 1, 2, 3].map(L => [SEV.fill[L], DK.sevLabelOf(L, ar)]).concat(withGold ? [[C.GOLD, T('No benchmark', 'بلا معيار')]] : []);
+    const wOf = t => 0.16 + String(t).length * (ar ? 0.055 : 0.062) + 0.3;   // swatch + label (text boxes keep a 0.1 in inset each side) + gap, at 7 pt
+    let x = xr - items.reduce((s, [, t]) => s + wOf(t), 0) - 0.95;
+    sl.text(T('Colour key', 'دليل الألوان'), { x, y, w:0.95, h:0.2, fontFace:BODY, fontSize:7, bold:true, color:C.FAINT, valign:'middle' });
+    x += 0.95;
+    items.forEach(([col, t]) => {
+      sl.shape(p.ShapeType.rect, { x, y:y + 0.05, w:0.12, h:0.1, fill:{ color:col }, line:{ type:'none' } });
+      sl.text(t, { x:x + 0.16, y, w:wOf(t) - 0.16, h:0.2, fontFace:BODY, fontSize:7, color:C.MUTE, valign:'middle' });
+      x += wOf(t);
+    });
+  };
   // rough text height (inches) for wrapped body text, so stacked blocks never overlap
   const textH = (t, w, size) => { const per = Math.max(20, Math.floor(w * (ar ? 15.5 : 14) * 9 / size)); return Math.max(1, Math.ceil(String(t).length / per)) * size * 0.0185 + 0.06; };
   // stat card: value (+unit), label, benchmark line with the gap, source. Severity-coloured top bar; outdated values flagged.
@@ -648,6 +661,7 @@ function buildCountryDeck(opts){
     const top = (priorities.length ? priorities : rated.filter(s => s.level <= 2).sort((a, b) => a.level - b.level)).slice(0, 4);
     const cy = Math.max(oy + 0.12, 2.5);
     eyebrow(sl, T('Priority sectors and most urgent gaps', 'القطاعات ذات الأولوية وأكثر الفجوات إلحاحاً'), 0.5, cy, 12.33, C.SKY_DK);
+    sevKey(sl, 12.83, cy + 0.02, false);
     if (!top.length) sl.text(T('Key indicators in every sector meet their benchmarks on current data.', 'المؤشرات الرئيسية في جميع القطاعات تحقق معاييرها وفق البيانات الحالية.'),
       { x:0.5, y:cy + 0.4, w:12.33, h:0.4, fontFace:BODY, fontSize:10.5, color:C.MUTE });
     const gapCol = 0.2, cw = top.length ? (12.33 - gapCol * (top.length - 1)) / top.length : 0, ctop = cy + 0.32, ch = (n ? 6.56 : 6.98) - ctop;
@@ -669,9 +683,11 @@ function buildCountryDeck(opts){
       let gy = ctop + 0.84;
       gaps.forEach(id => {
         const L = lvl(id), ppl = people(id);
+        // keep the label to one line: a "(% of GDP)"-style unit moves onto the value ("0.8% of GDP")
+        const um = lbl(id).match(/^(.*?)\s*\(%\s*([^)]*)\)$/), gl = um ? um[1] : lbl(id), gv = val(id) + (um ? ' ' + um[2] : '');
         sl.shape(p.ShapeType.rect, { x:x + pad, y:gy, w:0.05, h:0.56, fill:{ color:SEV.fill[L] }, line:{ type:'none' } });
-        sl.text(lbl(id), { x:x + pad + 0.14, y:gy - 0.02, w:iw - 0.14, h:0.25, fontFace:BODY, fontSize: top.length > 3 ? 8.6 : 9, bold:true, color:C.INK, valign:'top' });
-        sl.text([{ text:val(id), options:{ bold:true, color:SEV.text[L] } }, { text: target(id) != null ? T('  ·  benchmark ', '  ·  المعيار ') + I[id].f({ v:target(id) }) : '', options:{ color:C.MUTE } }],
+        sl.text(gl, { x:x + pad + 0.14, y:gy - 0.02, w:iw - 0.14, h:0.25, fontFace:BODY, fontSize: top.length > 3 ? 8.6 : 9, bold:true, color:C.INK, valign:'top' });
+        sl.text([{ text:gv, options:{ bold:true, color:SEV.text[L] } }, { text: target(id) != null ? T('  ·  benchmark ', '  ·  المعيار ') + I[id].f({ v:target(id) }) : '', options:{ color:C.MUTE } }],
           { x:x + pad + 0.14, y:gy + 0.19, w:iw - 0.14, h:0.24, fontFace:BODY, fontSize:8.4, valign:'top' });
         if (ppl) sl.text(T(`≈ ${ppl} people affected`, `≈ ${ppl} شخص متأثر`), { x:x + pad + 0.14, y:gy + 0.38, w:iw - 0.14, h:0.22, fontFace:BODY, fontSize:7.8, color:C.MUTE, valign:'top' });
         gy += 0.62;
@@ -769,6 +785,7 @@ function buildCountryDeck(opts){
       : T('key indicators meet their benchmarks', 'المؤشرات الرئيسية تحقق معاييرها');
     head(sl, T('Sector assessment', 'تقييم القطاع'), s.name, st);
     if (s.level != null) badge(sl, s.level, 11.53, 0.38, 1.3, 0.26);
+    sevKey(sl, 12.83, 1.14, true);   // what the card bars, badge and insight markers mean
     // stat cards — only indicators with data, the most critical first; benchmark shown inside each card
     const LX = 0.5, LW = 7.0;
     const cards = [...new Set(s.ranked.filter(id => s.stats.includes(id) || lvl(id) <= 1).concat(s.stats))].filter(id => R(id) && !R(id).stale).slice(0, 6);

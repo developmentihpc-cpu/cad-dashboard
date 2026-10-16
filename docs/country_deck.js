@@ -818,7 +818,9 @@ function buildCountryDeck(opts){
                                     'تحقق المؤشرات الرئيسية معاييرها. والأولوية هي الحفاظ على هذه المكاسب والوصول إلى المجتمعات التي لا تزال متأخرة.')
                                 : T('There is not enough current data to analyse this sector. A field assessment is needed before programming here.',
                                     'لا تتوفر بيانات حديثة كافية لتحليل هذا القطاع، ويلزم إجراء تقييم ميداني قبل البرمجة فيه.');
-      sl.text(msg, { x:RX, y, w:RW, h:0.8, fontFace:BODY, fontSize:9.6, color:C.INK, valign:'top', wrap:true });
+      const mh = textH(msg, RW, 9.6);
+      sl.text(msg, { x:RX, y, w:RW, h:mh, fontFace:BODY, fontSize:9.6, color:C.INK, valign:'top', wrap:true });
+      y += mh + 0.25;   // anything placed below (e.g. trading partners) starts under the message
     }
     ins.forEach(it => {
       const bh = textH(it.body, RW - 0.2, 9.6), hh = Math.max(0.34, textH(it.head, RW - 0.2, 10) + 0.04), total = hh + bh;
@@ -837,8 +839,8 @@ function buildCountryDeck(opts){
         eyebrow(sl, title, cx, y, cw2, C.SKY_DK);
         sl.text(T('Share of goods trade, ', 'الحصة من تجارة السلع، ') + side.year, { x:cx, y:y + 0.22, w:cw2, h:0.18, fontFace:BODY, fontSize:7, color:C.FAINT });
         side.top.forEach((pt, i) => {
-          const ry = y + 0.44 + i * 0.25, nw = cw2 * 0.5, bx = cx + nw, bw = cw2 - nw - 0.5;
-          sl.text(pt.name, { x:cx, y:ry, w:nw - 0.05, h:0.22, fontFace:BODY, fontSize:8.4, color:C.INK, valign:'middle', fit:'shrink' });
+          const ry = y + 0.44 + i * 0.25, nw = cw2 * 0.6, bx = cx + nw, bw = cw2 - nw - 0.5;
+          sl.text(pt.name, { x:cx, y:ry, w:nw - 0.05, h:0.22, fontFace:BODY, fontSize:7.8, color:C.INK, valign:'middle' });
           sl.shape(p.ShapeType.rect, { x:bx, y:ry + 0.07, w:bw, h:0.09, fill:{ color:C.SKY_PALE }, line:{ type:'none' } });
           sl.shape(p.ShapeType.rect, { x:bx, y:ry + 0.07, w:Math.max(0.03, bw * Math.min(1, pt.share / 50)), h:0.09, fill:{ color:C.SKY }, line:{ type:'none' } });
           sl.text(pt.share.toFixed(1) + '%', { x:bx + bw + 0.04, y:ry, w:0.46, h:0.22, fontFace:BODY, fontSize:8.4, bold:true, color:C.INK, valign:'middle', align:'right' });

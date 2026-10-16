@@ -146,6 +146,9 @@ function buildCountryDeck(opts){
     const n = POP.v * (PEOPLE[id] > 0 ? r.v / 100 : 1 - r.v / 100); return n >= 1e5 ? F.pop({ v:n }) : null; };
   const off = (id, maxL) => lvl(id) != null && lvl(id) <= maxL;                        // indicator is off track
   const atLeast = (id, min) => { const r = R(id); return !!(r && !r.stale && r.v >= min); };
+  // Grid economy that still runs mostly on fossil fuels: renewables under 40% of final energy use while most people
+  // have electricity (the renewables share counts firewood and charcoal, so low-access countries look "renewable")
+  const fossilHeavy = () => { const r = R('EG.FEC.RNEW.ZS'); return !!(r && !r.stale && r.v < 40 && atLeast('EG.ELC.ACCS.ZS', 70)); };
 
   // ── "so what" analysis: for each problem indicator, the related indicators that are also off track in this
   //    country's data (linked factors) and what the gap means in practice. Linked factors are only named when
@@ -353,9 +356,12 @@ function buildCountryDeck(opts){
     { key:'energy', en:'Energy', ar:'الطاقة', short:['Energy','الطاقة'], stats:['EG.ELC.ACCS.ZS','EG.CFT.ACCS.ZS','EG.FEC.RNEW.ZS'], bars:['EG.ELC.ACCS.ZS','EG.CFT.ACCS.ZS'],
       acts:[ ['EG.ELC.ACCS.ZS',1,'Off-grid and mini-grid solar for rural households, clinics and schools.','الطاقة الشمسية خارج الشبكة والشبكات المصغّرة للأرياف والعيادات والمدارس.'],
              ['EG.CFT.ACCS.ZS',1,'Clean-cooking programmes to cut household air pollution.','برامج الطهي النظيف للحد من تلوث الهواء المنزلي.'],
+             [fossilHeavy,0,'Expand renewable power (solar, wind, geothermal or hydro) to replace fossil generation and cut fuel costs.','توسيع الطاقة المتجددة (الشمسية والرياح والحرارية الجوفية والمائية) لتحل محل التوليد الأحفوري وتخفض تكاليف الوقود.'],
              [null,3,'Improve grid reliability and cut transmission losses.','تحسين موثوقية الشبكة وخفض فواقد النقل.'] ],
       inv:[ [() => off('EG.ELC.ACCS.ZS', 1), 'Blended finance for solar power producers, mini-grid concessions and pay-as-you-go solar companies.',
-             'تمويل مختلط لمنتجي الطاقة الشمسية وامتيازات الشبكات المصغّرة وشركات الطاقة الشمسية بنظام الدفع حسب الاستخدام.'] ] },
+             'تمويل مختلط لمنتجي الطاقة الشمسية وامتيازات الشبكات المصغّرة وشركات الطاقة الشمسية بنظام الدفع حسب الاستخدام.'],
+            [fossilHeavy, 'Co-invest with independent power producers in utility-scale solar, wind or geothermal plants and battery storage, including alongside UAE clean-energy investors.',
+             'الاستثمار المشترك مع منتجي الطاقة المستقلين في محطات الطاقة الشمسية والرياح والحرارية الجوفية واسعة النطاق وتخزين البطاريات، بما في ذلك إلى جانب مستثمري الطاقة النظيفة الإماراتيين.'] ] },
     { key:'food', en:'Agriculture & Food Security', ar:'الزراعة والأمن الغذائي', short:['Agriculture & food security','الزراعة والأمن الغذائي'], stats:['SN.ITK.DEFC.ZS','SH.STA.STNT.ZS','AG.YLD.CREL.KG','NV.AGR.TOTL.ZS'], bars:['SN.ITK.DEFC.ZS','SH.STA.STNT.ZS','AG.YLD.CREL.KG','SN.ITK.MSFI.ZS'],
       acts:[ ['SN.ITK.DEFC.ZS',1,'Scale food assistance and social safety nets for vulnerable households.','توسيع المساعدات الغذائية وشبكات الأمان الاجتماعي للأسر الهشة.'],
              ['SH.STA.STNT.ZS',1,'Fund early-childhood and maternal nutrition programmes.','تمويل برامج تغذية الأمهات والطفولة المبكرة.'],
@@ -769,7 +775,7 @@ function buildCountryDeck(opts){
     // interventions: triggered by the indicators that are actually off track, plus development-investment angles where relevant
     const iy = cardsEnd + 0.2, room = 6.98 - iy;
     // one list: aid interventions triggered by off-track indicators, then development-investment options where the data makes them relevant
-    let acts = s.acts.filter(([id, maxL]) => id === null ? false : off(id, maxL)).map(a => T(a[2], a[3]));
+    let acts = s.acts.filter(([id, maxL]) => id === null ? false : typeof id === 'function' ? id() : off(id, maxL)).map(a => T(a[2], a[3]));
     if (acts.length < 3) acts = acts.concat(s.acts.filter(a => a[0] === null).map(a => T(a[2], a[3])));   // round out a short list with the sector-wide action
     const inv = (s.inv || []).filter(([cond]) => cond()).map(a => T(a[1], a[2])).slice(0, 2);
     const items = [], itemH = t => Math.max(0.29, textH(t, LW - 0.62, 8.8) + 0.04);
@@ -803,6 +809,13 @@ function buildCountryDeck(opts){
         body: T(`${Math.round(sm.under50)}% of workers are in businesses with fewer than 50 people${micro != null ? `, including ${micro}% in micro units of 1–4 people` : ''} (${sm.year}). Small firms are where most people earn a living, so finance, skills and market access for them reach the most jobs and households.`,
                 `${Math.round(sm.under50)}% من العاملين في منشآت يقل عدد عامليها عن 50${micro != null ? `، منهم ${micro}% في وحدات متناهية الصغر من 1–4 أشخاص` : ''} (${sm.year}). فالمنشآت الصغيرة هي مصدر رزق معظم الناس، لذا يصل التمويل والمهارات والنفاذ إلى الأسواق لها إلى أكبر عدد من الوظائف والأسر.`) });
       ins = ins.slice(0, 3);
+    }
+    // Energy: a connected economy still running mostly on fossil fuels — the case for renewable power (structural, not a benchmark rating)
+    if (s.key === 'energy' && fossilHeavy()) {
+      const rn = R('EG.FEC.RNEW.ZS'), pc = Math.round(rn.v);
+      ins = ins.concat([{ L: 2, head: T(`Fossil-heavy energy · renewables ${pc}% of energy use`, `طاقة تعتمد على الوقود الأحفوري · المتجددة ${pc}% من الاستهلاك`),
+        body: T(`Renewables supply only ${pc}% of final energy use (${rn.y}), so the economy runs mainly on coal, oil and gas. That leaves it exposed to fuel-price swings and import bills. With most people already connected, the next step is cleaner supply: solar, wind and geothermal are now among the cheapest sources of new power.`,
+                `لا توفر الطاقة المتجددة سوى ${pc}% من الاستهلاك النهائي للطاقة (${rn.y})، لذا يعتمد الاقتصاد أساساً على الفحم والنفط والغاز، مما يعرّضه لتقلبات أسعار الوقود وفواتير الاستيراد. ومع اتصال معظم السكان بالكهرباء، تكون الخطوة التالية إمدادات أنظف: فالطاقة الشمسية والرياح والحرارية الجوفية باتت من أرخص مصادر الطاقة الجديدة.`) }]).slice(0, 3);
     }
     // Trade: what the export base looks like (manufactured vs food share) — a structural point, not a benchmark rating
     if (s.key === 'trade') {

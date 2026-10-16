@@ -153,7 +153,7 @@ When adding an indicator: `CA_INDICATORS` (index.html), a benchmark in `severity
 - Indicators with no data are **left off** slides (no "—" cards, no empty facts). Where ≥ 2 are missing, a short "Limited data" note names them.
 - Stat cards carry the benchmark and gap (`gap()`: points for shares of people and 0–100 scores, relative % for % of GDP, × for higher-is-worse). There are no separate benchmark charts.
 - Key insights explain the "so what": `WHY[id]` lists linked indicators (only named when they are also off track in that country's data, via `DP` phrases) plus what the gap means. Add new indicators to `WHY`/`DP` in both languages.
-- Interventions: `acts` (aid, triggered by off-track indicators) + `inv` (development-investment angle, e.g. offtake agreements for agriculture), shown only when its condition holds.
+- Interventions: `acts` (aid, triggered by off-track indicators, or by a condition function such as `fossilHeavy`) + `inv` (development-investment angle, e.g. offtake agreements for agriculture, renewable IPPs for fossil-heavy grids), shown only when its condition holds. `fossilHeavy` = renewables < 40% of final energy use and electricity access ≥ 70% (the renewables share counts firewood, so low-access countries are excluded).
 - Executive summary = overall picture + priority-sector columns, each with its most urgent gaps, people affected (`people()`) and "why it matters". No strengths or data-notes blocks.
 - Overview slide: report map names neighbouring countries (`mapNameCountries`, Arabic via `AR_NE_NAME` in `i18n_ar.js`); leaders show term years (`hosSince/hosUntil`, `hogSince/hogUntil` from Wikidata P580/P582); governance bars have a severity colour key; the need index has a footnote (`NEED_NOTE`).
 

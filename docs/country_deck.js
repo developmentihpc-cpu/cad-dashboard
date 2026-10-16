@@ -643,13 +643,16 @@ function buildCountryDeck(opts){
       { x:0.5, y:cy + 0.4, w:12.33, h:0.4, fontFace:BODY, fontSize:10.5, color:C.MUTE });
     const gapCol = 0.2, cw = top.length ? (12.33 - gapCol * (top.length - 1)) / top.length : 0, ctop = cy + 0.32, ch = (n ? 6.56 : 6.98) - ctop;
     // "Why it matters": one font size for every column — the largest at which the longest text still fits
-    const soH = ch - (0.84 + 3 * 0.62 + 0.04) - 0.4, soW = cw - 0.32;
+    // the block sits under the tallest gap list, at the same height in every column
+    const maxG = Math.max(1, ...top.map(s => Math.min(3, s.ranked.filter(id => lvl(id) <= Math.max(1, s.level)).length)));
+    const soY = 0.84 + maxG * 0.62 + 0.04, soH = ch - soY - 0.4, soW = cw - 0.32;
     const soTexts = top.map(s => { const w = WHY[s.ranked.filter(id => lvl(id) <= Math.max(1, s.level))[0]]; return w ? T(w.so[0], w.so[1]) : ''; });
-    let soSize = top.length > 3 ? 8.6 : 9.2;
+    let soSize = top.length > 3 ? 9.2 : 9.6;
     while (soSize > 7 && soTexts.some(t => textH(t, soW, soSize) > soH)) soSize -= 0.2;
+    const chUsed = Math.min(ch, soY + 0.3 + Math.max(0, ...soTexts.map(t => t ? textH(t, soW, soSize) : 0)) + 0.18);   // cards end just below their content
     top.forEach((s, i) => {
       const x = 0.5 + i * (cw + gapCol), pad = 0.16, iw = cw - 2 * pad;
-      sl.shape(p.ShapeType.rect, { x, y:ctop, w:cw, h:ch, fill:{ color:C.CARD }, line:{ type:'none' } });
+      sl.shape(p.ShapeType.rect, { x, y:ctop, w:cw, h:chUsed, fill:{ color:C.CARD }, line:{ type:'none' } });
       sl.shape(p.ShapeType.rect, { x, y:ctop, w:cw, h:0.06, fill:{ color:SEV.fill[s.level] }, line:{ type:'none' } });
       sl.text(s.name, { x:x + pad, y:ctop + 0.14, w:iw, h:0.34, fontFace:HEAD, fontSize: top.length > 3 ? 12 : 13.5, bold:true, color:C.INK, valign:'top' });
       badge(sl, s.level, x + pad, ctop + 0.52, 1.15, 0.2);
@@ -667,7 +670,7 @@ function buildCountryDeck(opts){
       // what it means — the "so what" behind the most urgent gap
       const w = WHY[gaps[0]];
       if (w) {
-        const so = T(w.so[0], w.so[1]), sy = Math.max(gy + 0.04, ctop + 0.84 + 3 * 0.62 + 0.04);
+        const so = T(w.so[0], w.so[1]), sy = ctop + soY;
         sl.shape(p.ShapeType.line, { x:x + pad, y:sy, w:iw, h:0, line:{ color:C.HAIR, width:0.5 } });
         sl.text(T('WHY IT MATTERS', 'لماذا يهم ذلك'), { x:x + pad, y:sy + 0.06, w:iw, h:0.2, fontFace:BODY, fontSize:7.2, bold:true, color:C.GOLD, charSpacing:1.2 });
         sl.text(so, { x:x + pad, y:sy + 0.27, w:iw, h:ctop + ch - sy - 0.3, fontFace:BODY, fontSize: soSize, color:C.INK, valign:'top', wrap:true });

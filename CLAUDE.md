@@ -191,6 +191,7 @@ Decks: `DK.C` (INK, NAVY, SKY, GOLD …). Severity: `SEV_COLORS` from `severity.
 ---
 
 ## What NOT to do
+- Don't edit a `docs/*.js` file without bumping the `?v=` tag on its `<script>` in index.html (all share one value, e.g. `?v=20261016a`); otherwise browsers keep the old cached copy and downloads use old report code.
 - Don't edit the root `index.html` expecting it to go live — edit `docs/index.html`.
 - Don't bring back the pipeline, intake form, Path A/B/C or documents views.
 - Don't add a second severity scale or hard-code severity colours — use `severity.js`.

@@ -467,15 +467,15 @@ function buildCountryDeck(opts){
     sl.shape(p.ShapeType.rect, { x, y, w, h:0.05, fill:{ color: L == null ? C.GOLD : SEV.fill[L] }, line:{ type:'none' } });
     sl.text([{ text:I[id].f(r), options:{ fontFace:HEAD, fontSize: compact ? 19 : 22, bold:true, color: (L != null && L <= 1) ? SEV.text[L] : C.INK } },
              { text: unit, options:{ fontFace:BODY, fontSize: compact ? 7.4 : 8, color:C.MUTE } }],
-      { x:x + pad, y:y + 0.1, w:w - 2 * pad, h:0.46, valign:'middle', fit:'shrink' });
-    sl.text(lbl(id), { x:x + pad, y:y + 0.56, w:w - 2 * pad, h:0.26, fontFace:BODY, fontSize: compact ? 7.6 : 8.4, bold:true, color:C.INK, valign:'top', fit:'shrink' });
+      { x:x + pad, y:y + 0.1, w:w - 2 * pad, h:0.46, valign:'middle' });
+    sl.text(lbl(id), { x:x + pad, y:y + 0.54, w:w - 2 * pad, h:0.34, fontFace:BODY, fontSize: compact ? 7 : 8.2, bold:true, color:C.INK, valign:'top', wrap:true });
     const t = target(id);
     if (t != null) {
       const g = gap(id);
-      sl.shape(p.ShapeType.rect, { x:x + pad, y:y + 0.91, w:0.16, h:0.025, fill:{ color:C.GOLD }, line:{ type:'none' } });
+      if (!compact) sl.shape(p.ShapeType.rect, { x:x + pad, y:y + 1.0, w:0.16, h:0.025, fill:{ color:C.GOLD }, line:{ type:'none' } });
       sl.text([{ text:T('Benchmark ', 'المعيار ') + I[id].f({ v:t }), options:{ color:C.GOLD, bold:true } },
                { text: g ? '  ·  ' + g : '', options:{ color: L != null && L <= 1 ? SEV.text[L] : C.MUTE, bold: L != null && L <= 1 } }],
-        { x:x + pad + 0.22, y:y + 0.8, w:w - 2 * pad - 0.22, h:0.24, fontFace:BODY, fontSize: compact ? 7 : 7.6, valign:'middle', fit:'shrink' });
+        { x:x + pad + (compact ? 0 : 0.22), y:y + 0.89, w:w - 2 * pad - (compact ? 0 : 0.22), h:0.24, fontFace:BODY, fontSize: compact ? 6.6 : 7.4, valign:'middle' });
     }
     sl.text(cite(id), { x:x + pad, y:y + h - 0.25, w:w - 2 * pad, h:0.22, fontFace:BODY, fontSize: compact ? 6.2 : 6.8, color: r && r.stale ? SEV.text[0] : C.FAINT, valign:'top', bold: !!(r && r.stale) });
   };
@@ -596,7 +596,7 @@ function buildCountryDeck(opts){
       const kx = RX + 0.18 + L * kw;
       sl.shape(p.ShapeType.rect, { x:kx, y:ky + 0.07, w:0.14, h:0.1, fill:{ color:SEV.fill[L] }, line:{ type:'none' } });
       sl.text([{ text:DK.sevLabelOf(L, ar), options:{ bold:true, color:C.INK } }, { text:'  ' + b, options:{ color:C.MUTE } }],
-        { x:kx + 0.18, y:ky, w:kw - 0.2, h:0.24, fontFace:BODY, fontSize:6.8, valign:'middle', fit:'shrink' });
+        { x:kx + 0.18, y:ky, w:kw - 0.2, h:0.24, fontFace:BODY, fontSize:6.8, valign:'middle' });
     });
     // need index + status by sector
     const by = 5.36, bh = 1.62;
@@ -642,30 +642,35 @@ function buildCountryDeck(opts){
     if (!top.length) sl.text(T('Key indicators in every sector meet their benchmarks on current data.', 'المؤشرات الرئيسية في جميع القطاعات تحقق معاييرها وفق البيانات الحالية.'),
       { x:0.5, y:cy + 0.4, w:12.33, h:0.4, fontFace:BODY, fontSize:10.5, color:C.MUTE });
     const gapCol = 0.2, cw = top.length ? (12.33 - gapCol * (top.length - 1)) / top.length : 0, ctop = cy + 0.32, ch = (n ? 6.56 : 6.98) - ctop;
+    // "Why it matters": one font size for every column — the largest at which the longest text still fits
+    const soH = ch - (0.84 + 3 * 0.62 + 0.04) - 0.4, soW = cw - 0.32;
+    const soTexts = top.map(s => { const w = WHY[s.ranked.filter(id => lvl(id) <= Math.max(1, s.level))[0]]; return w ? T(w.so[0], w.so[1]) : ''; });
+    let soSize = top.length > 3 ? 8.6 : 9.2;
+    while (soSize > 7 && soTexts.some(t => textH(t, soW, soSize) > soH)) soSize -= 0.2;
     top.forEach((s, i) => {
       const x = 0.5 + i * (cw + gapCol), pad = 0.16, iw = cw - 2 * pad;
       sl.shape(p.ShapeType.rect, { x, y:ctop, w:cw, h:ch, fill:{ color:C.CARD }, line:{ type:'none' } });
       sl.shape(p.ShapeType.rect, { x, y:ctop, w:cw, h:0.06, fill:{ color:SEV.fill[s.level] }, line:{ type:'none' } });
-      sl.text(s.name, { x:x + pad, y:ctop + 0.14, w:iw, h:0.34, fontFace:HEAD, fontSize: top.length > 3 ? 12 : 13.5, bold:true, color:C.INK, valign:'top', fit:'shrink' });
+      sl.text(s.name, { x:x + pad, y:ctop + 0.14, w:iw, h:0.34, fontFace:HEAD, fontSize: top.length > 3 ? 12 : 13.5, bold:true, color:C.INK, valign:'top' });
       badge(sl, s.level, x + pad, ctop + 0.52, 1.15, 0.2);
       const gaps = s.ranked.filter(id => lvl(id) <= Math.max(1, s.level)).slice(0, 3);
-      let gy = ctop + 0.88;
+      let gy = ctop + 0.84;
       gaps.forEach(id => {
         const L = lvl(id), ppl = people(id);
         sl.shape(p.ShapeType.rect, { x:x + pad, y:gy, w:0.05, h:0.56, fill:{ color:SEV.fill[L] }, line:{ type:'none' } });
-        sl.text(lbl(id), { x:x + pad + 0.14, y:gy - 0.02, w:iw - 0.14, h:0.25, fontFace:BODY, fontSize:9, bold:true, color:C.INK, valign:'top', fit:'shrink' });
+        sl.text(lbl(id), { x:x + pad + 0.14, y:gy - 0.02, w:iw - 0.14, h:0.25, fontFace:BODY, fontSize: top.length > 3 ? 8.6 : 9, bold:true, color:C.INK, valign:'top' });
         sl.text([{ text:val(id), options:{ bold:true, color:SEV.text[L] } }, { text: target(id) != null ? T('  ·  benchmark ', '  ·  المعيار ') + I[id].f({ v:target(id) }) : '', options:{ color:C.MUTE } }],
-          { x:x + pad + 0.14, y:gy + 0.19, w:iw - 0.14, h:0.24, fontFace:BODY, fontSize:8.4, valign:'top', fit:'shrink' });
+          { x:x + pad + 0.14, y:gy + 0.19, w:iw - 0.14, h:0.24, fontFace:BODY, fontSize:8.4, valign:'top' });
         if (ppl) sl.text(T(`≈ ${ppl} people affected`, `≈ ${ppl} شخص متأثر`), { x:x + pad + 0.14, y:gy + 0.38, w:iw - 0.14, h:0.22, fontFace:BODY, fontSize:7.8, color:C.MUTE, valign:'top' });
-        gy += 0.68;
+        gy += 0.62;
       });
       // what it means — the "so what" behind the most urgent gap
       const w = WHY[gaps[0]];
       if (w) {
-        const so = T(w.so[0], w.so[1]), sy = Math.max(gy + 0.04, ctop + 0.88 + 3 * 0.68 + 0.04);
+        const so = T(w.so[0], w.so[1]), sy = Math.max(gy + 0.04, ctop + 0.84 + 3 * 0.62 + 0.04);
         sl.shape(p.ShapeType.line, { x:x + pad, y:sy, w:iw, h:0, line:{ color:C.HAIR, width:0.5 } });
         sl.text(T('WHY IT MATTERS', 'لماذا يهم ذلك'), { x:x + pad, y:sy + 0.06, w:iw, h:0.2, fontFace:BODY, fontSize:7.2, bold:true, color:C.GOLD, charSpacing:1.2 });
-        sl.text(so, { x:x + pad, y:sy + 0.27, w:iw, h:ctop + ch - sy - 0.33, fontFace:BODY, fontSize: top.length > 3 ? 8 : 8.6, color:C.INK, valign:'top', wrap:true, fit:'shrink' });
+        sl.text(so, { x:x + pad, y:sy + 0.27, w:iw, h:ctop + ch - sy - 0.3, fontFace:BODY, fontSize: soSize, color:C.INK, valign:'top', wrap:true });
       }
     });
     if (n) needNote(sl, 0.5, 6.66, 12.33);
@@ -701,7 +706,7 @@ function buildCountryDeck(opts){
       sl.shape(p.ShapeType.rect, { x:RX, y:1.35, w:0.06, h:1.0, fill:{ color: SEV.fill[L0] }, line:{ type:'none' } });
       sl.text(T('NATIONALLY', 'على المستوى الوطني'), { x:RX + 0.2, y:1.42, w:RW - 0.3, h:0.2, fontFace:BODY, fontSize:7.6, bold:true, color:SEV.text[L0], charSpacing:1.2 });
       sl.text([{ text:val(M0), options:{ bold:true, color:SEV.text[L0] } }, { text:'  ' + lbl(M0) + (gap(M0, true) ? ' · ' + gap(M0, true) : ''), options:{ color:C.INK } }],
-        { x:RX + 0.2, y:1.62, w:RW - 0.3, h:0.42, fontFace:BODY, fontSize:9.4, valign:'top', wrap:true, fit:'shrink' });
+        { x:RX + 0.2, y:1.62, w:RW - 0.3, h:0.42, fontFace:BODY, fontSize:9.4, valign:'top', wrap:true });
       sl.text((e.national != null ? T('Survey national average ', 'المتوسط الوطني في المسح ') + fv(e.national) + ' · ' : '') + svy,
         { x:RX + 0.2, y:2.06, w:RW - 0.3, h:0.2, fontFace:BODY, fontSize:7.4, color:C.MUTE, valign:'middle' });
       const g2 = worst && best && Math.min(worst.v, best.v) > 0 ? Math.max(worst.v, best.v) / Math.min(worst.v, best.v) : null;
@@ -713,7 +718,7 @@ function buildCountryDeck(opts){
                 `يتراوح بين ${fv(best.v)} في ${best.name} و${fv(worst.v)} في ${worst.name}` + (g2 && g2 >= 1.3 ? `، أي فجوة بمقدار ${g2.toFixed(1)} أضعاف` : '') + '.'
                 + (above != null ? ` ${above} من ${ranked.length} مناطق أسوأ من المتوسط الوطني.` : '')
                 + (act && ranked.length > 2 ? ` وتُعد ${worst.name} و${ranked[1].name} نقطة البداية: ${act[3]}` : ''));
-      sl.text(story, { x:RX, y:2.46, w:RW, h:0.92, fontFace:BODY, fontSize:9, color:C.INK, valign:'top', wrap:true, fit:'shrink' });
+      sl.text(story, { x:RX, y:2.46, w:RW, h:0.92, fontFace:BODY, fontSize:9, color:C.INK, valign:'top', wrap:true });
       // legend — five equal value bands, colour darkens with need
       eyebrow(sl, T('Legend', 'دليل الألوان'), RX, 3.42, RW, C.SKY_DK);
       const lw = RW / 5;
@@ -755,7 +760,7 @@ function buildCountryDeck(opts){
     // stat cards — only indicators with data, the most critical first; benchmark shown inside each card
     const LX = 0.5, LW = 7.0;
     const cards = [...new Set(s.ranked.filter(id => s.stats.includes(id) || lvl(id) <= 1).concat(s.stats))].filter(id => R(id)).slice(0, 6);
-    const cols = cards.length > 4 ? 3 : 2, rows = Math.ceil(cards.length / cols), cw = (LW - 0.18 * (cols - 1)) / cols, ch = 1.32;
+    const cols = cards.length > 4 ? 3 : 2, rows = Math.ceil(cards.length / cols), cw = (LW - 0.18 * (cols - 1)) / cols, ch = 1.4;
     cards.forEach((id, i) => statCard(sl, id, LX + (i % cols) * (cw + 0.18), 1.38 + Math.floor(i / cols) * (ch + 0.14), cw, ch, cols === 3));
     const cardsEnd = cards.length ? 1.38 + rows * (ch + 0.14) - 0.14 : 1.38;
     // interventions: triggered by the indicators that are actually off track, plus development-investment angles where relevant
@@ -816,10 +821,10 @@ function buildCountryDeck(opts){
       sl.text(msg, { x:RX, y, w:RW, h:0.8, fontFace:BODY, fontSize:9.6, color:C.INK, valign:'top', wrap:true });
     }
     ins.forEach(it => {
-      const bh = textH(it.body, RW - 0.2, 9.6), hh = 0.34, total = hh + bh;
+      const bh = textH(it.body, RW - 0.2, 9.6), hh = Math.max(0.34, textH(it.head, RW - 0.2, 10) + 0.04), total = hh + bh;
       if (y + total > 6.98) return;
       sl.shape(p.ShapeType.rect, { x:RX, y, w:0.05, h:total, fill:{ color:SEV.fill[it.L] }, line:{ type:'none' } });
-      sl.text(it.head, { x:RX + 0.18, y, w:RW - 0.2, h:hh, fontFace:HEAD, fontSize:12, bold:true, color:C.INK, valign:'top', fit:'shrink' });
+      sl.text(it.head, { x:RX + 0.18, y, w:RW - 0.2, h:hh, fontFace:HEAD, fontSize:11.5, bold:true, color:C.INK, valign:'top', wrap:true });
       sl.text(it.body, { x:RX + 0.18, y:y + hh, w:RW - 0.2, h:bh, fontFace:BODY, fontSize:9.6, color:C.INK, valign:'top', wrap:true });
       y += total + 0.2;
     });

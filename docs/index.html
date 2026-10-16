@@ -9,13 +9,13 @@
 <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
 <link  href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
-<script src="i18n_ar.js?v=20261016c"></script>
-<script src="severity.js?v=20261016c"></script>
-<script src="ind_defs.js?v=20261016c"></script>
-<script src="deck_kit.js?v=20261016c"></script>
-<script src="country_deck.js?v=20261016c"></script>
-<script src="pdf_deck.js?v=20261016c"></script>
-<script src="region_deck.js?v=20261016c"></script>
+<script src="i18n_ar.js?v=20261016d"></script>
+<script src="severity.js?v=20261016d"></script>
+<script src="ind_defs.js?v=20261016d"></script>
+<script src="deck_kit.js?v=20261016d"></script>
+<script src="country_deck.js?v=20261016d"></script>
+<script src="pdf_deck.js?v=20261016d"></script>
+<script src="region_deck.js?v=20261016d"></script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -3617,8 +3617,25 @@ async function repBuildCountryBlob(country, setStatus, fmt) {
 }
 
 // ── The three report types ────────────────────────────────────────────────
+// Reports must be built with the current code. A tab left open keeps the scripts it loaded, so before building,
+// compare this page's script version (?v=) with the live page's; if the site has been updated, reload first.
+async function repEnsureLatest() {
+  try {
+    const mine = ((document.querySelector('script[src*="country_deck.js"]') || {}).src || '').split('?v=')[1];
+    if (!mine) return true;
+    const html = await Promise.race([fetch('index.html?check=' + Date.now(), { cache:'no-store' }).then(r => r.ok ? r.text() : ''),
+                                     new Promise(r => setTimeout(() => r(''), 5000))]);
+    const live = (html.match(/country_deck\.js\?v=([\w.-]+)/) || [])[1];
+    if (!live || live === mine) return true;
+    alert(tr('The dashboard has been updated. It will reload now so the report is built with the latest version. Then run the report again.',
+             'تم تحديث اللوحة. ستُعاد تحميلها الآن ليُعدّ التقرير بأحدث إصدار، ثم شغّل التقرير مرة أخرى.'));
+    location.reload();
+    return false;
+  } catch (e) { return true; }   // offline or blocked: build with what is loaded
+}
 async function repRunSingle(country) {
   if (!country) return;
+  if (!(await repEnsureLatest())) return;
   const fmt = await repAskFormat(tr(country + ' — country report', cN(country) + ' — تقرير الدولة')); if (!fmt) return;
   const ov = cd_progressOverlay(tr('Country report · ' + country, 'تقرير الدولة · ' + cN(country)), tr('Loading live World Bank data…', 'جارٍ تحميل بيانات البنك الدولي المباشرة…'));
   try {
@@ -3635,6 +3652,7 @@ async function repRunSingle(country) {
 }
 
 async function repRunBatch(countries) {
+  if (!(await repEnsureLatest())) return;
   countries = [...new Set(countries)].filter(Boolean);
   if (!countries.length) { alert(tr('Select at least one country first.', 'اختر دولة واحدة على الأقل أولاً.')); return; }
   if (countries.length > 10 && !confirm(tr('Build ' + countries.length + ' separate reports? Each takes a few seconds, and your browser may ask once to allow several downloads.',
@@ -3662,6 +3680,7 @@ async function repRunBatch(countries) {
 }
 
 async function repRunRegion(region) {
+  if (!(await repEnsureLatest())) return;
   const members = (REGION_MEMBERS[region] || []).slice();
   if (!members.length) { alert(tr('No countries found for ' + region + '.', 'لا توجد دول في ' + rN(region) + '.')); return; }
   const fmt = await repAskFormat(tr(region + ' — regional report', rN(region) + ' — التقرير الإقليمي')); if (!fmt) return;

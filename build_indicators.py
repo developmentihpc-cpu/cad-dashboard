@@ -330,14 +330,14 @@ def build_trade_products(country_isos) -> bool:
             codes[iso] = r.get("reporterCode")
 
     this_year = datetime.now(timezone.utc).year
-    periods = ",".join(str(y) for y in range(this_year - 1, this_year - 5, -1))
 
-    def side(code, flow):
-        for attempt in range(1, 4):
+    def fetch_year(code, flow, year):
+        """One request (the public API allows a single period per call). Returns {chapter: value} or None."""
+        for attempt in range(1, 5):
             try:
-                resp = requests.get(COMTRADE_URL.format(code=code, periods=periods, flow=flow), timeout=60, headers=hdrs)
-                if resp.status_code == 429:   # rate limited: wait and retry
-                    time.sleep(10 * attempt)
+                resp = requests.get(COMTRADE_URL.format(code=code, periods=year, flow=flow), timeout=60, headers=hdrs)
+                if resp.status_code == 429:   # rate limited ("try again in 2 seconds")
+                    time.sleep(3 * attempt)
                     continue
                 resp.raise_for_status()
                 rows = resp.json().get("data") or []
@@ -346,18 +346,22 @@ def build_trade_products(country_isos) -> bool:
                 time.sleep(3 * attempt)
         else:
             return None
-        by: dict = {}
+        chap: dict = {}
         for r in rows:
             c, v = str(r.get("cmdCode") or ""), r.get("primaryValue")
             if re.fullmatch(r"\d\d", c) and v is not None:
-                y = int(r.get("refYear") or 0)
-                by.setdefault(y, {})
-                by[y][c] = by[y].get(c, 0.0) + float(v)
-        full = [y for y, chap in by.items() if len(chap) >= 20]
-        if not full:
+                chap[c] = chap.get(c, 0.0) + float(v)
+        return chap
+
+    def side(code, flow):
+        # newest year first; stop at the first year with a reasonably complete breakdown
+        for year in range(this_year - 1, this_year - 5, -1):
+            chap = fetch_year(code, flow, year)
+            time.sleep(2.2)   # the free public API allows about one request every two seconds
+            if chap and len(chap) >= 20:
+                break
+        else:
             return None
-        year = max(full)
-        chap = by[year]
         total = sum(chap.values())
         if total <= 0:
             return None
@@ -383,7 +387,6 @@ def build_trade_products(country_isos) -> bool:
                 s = side(code, flow)
                 if s:
                     rec[key] = s
-                time.sleep(1.5)   # be gentle with the free public API
         if rec:
             out[iso] = rec
             fetched += 1

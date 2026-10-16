@@ -8,13 +8,17 @@ on:
     branches: [main]
     paths: ['build_indicators.py', 'docs/index.html']   # the country list and indicator IDs are read from index.html
 
+concurrency:                  # a newer run replaces one still in progress
+  group: refresh-indicators
+  cancel-in-progress: true
+
 permissions:
   contents: write             # needed to commit the refreshed JSON back
 
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 45          # the UN Comtrade product download is paced (~2 requests per country)
+    timeout-minutes: 90          # the UN Comtrade product download is paced at ~1 request per 2 seconds
 
     steps:
       - name: Checkout repository

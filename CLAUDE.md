@@ -39,6 +39,7 @@ snapshot plus live API calls. No build step, no backend for the public site.
 | `environment.json` | Yale EPI 2026 + WorldRiskReport 2025 | One-off download |
 | `uis.json` | UNESCO UIS (out-of-school, school basic services, trained teachers) | One-off download |
 | `sme_jobs.json` | ILOSTAT "Employment by sex and establishment size" (labour force surveys): share of workers in businesses under 50 workers, by size band; only countries where size is known for ≥ 50% of workers (67) | `build_indicators.py` (`build_sme_jobs`), with the monthly refresh; keeps the previous file if ILO is unreachable. ILO bands stop at 50+, so medium firms (50–249) are counted with large |
+| `power_mix.json` | Ember yearly electricity data via Our World in Data: share of generation by source (solar, wind, hydro, geothermal & other, bioenergy, gas, coal, oil, nuclear), latest year | `build_indicators.py` (`build_power_mix`), monthly. Used on the report's Energy slide |
 | `leader_terms.json` | Researched (web, with a source URL per entry), as of 2026-10-14: year in office, term length, year the current term ends | Manual — **review after elections / changes of government**. Reconciled with Wikidata in `applyLeaderTerms`: same person → term added; different people → whichever reports the more recent start in office wins; Wikidata empty → table fills in |
 | `subnational/{ISO3}.json` + `index.json` | DHS Program regional survey data and outlines (30 countries) | One-off download; used when the live DHS API is slow |
 

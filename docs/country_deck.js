@@ -46,7 +46,7 @@ function buildCountryDeck(opts){
     'SE.ADT.LITR.ZS':'UNESCO UIS', 'SE.PRM.CMPT.ZS':'UNESCO UIS', 'SE.SEC.ENRR':'UNESCO UIS', 'SE.XPD.TOTL.GD.ZS':'UNESCO · World Bank', 'SE.PRM.ENRL.TC.ZS':'UNESCO UIS',
     'AG.YLD.CREL.KG':'FAO', 'NV.AGR.TOTL.ZS':'World Bank', 'SH.H2O.BASW.ZS':'WHO/UNICEF JMP', 'SH.H2O.SMDW.ZS':'WHO/UNICEF JMP', 'SH.STA.BASS.ZS':'WHO/UNICEF JMP',
     'SH.STA.SMSS.ZS':'WHO/UNICEF JMP', 'SH.STA.ODFC.ZS':'WHO/UNICEF JMP', 'EG.ELC.ACCS.ZS':'World Bank · IEA', 'EG.CFT.ACCS.ZS':'WHO', 'IT.NET.USER.ZS':'ITU',
-    'EG.FEC.RNEW.ZS':'IEA · World Bank', 'GOV_WGI_PV.SC':'World Bank WGI', 'GOV_WGI_VA.SC':'World Bank WGI', 'GOV_WGI_GE.SC':'World Bank WGI',
+    'EG.FEC.RNEW.ZS':'IEA · World Bank · Ember', 'GOV_WGI_PV.SC':'World Bank WGI', 'GOV_WGI_VA.SC':'World Bank WGI', 'GOV_WGI_GE.SC':'World Bank WGI',
     'GOV_WGI_RL.SC':'World Bank WGI', 'GOV_WGI_CC.SC':'World Bank WGI',
     'ILO.SME.U50':'ILOSTAT',     'SL.UEM.1524.ZS':'ILO', 'SL.TLF.CACT.FE.ZS':'ILO', 'SL.EMP.VULN.ZS':'ILO', 'FX.OWN.TOTL.ZS':'World Bank Global Findex', 'SI.POV.GINI':'World Bank',
     'SN.ITK.MSFI.ZS':'FAO', 'FS.AST.PRVT.GD.ZS':'IMF · World Bank', 'BX.KLT.DINV.WD.GD.ZS':'IMF · World Bank', 'FR.INR.LEND':'IMF',
@@ -148,6 +148,10 @@ function buildCountryDeck(opts){
   const atLeast = (id, min) => { const r = R(id); return !!(r && !r.stale && r.v >= min); };
   // Grid economy that still runs mostly on fossil fuels: renewables under 40% of final energy use while most people
   // have electricity (the renewables share counts firewood and charcoal, so low-access countries look "renewable")
+  // Electricity sources (data/power_mix.json): key, colour, English, Arabic, renewable?
+  const POWER_SRC = [['solar','F5C518','Solar','الطاقة الشمسية',1], ['wind','3E9BD6','Wind','طاقة الرياح',1], ['hydro','1B6FA8','Hydropower','الطاقة الكهرومائية',1],
+    ['other','13804C','Geothermal & other','الحرارية الجوفية وغيرها',1], ['bio','7FB069','Bioenergy','الطاقة الحيوية',1],
+    ['gas','A9B7C4','Gas','الغاز',0], ['coal','4A4F57','Coal','الفحم',0], ['oil','8B5E3C','Oil','النفط',0], ['nuclear','9B7EBD','Nuclear','الطاقة النووية',0]];
   const fossilHeavy = () => { const r = R('EG.FEC.RNEW.ZS'); return !!(r && !r.stale && r.v < 40 && atLeast('EG.ELC.ACCS.ZS', 70)); };
 
   // ── "so what" analysis: for each problem indicator, the related indicators that are also off track in this
@@ -813,9 +817,19 @@ function buildCountryDeck(opts){
     // Energy: a connected economy still running mostly on fossil fuels — the case for renewable power (structural, not a benchmark rating)
     if (s.key === 'energy' && fossilHeavy()) {
       const rn = R('EG.FEC.RNEW.ZS'), pc = Math.round(rn.v);
+      // which renewables the electricity actually comes from (power_mix.json), e.g. "mostly hydropower (7%) and bioenergy (6%); solar and wind together 0.5%"
+      let mix = '';
+      if (opts.power) {
+        const pw = opts.power, fmt = v => (v < 1 ? v.toFixed(1) : Math.round(v)) + '%';
+        const ren = POWER_SRC.filter(x => x[4] && pw[x[0]] != null).map(([k, , en, a]) => ({ v: pw[k], n: T(en.toLowerCase(), a), k })).sort((a, b) => b.v - a.v);
+        const tot = ren.reduce((t, x) => t + x.v, 0), sw = (pw.solar || 0) + (pw.wind || 0), main = ren.filter(x => x.v >= 1 && x.k !== 'solar' && x.k !== 'wind').slice(0, 2);
+        mix = T(` In electricity, renewables are ${fmt(tot)} (${pw.year})` + (main.length ? `, mostly ${andList(main.map(x => `${x.n} (${fmt(x.v)})`))}` : '') + `; solar and wind together provide ${fmt(sw)}.`,
+                ` وفي الكهرباء تبلغ حصة المتجددة ${fmt(tot)} (${pw.year})` + (main.length ? `، معظمها من ${andList(main.map(x => `${x.n} (${fmt(x.v)})`))}` : '') + `، بينما توفر الشمس والرياح معاً ${fmt(sw)}.`);
+      }
       ins = ins.concat([{ L: 2, head: T(`Fossil-heavy energy · renewables ${pc}% of energy use`, `طاقة تعتمد على الوقود الأحفوري · المتجددة ${pc}% من الاستهلاك`),
-        body: T(`Renewables supply only ${pc}% of final energy use (${rn.y}), so the economy runs mainly on coal, oil and gas. That leaves it exposed to fuel-price swings and import bills. With most people already connected, the next step is cleaner supply: solar, wind and geothermal are now among the cheapest sources of new power.`,
-                `لا توفر الطاقة المتجددة سوى ${pc}% من الاستهلاك النهائي للطاقة (${rn.y})، لذا يعتمد الاقتصاد أساساً على الفحم والنفط والغاز، مما يعرّضه لتقلبات أسعار الوقود وفواتير الاستيراد. ومع اتصال معظم السكان بالكهرباء، تكون الخطوة التالية إمدادات أنظف: فالطاقة الشمسية والرياح والحرارية الجوفية باتت من أرخص مصادر الطاقة الجديدة.`) }]).slice(0, 3);
+        body: T(`Renewables supply only ${pc}% of final energy use (${rn.y}), so the economy runs mainly on coal, oil and gas.`, `لا توفر الطاقة المتجددة سوى ${pc}% من الاستهلاك النهائي للطاقة (${rn.y})، لذا يعتمد الاقتصاد أساساً على الفحم والنفط والغاز.`) + mix
+          + T(' That leaves it exposed to fuel-price swings and import bills; with most people already connected, the next step is cleaner supply, and solar, wind and geothermal are now among the cheapest sources of new power.',
+              ' وهذا يعرّضه لتقلبات أسعار الوقود وفواتير الاستيراد؛ ومع اتصال معظم السكان بالكهرباء، تكون الخطوة التالية إمدادات أنظف، فالطاقة الشمسية والرياح والحرارية الجوفية باتت من أرخص مصادر الطاقة الجديدة.') }]).slice(0, 3);
     }
     // Trade: what the export base looks like (manufactured vs food share) — a structural point, not a benchmark rating
     if (s.key === 'trade') {
@@ -846,6 +860,23 @@ function buildCountryDeck(opts){
       sl.text(it.body, { x:RX + 0.18, y:y + hh, w:RW - 0.2, h:bh, fontFace:BODY, fontSize:9.6, color:C.INK, valign:'top', wrap:true });
       y += total + 0.2;
     });
+    // Energy: electricity generation by source (Ember via Our World in Data), under the insights — renewables first
+    if (s.key === 'energy' && opts.power && y + 1.75 <= 6.98) {
+      const pw = opts.power, items = POWER_SRC.filter(([k]) => pw[k] != null && pw[k] >= 0.05).map(([k, c, en, a, ren]) => ({ v: pw[k], c, n: T(en, a), ren }));
+      const renTot = items.filter(i => i.ren).reduce((t, i) => t + i.v, 0);
+      eyebrow(sl, T('Electricity generation by source', 'توليد الكهرباء حسب المصدر'), RX, y, RW, C.SKY_DK);
+      sl.text(T(`Share of electricity generated, ${pw.year} · renewables ${Math.round(renTot)}%`, `الحصة من الكهرباء المولّدة، ${pw.year} · المتجددة ${Math.round(renTot)}%`),
+        { x:RX, y:y + 0.22, w:RW, h:0.2, fontFace:BODY, fontSize:7.4, color:C.FAINT });
+      let bx = RX; const tot = items.reduce((t, i) => t + i.v, 0) || 100;   // stacked bar, scaled to the reported total
+      items.forEach(i => { const w = RW * i.v / tot; if (w > 0.005) sl.shape(p.ShapeType.rect, { x:bx, y:y + 0.46, w, h:0.2, fill:{ color:i.c }, line:{ type:'none' } }); bx += w; });
+      const half = Math.ceil(items.length / 2), lw = (RW - 0.2) / 2;
+      items.forEach((i, k) => {
+        const lx = RX + (k < half ? 0 : lw + 0.2), ly = y + 0.78 + (k % half) * 0.21;
+        sl.shape(p.ShapeType.rect, { x:lx, y:ly + 0.05, w:0.12, h:0.11, fill:{ color:i.c }, line:{ type:'none' } });
+        sl.text(i.n, { x:lx + 0.18, y:ly, w:lw - 0.75, h:0.2, fontFace:BODY, fontSize:8, color:C.INK, valign:'middle' });
+        sl.text((i.v < 1 ? i.v.toFixed(1) : Math.round(i.v)) + '%', { x:lx + lw - 0.55, y:ly, w:0.55, h:0.2, fontFace:BODY, fontSize:8, bold:true, color:C.INK, align:'right', valign:'middle' });
+      });
+    }
     // Trade: main trading partners (World Bank WITS / UN Comtrade), under the insights
     if (s.key === 'trade' && opts.trade && (opts.trade.exports || opts.trade.imports) && y + 1.75 <= 6.98) {
       const cols = [[T('Top export markets', 'أبرز أسواق التصدير'), opts.trade.exports], [T('Top import sources', 'أبرز مصادر الاستيراد'), opts.trade.imports]].filter(c => c[1]);

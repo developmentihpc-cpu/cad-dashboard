@@ -242,6 +242,64 @@ def build_sme_jobs(country_isos) -> bool:
     return True
 
 
+POWER_PATH = ROOT / "docs" / "data" / "power_mix.json"
+POWER_URL = "https://ourworldindata.org/grapher/share-elec-by-source.csv?v=1&csvType=full&useColumnShortNames=true"
+POWER_KEYS = {"coal": "coal", "gas": "gas", "hydro": "hydro", "solar": "solar", "wind": "wind", "oil": "oil",
+              "nuclear": "nuclear", "other_renewables_excluding_bioenergy": "other", "bioenergy": "bio"}
+
+
+def build_power_mix(country_isos) -> bool:
+    """Write docs/data/power_mix.json: share of electricity generation by source (Ember yearly data,
+    via Our World in Data), latest year per country. Keeps the previous file if the download fails."""
+    import csv
+    import io
+
+    wanted = set(country_isos)
+    try:
+        resp = requests.get(POWER_URL, timeout=120, headers={"User-Agent": "Mozilla/5.0 (CAD dashboard refresh)"})
+        resp.raise_for_status()
+        rows = list(csv.DictReader(io.StringIO(resp.content.decode("utf-8-sig"))))
+    except Exception as e:  # noqa: BLE001
+        print(f"  ! power mix: request failed ({e}) - keeping previous file")
+        return False
+
+    best: dict = {}
+    for r in rows:
+        iso = r.get("code")
+        if iso not in wanted:
+            continue
+        try:
+            year = int(r.get("year") or 0)
+        except ValueError:
+            continue
+        rec = {"year": year}
+        for col, val in r.items():
+            m = re.match(r"^(.*)_share_of_electricity__pct$", col or "")
+            if m and m.group(1) in POWER_KEYS and val not in (None, ""):
+                try:
+                    rec[POWER_KEYS[m.group(1)]] = round(float(val), 1)
+                except ValueError:
+                    pass
+        if len(rec) > 1 and (iso not in best or year > best[iso]["year"]):
+            best[iso] = rec
+
+    if not best:
+        print("  ! power mix: no usable rows - keeping previous file")
+        return False
+    payload = {
+        "_meta": {
+            "generated": datetime.now(timezone.utc).date().isoformat(),
+            "source": "Ember (yearly electricity data), via Our World in Data — share of electricity generation by source",
+            "url": "https://ourworldindata.org/grapher/share-elec-by-source",
+            "note": "other = geothermal, wave and tidal (renewables other than hydro, solar, wind and bioenergy).",
+        },
+        **dict(sorted(best.items())),
+    }
+    POWER_PATH.write_text(json.dumps(payload, ensure_ascii=False), encoding="utf-8")
+    print(f"  power mix: {len(best)} countries -> {POWER_PATH.name}")
+    return True
+
+
 def fetch_regions(country_iso: dict) -> dict:
     """Return {region_name: [display names present]} from WB country metadata.
 
@@ -341,6 +399,9 @@ def main() -> None:
 
     print("Fetching ILO jobs by business size...")
     build_sme_jobs(country_iso.values())
+
+    print("Fetching electricity generation by source (Ember / Our World in Data)...")
+    build_power_mix(country_iso.values())
 
 
 if __name__ == "__main__":

@@ -472,9 +472,7 @@ function buildCountryDeck(opts){
   const sevKey = (sl, xr, y, withGold) => {
     const items = [0, 1, 2, 3].map(L => [SEV.fill[L], DK.sevLabelOf(L, ar)]).concat(withGold ? [[C.GOLD, T('No benchmark', 'بلا معيار')]] : []);
     const wOf = t => 0.16 + String(t).length * (ar ? 0.055 : 0.062) + 0.3;   // swatch + label (text boxes keep a 0.1 in inset each side) + gap, at 7 pt
-    let x = xr - items.reduce((s, [, t]) => s + wOf(t), 0) - 0.95;
-    sl.text(T('Colour key', 'دليل الألوان'), { x, y, w:0.95, h:0.2, fontFace:BODY, fontSize:7, bold:true, color:C.FAINT, valign:'middle' });
-    x += 0.95;
+    let x = xr - items.reduce((s, [, t]) => s + wOf(t), 0);
     items.forEach(([col, t]) => {
       sl.shape(p.ShapeType.rect, { x, y:y + 0.05, w:0.12, h:0.1, fill:{ color:col }, line:{ type:'none' } });
       sl.text(t, { x:x + 0.16, y, w:wOf(t) - 0.16, h:0.2, fontFace:BODY, fontSize:7, color:C.MUTE, valign:'middle' });
@@ -661,7 +659,7 @@ function buildCountryDeck(opts){
     const top = (priorities.length ? priorities : rated.filter(s => s.level <= 2).sort((a, b) => a.level - b.level)).slice(0, 4);
     const cy = Math.max(oy + 0.12, 2.5);
     eyebrow(sl, T('Priority sectors and most urgent gaps', 'القطاعات ذات الأولوية وأكثر الفجوات إلحاحاً'), 0.5, cy, 12.33, C.SKY_DK);
-    sevKey(sl, 12.83, cy + 0.02, false);
+    sevKey(sl, 12.93, 6.86, false);   // bottom right, just above the footer line
     if (!top.length) sl.text(T('Key indicators in every sector meet their benchmarks on current data.', 'المؤشرات الرئيسية في جميع القطاعات تحقق معاييرها وفق البيانات الحالية.'),
       { x:0.5, y:cy + 0.4, w:12.33, h:0.4, fontFace:BODY, fontSize:10.5, color:C.MUTE });
     const gapCol = 0.2, cw = top.length ? (12.33 - gapCol * (top.length - 1)) / top.length : 0, ctop = cy + 0.32, ch = (n ? 6.56 : 6.98) - ctop;
@@ -701,7 +699,7 @@ function buildCountryDeck(opts){
         sl.text(so, { x:x + pad, y:sy + 0.27, w:iw, h:ctop + ch - sy - 0.3, fontFace:BODY, fontSize: soSize, color:C.INK, valign:'top', wrap:true });
       }
     });
-    if (n) needNote(sl, 0.5, 6.66, 12.33);
+    if (n) needNote(sl, 0.5, 6.64, 7.6);   // narrower, so the colour key fits at the bottom right
     foot(sl, T('ODA need index and SDG/WHO benchmarks · World Bank Open Data · ', 'مؤشر الاحتياج ومعايير أهداف التنمية المستدامة · بيانات البنك الدولي · ') + DATE);
   });
 
@@ -785,7 +783,7 @@ function buildCountryDeck(opts){
       : T('key indicators meet their benchmarks', 'المؤشرات الرئيسية تحقق معاييرها');
     head(sl, T('Sector assessment', 'تقييم القطاع'), s.name, st);
     if (s.level != null) badge(sl, s.level, 11.53, 0.38, 1.3, 0.26);
-    sevKey(sl, 12.83, 1.14, true);   // what the card bars, badge and insight markers mean
+    sevKey(sl, 12.93, 6.86, true);   // bottom right, just above the footer line: what the card bars, badge and insight markers mean
     // stat cards — only indicators with data, the most critical first; benchmark shown inside each card
     const LX = 0.5, LW = 7.0;
     const cards = [...new Set(s.ranked.filter(id => s.stats.includes(id) || lvl(id) <= 1).concat(s.stats))].filter(id => R(id) && !R(id).stale).slice(0, 6);
@@ -891,14 +889,14 @@ function buildCountryDeck(opts){
     }
     ins.forEach(it => {
       const bh = textH(it.body, RW - 0.2, 9.6), hh = Math.max(0.34, textH(it.head, RW - 0.2, 10) + 0.04), total = hh + bh;
-      if (y + total > 6.98) return;
+      if (y + total > 6.8) return;   // leave room for the colour key
       sl.shape(p.ShapeType.rect, { x:RX, y, w:0.05, h:total, fill:{ color:SEV.fill[it.L] }, line:{ type:'none' } });
       sl.text(it.head, { x:RX + 0.18, y, w:RW - 0.2, h:hh, fontFace:HEAD, fontSize:11.5, bold:true, color:C.INK, valign:'top', wrap:true });
       sl.text(it.body, { x:RX + 0.18, y:y + hh, w:RW - 0.2, h:bh, fontFace:BODY, fontSize:9.6, color:C.INK, valign:'top', wrap:true });
       y += total + 0.2;
     });
     // Energy: electricity generation by source (Ember via Our World in Data), under the insights — renewables first
-    if (s.key === 'energy' && opts.power && y + 1.75 <= 6.98) {
+    if (s.key === 'energy' && opts.power && y + 1.75 <= 6.8) {
       const pw = opts.power, items = POWER_SRC.filter(([k]) => pw[k] != null && pw[k] >= 0.05).map(([k, c, en, a, ren]) => ({ v: pw[k], c, n: T(en, a), ren }));
       const renTot = items.filter(i => i.ren).reduce((t, i) => t + i.v, 0);
       eyebrow(sl, T('Electricity generation by source', 'توليد الكهرباء حسب المصدر'), RX, y, RW, C.SKY_DK);
@@ -915,7 +913,7 @@ function buildCountryDeck(opts){
       });
     }
     // Trade: main trading partners (World Bank WITS / UN Comtrade), under the insights
-    if (s.key === 'trade' && opts.trade && (opts.trade.exports || opts.trade.imports) && y + 1.75 <= 6.98) {
+    if (s.key === 'trade' && opts.trade && (opts.trade.exports || opts.trade.imports) && y + 1.75 <= 6.8) {
       const cols = [[T('Top export markets', 'أبرز أسواق التصدير'), opts.trade.exports], [T('Top import sources', 'أبرز مصادر الاستيراد'), opts.trade.imports]].filter(c => c[1]);
       const cw2 = (RW - 0.2 * (cols.length - 1)) / cols.length;
       cols.forEach(([title, side], ci) => {
@@ -935,7 +933,7 @@ function buildCountryDeck(opts){
       const ex = opts.trade.exports && opts.trade.exports.uae, im = opts.trade.imports && opts.trade.imports.uae;
       const parts = [ex ? T(`${ord(ex.rank)}-largest export market (${ex.share.toFixed(1)}%)`, `المرتبة ${ex.rank} بين أسواق التصدير (${ex.share.toFixed(1)}%)`) : null,
                      im ? T(`${ord(im.rank)}-largest import source (${im.share.toFixed(1)}%)`, `المرتبة ${im.rank} بين مصادر الاستيراد (${im.share.toFixed(1)}%)`) : null].filter(Boolean);
-      if (parts.length && y + 1.98 <= 6.98) {
+      if (parts.length && y + 1.98 <= 6.8) {
         const uy = y + 0.44 + 5 * 0.25 + 0.06;
         sl.shape(p.ShapeType.rect, { x:RX, y:uy, w:RW, h:0.26, fill:{ color:C.GOLD_PALE }, line:{ type:'none' } });
         sl.text([{ text:T('UAE  ', 'الإمارات  '), options:{ bold:true, color:C.GOLD } }, { text:parts.join('  ·  '), options:{ color:C.INK } }],

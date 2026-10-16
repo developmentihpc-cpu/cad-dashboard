@@ -300,114 +300,241 @@ def build_power_mix(country_isos) -> bool:
     return True
 
 
-PRODUCTS_PATH = ROOT / "docs" / "data" / "trade_products.json"
-COMTRADE_REPORTERS = "https://comtradeapi.un.org/files/v1/app/reference/Reporters.json"
-COMTRADE_URL = ("https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode={code}&period={periods}"
-                "&partnerCode=0&flowCode={flow}&cmdCode=AG2&includeDesc=true")
+UIS_PATH = ROOT / "docs" / "data" / "uis.json"
+UIS_URL = "https://api.uis.unesco.org/api/public/data/indicators"
+UIS_IDS = ["ROFST.1.CP", "ROFST.2.CP", "SCHBSP.1.WELEC", "SCHBSP.1.WWATA", "SCHBSP.1.WTOILA", "PTRHC.1.TRAINED"]
 
 
-def build_trade_products(country_isos) -> bool:
-    """Write docs/data/trade_products.json: each country's goods exports and imports by HS chapter
-    (UN Comtrade public API, trade with the world). Latest year with a reasonably complete breakdown
-    (>= 20 chapters); top 6 chapters as [code, % share] plus food (01-24), fuel (27) and mining
-    (25, 26, 71-81) shares. Countries that cannot be fetched keep their previous entry."""
-    hdrs = {"User-Agent": "Mozilla/5.0 (CAD dashboard refresh)"}
+def build_uis(country_isos) -> bool:
+    """Write docs/data/uis.json: UNESCO school indicators (out-of-school rates, schools with electricity,
+    water and toilets, pupils per trained teacher), latest value per country over the last 10 years.
+    One request per indicator for all countries; an indicator that fails keeps its previous values."""
+    wanted = set(country_isos)
     previous = {}
-    if PRODUCTS_PATH.exists():
+    if UIS_PATH.exists():
         try:
-            previous = json.loads(PRODUCTS_PATH.read_text(encoding="utf-8"))
+            previous = json.loads(UIS_PATH.read_text(encoding="utf-8"))
         except Exception:  # noqa: BLE001
             previous = {}
-    try:
-        ref = requests.get(COMTRADE_REPORTERS, timeout=60, headers=hdrs).json()["results"]
-    except Exception as e:  # noqa: BLE001
-        print(f"  ! trade products: reporter list failed ({e}) - keeping previous file")
+    start = datetime.now(timezone.utc).year - 10
+    out: dict = {}
+    ok = 0
+    for ind in UIS_IDS:
+        try:
+            resp = requests.get(UIS_URL, params={"indicator": ind, "start": start, "indicatorMetadata": "false"},
+                                timeout=120, headers={"User-Agent": "Mozilla/5.0 (CAD dashboard refresh)"})
+            resp.raise_for_status()
+            records = resp.json().get("records") or []
+        except Exception as e:  # noqa: BLE001
+            print(f"  ! UIS {ind}: request failed ({e}) - keeping previous values")
+            records = None
+        if records is None:
+            for iso in wanted:
+                rec = (previous.get(iso) or {}).get(ind)
+                if rec:
+                    out.setdefault(iso, {})[ind] = rec
+            continue
+        ok += 1
+        for r in records:
+            iso, val, year = r.get("geoUnit"), r.get("value"), r.get("year")
+            if iso in wanted and val is not None and year:
+                cur = out.setdefault(iso, {}).get(ind)
+                if cur is None or int(year) > cur["year"]:
+                    out[iso][ind] = {"value": round(float(val), 1), "year": int(year)}
+    if not ok:
+        print("  ! UIS: nothing fetched - keeping previous file")
         return False
+    UIS_PATH.write_text(json.dumps({
+        "_meta": {"generated": datetime.now(timezone.utc).date().isoformat(),
+                  "source": "UNESCO Institute for Statistics (UIS) Data API",
+                  "url": "https://databrowser.uis.unesco.org/", "indicators": UIS_IDS},
+        **dict(sorted(out.items())),
+    }, ensure_ascii=False), encoding="utf-8")
+    print(f"  UIS: {ok}/{len(UIS_IDS)} indicators, {len(out)} countries -> {UIS_PATH.name}")
+    return True
+
+
+PRODUCTS_PATH = ROOT / "docs" / "data" / "trade_products.json"
+PARTNERS_PATH = ROOT / "docs" / "data" / "trade_partners.json"
+COMTRADE_REF = "https://comtradeapi.un.org/files/v1/app/reference/{name}.json"
+COMTRADE_URL = "https://comtradeapi.un.org/public/v1/preview/C/A/HS"
+UAE_ISO2 = "AE"
+
+
+def build_trade_data(country_isos) -> bool:
+    """Write two files from the UN Comtrade public API (trade with the world, goods):
+
+    docs/data/trade_products.json - exports and imports by HS chapter: top 6 as [code, % share], plus
+        food (01-24), fuel (27) and mining (25, 26, 71-81) shares.
+    docs/data/trade_partners.json - top 5 export markets and import sources (name, iso2, value, share)
+        and the UAE's share and rank as a partner.
+
+    For each country and flow the latest year with a reasonably complete product breakdown (>= 20 HS
+    chapters) is used, and partners are taken for the same year. Countries that do not report to
+    Comtrade get mirror figures (what their partners report trading with them), flagged mirror=true.
+    The free API allows one period per request and about one request every two seconds. Countries
+    that cannot be fetched keep their previous entries.
+    """
+    hdrs = {"User-Agent": "Mozilla/5.0 (CAD dashboard refresh)"}
+
+    def load(path):
+        try:
+            return json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+        except Exception:  # noqa: BLE001
+            return {}
+
+    prev_products, prev_partners = load(PRODUCTS_PATH), load(PARTNERS_PATH)
+    try:
+        reporters = requests.get(COMTRADE_REF.format(name="Reporters"), timeout=60, headers=hdrs).json()["results"]
+        partners_ref = requests.get(COMTRADE_REF.format(name="partnerAreas"), timeout=60, headers=hdrs).json()["results"]
+    except Exception as e:  # noqa: BLE001
+        print(f"  ! trade: reference lists failed ({e}) - keeping previous files")
+        return False
+
     codes = {}
-    for r in ref:
+    for r in reporters:
         iso = r.get("reporterCodeIsoAlpha3")
         if iso and not r.get("isGroup") and "(..." not in (r.get("text") or "") and iso not in codes:
             codes[iso] = r.get("reporterCode")
+    # partner code -> (name, iso2) for real countries only (no "nes" areas, bunkers, free zones, groups)
+    partner = {}
+    for p in partners_ref:
+        iso2, text = p.get("PartnerCodeIsoAlpha2") or "", p.get("text") or ""
+        if (re.fullmatch(r"[A-Z]{2}", iso2) and not p.get("isGroup") and "(..." not in text
+                and not re.search(r"\bnes\b|Bunkers|Free Zones|Special Categories", text)):
+            partner[p.get("PartnerCode")] = (text, iso2)
 
-    this_year = datetime.now(timezone.utc).year
-
-    def fetch_year(code, flow, year):
-        """One request (the public API allows a single period per call). Returns {chapter: value} or None."""
+    def get(params):
+        """One request; returns the data rows or None. Retries when rate limited."""
         for attempt in range(1, 5):
             try:
-                resp = requests.get(COMTRADE_URL.format(code=code, periods=year, flow=flow), timeout=60, headers=hdrs)
-                if resp.status_code == 429:   # rate limited ("try again in 2 seconds")
+                resp = requests.get(COMTRADE_URL, params=params, timeout=60, headers=hdrs)
+                time.sleep(2.2)   # about one request every two seconds
+                if resp.status_code == 429:
                     time.sleep(3 * attempt)
                     continue
                 resp.raise_for_status()
-                rows = resp.json().get("data") or []
-                break
+                return resp.json().get("data") or []
             except Exception:  # noqa: BLE001
                 time.sleep(3 * attempt)
-        else:
-            return None
+        return None
+
+    this_year = datetime.now(timezone.utc).year
+    years = list(range(this_year - 1, this_year - 5, -1))
+
+    def products(code, flow, year):
+        rows = get({"reporterCode": code, "period": year, "partnerCode": 0, "flowCode": flow, "cmdCode": "AG2"})
         chap: dict = {}
-        for r in rows:
+        for r in rows or []:
             c, v = str(r.get("cmdCode") or ""), r.get("primaryValue")
             if re.fullmatch(r"\d\d", c) and v is not None:
                 chap[c] = chap.get(c, 0.0) + float(v)
-        return chap
+        return chap if len(chap) >= 20 else None
 
-    def side(code, flow):
-        # newest year first; stop at the first year with a reasonably complete breakdown
-        for year in range(this_year - 1, this_year - 5, -1):
-            chap = fetch_year(code, flow, year)
-            time.sleep(2.2)   # the free public API allows about one request every two seconds
-            if chap and len(chap) >= 20:
-                break
-        else:
-            return None
+    def summarise_products(chap, year):
         total = sum(chap.values())
-        if total <= 0:
-            return None
 
         def share(*cs):
             return round(100 * sum(chap.get(c, 0.0) for c in cs) / total, 1)
 
-        top = sorted(chap, key=chap.get, reverse=True)[:6]
         return {
             "year": int(year), "total": round(total),
-            "top": [[c, share(c)] for c in top],
+            "top": [[c, share(c)] for c in sorted(chap, key=chap.get, reverse=True)[:6]],
             "food": share(*[f"{i:02d}" for i in range(1, 25)]),
             "fuel": share("27"),
             "mining": share("25", "26", "71", *[f"{i:02d}" for i in range(72, 82)]),
         }
 
-    out, fetched = {}, 0
+    def summarise_partners(values, year, mirror):
+        """values: {partner code: US$}. Top 5 plus the UAE's share and rank."""
+        values = {k: v for k, v in values.items() if k in partner and v > 0}
+        total = sum(values.values())
+        if total <= 0 or len(values) < 5:
+            return None
+        ranked = sorted(values, key=values.get, reverse=True)
+        top = [{"name": partner[k][0], "iso2": partner[k][1], "value": round(values[k]),
+                "share": round(100 * values[k] / total, 1)} for k in ranked[:5]]
+        out = {"year": int(year), "total": round(total), "mirror": mirror, "top": top}
+        for i, k in enumerate(ranked):
+            if partner[k][1] == UAE_ISO2:
+                out["uae"] = {"rank": i + 1, "share": round(100 * values[k] / total, 1)}
+                break
+        return out
+
+    def partners_reported(code, flow, year):
+        rows = get({"reporterCode": code, "period": year, "flowCode": flow, "cmdCode": "TOTAL"})
+        vals = {}
+        for r in rows or []:
+            if r.get("primaryValue") is not None and r.get("partnerCode") not in (0, None):
+                vals[r["partnerCode"]] = vals.get(r["partnerCode"], 0.0) + float(r["primaryValue"])
+        return summarise_partners(vals, year, False) if vals else None
+
+    def partners_mirror(code, flow):
+        # the country's exports = what other countries record as imports from it, and vice versa
+        other = "M" if flow == "X" else "X"
+        for year in years:
+            rows = get({"period": year, "partnerCode": code, "flowCode": other, "cmdCode": "TOTAL"})
+            vals = {}
+            for r in rows or []:
+                if r.get("primaryValue") is not None and r.get("reporterCode"):
+                    vals[r["reporterCode"]] = vals.get(r["reporterCode"], 0.0) + float(r["primaryValue"])
+            s = summarise_partners(vals, year, True)
+            if s and len(vals) >= 10:
+                return s
+        return None
+
+    out_products, out_partners, fetched = {}, {}, 0
     for iso in sorted(country_isos):
         code = codes.get(iso)
-        rec = {}
+        prod, part = {}, {}
         if code is not None:
             for flow, key in (("X", "exports"), ("M", "imports")):
-                s = side(code, flow)
-                if s:
-                    rec[key] = s
-        if rec:
-            out[iso] = rec
+                for year in years:
+                    chap = products(code, flow, year)
+                    if chap:
+                        prod[key] = summarise_products(chap, year)
+                        p = partners_reported(code, flow, year)
+                        if p:
+                            part[key] = p
+                        break
+                if key not in part:
+                    p = partners_mirror(code, flow)
+                    if p:
+                        part[key] = p
+        if prod or part:
             fetched += 1
-        elif previous.get(iso):
-            out[iso] = previous[iso]   # keep last good entry
-    if not out:
-        print("  ! trade products: nothing fetched - keeping previous file")
+        out_products[iso] = prod or prev_products.get(iso) or None
+        out_partners[iso] = part or prev_partners.get(iso) or None
+        print(f"    {iso}: products {'/'.join(k[:3] for k in prod) or '-'}  partners "
+              f"{'/'.join(k[:3] + ('*' if part[k]['mirror'] else '') for k in part) or '-'}")
+
+    out_products = {k: v for k, v in out_products.items() if v}
+    out_partners = {k: v for k, v in out_partners.items() if v}
+    if not fetched:
+        print("  ! trade: nothing fetched - keeping previous files")
         return False
-    payload = {
+    today = datetime.now(timezone.utc).date().isoformat()
+    PRODUCTS_PATH.write_text(json.dumps({
         "_meta": {
-            "generated": datetime.now(timezone.utc).date().isoformat(),
+            "generated": today,
             "source": "UN Comtrade (public API), trade with the world by HS chapter, as reported by each country",
             "url": "https://comtradeplus.un.org/",
             "note": ("Shares of total goods exports or imports in the latest year with a reasonably complete product "
                      "breakdown. top = [HS chapter, % share]; food = chapters 01-24, fuel = 27, mining = 25, 26, 71-81 "
                      "(minerals, metals, gold and gems)."),
         },
-        **out,
-    }
-    PRODUCTS_PATH.write_text(json.dumps(payload, ensure_ascii=False, sort_keys=True), encoding="utf-8")
-    print(f"  trade products: {fetched} fetched, {len(out)} countries -> {PRODUCTS_PATH.name}")
+        **out_products,
+    }, ensure_ascii=False, sort_keys=True), encoding="utf-8")
+    PARTNERS_PATH.write_text(json.dumps({
+        "_meta": {
+            "generated": today,
+            "source": "UN Comtrade (public API), goods trade by partner; mirror = as reported by partner countries",
+            "url": "https://comtradeplus.un.org/",
+            "unit": "US$",
+        },
+        **out_partners,
+    }, ensure_ascii=False, sort_keys=True), encoding="utf-8")
+    print(f"  trade: {fetched} fetched; products {len(out_products)}, partners {len(out_partners)} countries")
     return True
 
 
@@ -514,8 +641,11 @@ def main() -> None:
     print("Fetching electricity generation by source (Ember / Our World in Data)...")
     build_power_mix(country_iso.values())
 
-    print("Fetching products traded (UN Comtrade)...")
-    build_trade_products(country_iso.values())
+    print("Fetching UNESCO school indicators...")
+    build_uis(country_iso.values())
+
+    print("Fetching products and trading partners (UN Comtrade)...")
+    build_trade_data(country_iso.values())
 
 
 if __name__ == "__main__":

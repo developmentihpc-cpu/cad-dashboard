@@ -10,7 +10,8 @@
                                "termYears":  5,
                                "termEnd":  2027,
                                "note":  "Second and final term; general election due Aug 2027",
-                               "source":  "https://en.wikipedia.org/wiki/2027_Angolan_general_election"
+                               "source":  "https://en.wikipedia.org/wiki/2027_Angolan_general_election",
+                               "nameAr":  "جواو لورينسو"
                            },
                    "hog":  {
                                "same":  true
@@ -23,7 +24,8 @@
                                  "termYears":  5,
                                  "termEnd":  2029,
                                  "note":  "Elected by parliament after Oct 2024 general election; next general election due 2029",
-                                 "source":  "https://en.wikipedia.org/wiki/2024_Botswana_general_election"
+                                 "source":  "https://en.wikipedia.org/wiki/2024_Botswana_general_election",
+                                 "nameAr":  "دوما بوكو"
                              },
                      "hog":  {
                                  "same":  true
@@ -36,7 +38,8 @@
                                      "termYears":  null,
                                      "termEnd":  2029,
                                      "note":  "Military transitional president; May 2024 charter extended transition 60 months to Jul 2029",
-                                     "source":  "https://en.wikipedia.org/wiki/Ibrahim_Traor%C3%A9"
+                                     "source":  "https://en.wikipedia.org/wiki/Ibrahim_Traor%C3%A9",
+                                     "nameAr":  "إبراهيم تراوري"
                                  },
                          "hog":  {
                                      "name":  "Rimtalba Jean Emmanuel Ouédraogo",
@@ -44,7 +47,8 @@
                                      "termYears":  null,
                                      "termEnd":  null,
                                      "note":  "Appointed by junta Dec 2024; serves at president\u0027s pleasure; still in office Sep 2026",
-                                     "source":  "https://en.wikipedia.org/wiki/Jean_Emmanuel_Ou%C3%A9draogo"
+                                     "source":  "https://en.wikipedia.org/wiki/Jean_Emmanuel_Ou%C3%A9draogo",
+                                     "nameAr":  "ريمتالبا جان إيمانويل ويدراوغو"
                                  }
                      },
     "Burundi":  {
@@ -54,7 +58,8 @@
                                 "termYears":  7,
                                 "termEnd":  2027,
                                 "note":  "Presidential election due 2027",
-                                "source":  "https://en.wikipedia.org/wiki/%C3%89variste_Ndayishimiye"
+                                "source":  "https://en.wikipedia.org/wiki/%C3%89variste_Ndayishimiye",
+                                "nameAr":  "إيفاريست ندايشيميي"
                             },
                     "hog":  {
                                 "name":  "Nestor Ntahontuye",
@@ -62,7 +67,8 @@
                                 "termYears":  null,
                                 "termEnd":  null,
                                 "note":  "Appointed Aug 2025; serves at president\u0027s pleasure",
-                                "source":  "https://en.wikipedia.org/wiki/Nestor_Ntahontuye"
+                                "source":  "https://en.wikipedia.org/wiki/Nestor_Ntahontuye",
+                                "nameAr":  "نيستور نتهونتوي"
                             }
                 },
     "Cameroon":  {
@@ -72,7 +78,8 @@
                                  "termYears":  7,
                                  "termEnd":  2032,
                                  "note":  "Sworn in for 8th term 6 Nov 2025 after disputed Oct 2025 election; vice-presidency reinstated Apr 2026 but not yet filled",
-                                 "source":  "https://www.aljazeera.com/news/2025/11/6/cameroons-biya-worlds-oldest-ruler-at-92-sworn-in-for-eighth-term"
+                                 "source":  "https://www.aljazeera.com/news/2025/11/6/cameroons-biya-worlds-oldest-ruler-at-92-sworn-in-for-eighth-term",
+                                 "nameAr":  "بول بيا"
                              },
                      "hog":  {
                                  "name":  "Joseph Dion Ngute",
@@ -80,7 +87,8 @@
                                  "termYears":  null,
                                  "termEnd":  null,
                                  "note":  "Still PM as of late Aug 2026; promised new government not yet formed — check for Sep/Oct 2026 reshuffle",
-                                 "source":  "https://beninwebtv.bj/cameroun-neuf-mois-apres-sa-promesse-paul-biya-na-toujours-pas-annonce-de-nouveau-gouvernement/"
+                                 "source":  "https://beninwebtv.bj/cameroun-neuf-mois-apres-sa-promesse-paul-biya-na-toujours-pas-annonce-de-nouveau-gouvernement/",
+                                 "nameAr":  "جوزيف نغوت"
                              }
                  },
     "Chad":  {
@@ -90,7 +98,8 @@
                              "termYears":  7,
                              "termEnd":  null,
                              "note":  "Transitional leader from 2021, elected May 2024 (5-yr term, nominally to 2029). Oct 2025 amendment set 7-yr terms with no limit; reports differ on whether current mandate was extended (possibly to 2031)",
-                             "source":  "https://www.jurist.org/news/2025/10/chad-criticized-over-constitutional-amendment-extending-presidents-term-limit"
+                             "source":  "https://www.jurist.org/news/2025/10/chad-criticized-over-constitutional-amendment-extending-presidents-term-limit",
+                             "nameAr":  "محمد ديبي إتنو"
                          },
                  "hog":  {
                              "name":  "Allamaye Halina",
@@ -98,7 +107,8 @@
                              "termYears":  null,
                              "termEnd":  null,
                              "note":  "Appointed May 2024, reappointed Feb 2025; in office Aug 2026",
-                             "source":  "https://en.wikipedia.org/wiki/List_of_prime_ministers_of_Chad"
+                             "source":  "https://en.wikipedia.org/wiki/List_of_prime_ministers_of_Chad",
+                             "nameAr":  "ألاماي هالينا"
                          }
              },
     "Congo, Dem. Rep.":  {
@@ -108,7 +118,8 @@
                                          "termYears":  5,
                                          "termEnd":  2028,
                                          "note":  "Second term from Jan 2024; next election due Dec 2028",
-                                         "source":  "https://en.wikipedia.org/wiki/F%C3%A9lix_Tshisekedi"
+                                         "source":  "https://en.wikipedia.org/wiki/F%C3%A9lix_Tshisekedi",
+                                         "nameAr":  "فليكس تشيسكيدى"
                                      },
                              "hog":  {
                                          "name":  "Judith Suminwa",
@@ -116,7 +127,8 @@
                                          "termYears":  null,
                                          "termEnd":  null,
                                          "note":  "Appointed Apr/Jun 2024; serves at president\u0027s pleasure; in office Jun 2026",
-                                         "source":  "https://en.wikipedia.org/wiki/Judith_Suminwa"
+                                         "source":  "https://en.wikipedia.org/wiki/Judith_Suminwa",
+                                         "nameAr":  "جوديث سومينوا"
                                      }
                          },
     "Côte d\u0027Ivoire":  {
@@ -126,7 +138,8 @@
                                            "termYears":  5,
                                            "termEnd":  2030,
                                            "note":  "Re-elected Oct 2025 for 4th term; next election due Oct 2030",
-                                           "source":  "https://en.wikipedia.org/wiki/2025_Ivorian_presidential_election"
+                                           "source":  "https://en.wikipedia.org/wiki/2025_Ivorian_presidential_election",
+                                           "nameAr":  "الحسن واتارا"
                                        },
                                "hog":  {
                                            "name":  "Robert Beugré Mambé",
@@ -134,7 +147,8 @@
                                            "termYears":  null,
                                            "termEnd":  null,
                                            "note":  "Reappointed 21 Jan 2026; serves at president\u0027s pleasure",
-                                           "source":  "https://fr.allafrica.com/stories/202601210325.html"
+                                           "source":  "https://fr.allafrica.com/stories/202601210325.html",
+                                           "nameAr":  "روبرت بوجري مامبي"
                                        }
                            },
     "Eritrea":  {
@@ -144,7 +158,8 @@
                                 "termYears":  null,
                                 "termEnd":  null,
                                 "note":  "No national elections held since independence; constitution never implemented",
-                                "source":  "https://en.wikipedia.org/wiki/Isaias_Afwerki"
+                                "source":  "https://en.wikipedia.org/wiki/Isaias_Afwerki",
+                                "nameAr":  "أسياس أفورقي"
                             },
                     "hog":  {
                                 "same":  true
@@ -157,7 +172,8 @@
                                  "termYears":  6,
                                  "termEnd":  2030,
                                  "note":  "Ceremonial president elected by parliament Oct 2024",
-                                 "source":  "https://gna.org.gh/2024/10/ethiopian-parliament-appoints-fm-as-new-president/"
+                                 "source":  "https://gna.org.gh/2024/10/ethiopian-parliament-appoints-fm-as-new-president/",
+                                 "nameAr":  "تايي أتسقي سيلاسي"
                              },
                      "hog":  {
                                  "name":  "Abiy Ahmed",
@@ -165,7 +181,8 @@
                                  "termYears":  5,
                                  "termEnd":  2031,
                                  "note":  "Prosperity Party won 1 Jun 2026 election; sworn in for new 5-yr term 5 Oct 2026",
-                                 "source":  "https://www.africanews.com/amp/2026/10/05/ethiopia-abiy-ahmed-takes-oath-of-office-as-prime-minister/"
+                                 "source":  "https://www.africanews.com/amp/2026/10/05/ethiopia-abiy-ahmed-takes-oath-of-office-as-prime-minister/",
+                                 "nameAr":  "آبي أحمد علي"
                              }
                  },
     "Ghana":  {
@@ -175,7 +192,8 @@
                               "termYears":  4,
                               "termEnd":  2028,
                               "note":  "Sworn in Jan 2025 (previously president 2012–2017); next election Dec 2028",
-                              "source":  "https://en.wikipedia.org/wiki/John_Mahama"
+                              "source":  "https://en.wikipedia.org/wiki/John_Mahama",
+                              "nameAr":  "جون دراماني ماهاما"
                           },
                   "hog":  {
                               "same":  true
@@ -188,7 +206,8 @@
                                "termYears":  7,
                                "termEnd":  2032,
                                "note":  "Junta leader from Sep 2021; elected 28 Dec 2025, sworn in Jan 2026 for 7-yr term (expires Jan 2033; election expected late 2032)",
-                               "source":  "https://www.nampa.org/text/22843113"
+                               "source":  "https://www.nampa.org/text/22843113",
+                               "nameAr":  "مامادي دومبوي"
                            },
                    "hog":  {
                                "name":  "Amadou Oury Bah",
@@ -196,7 +215,8 @@
                                "termYears":  null,
                                "termEnd":  null,
                                "note":  "PM since Feb 2024; confirmed 26 Jan 2026",
-                               "source":  "https://afrique.le360.ma/politique/guinee-le-president-doumbouya-confirme-amadou-oury-bah-au-poste-de-premier-ministre_R72AP3S2JZHQJKJETSBBEPZNMY/"
+                               "source":  "https://afrique.le360.ma/politique/guinee-le-president-doumbouya-confirme-amadou-oury-bah-au-poste-de-premier-ministre_R72AP3S2JZHQJKJETSBBEPZNMY/",
+                               "nameAr":  "أمادو أوري باه"
                            }
                },
     "Kenya":  {
@@ -206,7 +226,8 @@
                               "termYears":  5,
                               "termEnd":  2027,
                               "note":  "Next general election due Aug 2027",
-                              "source":  "https://en.wikipedia.org/wiki/2027_Kenyan_general_election"
+                              "source":  "https://en.wikipedia.org/wiki/2027_Kenyan_general_election",
+                              "nameAr":  "وليام روتو"
                           },
                   "hog":  {
                               "same":  true
@@ -219,7 +240,8 @@
                                 "termYears":  6,
                                 "termEnd":  2029,
                                 "note":  "Next election due Oct 2029",
-                                "source":  "https://en.wikipedia.org/wiki/Joseph_Boakai"
+                                "source":  "https://en.wikipedia.org/wiki/Joseph_Boakai",
+                                "nameAr":  "جوزيف بواكاي"
                             },
                     "hog":  {
                                 "same":  true
@@ -232,7 +254,8 @@
                                    "termYears":  null,
                                    "termEnd":  2027,
                                    "note":  "Military-led transition after Oct 2025 takeover; presidential election scheduled Sep 2027",
-                                   "source":  "https://en.wikipedia.org/wiki/2027_Malagasy_presidential_election"
+                                   "source":  "https://en.wikipedia.org/wiki/2027_Malagasy_presidential_election",
+                                   "nameAr":  "مايكل راندريانيرينا"
                                },
                        "hog":  {
                                    "name":  "Mamitiana Rajaonarison",
@@ -240,7 +263,8 @@
                                    "termYears":  null,
                                    "termEnd":  null,
                                    "note":  "Appointed Mar 2026, replacing Herintsalama Rajaonarivelo",
-                                   "source":  "https://www.aljazeera.com/news/2026/3/16/madagascar-names-anticorruption-chief-as-pm-days-after-cabinet-dissolved"
+                                   "source":  "https://www.aljazeera.com/news/2026/3/16/madagascar-names-anticorruption-chief-as-pm-days-after-cabinet-dissolved",
+                                   "nameAr":  "ماميتيانا راجاوناريسون"
                                }
                    },
     "Malawi":  {
@@ -250,7 +274,8 @@
                                "termYears":  5,
                                "termEnd":  2030,
                                "note":  "Won Sep 2025 election, sworn in 4 Oct 2025 (previously president 2014–2020)",
-                               "source":  "https://en.wikipedia.org/wiki/President_of_Malawi"
+                               "source":  "https://en.wikipedia.org/wiki/President_of_Malawi",
+                               "nameAr":  "بيتر موثاريكا"
                            },
                    "hog":  {
                                "same":  true
@@ -263,7 +288,8 @@
                              "termYears":  5,
                              "termEnd":  2030,
                              "note":  "Transitional president since 2021; Jul 2025 law granted renewable 5-yr mandate without election; also defence minister since May 2026",
-                             "source":  "https://en.wikipedia.org/wiki/Assimi_Go%C3%AFta"
+                             "source":  "https://en.wikipedia.org/wiki/Assimi_Go%C3%AFta",
+                             "nameAr":  "أسيمي غويتا"
                          },
                  "hog":  {
                              "name":  "Abdoulaye Maïga",
@@ -271,7 +297,8 @@
                              "termYears":  null,
                              "termEnd":  null,
                              "note":  "Appointed Nov 2024; retained in Feb 2026 reshuffle",
-                             "source":  "https://www.wakatsera.com/mali-remaniement-ministeriel/"
+                             "source":  "https://www.wakatsera.com/mali-remaniement-ministeriel/",
+                             "nameAr":  "عبد الله مايغا"
                          }
              },
     "Mauritania":  {
@@ -281,7 +308,8 @@
                                    "termYears":  5,
                                    "termEnd":  2029,
                                    "note":  "Second and final term from Aug 2024",
-                                   "source":  "https://en.wikipedia.org/wiki/Mohamed_Ould_Ghazouani"
+                                   "source":  "https://en.wikipedia.org/wiki/Mohamed_Ould_Ghazouani",
+                                   "nameAr":  "محمد ولد الغزواني"
                                },
                        "hog":  {
                                    "name":  "Mokhtar Ould Djay",
@@ -289,7 +317,8 @@
                                    "termYears":  null,
                                    "termEnd":  null,
                                    "note":  "Appointed Aug 2024; government resigned and he was reappointed ~10–11 Oct 2026",
-                                   "source":  "https://www.moroccoworldnews.com/2024/08/364350/morocco-trained-moctar-ould-diay-appointed-as-mauritanias-new-prime-minister"
+                                   "source":  "https://www.moroccoworldnews.com/2024/08/364350/morocco-trained-moctar-ould-diay-appointed-as-mauritanias-new-prime-minister",
+                                   "nameAr":  "المختار ولد أجاي"
                                }
                    },
     "Mozambique":  {
@@ -299,7 +328,8 @@
                                    "termYears":  5,
                                    "termEnd":  2029,
                                    "note":  "Next general election due Oct 2029",
-                                   "source":  "https://en.wikipedia.org/wiki/Daniel_Chapo"
+                                   "source":  "https://en.wikipedia.org/wiki/Daniel_Chapo",
+                                   "nameAr":  "دانيال شابو"
                                },
                        "hog":  {
                                    "name":  "Maria Benvinda Levi",
@@ -307,7 +337,8 @@
                                    "termYears":  null,
                                    "termEnd":  null,
                                    "note":  "Appointed Jan 2025; serves at president\u0027s pleasure (president is constitutional head of government)",
-                                   "source":  "https://en.wikipedia.org/wiki/List_of_prime_ministers_of_Mozambique"
+                                   "source":  "https://en.wikipedia.org/wiki/List_of_prime_ministers_of_Mozambique",
+                                   "nameAr":  "مارية بنفندة ليفي"
                                }
                    },
     "Namibia":  {
@@ -317,7 +348,8 @@
                                 "termYears":  5,
                                 "termEnd":  2029,
                                 "note":  "Next general election due Nov 2029",
-                                "source":  "https://en.wikipedia.org/wiki/Netumbo_Nandi-Ndaitwah"
+                                "source":  "https://en.wikipedia.org/wiki/Netumbo_Nandi-Ndaitwah",
+                                "nameAr":  "نتومبو ناندي ندايتواه"
                             },
                     "hog":  {
                                 "name":  "Elijah Ngurare",
@@ -325,7 +357,8 @@
                                 "termYears":  null,
                                 "termEnd":  null,
                                 "note":  "PM since Mar 2025; president is constitutional head of government, PM leads government business",
-                                "source":  "https://www.nampa.org/text/22594478"
+                                "source":  "https://www.nampa.org/text/22594478",
+                                "nameAr":  "إيلايجا نغوراري"
                             }
                 },
     "Niger":  {
@@ -335,7 +368,8 @@
                               "termYears":  5,
                               "termEnd":  2030,
                               "note":  "Military leader since Jul 2023 coup; Mar 2025 refoundation charter gives 5-yr \u0027flexible\u0027 transition",
-                              "source":  "https://en.wikipedia.org/wiki/Abdourahamane_Tchiani"
+                              "source":  "https://en.wikipedia.org/wiki/Abdourahamane_Tchiani",
+                              "nameAr":  "عبد الرحمن تشياني"
                           },
                   "hog":  {
                               "name":  "Ali Lamine Zeine",
@@ -343,7 +377,8 @@
                               "termYears":  null,
                               "termEnd":  null,
                               "note":  "Appointed Aug 2023; lost finance portfolio Jan 2026 but remains PM; Sep 2026 reshuffle not confirmed to affect him",
-                              "source":  "https://en.wikipedia.org/wiki/Ali_Lamine_Zeine"
+                              "source":  "https://en.wikipedia.org/wiki/Ali_Lamine_Zeine",
+                              "nameAr":  "علي الأمين زين"
                           }
               },
     "Nigeria":  {
@@ -353,7 +388,8 @@
                                 "termYears":  4,
                                 "termEnd":  2027,
                                 "note":  "INEC moved presidential election to 16 Jan 2027 (from 20 Feb 2027) under Electoral Act 2026; term ends May 2027",
-                                "source":  "https://guardian.ng/politics/inec-moves-2027-presidential-election-to-january-16/"
+                                "source":  "https://guardian.ng/politics/inec-moves-2027-presidential-election-to-january-16/",
+                                "nameAr":  "بولا تينوبو"
                             },
                     "hog":  {
                                 "same":  true
@@ -366,7 +402,8 @@
                                "termYears":  5,
                                "termEnd":  2029,
                                "note":  "Re-elected Jul 2024",
-                               "source":  "https://en.wikipedia.org/wiki/Paul_Kagame"
+                               "source":  "https://en.wikipedia.org/wiki/Paul_Kagame",
+                               "nameAr":  "بول كاغامه"
                            },
                    "hog":  {
                                "name":  "Justin Nsengiyumva",
@@ -374,7 +411,8 @@
                                "termYears":  null,
                                "termEnd":  null,
                                "note":  "Sworn in 25 Jul 2025; serves at president\u0027s pleasure",
-                               "source":  "https://primature.gov.rw/news-detail/pm-nsengiyumva-officially-sworn-in-as-prime-minister"
+                               "source":  "https://primature.gov.rw/news-detail/pm-nsengiyumva-officially-sworn-in-as-prime-minister",
+                               "nameAr":  "جاستن نسينغيومفا"
                            }
                },
     "Senegal":  {
@@ -384,7 +422,8 @@
                                 "termYears":  5,
                                 "termEnd":  2029,
                                 "note":  "Next presidential election due Mar 2029",
-                                "source":  "https://en.wikipedia.org/wiki/Bassirou_Diomaye_Faye"
+                                "source":  "https://en.wikipedia.org/wiki/Bassirou_Diomaye_Faye",
+                                "nameAr":  "بشير جمعة فاي"
                             },
                     "hog":  {
                                 "name":  "Ahmadou Al Aminou Lo",
@@ -392,7 +431,8 @@
                                 "termYears":  null,
                                 "termEnd":  null,
                                 "note":  "Appointed 25 May 2026 after Faye dismissed Ousmane Sonko",
-                                "source":  "https://en.wikipedia.org/wiki/Ahmadou_Al_Aminou_Lo"
+                                "source":  "https://en.wikipedia.org/wiki/Ahmadou_Al_Aminou_Lo",
+                                "nameAr":  "أحمدو الأمين لو"
                             }
                 },
     "Sierra Leone":  {
@@ -402,7 +442,8 @@
                                      "termYears":  5,
                                      "termEnd":  2028,
                                      "note":  "Second and final term; next election due Jun 2028",
-                                     "source":  "https://en.wikipedia.org/wiki/Julius_Maada_Bio"
+                                     "source":  "https://en.wikipedia.org/wiki/Julius_Maada_Bio",
+                                     "nameAr":  "جوليوس مادا بيو"
                                  },
                          "hog":  {
                                      "same":  true
@@ -415,7 +456,8 @@
                                 "termYears":  null,
                                 "termEnd":  2027,
                                 "note":  "Original 4-yr term expired 15 May 2026; 2026 constitutional amendments (5-yr terms) used to claim term runs to May 2027 — disputed by opposition, Puntland and Jubaland; no election date set",
-                                "source":  "https://www.chathamhouse.org/2026/06/africa-aware-navigating-somalias-political-stalemate"
+                                "source":  "https://www.chathamhouse.org/2026/06/africa-aware-navigating-somalias-political-stalemate",
+                                "nameAr":  "حسن شيخ محمود"
                             },
                     "hog":  {
                                 "name":  "Hamza Abdi Barre",
@@ -423,7 +465,8 @@
                                 "termYears":  null,
                                 "termEnd":  null,
                                 "note":  "Appointed Jun 2022; serves at president\u0027s pleasure; in office mid-2026",
-                                "source":  "https://mofa.gov.qa/en/qatar/latest-articles/latest-news/details/2026/05/09/somalia\u0027s-prime-minister-meets-qatar\u0027s-ambassador"
+                                "source":  "https://mofa.gov.qa/en/qatar/latest-articles/latest-news/details/2026/05/09/somalia\u0027s-prime-minister-meets-qatar\u0027s-ambassador",
+                                "nameAr":  "حمزة عبدي بري"
                             }
                 },
     "Somaliland":  {
@@ -433,7 +476,8 @@
                                    "termYears":  5,
                                    "termEnd":  2029,
                                    "note":  "Sworn in 12/13 Dec 2024; parliamentary/local polls postponed to 2028",
-                                   "source":  "https://www.voaafrica.com/a/opposition-leader-wins-somaliland-presidential-poll/7870224.html"
+                                   "source":  "https://www.voaafrica.com/a/opposition-leader-wins-somaliland-presidential-poll/7870224.html",
+                                   "nameAr":  "عبد الرحمن محمد عبد الله"
                                },
                        "hog":  {
                                    "same":  true
@@ -446,7 +490,8 @@
                                      "termYears":  5,
                                      "termEnd":  2029,
                                      "note":  "Elected by parliament after May 2024 election (GNU); next general election due 2029",
-                                     "source":  "https://en.wikipedia.org/wiki/Cyril_Ramaphosa"
+                                     "source":  "https://en.wikipedia.org/wiki/Cyril_Ramaphosa",
+                                     "nameAr":  "سيريل رامافوزا"
                                  },
                          "hog":  {
                                      "same":  true
@@ -459,7 +504,8 @@
                                     "termYears":  null,
                                     "termEnd":  2026,
                                     "note":  "Transitional period; first general election set for 22 Dec 2026 but observers warn of further delay",
-                                    "source":  "https://www.radiotamazuj.org/en/news/article/south-sudan-at-risk-of-another-election-delay-observers-warn"
+                                    "source":  "https://www.radiotamazuj.org/en/news/article/south-sudan-at-risk-of-another-election-delay-observers-warn",
+                                    "nameAr":  "سالفا كير"
                                 },
                         "hog":  {
                                     "same":  true
@@ -472,7 +518,8 @@
                               "termYears":  null,
                               "termEnd":  null,
                               "note":  "Chair of Transitional Sovereignty Council; civil war ongoing, no elections scheduled",
-                              "source":  "https://en.wikipedia.org/wiki/Abdel_Fattah_al-Burhan"
+                              "source":  "https://en.wikipedia.org/wiki/Abdel_Fattah_al-Burhan",
+                              "nameAr":  "عبد الفتاح البرهان"
                           },
                   "hog":  {
                               "name":  "Kamil Idris",
@@ -480,7 +527,8 @@
                               "termYears":  null,
                               "termEnd":  null,
                               "note":  "Appointed by Burhan May 2025; mid-2026 reports he may be replaced, unconfirmed",
-                              "source":  "https://en.wikipedia.org/wiki/Kamil_Idris"
+                              "source":  "https://en.wikipedia.org/wiki/Kamil_Idris",
+                              "nameAr":  "كامل إدريس"
                           }
               },
     "Tanzania":  {
@@ -490,7 +538,8 @@
                                  "termYears":  5,
                                  "termEnd":  2030,
                                  "note":  "Declared winner of disputed Oct 2025 election",
-                                 "source":  "https://en.wikipedia.org/wiki/Samia_Suluhu_Hassan"
+                                 "source":  "https://en.wikipedia.org/wiki/Samia_Suluhu_Hassan",
+                                 "nameAr":  "سامية حسن"
                              },
                      "hog":  {
                                  "name":  "Mwigulu Nchemba",
@@ -498,7 +547,8 @@
                                  "termYears":  null,
                                  "termEnd":  null,
                                  "note":  "PM since Nov 2025; president is constitutional head of government, PM leads government business",
-                                 "source":  "https://en.wikipedia.org/wiki/Mwigulu_Nchemba"
+                                 "source":  "https://en.wikipedia.org/wiki/Mwigulu_Nchemba",
+                                 "nameAr":  "مويجولو نشيمبا"
                              }
                  },
     "Togo":  {
@@ -508,7 +558,8 @@
                              "termYears":  4,
                              "termEnd":  2029,
                              "note":  "Ceremonial president elected by parliament May 2025; sources differ on term (4-yr renewable once vs single 6-yr)",
-                             "source":  "https://en.wikipedia.org/wiki/Jean-Lucien_Savi_de_Tov%C3%A9"
+                             "source":  "https://en.wikipedia.org/wiki/Jean-Lucien_Savi_de_Tov%C3%A9",
+                             "nameAr":  "جان لوسيان سافي دي توفي"
                          },
                  "hog":  {
                              "name":  "Faure Gnassingbé",
@@ -516,7 +567,8 @@
                              "termYears":  6,
                              "termEnd":  2030,
                              "note":  "President of the Council of Ministers (executive head) since 3 May 2025, tied to 6-yr legislature elected Apr 2024; was President of the Republic 2005–2025",
-                             "source":  "https://burkina24.com/?p=402780"
+                             "source":  "https://burkina24.com/?p=402780",
+                             "nameAr":  "فور غناسينغبي"
                          }
              },
     "Uganda":  {
@@ -526,7 +578,8 @@
                                "termYears":  5,
                                "termEnd":  2031,
                                "note":  "Re-elected Jan 2026",
-                               "source":  "https://www.monitor.co.ug/uganda/news/national/priorities-for-museveni-s-new-2026-2031-cabinet-5489752"
+                               "source":  "https://www.monitor.co.ug/uganda/news/national/priorities-for-museveni-s-new-2026-2031-cabinet-5489752",
+                               "nameAr":  "يوويري موسيفيني"
                            },
                    "hog":  {
                                "name":  "Robinah Nabbanja",
@@ -534,7 +587,8 @@
                                "termYears":  null,
                                "termEnd":  null,
                                "note":  "Retained in 2026–2031 cabinet (May 2026); president is constitutional head of government",
-                               "source":  "https://allafrica.com/stories/202605270074.html"
+                               "source":  "https://allafrica.com/stories/202605270074.html",
+                               "nameAr":  "روبينا نبانجا"
                            }
                },
     "Zambia":  {
@@ -544,7 +598,8 @@
                                "termYears":  5,
                                "termEnd":  2031,
                                "note":  "Re-elected 13 Aug 2026 (disputed), sworn in 1 Sep 2026 for final term",
-                               "source":  "https://abcnews.com/International/wireStory/zambia-president-inaugurated-term-after-disputed-vote-opposition-136113490"
+                               "source":  "https://abcnews.com/International/wireStory/zambia-president-inaugurated-term-after-disputed-vote-opposition-136113490",
+                               "nameAr":  "هاكيندي هيشيليما"
                            },
                    "hog":  {
                                "same":  true
@@ -557,7 +612,8 @@
                                  "termYears":  7,
                                  "termEnd":  2030,
                                  "note":  "Amendment signed Jul 2026 extends terms to 7 yrs and moves 2028 election to 2030; court challenges pending",
-                                 "source":  "https://www.aljazeera.com/amp/news/2026/6/18/zimbabwe-lawmakers-back-bill-to-extend-presidents-term-in-office"
+                                 "source":  "https://www.aljazeera.com/amp/news/2026/6/18/zimbabwe-lawmakers-back-bill-to-extend-presidents-term-in-office",
+                                 "nameAr":  "إمرسون منانغاغوا"
                              },
                      "hog":  {
                                  "same":  true
@@ -570,7 +626,8 @@
                                     "termYears":  null,
                                     "termEnd":  null,
                                     "note":  "Taliban Supreme Leader (Taliban emir since 2016) - no fixed term",
-                                    "source":  "https://www.cia.gov/resources/world-leaders/historical-data/2026-june/afghanistan/"
+                                    "source":  "https://www.cia.gov/resources/world-leaders/historical-data/2026-june/afghanistan/",
+                                    "nameAr":  "هبة الله آخند زاده"
                                 },
                         "hog":  {
                                     "name":  "Mohammad Hassan Akhund",
@@ -578,7 +635,8 @@
                                     "termYears":  null,
                                     "termEnd":  null,
                                     "note":  "acting PM, no fixed term; reportedly absent from public view since Nov 2025 - status as of Oct 2026 unverified",
-                                    "source":  "https://www.cia.gov/resources/world-leaders/historical-data/2026-june/afghanistan/"
+                                    "source":  "https://www.cia.gov/resources/world-leaders/historical-data/2026-june/afghanistan/",
+                                    "nameAr":  "محمد حسن آخند"
                                 }
                     },
     "Algeria":  {
@@ -588,7 +646,8 @@
                                 "termYears":  5,
                                 "termEnd":  2029,
                                 "note":  "re-elected Sept 2024; next presidential election due 2029",
-                                "source":  "https://en.wikipedia.org/wiki/2024_Algerian_presidential_election"
+                                "source":  "https://en.wikipedia.org/wiki/2024_Algerian_presidential_election",
+                                "nameAr":  "عبد المجيد تبون"
                             },
                     "hog":  {
                                 "name":  "Sifi Ghrieb",
@@ -596,7 +655,8 @@
                                 "termYears":  null,
                                 "termEnd":  null,
                                 "note":  "acting from Aug 2025, appointed Sept 2025; serves at president\u0027s pleasure",
-                                "source":  "https://en.wikipedia.org/wiki/Sifi_Ghrieb"
+                                "source":  "https://en.wikipedia.org/wiki/Sifi_Ghrieb",
+                                "nameAr":  "سيفي غريب"
                             }
                 },
     "Egypt":  {
@@ -606,7 +666,8 @@
                               "termYears":  6,
                               "termEnd":  2030,
                               "note":  "third term began April 2024",
-                              "source":  "https://enterpriseam.com/egypt/2026/02/11/egypt-shuffles-its-cabinet/"
+                              "source":  "https://enterpriseam.com/egypt/2026/02/11/egypt-shuffles-its-cabinet/",
+                              "nameAr":  "عبد الفتاح السيسي"
                           },
                   "hog":  {
                               "name":  "Mostafa Madbouly",
@@ -614,7 +675,8 @@
                               "termYears":  null,
                               "termEnd":  null,
                               "note":  "appointed by the president; retained in Feb 2026 reshuffle",
-                              "source":  "https://arabfinance.com/en/news/newdetails/egyptian-parliament-approves-cabinet-reshuffle-and-retains-madbouly-as-prime-minister"
+                              "source":  "https://arabfinance.com/en/news/newdetails/egyptian-parliament-approves-cabinet-reshuffle-and-retains-madbouly-as-prime-minister",
+                              "nameAr":  "مصطفى مدبولي"
                           }
               },
     "Iraq":  {
@@ -624,7 +686,8 @@
                              "termYears":  4,
                              "termEnd":  2030,
                              "note":  "elected by parliament 11 Apr 2026 (also spelled Amidi)",
-                             "source":  "https://www.newsonair.gov.in/iraqi-parliament-elects-nizar-amedi-as-countrys-new-president"
+                             "source":  "https://www.newsonair.gov.in/iraqi-parliament-elects-nizar-amedi-as-countrys-new-president",
+                             "nameAr":  "نزار آميدي"
                          },
                  "hog":  {
                              "name":  "Ali al-Zaidi",
@@ -632,7 +695,8 @@
                              "termYears":  4,
                              "termEnd":  2029,
                              "note":  "cabinet approved 14 May 2026, succeeded al-Sudani; next parliamentary election due ~late 2029 (parliament elected Nov 2025)",
-                             "source":  "https://www.diplomatie.gouv.fr/fr/presse-et-ressources/decouvrir-et-informer/actualites/irak-nomination-du-premier-ministre-ali-al-zaydi"
+                             "source":  "https://www.diplomatie.gouv.fr/fr/presse-et-ressources/decouvrir-et-informer/actualites/irak-nomination-du-premier-ministre-ali-al-zaydi",
+                             "nameAr":  "علي فالح الزيدي"
                          }
              },
     "Jordan":  {
@@ -642,7 +706,8 @@
                                "termYears":  null,
                                "termEnd":  null,
                                "note":  "monarch - no fixed term",
-                               "source":  "https://www.jordannews.jo/Section-109/News/Royal-Decree-Approves-Cabinet-Reshuffle-Under-Prime-Minister-Hassan-54095"
+                               "source":  "https://www.jordannews.jo/Section-109/News/Royal-Decree-Approves-Cabinet-Reshuffle-Under-Prime-Minister-Hassan-54095",
+                               "nameAr":  "عبد الله الثاني بن الحسين"
                            },
                    "hog":  {
                                "name":  "Jafar Hassan",
@@ -650,7 +715,8 @@
                                "termYears":  null,
                                "termEnd":  2028,
                                "note":  "appointed by the King, serves at royal pleasure; parliament elected Sept 2024, next election due 2028",
-                               "source":  "https://www.jordannews.jo/Section-109/News/Royal-Decree-Approves-Cabinet-Reshuffle-Under-Prime-Minister-Hassan-54095"
+                               "source":  "https://www.jordannews.jo/Section-109/News/Royal-Decree-Approves-Cabinet-Reshuffle-Under-Prime-Minister-Hassan-54095",
+                               "nameAr":  "جعفر حسان"
                            }
                },
     "Lebanon":  {
@@ -660,7 +726,8 @@
                                 "termYears":  6,
                                 "termEnd":  2031,
                                 "note":  "elected by parliament Jan 2025; single non-renewable 6-year term",
-                                "source":  "https://en.wikipedia.org/wiki/2025_Lebanese_presidential_election"
+                                "source":  "https://en.wikipedia.org/wiki/2025_Lebanese_presidential_election",
+                                "nameAr":  "جوزاف عون"
                             },
                     "hog":  {
                                 "name":  "Nawaf Salam",
@@ -668,7 +735,8 @@
                                 "termYears":  null,
                                 "termEnd":  2028,
                                 "note":  "May 2026 parliamentary election postponed; parliament\u0027s term extended two years to 2028",
-                                "source":  "https://www.newarab.com/news/lebanon-postpones-parliamentary-elections-two-years"
+                                "source":  "https://www.newarab.com/news/lebanon-postpones-parliamentary-elections-two-years",
+                                "nameAr":  "نواف سلام"
                             }
                 },
     "Libya":  {
@@ -678,7 +746,8 @@
                               "termYears":  null,
                               "termEnd":  null,
                               "note":  "Presidential Council chair; transitional, mandate pending elections (reported scheduled by Feb 2027 but not confirmed)",
-                              "source":  "https://dispatchrisk.com/?p=20080"
+                              "source":  "https://dispatchrisk.com/?p=20080",
+                              "nameAr":  "محمد المنفي"
                           },
                   "hog":  {
                               "name":  "Abdul Hamid Dbeibah",
@@ -686,7 +755,8 @@
                               "termYears":  null,
                               "termEnd":  null,
                               "note":  "GNU (Tripoli) PM; transitional, legitimacy contested by eastern-based HoR; elections not firmly scheduled",
-                              "source":  "https://en.wikipedia.org/wiki/Abdul_Hamid_Dbeibeh"
+                              "source":  "https://en.wikipedia.org/wiki/Abdul_Hamid_Dbeibeh",
+                              "nameAr":  "عبد الحميد الدبيبة"
                           }
               },
     "Morocco":  {
@@ -696,7 +766,8 @@
                                 "termYears":  null,
                                 "termEnd":  null,
                                 "note":  "monarch - no fixed term",
-                                "source":  "https://www.moroccoworldnews.com/2026/09/340090/king-mohammed-vi-appoints-fatima-zahra-el-mansouri-as-moroccos-first-ever-female-head-of-government/"
+                                "source":  "https://www.moroccoworldnews.com/2026/09/340090/king-mohammed-vi-appoints-fatima-zahra-el-mansouri-as-moroccos-first-ever-female-head-of-government/",
+                                "nameAr":  "محمد السادس بن الحسن"
                             },
                     "hog":  {
                                 "name":  "Fatima Zahra El Mansouri",
@@ -704,7 +775,8 @@
                                 "termYears":  5,
                                 "termEnd":  2031,
                                 "note":  "appointed 29 Sept 2026 after 23 Sept 2026 elections (PAM first); coalition agreed 12 Oct, cabinet not yet confirmed sworn in",
-                                "source":  "https://www.moroccoworldnews.com/2026/09/340090/king-mohammed-vi-appoints-fatima-zahra-el-mansouri-as-moroccos-first-ever-female-head-of-government/"
+                                "source":  "https://www.moroccoworldnews.com/2026/09/340090/king-mohammed-vi-appoints-fatima-zahra-el-mansouri-as-moroccos-first-ever-female-head-of-government/",
+                                "nameAr":  "فاطمة الزهراء المنصوري"
                             }
                 },
     "Pakistan":  {
@@ -714,7 +786,8 @@
                                  "termYears":  5,
                                  "termEnd":  2029,
                                  "note":  "second presidency (also 2008-2013); elected March 2024",
-                                 "source":  "https://en.wikipedia.org/wiki/2026_in_Pakistan"
+                                 "source":  "https://en.wikipedia.org/wiki/2026_in_Pakistan",
+                                 "nameAr":  "آصف علي زرداري"
                              },
                      "hog":  {
                                  "name":  "Shehbaz Sharif",
@@ -722,7 +795,8 @@
                                  "termYears":  5,
                                  "termEnd":  2029,
                                  "note":  "current tenure since March 2024 (earlier 2022-2023); next general election due early 2029",
-                                 "source":  "https://en.wikipedia.org/wiki/Shehbaz_Sharif"
+                                 "source":  "https://en.wikipedia.org/wiki/Shehbaz_Sharif",
+                                 "nameAr":  "شهباز شريف"
                              }
                  },
     "Palestine":  {
@@ -732,7 +806,8 @@
                                   "termYears":  null,
                                   "termEnd":  null,
                                   "note":  "elected 2005, mandate expired 2009; presidential election announced for early 2027 but no firm date and past announcements cancelled",
-                                  "source":  "https://www.sabado.pt/mundo/amp/palestina-mahmud-abbas-anuncia-eleicoes-presidenciais-no-inicio-de-2027"
+                                  "source":  "https://www.sabado.pt/mundo/amp/palestina-mahmud-abbas-anuncia-eleicoes-presidenciais-no-inicio-de-2027",
+                                  "nameAr":  "محمود عباس"
                               },
                       "hog":  {
                                   "name":  "Mohammad Mustafa",
@@ -740,7 +815,8 @@
                                   "termYears":  null,
                                   "termEnd":  null,
                                   "note":  "appointed by the president; legislative elections decreed for 28 Nov 2026 (uncertain)",
-                                  "source":  "https://newsonair.gov.in/palestinian-authority-president-mahmoud-abbas-announces-legislative-elections-in-late-november/"
+                                  "source":  "https://newsonair.gov.in/palestinian-authority-president-mahmoud-abbas-announces-legislative-elections-in-late-november/",
+                                  "nameAr":  "محمد مصطفى"
                               }
                   },
     "Syria":  {
@@ -750,7 +826,8 @@
                               "termYears":  5,
                               "termEnd":  2030,
                               "note":  "transitional president; 5-year transitional period under March 2025 Constitutional Declaration",
-                              "source":  "https://en.wikipedia.org/wiki/Syrian_transitional_government"
+                              "source":  "https://en.wikipedia.org/wiki/Syrian_transitional_government",
+                              "nameAr":  "أحمد الشرع"
                           },
                   "hog":  {
                               "same":  true
@@ -763,7 +840,8 @@
                                 "termYears":  5,
                                 "termEnd":  2029,
                                 "note":  "re-elected Oct 2024",
-                                "source":  "https://en.wikipedia.org/wiki/2024_Tunisian_presidential_election"
+                                "source":  "https://en.wikipedia.org/wiki/2024_Tunisian_presidential_election",
+                                "nameAr":  "قيس سعيّد"
                             },
                     "hog":  {
                                 "name":  "Sarra Zaafrani Zenzri",
@@ -771,7 +849,8 @@
                                 "termYears":  null,
                                 "termEnd":  null,
                                 "note":  "appointed March 2025; serves at president\u0027s pleasure",
-                                "source":  "https://www.moroccoworldnews.com/2024/08/364444/tunisian-president-kais-saied-appoints-kamel-madouri-as-new-prime-minister"
+                                "source":  "https://www.moroccoworldnews.com/2024/08/364444/tunisian-president-kais-saied-appoints-kamel-madouri-as-new-prime-minister",
+                                "nameAr":  "سارة الزعفراني"
                             }
                 },
     "Yemen":  {
@@ -781,7 +860,8 @@
                               "termYears":  null,
                               "termEnd":  null,
                               "note":  "Presidential Leadership Council chair; transitional, no fixed end",
-                              "source":  "https://presidentalalimi.net/en/news1549.html"
+                              "source":  "https://presidentalalimi.net/en/news1549.html",
+                              "nameAr":  "رشاد العليمي"
                           },
                   "hog":  {
                               "name":  "Shaya al-Zindani",
@@ -789,7 +869,8 @@
                               "termYears":  null,
                               "termEnd":  null,
                               "note":  "appointed Jan 2026 replacing Salem bin Breik; also foreign minister",
-                              "source":  "https://presidentalalimi.net/en/news1549.html"
+                              "source":  "https://presidentalalimi.net/en/news1549.html",
+                              "nameAr":  "شايع محسن الزنداني"
                           }
               },
     "Albania":  {
@@ -799,7 +880,8 @@
                                 "termYears":  5,
                                 "termEnd":  2027,
                                 "note":  "elected by parliament; term ends July 2027",
-                                "source":  "https://exit.al/en/bajram-begaj-chosen-president-of-albania"
+                                "source":  "https://exit.al/en/bajram-begaj-chosen-president-of-albania",
+                                "nameAr":  "باجرام بيجاج"
                             },
                     "hog":  {
                                 "name":  "Edi Rama",
@@ -807,7 +889,8 @@
                                 "termYears":  4,
                                 "termEnd":  2029,
                                 "note":  "re-elected May 2025; next parliamentary election due 2029",
-                                "source":  "https://en.wikipedia.org/wiki/2025_Albanian_parliamentary_election"
+                                "source":  "https://en.wikipedia.org/wiki/2025_Albanian_parliamentary_election",
+                                "nameAr":  "إيدي راما"
                             }
                 },
     "Armenia":  {
@@ -817,7 +900,8 @@
                                 "termYears":  7,
                                 "termEnd":  2029,
                                 "note":  "elected by parliament March 2022, single 7-year term",
-                                "source":  "https://en.wikipedia.org/wiki/Vahagn_Khachaturyan"
+                                "source":  "https://en.wikipedia.org/wiki/Vahagn_Khachaturyan",
+                                "nameAr":  "فاهاجن خاتشاتوريان"
                             },
                     "hog":  {
                                 "name":  "Nikol Pashinyan",
@@ -825,7 +909,8 @@
                                 "termYears":  5,
                                 "termEnd":  2031,
                                 "note":  "Civil Contract won 7 June 2026 election (64 seats)",
-                                "source":  "https://jam-news.net/final-election-results-in-armenia-pashinyans-party-wins-majority/"
+                                "source":  "https://jam-news.net/final-election-results-in-armenia-pashinyans-party-wins-majority/",
+                                "nameAr":  "نيكول باشينيان"
                             }
                 },
     "Azerbaijan":  {
@@ -835,7 +920,8 @@
                                    "termYears":  7,
                                    "termEnd":  2031,
                                    "note":  "re-elected Feb 2024",
-                                   "source":  "https://en.wikipedia.org/wiki/2024_Azerbaijani_presidential_election"
+                                   "source":  "https://en.wikipedia.org/wiki/2024_Azerbaijani_presidential_election",
+                                   "nameAr":  "إلهام علييف"
                                },
                        "hog":  {
                                    "name":  "Ali Asadov",
@@ -843,7 +929,8 @@
                                    "termYears":  null,
                                    "termEnd":  null,
                                    "note":  "appointed by the president",
-                                   "source":  "https://nk.gov.az/en/xeberler/matbuat-xidmatinin-malumati/bas-nazir-eli-esedov-slovakiya-prezidenti-peter-pe-3544"
+                                   "source":  "https://nk.gov.az/en/xeberler/matbuat-xidmatinin-malumati/bas-nazir-eli-esedov-slovakiya-prezidenti-peter-pe-3544",
+                                   "nameAr":  "علي أسدوف"
                                }
                    },
     "Kazakhstan":  {
@@ -853,7 +940,8 @@
                                    "termYears":  7,
                                    "termEnd":  2029,
                                    "note":  "new constitution in force 1 July 2026; court ruled he may run again; Yerlan Karin appointed vice president Aug 2026",
-                                   "source":  "https://www.intellinews.com/kazakhstan-s-constitutional-court-clears-way-for-president-to-seek-another-term-453169/"
+                                   "source":  "https://www.intellinews.com/kazakhstan-s-constitutional-court-clears-way-for-president-to-seek-another-term-453169/",
+                                   "nameAr":  "قاسم جومارت توكاييف"
                                },
                        "hog":  {
                                    "name":  "Olzhas Bektenov",
@@ -861,7 +949,8 @@
                                    "termYears":  null,
                                    "termEnd":  null,
                                    "note":  "reappointed Aug 2026 under new constitution with Kurultai consent; serves at president\u0027s discretion",
-                                   "source":  "https://en.fergana.agency/news/149016/"
+                                   "source":  "https://en.fergana.agency/news/149016/",
+                                   "nameAr":  "أولجاس بيكتينوف"
                                }
                    },
     "Kosovo":  {
@@ -871,7 +960,8 @@
                                "termYears":  5,
                                "termEnd":  2031,
                                "note":  "elected by Assembly 6/7 Oct 2026 (81 votes); succeeded acting president Albulena Haxhiu",
-                               "source":  "https://www.rferl.org/a/kosovo-elects-president-opposition-deal-war-crimes/33871583.html"
+                               "source":  "https://www.rferl.org/a/kosovo-elects-president-opposition-deal-war-crimes/33871583.html",
+                               "nameAr":  "يوستينا شيروكا بولا"
                            },
                    "hog":  {
                                "name":  "Albin Kurti",
@@ -879,7 +969,8 @@
                                "termYears":  4,
                                "termEnd":  2030,
                                "note":  "continuous since 2021 (acting periods during 2025-26 deadlock); 4th cabinet approved Sept 2026 after 7 June 2026 snap election",
-                               "source":  "https://www.omanobserver.om/article/1196111/world/europe/kosovo-parliament-approves-new-govt-led-by-kurti"
+                               "source":  "https://www.omanobserver.om/article/1196111/world/europe/kosovo-parliament-approves-new-govt-led-by-kurti",
+                               "nameAr":  "البين كورتي"
                            }
                },
     "Kyrgyzstan":  {
@@ -889,7 +980,8 @@
                                    "termYears":  5,
                                    "termEnd":  2027,
                                    "note":  "next presidential election scheduled 27 Jan 2027; Japarov seeking second term",
-                                   "source":  "https://en.wikipedia.org/wiki/2027_Kyrgyz_presidential_election"
+                                   "source":  "https://en.wikipedia.org/wiki/2027_Kyrgyz_presidential_election",
+                                   "nameAr":  "صدير جاباروف"
                                },
                        "hog":  {
                                    "name":  "Adylbek Kasymaliev",
@@ -897,7 +989,8 @@
                                    "termYears":  null,
                                    "termEnd":  null,
                                    "note":  "Chairman of the Cabinet / head of Presidential Administration; appointed by the president",
-                                   "source":  "https://en.wikipedia.org/wiki/Adylbek_Kasymaliev"
+                                   "source":  "https://en.wikipedia.org/wiki/Adylbek_Kasymaliev",
+                                   "nameAr":  "أديلبيك قاسمالييف"
                                }
                    },
     "Moldova":  {
@@ -907,7 +1000,8 @@
                                 "termYears":  4,
                                 "termEnd":  2028,
                                 "note":  "re-elected Nov 2024",
-                                "source":  "https://en.wikipedia.org/wiki/2024_Moldovan_presidential_election"
+                                "source":  "https://en.wikipedia.org/wiki/2024_Moldovan_presidential_election",
+                                "nameAr":  "مايا ساندو"
                             },
                     "hog":  {
                                 "name":  "Vasile Tofan",
@@ -915,7 +1009,8 @@
                                 "termYears":  4,
                                 "termEnd":  2029,
                                 "note":  "approved 21 July 2026 after Munteanu resigned; next parliamentary election due 2029",
-                                "source":  "https://www.thestar.com.my/news/world/2026/07/22/1st-ld-writethru-moldovan-parliament-approves-new-pm-government"
+                                "source":  "https://www.thestar.com.my/news/world/2026/07/22/1st-ld-writethru-moldovan-parliament-approves-new-pm-government",
+                                "nameAr":  "فاسيلي توفان"
                             }
                 },
     "Tajikistan":  {
@@ -925,7 +1020,8 @@
                                    "termYears":  7,
                                    "termEnd":  2027,
                                    "note":  "head of state since 1992 (president since 1994); re-elected 2020, next election due 2027",
-                                   "source":  "https://en.wikipedia.org/wiki/2020_Tajik_presidential_election"
+                                   "source":  "https://en.wikipedia.org/wiki/2020_Tajik_presidential_election",
+                                   "nameAr":  "إمام علي رحمن"
                                },
                        "hog":  {
                                    "name":  "Kokhir Rasulzoda",
@@ -933,7 +1029,8 @@
                                    "termYears":  null,
                                    "termEnd":  null,
                                    "note":  "appointed by the president",
-                                   "source":  "https://en.wikipedia.org/wiki/Prime_Minister_of_Tajikistan"
+                                   "source":  "https://en.wikipedia.org/wiki/Prime_Minister_of_Tajikistan",
+                                   "nameAr":  "قاهر رسول‌ زاده"
                                }
                    },
     "Turkey":  {
@@ -943,7 +1040,8 @@
                                "termYears":  5,
                                "termEnd":  2028,
                                "note":  "re-elected 2023; next election due 2028",
-                               "source":  "https://en.wikipedia.org/wiki/Next_Turkish_presidential_election"
+                               "source":  "https://en.wikipedia.org/wiki/Next_Turkish_presidential_election",
+                               "nameAr":  "رجب طيب أردوغان"
                            },
                    "hog":  {
                                "same":  true
@@ -956,7 +1054,8 @@
                                      "termYears":  7,
                                      "termEnd":  2029,
                                      "note":  "next presidential election due 2029",
-                                     "source":  "https://en.wikipedia.org/wiki/2022_Turkmen_presidential_election"
+                                     "source":  "https://en.wikipedia.org/wiki/2022_Turkmen_presidential_election",
+                                     "nameAr":  "سردار بردي محمدوف"
                                  },
                          "hog":  {
                                      "same":  true
@@ -969,7 +1068,8 @@
                                 "termYears":  null,
                                 "termEnd":  null,
                                 "note":  "5-year term expired May 2024; remains in office under martial law, no election scheduled",
-                                "source":  "https://www.staradvertiser.com/2026/07/12/breaking-news/ukraines-zelenskyy-dismisses-prime-minister-svyrydenko-after-only-a-year/"
+                                "source":  "https://www.staradvertiser.com/2026/07/12/breaking-news/ukraines-zelenskyy-dismisses-prime-minister-svyrydenko-after-only-a-year/",
+                                "nameAr":  "فولوديمير زيلينسكي"
                             },
                     "hog":  {
                                 "name":  "Serhii Koretskyi",
@@ -977,7 +1077,8 @@
                                 "termYears":  null,
                                 "termEnd":  null,
                                 "note":  "approved by Rada 16 July 2026, replacing Svyrydenko; parliamentary elections suspended under martial law",
-                                "source":  "https://www.kmu.gov.ua/en/news/verkhovna-rada-pryznachyla-serhiia-koretskoho-premier-ministrom-ukrainy"
+                                "source":  "https://www.kmu.gov.ua/en/news/verkhovna-rada-pryznachyla-serhiia-koretskoho-premier-ministrom-ukrainy",
+                                "nameAr":  "سيرغي كوريتسكي"
                             }
                 },
     "Uzbekistan":  {
@@ -987,7 +1088,8 @@
                                    "termYears":  7,
                                    "termEnd":  2030,
                                    "note":  "re-elected July 2023 under amended constitution",
-                                   "source":  "https://en.wikipedia.org/wiki/2023_Uzbek_presidential_election"
+                                   "source":  "https://en.wikipedia.org/wiki/2023_Uzbek_presidential_election",
+                                   "nameAr":  "شوكت ميرضيايف"
                                },
                        "hog":  {
                                    "name":  "Abdulla Aripov",
@@ -995,7 +1097,8 @@
                                    "termYears":  null,
                                    "termEnd":  null,
                                    "note":  "reconfirmed Nov 2024; appointed by president with parliament\u0027s approval",
-                                   "source":  "https://kun.uz/en/91797781"
+                                   "source":  "https://kun.uz/en/91797781",
+                                   "nameAr":  "عبد الله عارفوف"
                                }
                    },
     "Bangladesh":  {
@@ -1005,7 +1108,8 @@
                                    "termYears":  5,
                                    "termEnd":  2031,
                                    "note":  "Elected by parliament 20 Aug 2026 after Mohammed Shahabuddin resigned on health grounds (24 Jul 2026); ceremonial post",
-                                   "source":  "https://newsonair.gov.in/mirza-fakhrul-islam-%e2%81%a0alamgir-elected-as-bangladeshs-23rd-president/"
+                                   "source":  "https://newsonair.gov.in/mirza-fakhrul-islam-%e2%81%a0alamgir-elected-as-bangladeshs-23rd-president/",
+                                   "nameAr":  "ميرزا فخر الإسلام عالمكير"
                                },
                        "hog":  {
                                    "name":  "Tarique Rahman",
@@ -1013,7 +1117,8 @@
                                    "termYears":  5,
                                    "termEnd":  2031,
                                    "note":  "Sworn in 17 Feb 2026 after BNP landslide in Feb 2026 election; next general election due by ~2031",
-                                   "source":  "https://www.pbs.org/newshour/world/new-bangladesh-prime-minister-sworn-in-after-partys-landslide-win"
+                                   "source":  "https://www.pbs.org/newshour/world/new-bangladesh-prime-minister-sworn-in-after-partys-landslide-win",
+                                   "nameAr":  "طارق رحمن"
                                }
                    },
     "India":  {
@@ -1023,7 +1128,8 @@
                               "termYears":  5,
                               "termEnd":  2027,
                               "note":  "Took office 25 Jul 2022; presidential election due Jul 2027",
-                              "source":  "https://gulfnews.com/world/asia/india/droupadi-murmu-wins-indias-presidential-election-1.1658414648862"
+                              "source":  "https://gulfnews.com/world/asia/india/droupadi-murmu-wins-indias-presidential-election-1.1658414648862",
+                              "nameAr":  "دروبدي مرمو"
                           },
                   "hog":  {
                               "name":  "Narendra Modi",
@@ -1031,7 +1137,8 @@
                               "termYears":  5,
                               "termEnd":  2029,
                               "note":  "Third term from June 2024; next Lok Sabha election due 2029",
-                              "source":  "https://en.wikipedia.org/wiki/2029_Indian_general_election"
+                              "source":  "https://en.wikipedia.org/wiki/2029_Indian_general_election",
+                              "nameAr":  "ناريندرا مودي"
                           }
               },
     "Nepal":  {
@@ -1041,7 +1148,8 @@
                               "termYears":  5,
                               "termEnd":  2028,
                               "note":  "Elected March 2023; ceremonial",
-                              "source":  "https://organiser.org/2023/03/10/164384/world/nepal-gets-new-president-ram-chandra-paudel/"
+                              "source":  "https://organiser.org/2023/03/10/164384/world/nepal-gets-new-president-ram-chandra-paudel/",
+                              "nameAr":  "رام شاندرا بودل"
                           },
                   "hog":  {
                               "name":  "Balendra (Balen) Shah",
@@ -1049,7 +1157,8 @@
                               "termYears":  5,
                               "termEnd":  2031,
                               "note":  "RSP leader, sworn in 27 Mar 2026 after 5 Mar 2026 election; replaced interim PM Sushila Karki",
-                              "source":  "https://asianews.network/balendra-shah-sworn-in-as-nepal-prime-minister/"
+                              "source":  "https://asianews.network/balendra-shah-sworn-in-as-nepal-prime-minister/",
+                              "nameAr":  "باليندرا شاه"
                           }
               },
     "Sri Lanka":  {
@@ -1059,7 +1168,8 @@
                                   "termYears":  5,
                                   "termEnd":  2029,
                                   "note":  "Executive president; also head of government in practice (chairs cabinet)",
-                                  "source":  "https://en.wikipedia.org/wiki/2024_Sri_Lankan_presidential_election"
+                                  "source":  "https://en.wikipedia.org/wiki/2024_Sri_Lankan_presidential_election",
+                                  "nameAr":  "أنورا كومارا ديساناياكي"
                               },
                       "hog":  {
                                   "name":  "Harini Amarasuriya",
@@ -1067,7 +1177,8 @@
                                   "termYears":  5,
                                   "termEnd":  2029,
                                   "note":  "Prime minister (subordinate to executive president); parliament elected Nov 2024",
-                                  "source":  "https://www.pmoffice.gov.lk/PMprofile.php"
+                                  "source":  "https://www.pmoffice.gov.lk/PMprofile.php",
+                                  "nameAr":  "هاريني أماراسوريا"
                               }
                   },
     "Cambodia":  {
@@ -1077,7 +1188,8 @@
                                  "termYears":  null,
                                  "termEnd":  null,
                                  "note":  "monarch - no fixed term",
-                                 "source":  "https://cambojanews.com/king-agrees-to-appoint-hun-manet-as-new-prime-minister/"
+                                 "source":  "https://cambojanews.com/king-agrees-to-appoint-hun-manet-as-new-prime-minister/",
+                                 "nameAr":  "نورودوم سيهاموني"
                              },
                      "hog":  {
                                  "name":  "Hun Manet",
@@ -1085,7 +1197,8 @@
                                  "termYears":  5,
                                  "termEnd":  2028,
                                  "note":  "Next National Assembly election expected July 2028 (exact date not yet set)",
-                                 "source":  "https://en.wikipedia.org/wiki/Elections_in_Cambodia"
+                                 "source":  "https://en.wikipedia.org/wiki/Elections_in_Cambodia",
+                                 "nameAr":  "هون مانيت"
                              }
                  },
     "Indonesia":  {
@@ -1095,7 +1208,8 @@
                                   "termYears":  5,
                                   "termEnd":  2029,
                                   "note":  "Next presidential election due 2029",
-                                  "source":  "https://en.wikipedia.org/wiki/2029_Indonesian_presidential_election"
+                                  "source":  "https://en.wikipedia.org/wiki/2029_Indonesian_presidential_election",
+                                  "nameAr":  "برابوو سوبيانتو"
                               },
                       "hog":  {
                                   "same":  true
@@ -1108,7 +1222,8 @@
                              "termYears":  5,
                              "termEnd":  2031,
                              "note":  "Re-elected by 10th National Assembly March 2026; one-party state",
-                             "source":  "https://asianews.network/lao-na-re-elects-president-thongloun-sisoulith-confirms-key-officials/"
+                             "source":  "https://asianews.network/lao-na-re-elects-president-thongloun-sisoulith-confirms-key-officials/",
+                             "nameAr":  "ثونجلون سيسوليث"
                          },
                  "hog":  {
                              "name":  "Saleumxay Kommasith",
@@ -1116,7 +1231,8 @@
                              "termYears":  5,
                              "termEnd":  2031,
                              "note":  "Elected PM by National Assembly Oct 2026, replacing Sonexay Siphandone (who became NA president); very recent change",
-                             "source":  "https://bernama.com/en/news.php?id=2615569"
+                             "source":  "https://bernama.com/en/news.php?id=2615569",
+                             "nameAr":  "سالومساي كوماسيث"
                          }
              },
     "Mongolia":  {
@@ -1126,7 +1242,8 @@
                                  "termYears":  6,
                                  "termEnd":  2027,
                                  "note":  "Single non-renewable 6-year term; presidential election due June 2027",
-                                 "source":  "https://en.wikipedia.org/wiki/2027_Mongolian_presidential_election"
+                                 "source":  "https://en.wikipedia.org/wiki/2027_Mongolian_presidential_election",
+                                 "nameAr":  "أوخنانغين خورلسوخ"
                              },
                      "hog":  {
                                  "name":  "Nyam-Osoryn Uchral",
@@ -1134,7 +1251,8 @@
                                  "termYears":  4,
                                  "termEnd":  2028,
                                  "note":  "Appointed 30 Mar 2026 after Zandanshatar resigned (third PM in a year); next parliamentary election 2028",
-                                 "source":  "https://en.wikipedia.org/wiki/Nyam-Osoryn_Uchral"
+                                 "source":  "https://en.wikipedia.org/wiki/Nyam-Osoryn_Uchral",
+                                 "nameAr":  "نيام أوسورين أوشرال"
                              }
                  },
     "Myanmar":  {
@@ -1144,7 +1262,8 @@
                                 "termYears":  5,
                                 "termEnd":  2031,
                                 "note":  "Elected president by military-backed parliament 3 Apr 2026 after disputed 2025-26 election; ran state as junta chief since 2021 coup. 2008 constitution has no PM",
-                                "source":  "https://constitutionnet.org/es/node/20091"
+                                "source":  "https://constitutionnet.org/es/node/20091",
+                                "nameAr":  "مين أونغ هلاينغ"
                             },
                     "hog":  {
                                 "same":  true
@@ -1157,7 +1276,8 @@
                                          "termYears":  null,
                                          "termEnd":  null,
                                          "note":  "monarch - no fixed term; represented by a Governor-General",
-                                         "source":  "https://en.wikipedia.org/wiki/Monarchy_of_Papua_New_Guinea"
+                                         "source":  "https://en.wikipedia.org/wiki/Monarchy_of_Papua_New_Guinea",
+                                         "nameAr":  "الملك تشارلز الثالث"
                                      },
                              "hog":  {
                                          "name":  "James Marape",
@@ -1165,7 +1285,8 @@
                                          "termYears":  5,
                                          "termEnd":  2027,
                                          "note":  "Next general election due mid-2027; still PM at UNGA Sept 2026",
-                                         "source":  "https://www.bta.bg/bg/galleries/524722"
+                                         "source":  "https://www.bta.bg/bg/galleries/524722",
+                                         "nameAr":  "جيمس مارب"
                                      }
                          },
     "Philippines":  {
@@ -1175,7 +1296,8 @@
                                     "termYears":  6,
                                     "termEnd":  2028,
                                     "note":  "Single 6-year term; election May 2028",
-                                    "source":  "https://en.wikipedia.org/wiki/2028_Philippine_presidential_election"
+                                    "source":  "https://en.wikipedia.org/wiki/2028_Philippine_presidential_election",
+                                    "nameAr":  "فرديناند ماركوس الابن"
                                 },
                         "hog":  {
                                     "same":  true
@@ -1188,7 +1310,8 @@
                                  "termYears":  null,
                                  "termEnd":  null,
                                  "note":  "monarch - no fixed term",
-                                 "source":  "https://en.wikipedia.org/wiki/Vajiralongkorn"
+                                 "source":  "https://en.wikipedia.org/wiki/Vajiralongkorn",
+                                 "nameAr":  "فاجيرالونغكورن"
                              },
                      "hog":  {
                                  "name":  "Anutin Charnvirakul",
@@ -1196,7 +1319,8 @@
                                  "termYears":  4,
                                  "termEnd":  2030,
                                  "note":  "PM since Sept 2025; re-elected by House 19 Mar 2026 after 8 Feb 2026 election; next election due by 2030",
-                                 "source":  "https://thailand.prd.go.th/en/content/category/detail/id/48/iid/486890"
+                                 "source":  "https://thailand.prd.go.th/en/content/category/detail/id/48/iid/486890",
+                                 "nameAr":  "أنوتين تشارنفيراكول"
                              }
                  },
     "Timor-Leste":  {
@@ -1206,7 +1330,8 @@
                                     "termYears":  5,
                                     "termEnd":  2027,
                                     "note":  "Term 2022-2027; presidential election due 2027",
-                                    "source":  "https://www.ucanews.com/news/guterres-keen-to-continue-as-timor-leste-president/95746"
+                                    "source":  "https://www.ucanews.com/news/guterres-keen-to-continue-as-timor-leste-president/95746",
+                                    "nameAr":  "جوزيه راموس هورتا"
                                 },
                         "hog":  {
                                     "name":  "Xanana Gusmao",
@@ -1214,7 +1339,8 @@
                                     "termYears":  5,
                                     "termEnd":  2028,
                                     "note":  "Next parliamentary election due 2028",
-                                    "source":  "https://en.wikipedia.org/wiki/2026_in_Timor-Leste"
+                                    "source":  "https://en.wikipedia.org/wiki/2026_in_Timor-Leste",
+                                    "nameAr":  "شانانا غوسمان"
                                 }
                     },
     "Vietnam":  {
@@ -1224,7 +1350,8 @@
                                 "termYears":  5,
                                 "termEnd":  2031,
                                 "note":  "Elected state president 7 Apr 2026 while also CPV General Secretary (previously president May-Oct 2024); one-party state",
-                                "source":  "https://bowergroupasia.com/vietnams-national-assembly-approves-new-leaders-for-2026-2031-term/"
+                                "source":  "https://bowergroupasia.com/vietnams-national-assembly-approves-new-leaders-for-2026-2031-term/",
+                                "nameAr":  "تو لام"
                             },
                     "hog":  {
                                 "name":  "Le Minh Hung",
@@ -1232,7 +1359,8 @@
                                 "termYears":  5,
                                 "termEnd":  2031,
                                 "note":  "Elected PM 7 Apr 2026 for 2026-2031 term, succeeding Pham Minh Chinh",
-                                "source":  "https://vietnam.vnanet.vn/english/tin-van/le-minh-hung-elected-prime-minister-for-2026%E2%80%932031-term-439134.html"
+                                "source":  "https://vietnam.vnanet.vn/english/tin-van/le-minh-hung-elected-prime-minister-for-2026%E2%80%932031-term-439134.html",
+                                "nameAr":  "لي مينه هونغ"
                             }
                 },
     "Argentina":  {
@@ -1242,7 +1370,8 @@
                                   "termYears":  4,
                                   "termEnd":  2027,
                                   "note":  "Took office Dec 2023; election Oct 2027",
-                                  "source":  "https://en.wikipedia.org/wiki/2027_Argentine_general_election"
+                                  "source":  "https://en.wikipedia.org/wiki/2027_Argentine_general_election",
+                                  "nameAr":  "خافيير ميلي"
                               },
                       "hog":  {
                                   "same":  true
@@ -1255,7 +1384,8 @@
                                 "termYears":  5,
                                 "termEnd":  2030,
                                 "note":  "Inaugurated 8 Nov 2025",
-                                "source":  "https://portaldeprefeitura.com.br/bastidores-da-politica/rodrigo-paz-e-eleito-novo-presidente-da-bolivia/606173/"
+                                "source":  "https://portaldeprefeitura.com.br/bastidores-da-politica/rodrigo-paz-e-eleito-novo-presidente-da-bolivia/606173/",
+                                "nameAr":  "رودريغو باز"
                             },
                     "hog":  {
                                 "same":  true
@@ -1268,7 +1398,8 @@
                                  "termYears":  4,
                                  "termEnd":  2030,
                                  "note":  "Sworn in 7 Aug 2026 for 2026-2030 term, succeeding Gustavo Petro",
-                                 "source":  "https://mezha.net/eng/bukvy/3d2fbb47_colombia_swears_in/"
+                                 "source":  "https://mezha.net/eng/bukvy/3d2fbb47_colombia_swears_in/",
+                                 "nameAr":  "أبيلاردو دي لا إسبريلا"
                              },
                      "hog":  {
                                  "same":  true
@@ -1281,7 +1412,8 @@
                                 "termYears":  4,
                                 "termEnd":  2029,
                                 "note":  "Re-elected April 2025; term runs to May 2029",
-                                "source":  "https://en.wikipedia.org/wiki/Daniel_Noboa"
+                                "source":  "https://en.wikipedia.org/wiki/Daniel_Noboa",
+                                "nameAr":  "دانيال نوبوا"
                             },
                     "hog":  {
                                 "same":  true
@@ -1294,7 +1426,8 @@
                                     "termYears":  6,
                                     "termEnd":  2027,
                                     "note":  "2025 reform cut current term to end 1 Jun 2027, set 6-year terms and indefinite re-election; Bukele registered for Feb 2027 election",
-                                    "source":  "https://www.tribuneindia.com/news/world/el-salvador-lawmakers-greenlight-indefinite-reelection-extend-presidential-terms-to-six-years"
+                                    "source":  "https://www.tribuneindia.com/news/world/el-salvador-lawmakers-greenlight-indefinite-reelection-extend-presidential-terms-to-six-years",
+                                    "nameAr":  "نجيب بقيلة"
                                 },
                         "hog":  {
                                     "same":  true
@@ -1307,7 +1440,8 @@
                                   "termYears":  4,
                                   "termEnd":  2028,
                                   "note":  "Term ends Jan 2028; general election June 2027",
-                                  "source":  "https://www.aljazeera.com/news/2024/1/15/guatemalas-arevalo-becomes-president-on-anticorruption-plank-amid-chaos"
+                                  "source":  "https://www.aljazeera.com/news/2024/1/15/guatemalas-arevalo-becomes-president-on-anticorruption-plank-amid-chaos",
+                                  "nameAr":  "برناردو أريفالو"
                               },
                       "hog":  {
                                   "same":  true
@@ -1328,7 +1462,8 @@
                               "termYears":  null,
                               "termEnd":  2027,
                               "note":  "transitional PM since Nov 2024; mandate to hand over to elected president ~7 Feb 2027",
-                              "source":  "https://www.wlrn.org/light/americas/2026-05-12/haiti-prime-minister-alix-didier-fils-aime-august-elections-impossible-under-current-crisis"
+                              "source":  "https://www.wlrn.org/light/americas/2026-05-12/haiti-prime-minister-alix-didier-fils-aime-august-elections-impossible-under-current-crisis",
+                              "nameAr":  "أليكس ديدييه فيس إيميه"
                           }
               },
     "Honduras":  {
@@ -1338,7 +1473,8 @@
                                  "termYears":  4,
                                  "termEnd":  2030,
                                  "note":  "Sworn in 27 Jan 2026 for 2026-2030; next election Nov 2029",
-                                 "source":  "https://www.news4jax.com/news/world/2026/01/27/trump-backed-businessman-nasry-asfura-sworn-in-as-president-of-honduras/"
+                                 "source":  "https://www.news4jax.com/news/world/2026/01/27/trump-backed-businessman-nasry-asfura-sworn-in-as-president-of-honduras/",
+                                 "nameAr":  "نصري عصفورة"
                              },
                      "hog":  {
                                  "same":  true
@@ -1351,7 +1487,8 @@
                                "termYears":  6,
                                "termEnd":  2030,
                                "note":  "Single 6-year term; election 2030",
-                               "source":  "https://en.wikipedia.org/wiki/2030_Mexican_general_election"
+                               "source":  "https://en.wikipedia.org/wiki/2030_Mexican_general_election",
+                               "nameAr":  "كلوديا شينباوم"
                            },
                    "hog":  {
                                "same":  true
@@ -1364,7 +1501,8 @@
                                   "termYears":  6,
                                   "termEnd":  2028,
                                   "note":  "Ortega since 2007, Murillo co-president since 2025 reform. Current mandate nominally to Jan 2028 (election had been moved to Nov 2027), but Ortega said July 2026 there will be no more elections and a Sept 2026 first-vote reform would extend terms to 7 years (ratification due 2027) - termEnd uncertain",
-                                  "source":  "https://www.thestar.com.my/news/world/2026/09/02/nicaraguan-congress-passes-ortega-backed-reform-excluding-opposition-from-elections"
+                                  "source":  "https://www.thestar.com.my/news/world/2026/09/02/nicaraguan-congress-passes-ortega-backed-reform-excluding-opposition-from-elections",
+                                  "nameAr":  "دانيال أورتيغا وروساريو موريو (رئيسان مشاركان)"
                               },
                       "hog":  {
                                   "same":  true
@@ -1377,7 +1515,8 @@
                                  "termYears":  5,
                                  "termEnd":  2028,
                                  "note":  "Single 5-year term; election April 2028",
-                                 "source":  "https://en.wikipedia.org/wiki/Santiago_Pe%C3%B1a"
+                                 "source":  "https://en.wikipedia.org/wiki/Santiago_Pe%C3%B1a",
+                                 "nameAr":  "سانتياغو بينيا"
                              },
                      "hog":  {
                                  "same":  true
@@ -1390,7 +1529,8 @@
                              "termYears":  5,
                              "termEnd":  2031,
                              "note":  "Sworn in 28 Jul 2026 for 2026-2031; president is head of government (Luis Galarreta is President of the Council of Ministers)",
-                             "source":  "https://andina.pe/ingles/noticia-peru-keiko-fujimori-sworn-in-as-president-of-republic-1085378.aspx"
+                             "source":  "https://andina.pe/ingles/noticia-peru-keiko-fujimori-sworn-in-as-president-of-republic-1085378.aspx",
+                             "nameAr":  "كيكو فوجيموري"
                          },
                  "hog":  {
                              "same":  true
@@ -1403,7 +1543,8 @@
                                   "termYears":  null,
                                   "termEnd":  null,
                                   "note":  "transitional - acting since 5 Jan 2026 after US capture of Maduro; promised elections but no date set (as of late Sept 2026); not recognised by EU",
-                                  "source":  "https://www.aljazeera.com/news/2026/9/24/venezuelas-delcy-rodriguez-promises-elections-at-un-gives-no-date"
+                                  "source":  "https://www.aljazeera.com/news/2026/9/24/venezuelas-delcy-rodriguez-promises-elections-at-un-gives-no-date",
+                                  "nameAr":  "دلسي رودريغيز (رئيسة بالإنابة)"
                               },
                       "hog":  {
                                   "same":  true
@@ -1416,7 +1557,8 @@
                               "termYears":  7,
                               "termEnd":  2033,
                               "note":  "Won 12 Apr 2026 election; sworn in 24 May 2026 succeeding Patrice Talon. 2025 reform extended term from 5 to 7 years.",
-                              "source":  "https://www.africanews.com/amp/2026/05/24/former-finance-minister-romuald-wadagni-sworn-is-as-benins-new-president/"
+                              "source":  "https://www.africanews.com/amp/2026/05/24/former-finance-minister-romuald-wadagni-sworn-is-as-benins-new-president/",
+                              "nameAr":  "روموالد واداني"
                           },
                   "hog":  {
                               "same":  true
@@ -1429,7 +1571,8 @@
                                                  "termYears":  7,
                                                  "termEnd":  2033,
                                                  "note":  "Re-elected Dec 2025 (disputed by opposition); sworn in for third term 30 Mar 2026. 2023 constitution: renewable 7-year terms, no limit.",
-                                                 "source":  "https://aa.com.tr/en/africa/central-african-republic-s-touadera-sworn-in-for-third-term/3885597"
+                                                 "source":  "https://aa.com.tr/en/africa/central-african-republic-s-touadera-sworn-in-for-third-term/3885597",
+                                                 "nameAr":  "فوستان آرشانج تواديرا"
                                              },
                                      "hog":  {
                                                  "name":  "Félix Moloua",
@@ -1437,7 +1580,8 @@
                                                  "termYears":  null,
                                                  "termEnd":  null,
                                                  "note":  "Reappointed PM c. May 2026 after post-election resignation; serves at president\u0027s pleasure.",
-                                                 "source":  "https://www.easternmirrornagaland.com/central-african-republic-forms-new-government"
+                                                 "source":  "https://www.easternmirrornagaland.com/central-african-republic-forms-new-government",
+                                                 "nameAr":  "فيليكس مولوا"
                                              }
                                  },
     "Comoros":  {
@@ -1447,7 +1591,8 @@
                                 "termYears":  5,
                                 "termEnd":  2029,
                                 "note":  "Re-elected Jan 2024 (disputed). No prime minister; president heads government.",
-                                "source":  "https://www.leaderreunion.fr/en/comores-3"
+                                "source":  "https://www.leaderreunion.fr/en/comores-3",
+                                "nameAr":  "غزالي عثماني"
                             },
                     "hog":  {
                                 "same":  true
@@ -1460,7 +1605,8 @@
                                     "termYears":  5,
                                     "termEnd":  2031,
                                     "note":  "Re-elected Mar 2026 (~95%); sworn in for new term 16 Apr 2026. Also president 1979-1992.",
-                                    "source":  "https://www.nampa.org/text/22911244"
+                                    "source":  "https://www.nampa.org/text/22911244",
+                                    "nameAr":  "ديني ساسو نغيسو"
                                 },
                         "hog":  {
                                     "name":  "Anatole Collinet Makosso",
@@ -1468,7 +1614,8 @@
                                     "termYears":  null,
                                     "termEnd":  null,
                                     "note":  "Resigned 17 Apr 2026 and reappointed; new government named 24 Apr 2026. Serves at president\u0027s pleasure (legislative elections due 2027).",
-                                    "source":  "https://www.chinadaily.com.cn/a/202604/25/WS69ec8ca1a310d6866eb458c2.html"
+                                    "source":  "https://www.chinadaily.com.cn/a/202604/25/WS69ec8ca1a310d6866eb458c2.html",
+                                    "nameAr":  "أناتول كولينيه ماكوسو"
                                 }
                     },
     "Djibouti":  {
@@ -1478,7 +1625,8 @@
                                  "termYears":  5,
                                  "termEnd":  2031,
                                  "note":  "Won sixth term 10 Apr 2026 (97.8%) after age limit removed; sworn in 9 May 2026.",
-                                 "source":  "https://peopledaily.digital/inside-politics/djiboutis-ismail-omar-guelleh-sworn-in-for-sixth-presidential-term/amp"
+                                 "source":  "https://peopledaily.digital/inside-politics/djiboutis-ismail-omar-guelleh-sworn-in-for-sixth-presidential-term/amp",
+                                 "nameAr":  "إسماعيل عمر جيلي"
                              },
                      "hog":  {
                                  "name":  "Abdoulkader Kamil Mohamed",
@@ -1486,7 +1634,8 @@
                                  "termYears":  null,
                                  "termEnd":  null,
                                  "note":  "Still listed as PM after May 2026 cabinet formation (German Foreign Office, June 2026); explicit reappointment decree not found. Serves at president\u0027s pleasure.",
-                                 "source":  "https://www.auswaertiges-amt.de/de/service/laender/dschibuti-node/dschibuti-212166"
+                                 "source":  "https://www.auswaertiges-amt.de/de/service/laender/dschibuti-node/dschibuti-212166",
+                                 "nameAr":  "عبد القادر كميل محمد"
                              }
                  },
     "Equatorial Guinea":  {
@@ -1496,7 +1645,8 @@
                                           "termYears":  7,
                                           "termEnd":  2029,
                                           "note":  "Re-elected Nov 2022.",
-                                          "source":  "https://www.financialafrik.com/2026/06/22/guinee-equatoriale-le-premier-ministre-reconduit-malgre-un-bilan-juge-insuffisant/"
+                                          "source":  "https://www.financialafrik.com/2026/06/22/guinee-equatoriale-le-premier-ministre-reconduit-malgre-un-bilan-juge-insuffisant/",
+                                          "nameAr":  "تيودورو أوبيانغ"
                                       },
                               "hog":  {
                                           "name":  "Manuel Osa Nsue Nsua",
@@ -1504,7 +1654,8 @@
                                           "termYears":  null,
                                           "termEnd":  null,
                                           "note":  "Government resigned 16 Jun 2026; reappointed PM by decree 19 Jun 2026. Serves at president\u0027s pleasure.",
-                                          "source":  "https://www.financialafrik.com/2026/06/22/guinee-equatoriale-le-premier-ministre-reconduit-malgre-un-bilan-juge-insuffisant/"
+                                          "source":  "https://www.financialafrik.com/2026/06/22/guinee-equatoriale-le-premier-ministre-reconduit-malgre-un-bilan-juge-insuffisant/",
+                                          "nameAr":  "مانويل أوسا نسوي نسوا"
                                       }
                           },
     "Gabon":  {
@@ -1514,7 +1665,8 @@
                               "termYears":  7,
                               "termEnd":  2032,
                               "note":  "Took power in Aug 2023 coup; elected Apr 2025 and sworn in May 2025 for 7-year term. New constitution abolished PM post; president heads government. Hermann Immongault is Vice-President of the Government (since 1 Jan 2026).",
-                              "source":  "https://fr.apanews.net/news/gabon-hermann-immongault-nomme-vice-president-du-gouvernement/"
+                              "source":  "https://fr.apanews.net/news/gabon-hermann-immongault-nomme-vice-president-du-gouvernement/",
+                              "nameAr":  "بريس أوليغي"
                           },
                   "hog":  {
                               "same":  true
@@ -1527,7 +1679,8 @@
                                    "termYears":  5,
                                    "termEnd":  2026,
                                    "note":  "Presidential election scheduled 5 Dec 2026; Barrow seeking third term.",
-                                   "source":  "https://en.wikipedia.org/wiki/2026_Gambian_presidential_election"
+                                   "source":  "https://en.wikipedia.org/wiki/2026_Gambian_presidential_election",
+                                   "nameAr":  "آداما بارو"
                                },
                        "hog":  {
                                    "same":  true
@@ -1540,7 +1693,8 @@
                                       "termYears":  null,
                                       "termEnd":  null,
                                       "note":  "Military transitional president after 26 Nov 2025 coup. Elections set for 6 Dec 2026 but PM said 8 Oct 2026 they will be delayed; no new date.",
-                                      "source":  "https://www.internazionale.it/ultime-notizie-reuters/2026/10/08/guinea-bissau-to-delay-elections-following-last-year-s-coup"
+                                      "source":  "https://www.internazionale.it/ultime-notizie-reuters/2026/10/08/guinea-bissau-to-delay-elections-following-last-year-s-coup",
+                                      "nameAr":  "هورتا إنتا"
                                   },
                           "hog":  {
                                       "name":  "Ilídio Vieira Té",
@@ -1548,7 +1702,8 @@
                                       "termYears":  null,
                                       "termEnd":  null,
                                       "note":  "Transitional PM (also Finance Minister) appointed 28 Nov 2025.",
-                                      "source":  "https://www.aljazeera.com/news/2025/11/28/guinea-bissaus-new-military-ruler-moves-to-consolidate-power-after-coup"
+                                      "source":  "https://www.aljazeera.com/news/2025/11/28/guinea-bissaus-new-military-ruler-moves-to-consolidate-power-after-coup",
+                                      "nameAr":  "إيليديو فييرا تي"
                                   }
                       },
     "Lesotho":  {
@@ -1558,7 +1713,8 @@
                                 "termYears":  null,
                                 "termEnd":  null,
                                 "note":  "Monarch (also reigned 1990-1995).",
-                                "source":  "https://www.cia.gov/resources/world-leaders/historical-data/2026-july/lesotho/"
+                                "source":  "https://www.cia.gov/resources/world-leaders/historical-data/2026-july/lesotho/",
+                                "nameAr":  "ليتسي الثالث"
                             },
                     "hog":  {
                                 "name":  "Sam Matekane",
@@ -1566,7 +1722,8 @@
                                 "termYears":  5,
                                 "termEnd":  2027,
                                 "note":  "Next general election due 2027 (5-year parliament elected Oct 2022); exact date not confirmed. Faces recurring no-confidence motion threats.",
-                                "source":  "https://www.cia.gov/resources/world-leaders/historical-data/2026-july/lesotho/"
+                                "source":  "https://www.cia.gov/resources/world-leaders/historical-data/2026-july/lesotho/",
+                                "nameAr":  "سام ماتيكين"
                             }
                 },
     "Mauritius":  {
@@ -1576,7 +1733,8 @@
                                   "termYears":  5,
                                   "termEnd":  2029,
                                   "note":  "Elected by National Assembly Dec 2024.",
-                                  "source":  "https://en.wikipedia.org/wiki/Dharam_Gokhool"
+                                  "source":  "https://en.wikipedia.org/wiki/Dharam_Gokhool",
+                                  "nameAr":  "دارام غوخول"
                               },
                       "hog":  {
                                   "name":  "Navin Ramgoolam",
@@ -1584,7 +1742,8 @@
                                   "termYears":  5,
                                   "termEnd":  2029,
                                   "note":  "PM since Nov 2024 election (also PM 1995-2000, 2005-2014).",
-                                  "source":  "https://en.wikipedia.org/wiki/Navin_Ramgoolam"
+                                  "source":  "https://en.wikipedia.org/wiki/Navin_Ramgoolam",
+                                  "nameAr":  "نافين رامغولام"
                               }
                   },
     "São Tomé and Príncipe":  {
@@ -1594,7 +1753,8 @@
                                               "termYears":  5,
                                               "termEnd":  2031,
                                               "note":  "Re-elected in first round 19 Jul 2026.",
-                                              "source":  "https://www.thestar.com.my/news/world/2026/07/20/sao-tome-and-principe-president-vila-nova-wins-second-term-preliminary-results-show"
+                                              "source":  "https://www.thestar.com.my/news/world/2026/07/20/sao-tome-and-principe-president-vila-nova-wins-second-term-preliminary-results-show",
+                                              "nameAr":  "كارلوس فيلا نوفا"
                                           },
                                   "hog":  {
                                               "name":  "Américo Ramos",
@@ -1602,7 +1762,8 @@
                                               "termYears":  null,
                                               "termEnd":  null,
                                               "note":  "UNCERTAIN: 27 Sep 2026 legislative election gave MLSTP 24, ADI 23, MCI-PS/PUN 6, Basta 2 seats. ADI + MCI-PS/PUN (29 seats) back Ramos; MLSTP wants Américo Barros. Government formation pending as of early Oct 2026.",
-                                              "source":  "https://www.rtp.pt/noticias/mundo/sao-tome-adi-e-mci-pspun-assinam-acordo-para-sustentar-proximo-governo_n1770169"
+                                              "source":  "https://www.rtp.pt/noticias/mundo/sao-tome-adi-e-mci-pspun-assinam-acordo-para-sustentar-proximo-governo_n1770169",
+                                              "nameAr":  "أميريكو راموس"
                                           }
                               },
     "Cabo Verde":  {
@@ -1612,7 +1773,8 @@
                                    "termYears":  5,
                                    "termEnd":  2026,
                                    "note":  "Presidential election first round 15 Nov 2026 (runoff 29 Nov if needed); Neves standing again.",
-                                   "source":  "https://forbesafricalusofona.com/?p=174758"
+                                   "source":  "https://forbesafricalusofona.com/?p=174758",
+                                   "nameAr":  "خوسيه ماريا نيفيس"
                                },
                        "hog":  {
                                    "name":  "Francisco Carvalho",
@@ -1620,7 +1782,8 @@
                                    "termYears":  5,
                                    "termEnd":  2031,
                                    "note":  "PAICV won 17 May 2026 legislative election (37/72 seats); sworn in 19 Jun 2026, replacing Ulisses Correia e Silva.",
-                                   "source":  "https://en.wikipedia.org/wiki/2026_Cape_Verdean_parliamentary_election"
+                                   "source":  "https://en.wikipedia.org/wiki/2026_Cape_Verdean_parliamentary_election",
+                                   "nameAr":  "فرانسيسكو كارفاليو"
                                }
                    },
     "Eswatini":  {
@@ -1630,7 +1793,8 @@
                                  "termYears":  null,
                                  "termEnd":  null,
                                  "note":  "Absolute monarch.",
-                                 "source":  "https://en.wikipedia.org/wiki/Russell_Dlamini"
+                                 "source":  "https://en.wikipedia.org/wiki/Russell_Dlamini",
+                                 "nameAr":  "مسواتي الثالث"
                              },
                      "hog":  {
                                  "name":  "Russell Dlamini",
@@ -1638,7 +1802,8 @@
                                  "termYears":  5,
                                  "termEnd":  2028,
                                  "note":  "Appointed by the King Nov 2023 after Sep 2023 elections; next elections due 2028.",
-                                 "source":  "https://en.wikipedia.org/wiki/Russell_Dlamini"
+                                 "source":  "https://en.wikipedia.org/wiki/Russell_Dlamini",
+                                 "nameAr":  "راسل دلاميني"
                              }
                  },
     "Iran":  {
@@ -1648,7 +1813,8 @@
                              "termYears":  null,
                              "termEnd":  null,
                              "note":  "Supreme Leader named by Assembly of Experts 8 Mar 2026 after Ali Khamenei was killed in US-Israeli strike 28 Feb 2026. Life tenure.",
-                             "source":  "https://en.wikipedia.org/wiki/Mojtaba_Khamenei"
+                             "source":  "https://en.wikipedia.org/wiki/Mojtaba_Khamenei",
+                             "nameAr":  "مجتبى الخامنئي"
                          },
                  "hog":  {
                              "name":  "Masoud Pezeshkian",
@@ -1656,7 +1822,8 @@
                              "termYears":  4,
                              "termEnd":  2028,
                              "note":  "President since 28 Jul 2024; next presidential election due 2028.",
-                             "source":  "https://en.wikipedia.org/wiki/Masoud_Pezeshkian"
+                             "source":  "https://en.wikipedia.org/wiki/Masoud_Pezeshkian",
+                             "nameAr":  "مسعود بزشكيان"
                          }
              },
     "Bosnia and Herzegovina":  {
@@ -1666,7 +1833,8 @@
                                                "termYears":  null,
                                                "termEnd":  2026,
                                                "note":  "Chair of the tripartite Presidency since 16 Mar 2026; chair rotates every 8 months (to ~16 Nov 2026). General election held 4 Oct 2026 (prelim: Bećirović, Filipović, Cvijanović elected); new Presidency to take office Nov 2026.",
-                                               "source":  "https://n1info.ba/english/news/denis-becirovic-chairman-of-bosnias-presidency-as-of-march-16/"
+                                               "source":  "https://n1info.ba/english/news/denis-becirovic-chairman-of-bosnias-presidency-as-of-march-16/",
+                                               "nameAr":  "دينيس بيتشيروفيتش"
                                            },
                                    "hog":  {
                                                "name":  "Borjana Krišto",
@@ -1674,7 +1842,8 @@
                                                "termYears":  4,
                                                "termEnd":  2026,
                                                "note":  "Chair of the Council of Ministers since 25 Jan 2023; 4 Oct 2026 general election held, new Council of Ministers pending.",
-                                               "source":  "https://en.wikipedia.org/wiki/2026_Bosnian_general_election"
+                                               "source":  "https://en.wikipedia.org/wiki/2026_Bosnian_general_election",
+                                               "nameAr":  "بوريانا كريشتو"
                                            }
                                },
     "Belarus":  {
@@ -1684,7 +1853,8 @@
                                 "termYears":  5,
                                 "termEnd":  2030,
                                 "note":  "Re-elected Jan 2025 (seventh term).",
-                                "source":  "https://www.yahoo.com/news/belarusian-strongman-lukashenko-appoints-prime-115128564.html"
+                                "source":  "https://www.yahoo.com/news/belarusian-strongman-lukashenko-appoints-prime-115128564.html",
+                                "nameAr":  "ألكسندر لوكاشينكو"
                             },
                     "hog":  {
                                 "name":  "Alexander Turchin",
@@ -1692,7 +1862,8 @@
                                 "termYears":  null,
                                 "termEnd":  null,
                                 "note":  "Appointed PM 10 Mar 2025; serves at president\u0027s pleasure.",
-                                "source":  "https://www.yahoo.com/news/belarusian-strongman-lukashenko-appoints-prime-115128564.html"
+                                "source":  "https://www.yahoo.com/news/belarusian-strongman-lukashenko-appoints-prime-115128564.html",
+                                "nameAr":  "ألكسندر تورشين"
                             }
                 },
     "Georgia":  {
@@ -1702,7 +1873,8 @@
                                 "termYears":  5,
                                 "termEnd":  2029,
                                 "note":  "Elected by electoral college Dec 2024; legitimacy disputed by opposition.",
-                                "source":  "https://en.wikipedia.org/wiki/Mikheil_Kavelashvili"
+                                "source":  "https://en.wikipedia.org/wiki/Mikheil_Kavelashvili",
+                                "nameAr":  "ميخائيل كافالاشفيلي"
                             },
                     "hog":  {
                                 "name":  "Irakli Kobakhidze",
@@ -1710,7 +1882,8 @@
                                 "termYears":  4,
                                 "termEnd":  2028,
                                 "note":  "PM since Feb 2024; next parliamentary election due Oct 2028.",
-                                "source":  "https://georgiatoday.ge/pm-kobakhidze-to-attend-81st-session-of-un-general-assembly/"
+                                "source":  "https://georgiatoday.ge/pm-kobakhidze-to-attend-81st-session-of-un-general-assembly/",
+                                "nameAr":  "إيراكلي كوباخيدزه"
                             }
                 },
     "Montenegro":  {
@@ -1720,7 +1893,8 @@
                                    "termYears":  5,
                                    "termEnd":  2028,
                                    "note":  "",
-                                   "source":  "https://en.wikipedia.org/wiki/Jakov_Milatovi%C4%87"
+                                   "source":  "https://en.wikipedia.org/wiki/Jakov_Milatovi%C4%87",
+                                   "nameAr":  "ياكوف ميلاتوفيتش"
                                },
                        "hog":  {
                                    "name":  "Milojko Spajić",
@@ -1728,7 +1902,8 @@
                                    "termYears":  4,
                                    "termEnd":  2027,
                                    "note":  "Government reshuffled Jul 2026; next parliamentary election due 2027.",
-                                   "source":  "https://www.gov.me/en/article/the-reshuffled-44th-government-of-montenegro-2"
+                                   "source":  "https://www.gov.me/en/article/the-reshuffled-44th-government-of-montenegro-2",
+                                   "nameAr":  "ميلويكو سبايتش"
                                }
                    },
     "North Macedonia":  {
@@ -1738,7 +1913,8 @@
                                         "termYears":  5,
                                         "termEnd":  2029,
                                         "note":  "",
-                                        "source":  "https://en.wikipedia.org/wiki/Gordana_Siljanovska-Davkova"
+                                        "source":  "https://en.wikipedia.org/wiki/Gordana_Siljanovska-Davkova",
+                                        "nameAr":  "غوردانا سيليانوفسكا دافكوفا"
                                     },
                             "hog":  {
                                         "name":  "Hristijan Mickoski",
@@ -1746,7 +1922,8 @@
                                         "termYears":  4,
                                         "termEnd":  2028,
                                         "note":  "",
-                                        "source":  "https://en.wikipedia.org/wiki/Hristijan_Mickoski"
+                                        "source":  "https://en.wikipedia.org/wiki/Hristijan_Mickoski",
+                                        "nameAr":  "خريستيان ميتسكوفسكي"
                                     }
                         },
     "Serbia":  {
@@ -1756,7 +1933,8 @@
                                "termYears":  null,
                                "termEnd":  null,
                                "note":  "Acting president since 28 Sep 2026 after Aleksandar Vucic resigned; as Speaker of the National Assembly she holds the office until a presidential election, which must be held within 90 days.",
-                               "source":  "https://en.wikipedia.org/wiki/Ana_Brnabi%C4%87"
+                               "source":  "https://en.wikipedia.org/wiki/Ana_Brnabi%C4%87",
+                               "nameAr":  "آنا برنابيتش"
                            },
                    "hog":  {
                                "name":  "Đuro Macut",
@@ -1764,7 +1942,8 @@
                                "termYears":  4,
                                "termEnd":  2026,
                                "note":  "PM since Apr 2025. Parliament dissolved; snap parliamentary election 25 Oct 2026.",
-                               "source":  "https://n1info.rs/english/news/vucic-calls-parliamentary-elections-for-october-25/"
+                               "source":  "https://n1info.rs/english/news/vucic-calls-parliamentary-elections-for-october-25/",
+                               "nameAr":  "جورو ماتسوت"
                            }
                },
     "Bhutan":  {
@@ -1774,7 +1953,8 @@
                                "termYears":  null,
                                "termEnd":  null,
                                "note":  "Monarch.",
-                               "source":  "https://en.wikipedia.org/wiki/Tshering_Tobgay"
+                               "source":  "https://en.wikipedia.org/wiki/Tshering_Tobgay",
+                               "nameAr":  "جيغمه خيسار نمجيل وانغشاك"
                            },
                    "hog":  {
                                "name":  "Tshering Tobgay",
@@ -1782,7 +1962,8 @@
                                "termYears":  5,
                                "termEnd":  2029,
                                "note":  "PM since 28 Jan 2024 (also 2013-2018). Next National Assembly election expected late 2028/early 2029 (5-year term); exact date not announced.",
-                               "source":  "https://en.wikipedia.org/wiki/Tshering_Tobgay"
+                               "source":  "https://en.wikipedia.org/wiki/Tshering_Tobgay",
+                               "nameAr":  "تشيرينج توبجاي"
                            }
                },
     "Maldives":  {
@@ -1792,7 +1973,8 @@
                                  "termYears":  5,
                                  "termEnd":  2028,
                                  "note":  "Presidential election due Sep 2028.",
-                                 "source":  "https://en.wikipedia.org/wiki/2028_Maldivian_presidential_election"
+                                 "source":  "https://en.wikipedia.org/wiki/2028_Maldivian_presidential_election",
+                                 "nameAr":  "محمد معز"
                              },
                      "hog":  {
                                  "same":  true
@@ -1805,7 +1987,8 @@
                                "termYears":  4,
                                "termEnd":  2026,
                                "note":  "Term formally ends 1 Jan 2027. First round 4 Oct 2026: Flávio Bolsonaro ~47%, Lula ~45%; runoff 25 Oct 2026.",
-                               "source":  "https://en.mercopress.com/2026/10/05/flavio-bolsonaro-edges-lula-in-the-first-round-both-head-to-an-october-25-runoff"
+                               "source":  "https://en.mercopress.com/2026/10/05/flavio-bolsonaro-edges-lula-in-the-first-round-both-head-to-an-october-25-runoff",
+                               "nameAr":  "لويس إيناسيو لولا دا سيلفا"
                            },
                    "hog":  {
                                "same":  true
@@ -1818,7 +2001,8 @@
                               "termYears":  5,
                               "termEnd":  2028,
                               "note":  "Presidential term limit removed in 2018; current term runs to the 15th NPC in March 2028.",
-                              "source":  "https://en.wikipedia.org/wiki/President_of_China"
+                              "source":  "https://en.wikipedia.org/wiki/President_of_China",
+                              "nameAr":  "شي جين بينغ"
                           },
                   "hog":  {
                               "name":  "Li Qiang",
@@ -1826,7 +2010,8 @@
                               "termYears":  5,
                               "termEnd":  2028,
                               "note":  "Premier, appointed by the 14th NPC in March 2023.",
-                              "source":  "https://en.wikipedia.org/wiki/Premier_of_China"
+                              "source":  "https://en.wikipedia.org/wiki/Premier_of_China",
+                              "nameAr":  "لي تشيانغ"
                           }
               },
     "North Korea":  {
@@ -1836,7 +2021,8 @@
                                     "termYears":  5,
                                     "termEnd":  2031,
                                     "note":  "Head of the State Affairs Commission since 2016 (title \u0027President\u0027 since 2021). Re-elected by the new SPA in March 2026 after the 15 Mar 2026 election; the SPA term runs to March 2031.",
-                                    "source":  "https://en.wikipedia.org/wiki/15th_Supreme_People%27s_Assembly"
+                                    "source":  "https://en.wikipedia.org/wiki/15th_Supreme_People%27s_Assembly",
+                                    "nameAr":  "كيم جونغ أون"
                                 },
                         "hog":  {
                                     "name":  "Pak Thae-song",
@@ -1844,7 +2030,8 @@
                                     "termYears":  5,
                                     "termEnd":  2031,
                                     "note":  "Premier since 29 Dec 2024; reappointed by the new SPA in March 2026.",
-                                    "source":  "https://en.wikipedia.org/wiki/15th_Supreme_People%27s_Assembly"
+                                    "source":  "https://en.wikipedia.org/wiki/15th_Supreme_People%27s_Assembly",
+                                    "nameAr":  "باك تاي سونغ"
                                 }
                     },
     "Malaysia":  {
@@ -1854,7 +2041,8 @@
                                  "termYears":  5,
                                  "termEnd":  2029,
                                  "note":  "Rotating elected monarch; took office 31 Jan 2024.",
-                                 "source":  "https://en.wikipedia.org/wiki/Yang_di-Pertuan_Agong"
+                                 "source":  "https://en.wikipedia.org/wiki/Yang_di-Pertuan_Agong",
+                                 "nameAr":  "السلطان إبراهيم إسكندر"
                              },
                      "hog":  {
                                  "name":  "Anwar Ibrahim",
@@ -1862,7 +2050,8 @@
                                  "termYears":  5,
                                  "termEnd":  2027,
                                  "note":  "Parliament dissolves automatically in Dec 2027 and the election (GE16) must follow within 60 days, so by about Feb 2028. An early poll is under discussion; none had been called as of Sept 2026.",
-                                 "source":  "https://www.malaymail.com/news/malaysia/2026/09/12/we-still-have-until-february-2028-pakatan-sec-gen-says-as-ge16-chatter-grows/234955"
+                                 "source":  "https://www.malaymail.com/news/malaysia/2026/09/12/we-still-have-until-february-2028-pakatan-sec-gen-says-as-ge16-chatter-grows/234955",
+                                 "nameAr":  "أنور إبراهيم"
                              }
                  },
     "Cuba":  {
@@ -1872,7 +2061,8 @@
                              "termYears":  5,
                              "termEnd":  2028,
                              "note":  "Head of state since April 2018 (titled President of the Republic since Oct 2019). Re-elected April 2023 to his second and last term. Under heavy US pressure in 2026 (sanctioned June 2026), but no change in office was found as of the latest reports.",
-                             "source":  "https://en.wikipedia.org/wiki/2026_in_Cuba"
+                             "source":  "https://en.wikipedia.org/wiki/2026_in_Cuba",
+                             "nameAr":  "ميغيل دياز كانيل"
                          },
                  "hog":  {
                              "name":  "Manuel Marrero Cruz",
@@ -1880,7 +2070,8 @@
                              "termYears":  5,
                              "termEnd":  2028,
                              "note":  "Prime minister since Dec 2019; reappointed in 2023.",
-                             "source":  "https://en.wikipedia.org/wiki/Prime_Minister_of_Cuba"
+                             "source":  "https://en.wikipedia.org/wiki/Prime_Minister_of_Cuba",
+                             "nameAr":  "مانويل ماريرو كروز"
                          }
              },
     "Dominican Republic":  {
@@ -1890,7 +2081,8 @@
                                            "termYears":  4,
                                            "termEnd":  2028,
                                            "note":  "Re-elected May 2024 to his second and final term.",
-                                           "source":  "https://en.wikipedia.org/wiki/Luis_Abinader"
+                                           "source":  "https://en.wikipedia.org/wiki/Luis_Abinader",
+                                           "nameAr":  "لويس أبي نادر"
                                        },
                                "hog":  {
                                            "same":  true
@@ -1903,7 +2095,8 @@
                                 "termYears":  null,
                                 "termEnd":  null,
                                 "note":  "Represented by Governor-General Sir Patrick Allen.",
-                                "source":  "https://en.wikipedia.org/wiki/Monarchy_of_Jamaica"
+                                "source":  "https://en.wikipedia.org/wiki/Monarchy_of_Jamaica",
+                                "nameAr":  "الملك تشارلز الثالث"
                             },
                     "hog":  {
                                 "name":  "Andrew Holness",
@@ -1911,7 +2104,8 @@
                                 "termYears":  null,
                                 "termEnd":  2030,
                                 "note":  "Third consecutive term; JLP won the 3 Sept 2025 election (35-28) and he was sworn in 16 Sept 2025. Next election due by about 2030.",
-                                "source":  "https://opm.gov.jm/prime-minister-holness-outlines-vision-for-jamaicas-future-at-swearing-in-ceremony/"
+                                "source":  "https://opm.gov.jm/prime-minister-holness-outlines-vision-for-jamaicas-future-at-swearing-in-ceremony/",
+                                "nameAr":  "أندرو هولنيس"
                             }
                 },
     "Belize":  {
@@ -1921,7 +2115,8 @@
                                "termYears":  null,
                                "termEnd":  null,
                                "note":  "Represented by Governor-General Dame Froyla Tzalam.",
-                               "source":  "https://en.wikipedia.org/wiki/Monarchy_of_Belize"
+                               "source":  "https://en.wikipedia.org/wiki/Monarchy_of_Belize",
+                               "nameAr":  "الملك تشارلز الثالث"
                            },
                    "hog":  {
                                "name":  "John Briceño",
@@ -1929,7 +2124,8 @@
                                "termYears":  null,
                                "termEnd":  2030,
                                "note":  "PUP won the 12 Mar 2025 election (26 of 31 seats). Next election due by about 2030.",
-                               "source":  "https://en.wikipedia.org/wiki/2025_Belizean_general_election"
+                               "source":  "https://en.wikipedia.org/wiki/2025_Belizean_general_election",
+                               "nameAr":  "جوني بريسينو"
                            }
                },
     "Suriname":  {
@@ -1939,7 +2135,8 @@
                                  "termYears":  5,
                                  "termEnd":  2030,
                                  "note":  "Elected by the National Assembly on 6 Jul 2025 and inaugurated 16 Jul 2025. The president is also head of government.",
-                                 "source":  "https://en.wikipedia.org/wiki/Jennifer_Geerlings-Simons"
+                                 "source":  "https://en.wikipedia.org/wiki/Jennifer_Geerlings-Simons",
+                                 "nameAr":  "جينيفر خيرلينغز سيمونز"
                              },
                      "hog":  {
                                  "same":  true
@@ -1952,7 +2149,8 @@
                                 "termYears":  null,
                                 "termEnd":  null,
                                 "note":  "Represented by Governor-General Dame Cécile La Grenade.",
-                                "source":  "https://en.wikipedia.org/wiki/Monarchy_of_Grenada"
+                                "source":  "https://en.wikipedia.org/wiki/Monarchy_of_Grenada",
+                                "nameAr":  "الملك تشارلز الثالث"
                             },
                     "hog":  {
                                 "name":  "Dickon Mitchell",
@@ -1960,7 +2158,8 @@
                                 "termYears":  null,
                                 "termEnd":  2026,
                                 "note":  "Parliament was dissolved 2 Oct 2026 and an early general election is set for 5 Nov 2026; the constitutional deadline was Oct 2027.",
-                                "source":  "https://jamaica-gleaner.com/article/world-news/20261005/grenadians-vote-new-government-november-5"
+                                "source":  "https://jamaica-gleaner.com/article/world-news/20261005/grenadians-vote-new-government-november-5",
+                                "nameAr":  "ديكون ميتشل"
                             }
                 },
     "Dominica":  {
@@ -1970,7 +2169,8 @@
                                  "termYears":  5,
                                  "termEnd":  2028,
                                  "note":  "Elected by Parliament 27 Sept 2023 and took office 2 Oct 2023.",
-                                 "source":  "https://en.wikipedia.org/wiki/Sylvanie_Burton"
+                                 "source":  "https://en.wikipedia.org/wiki/Sylvanie_Burton",
+                                 "nameAr":  "سيلفاني بيرتون"
                              },
                      "hog":  {
                                  "name":  "Roosevelt Skerrit",
@@ -1978,7 +2178,8 @@
                                  "termYears":  null,
                                  "termEnd":  2027,
                                  "note":  "Last election 6 Dec 2022. The German Foreign Office expects the next election in Dec 2027; the constitutional deadline is early 2028.",
-                                 "source":  "https://www.auswaertiges-amt.de/de/service/laender/dominica-node/dominica-220298"
+                                 "source":  "https://www.auswaertiges-amt.de/de/service/laender/dominica-node/dominica-220298",
+                                 "nameAr":  "روزفلت سكريت"
                              }
                  },
     "Saint Lucia":  {
@@ -1988,7 +2189,8 @@
                                     "termYears":  null,
                                     "termEnd":  null,
                                     "note":  "Represented by a Governor-General.",
-                                    "source":  "https://en.wikipedia.org/wiki/Monarchy_of_Saint_Lucia"
+                                    "source":  "https://en.wikipedia.org/wiki/Monarchy_of_Saint_Lucia",
+                                    "nameAr":  "الملك تشارلز الثالث"
                                 },
                         "hog":  {
                                     "name":  "Philip J. Pierre",
@@ -1996,7 +2198,8 @@
                                     "termYears":  null,
                                     "termEnd":  2030,
                                     "note":  "SLP re-elected in the 1 Dec 2025 snap election (14 of 17 seats). Next election due about 2030; the constitutional deadline falls in early 2031.",
-                                    "source":  "https://en.wikipedia.org/wiki/2025_Saint_Lucian_general_election"
+                                    "source":  "https://en.wikipedia.org/wiki/2025_Saint_Lucian_general_election",
+                                    "nameAr":  "فيليب جيه بيير"
                                 }
                     },
     "Saint Vincent and the Grenadines":  {
@@ -2006,7 +2209,8 @@
                                                          "termYears":  null,
                                                          "termEnd":  null,
                                                          "note":  "Represented by Governor-General Dame Susan Dougan.",
-                                                         "source":  "https://en.wikipedia.org/wiki/Monarchy_of_Saint_Vincent_and_the_Grenadines"
+                                                         "source":  "https://en.wikipedia.org/wiki/Monarchy_of_Saint_Vincent_and_the_Grenadines",
+                                                         "nameAr":  "الملك تشارلز الثالث"
                                                      },
                                              "hog":  {
                                                          "name":  "Godwin Friday",
@@ -2014,7 +2218,8 @@
                                                          "termYears":  null,
                                                          "termEnd":  2030,
                                                          "note":  "NDP won the 27 Nov 2025 election 14-1, ending Ralph Gonsalves\u0027s ULP government (in power since 2001). Friday was sworn in 28 Nov 2025.",
-                                                         "source":  "https://onenewsstvincent.com/2025/11/29/dr-godwin-friday-sworn-in-as-prime-minister/"
+                                                         "source":  "https://onenewsstvincent.com/2025/11/29/dr-godwin-friday-sworn-in-as-prime-minister/",
+                                                         "nameAr":  "غودوين فرايداي"
                                                      }
                                          },
     "Fiji":  {
@@ -2024,7 +2229,8 @@
                              "termYears":  3,
                              "termEnd":  2027,
                              "note":  "Elected by Parliament and took office 12 Nov 2024 for a three-year term.",
-                             "source":  "https://en.wikipedia.org/wiki/Naiqama_Lalabalavu"
+                             "source":  "https://en.wikipedia.org/wiki/Naiqama_Lalabalavu",
+                             "nameAr":  "راتو نايكاما لالابالافو"
                          },
                  "hog":  {
                              "name":  "Sitiveni Rabuka",
@@ -2032,7 +2238,8 @@
                              "termYears":  null,
                              "termEnd":  2026,
                              "note":  "General election legally due between Aug 2026 and 6 Feb 2027. Rabuka expects it between 24 Dec 2026 and early Feb 2027; no date had been gazetted as of the latest reports.",
-                             "source":  "https://pina.com.fj/2026/06/26/fiji-pm-says-next-election-due-between-24-december-and-early-february-2027/"
+                             "source":  "https://pina.com.fj/2026/06/26/fiji-pm-says-next-election-due-between-24-december-and-early-february-2027/",
+                             "nameAr":  "سيتيفيني رابوكا"
                          }
              },
     "Samoa":  {
@@ -2042,7 +2249,8 @@
                               "termYears":  5,
                               "termEnd":  2027,
                               "note":  "O le Ao o le Malo; re-elected in 2022 to a second five-year term.",
-                              "source":  "https://en.wikipedia.org/wiki/Tuimaleali%CA%BBifano_Va%CA%BBaleto%CA%BBa_Sualauvi_II"
+                              "source":  "https://en.wikipedia.org/wiki/Tuimaleali%CA%BBifano_Va%CA%BBaleto%CA%BBa_Sualauvi_II",
+                              "nameAr":  "توياماليالي فانو فاليتوا سوالاوفي الثاني"
                           },
                   "hog":  {
                               "name":  "La\u0027auli Leuatea Schmidt",
@@ -2050,7 +2258,8 @@
                               "termYears":  null,
                               "termEnd":  2030,
                               "note":  "FAST won the 29 Aug 2025 snap election; he took office 16 Sept 2025.",
-                              "source":  "https://en.wikipedia.org/wiki/Prime_Minister_of_Samoa"
+                              "source":  "https://en.wikipedia.org/wiki/Prime_Minister_of_Samoa",
+                              "nameAr":  "لاولي ليواتيا شميدت"
                           }
               },
     "Tonga":  {
@@ -2060,7 +2269,8 @@
                               "termYears":  null,
                               "termEnd":  null,
                               "note":  "Hereditary monarch.",
-                              "source":  "https://en.wikipedia.org/wiki/Monarchy_of_Tonga"
+                              "source":  "https://en.wikipedia.org/wiki/Monarchy_of_Tonga",
+                              "nameAr":  "توبو السادس"
                           },
                   "hog":  {
                               "name":  "Lord Fakafanua",
@@ -2068,7 +2278,8 @@
                               "termYears":  null,
                               "termEnd":  2029,
                               "note":  "Elected by Parliament 15 Dec 2025 (16-10 over \u0027Aisake Eke) after the 20 Nov 2025 election, and appointed 18 Dec 2025. Next election due about Nov 2029.",
-                              "source":  "https://en.wikipedia.org/wiki/Fatafehi_Fakaf%C4%81nua"
+                              "source":  "https://en.wikipedia.org/wiki/Fatafehi_Fakaf%C4%81nua",
+                              "nameAr":  "اللورد فاكافانوا"
                           }
               },
     "Tuvalu":  {
@@ -2078,7 +2289,8 @@
                                "termYears":  null,
                                "termEnd":  null,
                                "note":  "Governor-General Tofiga Vaevalu Falani\u0027s term ended Sept 2026. One source names Temukisa Hauma as successor, which is unconfirmed.",
-                               "source":  "https://en.wikipedia.org/wiki/Tofiga_Vaevalu_Falani"
+                               "source":  "https://en.wikipedia.org/wiki/Tofiga_Vaevalu_Falani",
+                               "nameAr":  "الملك تشارلز الثالث"
                            },
                    "hog":  {
                                "name":  "Feleti Teo",
@@ -2086,7 +2298,8 @@
                                "termYears":  null,
                                "termEnd":  2028,
                                "note":  "Took office 26 Feb 2024 after the Jan 2024 election. No 2026 source explicitly confirmed he remains PM, but no change was reported.",
-                               "source":  "https://en.wikipedia.org/wiki/Prime_Minister_of_Tuvalu"
+                               "source":  "https://en.wikipedia.org/wiki/Prime_Minister_of_Tuvalu",
+                               "nameAr":  "فيليتي تيو"
                            }
                },
     "Vanuatu":  {
@@ -2096,7 +2309,8 @@
                                 "termYears":  5,
                                 "termEnd":  2027,
                                 "note":  "Elected by an electoral college on 25 Jul 2022.",
-                                "source":  "https://en.wikipedia.org/wiki/Nikenike_Vurobaravu"
+                                "source":  "https://en.wikipedia.org/wiki/Nikenike_Vurobaravu",
+                                "nameAr":  "نيكينيكي فوروبارافو"
                             },
                     "hog":  {
                                 "name":  "Jotham Napat",
@@ -2104,7 +2318,8 @@
                                 "termYears":  null,
                                 "termEnd":  2029,
                                 "note":  "PM since 11 Feb 2025 after the Jan 2025 snap election. Governments in Vanuatu often fall to no-confidence motions.",
-                                "source":  "https://en.wikipedia.org/wiki/Jotham_Napat"
+                                "source":  "https://en.wikipedia.org/wiki/Jotham_Napat",
+                                "nameAr":  "جوثام نابات"
                             }
                 },
     "Solomon Islands":  {
@@ -2114,7 +2329,8 @@
                                         "termYears":  null,
                                         "termEnd":  null,
                                         "note":  "Represented by Governor-General Sir David Tiva Kapu.",
-                                        "source":  "https://en.wikipedia.org/wiki/Monarchy_of_Solomon_Islands"
+                                        "source":  "https://en.wikipedia.org/wiki/Monarchy_of_Solomon_Islands",
+                                        "nameAr":  "الملك تشارلز الثالث"
                                     },
                             "hog":  {
                                         "name":  "Matthew Wale",
@@ -2122,7 +2338,8 @@
                                         "termYears":  null,
                                         "termEnd":  2028,
                                         "note":  "Elected PM 15 May 2026 (26-22) after Jeremiah Manele lost a no-confidence vote on 7 May 2026. Next general election due 2028.",
-                                        "source":  "https://www.freemalaysiatoday.com/category/world/2026/05/15/solomon-islands-elects-opposition-leader-matthew-wale-as-pm"
+                                        "source":  "https://www.freemalaysiatoday.com/category/world/2026/05/15/solomon-islands-elects-opposition-leader-matthew-wale-as-pm",
+                                        "nameAr":  "ماثيو ويل"
                                     }
                         },
     "Kiribati":  {
@@ -2132,7 +2349,8 @@
                                  "termYears":  4,
                                  "termEnd":  2028,
                                  "note":  "Re-elected Oct 2024 to his third and final term.",
-                                 "source":  "https://en.wikipedia.org/wiki/Taneti_Maamau"
+                                 "source":  "https://en.wikipedia.org/wiki/Taneti_Maamau",
+                                 "nameAr":  "تانيتي مامو"
                              },
                      "hog":  {
                                  "same":  true
@@ -2145,7 +2363,8 @@
                                          "termYears":  4,
                                          "termEnd":  2027,
                                          "note":  "Took office Jan 2024 (she also served 2016-2020). Next Nitijela election Nov 2027; her term ends Jan 2028.",
-                                         "source":  "https://en.wikipedia.org/wiki/President_of_the_Marshall_Islands"
+                                         "source":  "https://en.wikipedia.org/wiki/President_of_the_Marshall_Islands",
+                                         "nameAr":  "هيلدا هاين"
                                      },
                              "hog":  {
                                          "same":  true
@@ -2158,7 +2377,8 @@
                                    "termYears":  4,
                                    "termEnd":  2027,
                                    "note":  "Elected by Congress May 2023. Congressional election 2 Mar 2027; presidential selection due May 2027.",
-                                   "source":  "https://en.wikipedia.org/wiki/2027_Micronesian_general_election"
+                                   "source":  "https://en.wikipedia.org/wiki/2027_Micronesian_general_election",
+                                   "nameAr":  "ويسلي سيمينا"
                                },
                        "hog":  {
                                    "same":  true

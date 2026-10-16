@@ -341,7 +341,7 @@ function buildCountryDeck(opts){
     const g = gap(id, true);
     const body = (drivers.length ? T('Linked factors: ', 'عوامل مرتبطة: ') + andList(drivers) + T('. ', '. ') : '') + T(w.so[0], w.so[1])
       + (mapNote ? T(' The next slide shows which regions are worst affected.', ' وتُظهر الشريحة التالية المناطق الأكثر تضرراً.') : '');
-    return { id, L: lvl(id), head: lbl(id) + (g ? '  ·  ' + g : ''), body };
+    return { id, L: lvl(id), head: lbl(id), body };
   }
   // ODA need index — explained wherever the score is shown
   const NEED_NOTE = T('* ODA need index: a 0–100 score combining under-5 and maternal mortality, undernourishment and the share of people without basic water, sanitation and electricity, each scaled across the countries ODA tracks. Higher means greater need.',
@@ -771,7 +771,7 @@ function buildCountryDeck(opts){
     if (s.level != null) badge(sl, s.level, 11.53, 0.38, 1.3, 0.26);
     // stat cards — only indicators with data, the most critical first; benchmark shown inside each card
     const LX = 0.5, LW = 7.0;
-    const cards = [...new Set(s.ranked.filter(id => s.stats.includes(id) || lvl(id) <= 1).concat(s.stats))].filter(id => R(id)).slice(0, 6);
+    const cards = [...new Set(s.ranked.filter(id => s.stats.includes(id) || lvl(id) <= 1).concat(s.stats))].filter(id => R(id) && !R(id).stale).slice(0, 6);
     const cols = cards.length > 4 ? 3 : 2, rows = Math.ceil(cards.length / cols), cw = (LW - 0.18 * (cols - 1)) / cols, ch = 1.4;
     cards.forEach((id, i) => statCard(sl, id, LX + (i % cols) * (cw + 0.18), 1.38 + Math.floor(i / cols) * (ch + 0.14), cw, ch, cols === 3));
     const cardsEnd = cards.length ? 1.38 + rows * (ch + 0.14) - 0.14 : 1.38;
@@ -793,11 +793,11 @@ function buildCountryDeck(opts){
       sl.text([{ text:'▸  ', options:{ color:C.GOLD, bold:true } }, { text:t, options:{ color:C.INK } }],
         { x:LX + 0.22, y:ay, w:LW - 0.4, h, fontFace:BODY, fontSize:8.8, valign:'middle', wrap:true }); ay += h; });
     // where several indicators have no recent figures, say which (instead of empty cards) so the reader knows the picture is partial
-    const missing = s.ids.filter(id => !R(id));
+    const missing = s.ids.filter(id => !R(id) || R(id).stale);   // no figure, or only an outdated one
     if (missing.length >= 2 && iy + ih + 0.75 < 6.98) {
       const my2 = iy + ih + 0.22;
       sl.text(T('LIMITED DATA', 'بيانات محدودة'), { x:LX, y:my2, w:LW, h:0.22, fontFace:BODY, fontSize:7.8, bold:true, color:C.FAINT, charSpacing:1.4 });
-      sl.text(T(`No recent figures for ${andList(missing.map(id => { const t = lbl(id).replace(/ \(.*\)$/, ''); return /^[A-Z]{2}/.test(t) ? t : t.charAt(0).toLowerCase() + t.slice(1); }))}. A field assessment would confirm the picture before programming.`,
+      sl.text(T(`No recent figures (from the last ${DK.STALE_YEARS} years) for ${andList(missing.map(id => { const t = lbl(id).replace(/ \(.*\)$/, ''); return /^[A-Z]{2}/.test(t) ? t : t.charAt(0).toLowerCase() + t.slice(1); }))}. A field assessment would confirm the picture before programming.`,
                 `لا تتوفر أرقام حديثة عن ${andList(missing.map(id => lbl(id)))}. ويُستحسن إجراء تقييم ميداني لتأكيد الصورة قبل البرمجة.`),
         { x:LX, y:my2 + 0.24, w:LW, h:0.5, fontFace:BODY, fontSize:8.8, color:C.MUTE, valign:'top', wrap:true });
     }
@@ -904,15 +904,26 @@ function buildCountryDeck(opts){
       cols.forEach(([title, side], ci) => {
         const cx = RX + ci * (cw2 + 0.2);
         eyebrow(sl, title, cx, y, cw2, C.SKY_DK);
-        sl.text(T('Share of goods trade, ', 'الحصة من تجارة السلع، ') + side.year, { x:cx, y:y + 0.22, w:cw2, h:0.18, fontFace:BODY, fontSize:7, color:C.FAINT });
+        sl.text(T('Share of goods trade, ', 'الحصة من تجارة السلع، ') + side.year + (side.mirror ? T(' · as reported by partners', ' · وفق بيانات الشركاء') : ''), { x:cx, y:y + 0.22, w:cw2, h:0.18, fontFace:BODY, fontSize:7, color:C.FAINT });
         side.top.forEach((pt, i) => {
           const ry = y + 0.44 + i * 0.25, nw = cw2 * 0.6, bx = cx + nw, bw = cw2 - nw - 0.5;
           sl.text(pt.name, { x:cx, y:ry, w:nw - 0.05, h:0.22, fontFace:BODY, fontSize:7.8, color:C.INK, valign:'middle' });
           sl.shape(p.ShapeType.rect, { x:bx, y:ry + 0.07, w:bw, h:0.09, fill:{ color:C.SKY_PALE }, line:{ type:'none' } });
           sl.shape(p.ShapeType.rect, { x:bx, y:ry + 0.07, w:Math.max(0.03, bw * Math.min(1, pt.share / 50)), h:0.09, fill:{ color:C.SKY }, line:{ type:'none' } });
-          sl.text(pt.share.toFixed(1) + '%', { x:bx + bw + 0.04, y:ry, w:0.46, h:0.22, fontFace:BODY, fontSize:8.4, bold:true, color:C.INK, valign:'middle', align:'right' });
+          sl.text(pt.share.toFixed(1) + '%', { x:bx + bw + 0.04, y:ry, w:0.46, h:0.22, fontFace:BODY, fontSize:7.8, bold:true, color:C.INK, valign:'middle', align:'right' });
         });
       });
+      // the UAE as a trading partner: rank and share on each side, e.g. "2nd-largest import source (11.5%)"
+      const ord = n => n + (n % 100 >= 11 && n % 100 <= 13 ? 'th' : ['th', 'st', 'nd', 'rd'][n % 10] || 'th');
+      const ex = opts.trade.exports && opts.trade.exports.uae, im = opts.trade.imports && opts.trade.imports.uae;
+      const parts = [ex ? T(`${ord(ex.rank)}-largest export market (${ex.share.toFixed(1)}%)`, `المرتبة ${ex.rank} بين أسواق التصدير (${ex.share.toFixed(1)}%)`) : null,
+                     im ? T(`${ord(im.rank)}-largest import source (${im.share.toFixed(1)}%)`, `المرتبة ${im.rank} بين مصادر الاستيراد (${im.share.toFixed(1)}%)`) : null].filter(Boolean);
+      if (parts.length && y + 1.98 <= 6.98) {
+        const uy = y + 0.44 + 5 * 0.25 + 0.06;
+        sl.shape(p.ShapeType.rect, { x:RX, y:uy, w:RW, h:0.26, fill:{ color:C.GOLD_PALE }, line:{ type:'none' } });
+        sl.text([{ text:T('UAE  ', 'الإمارات  '), options:{ bold:true, color:C.GOLD } }, { text:parts.join('  ·  '), options:{ color:C.INK } }],
+          { x:RX + 0.1, y:uy, w:RW - 0.2, h:0.26, fontFace:BODY, fontSize:8, valign:'middle' });
+      }
     }
     const srcs = [...new Set(s.ids.map(id => SRC[id]).filter(Boolean).flatMap(x => x.split(' · ')))].slice(0, 5).map(srcTxt).join(' · ');
     foot(sl, srcs + ' · ' + DATE);
@@ -927,17 +938,21 @@ function buildCountryDeck(opts){
     const blocks = [
       [T('How ratings work', 'آلية التصنيف'), T('Each indicator is rated Severe · High concern · Moderate · On track against SDG, WHO, UNESCO and IMF reference points — the same scale used on the dashboard. A sector takes the rating of its weakest current indicator.',
         'يُصنَّف كل مؤشر (حرج · مقلق · متوسط · على المسار) وفق مرجعيات أهداف التنمية المستدامة ومنظمة الصحة العالمية واليونسكو وصندوق النقد — وهو المقياس نفسه المستخدم في اللوحة. ويأخذ القطاع تصنيف أضعف مؤشراته الحديثة.')],
-      [T('Data quality rules', 'قواعد جودة البيانات'), T(`Figures older than ${DK.STALE_YEARS} years are shown with their year but excluded from ratings and narrative. Missing or implausible values (e.g. 0% spending) are shown as "—" rather than estimated.`,
-        `تُعرض الأرقام الأقدم من ${DK.STALE_YEARS} سنوات مع سنتها لكنها تُستبعد من التصنيف والسرد. وتُعرض القيم المفقودة أو غير المعقولة (مثل إنفاق 0%) بعلامة «—» دون تقدير.`)],
+      [T('Data quality rules', 'قواعد جودة البيانات'), T(`Only figures from the last ${DK.STALE_YEARS} years are shown, rated or used in the narrative. Indicators with no recent figure, or an implausible one (e.g. 0% spending), are left off the slides and named in a "Limited data" note; nothing is estimated.`,
+        `لا تُعرض ولا تُصنَّف ولا تُستخدم في السرد إلا الأرقام الصادرة خلال آخر ${DK.STALE_YEARS} سنوات. وتُستبعد المؤشرات التي لا رقم حديثاً لها أو التي رقمها غير معقول (مثل إنفاق 0%) من الشرائح وتُذكر في ملاحظة «بيانات محدودة»؛ ولا يُقدَّر أي رقم.`)],
       [T('ODA need index', 'مؤشر الاحتياج'), T('A 0–100 score (higher = greater need). Combines under-5 and maternal mortality, undernourishment and lack of basic water, sanitation and electricity, each scaled across all tracked countries (0–100).',
         'درجة من 0 إلى 100 (الأعلى = احتياج أكبر). تجمع بين وفيات الأطفال دون الخامسة ووفيات الأمهات ونقص التغذية ونقص مياه الشرب الأساسية والصرف الصحي والكهرباء، مع قياس كل منها عبر جميع الدول المتابَعة (0–100).')],
-      [T('Sources', 'المصادر'), [T('World Bank Open Data', 'بيانات البنك الدولي المفتوحة'), T('World Bank Worldwide Governance Indicators', 'مؤشرات الحوكمة العالمية'), 'IMF', 'WHO', 'UN IGME (UNICEF/WHO)', 'UNESCO UIS', 'FAO', 'WHO/UNICEF JMP', 'ITU', 'IEA', 'ILO', T('Wikidata (heads of state and government)', 'ويكي بيانات (رؤساء الدول والحكومات)'), T('The DHS Program (regional maps)', 'برنامج المسوح الديموغرافية والصحية DHS (الخرائط حسب المنطقة)'), T('ILO', 'منظمة العمل الدولية'), T('World Bank Global Findex, Enterprise Surveys and Logistics Performance Index', 'مؤشر الشمول المالي ومسوح المؤسسات ومؤشر الأداء اللوجستي للبنك الدولي'), T('World Bank WITS', 'نظام WITS للبنك الدولي')].map(x => ar ? srcTxt(x) : x).join(' · ') +
-        T(` — retrieved live on building this report (${DATE}).`, ` — استُرجعت مباشرة عند إعداد هذا التقرير (${DATE}).`)],
+      [T('Sources', 'المصادر'), [T('World Bank Open Data', 'بيانات البنك الدولي المفتوحة'), T('World Bank Worldwide Governance Indicators', 'مؤشرات الحوكمة العالمية'), 'IMF', 'WHO', 'UN IGME (UNICEF/WHO)', 'UNESCO UIS', 'FAO', 'WHO/UNICEF JMP', 'IEA', T('ILO and ILOSTAT labour force surveys (jobs by business size)', 'منظمة العمل الدولية ومسوح القوى العاملة (الوظائف حسب حجم المنشأة)'),
+        T('World Bank Global Findex, Enterprise Surveys and Logistics Performance Index', 'مؤشر الشمول المالي ومسوح المؤسسات ومؤشر الأداء اللوجستي للبنك الدولي'),
+        T('UN Comtrade (products and trading partners)', 'قاعدة بيانات الأمم المتحدة لإحصاءات التجارة (المنتجات والشركاء التجاريون)'), T('Ember via Our World in Data (electricity by source)', 'Ember عبر Our World in Data (الكهرباء حسب المصدر)'),
+        T('The DHS Program (regional maps)', 'برنامج المسوح الديموغرافية والصحية DHS (الخرائط حسب المنطقة)'), T('Natural Earth (borders and capitals)', 'Natural Earth (الحدود والعواصم)'),
+        T('Wikidata and ODA research of October 2026 (heads of state and government, terms of office)', 'ويكي بيانات وبحث المكتب في أكتوبر 2026 (رؤساء الدول والحكومات ومدد الولاية)')].map(x => ar ? srcTxt(x) : x).join(' · ') +
+        T(` — World Bank figures retrieved live when this report was built (${DATE}); the other datasets are refreshed monthly.`, ` — استُرجعت أرقام البنك الدولي مباشرة عند إعداد هذا التقرير (${DATE})، وتُحدَّث مجموعات البيانات الأخرى شهرياً.`)],
     ];
     blocks.forEach(([h, t], i) => {
       const x = 0.6 + (i % 2) * 6.2, y = 2.35 + Math.floor(i / 2) * 2.1;
       sl.text(ar ? h : h.toUpperCase(), { x, y, w:5.8, h:0.26, fontFace:BODY, fontSize:9.5, bold:true, color:C.GOLD_LT, charSpacing:1.6 });
-      sl.text(t, { x, y:y + 0.32, w:5.8, h:1.5, fontFace:BODY, fontSize:10.5, color:'E6EEF5', valign:'top', wrap:true });
+      sl.text(t, { x, y:y + 0.32, w:5.8, h: i === blocks.length - 1 ? 2.3 : 1.5, fontFace:BODY, fontSize:10.5, color:'E6EEF5', valign:'top', wrap:true });
     });
     foot(sl, T('ODA Country Assessment Dashboard · ', 'لوحة تقييم الدول · ') + DATE, true);
   });

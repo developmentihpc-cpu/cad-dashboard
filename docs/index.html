@@ -9,14 +9,14 @@
 <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
 <link  href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
-<script src="i18n_ar.js?v=20261016h"></script>
-<script src="severity.js?v=20261016h"></script>
-<script src="ind_defs.js?v=20261016h"></script>
-<script src="deck_kit.js?v=20261016h"></script>
-<script src="hs_labels.js?v=20261016h"></script>
-<script src="country_deck.js?v=20261016h"></script>
-<script src="pdf_deck.js?v=20261016h"></script>
-<script src="region_deck.js?v=20261016h"></script>
+<script src="i18n_ar.js?v=20261016i"></script>
+<script src="severity.js?v=20261016i"></script>
+<script src="ind_defs.js?v=20261016i"></script>
+<script src="deck_kit.js?v=20261016i"></script>
+<script src="hs_labels.js?v=20261016i"></script>
+<script src="country_deck.js?v=20261016i"></script>
+<script src="pdf_deck.js?v=20261016i"></script>
+<script src="region_deck.js?v=20261016i"></script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -3226,7 +3226,7 @@ function applyLeaderTerms(out, terms) {
   const yr = d => d ? Number(String(d).slice(0, 4)) : 0;
   const asOf = yr((LEADER_TERMS_META || {}).asOf);
   const useTable = (role, t) => {
-    out[role] = [{ en: t.name, ar: t.name }]; out[role + 'Since'] = t.since ? String(t.since) : null; out[role + 'Until'] = null;
+    out[role] = [{ en: t.name, ar: t.nameAr || t.name }]; out[role + 'Since'] = t.since ? String(t.since) : null; out[role + 'Until'] = null;
     if (role === 'hog') out.hogOffice = [];   // Wikidata's office title may belong to the old arrangement
     out[role + 'Term'] = { since: t.since || null, years: t.termYears || null, end: t.termEnd || null };
   };
@@ -3478,7 +3478,7 @@ async function subLive(country) {
   return out;
 }
 // Pre-downloaded copy in data/subnational/ — fast, and works even when the DHS website is slow or down.
-// index.json lists every country that has maps; a country not listed has no recent regional survey.
+// index.json lists the countries with a pre-downloaded file; any other country is looked up live (the DHS API).
 // Returns null when the copy can't be read, so the live lookup is used instead.
 let SUB_INDEX = null;
 async function subSnapshot(country) {
@@ -3486,7 +3486,7 @@ async function subSnapshot(country) {
   if (!SUB_INDEX) SUB_INDEX = subFetch('data/subnational/index.json', 8000).catch(e => { SUB_INDEX = null; throw e; });
   try {
     const idx = await SUB_INDEX;
-    if (!(idx.countries || []).includes(iso)) return {};
+    if (!(idx.countries || []).includes(iso)) return null;   // no pre-downloaded file: try the live DHS service
     const j = await subFetch(`data/subnational/${iso}.json`, 15000), shapes = j.shapes || {};
     Object.values(j.sectors || {}).forEach(s => s.regions.forEach(r => { r.geom = shapes[r.id]; }));   // outlines are stored once, shared by sectors
     return j.sectors || null;
@@ -3620,7 +3620,7 @@ const smeData = country => { const s = (EXTRA.sme || {})[COUNTRY_ISO[country]]; 
 async function repTrade(country) {
   await Promise.race([loadExtras(), new Promise(r => setTimeout(r, 8000))]);
   const t = (EXTRA.trade || {})[COUNTRY_ISO[country]]; if (!t) return null;
-  const side = s => s && s.top && s.top.length ? { year: s.year, total: s.total, top: s.top.slice(0, 5).map(p => ({ name: placeName(p.iso2, p.name), share: p.share })) } : null;
+  const side = s => s && s.top && s.top.length ? { year: s.year, total: s.total, mirror: !!s.mirror, uae: s.uae || null, top: s.top.slice(0, 5).map(p => ({ name: placeName(p.iso2, p.name), share: p.share })) } : null;
   return { exports: side(t.exports), imports: side(t.imports) };
 }
 async function repBuildCountryBlob(country, setStatus, fmt) {

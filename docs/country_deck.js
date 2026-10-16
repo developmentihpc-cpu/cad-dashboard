@@ -459,6 +459,7 @@ function buildCountryDeck(opts){
   };
   const head = (sl, eb, title, statement) => {
     eyebrow(sl, eb, 0.5, 0.36, 9);
+    if (statement && !ar) statement = statement.charAt(0).toUpperCase() + statement.slice(1);   // "Water — High concern on…"
     sl.text([{ text:title, options:{ bold:true, color:C.INK } }, { text: statement ? '  —  ' + statement : '', options:{ color:C.MUTE } }],
       { x:0.5, y:0.6, w:12.33, h:0.56, fontFace:HEAD, fontSize:18, valign:'middle', fit:'shrink' });
   };
@@ -481,11 +482,9 @@ function buildCountryDeck(opts){
     sl.text(lbl(id), { x:x + pad, y:y + 0.54, w:w - 2 * pad, h:0.34, fontFace:BODY, fontSize: compact ? 7 : 8.2, bold:true, color:C.INK, valign:'top', wrap:true });
     const t = target(id);
     if (t != null) {
-      const g = gap(id);
-      if (!compact) sl.shape(p.ShapeType.rect, { x:x + pad, y:y + 1.0, w:0.16, h:0.025, fill:{ color:C.GOLD }, line:{ type:'none' } });
-      sl.text([{ text:T('Benchmark ', 'المعيار ') + I[id].f({ v:t }), options:{ color:C.GOLD, bold:true } },
-               { text: g ? '  ·  ' + g : '', options:{ color: L != null && L <= 1 ? SEV.text[L] : C.MUTE, bold: L != null && L <= 1 } }],
-        { x:x + pad + (compact ? 0 : 0.22), y:y + 0.89, w:w - 2 * pad - (compact ? 0 : 0.22), h:0.24, fontFace:BODY, fontSize: compact ? 6.6 : 7.4, valign:'middle' });
+      sl.shape(p.ShapeType.rect, { x:x + pad, y:y + 1.0, w:0.16, h:0.025, fill:{ color:C.GOLD }, line:{ type:'none' } });
+      sl.text(T('Benchmark ', 'المعيار ') + I[id].f({ v:t }), { x:x + pad + 0.22, y:y + 0.89, w:w - 2 * pad - 0.22, h:0.24, fontFace:BODY,
+        fontSize: compact ? 6.8 : 7.4, bold:true, color:C.GOLD, valign:'middle' });
     }
     sl.text(cite(id), { x:x + pad, y:y + h - 0.25, w:w - 2 * pad, h:0.22, fontFace:BODY, fontSize: compact ? 6.2 : 6.8, color: r && r.stale ? SEV.text[0] : C.FAINT, valign:'top', bold: !!(r && r.stale) });
   };
@@ -831,8 +830,29 @@ function buildCountryDeck(opts){
           + T(' That leaves it exposed to fuel-price swings and import bills; with most people already connected, the next step is cleaner supply, and solar, wind and geothermal are now among the cheapest sources of new power.',
               ' وهذا يعرّضه لتقلبات أسعار الوقود وفواتير الاستيراد؛ ومع اتصال معظم السكان بالكهرباء، تكون الخطوة التالية إمدادات أنظف، فالطاقة الشمسية والرياح والحرارية الجوفية باتت من أرخص مصادر الطاقة الجديدة.') }]).slice(0, 3);
     }
-    // Trade: what the export base looks like (manufactured vs food share) — a structural point, not a benchmark rating
-    if (s.key === 'trade') {
+    // Trade: the products traded (UN Comtrade, HS chapters) — top export and import groups, and what they mean
+    const prod = s.key === 'trade' && opts.products && opts.products.exports ? opts.products : null;
+    if (prod) {
+      const hs = c => (typeof HS2 !== 'undefined' && HS2[c]) ? T(HS2[c][0], HS2[c][1]) : c;
+      const lc = t => ar ? t : t.charAt(0).toLowerCase() + t.slice(1);
+      const list = side => side.top.slice(0, 3).map(([c, v]) => `${lc(hs(c))} ${Math.round(v)}%`).join(T(', ', '، '));
+      const ex = prod.exports, im = prod.imports, top1 = ex.top[0];
+      let so = '';
+      if (top1 && top1[1] >= 40) so = T(` One product group, ${lc(hs(top1[0]))}, earns ${Math.round(top1[1])}% of export income, so earnings rise and fall with its world price.`,
+                                        ` تجلب مجموعة منتجات واحدة (${hs(top1[0])}) ${Math.round(top1[1])}% من إيرادات التصدير، لذا تتقلب الإيرادات مع سعرها العالمي.`);
+      else if (ex.fuel + ex.mining >= 50) so = T(` Fuels, minerals and metals make up ${Math.round(ex.fuel + ex.mining)}% of exports, so earnings follow commodity prices.`,
+                                                 ` يشكّل الوقود والمعادن ${Math.round(ex.fuel + ex.mining)}% من الصادرات، لذا تتبع الإيرادات أسعار السلع الأولية.`);
+      else if (ex.food >= 40) so = T(` Farm and food products are ${Math.round(ex.food)}% of exports, so harvests and weather drive export earnings.`,
+                                     ` تشكّل المنتجات الزراعية والغذائية ${Math.round(ex.food)}% من الصادرات، لذا يتحدد دخل التصدير بالمحاصيل والطقس.`);
+      if (im && im.food >= 15) so += T(` Food is ${Math.round(im.food)}% of imports, so world food prices feed directly into food security at home.`,
+                                       ` ويشكّل الغذاء ${Math.round(im.food)}% من الواردات، لذا تنعكس أسعار الغذاء العالمية مباشرة على الأمن الغذائي المحلي.`);
+      ins.unshift({ L: 2, head: T('Main products traded', 'أبرز المنتجات المتبادلة'),
+        body: T(`Exports (${F.bigMoney({ v: ex.total })}, ${ex.year}): ${list(ex)}.`, `الصادرات (${F.bigMoney({ v: ex.total })}، ${ex.year}): ${list(ex)}.`)
+          + (im ? T(` Imports (${F.bigMoney({ v: im.total })}): ${list(im)}.`, ` الواردات (${F.bigMoney({ v: im.total })}): ${list(im)}.`) : '') + so });
+      ins = ins.slice(0, 3);
+    }
+    // Trade: what the export base looks like (manufactured vs food share) — only when the product breakdown is not available
+    if (s.key === 'trade' && !prod) {
       const m = R('TX.VAL.MANF.ZS.UN'), fd = R('TX.VAL.FOOD.ZS.UN'), tp = opts.trade && opts.trade.exports;
       const narrow = (m && !m.stale && m.v < 30) || (fd && !fd.stale && fd.v >= 40);
       if (narrow) {

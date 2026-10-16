@@ -300,6 +300,114 @@ def build_power_mix(country_isos) -> bool:
     return True
 
 
+PRODUCTS_PATH = ROOT / "docs" / "data" / "trade_products.json"
+COMTRADE_REPORTERS = "https://comtradeapi.un.org/files/v1/app/reference/Reporters.json"
+COMTRADE_URL = ("https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode={code}&period={periods}"
+                "&partnerCode=0&flowCode={flow}&cmdCode=AG2&includeDesc=true")
+
+
+def build_trade_products(country_isos) -> bool:
+    """Write docs/data/trade_products.json: each country's goods exports and imports by HS chapter
+    (UN Comtrade public API, trade with the world). Latest year with a reasonably complete breakdown
+    (>= 20 chapters); top 6 chapters as [code, % share] plus food (01-24), fuel (27) and mining
+    (25, 26, 71-81) shares. Countries that cannot be fetched keep their previous entry."""
+    hdrs = {"User-Agent": "Mozilla/5.0 (CAD dashboard refresh)"}
+    previous = {}
+    if PRODUCTS_PATH.exists():
+        try:
+            previous = json.loads(PRODUCTS_PATH.read_text(encoding="utf-8"))
+        except Exception:  # noqa: BLE001
+            previous = {}
+    try:
+        ref = requests.get(COMTRADE_REPORTERS, timeout=60, headers=hdrs).json()["results"]
+    except Exception as e:  # noqa: BLE001
+        print(f"  ! trade products: reporter list failed ({e}) - keeping previous file")
+        return False
+    codes = {}
+    for r in ref:
+        iso = r.get("reporterCodeIsoAlpha3")
+        if iso and not r.get("isGroup") and "(..." not in (r.get("text") or "") and iso not in codes:
+            codes[iso] = r.get("reporterCode")
+
+    this_year = datetime.now(timezone.utc).year
+    periods = ",".join(str(y) for y in range(this_year - 1, this_year - 5, -1))
+
+    def side(code, flow):
+        for attempt in range(1, 4):
+            try:
+                resp = requests.get(COMTRADE_URL.format(code=code, periods=periods, flow=flow), timeout=60, headers=hdrs)
+                if resp.status_code == 429:   # rate limited: wait and retry
+                    time.sleep(10 * attempt)
+                    continue
+                resp.raise_for_status()
+                rows = resp.json().get("data") or []
+                break
+            except Exception:  # noqa: BLE001
+                time.sleep(3 * attempt)
+        else:
+            return None
+        by: dict = {}
+        for r in rows:
+            c, v = str(r.get("cmdCode") or ""), r.get("primaryValue")
+            if re.fullmatch(r"\d\d", c) and v is not None:
+                y = int(r.get("refYear") or 0)
+                by.setdefault(y, {})
+                by[y][c] = by[y].get(c, 0.0) + float(v)
+        full = [y for y, chap in by.items() if len(chap) >= 20]
+        if not full:
+            return None
+        year = max(full)
+        chap = by[year]
+        total = sum(chap.values())
+        if total <= 0:
+            return None
+
+        def share(*cs):
+            return round(100 * sum(chap.get(c, 0.0) for c in cs) / total, 1)
+
+        top = sorted(chap, key=chap.get, reverse=True)[:6]
+        return {
+            "year": int(year), "total": round(total),
+            "top": [[c, share(c)] for c in top],
+            "food": share(*[f"{i:02d}" for i in range(1, 25)]),
+            "fuel": share("27"),
+            "mining": share("25", "26", "71", *[f"{i:02d}" for i in range(72, 82)]),
+        }
+
+    out, fetched = {}, 0
+    for iso in sorted(country_isos):
+        code = codes.get(iso)
+        rec = {}
+        if code is not None:
+            for flow, key in (("X", "exports"), ("M", "imports")):
+                s = side(code, flow)
+                if s:
+                    rec[key] = s
+                time.sleep(1.5)   # be gentle with the free public API
+        if rec:
+            out[iso] = rec
+            fetched += 1
+        elif previous.get(iso):
+            out[iso] = previous[iso]   # keep last good entry
+    if not out:
+        print("  ! trade products: nothing fetched - keeping previous file")
+        return False
+    payload = {
+        "_meta": {
+            "generated": datetime.now(timezone.utc).date().isoformat(),
+            "source": "UN Comtrade (public API), trade with the world by HS chapter, as reported by each country",
+            "url": "https://comtradeplus.un.org/",
+            "note": ("Shares of total goods exports or imports in the latest year with a reasonably complete product "
+                     "breakdown. top = [HS chapter, % share]; food = chapters 01-24, fuel = 27, mining = 25, 26, 71-81 "
+                     "(minerals, metals, gold and gems)."),
+        },
+        **out,
+    }
+    PRODUCTS_PATH.write_text(json.dumps(payload, ensure_ascii=False, sort_keys=True), encoding="utf-8")
+    print(f"  trade products: {fetched} fetched, {len(out)} countries -> {PRODUCTS_PATH.name}")
+    return True
+
+
 def fetch_regions(country_iso: dict) -> dict:
     """Return {region_name: [display names present]} from WB country metadata.
 
@@ -402,6 +510,9 @@ def main() -> None:
 
     print("Fetching electricity generation by source (Ember / Our World in Data)...")
     build_power_mix(country_iso.values())
+
+    print("Fetching products traded (UN Comtrade)...")
+    build_trade_products(country_iso.values())
 
 
 if __name__ == "__main__":

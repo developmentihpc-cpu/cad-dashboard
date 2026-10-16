@@ -9,13 +9,14 @@
 <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
 <link  href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
-<script src="i18n_ar.js?v=20261016d"></script>
-<script src="severity.js?v=20261016d"></script>
-<script src="ind_defs.js?v=20261016d"></script>
-<script src="deck_kit.js?v=20261016d"></script>
-<script src="country_deck.js?v=20261016d"></script>
-<script src="pdf_deck.js?v=20261016d"></script>
-<script src="region_deck.js?v=20261016d"></script>
+<script src="i18n_ar.js?v=20261016f"></script>
+<script src="severity.js?v=20261016f"></script>
+<script src="ind_defs.js?v=20261016f"></script>
+<script src="deck_kit.js?v=20261016f"></script>
+<script src="hs_labels.js?v=20261016f"></script>
+<script src="country_deck.js?v=20261016f"></script>
+<script src="pdf_deck.js?v=20261016f"></script>
+<script src="region_deck.js?v=20261016f"></script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -2692,12 +2693,12 @@ function cdSwitchIndTab(key, btn) {
 
 // ── Saved extra datasets: trade partners (UN Comtrade), environment rankings (EPI 2026,
 //    WorldRiskIndex 2025) and UNESCO school data. Loaded once, then the open panel re-renders.
-const EXTRA = { trade:null, env:null, uis:null, sme:null, power:null };
+const EXTRA = { trade:null, env:null, uis:null, sme:null, power:null, products:null };
 let EXTRA_JOB = null;
 function loadExtras() {
-  if (!EXTRA_JOB) EXTRA_JOB = Promise.all(['trade_partners', 'environment', 'uis', 'sme_jobs', 'power_mix'].map(f =>
+  if (!EXTRA_JOB) EXTRA_JOB = Promise.all(['trade_partners', 'environment', 'uis', 'sme_jobs', 'power_mix', 'trade_products'].map(f =>
       fetch('data/' + f + '.json').then(r => r.ok ? r.json() : null).catch(() => null)))
-    .then(([t, e, u, s, pw]) => { EXTRA.trade = t || {}; EXTRA.env = e || {}; EXTRA.uis = u || {}; EXTRA.sme = s || {}; EXTRA.power = pw || {};
+    .then(([t, e, u, s, pw, tp]) => { EXTRA.trade = t || {}; EXTRA.env = e || {}; EXTRA.uis = u || {}; EXTRA.sme = s || {}; EXTRA.power = pw || {}; EXTRA.products = tp || {};
       if (cdCountry && cdActiveTab === 'indicators') cdRenderIndicators(); });
   return EXTRA_JOB;
 }
@@ -3605,7 +3606,7 @@ async function repBuildCountryBlob(country, setStatus, fmt) {
   const flagRatio = await repImgRatio(flagData);
   const need = needScores()[country] || {};
   const blob = await window.buildCountryDeck({
-    country, data: Object.assign({}, d, pol ? pol.wgi : {}, smeData(country)), sme: (EXTRA.sme || {})[COUNTRY_ISO[country]] || null, power: (EXTRA.power || {})[COUNTRY_ISO[country]] || null, info: COUNTRY_INFO[country] || {}, iso2: (COUNTRY_ISO2[country] || '').toLowerCase(),
+    country, data: Object.assign({}, d, pol ? pol.wgi : {}, smeData(country)), sme: (EXTRA.sme || {})[COUNTRY_ISO[country]] || null, power: (EXTRA.power || {})[COUNTRY_ISO[country]] || null, products: (EXTRA.products || {})[COUNTRY_ISO[country]] || null, info: COUNTRY_INFO[country] || {}, iso2: (COUNTRY_ISO2[country] || '').toLowerCase(),
     politics: pol && pol.ok ? { hos: pol.hos, hog: pol.hog, gov: pol.gov, office: pol.office, hogOffice: pol.hogOffice,
       hosSince: pol.hosSince, hosUntil: pol.hosUntil, hogSince: pol.hogSince, hogUntil: pol.hogUntil, hosTerm: pol.hosTerm, hogTerm: pol.hogTerm } : null,
     flagData, flagRatio, mapData, logo, subnational, dateStr: repDateStr(), PptxGenJS: repDeckCtor(fmt), output: 'blob', lang,

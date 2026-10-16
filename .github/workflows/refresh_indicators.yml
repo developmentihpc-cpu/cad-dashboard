@@ -14,7 +14,7 @@ permissions:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 45          # the UN Comtrade product download is paced (~2 requests per country)
 
     steps:
       - name: Checkout repository
@@ -35,10 +35,10 @@ jobs:
         run: |
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          if git diff --quiet -- docs/data/indicators.json docs/data/sme_jobs.json docs/data/power_mix.json; then
+          if git diff --quiet -- docs/data/indicators.json docs/data/sme_jobs.json docs/data/power_mix.json docs/data/trade_products.json; then
             echo "No change in indicator snapshot."
           else
-            git add docs/data/indicators.json docs/data/sme_jobs.json docs/data/power_mix.json
+            git add docs/data/indicators.json docs/data/sme_jobs.json docs/data/power_mix.json docs/data/trade_products.json
             git commit -m "chore: refresh World Bank indicator snapshot"
             git push
           fi

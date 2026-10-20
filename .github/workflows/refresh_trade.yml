@@ -1,0 +1,53 @@
+name: CAD — Refresh Trade Data (UN Comtrade)
+
+# Products traded (HS chapters) and trading partners for every tracked country, from the free UN Comtrade
+# public API. That API allows about one request every two seconds, so this runs on its own: it can take
+# a few hours, saves progress as it goes, and never holds up the indicator snapshot.
+on:
+  schedule:
+    - cron: '0 2 2 * *'      # 02:00 UTC on the 2nd of each month
+  workflow_dispatch:          # allow manual trigger from GitHub UI
+  push:
+    branches: [main]
+    paths: ['.github/workflows/refresh_trade.yml']
+
+concurrency:
+  group: refresh-trade
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  trade:
+    runs-on: ubuntu-latest
+    timeout-minutes: 330      # GitHub allows up to 6 hours per job
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Rebuild trade products and partners from UN Comtrade
+        run: python build_indicators.py --trade
+
+      - name: Commit refreshed trade data if changed
+        if: always()          # keep whatever was saved even if the run stops early
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if git diff --quiet -- docs/data/trade_products.json docs/data/trade_partners.json && [ -z "$(git ls-files --others --exclude-standard docs/data/trade_products.json)" ]; then
+            echo "No change in trade data."
+          else
+            git add docs/data/trade_products.json docs/data/trade_partners.json
+            git commit -m "chore: refresh UN Comtrade trade data"
+            git pull --rebase origin main
+            git push
+          fi

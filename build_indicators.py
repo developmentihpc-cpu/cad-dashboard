@@ -16,6 +16,7 @@ Efficiency: instead of country x indicator individual calls, it makes ONE reques
 indicator against country/all (last 10 years), then keeps the most recent non-null value per
 country. ~70 requests total. Government debt comes from the IMF World Economic Outlook
 (DataMapper API) and keeps the previous values if the IMF cannot be reached.
+Run with --trade to rebuild the UN Comtrade product and partner files instead (a separate, slower monthly job).
 It also rebuilds docs/data/sme_jobs.json (jobs by business size) from ILOSTAT labour force surveys.
 
 Output shape (matches the dashboard's countryDataCache exactly):
@@ -483,8 +484,35 @@ def build_trade_data(country_isos) -> bool:
                 return s
         return None
 
-    out_products, out_partners, fetched = {}, {}, 0
-    for iso in sorted(country_isos):
+    today = datetime.now(timezone.utc).date().isoformat()
+    # start from the previous files, so a run that stops part-way still leaves every country with data
+    out_products = {k: v for k, v in prev_products.items() if k != "_meta"}
+    out_partners = {k: v for k, v in prev_partners.items() if k != "_meta"}
+
+    def write_files():
+        PRODUCTS_PATH.write_text(json.dumps({
+            "_meta": {
+                "generated": today,
+                "source": "UN Comtrade (public API), trade with the world by HS chapter, as reported by each country",
+                "url": "https://comtradeplus.un.org/",
+                "note": ("Shares of total goods exports or imports in the latest year with a reasonably complete product "
+                         "breakdown. top = [HS chapter, % share]; food = chapters 01-24, fuel = 27, mining = 25, 26, 71-81 "
+                         "(minerals, metals, gold and gems)."),
+            },
+            **{k: v for k, v in sorted(out_products.items()) if v},
+        }, ensure_ascii=False, sort_keys=True), encoding="utf-8")
+        PARTNERS_PATH.write_text(json.dumps({
+            "_meta": {
+                "generated": today,
+                "source": "UN Comtrade (public API), goods trade by partner; mirror = as reported by partner countries",
+                "url": "https://comtradeplus.un.org/",
+                "unit": "US$",
+            },
+            **{k: v for k, v in sorted(out_partners.items()) if v},
+        }, ensure_ascii=False, sort_keys=True), encoding="utf-8")
+
+    fetched = 0
+    for n, iso in enumerate(sorted(country_isos), 1):
         code = codes.get(iso)
         prod, part = {}, {}
         if code is not None:
@@ -503,37 +531,19 @@ def build_trade_data(country_isos) -> bool:
                         part[key] = p
         if prod or part:
             fetched += 1
-        out_products[iso] = prod or prev_products.get(iso) or None
-        out_partners[iso] = part or prev_partners.get(iso) or None
-        print(f"    {iso}: products {'/'.join(k[:3] for k in prod) or '-'}  partners "
-              f"{'/'.join(k[:3] + ('*' if part[k]['mirror'] else '') for k in part) or '-'}")
+        if prod:
+            out_products[iso] = prod
+        if part:
+            out_partners[iso] = part
+        print(f"    {n:>3} {iso}: products {'/'.join(k[:3] for k in prod) or '-'}  partners "
+              f"{'/'.join(k[:3] + ('*' if part[k]['mirror'] else '') for k in part) or '-'}", flush=True)
+        if fetched and n % 10 == 0:
+            write_files()   # save progress as we go
 
-    out_products = {k: v for k, v in out_products.items() if v}
-    out_partners = {k: v for k, v in out_partners.items() if v}
     if not fetched:
         print("  ! trade: nothing fetched - keeping previous files")
         return False
-    today = datetime.now(timezone.utc).date().isoformat()
-    PRODUCTS_PATH.write_text(json.dumps({
-        "_meta": {
-            "generated": today,
-            "source": "UN Comtrade (public API), trade with the world by HS chapter, as reported by each country",
-            "url": "https://comtradeplus.un.org/",
-            "note": ("Shares of total goods exports or imports in the latest year with a reasonably complete product "
-                     "breakdown. top = [HS chapter, % share]; food = chapters 01-24, fuel = 27, mining = 25, 26, 71-81 "
-                     "(minerals, metals, gold and gems)."),
-        },
-        **out_products,
-    }, ensure_ascii=False, sort_keys=True), encoding="utf-8")
-    PARTNERS_PATH.write_text(json.dumps({
-        "_meta": {
-            "generated": today,
-            "source": "UN Comtrade (public API), goods trade by partner; mirror = as reported by partner countries",
-            "url": "https://comtradeplus.un.org/",
-            "unit": "US$",
-        },
-        **out_partners,
-    }, ensure_ascii=False, sort_keys=True), encoding="utf-8")
+    write_files()
     print(f"  trade: {fetched} fetched; products {len(out_products)}, partners {len(out_partners)} countries")
     return True
 
@@ -569,6 +579,10 @@ def fetch_regions(country_iso: dict) -> dict:
 def main() -> None:
     html = _read_index()
     country_iso = parse_country_iso(html)
+    if "--trade" in sys.argv:   # products and trading partners: slow (paced API), so it runs as its own monthly job
+        print("Fetching products and trading partners (UN Comtrade)...")
+        build_trade_data(country_iso.values())
+        return
     indicator_ids = parse_indicator_ids(html)
     iso3_to_name = {iso: name for name, iso in country_iso.items()}
 
@@ -643,9 +657,6 @@ def main() -> None:
 
     print("Fetching UNESCO school indicators...")
     build_uis(country_iso.values())
-
-    print("Fetching products and trading partners (UN Comtrade)...")
-    build_trade_data(country_iso.values())
 
 
 if __name__ == "__main__":

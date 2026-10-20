@@ -6,8 +6,17 @@ development needs across 132 tracked countries — every World Bank low- and mid
 assessment reports (PowerPoint or PDF) in the browser. Data comes from a pre-baked World Bank
 snapshot plus live API calls. No build step, no backend for the public site.
 
-**Live site:** https://developmentihpc-cpu.github.io/cad-dashboard/ — GitHub Pages serves the
-`docs/` folder of `main`. Pushing to `main` deploys it.
+**Live site (shared, sign-in required):** https://cad-dashboard.pages.dev — Cloudflare Pages builds from
+`main` (no build command, output directory `docs`, env var `SKIP_DEPENDENCY_INSTALL=1` so the root
+`requirements.txt` is ignored). Pushing to `main` deploys it in about a minute.
+- Sign-in: `functions/_middleware.js` (Pages Function) gates every request. Approved people are in the
+  Cloudflare project secret `CAD_USERS` (`email:password` pairs separated by commas / semicolons / new lines).
+  Sessions last 7 days and are signed with the person's own password, so removing or changing an entry
+  ends that session. No secret = nobody gets in. Cloudflare Zero Trust / Access is **not** used (needs a card).
+- The old GitHub Pages address (https://developmentihpc-cpu.github.io/cad-dashboard/) is to be unpublished
+  and the repo made private once the Cloudflare sign-in is confirmed.
+- A Claude-artifact test copy exists (https://claude.ai/artifact/7SwNV8j8SBAsBf82iqKAUJ, built by a scratch
+  script); downloads don't work there for viewers outside the organisation, so it is not the shared version.
 
 > The pipeline / intake form / Path B–C / documents features were **removed on 2026-10-08**.
 > Do not reintroduce them unless asked. The root `index.html` is the **old pipeline version and is

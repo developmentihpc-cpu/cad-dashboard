@@ -1562,6 +1562,11 @@ body {
 .ex-grid-map { grid-template-columns:minmax(0,1.65fr) minmax(0,1fr); }
 .ex-grid-even { grid-template-columns:minmax(0,1fr) minmax(0,1fr); }
 .ex-card { background:#fff; border:1px solid var(--ex-line); border-radius:16px; padding:24px 26px; box-shadow:var(--ex-shadow); min-width:0; }
+.ex-welcome { border-top:3px solid var(--ex-gold); }
+.ex-welcome-grid { display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:22px; margin-top:16px; }
+.ex-welcome-h { font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ex-gold); margin-bottom:6px; }
+.ex-welcome-t { font-size:13.5px; line-height:1.55; color:var(--ex-ink); }
+@media (max-width: 860px) { .ex-welcome-grid { grid-template-columns:1fr; gap:14px; } }
 .ex-card-hd { display:flex; justify-content:space-between; align-items:baseline; gap:12px; margin-bottom:18px; }
 .ex-card-title { font-family:var(--ex-serif); font-size:20px; font-weight:600; color:var(--ex-ink); letter-spacing:-.005em; }
 .ex-card-note { font-size:12px; color:var(--ex-faint); }
@@ -1892,9 +1897,7 @@ body {
     <div class="sb-icon" data-view="reports" data-label="Country Reports" data-label-ar="تقارير الدول" aria-label="Country Reports" onclick="switchView('reports',this)">
       <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
     </div>
-    <div class="sb-icon" data-view="evaluation" data-label="Program Evaluations" data-label-ar="تقييم البرامج" aria-label="Program Evaluations" onclick="switchView('evaluation',this)">
-      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-    </div>
+
   </div>
 </nav>
 
@@ -1911,10 +1914,6 @@ body {
     <div class="ex-scroll" id="rep-scroll"></div>
   </div>
 
-  <!-- ── VIEW: Program Evaluation (embedded evaluator) ── -->
-  <div id="view-evaluation" class="view" style="padding:0">
-    <iframe id="evaluator-frame" title="Program Evaluation" style="width:100%;height:calc(100vh - 56px);border:0;display:block"></iframe>
-  </div>
 
   <!-- ── VIEW: Countries (map + live country profile) ── -->
   <div id="view-countries" class="view">
@@ -1947,9 +1946,7 @@ body {
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
               <span data-ar="تقرير فوري">Instant report</span>
             </button>
-            <button class="cd-export-btn" onclick="cd_generateAICountryDeck(cdCountry)" style="background:#fff;color:var(--accent);gap:5px" title="Needs the local research server">
-              <span data-ar="تقرير الذكاء الاصطناعي الكامل">Full AI report</span>
-            </button>
+
             <div class="drawer-tabs" id="cd-main-tabs">
               <button class="dtab active" id="cd-tab-overview"    onclick="cdSwitchTab('overview',this)" data-ar="نظرة عامة">Overview</button>
               <button class="dtab"        id="cd-tab-indicators"  onclick="cdSwitchTab('indicators',this)" data-ar="المؤشرات">Indicators</button>
@@ -3014,7 +3011,7 @@ function recTitle(r) {
   const region = r.region || String(r.title || '').split(' — ')[0];
   if (r.kind === 'single') return tr(c + ' — Country Assessment', cN(c) + ' — تقييم الدولة');
   if (r.kind === 'region') return tr(region + ' — Regional Assessment', rN(region) + ' — التقييم الإقليمي');
-  if ((r.countries || []).length === 1) return tr(c + ' — Full AI report (23 slides)', cN(c) + ' — تقرير الذكاء الاصطناعي الكامل (23 شريحة)');
+  if ((r.countries || []).length === 1) return tr(c + ' — In-depth report (23 slides)', cN(c) + ' — التقرير المعمّق (23 شريحة)');
   return tr(r.title, rN(region) + ' — تقرير إقليمي مجمّع (ذكاء اصطناعي)');
 }
 function repDownloadBlob(blob, fileName) {
@@ -3795,7 +3792,7 @@ async function repRunRegionAI(region) {
 // ══════════════════════════════════════════════════════════════════════════
 // EXECUTIVE VIEW (leadership landing page) — live country data + reports
 // ══════════════════════════════════════════════════════════════════════════
-const repKindLabel = k => ({ single: tr('Country', 'دولة'), region: tr('Region', 'إقليم'), ai: tr('Full AI', 'ذكاء اصطناعي') }[k] || tr('Report', 'تقرير'));
+const repKindLabel = k => ({ single: tr('Country', 'دولة'), region: tr('Region', 'إقليم'), ai: tr('In-depth', 'معمّق') }[k] || tr('Report', 'تقرير'));
 const repLangTag = r => `<span class="ex-lang-tag" title="${r.lang === 'ar' ? tr('Arabic report', 'تقرير بالعربية') : tr('English report', 'تقرير بالإنجليزية')}">${r.lang === 'ar' ? 'ع' : 'EN'}</span>`;
 function exOpenCountry(country) {
   goView('countries');
@@ -3814,7 +3811,7 @@ function repLibRowsHtml(list, compact) {
 }
 function repPublishedHtml(filterCountry) {
   return Object.entries(REPORTS_MANIFEST || {}).filter(([c]) => !filterCountry || c === filterCountry).map(([c, r]) => `<div class="ex-rep">
-      ${flagImg(c, 18, 12)} <div style="flex:1;min-width:0"><div style="font-weight:600">${exEsc(tr(c + ' — full AI report', cN(c) + ' — تقرير الذكاء الاصطناعي الكامل'))} <span class="ex-lang-tag">EN</span></div>
+      ${flagImg(c, 18, 12)} <div style="flex:1;min-width:0"><div style="font-weight:600">${exEsc(tr(c + ' — in-depth report', cN(c) + ' — تقرير الذكاء الاصطناعي الكامل'))} <span class="ex-lang-tag">EN</span></div>
       <div style="font-size:11.5px;color:var(--ex-mute)">${tr('Published · ' + (r.slides || 23) + ' slides', 'منشور · ' + (r.slides || 23) + ' شريحة')}${r.generated ? ' · ' + exEsc(r.generated) : ''}</div></div>
       <a href="reports/${encodeURIComponent(r.file)}" download>${tr('Download', 'تنزيل')}</a></div>`).join('');
 }
@@ -4032,6 +4029,28 @@ function mapFilterTier(t) {
   colorMapPins();
 }
 
+// Welcome note for first-time users on the landing page; "Hide" keeps it hidden in this browser
+function exWelcomeHtml(n) {
+  let hidden = false; try { hidden = localStorage.getItem('cad_welcome_hidden') === '1'; } catch (e) {}
+  if (hidden) return '';
+  const item = (title, text) => `<div class="ex-welcome-item"><div class="ex-welcome-h">${title}</div><div class="ex-welcome-t">${text}</div></div>`;
+  return `<div class="ex-card ex-welcome" style="margin-bottom:24px">
+    <div class="ex-card-hd"><div>
+      <div class="ex-card-title">${tr('Welcome to the Country Assessment Dashboard', 'مرحباً بكم في لوحة تقييم الدول')}</div>
+      <div class="ex-card-note" style="margin-top:4px">${tr(`A tool of the Office of Development Affairs for comparing development needs across ${n} low- and middle-income countries and preparing country and regional assessments.`,
+        `أداة لمكتب الشؤون التنموية لمقارنة الاحتياجات التنموية في ${n} دولة منخفضة ومتوسطة الدخل وإعداد تقييمات للدول والأقاليم.`)}</div>
+    </div><button type="button" class="ex-mini" onclick="exHideWelcome()">${tr('Hide', 'إخفاء')}</button></div>
+    <div class="ex-welcome-grid">
+      ${item(tr('1 · Explore a country', '1 · استعراض دولة'), tr('Select a country on the map below or use the search bar at the top. Its profile shows the leadership, governance and indicators across eight sectors, each rated against international benchmarks.',
+        'اختر دولة على الخريطة أدناه أو استخدم شريط البحث في الأعلى. يعرض ملفها القيادة والحوكمة والمؤشرات في ثمانية قطاعات، مصنّفة وفق المعايير الدولية.'))}
+      ${item(tr('2 · Build a report', '2 · إعداد تقرير'), tr('Select <strong>New report</strong>, or <strong>Instant report</strong> on any country, to download a PowerPoint or PDF assessment in English or Arabic. Reports take under a minute.',
+        'اختر <strong>تقرير جديد</strong>، أو <strong>تقرير فوري</strong> من ملف أي دولة، لتنزيل تقييم بصيغة باوربوينت أو PDF بالعربية أو الإنجليزية. يستغرق إعداد التقرير أقل من دقيقة.'))}
+      ${item(tr('3 · About the data', '3 · عن البيانات'), tr('Figures come from the World Bank, UN agencies, the ILO, UN Comtrade and other official sources and are refreshed regularly. Every figure shows its source and year.',
+        'تأتي الأرقام من البنك الدولي ووكالات الأمم المتحدة ومنظمة العمل الدولية وقاعدة بيانات الأمم المتحدة لإحصاءات التجارة ومصادر رسمية أخرى، وتُحدَّث بانتظام. ويُذكر مصدر كل رقم وسنته.'))}
+    </div>
+  </div>`;
+}
+function exHideWelcome() { try { localStorage.setItem('cad_welcome_hidden', '1'); } catch (e) {} renderExecutive(); }
 function renderExecutive() {
   const el = document.getElementById('ex-scroll');
   if (!el) return;
@@ -4098,6 +4117,7 @@ function renderExecutive() {
     </div></div>
     <div class="ex-wrap">
       <div class="ex-kpis">${kpis}</div>
+      ${exWelcomeHtml(names.length)}
       <div class="ex-card ex-map-card" style="margin-bottom:24px">
         <div class="ex-card-hd"><div><div class="ex-card-title">${tr('Where needs are greatest', 'أين يكون الاحتياج أكبر')}</div><div class="ex-card-note" style="margin-top:4px">${tr('Click a country for its profile or an instant report', 'انقر على دولة لعرض ملفها أو إعداد تقرير فوري')}</div></div><a class="ex-link" href="#" onclick="goView('countries');return false">${tr('Open full map', 'فتح الخريطة الكاملة')} ${arrow}</a></div>
         <div class="ex-map" id="ex-map" dir="ltr">
@@ -4122,7 +4142,7 @@ function renderExecutive() {
           ${recent || `<div class="ex-empty">${tr('No saved reports yet.', 'لا توجد تقارير محفوظة بعد.')} <a class="ex-link" href="#" onclick="goView('reports');return false">${tr('Create the first one', 'أنشئ التقرير الأول')} ${arrow}</a></div>`}
         </div>
         <div class="ex-card">
-          <div class="ex-card-hd"><div class="ex-card-title">${tr('Published full AI reports', 'تقارير الذكاء الاصطناعي المنشورة')}</div><div class="ex-card-note">${tr('Shared on this website', 'متاحة على هذا الموقع')}</div></div>
+          <div class="ex-card-hd"><div class="ex-card-title">${tr('Published in-depth reports', 'التقارير المعمّقة المنشورة')}</div><div class="ex-card-note">${tr('Shared on this website', 'متاحة على هذا الموقع')}</div></div>
           ${published || `<div class="ex-empty">${tr('None published yet.', 'لا توجد تقارير منشورة بعد.')}</div>`}
         </div>
       </div>
@@ -4151,8 +4171,8 @@ function renderReports() {
         <div class="ex-title">${tr('Create a Report', 'إعداد تقرير')}</div>
         <div class="ex-rule"></div>
         <div class="ex-summary">${tr(
-          '<strong>Instant reports</strong> use live World Bank data and are ready in under a minute, for anyone using this website. <strong>Full AI reports</strong> research many more sources (15–25 minutes per country) and only work when the local research server is running.',
-          '<strong>التقارير الفورية</strong> تستخدم بيانات البنك الدولي المباشرة وتكون جاهزة في أقل من دقيقة لأي مستخدم لهذا الموقع. أما <strong>تقارير الذكاء الاصطناعي الكاملة</strong> فتبحث في مصادر أكثر بكثير (15–25 دقيقة لكل دولة) ولا تعمل إلا عند تشغيل خادم البحث المحلي.')}</div>
+          'Reports are built in under a minute from live World Bank data and the dashboard’s regularly refreshed sources. Choose PowerPoint (editable) or PDF when you build one.',
+          'تُعدّ التقارير في أقل من دقيقة من بيانات البنك الدولي المباشرة ومصادر اللوحة التي تُحدَّث بانتظام. اختر باوربوينت (قابل للتعديل) أو PDF عند الإعداد.')}</div>
         <div class="ex-datanote">${langNote}</div>
       </div>
     </div></div>
@@ -4166,7 +4186,7 @@ function renderReports() {
           <div id="rep-single-pub" class="rep-help" style="margin-top:8px"></div>
           <div class="rep-actions">
             <button class="ex-btn primary" onclick="repRunSingle(document.getElementById('rep-single').value)">${tr('Instant report', 'تقرير فوري')}</button>
-            <button class="ex-btn" onclick="repRunAIBatch([document.getElementById('rep-single').value])">${tr('Full AI report', 'تقرير الذكاء الاصطناعي الكامل')}</button>
+
           </div>
         </div>
         <div class="ex-card">
@@ -4176,7 +4196,7 @@ function renderReports() {
           <select id="rep-region" class="rep-input">${regOpts}</select>
           <div class="rep-actions">
             <button class="ex-btn primary" onclick="repRunRegion(document.getElementById('rep-region').value)">${tr('Instant region report', 'تقرير إقليمي فوري')}</button>
-            <button class="ex-btn" onclick="repRunRegionAI(document.getElementById('rep-region').value)">${tr('Full AI region report', 'تقرير إقليمي بالذكاء الاصطناعي')}</button>
+
             <button class="ex-btn" onclick="openRegionPopup(document.getElementById('rep-region').value)">${tr('View indicators', 'عرض المؤشرات')}</button>
           </div>
         </div>
@@ -4194,12 +4214,12 @@ function renderReports() {
         <div id="rep-grid" class="rep-grid"></div>
         <div class="rep-actions">
           <button class="ex-btn primary" onclick="repRunBatch([...repState.sel])">${tr('Build separate reports', 'إعداد تقارير منفصلة')}</button>
-          <button class="ex-btn" onclick="repRunAIBatch([...repState.sel])">${tr('Full AI reports', 'تقارير الذكاء الاصطناعي الكاملة')}</button>
+
         </div>
       </div>
       <div class="ex-card">
         <div class="ex-card-hd"><div class="ex-card-title">${tr('Saved reports', 'التقارير المحفوظة')}</div>
-          <div class="rep-chips">${['all', 'single', 'region', 'ai'].map(k => `<button class="rep-qs${repState.libKind === k ? ' on' : ''}" onclick="repState.libKind='${k}';repRenderLibrary()">${k === 'all' ? tr('All', 'الكل') : repKindLabel(k)}</button>`).join('')}</div>
+          <div class="rep-chips">${['all', 'single', 'region'].map(k => `<button class="rep-qs${repState.libKind === k ? ' on' : ''}" onclick="repState.libKind='${k}';repRenderLibrary()">${k === 'all' ? tr('All', 'الكل') : repKindLabel(k)}</button>`).join('')}</div>
         </div>
         <div class="rep-help">${tr("Reports are saved in this browser only, so colleagues won't see them and clearing your browser data removes them. Download anything you need to keep or share.",
           'تُحفظ التقارير في هذا المتصفح فقط، فلن يراها زملاؤك وستُحذف عند مسح بيانات المتصفح. نزّل أي تقرير تحتاج إلى الاحتفاظ به أو مشاركته.')}</div>
@@ -4213,7 +4233,7 @@ function repSingleChanged() {
   const c = (document.getElementById('rep-single') || {}).value, el = document.getElementById('rep-single-pub');
   if (!el) return;
   const pub = c && REPORTS_MANIFEST[c];
-  el.innerHTML = pub ? tr(`A published full AI report exists for ${exEsc(c)} — <a class="ex-link" href="reports/${encodeURIComponent(pub.file)}" download>download it</a> (English).`,
+  el.innerHTML = pub ? tr(`A published in-depth report exists for ${exEsc(c)} — <a class="ex-link" href="reports/${encodeURIComponent(pub.file)}" download>download it</a> (English).`,
                           `يوجد تقرير ذكاء اصطناعي منشور لـ${exEsc(cN(c))} — <a class="ex-link" href="reports/${encodeURIComponent(pub.file)}" download>تنزيله</a> (بالإنجليزية).`) : '';
 }
 function repSelectGroup(list) { (list || []).forEach(c => { if (repAllCountries().includes(c)) repState.sel.add(c); }); repRenderGrid(); }
@@ -4246,7 +4266,7 @@ function repRenderLibrary() {
       </tr>`).join('')}</tbody></table></div>`
     : `<div class="ex-empty">${repState.libKind === 'all' ? tr('No saved reports yet — create one above.', 'لا توجد تقارير محفوظة بعد — أنشئ تقريراً من الأعلى.') : tr('No saved reports of this type.', 'لا توجد تقارير محفوظة من هذا النوع.')}</div>`;
   const pub = document.getElementById('rep-published');
-  if (pub) { const h = repPublishedHtml(); pub.innerHTML = h && (repState.libKind === 'all' || repState.libKind === 'ai') ? `<div class="ex-sub-title">${tr('Published full AI reports (shared on the website)', 'تقارير الذكاء الاصطناعي المنشورة (متاحة على الموقع)')}</div>${h}` : ''; }
+  if (pub) { const h = repPublishedHtml(); pub.innerHTML = h && (repState.libKind === 'all' || repState.libKind === 'ai') ? `<div class="ex-sub-title">${tr('Published in-depth reports (shared on the website)', 'التقارير المعمّقة المنشورة (متاحة على الموقع)')}</div>${h}` : ''; }
 }
 
 // Progress overlay for report building.
@@ -4285,7 +4305,7 @@ async function cd_generateAICountryDeck(country, label, quiet){
     const j=await res.json().catch(()=>({ok:false,error:'HTTP '+res.status}));
     if(!res.ok||!j.ok) throw new Error(j.error||('HTTP '+res.status));
     const fileName=String(j.file||'').split(/[\\/]/).pop();
-    await repSave({ id:repId(), kind:'ai', title:country+' — Full AI report (23 slides)', countries:[country], createdAt:new Date().toISOString(),
+    await repSave({ id:repId(), kind:'ai', title:country+' — In-depth report (23 slides)', countries:[country], createdAt:new Date().toISOString(),
       fileName, size:null, data:'ai', blob:null, location:'Downloads folder on the server computer', lang:'en' });
     ov.remove(); onReportsChanged(); loadReportsManifest();
     if(!quiet) alert(tr('✓ Full AI report saved to Downloads on the server computer:\n\n', '✓ تم حفظ تقرير الذكاء الاصطناعي في مجلد التنزيلات على جهاز الخادم:\n\n')+fileName);

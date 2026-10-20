@@ -4,9 +4,9 @@ on:
   schedule:
     - cron: '0 3 1 * *'      # 03:00 UTC on the 1st of each month
   workflow_dispatch:          # allow manual trigger from GitHub UI
-  push:                       # rebuild whenever the builder or the country/indicator lists change
-    branches: [main]
-    paths: ['build_indicators.py', 'docs/index.html']   # the country list and indicator IDs are read from index.html
+  push:                       # rebuild when the builder changes; after editing the country/indicator lists in
+    branches: [main]          # index.html, run it by hand (Actions → Run workflow) — saves Actions minutes on a private repo
+    paths: ['build_indicators.py']
 
 concurrency:                  # runs queue one after another (a long trade download is never cut short)
   group: refresh-indicators

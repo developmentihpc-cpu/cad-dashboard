@@ -344,8 +344,8 @@ function buildCountryDeck(opts){
     return { id, L: lvl(id), head: lbl(id), body };
   }
   // ODA need index — explained wherever the score is shown
-  const NEED_NOTE = T('* ODA need index: a 0–100 score combining under-5 and maternal mortality, undernourishment and the share of people without basic water, sanitation and electricity, each scaled across the countries ODA tracks. Higher means greater need.',
-    '* مؤشر الاحتياج لدى المكتب: درجة من 0 إلى 100 تجمع وفيات الأطفال دون الخامسة ووفيات الأمهات ونقص التغذية ونسبة السكان المحرومين من مياه الشرب الأساسية والصرف الصحي والكهرباء، مع قياس كل منها عبر الدول التي يتابعها المكتب. الأعلى يعني احتياجاً أكبر.');
+  const NEED_NOTE = T('* ODA need index: a 0–100 score combining under-5 and maternal mortality, undernourishment and the share of people without basic water, sanitation and electricity, each scaled across the countries ODA tracks. Higher means greater need. Rank is the country’s position among all tracked countries on this index (1 = greatest need).',
+    '* مؤشر الاحتياج لدى المكتب: درجة من 0 إلى 100 تجمع وفيات الأطفال دون الخامسة ووفيات الأمهات ونقص التغذية ونسبة السكان المحرومين من مياه الشرب الأساسية والصرف الصحي والكهرباء، مع قياس كل منها عبر الدول التي يتابعها المكتب. الأعلى يعني احتياجاً أكبر. والترتيب هو موقع الدولة بين جميع الدول المتابَعة وفق هذا المؤشر (1 = الاحتياج الأكبر).');
 
   // ── sectors ── acts: [indicator that triggers it, worst level it applies to, English, Arabic] (null = always)
   //               inv:  development-investment angles, only where the data makes them relevant
@@ -624,7 +624,7 @@ function buildCountryDeck(opts){
     sl.text(T('NEED INDEX' + (opts.need ? '*' : ''), 'مؤشر الاحتياج' + (opts.need ? '*' : '')), { x:RX + 0.14, y:by + 0.12, w:1.4, h:0.22, fontFace:BODY, fontSize:7.8, bold:true, color:C.GOLD, charSpacing:1.4 });
     if (opts.need) {
       sl.text(String(Math.round(opts.need.score)), { x:RX + 0.14, y:by + 0.38, w:1.4, h:0.62, fontFace:HEAD, fontSize:32, bold:true, color:C.INK, valign:'middle' });
-      sl.text(T('of 100 · Rank ' + opts.need.rank + '/' + opts.need.of, 'من 100 · الترتيب ' + opts.need.rank + ' من ' + opts.need.of), { x:RX + 0.14, y:by + 1.06, w:1.4, h:0.4, fontFace:BODY, fontSize:8, color:C.MUTE, valign:'top' });
+      sl.text(T('of 100 · Rank* ' + opts.need.rank + '/' + opts.need.of, 'من 100 · الترتيب* ' + opts.need.rank + ' من ' + opts.need.of), { x:RX + 0.14, y:by + 1.06, w:1.4, h:0.4, fontFace:BODY, fontSize:8, color:C.MUTE, valign:'top' });
     } else sl.text(T('Not ranked', 'غير مصنّفة'), { x:RX + 0.14, y:by + 0.5, w:1.4, h:0.4, fontFace:BODY, fontSize:10, color:C.MUTE });
     const sx = RX + 1.78, sw = RW - 1.78, shown = SECTORS.filter(s => s.level != null);
     sl.text(T('STATUS BY SECTOR', 'الوضع حسب القطاع'), { x:sx, y:by - 0.02, w:sw, h:0.2, fontFace:BODY, fontSize:7.8, bold:true, color:C.GOLD, charSpacing:1.4 });

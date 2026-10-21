@@ -6,7 +6,7 @@ development needs across 132 tracked countries — every World Bank low- and mid
 assessment reports (PowerPoint or PDF) in the browser. Data comes from a pre-baked World Bank
 snapshot plus live API calls. No build step, no backend for the public site.
 
-**Live site (shared, sign-in required):** https://cad-dashboard.pages.dev — Cloudflare Pages builds from
+**Live site (shared, sign-in required):** https://country-assessment-dashboard.pages.dev (Cloudflare project `country-assessment-dashboard`; the earlier `cad-dashboard` project is to be deleted) — Cloudflare Pages builds from
 `main` (no build command, output directory `docs`, env var `SKIP_DEPENDENCY_INSTALL=1` so the root
 `requirements.txt` is ignored). Pushing to `main` deploys it in about a minute.
 - Sign-in: `functions/_middleware.js` (Pages Function) gates every request. Cloudflare Zero Trust / Access

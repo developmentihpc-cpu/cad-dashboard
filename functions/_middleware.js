@@ -12,10 +12,13 @@ const PUBLIC_PATHS = new Set(['/logo.png', '/favicon.ico']);
 
 function parseUsers(raw) {
   const users = new Map();
-  for (const entry of String(raw || '').split(/[\n,;]+/)) {
-    const i = entry.indexOf(':');
+  const unquote = s => s.trim().replace(/^["'`<\s]+|["'`>\s]+$/g, '');
+  for (let entry of String(raw || '').split(/[\r\n,;]+/)) {
+    entry = unquote(entry);
+    let i = entry.indexOf(':');
+    if (i < 1) i = entry.search(/\s/);   // "email password" (space instead of a colon)
     if (i < 1) continue;
-    const email = entry.slice(0, i).trim().toLowerCase(), pass = entry.slice(i + 1).trim();
+    const email = unquote(entry.slice(0, i)).toLowerCase(), pass = unquote(entry.slice(i + 1));
     if (email && pass) users.set(email, pass);
   }
   return users;

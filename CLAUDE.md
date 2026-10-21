@@ -13,8 +13,7 @@ snapshot plus live API calls. No build step, no backend for the public site.
   Cloudflare project secret `CAD_USERS` or `users` (`email:password` pairs separated by commas / semicolons / new lines).
   Sessions last 7 days and are signed with the person's own password, so removing or changing an entry
   ends that session. No secret = nobody gets in. Cloudflare Zero Trust / Access is **not** used (needs a card).
-- The old GitHub Pages address (https://developmentihpc-cpu.github.io/cad-dashboard/) is to be unpublished
-  and the repo made private once the Cloudflare sign-in is confirmed.
+- GitHub Pages was unpublished and the repo made **private** on 2026-10-21; the old github.io address no longer works.
 - A Claude-artifact test copy exists (https://claude.ai/artifact/7SwNV8j8SBAsBf82iqKAUJ, built by a scratch
   script); downloads don't work there for viewers outside the organisation, so it is not the shared version.
 

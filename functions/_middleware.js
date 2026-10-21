@@ -1,7 +1,7 @@
 // Sign-in for the Cloudflare Pages copy of the dashboard (cad-dashboard.pages.dev).
 // Every request passes through here; without a valid session cookie the visitor gets the sign-in page.
 //
-// Approved people live in ONE Cloudflare project secret, CAD_USERS (Settings → Variables and Secrets):
+// Approved people live in ONE Cloudflare project secret, CAD_USERS or users (Settings → Variables and Secrets):
 //   name@org.gov:password, other@partner.gov:another-password
 // separated by commas, semicolons or new lines. Passwords may not contain commas or semicolons.
 // Removing a person (or changing their password) ends their session at once. No secret set = nobody gets in.
@@ -105,7 +105,7 @@ const safeNext = n => (typeof n === 'string' && n.startsWith('/') && !n.startsWi
 export async function onRequest(context) {
   const { request, env, next } = context;
   const url = new URL(request.url);
-  const users = parseUsers(env.CAD_USERS);
+  const users = parseUsers(env.CAD_USERS || env.USERS || env.users || env.Users);
 
   if (url.pathname === '/__logout') {
     return new Response(null, { status: 302, headers: { Location: '/', 'Set-Cookie': `${COOKIE}=; Path=/; Max-Age=0; HttpOnly; Secure; SameSite=Lax` } });

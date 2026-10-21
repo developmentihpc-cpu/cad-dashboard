@@ -10,7 +10,7 @@ snapshot plus live API calls. No build step, no backend for the public site.
 `main` (no build command, output directory `docs`, env var `SKIP_DEPENDENCY_INSTALL=1` so the root
 `requirements.txt` is ignored). Pushing to `main` deploys it in about a minute.
 - Sign-in: `functions/_middleware.js` (Pages Function) gates every request. Approved people are in the
-  Cloudflare project secret `CAD_USERS` (`email:password` pairs separated by commas / semicolons / new lines).
+  Cloudflare project secret `CAD_USERS` or `users` (`email:password` pairs separated by commas / semicolons / new lines).
   Sessions last 7 days and are signed with the person's own password, so removing or changing an entry
   ends that session. No secret = nobody gets in. Cloudflare Zero Trust / Access is **not** used (needs a card).
 - The old GitHub Pages address (https://developmentihpc-cpu.github.io/cad-dashboard/) is to be unpublished

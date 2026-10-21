@@ -82,7 +82,7 @@ so adding an indicator there is enough for the next snapshot to include it.
 ### Sidebar → views
 | Order | `data-view` | View id | Content |
 |---|---|---|---|
-| 1 | `executive` | `view-executive` | **Landing page.** "Global South at a Glance": KPIs (countries, low-income, population, no electricity, no basic water, reports saved), need-index mini map, regions, recent reports |
+| 1 | `executive` | `view-executive` | **Landing page.** "Countries at a Glance": KPIs (countries, low-income, population, no electricity, no basic water, reports saved), need-index mini map, regions, recent reports |
 | 2 | `countries` | `view-countries` | Full Leaflet map shaded by need tier; click a country → country drawer |
 | 3 | `reports` | `view-reports` | Build country / batch / regional reports; saved-reports library; published decks |
 | 4 | `evaluation` | `view-evaluation` | `evaluator.html` in an iframe (lazy-loaded, cache-busted) |

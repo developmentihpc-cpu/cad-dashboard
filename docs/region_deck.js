@@ -56,7 +56,7 @@ function buildRegionDeck(opts){
   // ── deck ──
   const p = new Pptx();
   p.defineLayout({ name:'W', width:13.333, height:7.5 }); p.layout = 'W';
-  p.title = REGION + T(' — Regional Assessment', ' — التقييم الإقليمي'); p.author = T('Country Needs Dashboard', 'لوحة احتياجات الدول — مكتب الشؤون التنموية');
+  p.title = REGION + T(' — Regional Assessment', ' — التقييم الإقليمي'); p.author = T('Country Needs Dashboard', 'لوحة احتياجات الدول');
   if (ar) p.rtlMode = true;
   let PAGE = 0, TOTAL = 0; const S = [];
   const newSlide = bg => { const sl = DK.slide(p, ar); sl.shape(p.ShapeType.rect, { x:0, y:0, w:13.333, h:7.5, fill:{ color: bg || C.WHITE }, line:{ type:'none' } }); PAGE++; return sl; };
@@ -67,7 +67,7 @@ function buildRegionDeck(opts){
     const lc = dark ? '3A5068' : C.LINE, tc = dark ? '9FB2C5' : C.FAINT;
     sl.shape(p.ShapeType.line, { x:0.5, y:7.1, w:12.33, h:0, line:{ color:lc, width:0.5 } });
     sl.text(T('Source: ', 'المصدر: ') + src, { x:0.5, y:7.15, w:9.6, h:0.24, fontFace:BODY, fontSize:8, color:tc, valign:'middle' });
-    sl.text([{ text:'ODA', options:{ bold:true, color: dark ? C.GOLD_LT : C.NAVY } }, { text:'   ' + DK.pageLabel(PAGE, TOTAL, ar), options:{ color:tc } }],
+    sl.text([{ text:DK.pageLabel(PAGE, TOTAL, ar), options:{ color:tc } }],
       { x:10.4, y:7.15, w:2.43, h:0.24, fontFace:BODY, fontSize:8, align:'right', valign:'middle' });
   };
   const SRC_LINE = T('World Bank Open Data · UN IGME · WHO · FAO · WHO/UNICEF JMP · IEA', 'بيانات البنك الدولي · فريق الأمم المتحدة لتقدير وفيات الأطفال · منظمة الصحة العالمية · الفاو · برنامج الرصد المشترك · وكالة الطاقة الدولية');
@@ -105,7 +105,7 @@ function buildRegionDeck(opts){
     sl.text(String(list.length), { x:10.3, y:0.5, w:2.4, h:1.1, fontFace:HEAD, fontSize:60, bold:true, color:C.GOLD_LT, align:'right' });
     sl.text(T('countries', 'دولة'), { x:10.3, y:1.55, w:2.4, h:0.3, fontFace:BODY, fontSize:11, color:C.SKY_LT, align:'right' });
     sl.text(DATE, { x:0.6, y:7.05, w:5, h:0.4, fontFace:BODY, fontSize:10, bold:true, color:C.GOLD_LT, valign:'middle' });
-    sl.text(T('Office of Development Affairs', 'مكتب الشؤون التنموية'), { x:7.7, y:7.05, w:5.03, h:0.4, fontFace:BODY, fontSize:10, color:C.SKY_LT, align:'right', valign:'middle' });
+    sl.text(T('Country Needs Dashboard', 'لوحة احتياجات الدول'), { x:7.7, y:7.05, w:5.03, h:0.4, fontFace:BODY, fontSize:10, color:C.SKY_LT, align:'right', valign:'middle' });
   });
 
   // ══ 2 · REGIONAL OVERVIEW — need-index map (country-level data), people, key figures ══
@@ -133,7 +133,7 @@ function buildRegionDeck(opts){
       [meds['SH.DYN.MORT'] != null ? String(Math.round(meds['SH.DYN.MORT'])) : '—', T('Median under-5 mortality (per 1,000)', 'وسيط وفيات الأطفال دون الخامسة (لكل 1,000)'), meds['SH.DYN.MORT'] != null ? DK.sevLvl('SH.DYN.MORT', meds['SH.DYN.MORT']) : null],
     ];
     cards.forEach(([v, l, L], i) => card(sl, RX, 1.68 + i * (ch + 0.08), RW, ch, v, l, null, L));
-    foot(sl, T('ODA need index · World Bank Open Data · Natural Earth (borders) · ', 'مؤشر الاحتياج · بيانات البنك الدولي · ناتشورال إيرث (الحدود) · ') + DATE);
+    foot(sl, T('Need index · World Bank Open Data · Natural Earth (borders) · ', 'مؤشر الاحتياج · بيانات البنك الدولي · ناتشورال إيرث (الحدود) · ') + DATE);
   });
 
   // ══ 3 · NEEDS AT A GLANCE ══
@@ -146,7 +146,7 @@ function buildRegionDeck(opts){
     const incomeLine = inc.LIC ? T(`${inc.LIC} of ${list.length} countries are low-income; ${inc.LMIC} are lower-middle income.`, `${inc.LIC} من ${list.length} دول منخفضة الدخل، و${inc.LMIC} من الشريحة الدنيا من الدخل المتوسط.`)
       : T(`None of the ${list.length} countries is low-income; ${inc.LMIC} are lower-middle and ${inc.UMIC} upper-middle income.`, `لا توجد دولة منخفضة الدخل بين الدول الـ${list.length}؛ ${inc.LMIC} من الشريحة الدنيا و${inc.UMIC} من الشريحة العليا من الدخل المتوسط.`);
     bullets(sl, [
-      top3.length ? T(`Highest need on the ODA index: ${top3.join(', ')}.`, `الأعلى احتياجاً على مؤشر المكتب: ${top3.join('، ')}.`) : T('Not enough data to rank countries by need.', 'البيانات غير كافية لترتيب الدول حسب الاحتياج.'),
+      top3.length ? T(`Highest need on the need index: ${top3.join(', ')}.`, `الأعلى احتياجاً على مؤشر الاحتياج: ${top3.join('، ')}.`) : T('Not enough data to rank countries by need.', 'البيانات غير كافية لترتيب الدول حسب الاحتياج.'),
       T(`${u5bad} of ${list.length} countries have under-5 mortality above 40 per 1,000 live births (SDG target: 25).`, `${u5bad} من ${list.length} دول تتجاوز فيها وفيات الأطفال دون الخامسة 40 لكل 1,000 مولود حي (الهدف: 25).`),
       meds['SH.DYN.MORT'] != null ? T(`Regional median under-5 mortality is ${Math.round(meds['SH.DYN.MORT'])} per 1,000; median GDP per capita (PPP) is ${medGdp != null ? F.money({ v:medGdp }) : 'not available'}.`,
         `يبلغ الوسيط الإقليمي لوفيات الأطفال دون الخامسة ${Math.round(meds['SH.DYN.MORT'])} لكل 1,000، ووسيط نصيب الفرد من الناتج ${medGdp != null ? F.money({ v:medGdp }) : 'غير متاح'}.`) : null,
@@ -171,7 +171,7 @@ function buildRegionDeck(opts){
     const part = ranked.slice(s * PER_RANK, (s + 1) * PER_RANK), pages = Math.ceil(ranked.length / PER_RANK);
     S.push(() => {
       const sl = newSlide(C.WHITE);
-      head(sl, REGION + T(' · need ranking', ' · ترتيب الاحتياج') + (pages > 1 ? ` (${s + 1}/${pages})` : ''), T('Where Needs Are Greatest', 'أين يكون الاحتياج أكبر'), T('ODA need index, 0 (lowest) – 100 (highest)', 'مؤشر الاحتياج، من 0 (الأدنى) إلى 100 (الأعلى)'));
+      head(sl, REGION + T(' · need ranking', ' · ترتيب الاحتياج') + (pages > 1 ? ` (${s + 1}/${pages})` : ''), T('Where Needs Are Greatest', 'أين يكون الاحتياج أكبر'), T('Need index, 0 (lowest) – 100 (highest)', 'مؤشر الاحتياج، من 0 (الأدنى) إلى 100 (الأعلى)'));
       const top = 1.45, rowH = Math.min(0.42, 5.3 / Math.max(part.length, 1)), NW = 3.0, BX = 0.5 + 0.45 + NW + 0.3, BW = 7.6;
       part.forEach((c, i) => { const y = top + i * rowH, rank = s * PER_RANK + i + 1, hi = c.tier === 'hi';
         sl.text(String(rank), { x:0.5, y, w:0.4, h:rowH, fontFace:BODY, fontSize:9.5, bold:true, color:C.FAINT, valign:'middle' });
@@ -179,8 +179,8 @@ function buildRegionDeck(opts){
         sl.shape(p.ShapeType.rect, { x:BX, y:y + rowH * 0.22, w:BW, h:rowH * 0.56, fill:{ color:C.SKY_PALE }, line:{ type:'none' } });
         sl.shape(p.ShapeType.rect, { x:BX, y:y + rowH * 0.22, w:Math.max(0.05, BW * c.need / 100), h:rowH * 0.56, fill:{ color: hi ? C.GOLD : C.SKY }, line:{ type:'none' } });
         sl.text(String(Math.round(c.need)), { x:BX + BW + 0.1, y, w:0.6, h:rowH, fontFace:HEAD, fontSize:12, bold:true, color:C.INK, valign:'middle' }); });
-      sl.text(T('Gold = among the highest-need third of all countries ODA tracks.', 'الذهبي = ضمن الثلث الأعلى احتياجاً بين جميع الدول التي يتابعها المكتب.'), { x:0.5, y:6.78, w:12.3, h:0.24, fontFace:BODY, fontSize:8, color:C.FAINT });
-      foot(sl, T('ODA need index — see Method · ', 'مؤشر الاحتياج — انظر المنهجية · ') + DATE);
+      sl.text(T('Gold = among the highest-need third of all tracked countries.', 'الذهبي = ضمن الثلث الأعلى احتياجاً بين جميع الدول المتابَعة.'), { x:0.5, y:6.78, w:12.3, h:0.24, fontFace:BODY, fontSize:8, color:C.FAINT });
+      foot(sl, T('Need index — see Method · ', 'مؤشر الاحتياج — انظر المنهجية · ') + DATE);
     });
   }
 
@@ -266,7 +266,7 @@ function buildRegionDeck(opts){
     sl.text(T('METHOD & SOURCES', 'المنهجية والمصادر'), { x:0.6, y:0.6, w:9, h:0.3, fontFace:BODY, fontSize:10, bold:true, color:C.GOLD_LT, charSpacing:2.6 });
     sl.text(REGION, { x:0.57, y:0.95, w:12, h:0.9, fontFace:HEAD, fontSize:34, bold:true, color:C.WHITE, fit:'shrink' });
     sl.shape(p.ShapeType.rect, { x:0.6, y:1.95, w:0.9, h:0.035, fill:{ color:C.GOLD }, line:{ type:'none' } });
-    [[T('ODA need index', 'مؤشر الاحتياج'), T('Combines under-5 and maternal mortality, undernourishment and lack of basic drinking water, sanitation and electricity. Each is scaled 0–100 across all countries the dashboard tracks and averaged; a country needs four of the six to be ranked.',
+    [[T('Need index', 'مؤشر الاحتياج'), T('Combines under-5 and maternal mortality, undernourishment and lack of basic drinking water, sanitation and electricity. Each is scaled 0–100 across all countries the dashboard tracks and averaged; a country needs four of the six to be ranked.',
        'يجمع بين وفيات الأطفال دون الخامسة ووفيات الأمهات ونقص التغذية ونقص مياه الشرب الأساسية والصرف الصحي والكهرباء. يُقاس كل منها من 0 إلى 100 عبر جميع الدول المتابَعة ثم يُحسب المتوسط؛ ويلزم توفر أربعة من ستة مؤشرات للترتيب.')],
      [T('Severity colours', 'ألوان الحدّة'), T('Severe · High concern · Moderate · On track, against SDG / WHO reference points — the same scale as the dashboard. "People without" figures multiply national access rates by population and are estimates.',
        'حرج · مقلق · متوسط · على المسار، وفق مرجعيات أهداف التنمية المستدامة ومنظمة الصحة — وهو مقياس اللوحة نفسه. أعداد السكان المحرومين تقديرية بضرب معدلات الوصول الوطنية في عدد السكان.')],

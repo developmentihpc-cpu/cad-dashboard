@@ -344,8 +344,8 @@ function buildCountryDeck(opts){
     return { id, L: lvl(id), head: lbl(id), body };
   }
   // ODA need index — explained wherever the score is shown
-  const NEED_NOTE = T('* ODA need index: a 0–100 score combining under-5 and maternal mortality, undernourishment and the share of people without basic water, sanitation and electricity, each scaled across the countries ODA tracks. Higher means greater need. Rank is the country’s position among all tracked countries on this index (1 = greatest need).',
-    '* مؤشر الاحتياج لدى المكتب: درجة من 0 إلى 100 تجمع وفيات الأطفال دون الخامسة ووفيات الأمهات ونقص التغذية ونسبة السكان المحرومين من مياه الشرب الأساسية والصرف الصحي والكهرباء، مع قياس كل منها عبر الدول التي يتابعها المكتب. الأعلى يعني احتياجاً أكبر. والترتيب هو موقع الدولة بين جميع الدول المتابَعة وفق هذا المؤشر (1 = الاحتياج الأكبر).');
+  const NEED_NOTE = T('* Need index: a 0–100 score combining under-5 and maternal mortality, undernourishment and the share of people without basic water, sanitation and electricity, each scaled across all tracked countries. Higher means greater need. Rank is the country’s position among all tracked countries on this index (1 = greatest need).',
+    '* مؤشر الاحتياج: درجة من 0 إلى 100 تجمع وفيات الأطفال دون الخامسة ووفيات الأمهات ونقص التغذية ونسبة السكان المحرومين من مياه الشرب الأساسية والصرف الصحي والكهرباء، مع قياس كل منها عبر جميع الدول المتابَعة. الأعلى يعني احتياجاً أكبر. والترتيب هو موقع الدولة بين جميع الدول المتابَعة وفق هذا المؤشر (1 = الاحتياج الأكبر).');
 
   // ── sectors ── acts: [indicator that triggers it, worst level it applies to, English, Arabic] (null = always)
   //               inv:  development-investment angles, only where the data makes them relevant
@@ -445,7 +445,7 @@ function buildCountryDeck(opts){
   // ── deck ──
   const p = new Pptx();
   p.defineLayout({ name:'W', width:13.333, height:7.5 }); p.layout = 'W';
-  p.title = NAME + T(' — Country Assessment', ' — تقييم الدولة'); p.author = T('Country Needs Dashboard', 'لوحة احتياجات الدول — مكتب الشؤون التنموية');
+  p.title = NAME + T(' — Country Assessment', ' — تقييم الدولة'); p.author = T('Country Needs Dashboard', 'لوحة احتياجات الدول');
   if (ar) p.rtlMode = true;
   let PAGE = 0, TOTAL = 0; const S = [];
   const newSlide = bg => { const sl = DK.slide(p, ar); sl.shape(p.ShapeType.rect, { x:0, y:0, w:13.333, h:7.5, fill:{ color: bg || C.WHITE }, line:{ type:'none' } }); PAGE++; return sl; };
@@ -454,7 +454,7 @@ function buildCountryDeck(opts){
     const lc = dark ? '3A5068' : C.LINE, tc = dark ? '9FB2C5' : C.FAINT;
     sl.shape(p.ShapeType.line, { x:0.5, y:7.1, w:12.33, h:0, line:{ color:lc, width:0.5 } });
     sl.text(T('Source: ', 'المصدر: ') + src, { x:0.5, y:7.15, w:9.6, h:0.24, fontFace:BODY, fontSize:8, color:tc, valign:'middle' });
-    sl.text([{ text:'ODA', options:{ bold:true, color: dark ? C.GOLD_LT : C.NAVY } }, { text:'   ' + DK.pageLabel(PAGE, TOTAL, ar), options:{ color:tc } }],
+    sl.text([{ text:DK.pageLabel(PAGE, TOTAL, ar), options:{ color:tc } }],
       { x:10.4, y:7.15, w:2.43, h:0.24, fontFace:BODY, fontSize:8, align:'right', valign:'middle' });
   };
   const head = (sl, eb, title, statement) => {
@@ -538,7 +538,7 @@ function buildCountryDeck(opts){
       sl.image({ data:opts.flagData, x:f.x, y:f.y, w:f.w, h:f.h });
     }
     sl.text(DATE, { x:0.6, y:7.05, w:5, h:0.4, fontFace:BODY, fontSize:10, bold:true, color:C.GOLD_LT, valign:'middle' });
-    sl.text(T('Office of Development Affairs', 'مكتب الشؤون التنموية'), { x:7.7, y:7.05, w:5.03, h:0.4, fontFace:BODY, fontSize:10, color:C.SKY_LT, align:'right', valign:'middle' });
+    sl.text(T('Country Needs Dashboard', 'لوحة احتياجات الدول'), { x:7.7, y:7.05, w:5.03, h:0.4, fontFace:BODY, fontSize:10, color:C.SKY_LT, align:'right', valign:'middle' });
   });
 
   // ══ 2 · COUNTRY OVERVIEW — map + flag, capital, population, leaders, political situation, status by sector ══
@@ -645,8 +645,8 @@ function buildCountryDeck(opts){
     const rated = SECTORS.filter(s => s.level != null);
     const priorities = rated.filter(s => s.level <= 1).sort((a, b) => a.level - b.level || b.nSevere - a.nSevere);
     const overall = [
-      n ? T(`${NAME} scores ${Math.round(n.score)}/100 on the ODA need index* — ranking ${n.rank} of ${n.of} tracked countries, ${tierTxt}.`,
-            `تسجّل ${NAME} ${Math.round(n.score)} من 100 على مؤشر الاحتياج* — الترتيب ${n.rank} من ${n.of}، أي ${tierTxt} احتياجاً بين الدول التي يتابعها المكتب.`) : null,
+      n ? T(`${NAME} scores ${Math.round(n.score)}/100 on the need index* — ranking ${n.rank} of ${n.of} tracked countries, ${tierTxt}.`,
+            `تسجّل ${NAME} ${Math.round(n.score)} من 100 على مؤشر الاحتياج* — الترتيب ${n.rank} من ${n.of}، أي ${tierTxt} احتياجاً بين الدول المتابَعة.`) : null,
       priorities.length && priorities.length === rated.length ? T(`All ${rated.length} sectors are rated severe or high concern — needs are broad-based rather than confined to one area.`,
                                                   `جميع القطاعات (${rated.length}) مصنّفة حرجة أو مقلقة — أي أن الاحتياجات واسعة ولا تقتصر على مجال واحد.`)
       : priorities.length ? T(`${priorities.length} of ${rated.length} sectors are rated severe or high concern: ${priorities.map(s => s.en.toLowerCase()).join(', ')}.`,
@@ -700,7 +700,7 @@ function buildCountryDeck(opts){
       }
     });
     if (n) needNote(sl, 0.5, 6.64, 7.6);   // narrower, so the colour key fits at the bottom right
-    foot(sl, T('ODA need index and SDG/WHO benchmarks · World Bank Open Data · ', 'مؤشر الاحتياج ومعايير أهداف التنمية المستدامة · بيانات البنك الدولي · ') + DATE);
+    foot(sl, T('Need index and SDG/WHO benchmarks · World Bank Open Data · ', 'مؤشر الاحتياج ومعايير أهداف التنمية المستدامة · بيانات البنك الدولي · ') + DATE);
   });
 
   // ══ "Where the need is" — sub-national map after a sector slide. Only when an official DHS survey measured the
@@ -955,13 +955,13 @@ function buildCountryDeck(opts){
         'يُصنَّف كل مؤشر (حرج · مقلق · متوسط · على المسار) وفق مرجعيات أهداف التنمية المستدامة ومنظمة الصحة العالمية واليونسكو وصندوق النقد — وهو المقياس نفسه المستخدم في اللوحة. ويأخذ القطاع تصنيف أضعف مؤشراته الحديثة.')],
       [T('Data quality rules', 'قواعد جودة البيانات'), T(`Only figures from the last ${DK.STALE_YEARS} years are shown, rated or used in the narrative. Indicators with no recent figure, or an implausible one (e.g. 0% spending), are left off the slides and named in a "Limited data" note; nothing is estimated.`,
         `لا تُعرض ولا تُصنَّف ولا تُستخدم في السرد إلا الأرقام الصادرة خلال آخر ${DK.STALE_YEARS} سنوات. وتُستبعد المؤشرات التي لا رقم حديثاً لها أو التي رقمها غير معقول (مثل إنفاق 0%) من الشرائح وتُذكر في ملاحظة «بيانات محدودة»؛ ولا يُقدَّر أي رقم.`)],
-      [T('ODA need index', 'مؤشر الاحتياج'), T('A 0–100 score (higher = greater need). Combines under-5 and maternal mortality, undernourishment and lack of basic water, sanitation and electricity, each scaled across all tracked countries (0–100).',
+      [T('Need index', 'مؤشر الاحتياج'), T('A 0–100 score (higher = greater need). Combines under-5 and maternal mortality, undernourishment and lack of basic water, sanitation and electricity, each scaled across all tracked countries (0–100).',
         'درجة من 0 إلى 100 (الأعلى = احتياج أكبر). تجمع بين وفيات الأطفال دون الخامسة ووفيات الأمهات ونقص التغذية ونقص مياه الشرب الأساسية والصرف الصحي والكهرباء، مع قياس كل منها عبر جميع الدول المتابَعة (0–100).')],
       [T('Sources', 'المصادر'), [T('World Bank Open Data', 'بيانات البنك الدولي المفتوحة'), T('World Bank Worldwide Governance Indicators', 'مؤشرات الحوكمة العالمية'), 'IMF', 'WHO', 'UN IGME (UNICEF/WHO)', 'UNESCO UIS', 'FAO', 'WHO/UNICEF JMP', 'IEA', T('ILO and ILOSTAT labour force surveys (jobs by business size)', 'منظمة العمل الدولية ومسوح القوى العاملة (الوظائف حسب حجم المنشأة)'),
         T('World Bank Global Findex, Enterprise Surveys and Logistics Performance Index', 'مؤشر الشمول المالي ومسوح المؤسسات ومؤشر الأداء اللوجستي للبنك الدولي'),
         T('UN Comtrade (products and trading partners)', 'قاعدة بيانات الأمم المتحدة لإحصاءات التجارة (المنتجات والشركاء التجاريون)'), T('Ember via Our World in Data (electricity by source)', 'مركز إمبر للطاقة عبر منصة «عالمنا في البيانات» (الكهرباء حسب المصدر)'),
         T('The DHS Program (regional maps)', 'برنامج المسوح الديموغرافية والصحية DHS (الخرائط حسب المنطقة)'), T('Natural Earth (borders and capitals)', 'ناتشورال إيرث (الحدود والعواصم)'),
-        T('Wikidata and ODA research of October 2026 (heads of state and government, terms of office)', 'ويكي بيانات وبحث المكتب في أكتوبر 2026 (رؤساء الدول والحكومات ومدد الولاية)')].map(x => ar ? srcTxt(x) : x).join(' · ') +
+        T('Wikidata and desk research of October 2026 (heads of state and government, terms of office)', 'ويكي بيانات وبحث مكتبي في أكتوبر 2026 (رؤساء الدول والحكومات ومدد الولاية)')].map(x => ar ? srcTxt(x) : x).join(' · ') +
         T(` — World Bank figures retrieved live when this report was built (${DATE}); the other datasets are refreshed monthly.`, ` — استُرجعت أرقام البنك الدولي مباشرة عند إعداد هذا التقرير (${DATE})، وتُحدَّث مجموعات البيانات الأخرى شهرياً.`)],
     ];
     blocks.forEach(([h, t], i) => {

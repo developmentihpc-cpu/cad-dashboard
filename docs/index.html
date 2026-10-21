@@ -9,15 +9,15 @@
 <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
 <link  href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
-<script src="i18n_ar.js?v=20261021c"></script>
-<script src="sub_ar.js?v=20261021c"></script>
-<script src="severity.js?v=20261021c"></script>
-<script src="ind_defs.js?v=20261021c"></script>
-<script src="deck_kit.js?v=20261021c"></script>
-<script src="hs_labels.js?v=20261021c"></script>
-<script src="country_deck.js?v=20261021c"></script>
-<script src="pdf_deck.js?v=20261021c"></script>
-<script src="region_deck.js?v=20261021c"></script>
+<script src="i18n_ar.js?v=20261021d"></script>
+<script src="sub_ar.js?v=20261021d"></script>
+<script src="severity.js?v=20261021d"></script>
+<script src="ind_defs.js?v=20261021d"></script>
+<script src="deck_kit.js?v=20261021d"></script>
+<script src="hs_labels.js?v=20261021d"></script>
+<script src="country_deck.js?v=20261021d"></script>
+<script src="pdf_deck.js?v=20261021d"></script>
+<script src="region_deck.js?v=20261021d"></script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -1869,7 +1869,7 @@ body {
 <body>
 
 <header class="app-header">
-  <img src="logo.png?v=20261021c" alt="UAE Presidential Court · International Humanitarian and Philanthropic Council" style="height:52px;width:auto;display:block">
+  <img src="logo.png?v=20261021d" alt="UAE Presidential Court · International Humanitarian and Philanthropic Council" style="height:52px;width:auto;display:block">
   <div class="app-header-title" data-ar="لوحة احتياجات الدول">Country Needs Dashboard</div>
   <div class="hdr-search" role="search">
     <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
@@ -2475,8 +2475,8 @@ function trackedCountryLayer(m, res, style, bind) {
 // Need index wording, the same everywhere a country is shown: the score and what the rank is a rank of, with a footnote
 const needRankTxt = (n, total, star = '*') => tr(`Need index${star} ${Math.round(n.need)}/100 · Rank ${n.rank} of ${total} in terms of need${star}`,
   `مؤشر الاحتياج${star} ${Math.round(n.need)}/100 · الترتيب ${n.rank} من ${total} من حيث الاحتياج${star}`);
-const needFootnote = total => tr(`* Need index: ODA's score from 0 to 100 combining under-5 and maternal mortality, undernourishment and the share of people without basic water, sanitation and electricity; higher means greater need. Rank compares the ${total} tracked countries on this index: 1 = greatest need.`,
-  `* مؤشر الاحتياج: درجة من 0 إلى 100 يحسبها المكتب وتجمع وفيات الأطفال دون الخامسة ووفيات الأمهات ونقص التغذية ونسبة السكان المحرومين من مياه الشرب الأساسية والصرف الصحي والكهرباء؛ والأعلى يعني احتياجاً أكبر. ويقارن الترتيب بين الدول المتابَعة (${total}) وفق هذا المؤشر: 1 = الاحتياج الأكبر.`);
+const needFootnote = total => tr(`* Need index: a score from 0 to 100 combining under-5 and maternal mortality, undernourishment and the share of people without basic water, sanitation and electricity; higher means greater need. Rank compares the ${total} tracked countries on this index: 1 = greatest need.`,
+  `* مؤشر الاحتياج: درجة من 0 إلى 100 تجمع وفيات الأطفال دون الخامسة ووفيات الأمهات ونقص التغذية ونسبة السكان المحرومين من مياه الشرب الأساسية والصرف الصحي والكهرباء؛ والأعلى يعني احتياجاً أكبر. ويقارن الترتيب بين الدول المتابَعة (${total}) وفق هذا المؤشر: 1 = الاحتياج الأكبر.`);
 const needTip = c => { const n = needScores()[c] || {}, total = (needScores().__ranked || []).length;
   return `<b>${exEsc(cN(c))}</b>` + (n.rank ? ' · ' + needRankTxt(n, total, '') + tr(' (1 = greatest need)', ' (1 = الاحتياج الأكبر)') : ''); };
 const applyStyle = (o, s, dotExtra) => { if (o.layer) o.layer.setStyle(s); if (o.dot) o.dot.setStyle(Object.assign({}, s, { weight:1.5, color: s.color === '#FFFFFF' ? '#FFFFFF' : s.color }, dotExtra || {})); };
@@ -2595,7 +2595,7 @@ function cdOverviewHtml(c, data) {
         ${fact(tr('Head of state', 'رئيس الدولة'), hos)}
         ${fact(tr('Head of government', 'رئيس الحكومة'), hog)}
         ${pol && !pol.gov.length ? fact(tr('Region', 'الإقليم'), exEsc(rN(repRegionOf(c)))) : fact(tr('System of government', 'نظام الحكم'), gov)}
-        ${fact(tr('ODA need index', 'مؤشر الاحتياج'), (n.rank ? `<b>${Math.round(n.need)}</b>/100 · ${tr('Rank ' + n.rank + ' of ' + total + ' in terms of need (1 = greatest)', 'الترتيب ' + n.rank + ' من ' + total + ' من حيث الاحتياج (1 = الأكبر)')}` : '—') + `<button type="button" class="cd-ov-how" onclick="cdOpenNeedHow()">${tr('How is it calculated?', 'كيف يُحتسب؟')}</button>`)}
+        ${fact(tr('Need index', 'مؤشر الاحتياج'), (n.rank ? `<b>${Math.round(n.need)}</b>/100 · ${tr('Rank ' + n.rank + ' of ' + total + ' in terms of need (1 = greatest)', 'الترتيب ' + n.rank + ' من ' + total + ' من حيث الاحتياج (1 = الأكبر)')}` : '—') + `<button type="button" class="cd-ov-how" onclick="cdOpenNeedHow()">${tr('How is it calculated?', 'كيف يُحتسب؟')}</button>`)}
       </div>
       <div class="cd-ov-pol">
         <div class="cd-ov-pol-hd">${tr('Political situation', 'الوضع السياسي')} <span>${tr('governance scores, 0–100 (higher is better)', 'مؤشرات الحوكمة، 0–100 (الأعلى أفضل)')}</span></div>
@@ -2813,7 +2813,7 @@ function needPanelHtml(c, open) {
   const snap = repSnapshotStr();
   return `<div class="np">
     <div class="np-hd">
-      <div><div class="np-k">${tr('ODA need index', 'مؤشر الاحتياج')}</div>
+      <div><div class="np-k">${tr('Need index', 'مؤشر الاحتياج')}</div>
         <div class="np-score">${n.need != null ? Math.round(n.need) : '—'}<span>/100</span></div></div>
       <div class="np-rank">${n.rank ? `<b>${tr('Rank ' + n.rank + ' of ' + total, 'الترتيب ' + n.rank + ' من ' + total)}</b><span>${tierLbl} · ${tr('Rank 1 = greatest need', 'الترتيب 1 = الاحتياج الأكبر')}</span>` : `<b>${tierLbl}</b><span>${tr('Fewer than 4 of the 6 indicators available', 'تتوفر أقل من 4 من المؤشرات الستة')}</span>`}</div>
     </div>
@@ -3277,7 +3277,7 @@ function repImgRatio(src) {
 }
 let REP_LOGO = null;
 async function repLogo() {
-  if (!REP_LOGO) REP_LOGO = repFetchDataUrl('logo.png?v=20261021c', 4000).then(async data => ({ data, ratio: await repImgRatio(data) })).catch(() => null);
+  if (!REP_LOGO) REP_LOGO = repFetchDataUrl('logo.png?v=20261021d', 4000).then(async data => ({ data, ratio: await repImgRatio(data) })).catch(() => null);
   return REP_LOGO;
 }
 // ── Report maps — drawn from Natural Earth outlines (accurate borders), never stretched ──
@@ -4046,8 +4046,8 @@ function exWelcomeHtml(n) {
   return `<div class="ex-card ex-welcome" style="margin-bottom:24px">
     <div class="ex-card-hd"><div>
       <div class="ex-card-title">${tr('Welcome to the Country Needs Dashboard', 'مرحباً بكم في لوحة احتياجات الدول')}</div>
-      <div class="ex-card-note" style="margin-top:4px">${tr(`A tool by the Office of Development Affairs for comparing development needs across ${n} low- and middle-income countries and preparing country and regional assessments.`,
-        `أداة من إعداد مكتب الشؤون التنموية لمقارنة الاحتياجات التنموية في ${n} دولة منخفضة ومتوسطة الدخل وإعداد تقييمات للدول والأقاليم.`)}</div>
+      <div class="ex-card-note" style="margin-top:4px">${tr(`A tool for comparing development needs across ${n} low- and middle-income countries and preparing country and regional assessments.`,
+        `أداة لمقارنة الاحتياجات التنموية في ${n} دولة منخفضة ومتوسطة الدخل وإعداد تقييمات للدول والأقاليم.`)}</div>
     </div><button type="button" class="ex-mini" onclick="exHideWelcome()">${tr('Hide', 'إخفاء')}</button></div>
     <div class="ex-welcome-grid">
       ${item(tr('1 · Explore a country', '1 · استعراض دولة'), tr('Select a country on the map below or use the search bar at the top. Its profile shows the leadership, governance and indicators across eight sectors, each rated against international benchmarks.',
@@ -4112,7 +4112,7 @@ function renderExecutive() {
   el.innerHTML = `
     <div class="ex-hero"><div class="ex-hero-in">
       <div>
-        <div class="ex-eyebrow">${tr('Executive View · Office of Development Affairs', 'الملخص التنفيذي · مكتب الشؤون التنموية')}</div>
+        <div class="ex-eyebrow">${tr('Executive View', 'الملخص التنفيذي')}</div>
         <div class="ex-title">${tr('Countries at a Glance', 'الدول في لمحة')}</div>
         <div class="ex-rule"></div>
         <div class="ex-summary">${tr(

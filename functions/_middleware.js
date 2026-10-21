@@ -195,7 +195,7 @@ function passwordPage(next, note = '', status = 200) {
     <label for="password">Password · كلمة المرور</label>
     <input id="password" name="password" type="password" autocomplete="current-password" required>
     <button type="submit">Sign in · تسجيل الدخول</button></form>
-  <p class="foot">Access is limited to approved users. If you need access or have forgotten your password, contact the Office of Development Affairs team.</p>`, status);
+  <p class="foot">Access is limited to approved users. If you need access or have forgotten your password, contact the dashboard administrator.</p>`, status);
 }
 
 function requestPage(note = '', v = {}, status = 200) {

@@ -9,10 +9,15 @@ snapshot plus live API calls. No build step, no backend for the public site.
 **Live site (shared, sign-in required):** https://cad-dashboard.pages.dev — Cloudflare Pages builds from
 `main` (no build command, output directory `docs`, env var `SKIP_DEPENDENCY_INSTALL=1` so the root
 `requirements.txt` is ignored). Pushing to `main` deploys it in about a minute.
-- Sign-in: `functions/_middleware.js` (Pages Function) gates every request. Approved people are in the
-  Cloudflare project secret `CAD_USERS` or `users` (`email:password` pairs separated by commas / semicolons / new lines).
-  Sessions last 7 days and are signed with the person's own password, so removing or changing an entry
-  ends that session. No secret = nobody gets in. Cloudflare Zero Trust / Access is **not** used (needs a card).
+- Sign-in: `functions/_middleware.js` (Pages Function) gates every request. Cloudflare Zero Trust / Access
+  is **not** used (needs a card). Two modes:
+  - **Request and approve** (when the KV binding `CAD_KV` and secret `BREVO_API_KEY` exist): people request
+    access at `/__request`; admins (`ADMIN_EMAILS`, default developmentihpc@gmail.com) get an email and
+    approve / decline / remove at `/__admin` (a "Manage access" pill shows on the dashboard for admins).
+    Sign-in is a 6-digit code emailed via Brevo (sender `MAIL_FROM`, default the first admin). Sessions:
+    7 days, signed with `SESSION_KEY` (or the Brevo key), re-checked against KV on every request.
+  - **Passwords** (fallback until the above is set up): secret `CAD_USERS` = `email:password, …`.
+    In code mode the emails in `CAD_USERS` still count as approved.
 - GitHub Pages was unpublished and the repo made **private** on 2026-10-21; the old github.io address no longer works.
 - A Claude-artifact test copy exists (https://claude.ai/artifact/7SwNV8j8SBAsBf82iqKAUJ, built by a scratch
   script); downloads don't work there for viewers outside the organisation, so it is not the shared version.

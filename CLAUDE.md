@@ -11,7 +11,7 @@ snapshot plus live API calls. No build step, no backend for the public site.
 `requirements.txt` is ignored). Pushing to `main` deploys it in about a minute.
 - Sign-in: `functions/_middleware.js` (Pages Function) gates every request. Cloudflare Zero Trust / Access
   is **not** used (needs a card). Two modes:
-  - **Request and approve** (when the KV binding `CAD_KV` and an email sender exist: secrets `MAIL_RELAY_URL` + `MAIL_RELAY_TOKEN` for the Google Apps Script relay `mail_relay.gs`, deployed from developmentihpc@gmail.com as a web app with a `TOKEN` script property; or `BREVO_API_KEY`): people request
+  - **Request and approve** (when the KV binding `CAD_KV` (the live project uses `cad_kv`, namespace `cad-access`) and an email sender exist: secrets `MAIL_RELAY_URL` + `MAIL_RELAY_TOKEN` for the Google Apps Script relay `mail_relay.gs`, deployed from developmentihpc@gmail.com as a web app with a `TOKEN` script property; or `BREVO_API_KEY`): people request
     access at `/__request`; admins (`ADMIN_EMAILS`, default developmentihpc@gmail.com) get an email and
     approve / decline / remove at `/__admin` (a "Manage access" pill shows on the dashboard for admins).
     Sign-in is a 6-digit code emailed through the relay (from that Gmail). Sessions:

@@ -11,11 +11,11 @@ snapshot plus live API calls. No build step, no backend for the public site.
 `requirements.txt` is ignored). Pushing to `main` deploys it in about a minute.
 - Sign-in: `functions/_middleware.js` (Pages Function) gates every request. Cloudflare Zero Trust / Access
   is **not** used (needs a card). Two modes:
-  - **Request and approve** (when the KV binding `CAD_KV` and secret `BREVO_API_KEY` exist): people request
+  - **Request and approve** (when the KV binding `CAD_KV` and an email sender exist: secrets `MAIL_RELAY_URL` + `MAIL_RELAY_TOKEN` for the Google Apps Script relay `mail_relay.gs`, deployed from developmentihpc@gmail.com as a web app with a `TOKEN` script property; or `BREVO_API_KEY`): people request
     access at `/__request`; admins (`ADMIN_EMAILS`, default developmentihpc@gmail.com) get an email and
     approve / decline / remove at `/__admin` (a "Manage access" pill shows on the dashboard for admins).
-    Sign-in is a 6-digit code emailed via Brevo (sender `MAIL_FROM`, default the first admin). Sessions:
-    7 days, signed with `SESSION_KEY` (or the Brevo key), re-checked against KV on every request.
+    Sign-in is a 6-digit code emailed through the relay (from that Gmail). Sessions:
+    7 days, signed with `SESSION_KEY` (or the relay token), re-checked against KV on every request.
   - **Passwords** (fallback until the above is set up): secret `CAD_USERS` = `email:password, …`.
     In code mode the emails in `CAD_USERS` still count as approved.
 - GitHub Pages was unpublished and the repo made **private** on 2026-10-21; the old github.io address no longer works.

@@ -2,11 +2,12 @@
 // Every request passes through here; without a valid session cookie the visitor gets the sign-in page.
 //
 // Two modes:
-// 1. Request-and-approve (when the KV binding CAD_KV and the secret BREVO_API_KEY are set):
+// 1. Request-and-approve (when the KV binding CAD_KV and an email sender are set: MAIL_RELAY_URL + MAIL_RELAY_TOKEN
+//    for the Google Apps Script relay in mail_relay.gs, or BREVO_API_KEY):
 //    - anyone can request access (/__request); admins get an email and approve or decline on /__admin;
 //    - approved people sign in with a 6-digit code sent to their email (no passwords);
-//    - admins: ADMIN_EMAILS (comma-separated; default developmentihpc@gmail.com). Sender: MAIL_FROM (a
-//      sender verified in Brevo; default the first admin).
+//    - admins: ADMIN_EMAILS (comma-separated; default developmentihpc@gmail.com). With the relay, emails come
+//      from the Gmail account that deployed the script; with Brevo, from MAIL_FROM (default the first admin).
 //    - KV keys: user:<email> and req:<email> (details in metadata), code:<email> (10 min), rl:<email> (60 s).
 // 2. Passwords (fallback while 1 is not set up): secret CAD_USERS (or users) = "email:password, email:password".
 // In mode 1 the emails in CAD_USERS still count as approved (they sign in with a code).
@@ -57,8 +58,10 @@ function config(env) {
   const legacy = parseUsers(env.CAD_USERS || env.USERS || env.users || env.Users);
   const admins = String(env.ADMIN_EMAILS || DEFAULT_ADMINS).split(/[\s,;]+/).map(cleanEmail).filter(Boolean);
   const kv = env.CAD_KV, brevo = env.BREVO_API_KEY;
-  return { legacy, admins, kv, brevo, approvals: !!(kv && brevo), from: cleanEmail(env.MAIL_FROM) || admins[0],
-           secret: env.SESSION_KEY || brevo || '' };
+  const relay = env.MAIL_RELAY_URL, relayToken = env.MAIL_RELAY_TOKEN;
+  const mail = !!((relay && relayToken) || brevo);
+  return { legacy, admins, kv, brevo, relay: relay && relayToken ? relay : null, relayToken, approvals: !!(kv && mail),
+           from: cleanEmail(env.MAIL_FROM) || admins[0], secret: env.SESSION_KEY || relayToken || brevo || '' };
 }
 
 async function isApproved(cfg, email) {
@@ -90,10 +93,17 @@ async function sessionEmail(request, cfg) {
   return (await isApproved(cfg, email)) ? email : null;
 }
 
-// ── Email (Brevo) ─────────────────────────────────────────────────────────
+// ── Email: Google Apps Script relay (mail_relay.gs, sends from the admin's Gmail) or Brevo ──
 async function sendMail(cfg, to, subject, text) {
   const html = '<div style="font-family:Arial,sans-serif;font-size:15px;line-height:1.55;color:#0F2A40">' +
     esc(text).replace(/(https:\/\/[^\s<]+)/g, '<a href="$1">$1</a>').replace(/\n/g, '<br>') + '</div>';
+  if (cfg.relay) {
+    const r = await fetch(cfg.relay, { method: 'POST', headers: { 'Content-Type': 'application/json' }, redirect: 'follow',
+      body: JSON.stringify({ token: cfg.relayToken, to, subject, text, html }) });
+    const out = await r.text();
+    if (!r.ok || !/"ok"\s*:\s*true/.test(out)) throw new Error('Mail relay ' + r.status + ' ' + out.slice(0, 200));
+    return;
+  }
   const r = await fetch('https://api.brevo.com/v3/smtp/email', {
     method: 'POST',
     headers: { 'api-key': cfg.brevo, 'Content-Type': 'application/json', Accept: 'application/json' },
@@ -320,7 +330,7 @@ export async function onRequest(context) {
 
   // Admin
   if (path === '/__admin' || path.startsWith('/__admin/')) {
-    if (!cfg.approvals) return page('Admin', `<h1>Admin not set up</h1><p class="sub">The request-and-approve setup (CAD_KV and BREVO_API_KEY) is not complete yet.</p>`, 503);
+    if (!cfg.approvals) return page('Admin', `<h1>Admin not set up</h1><p class="sub">The request-and-approve setup (CAD_KV plus the email relay) is not complete yet.</p>`, 503);
     if (!me) return emailPage(cfg, '/__admin');
     if (!cfg.admins.includes(me)) return page('Admin', `<h1>Not an admin</h1><p class="sub">${esc(me)} can use the dashboard but cannot manage access. <a href="/">Open the dashboard</a></p>`, 403);
     if (!post) return adminPage(cfg, me);

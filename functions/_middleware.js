@@ -336,9 +336,8 @@ export async function onRequest(context) {
   if (path === '/__admin' || path.startsWith('/__admin/')) {
     if (!cfg.approvals) {   // names only, never values
       const missing = [!(env.CAD_KV || env.cad_kv) && 'CAD_KV (KV binding)', !env.MAIL_RELAY_URL && 'MAIL_RELAY_URL', !env.MAIL_RELAY_TOKEN && 'MAIL_RELAY_TOKEN'].filter(Boolean);
-      const found = Object.keys(env).filter(k => /^[A-Z_]+$/i.test(k) && k !== 'ASSETS').sort();
       return page('Admin', `<h1>Admin not set up</h1><p class="sub">The request-and-approve setup (CAD_KV plus the email relay) is not complete yet.</p>
-        <p class="sub">Not found: <strong>${esc(missing.join(', ') || 'none')}</strong><br>Settings this deployment can see: ${esc(found.join(', ') || 'none')}</p>`, 503);
+        <p class="sub">Not found: <strong>${esc(missing.join(', ') || 'none')}</strong></p>`, 503);
     }
     if (!me) return emailPage(cfg, '/__admin');
     if (!cfg.admins.includes(me)) return page('Admin', `<h1>Not an admin</h1><p class="sub">${esc(me)} can use the dashboard but cannot manage access. <a href="/">Open the dashboard</a></p>`, 403);

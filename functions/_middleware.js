@@ -179,6 +179,9 @@ function codePage(email, next, note = '', status = 200) {
     <label for="code">Code · الرمز</label>
     <input id="code" name="code" class="code" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9 ]{6,8}" maxlength="8" required autofocus>
     <button type="submit">Sign in · تسجيل الدخول</button></form>
+  <p class="msg ok" style="margin-top:18px"><strong>New here?</strong> A code is only sent once your access has been approved.
+    <a href="/__request">Request access</a> first, and you will receive an email when it is approved.
+    <span class="ar">مستخدم جديد؟ لا يُرسل الرمز إلا بعد الموافقة على طلبك. <a href="/__request">اطلب الوصول</a> أولاً.</span></p>
   <p class="foot">${SPAM_NOTE}<br><a href="/">Use a different email or send a new code</a></p>`, status);
 }
 
@@ -318,11 +321,12 @@ export async function onRequest(context) {
       const v = { name: short(f('name'), 100), email: cleanEmail(f('email')), org: short(f('org'), 150), reason: short(f('reason'), 400) };
       if (!v.name || !v.org || !validEmail(v.email)) return requestPage(msg('Please fill in your name, a valid email and your organisation.'), v, 400);
       if (await isApproved(cfg, v.email)) return emailPage(cfg, '/', msg('This email already has access. Enter it below to get a sign-in code.', 'ok'));
-      const existing = await cfg.kv.get('req:' + v.email);
+      const prev = (await cfg.kv.getWithMetadata('req:' + v.email)).metadata;
       await cfg.kv.put('req:' + v.email, '1', { metadata: { name: v.name, org: v.org, reason: short(v.reason, 300), at: Date.now() } });
-      if (!existing) {
+      if (!prev || Date.now() - (prev.at || 0) > 6 * 3600e3) {   // repeat requests notify again after 6 hours, not on every click
         const text = `New access request for the Country Assessment Dashboard\n\nName: ${v.name}\nEmail: ${v.email}\nOrganisation: ${v.org}\nReason: ${v.reason || '—'}\n\nApprove or decline: ${url.origin}/__admin`;
-        await Promise.allSettled(cfg.admins.map(a => sendMail(cfg, a, `Access request: ${v.name} (${v.org})`, text)));
+        const sent = await Promise.allSettled(cfg.admins.map(a => sendMail(cfg, a, `Access request: ${v.name} (${v.org})`, text)));
+        sent.filter(s => s.status === 'rejected').forEach(s => console.error('admin notification not sent', String(s.reason)));
       }
       return page('Request sent', `<h1>Request sent</h1><p class="sub">Thank you, ${esc(v.name)}. We will email <strong>${esc(v.email)}</strong> once your request has been reviewed.
         <span class="ar">شكراً لك. سنراسلك عبر البريد الإلكتروني بعد مراجعة طلبك.</span></p><p class="foot">${SPAM_NOTE}</p>`);

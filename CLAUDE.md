@@ -33,6 +33,7 @@ snapshot plus live API calls. No build step, no backend for the public site.
 |---|---|
 | `index.html` | The app: HTML + CSS + JS (~4,300 lines) |
 | `i18n_ar.js` | Arabic names: `AR_COUNTRY`, `AR_REGION`, `AR_INCOME`, etc. Keys are the English display names |
+| `sub_ar.js` | `AR_SUB`: Arabic names for every DHS survey region in `data/subnational/` (report maps and "where the need is" slides), used via `subN()` in index.html. Add names when a new survey country is downloaded |
 | `severity.js` | **The one severity scale** used everywhere: `SEV_RULES`, `sevLevel()`, `SEV_COLORS`, `SEV_LABELS` (0 Severe · 1 High concern · 2 Moderate · 3 On track) |
 | `ind_defs.js` | `IND_DEFS[id] = [English, Arabic]` plain-language indicator definitions |
 | `deck_kit.js` | `DK` — shared deck palette, fonts, value hygiene (missing / impossible / outdated), RTL mirroring, `STALE_YEARS = 8`, map slots |

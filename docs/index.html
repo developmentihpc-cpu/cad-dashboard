@@ -9,14 +9,15 @@
 <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
 <link  href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
-<script src="i18n_ar.js?v=20261020b"></script>
-<script src="severity.js?v=20261020b"></script>
-<script src="ind_defs.js?v=20261020b"></script>
-<script src="deck_kit.js?v=20261020b"></script>
-<script src="hs_labels.js?v=20261020b"></script>
-<script src="country_deck.js?v=20261020b"></script>
-<script src="pdf_deck.js?v=20261020b"></script>
-<script src="region_deck.js?v=20261020b"></script>
+<script src="i18n_ar.js?v=20261021a"></script>
+<script src="sub_ar.js?v=20261021a"></script>
+<script src="severity.js?v=20261021a"></script>
+<script src="ind_defs.js?v=20261021a"></script>
+<script src="deck_kit.js?v=20261021a"></script>
+<script src="hs_labels.js?v=20261021a"></script>
+<script src="country_deck.js?v=20261021a"></script>
+<script src="pdf_deck.js?v=20261021a"></script>
+<script src="region_deck.js?v=20261021a"></script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -3489,11 +3490,18 @@ async function subSnapshot(country) {
     return j.sectors || null;
   } catch (e) { return null; }
 }
+// DHS region name for display: survey qualifiers like "(post 2022)" dropped; Arabic from AR_SUB (sub_ar.js) when known
+const subN = name => {
+  const clean = String(name || '').replace(/\s*\((?:>=|post|since|after|before|<)[^)]*\)\s*/gi, ' ').trim();
+  return isAr() && typeof AR_SUB !== 'undefined' && AR_SUB[clean] ? AR_SUB[clean] : clean;
+};
 function repSubnational(country) {
-  if (SUB_CACHE[country]) return SUB_CACHE[country];
+  const ck = country + '|' + lang;   // maps carry region labels, so cache per language
+  if (SUB_CACHE[ck]) return SUB_CACHE[ck];
   const job = (async () => {
     let raw = await subSnapshot(country);
     if (raw === null) raw = await subLive(country);
+    Object.values(raw || {}).forEach(s => { s.regions = (s.regions || []).map(r => ({ ...r, name: subN(r.name) })); });
     const out = {}, minYear = new Date().getFullYear() - DK.STALE_YEARS;
     for (const [key, s] of Object.entries(raw || {})) {
       const ind = (SUBNAT[key] || []).find(x => x.id === s.id);
@@ -3509,8 +3517,8 @@ function repSubnational(country) {
       out[key] = e;
     }
     return out;
-  })().catch(e => { console.warn('[CAD] sub-national data unavailable', e); delete SUB_CACHE[country]; return {}; });
-  SUB_CACHE[country] = job;
+  })().catch(e => { console.warn('[CAD] sub-national data unavailable', e); delete SUB_CACHE[ck]; return {}; });
+  SUB_CACHE[ck] = job;
   return job;
 }
 // Draws survey regions shaded by value, neighbours in grey for context; same projection rules as repMapImage.

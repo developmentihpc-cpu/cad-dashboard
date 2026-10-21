@@ -133,7 +133,7 @@ function buildRegionDeck(opts){
       [meds['SH.DYN.MORT'] != null ? String(Math.round(meds['SH.DYN.MORT'])) : '—', T('Median under-5 mortality (per 1,000)', 'وسيط وفيات الأطفال دون الخامسة (لكل 1,000)'), meds['SH.DYN.MORT'] != null ? DK.sevLvl('SH.DYN.MORT', meds['SH.DYN.MORT']) : null],
     ];
     cards.forEach(([v, l, L], i) => card(sl, RX, 1.68 + i * (ch + 0.08), RW, ch, v, l, null, L));
-    foot(sl, T('ODA need index · World Bank Open Data · Natural Earth (borders) · ', 'مؤشر الاحتياج · بيانات البنك الدولي · Natural Earth (الحدود) · ') + DATE);
+    foot(sl, T('ODA need index · World Bank Open Data · Natural Earth (borders) · ', 'مؤشر الاحتياج · بيانات البنك الدولي · ناتشورال إيرث (الحدود) · ') + DATE);
   });
 
   // ══ 3 · NEEDS AT A GLANCE ══

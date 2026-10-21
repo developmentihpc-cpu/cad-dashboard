@@ -554,7 +554,7 @@ function buildCountryDeck(opts){
     if (opts.flagData) { const f = DK.contain(opts.flagRatio, mx + 0.2, my + 0.2, 1.1, 0.75);
       sl.shape(p.ShapeType.rect, { x:f.x - 0.04, y:f.y - 0.04, w:f.w + 0.08, h:f.h + 0.08, fill:{ color:C.WHITE }, line:{ color:C.LINE, width:0.5 } });
       sl.image({ data:opts.flagData, x:f.x, y:f.y, w:f.w, h:f.h }); }
-    sl.text(T('National borders: Natural Earth', 'الحدود الوطنية: Natural Earth'), { x:mx, y:my + M.h + 0.03, w:M.w, h:0.22, fontFace:BODY, fontSize:7.4, color:C.FAINT, valign:'middle' });
+    sl.text(T('National borders: Natural Earth', 'الحدود الوطنية: ناتشورال إيرث'), { x:mx, y:my + M.h + 0.03, w:M.w, h:0.22, fontFace:BODY, fontSize:7.4, color:C.FAINT, valign:'middle' });
     if (opts.need) needNote(sl, mx, my + M.h + 0.27, M.w);
     // right column
     const RX = 6.85, RW = 13.333 - RX - 0.5, pol = opts.politics;
@@ -633,7 +633,7 @@ function buildCountryDeck(opts){
       sl.text(T(s.short[0], s.short[1]), { x:sx, y:yy, w:sw - 1.3, h:0.19, fontFace:BODY, fontSize:8.2, color:C.INK, valign:'middle' });
       badge(sl, s.level, sx + sw - 1.2, yy + 0.015, 1.2, 0.15);
     });
-    foot(sl, T('World Bank Open Data & WGI · Wikidata (leaders) · Natural Earth (borders) · ', 'بيانات البنك الدولي ومؤشرات الحوكمة · ويكي بيانات (القادة) · Natural Earth (الحدود) · ') + DATE);
+    foot(sl, T('World Bank Open Data & WGI · Wikidata (leaders) · Natural Earth (borders) · ', 'بيانات البنك الدولي ومؤشرات الحوكمة · ويكي بيانات (القادة) · ناتشورال إيرث (الحدود) · ') + DATE);
   });
 
   // ══ 3 · EXECUTIVE SUMMARY — overall picture, then each priority sector with its most urgent gaps ══
@@ -959,8 +959,8 @@ function buildCountryDeck(opts){
         'درجة من 0 إلى 100 (الأعلى = احتياج أكبر). تجمع بين وفيات الأطفال دون الخامسة ووفيات الأمهات ونقص التغذية ونقص مياه الشرب الأساسية والصرف الصحي والكهرباء، مع قياس كل منها عبر جميع الدول المتابَعة (0–100).')],
       [T('Sources', 'المصادر'), [T('World Bank Open Data', 'بيانات البنك الدولي المفتوحة'), T('World Bank Worldwide Governance Indicators', 'مؤشرات الحوكمة العالمية'), 'IMF', 'WHO', 'UN IGME (UNICEF/WHO)', 'UNESCO UIS', 'FAO', 'WHO/UNICEF JMP', 'IEA', T('ILO and ILOSTAT labour force surveys (jobs by business size)', 'منظمة العمل الدولية ومسوح القوى العاملة (الوظائف حسب حجم المنشأة)'),
         T('World Bank Global Findex, Enterprise Surveys and Logistics Performance Index', 'مؤشر الشمول المالي ومسوح المؤسسات ومؤشر الأداء اللوجستي للبنك الدولي'),
-        T('UN Comtrade (products and trading partners)', 'قاعدة بيانات الأمم المتحدة لإحصاءات التجارة (المنتجات والشركاء التجاريون)'), T('Ember via Our World in Data (electricity by source)', 'Ember عبر Our World in Data (الكهرباء حسب المصدر)'),
-        T('The DHS Program (regional maps)', 'برنامج المسوح الديموغرافية والصحية DHS (الخرائط حسب المنطقة)'), T('Natural Earth (borders and capitals)', 'Natural Earth (الحدود والعواصم)'),
+        T('UN Comtrade (products and trading partners)', 'قاعدة بيانات الأمم المتحدة لإحصاءات التجارة (المنتجات والشركاء التجاريون)'), T('Ember via Our World in Data (electricity by source)', 'مركز إمبر للطاقة عبر منصة «عالمنا في البيانات» (الكهرباء حسب المصدر)'),
+        T('The DHS Program (regional maps)', 'برنامج المسوح الديموغرافية والصحية DHS (الخرائط حسب المنطقة)'), T('Natural Earth (borders and capitals)', 'ناتشورال إيرث (الحدود والعواصم)'),
         T('Wikidata and ODA research of October 2026 (heads of state and government, terms of office)', 'ويكي بيانات وبحث المكتب في أكتوبر 2026 (رؤساء الدول والحكومات ومدد الولاية)')].map(x => ar ? srcTxt(x) : x).join(' · ') +
         T(` — World Bank figures retrieved live when this report was built (${DATE}); the other datasets are refreshed monthly.`, ` — استُرجعت أرقام البنك الدولي مباشرة عند إعداد هذا التقرير (${DATE})، وتُحدَّث مجموعات البيانات الأخرى شهرياً.`)],
     ];

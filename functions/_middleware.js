@@ -127,7 +127,7 @@ function page(title, body, status = 200, extraHead = '') {
   .card { width:100%; max-width:420px; background:#fff; border:1px solid var(--line); border-top:3px solid var(--gold);
           border-radius:10px; padding:32px 28px; box-shadow:0 8px 30px rgba(15,42,64,.06); }
   .wide { max-width:860px; }
-  img.logo { height:44px; display:block; margin-bottom:22px; }
+  img.logo { width:100%; height:auto; display:block; margin-bottom:22px; }
   h1 { font-family:Lora,Georgia,serif; font-size:22px; margin:0 0 6px; }
   h2 { font-family:Lora,Georgia,serif; font-size:17px; margin:28px 0 10px; }
   .sub { color:var(--mute); font-size:14px; margin:0 0 20px; line-height:1.55; }
@@ -151,7 +151,7 @@ function page(title, body, status = 200, extraHead = '') {
   .alt { background:#fff; color:var(--ink); border:1px solid #CBD6E1; } .alt:hover { background:#F0F4F8; }
   .tblwrap { overflow-x:auto; } .empty { color:var(--mute); font-size:14px; }
 </style>${extraHead}</head><body><main class="card${title === 'Admin' ? ' wide' : ''}">
-<img class="logo" src="/logo.png" alt="Office of Development Affairs">${body}</main></body></html>`;
+<img class="logo" src="/logo.png" alt="UAE Presidential Court · International Humanitarian and Philanthropic Council">${body}</main></body></html>`;
   return new Response(html, { status, headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store',
     'X-Frame-Options': 'DENY', 'X-Robots-Tag': 'noindex' } });
 }

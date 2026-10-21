@@ -90,8 +90,8 @@ function buildRegionDeck(opts){
     sl.shape(p.ShapeType.rect, { x:0, y:7.0, w:13.333, h:0.5, fill:{ color:C.INK }, line:{ type:'none' } });
     sl.shape(p.ShapeType.rect, { x:0, y:6.96, w:13.333, h:0.04, fill:{ color:C.GOLD }, line:{ type:'none' } });
     if (opts.logo && opts.logo.data) {
-      sl.shape(p.ShapeType.roundRect, { x:0.6, y:0.55, w:2.9, h:0.9, rectRadius:0.08, fill:{ color:C.WHITE }, line:{ type:'none' } });
-      const lg = DK.contain(opts.logo.ratio, 0.75, 0.66, 2.6, 0.68);
+      sl.shape(p.ShapeType.roundRect, { x:0.6, y:0.5, w:5.4, h:1.0, rectRadius:0.08, fill:{ color:C.WHITE }, line:{ type:'none' } });
+      const lg = DK.contain(opts.logo.ratio, 0.75, 0.62, 5.1, 0.76);
       sl.image({ data:opts.logo.data, x:lg.x, y:lg.y, w:lg.w, h:lg.h });
     }
     sl.text(T('REGIONAL ASSESSMENT', 'التقييم الإقليمي'), { x:0.6, y:2.25, w:9, h:0.3, fontFace:BODY, fontSize:11, bold:true, color:C.GOLD_LT, charSpacing:3 });

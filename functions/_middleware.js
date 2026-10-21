@@ -290,7 +290,11 @@ export async function onRequest(context) {
           await sendMail(cfg, email, `Your sign-in code: ${code}`,
             `Your code for the Country Assessment Dashboard is ${code}\n\nIt is valid for ${CODE_MINUTES} minutes. If you did not ask for it, you can ignore this email.\n\nرمز الدخول إلى لوحة تقييم الدول: ${code}`);
         } catch (e) {
-          return emailPage(cfg, target, msg('The code could not be sent just now. Please try again in a few minutes.'), 502);
+          await cfg.kv.delete('rl:' + email);   // let them retry straight away
+          console.error('sign-in code not sent', String(e));
+          const why = String(e && e.message || e).replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').slice(0, 160);
+          return emailPage(cfg, target, msg('The code could not be sent just now. Please try again in a few minutes.' +
+            `<br><small>Technical detail: ${esc(why)}</small>`), 502);
         }
       } else await pause(400);   // same answer either way, so the page does not reveal who has access
       return codePage(email, target);

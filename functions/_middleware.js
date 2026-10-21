@@ -57,7 +57,7 @@ async function hmac(secret, msg) {
 function config(env) {
   const legacy = parseUsers(env.CAD_USERS || env.USERS || env.users || env.Users);
   const admins = String(env.ADMIN_EMAILS || DEFAULT_ADMINS).split(/[\s,;]+/).map(cleanEmail).filter(Boolean);
-  const kv = env.CAD_KV, brevo = env.BREVO_API_KEY;
+  const kv = env.CAD_KV || env.cad_kv, brevo = env.BREVO_API_KEY;
   const relay = env.MAIL_RELAY_URL, relayToken = env.MAIL_RELAY_TOKEN;
   const mail = !!((relay && relayToken) || brevo);
   return { legacy, admins, kv, brevo, relay: relay && relayToken ? relay : null, relayToken, approvals: !!(kv && mail),
@@ -331,7 +331,7 @@ export async function onRequest(context) {
   // Admin
   if (path === '/__admin' || path.startsWith('/__admin/')) {
     if (!cfg.approvals) {   // names only, never values
-      const missing = [!env.CAD_KV && 'CAD_KV (KV binding)', !env.MAIL_RELAY_URL && 'MAIL_RELAY_URL', !env.MAIL_RELAY_TOKEN && 'MAIL_RELAY_TOKEN'].filter(Boolean);
+      const missing = [!(env.CAD_KV || env.cad_kv) && 'CAD_KV (KV binding)', !env.MAIL_RELAY_URL && 'MAIL_RELAY_URL', !env.MAIL_RELAY_TOKEN && 'MAIL_RELAY_TOKEN'].filter(Boolean);
       const found = Object.keys(env).filter(k => /^[A-Z_]+$/i.test(k) && k !== 'ASSETS').sort();
       return page('Admin', `<h1>Admin not set up</h1><p class="sub">The request-and-approve setup (CAD_KV plus the email relay) is not complete yet.</p>
         <p class="sub">Not found: <strong>${esc(missing.join(', ') || 'none')}</strong><br>Settings this deployment can see: ${esc(found.join(', ') || 'none')}</p>`, 503);

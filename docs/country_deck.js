@@ -445,7 +445,7 @@ function buildCountryDeck(opts){
   // ── deck ──
   const p = new Pptx();
   p.defineLayout({ name:'W', width:13.333, height:7.5 }); p.layout = 'W';
-  p.title = NAME + T(' — Country Assessment', ' — تقييم الدولة'); p.author = T('ODA Country Assessment Dashboard', 'لوحة تقييم الدول — مكتب الشؤون التنموية');
+  p.title = NAME + T(' — Country Assessment', ' — تقييم الدولة'); p.author = T('Country Needs Dashboard', 'لوحة احتياجات الدول — مكتب الشؤون التنموية');
   if (ar) p.rtlMode = true;
   let PAGE = 0, TOTAL = 0; const S = [];
   const newSlide = bg => { const sl = DK.slide(p, ar); sl.shape(p.ShapeType.rect, { x:0, y:0, w:13.333, h:7.5, fill:{ color: bg || C.WHITE }, line:{ type:'none' } }); PAGE++; return sl; };
@@ -969,7 +969,7 @@ function buildCountryDeck(opts){
       sl.text(ar ? h : h.toUpperCase(), { x, y, w:5.8, h:0.26, fontFace:BODY, fontSize:9.5, bold:true, color:C.GOLD_LT, charSpacing:1.6 });
       sl.text(t, { x, y:y + 0.32, w:5.8, h: i === blocks.length - 1 ? 2.3 : 1.5, fontFace:BODY, fontSize:10.5, color:'E6EEF5', valign:'top', wrap:true });
     });
-    foot(sl, T('ODA Country Assessment Dashboard · ', 'لوحة تقييم الدول · ') + DATE, true);
+    foot(sl, T('Country Needs Dashboard · ', 'لوحة احتياجات الدول · ') + DATE, true);
   });
 
   TOTAL = S.length;

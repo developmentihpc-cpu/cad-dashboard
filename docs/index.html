@@ -3,21 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Country Assessment Dashboard</title>
+<title>Country Needs Dashboard</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Lora:wght@500;600;700&family=Montserrat:wght@400;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
 <link  href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
-<script src="i18n_ar.js?v=20261021b"></script>
-<script src="sub_ar.js?v=20261021b"></script>
-<script src="severity.js?v=20261021b"></script>
-<script src="ind_defs.js?v=20261021b"></script>
-<script src="deck_kit.js?v=20261021b"></script>
-<script src="hs_labels.js?v=20261021b"></script>
-<script src="country_deck.js?v=20261021b"></script>
-<script src="pdf_deck.js?v=20261021b"></script>
-<script src="region_deck.js?v=20261021b"></script>
+<script src="i18n_ar.js?v=20261021c"></script>
+<script src="sub_ar.js?v=20261021c"></script>
+<script src="severity.js?v=20261021c"></script>
+<script src="ind_defs.js?v=20261021c"></script>
+<script src="deck_kit.js?v=20261021c"></script>
+<script src="hs_labels.js?v=20261021c"></script>
+<script src="country_deck.js?v=20261021c"></script>
+<script src="pdf_deck.js?v=20261021c"></script>
+<script src="region_deck.js?v=20261021c"></script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -1869,8 +1869,8 @@ body {
 <body>
 
 <header class="app-header">
-  <img src="logo.png?v=20261021b" alt="UAE Presidential Court · International Humanitarian and Philanthropic Council" style="height:52px;width:auto;display:block">
-  <div class="app-header-title" data-ar="لوحة تقييم الدول">Country Assessment Dashboard</div>
+  <img src="logo.png?v=20261021c" alt="UAE Presidential Court · International Humanitarian and Philanthropic Council" style="height:52px;width:auto;display:block">
+  <div class="app-header-title" data-ar="لوحة احتياجات الدول">Country Needs Dashboard</div>
   <div class="hdr-search" role="search">
     <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
     <input id="hdr-search-in" type="search" autocomplete="off" placeholder="Search countries…" aria-label="Search countries…"
@@ -1888,7 +1888,7 @@ body {
 
 <!-- ── Sidebar ── -->
 <nav class="sidebar">
-  <div class="sb-logo" title="Country Assessment Dashboard">CAD</div>
+  <div class="sb-logo" title="Country Needs Dashboard">CAD</div>
   <div class="sb-nav">
     <div class="sb-icon active" data-view="executive" data-label="Executive View" data-label-ar="الملخص التنفيذي" aria-label="Executive View" onclick="switchView('executive',this)">
       <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -2279,7 +2279,7 @@ function applyStaticLang() {
   const ar = isAr();
   document.documentElement.lang = ar ? 'ar' : 'en';
   document.documentElement.dir  = ar ? 'rtl' : 'ltr';
-  document.title = ar ? 'لوحة تقييم الدول' : 'Country Assessment Dashboard';
+  document.title = ar ? 'لوحة احتياجات الدول' : 'Country Needs Dashboard';
   document.querySelectorAll('[data-ar]').forEach(el => {
     if (el.dataset.en == null) el.dataset.en = el.textContent;
     el.textContent = ar ? el.dataset.ar : el.dataset.en;
@@ -3277,7 +3277,7 @@ function repImgRatio(src) {
 }
 let REP_LOGO = null;
 async function repLogo() {
-  if (!REP_LOGO) REP_LOGO = repFetchDataUrl('logo.png?v=20261021b', 4000).then(async data => ({ data, ratio: await repImgRatio(data) })).catch(() => null);
+  if (!REP_LOGO) REP_LOGO = repFetchDataUrl('logo.png?v=20261021c', 4000).then(async data => ({ data, ratio: await repImgRatio(data) })).catch(() => null);
   return REP_LOGO;
 }
 // ── Report maps — drawn from Natural Earth outlines (accurate borders), never stretched ──
@@ -4045,7 +4045,7 @@ function exWelcomeHtml(n) {
   const item = (title, text) => `<div class="ex-welcome-item"><div class="ex-welcome-h">${title}</div><div class="ex-welcome-t">${text}</div></div>`;
   return `<div class="ex-card ex-welcome" style="margin-bottom:24px">
     <div class="ex-card-hd"><div>
-      <div class="ex-card-title">${tr('Welcome to the Country Assessment Dashboard', 'مرحباً بكم في لوحة تقييم الدول')}</div>
+      <div class="ex-card-title">${tr('Welcome to the Country Needs Dashboard', 'مرحباً بكم في لوحة احتياجات الدول')}</div>
       <div class="ex-card-note" style="margin-top:4px">${tr(`A tool by the Office of Development Affairs for comparing development needs across ${n} low- and middle-income countries and preparing country and regional assessments.`,
         `أداة من إعداد مكتب الشؤون التنموية لمقارنة الاحتياجات التنموية في ${n} دولة منخفضة ومتوسطة الدخل وإعداد تقييمات للدول والأقاليم.`)}</div>
     </div><button type="button" class="ex-mini" onclick="exHideWelcome()">${tr('Hide', 'إخفاء')}</button></div>

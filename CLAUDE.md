@@ -1,4 +1,4 @@
-# Country Assessment Dashboard (CAD)
+# Country Needs Dashboard (CAD — formerly Country Assessment Dashboard)
 
 ## Project Overview
 A bilingual (English / Arabic) dashboard for the Office of Development Affairs that shows

@@ -107,7 +107,7 @@ async function sendMail(cfg, to, subject, text) {
   const r = await fetch('https://api.brevo.com/v3/smtp/email', {
     method: 'POST',
     headers: { 'api-key': cfg.brevo, 'Content-Type': 'application/json', Accept: 'application/json' },
-    body: JSON.stringify({ sender: { email: cfg.from, name: 'Country Assessment Dashboard' }, to: [{ email: to }],
+    body: JSON.stringify({ sender: { email: cfg.from, name: 'Country Needs Dashboard' }, to: [{ email: to }],
                            subject, textContent: text, htmlContent: html }),
   });
   if (!r.ok) throw new Error('Brevo ' + r.status + ' ' + (await r.text()).slice(0, 200));
@@ -117,7 +117,7 @@ async function sendMail(cfg, to, subject, text) {
 function page(title, body, status = 200, extraHead = '') {
   const html = `<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>${esc(title)} · Country Assessment Dashboard</title>
+<title>${esc(title)} · Country Needs Dashboard</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:wght@600&family=IBM+Plex+Sans+Arabic:wght@400;600&display=swap" rel="stylesheet">
 <style>
   :root { --ink:#0F2A40; --mute:#5D7186; --line:#E4ECF3; --gold:#B08D57; --bg:#F5F8FB; --err:#B3261E; --ok:#1E7B4F; }
@@ -160,7 +160,7 @@ const SPAM_NOTE = 'The email can take a minute to arrive. Please check your spam
 
 function emailPage(cfg, next, note = '', status = 200) {
   if (!cfg.approvals) return passwordPage(next, note, status);
-  return page('Sign in', `<h1>Country Assessment Dashboard</h1>
+  return page('Sign in', `<h1>Country Needs Dashboard</h1>
   <p class="sub">Enter your email and we will send you a sign-in code.<span class="ar">أدخل بريدك الإلكتروني وسنرسل إليك رمز الدخول.</span></p>
   ${note}
   <form method="post" action="/__code"><input type="hidden" name="next" value="${esc(next)}">
@@ -186,7 +186,7 @@ function codePage(email, next, note = '', status = 200) {
 }
 
 function passwordPage(next, note = '', status = 200) {
-  return page('Sign in', `<h1>Country Assessment Dashboard</h1>
+  return page('Sign in', `<h1>Country Needs Dashboard</h1>
   <p class="sub">Sign in with the email and password you were given.<span class="ar">سجّل الدخول بالبريد الإلكتروني وكلمة المرور المرسلة إليك.</span></p>
   ${note}
   <form method="post" action="/__login"><input type="hidden" name="next" value="${esc(next)}">
@@ -291,7 +291,7 @@ export async function onRequest(context) {
         await cfg.kv.put('rl:' + email, '1', { expirationTtl: 60 });
         try {
           await sendMail(cfg, email, `Your sign-in code: ${code}`,
-            `Your code for the Country Assessment Dashboard is ${code}\n\nIt is valid for ${CODE_MINUTES} minutes. If you did not ask for it, you can ignore this email.\n\nرمز الدخول إلى لوحة تقييم الدول: ${code}`);
+            `Your code for the Country Needs Dashboard is ${code}\n\nIt is valid for ${CODE_MINUTES} minutes. If you did not ask for it, you can ignore this email.\n\nرمز الدخول إلى لوحة احتياجات الدول: ${code}`);
         } catch (e) {
           await cfg.kv.delete('rl:' + email);   // let them retry straight away
           console.error('sign-in code not sent', String(e));
@@ -324,7 +324,7 @@ export async function onRequest(context) {
       const prev = (await cfg.kv.getWithMetadata('req:' + v.email)).metadata;
       await cfg.kv.put('req:' + v.email, '1', { metadata: { name: v.name, org: v.org, reason: short(v.reason, 300), at: Date.now() } });
       if (!prev || Date.now() - (prev.at || 0) > 6 * 3600e3) {   // repeat requests notify again after 6 hours, not on every click
-        const text = `New access request for the Country Assessment Dashboard\n\nName: ${v.name}\nEmail: ${v.email}\nOrganisation: ${v.org}\nReason: ${v.reason || '—'}\n\nApprove or decline: ${url.origin}/__admin`;
+        const text = `New access request for the Country Needs Dashboard\n\nName: ${v.name}\nEmail: ${v.email}\nOrganisation: ${v.org}\nReason: ${v.reason || '—'}\n\nApprove or decline: ${url.origin}/__admin`;
         const sent = await Promise.allSettled(cfg.admins.map(a => sendMail(cfg, a, `Access request: ${v.name} (${v.org})`, text)));
         sent.filter(s => s.status === 'rejected').forEach(s => console.error('admin notification not sent', String(s.reason)));
       }
@@ -349,13 +349,13 @@ export async function onRequest(context) {
     const email = cleanEmail(f('email')), action = path.slice('/__admin/'.length);
     if (!validEmail(email)) return adminPage(cfg, me, msg('That email address is not valid.'));
     const signIn = `${url.origin}/`;
-    const welcome = `Your access to the Country Assessment Dashboard has been approved.\n\nOpen ${signIn} and enter this email address (${email}). We will send you a 6-digit code to sign in.\n\nتمت الموافقة على وصولك إلى لوحة تقييم الدول. افتح الرابط أعلاه وأدخل بريدك الإلكتروني لتصلك رسالة برمز الدخول.`;
+    const welcome = `Your access to the Country Needs Dashboard has been approved.\n\nOpen ${signIn} and enter this email address (${email}). We will send you a 6-digit code to sign in.\n\nتمت الموافقة على وصولك إلى لوحة احتياجات الدول. افتح الرابط أعلاه وأدخل بريدك الإلكتروني لتصلك رسالة برمز الدخول.`;
     if (action === 'approve' || action === 'add') {
       const meta = action === 'approve' ? ((await cfg.kv.getWithMetadata('req:' + email)).metadata || {}) : { name: short(f('name'), 100) };
       await cfg.kv.put('user:' + email, '1', { metadata: { name: meta.name || '', org: meta.org || '', approvedAt: Date.now(), by: me } });
       await cfg.kv.delete('req:' + email);
       let sent = true;
-      try { await sendMail(cfg, email, 'Your access to the Country Assessment Dashboard', welcome); } catch (e) { sent = false; }
+      try { await sendMail(cfg, email, 'Your access to the Country Needs Dashboard', welcome); } catch (e) { sent = false; }
       return adminPage(cfg, me, msg(`${esc(email)} now has access.` + (sent ? ' They have been emailed.' : ' The email could not be sent; please let them know.'), sent ? 'ok' : 'err'));
     }
     if (action === 'decline') { await cfg.kv.delete('req:' + email); return adminPage(cfg, me, msg(`Request from ${esc(email)} declined. No email was sent.`, 'ok')); }

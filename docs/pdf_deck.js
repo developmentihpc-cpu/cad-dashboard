@@ -52,7 +52,7 @@ class PdfDeck {
     await pdfFontsReady(this.slides);
     const W = this.W, H = this.H;
     const doc = new jsPDF({ orientation:'landscape', unit:'in', format:[W, H], compress:true });
-    doc.setProperties({ title: this.title || '', author: this.author || '', creator:'ODA Country Assessment Dashboard' });
+    doc.setProperties({ title: this.title || '', author: this.author || '', creator:'Country Needs Dashboard' });
     const cv = document.createElement('canvas'); cv.width = Math.round(W * PDF_DPI); cv.height = Math.round(H * PDF_DPI);
     const g = cv.getContext('2d');
     const imgs = await pdfLoadImages(this.slides);

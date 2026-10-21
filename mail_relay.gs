@@ -1,4 +1,4 @@
-// Email relay for the Country Assessment Dashboard sign-in (functions/_middleware.js).
+// Email relay for the Country Needs Dashboard sign-in (functions/_middleware.js).
 // Sends sign-in codes, access requests and approvals from the Gmail account that deploys this script.
 //
 // Setup (script.google.com, signed in as developmentihpc@gmail.com):
@@ -23,7 +23,7 @@ function doPost(e) {
       subject: String(req.subject || '').slice(0, 200),
       body: String(req.text || ''),
       htmlBody: String(req.html || ''),
-      name: 'Country Assessment Dashboard'
+      name: 'Country Needs Dashboard'
     });
     return out({ ok: true, remaining: MailApp.getRemainingDailyQuota() });
   } catch (err) {
@@ -33,5 +33,5 @@ function doPost(e) {
 
 // Run once from the editor (select testRelay → Run) to approve the email permission and send yourself a test.
 function testRelay() {
-  MailApp.sendEmail(Session.getActiveUser().getEmail(), 'Dashboard mail relay works', 'This is a test from the Country Assessment Dashboard mail relay.');
+  MailApp.sendEmail(Session.getActiveUser().getEmail(), 'Dashboard mail relay works', 'This is a test from the Country Needs Dashboard mail relay.');
 }

@@ -60,7 +60,9 @@ function config(env) {
   const kv = env.CAD_KV || env.cad_kv, brevo = env.BREVO_API_KEY;
   const relay = env.MAIL_RELAY_URL, relayToken = env.MAIL_RELAY_TOKEN;
   const mail = !!((relay && relayToken) || brevo);
+  // SIGNIN_MODE=code brings back emailed codes for everyone; by default approved people sign in with their email alone
   return { legacy, admins, kv, brevo, relay: relay && relayToken ? relay : null, relayToken, approvals: !!(kv && mail),
+           emailOnly: String(env.SIGNIN_MODE || '').toLowerCase() !== 'code',
            from: cleanEmail(env.MAIL_FROM) || admins[0], secret: env.SESSION_KEY || relayToken || brevo || '' };
 }
 
@@ -161,12 +163,14 @@ const SPAM_NOTE = 'The email can take a minute to arrive. Please check your spam
 function emailPage(cfg, next, note = '', status = 200) {
   if (!cfg.approvals) return passwordPage(next, note, status);
   return page('Sign in', `<h1>Country Needs Dashboard</h1>
-  <p class="sub">Enter your email and we will send you a sign-in code.<span class="ar">أدخل بريدك الإلكتروني وسنرسل إليك رمز الدخول.</span></p>
+  ${cfg.emailOnly
+    ? `<p class="sub">Enter your registered email to sign in.<span class="ar">أدخل بريدك الإلكتروني المسجّل لتسجيل الدخول.</span></p>`
+    : `<p class="sub">Enter your email and we will send you a sign-in code.<span class="ar">أدخل بريدك الإلكتروني وسنرسل إليك رمز الدخول.</span></p>`}
   ${note}
   <form method="post" action="/__code"><input type="hidden" name="next" value="${esc(next)}">
     <label for="email">Email · البريد الإلكتروني</label>
     <input id="email" name="email" type="email" autocomplete="email" required autofocus>
-    <button type="submit">Send code · إرسال الرمز</button></form>
+    <button type="submit">${cfg.emailOnly ? 'Sign in · تسجيل الدخول' : 'Send code · إرسال الرمز'}</button></form>
   <p class="foot">No access yet? <a href="/__request">Request access</a> · <a href="/__request">طلب الوصول</a></p>`, status);
 }
 
@@ -284,6 +288,12 @@ export async function onRequest(context) {
     if (path === '/__code' && post) {
       const email = cleanEmail(f('email')), target = safeNext(f('next'));
       if (!validEmail(email)) return emailPage(cfg, target, msg('Please enter a valid email address.'), 400);
+      if (cfg.emailOnly && !cfg.admins.includes(email)) {   // approved email alone signs in; admins still use a code
+        if (await isApproved(cfg, email)) return redirect(target, await makeCookie(cfg, email));
+        await pause(600);
+        return emailPage(cfg, target, msg('This email does not have access yet. <a href="/__request">Request access</a> and you will receive an email once it is approved.' +
+          '<span class="ar">لا يملك هذا البريد صلاحية الوصول بعد. <a href="/__request">اطلب الوصول</a> وستصلك رسالة عند الموافقة.</span>'), 403);
+      }
       if (await cfg.kv.get('rl:' + email)) return codePage(email, target, msg('A code was sent less than a minute ago. Please use that one or wait a minute.'));
       if (await isApproved(cfg, email)) {
         const code = String(crypto.getRandomValues(new Uint32Array(1))[0] % 1e6).padStart(6, '0');
@@ -349,7 +359,9 @@ export async function onRequest(context) {
     const email = cleanEmail(f('email')), action = path.slice('/__admin/'.length);
     if (!validEmail(email)) return adminPage(cfg, me, msg('That email address is not valid.'));
     const signIn = `${url.origin}/`;
-    const welcome = `Your access to the Country Needs Dashboard has been approved.\n\nOpen ${signIn} and enter this email address (${email}). We will send you a 6-digit code to sign in.\n\nتمت الموافقة على وصولك إلى لوحة احتياجات الدول. افتح الرابط أعلاه وأدخل بريدك الإلكتروني لتصلك رسالة برمز الدخول.`;
+    const welcome = cfg.emailOnly
+      ? `Your access to the Country Needs Dashboard has been approved.\n\nOpen ${signIn} and sign in with this email address (${email}).\n\nتمت الموافقة على وصولك إلى لوحة احتياجات الدول. افتح الرابط أعلاه وسجّل الدخول بهذا البريد الإلكتروني.`
+      : `Your access to the Country Needs Dashboard has been approved.\n\nOpen ${signIn} and enter this email address (${email}). We will send you a 6-digit code to sign in.\n\nتمت الموافقة على وصولك إلى لوحة احتياجات الدول. افتح الرابط أعلاه وأدخل بريدك الإلكتروني لتصلك رسالة برمز الدخول.`;
     if (action === 'approve' || action === 'add') {
       const meta = action === 'approve' ? ((await cfg.kv.getWithMetadata('req:' + email)).metadata || {}) : { name: short(f('name'), 100) };
       await cfg.kv.put('user:' + email, '1', { metadata: { name: meta.name || '', org: meta.org || '', approvedAt: Date.now(), by: me } });

@@ -62,6 +62,9 @@ class PdfDeck {
       this.slides[i].forEach(op => pdfDrawOp(g, op, imgs));
       if (i) doc.addPage([W, H], 'landscape');
       doc.addImage(cv.toDataURL('image/jpeg', 0.9), 'JPEG', 0, 0, W, H, undefined, 'FAST');
+      // images marked crisp (the logo) go on top as their original PNG, so they are not softened by the JPEG page
+      this.slides[i].filter(op => op.k === 'image' && op.o.crisp && /^data:image\/png/.test(op.o.data || '')).forEach((op, j) =>
+        doc.addImage(op.o.data, 'PNG', op.o.x, op.o.y, op.o.w, op.o.h, 'crisp' + j, 'NONE'));
     }
     return doc.output('blob');
   }

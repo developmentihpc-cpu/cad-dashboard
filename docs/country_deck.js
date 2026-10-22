@@ -524,7 +524,7 @@ function buildCountryDeck(opts){
     if (opts.logo && opts.logo.data) {   // organisation logo on a white chip, proportions preserved
       sl.shape(p.ShapeType.roundRect, { x:0.6, y:0.5, w:5.4, h:1.0, rectRadius:0.08, fill:{ color:C.WHITE }, line:{ type:'none' } });
       const lg = DK.contain(opts.logo.ratio, 0.75, 0.62, 5.1, 0.76);
-      sl.image({ data:opts.logo.data, x:lg.x, y:lg.y, w:lg.w, h:lg.h });
+      sl.image({ data:opts.logo.data, x:lg.x, y:lg.y, w:lg.w, h:lg.h, crisp:true });
     }
     sl.text(T('COUNTRY ASSESSMENT', 'تقييم الدولة'), { x:0.6, y:2.25, w:8, h:0.3, fontFace:BODY, fontSize:11, bold:true, color:C.GOLD_LT, charSpacing:3 });
     sl.text(NAME, { x:0.55, y:2.6, w:8.4, h:1.3, fontFace:HEAD, fontSize: NAME.length > 18 ? 40 : 54, bold:true, color:C.WHITE, valign:'top', fit:'shrink' });

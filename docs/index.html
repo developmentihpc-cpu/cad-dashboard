@@ -1509,7 +1509,7 @@ body {
 .app-header { height:64px; padding:0 28px; border-bottom:1px solid var(--ex-line); background:#fff; }
 .app-header img { height:52px !important; width:auto; }
 @media (max-width:760px) { .app-header img { height:36px !important; } }
-.app-header-title { margin-left:22px; padding-left:22px; border-left:1px solid var(--ex-gold); font-family:var(--ex-serif); font-size:17px; font-weight:600; color:var(--ex-ink); letter-spacing:.01em; }
+.app-header-title { margin-left:22px; padding-left:22px; border-left:1px solid var(--ex-gold); font-family:var(--ex-serif); font-size:17px; font-weight:600; color:var(--ex-ink); letter-spacing:.01em; white-space:nowrap; }
 .app-header-date { margin-left:auto; font-size:12px; color:var(--ex-faint); letter-spacing:.3px; }
 .sidebar { width:68px; background:#fff; border-right:1px solid var(--ex-line); padding:18px 0; }
 .sb-nav { gap:6px; padding:0 10px; }
@@ -1934,7 +1934,7 @@ body {
         <div class="leg-title" data-ar="مؤشر الاحتياج · انقر للتصفية">Need index · click to filter</div>
         <div id="map-need-key" class="need-key-col"></div>
         <div class="leg-item"><div class="leg-dot" style="background:#C3CDD6"></div><span data-ar="غير مصنّفة">Not ranked</span></div>
-        <div class="leg-item"><div class="leg-dot" style="background:#C9952A"></div><span data-ar="المحددة">Selected</span></div>
+        <div class="leg-item"><div class="leg-dot" style="background:#C9952A"></div><span data-ar="الدولة المحددة">Selected</span></div>
       </div>
       <div class="drawer" id="drawer">
         <div class="drawer-header">
@@ -2145,7 +2145,7 @@ const CA_TAB_LABELS = {
 const CA_INDICATORS = {
   overview: [
     { id:'NY.GDP.MKTP.KD.ZG',  label:'GDP Growth Rate',           labelAr:'معدل نمو الناتج المحلي الإجمالي',   unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/NY.GDP.MKTP.KD.ZG' },
-    { id:'NY.GDP.PCAP.PP.CD',  label:'GDP per Capita (PPP)',       labelAr:'نصيب الفرد من الناتج المحلي (ت.ق.ش)', unit:' USD',   fmt:'num0', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD' },
+    { id:'NY.GDP.PCAP.PP.CD',  label:'GDP per Capita (PPP)',       labelAr:'نصيب الفرد من الناتج المحلي الإجمالي (تعادل القوة الشرائية)', unit:' USD',   fmt:'num0', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/NY.GDP.PCAP.PP.CD' },
     { id:'FP.CPI.TOTL.ZG',    label:'Inflation Rate',             labelAr:'معدل التضخم',                        unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/FP.CPI.TOTL.ZG' },
     { id:'IMF.GGXWDG_NGDP',   label:'Government Debt (% GDP)',    labelAr:'الدين الحكومي (% من الناتج المحلي)',  unit:'%',        fmt:'pct1', src:'IMF' },
     { id:'GC.TAX.TOTL.GD.ZS', label:'Tax Revenue (% GDP)',        labelAr:'الإيرادات الضريبية (% من الناتج المحلي)', unit:'%',   fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/GC.TAX.TOTL.GD.ZS' },
@@ -2158,43 +2158,43 @@ const CA_INDICATORS = {
   ],
   water: [
     { id:'SH.H2O.BASW.ZS',   label:'Basic Drinking Water Access', labelAr:'الوصول إلى مياه الشرب الأساسية',   unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.H2O.BASW.ZS' },
-    { id:'SH.H2O.SMDW.ZS',   label:'Safely Managed Drinking Water', labelAr:'مياه الشرب المُدارة بشكل آمن',   unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.H2O.SMDW.ZS' },
+    { id:'SH.H2O.SMDW.ZS',   label:'Safely Managed Drinking Water', labelAr:'مياه الشرب المُدارة بأمان',   unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.H2O.SMDW.ZS' },
     { id:'SH.STA.BASS.ZS',   label:'Basic Sanitation Services',   labelAr:'خدمات الصرف الصحي الأساسية',       unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.STA.BASS.ZS' },
-    { id:'SH.STA.SMSS.ZS',   label:'Safely Managed Sanitation',   labelAr:'خدمات الصرف الصحي الآمنة',         unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.STA.SMSS.ZS' },
+    { id:'SH.STA.SMSS.ZS',   label:'Safely Managed Sanitation',   labelAr:'الصرف الصحي المُدار بأمان',         unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.STA.SMSS.ZS' },
     { id:'SH.STA.ODFC.ZS',   label:'Open Defecation (%)',         labelAr:'التغوط في العراء (%)',               unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.STA.ODFC.ZS' },
     { id:'SH.STA.HYGN.ZS',   label:'Handwashing with Soap (%)',   labelAr:'غسل اليدين بالصابون (%)',           unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.STA.HYGN.ZS' },
   ],
   energy: [
     { id:'EG.ELC.ACCS.ZS',    label:'Access to Electricity',      labelAr:'الوصول إلى الكهرباء',                unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/EG.ELC.ACCS.ZS' },
-    { id:'EG.CFT.ACCS.ZS',    label:'Clean Fuels for Cooking',    labelAr:'الوقود النظيف للطهو',                unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/EG.CFT.ACCS.ZS' },
-    { id:'EG.FEC.RNEW.ZS',    label:'Renewable Energy (% final)', labelAr:'الطاقة المتجددة (% من إجمالي الطاقة)', unit:'%',      fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/EG.FEC.RNEW.ZS' },
+    { id:'EG.CFT.ACCS.ZS',    label:'Clean Fuels for Cooking',    labelAr:'الوقود والتقنيات النظيفة للطهي',                unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/EG.CFT.ACCS.ZS' },
+    { id:'EG.FEC.RNEW.ZS',    label:'Renewable Energy (% final)', labelAr:'الطاقة المتجددة (% من الاستهلاك النهائي للطاقة)', unit:'%',      fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/EG.FEC.RNEW.ZS' },
     { id:'EG.USE.ELEC.KH.PC', label:'Electric Power Consumption', labelAr:'استهلاك الكهرباء للفرد',             unit:' kWh/cap', fmt:'num0', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/EG.USE.ELEC.KH.PC' },
     { id:'EG.USE.PCAP.KG.OE', label:'Energy Use per Capita',      labelAr:'استهلاك الطاقة للفرد',               unit:' kg oil eq', fmt:'num0', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/EG.USE.PCAP.KG.OE' },
   ],
   agrifood: [
-    { id:'SN.ITK.DEFC.ZS',   label:'Prevalence of Undernourishment', labelAr:'معدل انتشار سوء التغذية',       unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SN.ITK.DEFC.ZS' },
+    { id:'SN.ITK.DEFC.ZS',   label:'Prevalence of Undernourishment', labelAr:'انتشار نقص التغذية',       unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SN.ITK.DEFC.ZS' },
     { id:'SN.ITK.MSFI.ZS',   label:'Moderate or Severe Food Insecurity', labelAr:'انعدام الأمن الغذائي المتوسط أو الشديد', unit:'%', fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SN.ITK.MSFI.ZS' },
-    { id:'SH.STA.STNT.ZS',    label:'Stunting Prevalence (%)',    labelAr:'معدل التقزم لدى الأطفال (%)',         unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.STA.STNT.ZS' },
+    { id:'SH.STA.STNT.ZS',    label:'Stunting Prevalence (%)',    labelAr:'تقزّم الأطفال دون الخامسة (%)',         unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.STA.STNT.ZS' },
     { id:'AG.YLD.CREL.KG',    label:'Cereal Yield',               labelAr:'إنتاجية الحبوب',                     unit:' kg/ha',   fmt:'num0', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/AG.YLD.CREL.KG' },
     { id:'AG.PRD.FOOD.XD',    label:'Food Production Index',      labelAr:'مؤشر إنتاج الغذاء',                  unit:'',         fmt:'num1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/AG.PRD.FOOD.XD' },
     { id:'NV.AGR.TOTL.ZS',    label:'Agriculture Value Added (% GDP)', labelAr:'القيمة المضافة الزراعية (% من الناتج المحلي)', unit:'%', fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/NV.AGR.TOTL.ZS' },
     { id:'SL.AGR.EMPL.ZS',    label:'Employment in Agriculture (% of jobs)', labelAr:'العاملون في الزراعة (% من الوظائف)', unit:'%', fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SL.AGR.EMPL.ZS' },
-    { id:'AG.LND.ARBL.ZS',    label:'Arable Land (% total)',      labelAr:'الأراضي الصالحة للزراعة (% من الإجمالي)', unit:'%',    fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/AG.LND.ARBL.ZS' },
-    { id:'AG.LND.AGRI.ZS',    label:'Agricultural Land (% total)', labelAr:'الأراضي الزراعية (% من الإجمالي)', unit:'%',          fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/AG.LND.AGRI.ZS' },
+    { id:'AG.LND.ARBL.ZS',    label:'Arable Land (% total)',      labelAr:'الأراضي الصالحة للزراعة (% من مساحة اليابسة)', unit:'%',    fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/AG.LND.ARBL.ZS' },
+    { id:'AG.LND.AGRI.ZS',    label:'Agricultural Land (% total)', labelAr:'الأراضي الزراعية (% من مساحة اليابسة)', unit:'%',          fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/AG.LND.AGRI.ZS' },
     { id:'SP.RUR.TOTL.ZS',    label:'Rural Population (%)',       labelAr:'سكان الريف (%)',                      unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SP.RUR.TOTL.ZS' },
   ],
   education: [
     { id:'SE.PRM.ENRR',       label:'Primary Enrollment (gross)', labelAr:'الالتحاق بالتعليم الابتدائي (إجمالي)', unit:'%',      fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SE.PRM.ENRR' },
     { id:'SE.SEC.ENRR',       label:'Secondary Enrollment (gross)', labelAr:'الالتحاق بالتعليم الثانوي (إجمالي)', unit:'%',     fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SE.SEC.ENRR' },
     { id:'SE.TER.ENRR',       label:'Tertiary Enrollment (gross)', labelAr:'الالتحاق بالتعليم العالي (إجمالي)', unit:'%',       fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SE.TER.ENRR' },
-    { id:'SE.ADT.LITR.ZS',    label:'Adult Literacy Rate',        labelAr:'معدل محو الأمية (البالغون)',          unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SE.ADT.LITR.ZS' },
+    { id:'SE.ADT.LITR.ZS',    label:'Adult Literacy Rate',        labelAr:'معرفة الكبار بالقراءة والكتابة',          unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SE.ADT.LITR.ZS' },
     { id:'SE.XPD.TOTL.GD.ZS', label:'Education Expenditure (% GDP)', labelAr:'الإنفاق على التعليم (% من الناتج المحلي)', unit:'%', fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SE.XPD.TOTL.GD.ZS' },
-    { id:'SE.PRM.ENRL.TC.ZS',    label:'Pupil-Teacher Ratio (primary)', labelAr:'نسبة الطلاب للمعلمين (ابتدائي)', unit:'',         fmt:'num1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SE.PRM.ENRL.TC.ZS' },
+    { id:'SE.PRM.ENRL.TC.ZS',    label:'Pupil-Teacher Ratio (primary)', labelAr:'التلاميذ لكل معلم (ابتدائي)', unit:'',         fmt:'num1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SE.PRM.ENRL.TC.ZS' },
     { id:'SE.PRM.CMPT.ZS',    label:'Primary Completion Rate',    labelAr:'معدل إتمام التعليم الابتدائي',        unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SE.PRM.CMPT.ZS' },
-    { id:'SE.ADT.1524.LT.ZS', label:'Youth Literacy Rate (15–24)', labelAr:'معدل محو أمية الشباب (15–24)', unit:'%',            fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SE.ADT.1524.LT.ZS' },
+    { id:'SE.ADT.1524.LT.ZS', label:'Youth Literacy Rate (15–24)', labelAr:'معرفة الشباب بالقراءة والكتابة (15–24)', unit:'%',            fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SE.ADT.1524.LT.ZS' },
     // UNESCO UIS: school access and conditions
-    { id:'uis:ROFST.1.CP',      label:'Out-of-School Rate (primary age)',        labelAr:'معدل عدم الالتحاق بالمدرسة (سن الابتدائي)',     unit:'%', fmt:'pct1' },
-    { id:'uis:ROFST.2.CP',      label:'Out-of-School Rate (lower-secondary age)', labelAr:'معدل عدم الالتحاق بالمدرسة (سن الإعدادي)',     unit:'%', fmt:'pct1' },
+    { id:'uis:ROFST.1.CP',      label:'Out-of-School Rate (primary age)',        labelAr:'الأطفال خارج المدرسة (سن المرحلة الابتدائية)',     unit:'%', fmt:'pct1' },
+    { id:'uis:ROFST.2.CP',      label:'Out-of-School Rate (lower-secondary age)', labelAr:'الأطفال خارج المدرسة (سن المرحلة الإعدادية)',     unit:'%', fmt:'pct1' },
     { id:'uis:PTRHC.1.TRAINED', label:'Pupils per Trained Teacher (primary)',    labelAr:'التلاميذ لكل معلم مدرَّب (ابتدائي)',            unit:'',  fmt:'num1' },
     { id:'uis:SCHBSP.1.WELEC',  label:'Primary Schools with Electricity',        labelAr:'المدارس الابتدائية المزوّدة بالكهرباء',          unit:'%', fmt:'pct1' },
     { id:'uis:SCHBSP.1.WWATA',  label:'Primary Schools with Drinking Water',     labelAr:'المدارس الابتدائية المزوّدة بمياه الشرب',        unit:'%', fmt:'pct1' },
@@ -2202,27 +2202,27 @@ const CA_INDICATORS = {
   ],
   health: [
     { id:'SP.DYN.LE00.IN',    label:'Life Expectancy at Birth',   labelAr:'متوسط العمر المتوقع عند الولادة',    unit:' yrs',     fmt:'num1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SP.DYN.LE00.IN' },
-    { id:'SH.DYN.MORT',       label:'Under-5 Mortality Rate',     labelAr:'وفيات الأطفال دون 5 سنوات',          unit:' /1,000',  fmt:'num1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.DYN.MORT' },
+    { id:'SH.DYN.MORT',       label:'Under-5 Mortality Rate',     labelAr:'وفيات الأطفال دون الخامسة',          unit:' /1,000',  fmt:'num1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.DYN.MORT' },
     { id:'SH.STA.MMRT',       label:'Maternal Mortality Ratio',   labelAr:'معدل وفيات الأمهات',                 unit:' /100k',   fmt:'num0', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.STA.MMRT' },
     { id:'SH.XPD.CHEX.GD.ZS',label:'Health Expenditure (% GDP)', labelAr:'الإنفاق الصحي (% من الناتج المحلي)', unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.XPD.CHEX.GD.ZS' },
-    { id:'SH.MED.PHYS.ZS',    label:'Physicians (per 1,000)',     labelAr:'الأطباء (لكل ألف)',                   unit:' /1k',     fmt:'num2', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.MED.PHYS.ZS' },
-    { id:'SH.MED.BEDS.ZS',    label:'Hospital Beds (per 1,000)', labelAr:'أسرة المستشفيات (لكل ألف)',           unit:' /1k',     fmt:'num1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.MED.BEDS.ZS' },
-    { id:'SH.IMM.MEAS',       label:'Measles Immunisation (%)',   labelAr:'تحصين الحصبة (%)',                    unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.IMM.MEAS' },
-    { id:'SH.STA.STNT.ZS',    label:'Stunting Prevalence (%)',    labelAr:'معدل التقزم لدى الأطفال (%)',         unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.STA.STNT.ZS' },
+    { id:'SH.MED.PHYS.ZS',    label:'Physicians (per 1,000)',     labelAr:'الأطباء (لكل 1,000 نسمة)',                   unit:' /1k',     fmt:'num2', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.MED.PHYS.ZS' },
+    { id:'SH.MED.BEDS.ZS',    label:'Hospital Beds (per 1,000)', labelAr:'أسرّة المستشفيات (لكل 1,000 نسمة)',           unit:' /1k',     fmt:'num1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.MED.BEDS.ZS' },
+    { id:'SH.IMM.MEAS',       label:'Measles Immunisation (%)',   labelAr:'التحصين ضد الحصبة (%)',                    unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.IMM.MEAS' },
+    { id:'SH.STA.STNT.ZS',    label:'Stunting Prevalence (%)',    labelAr:'تقزّم الأطفال دون الخامسة (%)',         unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SH.STA.STNT.ZS' },
   ],
   econ: [
-    { id:'SI.POV.DDAY',       label:'Poverty Rate (<$3.00/day)',  labelAr:'معدل الفقر (أقل من 3.00 دولار/يوم)',  unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SI.POV.DDAY' },
+    { id:'SI.POV.DDAY',       label:'Poverty Rate (<$3.00/day)',  labelAr:'الفقر المدقع (أقل من 3.00 دولار يومياً)',  unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SI.POV.DDAY' },
     { id:'SL.UEM.TOTL.ZS',    label:'Unemployment Rate',          labelAr:'معدل البطالة',                        unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SL.UEM.TOTL.ZS' },
     { id:'SL.UEM.1524.ZS',    label:'Youth Unemployment (15–24)', labelAr:'بطالة الشباب (15–24)',                 unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SL.UEM.1524.ZS' },
     { id:'SL.TLF.CACT.FE.ZS', label:'Women in the Labour Force (%)', labelAr:'مشاركة المرأة في القوى العاملة (%)', unit:'%',      fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SL.TLF.CACT.FE.ZS' },
     { id:'SL.EMP.VULN.ZS',    label:'Vulnerable Employment (%)',  labelAr:'العمالة الهشة (%)',                    unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SL.EMP.VULN.ZS' },
     { id:'FX.OWN.TOTL.ZS',    label:'Adults with a Bank or Mobile-Money Account', labelAr:'البالغون الذين لديهم حساب مصرفي أو محفظة إلكترونية', unit:'%', fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/FX.OWN.TOTL.ZS' },
     { id:'__sme',            label:'Jobs by Business Size',      labelAr:'الوظائف حسب حجم المنشأة',             unit:'',         fmt:'sme', wide:true },
-    { id:'SI.POV.GINI',       label:'Gini Index (inequality)',    labelAr:'مؤشر جيني (التفاوت)',                 unit:'',         fmt:'num1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SI.POV.GINI' },
+    { id:'SI.POV.GINI',       label:'Gini Index (inequality)',    labelAr:'مؤشر جيني (عدم المساواة في الدخل)',                 unit:'',         fmt:'num1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/SI.POV.GINI' },
   ],
   business: [
-    { id:'FS.AST.PRVT.GD.ZS', label:'Bank Credit to Private Sector (% GDP)', labelAr:'الائتمان المصرفي للقطاع الخاص (% من الناتج)', unit:'%', fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/FS.AST.PRVT.GD.ZS' },
-    { id:'BX.KLT.DINV.WD.GD.ZS', label:'FDI Net Inflows (% GDP)', labelAr:'صافي تدفقات الاستثمار الأجنبي (% من الناتج المحلي)', unit:'%', fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/BX.KLT.DINV.WD.GD.ZS' },
+    { id:'FS.AST.PRVT.GD.ZS', label:'Bank Credit to Private Sector (% GDP)', labelAr:'الائتمان المصرفي للقطاع الخاص (% من الناتج المحلي)', unit:'%', fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/FS.AST.PRVT.GD.ZS' },
+    { id:'BX.KLT.DINV.WD.GD.ZS', label:'FDI Net Inflows (% GDP)', labelAr:'صافي تدفقات الاستثمار الأجنبي المباشر (% من الناتج المحلي)', unit:'%', fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/BX.KLT.DINV.WD.GD.ZS' },
     { id:'FR.INR.LEND',       label:'Lending Interest Rate',      labelAr:'سعر الفائدة على القروض',               unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/FR.INR.LEND' },
     { id:'IC.BUS.NDNS.ZS',    label:'New Businesses Registered (per 1,000 adults)', labelAr:'الشركات الجديدة المسجلة (لكل 1,000 بالغ)', unit:'', fmt:'num2', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/IC.BUS.NDNS.ZS' },
     { id:'IC.FRM.BKWC.ZS',    label:'Firms Using Bank Credit for Working Capital', labelAr:'الشركات التي تموّل رأس مالها العامل بقروض مصرفية', unit:'%', fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/IC.FRM.BKWC.ZS' },
@@ -2234,13 +2234,13 @@ const CA_INDICATORS = {
     { id:'NE.TRD.GNFS.ZS',    label:'Trade (% GDP)',              labelAr:'التجارة (% من الناتج المحلي)',        unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/NE.TRD.GNFS.ZS' },
     { id:'NE.EXP.GNFS.ZS',    label:'Exports (% GDP)',            labelAr:'الصادرات (% من الناتج المحلي)',       unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/NE.EXP.GNFS.ZS' },
     { id:'NE.IMP.GNFS.ZS',    label:'Imports (% GDP)',            labelAr:'الواردات (% من الناتج المحلي)',       unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/NE.IMP.GNFS.ZS' },
-    { id:'BN.CAB.XOKA.GD.ZS', label:'Current Account (% GDP)',    labelAr:'الحساب الجاري (% من الناتج المحلي)',  unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/BN.CAB.XOKA.GD.ZS' },
+    { id:'BN.CAB.XOKA.GD.ZS', label:'Current Account (% GDP)',    labelAr:'رصيد الحساب الجاري (% من الناتج المحلي)',  unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/BN.CAB.XOKA.GD.ZS' },
     { id:'TM.TAX.MRCH.WM.AR.ZS', label:'Average Import Tariff (%)', labelAr:'متوسط التعريفة الجمركية على الواردات (%)', unit:'%', fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/TM.TAX.MRCH.WM.AR.ZS' },
     { id:'TX.VAL.MANF.ZS.UN', label:'Manufactured Goods (% of exports)', labelAr:'السلع المصنّعة (% من الصادرات)', unit:'%',       fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/TX.VAL.MANF.ZS.UN' },
     { id:'TX.VAL.FOOD.ZS.UN', label:'Food (% of exports)',        labelAr:'الأغذية (% من الصادرات)',              unit:'%',        fmt:'pct1', src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/TX.VAL.FOOD.ZS.UN' },
-    { id:'IS.SHP.GOOD.TU',   label:'Container Port Traffic (TEU)', labelAr:'حركة موانئ الحاويات (TEU)',       unit:'',         fmt:'pop',  src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/IS.SHP.GOOD.TU' },
-    { id:'__trade_exports',   label:'Top Export Partners',        labelAr:'أبرز شركاء التصدير',                 unit:'',         fmt:'trade', wide:true },
-    { id:'__trade_imports',   label:'Top Import Partners',        labelAr:'أبرز شركاء الاستيراد',               unit:'',         fmt:'trade', wide:true },
+    { id:'IS.SHP.GOOD.TU',   label:'Container Port Traffic (TEU)', labelAr:'حركة الحاويات في الموانئ (حاوية نمطية)',       unit:'',         fmt:'pop',  src:'World Bank', srcUrl:'https://data.worldbank.org/indicator/IS.SHP.GOOD.TU' },
+    { id:'__trade_exports',   label:'Top Export Partners',        labelAr:'أبرز أسواق التصدير',                 unit:'',         fmt:'trade', wide:true },
+    { id:'__trade_imports',   label:'Top Import Partners',        labelAr:'أبرز مصادر الاستيراد',               unit:'',         fmt:'trade', wide:true },
   ]
 };
 
@@ -2270,8 +2270,8 @@ const incN = code => lang === 'ar' ? (AR_INCOME[code] || '')
   : ({ LIC:'Low income', LMIC:'Lower-middle income', UMIC:'Upper-middle income' }[code] || '');
 const byName = (a, b) => cN(a).localeCompare(cN(b), lang === 'ar' ? 'ar' : 'en');
 const LOCALE = () => lang === 'ar' ? 'ar-AE-u-nu-latn' : 'en-GB';     // Arabic month names, Western digits
-const AR_UNIT = { ' yrs':' سنة', ' /1,000':' لكل 1,000', ' /100':' لكل 100', ' /100k':' لكل 100 ألف', ' /1k':' لكل ألف',
-  ' /M':' لكل مليون', ' /km²':' /كم²', ' USD':' دولار', ' kWh/cap':' ك.و.س للفرد', ' kcal/day':' سعرة/يوم',
+const AR_UNIT = { ' yrs':' سنة', ' /1,000':' لكل 1,000', ' /100':' لكل 100', ' /100k':' لكل 100,000', ' /1k':' لكل 1,000',
+  ' /M':' لكل مليون', ' /km²':' /كم²', ' USD':' دولار', ' kWh/cap':' كيلوواط ساعة للفرد', ' kcal/day':' سعرة/يوم',
   ' kg oil eq':' كغ مكافئ نفط', ' kg/ha':' كغ/هكتار', ' t':' طن' };
 const unitN = u => lang === 'ar' && AR_UNIT[u] != null ? AR_UNIT[u] : (u || '');
 
@@ -2636,8 +2636,8 @@ function cdRenderOverview() {
       ${med != null ? `<div class="rp-med-s">${tr('Region median', 'وسيط الإقليم')}: ${fmt(med)}</div>` : ''}
     </div>`;
   }).join('');
-  const srcLabel = data.__source === 'live' ? tr('Live from World Bank', 'مباشر من البنك الدولي')
-    : data.__source === 'baked' ? tr('Snapshot · refreshing live…', 'نسخة محفوظة · جارٍ التحديث المباشر…') : '';
+  const srcLabel = data.__source === 'live' ? tr('Live from World Bank', 'بيانات مباشرة من البنك الدولي')
+    : data.__source === 'baked' ? tr('Snapshot · refreshing live…', 'بيانات محفوظة · جارٍ التحديث المباشر…') : '';
 
   // Reports for this country: saved in this browser + published on the website
   const mine = REP_LIBRARY.filter(r => r.countries.includes(cdCountry)).slice(0, 6);
@@ -2740,7 +2740,7 @@ function tradeCardHtml(ind, iso) {
     <div class="tp-head"><b>${fmtUsdBig(t.total)}</b> ${tr(flow === 'exports' ? 'total goods exports' : 'total goods imports', flow === 'exports' ? 'إجمالي صادرات السلع' : 'إجمالي واردات السلع')} · ${t.year}</div>
     <div class="tp-sub">${tr('Share of total', 'الحصة من الإجمالي')}</div>
     ${rows}
-    <div class="ca-ind-src"><span><a href="https://wits.worldbank.org/" target="_blank" class="ca-src-link">${tr('World Bank WITS (UN Comtrade)', 'البنك الدولي WITS (قاعدة بيانات الأمم المتحدة)')}</a>${t.mirror ? ' · ' + tr('as reported by partner countries', 'وفق ما أبلغت عنه الدول الشريكة') : ''}</span></div>
+    <div class="ca-ind-src"><span><a href="https://wits.worldbank.org/" target="_blank" class="ca-src-link">${tr('World Bank WITS (UN Comtrade)', 'الحل التجاري العالمي المتكامل — البنك الدولي (قاعدة بيانات الأمم المتحدة لإحصاءات التجارة)')}</a>${t.mirror ? ' · ' + tr('as reported by partner countries', 'وفق ما أبلغت عنه الدول الشريكة') : ''}</span></div>
   </div>`;
 }
 // Jobs by business size (ILOSTAT labour force surveys, data/sme_jobs.json): share of workers in businesses
@@ -2804,7 +2804,7 @@ function envCardHtml(ind, iso) {
 // ODA need index — score, rank, this country's six components and how it is calculated
 function needPanelHtml(c, open) {
   const n = needScores()[c] || {}, total = (needScores().__ranked || []).length, d = prebakedIndicators[c] || {};
-  const tier = needTier(c), tierLbl = { hi: tr('Highest-need third', 'الثلث الأعلى احتياجاً'), mid: tr('Middle third', 'الثلث الأوسط'), lo: tr('Lower-need third', 'الثلث الأقل احتياجاً'), none: tr('Not ranked', 'غير مصنّفة') }[tier];
+  const tier = needTier(c), tierLbl = { hi: tr('Highest-need third', 'الثلث الأعلى احتياجاً'), mid: tr('Middle third', 'الثلث الأوسط'), lo: tr('Lower-need third', 'الثلث الأدنى احتياجاً'), none: tr('Not ranked', 'غير مصنّفة') }[tier];
   const fmtV = id => { const r = d[id]; if (!r || r.value == null) return '—'; const ind = REGION_INDS.find(x => x.id === id);
     return (ind ? rpFmt(ind, r.value) : (+r.value).toFixed(1)) + ' · ' + r.year; };
   const comps = NEED_INDS.map(i => { const s = n.parts && n.parts[i.id];
@@ -2832,7 +2832,7 @@ function needPanelHtml(c, open) {
         <li>${tr('It is a <b>relative</b> measure: it compares the tracked countries with each other, not with a global target. A low score means fewer gaps than the others, not that needs are met.',
                  'هو مقياس <b>نسبي</b>: يقارن الدول المتابَعة ببعضها لا بهدف عالمي. فالدرجة المنخفضة تعني فجوات أقل من غيرها، لا أن الاحتياجات ملبّاة.')}</li>
       </ol>
-      <div class="np-src">${tr('Data: World Bank Open Data (UN IGME, WHO, FAO, WHO/UNICEF JMP, IEA)', 'البيانات: البنك الدولي (UN IGME، منظمة الصحة العالمية، الفاو، برنامج الرصد المشترك، وكالة الطاقة الدولية)')}${snap ? tr(' · snapshot of ' + snap, ' · نسخة ' + snap) : ''}</div>
+      <div class="np-src">${tr('Data: World Bank Open Data (UN IGME, WHO, FAO, WHO/UNICEF JMP, IEA)', 'البيانات: البنك الدولي (فريق الأمم المتحدة المشترك لتقدير وفيات الأطفال، منظمة الصحة العالمية، الفاو، برنامج الرصد المشترك، وكالة الطاقة الدولية)')}${snap ? tr(' · snapshot of ' + snap, ' · بيانات محدّثة في ' + snap) : ''}</div>
     </details>
   </div>`;
 }
@@ -2860,7 +2860,7 @@ function cdBuildIndGrid(tabKey) {
       <div class="ca-ind-label">${label}${sv ? sevPill(sv) : ''}</div>
       <div class="ca-ind-val">${val}${hasVal ? '<span class="ca-ind-unit">' + unitN(ind.unit) + '</span>' : ''}</div>
       ${year ? `<div class="ca-ind-year">${stale ? staleTag(raw) : year}</div>` : ''}
-      <div class="ca-ind-src"><a href="${src.url}" target="_blank" class="ca-src-link" onclick="event.stopPropagation()">${src.name}</a><span class="ca-more">${tr('Details', 'التفاصيل')} ›</span></div>
+      <div class="ca-ind-src"><a href="${src.url}" target="_blank" class="ca-src-link" onclick="event.stopPropagation()">${src.name}</a><span class="ca-more">${tr('Details ›', 'التفاصيل ‹')}</span></div>
     </div>`;
   };
   const needHtml = tabKey === 'overview' ? needPanelHtml(cdCountry) : '';
@@ -3820,14 +3820,14 @@ function repLibRowsHtml(list, compact) {
       <span class="ex-tag ${r.kind === 'region' ? 'lead' : 'stake'}">${repKindLabel(r.kind)}</span>
       <div style="min-width:0;flex:1">
         <div style="font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${exEsc(recTitle(r))} ${repLangTag(r)}</div>
-        <div style="font-size:11.5px;color:var(--ex-mute)">${repFmtDate(r.createdAt)}${r.kind === 'region' ? ' · ' + r.countries.length + tr(' countries', ' دولة') : ''}${compact ? '' : ' · ' + repFmtSize(r.size)}</div>
+        <div style="font-size:11.5px;color:var(--ex-mute)">${repFmtDate(r.createdAt)}${r.kind === 'region' ? ' · ' + tr(r.countries.length + ' countries', arCount(r.countries.length)) : ''}${compact ? '' : ' · ' + repFmtSize(r.size)}</div>
       </div>
       ${r.blob ? `<a href="#" onclick="repLibDownload(${qa(r.id)});return false">${tr('Download', 'تنزيل')}</a>` : `<span style="font-size:11.5px;color:var(--ex-mute)">${tr('In Downloads', 'في مجلد التنزيلات')}</span>`}
     </div>`).join('');
 }
 function repPublishedHtml(filterCountry) {
   return Object.entries(REPORTS_MANIFEST || {}).filter(([c]) => !filterCountry || c === filterCountry).map(([c, r]) => `<div class="ex-rep">
-      ${flagImg(c, 18, 12)} <div style="flex:1;min-width:0"><div style="font-weight:600">${exEsc(tr(c + ' — in-depth report', cN(c) + ' — تقرير الذكاء الاصطناعي الكامل'))} <span class="ex-lang-tag">EN</span></div>
+      ${flagImg(c, 18, 12)} <div style="flex:1;min-width:0"><div style="font-weight:600">${exEsc(tr(c + ' — in-depth report', cN(c) + ' — التقرير المعمّق'))} <span class="ex-lang-tag">EN</span></div>
       <div style="font-size:11.5px;color:var(--ex-mute)">${tr('Published · ' + (r.slides || 23) + ' slides', 'منشور · ' + (r.slides || 23) + ' شريحة')}${r.generated ? ' · ' + exEsc(r.generated) : ''}</div></div>
       <a href="reports/${encodeURIComponent(r.file)}" download>${tr('Download', 'تنزيل')}</a></div>`).join('');
 }
@@ -3859,7 +3859,7 @@ function indSeverity(id, v) {
 }
 function sevPill(sv) { return `<span class="sev-pill sev-p${sv.lvl}">${sv.label}</span>`; }
 function sevLegendHtml(noClick) {
-  return `<div class="sev-legend">${[0, 1, 2, 3].map(i => `<span><i class="sev-dot sev-d${i}"></i>${sevLabel(i)}</span>`).join('')}<span class="sev-legend-note">${noClick ? tr('vs SDG / WHO benchmarks', 'مقارنةً بمعايير أهداف التنمية المستدامة ومنظمة الصحة') : tr('vs SDG / WHO benchmarks · click any indicator for details', 'مقارنةً بمعايير أهداف التنمية المستدامة ومنظمة الصحة · انقر على أي مؤشر للتفاصيل')}</span></div>`;
+  return `<div class="sev-legend">${[0, 1, 2, 3].map(i => `<span><i class="sev-dot sev-d${i}"></i>${sevLabel(i)}</span>`).join('')}<span class="sev-legend-note">${noClick ? tr('vs SDG / WHO benchmarks', 'مقارنةً بمعايير أهداف التنمية المستدامة ومنظمة الصحة العالمية') : tr('vs SDG / WHO benchmarks · click any indicator for details', 'مقارنةً بمعايير أهداف التنمية المستدامة ومنظمة الصحة العالمية · انقر على أي مؤشر للتفاصيل')}</span></div>`;
 }
 
 // ══════════════════════════════════════════════════════════════════════════
@@ -3875,7 +3875,7 @@ const REGION_INDS = [
   { id:'SH.STA.BASS.ZS',    lbl:'Basic sanitation',     lblAr:'الصرف الصحي الأساسي',      short:'Sanitation', shortAr:'الصرف الصحي',   unit:'%', d:0 },
   { id:'EG.ELC.ACCS.ZS',    lbl:'Electricity access',   lblAr:'الوصول إلى الكهرباء',      short:'Power',      shortAr:'الكهرباء',      unit:'%', d:0 },
   { id:'SE.ADT.LITR.ZS',    lbl:'Adult literacy',       lblAr:'معرفة الكبار بالقراءة والكتابة', short:'Literacy', shortAr:'محو الأمية', unit:'%', d:0 },
-  { id:'NY.GDP.PCAP.PP.CD', lbl:'GDP per capita (PPP)', lblAr:'نصيب الفرد من الناتج (تعادل القوة الشرائية)', short:'GDP/cap', shortAr:'نصيب الفرد', unit:'', d:0, money:true },
+  { id:'NY.GDP.PCAP.PP.CD', lbl:'GDP per capita (PPP)', lblAr:'نصيب الفرد من الناتج المحلي الإجمالي (تعادل القوة الشرائية)', short:'GDP/cap', shortAr:'نصيب الفرد', unit:'', d:0, money:true },
 ];
 let REGION_LIVE = {};   // region → { data:{country:{id:{value,year}}}, live:bool }
 let rpRegion = null;
@@ -3923,8 +3923,8 @@ function renderRegionPopup() {
   const inc = { LIC:0, LMIC:0, UMIC:0 }; members.forEach(c => { if (inc[COUNTRY_INCOME[c]] != null) inc[COUNTRY_INCOME[c]]++; });
   const st = REGION_LIVE[region];
   const status = !st ? `<span class="rp-status">${tr('Refreshing live data…', 'جارٍ تحديث البيانات المباشرة…')}</span>`
-    : st.live ? `<span class="rp-status live">${tr('Live from World Bank', 'مباشر من البنك الدولي')}</span>`
-    : `<span class="rp-status">${tr('Snapshot', 'نسخة محفوظة')}${repSnapshotStr() ? ' · ' + repSnapshotStr() : ''}</span>`;
+    : st.live ? `<span class="rp-status live">${tr('Live from World Bank', 'بيانات مباشرة من البنك الدولي')}</span>`
+    : `<span class="rp-status">${tr('Snapshot', 'بيانات محفوظة')}${repSnapshotStr() ? ' · ' + repSnapshotStr() : ''}</span>`;
 
   const tiles = [
     { l: tr('Population', 'عدد السكان'), v: repFmtPeople(pop) },
@@ -3961,7 +3961,7 @@ function renderRegionPopup() {
         <div class="ex-eyebrow">${tr('Regional indicators', 'المؤشرات الإقليمية')}</div>
         <div class="rp-title">${exEsc(rN(region))}</div>
         <div class="rp-sub">${tr(`${members.length} countries · ${inc.LIC} low-income · ${inc.LMIC} lower-middle · ${inc.UMIC} upper-middle`,
-          `${members.length} دولة · ${inc.LIC} منخفضة الدخل · ${inc.LMIC} من الشريحة الدنيا · ${inc.UMIC} من الشريحة العليا`)} &nbsp;${status}</div>
+          `${arCount(members.length)} · ${inc.LIC} منخفضة الدخل · ${inc.LMIC} من الشريحة الدنيا · ${inc.UMIC} من الشريحة العليا`)} &nbsp;${status}</div>
       </div>
       <div class="rp-actions">
         <button class="ex-btn primary" onclick="repRunRegion(${qa(region)})">${tr('Region report', 'التقرير الإقليمي')}</button>
@@ -3983,7 +3983,9 @@ function renderRegionPopup() {
 
 // Need-index shade shared by both maps: top third / middle third / lowest third.
 const NEED_SHADES = { hi:'#0A6FD1', mid:'#2EA0F2', lo:'#9ED6FA', none:'#C3CDD6' };
-const needTierLabel = t => ({ hi: tr('Highest need', 'الاحتياج الأعلى'), mid: tr('Middle', 'متوسط'), lo: tr('Lower', 'أقل'), top: tr('Top 10', 'أعلى 10') }[t]);
+// Arabic count of countries with correct agreement: دولة واحدة · دولتان · 3–10 دول · 11+ دولة
+const arCount = n => n === 1 ? 'دولة واحدة' : n === 2 ? 'دولتان' : n <= 10 ? n + ' دول' : n + ' دولة';
+const needTierLabel = t => ({ hi: tr('Highest need', 'احتياج مرتفع'), mid: tr('Middle', 'احتياج متوسط'), lo: tr('Lower', 'احتياج منخفض'), top: tr('Top 10', 'أعلى 10 دول') }[t]);
 // Need tier: top / middle / lowest third of ranked countries ('none' = not ranked)
 function needTier(country) {
   const need = needScores(), n = (need.__ranked || []).length, r = need[country] && need[country].rank;
@@ -4079,7 +4081,7 @@ function renderExecutive() {
   const noWater = names.reduce((s, c) => { const p = v(c, 'SP.POP.TOTL'), w = v(c, 'SH.H2O.BASW.ZS'); return p && w != null ? s + p * (1 - w / 100) : s; }, 0);
   const lic = names.filter(c => COUNTRY_INCOME[c] === 'LIC').length;
   const regions = Object.keys(REGION_MEMBERS || {}).sort((a, b) => rN(a).localeCompare(rN(b), lang));
-  const estSub = tr('estimated from national rates', 'تقدير من المعدلات الوطنية');
+  const estSub = tr('estimated from national rates', 'تقدير مستند إلى المعدلات الوطنية');
 
   const kpis = [
     { label: tr('Countries tracked', 'الدول المتابَعة'),      val: names.length,          sub: tr(`across ${regions.length} regions`, `في ${regions.length} أقاليم`) },
@@ -4106,7 +4108,7 @@ function renderExecutive() {
     const ns = ms.map(c => need[c] && need[c].need).filter(x => x != null);
     return { r, n: ms.length, avg: ns.length ? ns.reduce((s, x) => s + x, 0) / ns.length : null };
   }).sort((a, b) => (b.avg || 0) - (a.avg || 0)).map(x => `<div class="ex-stage ex-region-row" onclick="openRegionPopup(${qa(x.r)})" title="${exEsc(tr('View ' + x.r + ' indicators', 'عرض مؤشرات ' + rN(x.r)))}" style="grid-template-columns:minmax(0,1.5fr) minmax(50px,1fr) 30px auto">
-      <div class="ex-stage-name" style="line-height:1.35">${exEsc(rN(x.r))}<div style="color:var(--ex-faint);font-size:11.5px;font-weight:400">${tr(x.n + ' countries', x.n + ' دولة')} · <span class="ex-region-link">${tr('View indicators', 'عرض المؤشرات')}</span></div></div>
+      <div class="ex-stage-name" style="line-height:1.35">${exEsc(rN(x.r))}<div style="color:var(--ex-faint);font-size:11.5px;font-weight:400">${tr(x.n + ' countries', arCount(x.n))} · <span class="ex-region-link">${tr('View indicators', 'عرض المؤشرات')}</span></div></div>
       <div class="ex-stage-track"><div class="ex-stage-fill" style="width:${x.avg != null ? Math.max(4, Math.round(x.avg)) : 0}%"></div></div>
       <div class="ex-rank-score" style="font-size:15px">${x.avg != null ? Math.round(x.avg) : '—'}</div>
       <button class="ex-mini" onclick="event.stopPropagation();repRunRegion(${qa(x.r)})">${tr('Region report', 'تقرير إقليمي')}</button>
@@ -4124,8 +4126,8 @@ function renderExecutive() {
         <div class="ex-rule"></div>
         <div class="ex-summary">${tr(
           `<strong>${names.length} countries</strong> across <strong>${regions.length} regions</strong>, home to <strong>${repFmtPeople(pop)} people</strong>. An estimated <strong>${repFmtPeople(noElec)}</strong> live without electricity and <strong>${repFmtPeople(noWater)}</strong> without basic drinking water.`,
-          `<strong>${names.length} دولة</strong> في <strong>${regions.length} أقاليم</strong>، يقطنها <strong>${repFmtPeople(pop)} نسمة</strong>. ويُقدَّر أن <strong>${repFmtPeople(noElec)}</strong> يعيشون دون كهرباء و<strong>${repFmtPeople(noWater)}</strong> دون مياه شرب أساسية.`)}</div>
-        <div class="ex-datanote">${tr('World Bank Open Data', 'بيانات البنك الدولي المفتوحة')}${repSnapshotStr() ? tr(' · snapshot of ', ' · نسخة بتاريخ ') + repSnapshotStr() : ''} · ${tr('figures refresh live when a country is opened or a report is built', 'تُحدَّث الأرقام مباشرة عند فتح دولة أو إعداد تقرير')}</div>
+          `<strong>${names.length} دولة</strong> في <strong>${regions.length} أقاليم</strong>، يقطنها <strong>${repFmtPeople(pop)} نسمة</strong>. ويُقدَّر أن <strong>${repFmtPeople(noElec)}</strong> شخص يعيشون دون كهرباء، و<strong>${repFmtPeople(noWater)}</strong> شخص دون مياه شرب أساسية.`)}</div>
+        <div class="ex-datanote">${tr('World Bank Open Data', 'بيانات البنك الدولي المفتوحة')}${repSnapshotStr() ? tr(' · snapshot of ', ' · بيانات محدّثة في ') + repSnapshotStr() : ''} · ${tr('figures refresh live when a country is opened or a report is built', 'تُحدَّث الأرقام مباشرة عند فتح دولة أو إعداد تقرير')}</div>
       </div>
       <div class="ex-hero-actions">
         <button class="ex-btn primary" onclick="goView('reports')">${tr('New report', 'تقرير جديد')} &nbsp;${arrow}</button>
@@ -4178,7 +4180,7 @@ function renderReports() {
   const regions = Object.keys(REGION_MEMBERS || {}).sort((a, b) => rN(a).localeCompare(rN(b), lang));
   const prevSingle = (document.getElementById('rep-single') || {}).value, prevRegion = (document.getElementById('rep-region') || {}).value;
   const opts = names.map(c => `<option value="${exEsc(c)}"${c === prevSingle ? ' selected' : ''}>${exEsc(cN(c))}</option>`).join('');
-  const regOpts = regions.map(r => `<option value="${exEsc(r)}"${r === prevRegion ? ' selected' : ''}>${exEsc(rN(r))} (${tr((REGION_MEMBERS[r] || []).length + ' countries', (REGION_MEMBERS[r] || []).length + ' دولة')})</option>`).join('');
+  const regOpts = regions.map(r => `<option value="${exEsc(r)}"${r === prevRegion ? ' selected' : ''}>${exEsc(rN(r))} (${tr((REGION_MEMBERS[r] || []).length + ' countries', arCount((REGION_MEMBERS[r] || []).length))})</option>`).join('');
   const langNote = tr('Reports are built in English. Switch to عربي at the top to build them in Arabic.', 'تُعدّ التقارير باللغة العربية. انتقل إلى EN في الأعلى لإعدادها بالإنجليزية.');
   el.innerHTML = `
     <div class="ex-hero"><div class="ex-hero-in">
@@ -4225,7 +4227,7 @@ function renderReports() {
           ${regions.map(r => `<button class="rep-qs" onclick="repSelectGroup(REGION_MEMBERS[${qa(r)}])">${exEsc(rN(r))}</button>`).join('')}
           <button class="rep-qs" onclick="repSelectGroup(Object.keys(COUNTRY_INCOME).filter(c=>COUNTRY_INCOME[c]==='LIC'))">${tr('Low income', 'منخفضة الدخل')}</button>
           <button class="rep-qs" onclick="repSelectGroup(Object.keys(COUNTRY_INCOME).filter(c=>COUNTRY_INCOME[c]==='LMIC'))">${tr('Lower-middle income', 'الشريحة الدنيا من الدخل المتوسط')}</button>
-          <button class="rep-qs" onclick="repState.sel.clear();repRenderGrid()" style="color:#8A2C36">${tr('Clear', 'مسح')}</button>
+          <button class="rep-qs" onclick="repState.sel.clear();repRenderGrid()" style="color:#8A2C36">${tr('Clear', 'إلغاء التحديد')}</button>
         </div>
         <div id="rep-grid" class="rep-grid"></div>
         <div class="rep-actions">
@@ -4263,7 +4265,7 @@ function repRenderGrid() {
   repRenderCount();
 }
 function repRenderCount() {
-  const el = document.getElementById('rep-count'); if (el) el.textContent = tr(repState.sel.size + ' selected', 'تم اختيار ' + repState.sel.size);
+  const el = document.getElementById('rep-count'); if (el) el.textContent = tr(repState.sel.size + ' selected', 'عدد الدول المختارة: ' + repState.sel.size);
 }
 function repRenderLibrary() {
   const el = document.getElementById('rep-library'); if (!el) return;

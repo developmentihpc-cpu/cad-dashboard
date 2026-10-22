@@ -81,7 +81,7 @@ const SEV_RULES = {
 };
 const SEV_LABELS = {
   en: ['Severe', 'High concern', 'Moderate', 'On track'],
-  ar: ['حرج', 'مقلق', 'متوسط', 'على المسار'],
+  ar: ['حرج', 'مقلق', 'متوسط', 'على المسار الصحيح'],
 };
 // hex without '#', for PowerPoint; the dashboard CSS uses the same values
 const SEV_COLORS = {

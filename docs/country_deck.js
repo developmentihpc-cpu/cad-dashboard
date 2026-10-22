@@ -134,8 +134,8 @@ function buildCountryDeck(opts){
     if (L === 3) return long ? T('meets the benchmark', 'يحقق المعيار') : T('met', 'محقق');
     const dir = rule(id).dir, tail = long ? T(' the benchmark', ' من المعيار') : '';
     if (isPts(id)) { const d = Math.round(Math.abs(r.v - t)); return d < 1 ? '' :
-      dir < 0 ? T(`${d} pts below`, `أقل بـ${d} نقطة`) + tail : T(`${d} pts above`, `أعلى بـ${d} نقطة`) + tail; }
-    if (dir > 0) { const k = r.v / t; return k >= 1.15 ? (long ? T(`${k.toFixed(1)}× the benchmark`, `${k.toFixed(1)} أضعاف المعيار`) : T(`${k.toFixed(1)}× higher`, `${k.toFixed(1)} أضعاف`))
+      dir < 0 ? T(`${d} pts below`, `أدنى بـ${d} نقطة`) + tail : T(`${d} pts above`, `أعلى بـ${d} نقطة`) + tail; }
+    if (dir > 0) { const k = r.v / t; return k >= 1.15 ? (long ? T(`${k.toFixed(1)}× the benchmark`, `${k.toFixed(1)} ضعف المعيار`) : T(`${k.toFixed(1)}× higher`, `${k.toFixed(1)} ضعف`))
       : T('above', 'أعلى') + tail; }
     const b = Math.round((1 - r.v / t) * 100); return b < 1 ? '' : T(`${b}% below`, `أقل بنسبة ${b}%`) + tail;
   }
@@ -258,7 +258,7 @@ function buildCountryDeck(opts){
           'تطهو معظم الأسر بالحطب أو الفحم، ودخانهما من أبرز أسباب وفاة النساء والأطفال الصغار، كما يدفع الطلب على الوقود إلى إزالة الغابات.'] },
     'IT.NET.USER.ZS': { d:['EG.ELC.ACCS.ZS'],
       so:['Limited connectivity restricts access to mobile money, digital public services, online learning and market information.',
-          'يحرم ضعف الاتصال الناس من الأموال عبر الهاتف والخدمات الحكومية الرقمية والتعلّم عن بُعد ومعرفة أسعار السوق.'] },
+          'يحرم ضعف الاتصال الناس من خدمات الدفع بالهاتف المحمول والخدمات الحكومية الرقمية والتعلّم عن بُعد ومعرفة أسعار السوق.'] },
     'NY.GDP.MKTP.KD.ZG': { d:['FP.CPI.TOTL.ZG','GOV_WGI_PV.SC'],
       so:['Weak growth means that income per person barely rises as the population grows, leaving limited fiscal space to fund public services.',
           'يعني النمو الضعيف أن دخل الفرد بالكاد يرتفع مع نمو السكان، مما يترك هامشاً ضئيلاً لتمويل الخدمات.'] },
@@ -332,14 +332,14 @@ function buildCountryDeck(opts){
       so:['The country spends considerably more abroad than it earns, which places pressure on foreign-exchange reserves and the currency and raises the cost of imports such as food and fuel.',
           'ينفق البلد في الخارج أكثر بكثير مما يكسب، مما يضغط على احتياطيات النقد الأجنبي والعملة ويرفع كلفة الواردات مثل الغذاء والوقود.'] },
   };
-  const andList = xs => xs.length < 2 ? xs.join('') : xs.slice(0, -1).join(T(', ', '، ')) + T(' and ', ' و') + xs[xs.length - 1];
+  const andList = xs => xs.length < 2 ? xs.join('') : xs.slice(0, -1).join(T(', ', '، و')) + T(' and ', xs.length > 2 ? '، و' : ' و') + xs[xs.length - 1];
   // one insight: heading (indicator + gap) and body (linked factors in the data + what it means)
   function insight(id, mapNote) {
     const w = WHY[id]; if (!w || lvl(id) == null) return null;
     const drivers = w.d.filter(d => d !== id && DP[d] && (off(d, 1) || (d === 'NV.AGR.TOTL.ZS' && atLeast(d, 15)))).slice(0, 3)
       .map(d => DP[d](val(d), people(d)));
     const g = gap(id, true);
-    const body = (drivers.length ? T('Linked factors: ', 'عوامل مرتبطة: ') + andList(drivers) + T('. ', '. ') : '') + T(w.so[0], w.so[1])
+    const body = (drivers.length ? T('Linked factors: ', 'عوامل ذات صلة: ') + andList(drivers) + T('. ', '. ') : '') + T(w.so[0], w.so[1])
       + (mapNote ? T(' The next slide shows which regions are worst affected.', ' وتُظهر الشريحة التالية المناطق الأكثر تضرراً.') : '');
     return { id, L: lvl(id), head: lbl(id), body };
   }
@@ -356,7 +356,7 @@ function buildCountryDeck(opts){
              ['SH.H2O.SMDW.ZS',2,'Upgrade water treatment so supply is safely managed.','تحسين معالجة المياه لتصبح مُدارة بأمان.'],
              [null,3,'Climate-proof water sources and utilities.','حماية مصادر المياه ومرافقها من آثار المناخ.'] ],
       inv:[ [() => off('SH.H2O.BASW.ZS', 1) || off('SH.H2O.SMDW.ZS', 1), 'Results-based concessions or PPPs for water utilities, desalination or treatment plants and water-kiosk operators, using blended finance.',
-             'امتيازات قائمة على النتائج أو شراكات بين القطاعين لمرافق المياه ومحطات التحلية أو المعالجة ومشغّلي أكشاك المياه، بتمويل مختلط.'] ] },
+             'امتيازات قائمة على النتائج أو شراكات بين القطاعين العام والخاص لمرافق المياه ومحطات التحلية أو المعالجة ومشغّلي أكشاك المياه، بتمويل مختلط.'] ] },
     { key:'energy', en:'Energy', ar:'الطاقة', short:['Energy','الطاقة'], stats:['EG.ELC.ACCS.ZS','EG.CFT.ACCS.ZS','EG.FEC.RNEW.ZS'], bars:['EG.ELC.ACCS.ZS','EG.CFT.ACCS.ZS'],
       acts:[ ['EG.ELC.ACCS.ZS',1,'Off-grid and mini-grid solar for rural households, clinics and schools.','الطاقة الشمسية خارج الشبكة والشبكات المصغّرة للأرياف والعيادات والمدارس.'],
              ['EG.CFT.ACCS.ZS',1,'Clean-cooking programmes to reduce household air pollution.','برامج الطهي النظيف للحد من تلوث الهواء المنزلي.'],
@@ -390,20 +390,20 @@ function buildCountryDeck(opts){
              ['SH.XPD.CHEX.GD.ZS',2,'Support higher, more predictable public health financing.','دعم تمويل صحي عام أعلى وأكثر استقراراً.'],
              [null,3,'Strengthen primary-care quality and reach in underserved areas.','تعزيز جودة الرعاية الأولية ووصولها إلى المناطق المحرومة.'] ],
       inv:[ [() => off('SH.MED.PHYS.ZS', 1) || off('SH.DYN.MORT', 0), 'Co-invest with private operators in diagnostic centres and district hospitals (PPP), and in local production of essential medicines and medical supplies.',
-             'الاستثمار المشترك مع مشغّلين من القطاع الخاص في مراكز التشخيص والمستشفيات الإقليمية (شراكة بين القطاعين)، وفي التصنيع المحلي للأدوية والمستلزمات الطبية الأساسية.'] ] },
+             'الاستثمار المشترك مع مشغّلين من القطاع الخاص في مراكز التشخيص والمستشفيات الإقليمية (شراكة بين القطاعين العام والخاص)، وفي التصنيع المحلي للأدوية والمستلزمات الطبية الأساسية.'] ] },
     { key:'econ', en:'Economic Empowerment', ar:'التمكين الاقتصادي', short:['Economic empowerment','التمكين الاقتصادي'],
       stats:['SI.POV.DDAY','SL.UEM.TOTL.ZS','SL.TLF.CACT.FE.ZS','FX.OWN.TOTL.ZS','ILO.SME.U50'], bars:['SI.POV.DDAY','SL.UEM.TOTL.ZS','SL.UEM.1524.ZS','SL.TLF.CACT.FE.ZS','SL.EMP.VULN.ZS','FX.OWN.TOTL.ZS','SI.POV.GINI'],
       acts:[ ['SI.POV.DDAY',1,'Expand social protection and cash transfers for households in extreme poverty.','توسيع الحماية الاجتماعية والتحويلات النقدية للأسر في الفقر المدقع.'],
              ['SL.UEM.1524.ZS',1,'Youth employment: vocational skills, apprenticeships and job-matching services.','تشغيل الشباب: المهارات المهنية والتدريب المهني وخدمات المواءمة مع الوظائف.'],
              ['SL.TLF.CACT.FE.ZS',1,'Women’s economic empowerment: childcare, skills and finance for women entrepreneurs.','التمكين الاقتصادي للمرأة: رعاية الأطفال والمهارات والتمويل لرائدات الأعمال.'],
-             ['FX.OWN.TOTL.ZS',1,'Widen financial inclusion through mobile money and agent banking.','توسيع الشمول المالي عبر الأموال عبر الهاتف والخدمات المصرفية عبر الوكلاء.'],
+             ['FX.OWN.TOTL.ZS',1,'Widen financial inclusion through mobile money and agent banking.','توسيع الشمول المالي عبر خدمات الدفع بالهاتف المحمول والخدمات المصرفية عبر الوكلاء.'],
              ['SL.EMP.VULN.ZS',1,'Help informal workers formalise: registration, savings and social insurance.','مساعدة العاملين في القطاع غير الرسمي على الانتقال إلى الاقتصاد الرسمي: التسجيل والادخار والتأمين الاجتماعي.'],
              [null,3,'Link households to savings groups, skills and decent jobs.','ربط الأسر بمجموعات الادخار والمهارات وفرص العمل اللائق.'] ],
       inv:[ [() => off('FX.OWN.TOTL.ZS', 1) || off('SL.TLF.CACT.FE.ZS', 1), 'Invest in microfinance institutions and digital lenders that serve women and low-income households.',
              'الاستثمار في مؤسسات التمويل الأصغر والمقرضين الرقميين الذين يخدمون النساء والأسر منخفضة الدخل.'],
             [() => off('SL.UEM.1524.ZS', 1) || off('SL.UEM.TOTL.ZS', 1), 'Co-invest with employers in skills-to-jobs programmes in labour-intensive sectors such as agro-processing, construction and tourism.',
              'الاستثمار المشترك مع أصحاب العمل في برامج تربط المهارات بالوظائف في القطاعات كثيفة العمالة مثل التصنيع الزراعي والبناء والسياحة.'] ] },
-    { key:'business', en:'Business Enablement', ar:'تمكين الأعمال', short:['Business enablement','تمكين الأعمال'],
+    { key:'business', en:'Business Enablement', ar:'تمكين بيئة الأعمال', short:['Business enablement','تمكين بيئة الأعمال'],
       stats:['FS.AST.PRVT.GD.ZS','BX.KLT.DINV.WD.GD.ZS','FR.INR.LEND','LP.LPI.OVRL.XQ'], bars:['FS.AST.PRVT.GD.ZS','BX.KLT.DINV.WD.GD.ZS','FR.INR.LEND','IC.FRM.BKWC.ZS','IC.ELC.OUTG.ZS','LP.LPI.OVRL.XQ','IC.BUS.NDNS.ZS'],
       acts:[ ['FS.AST.PRVT.GD.ZS',1,'Partial credit guarantees and credit bureaus to widen bank lending to small businesses.','ضمانات ائتمان جزئية ومكاتب استعلام ائتماني لتوسيع الإقراض المصرفي للأعمال الصغيرة.'],
              ['FR.INR.LEND',1,'Support financial-sector reforms that reduce the cost of credit.','دعم إصلاحات القطاع المالي التي تخفض كلفة الائتمان.'],
@@ -445,7 +445,7 @@ function buildCountryDeck(opts){
   // ── deck ──
   const p = new Pptx();
   p.defineLayout({ name:'W', width:13.333, height:7.5 }); p.layout = 'W';
-  p.title = NAME + T(' — Country Assessment', ' — تقييم الدولة'); p.author = T('Country Needs Dashboard', 'لوحة احتياجات الدول');
+  p.title = NAME + T(' — Country Assessment', ' — التقييم القُطري'); p.author = T('Country Needs Dashboard', 'لوحة احتياجات الدول');
   if (ar) p.rtlMode = true;
   let PAGE = 0, TOTAL = 0; const S = [];
   const newSlide = bg => { const sl = DK.slide(p, ar); sl.shape(p.ShapeType.rect, { x:0, y:0, w:13.333, h:7.5, fill:{ color: bg || C.WHITE }, line:{ type:'none' } }); PAGE++; return sl; };
@@ -526,7 +526,7 @@ function buildCountryDeck(opts){
       const lg = DK.contain(opts.logo.ratio, 0.75, 0.62, 5.1, 0.76);
       sl.image({ data:opts.logo.data, x:lg.x, y:lg.y, w:lg.w, h:lg.h, crisp:true });
     }
-    sl.text(T('COUNTRY ASSESSMENT', 'تقييم الدولة'), { x:0.6, y:2.25, w:8, h:0.3, fontFace:BODY, fontSize:11, bold:true, color:C.GOLD_LT, charSpacing:3 });
+    sl.text(T('COUNTRY ASSESSMENT', 'التقييم القُطري'), { x:0.6, y:2.25, w:8, h:0.3, fontFace:BODY, fontSize:11, bold:true, color:C.GOLD_LT, charSpacing:3 });
     sl.text(NAME, { x:0.55, y:2.6, w:8.4, h:1.3, fontFace:HEAD, fontSize: NAME.length > 18 ? 40 : 54, bold:true, color:C.WHITE, valign:'top', fit:'shrink' });
     sl.shape(p.ShapeType.rect, { x:0.6, y:4.05, w:1.1, h:0.05, fill:{ color:C.GOLD }, line:{ type:'none' } });
     sl.text(T('Development needs, sector by sector — an instant assessment built from live World Bank data.', 'الاحتياجات التنموية قطاعاً بقطاع — تقييم فوري مبني على بيانات البنك الدولي المباشرة.'),
@@ -544,7 +544,7 @@ function buildCountryDeck(opts){
   // ══ 2 · COUNTRY OVERVIEW — map + flag, capital, population, leaders, political situation, status by sector ══
   S.push(() => {
     const sl = newSlide(C.WHITE);
-    head(sl, T('Country overview', 'نظرة عامة على الدولة'), NAME, T('location, leadership, political situation and status by sector', 'الموقع والقيادة والوضع السياسي والوضع حسب القطاع'));
+    head(sl, T('Country overview', 'نظرة عامة على الدولة'), NAME, T('location, leadership, political situation and status by sector', 'الموقع والقيادة والوضع السياسي والوضع القطاعي'));
     // map — accurate borders and neighbouring countries named, rendered at exactly this slot's aspect ratio (never stretched); flag in the corner
     const M = DK.MAP_SLOTS.country, mx = 0.5, my = 1.68;
     mapTitle(sl, T(`${NAME} and neighbouring countries`, `${NAME} والدول المجاورة`), '', mx, M.w);
@@ -565,7 +565,7 @@ function buildCountryDeck(opts){
     const term = (from, to, tm) => {
       const y0 = (tm && tm.since) || (from ? String(from).slice(0, 4) : ''); if (!y0) return '';
       const end = (tm && tm.end) || (to ? String(to).slice(0, 4) : '');
-      return T('In office ', 'في المنصب ') + y0 + '–' + (end || T('present', 'الآن')) + (tm && tm.years ? '  ·  ' + T(`${tm.years}-year term`, `ولاية مدتها ${tm.years} سنوات`) : '');
+      return (ar && !end ? 'في المنصب منذ ' + y0 : T('In office ', 'في المنصب ') + y0 + '–' + (end || T('present', 'الآن'))) + (tm && tm.years ? '  ·  ' + T(`${tm.years}-year term`, `ولاية مدتها ${tm.years} سنوات`) : '');
     };
     const hasHos = !!(pol && pol.hos && pol.hos.length), hasHog = !!(pol && pol.hog && pol.hog.length);
     const sameLeader = hasHos && hasHog && nm(pol.hog) === nm(pol.hos);
@@ -576,7 +576,7 @@ function buildCountryDeck(opts){
       info.capital ? [T('Capital', 'العاصمة'), info.capital] : null,
       pop ? [T('Population', 'عدد السكان'), F.pop(pop) + ' (' + pop.y + ')'] : null,
       hasHos ? [T('Head of state', 'رئيس الدولة'), nm(pol.hos), sub(pol.office, pol.hosSince, pol.hosUntil, pol.hosTerm)] : null,
-      hasHog ? [T('Head of government', 'رئيس الحكومة'), sameLeader ? T('Same as head of state', 'رئيس الدولة نفسه') : nm(pol.hog), sameLeader ? '' : sub(pol.hogOffice, pol.hogSince, pol.hogUntil, pol.hogTerm)] : null,
+      hasHog ? [T('Head of government', 'رئيس الحكومة'), sameLeader ? T('Same as head of state', 'يتولاها رئيس الدولة') : nm(pol.hog), sameLeader ? '' : sub(pol.hogOffice, pol.hogSince, pol.hogUntil, pol.hogTerm)] : null,
       pol && pol.gov && pol.gov.length ? [T('System of government', 'نظام الحكم'), pol.gov.slice(0, 2).map(x => { const t = T(x.en, x.ar); return t.charAt(0).toUpperCase() + t.slice(1); }).join(' · ')] : REGION ? [T('Region', 'الإقليم'), REGION] : null,
       INCOME ? [T('Income group', 'فئة الدخل'), INCOME] : null,
     ].filter(Boolean);   // facts we have no information on are left out
@@ -611,9 +611,10 @@ function buildCountryDeck(opts){
     // colour key: the severity bands for a 0–100 governance score
     const th = (rule('GOV_WGI_PV.SC') || { th:[25, 40, 60] }).th;
     const bands = [T(`< ${th[0]}`, `أقل من ${th[0]}`), `${th[0]}–${th[1]}`, `${th[1]}–${th[2]}`, T(`${th[2]}+`, `${th[2]} فأكثر`)];
-    const ky = py + ph - 0.3, kw = (RW - 0.36) / 4;
+    // the last band ("on track · 60+") has the longest label, so it gets more room
+    const ky = py + ph - 0.3, KW = RW - 0.36, share = [0.22, 0.22, 0.22, 0.34];
     bands.forEach((b, L) => {
-      const kx = RX + 0.18 + L * kw;
+      const kw = KW * share[L], kx = RX + 0.18 + KW * share.slice(0, L).reduce((a, s) => a + s, 0);
       sl.shape(p.ShapeType.rect, { x:kx, y:ky + 0.07, w:0.14, h:0.1, fill:{ color:SEV.fill[L] }, line:{ type:'none' } });
       sl.text([{ text:DK.sevLabelOf(L, ar), options:{ bold:true, color:C.INK } }, { text:'  ' + b, options:{ color:C.MUTE } }],
         { x:kx + 0.18, y:ky, w:kw - 0.2, h:0.24, fontFace:BODY, fontSize:6.8, valign:'middle' });
@@ -627,7 +628,7 @@ function buildCountryDeck(opts){
       sl.text(T('of 100 · Rank* ' + opts.need.rank + '/' + opts.need.of, 'من 100 · الترتيب* ' + opts.need.rank + ' من ' + opts.need.of), { x:RX + 0.14, y:by + 1.06, w:1.4, h:0.4, fontFace:BODY, fontSize:8, color:C.MUTE, valign:'top' });
     } else sl.text(T('Not ranked', 'غير مصنّفة'), { x:RX + 0.14, y:by + 0.5, w:1.4, h:0.4, fontFace:BODY, fontSize:10, color:C.MUTE });
     const sx = RX + 1.78, sw = RW - 1.78, shown = SECTORS.filter(s => s.level != null);
-    sl.text(T('STATUS BY SECTOR', 'الوضع حسب القطاع'), { x:sx, y:by - 0.02, w:sw, h:0.2, fontFace:BODY, fontSize:7.8, bold:true, color:C.GOLD, charSpacing:1.4 });
+    sl.text(T('STATUS BY SECTOR', 'الوضع القطاعي'), { x:sx, y:by - 0.02, w:sw, h:0.2, fontFace:BODY, fontSize:7.8, bold:true, color:C.GOLD, charSpacing:1.4 });
     shown.forEach((s, i) => {
       const yy = by + 0.21 + i * Math.min(0.205, 1.42 / Math.max(1, shown.length));   // up to eight sectors fit
       sl.text(T(s.short[0], s.short[1]), { x:sx, y:yy, w:sw - 1.3, h:0.19, fontFace:BODY, fontSize:8.2, color:C.INK, valign:'middle' });
@@ -641,16 +642,16 @@ function buildCountryDeck(opts){
     const sl = newSlide(C.WHITE);
     head(sl, T('Executive summary', 'الملخص التنفيذي'), NAME, T('priority sectors and their most urgent gaps', 'القطاعات ذات الأولوية وأكثر فجواتها إلحاحاً'));
     const n = opts.need;
-    const tierTxt = n ? (n.rank <= n.of / 3 ? T('in the highest-need third', 'ضمن الأعلى') : n.rank <= 2 * n.of / 3 ? T('in the middle third', 'في المنتصف') : T('in the lowest-need third', 'ضمن الأدنى')) : '';
+    const tierTxt = n ? (n.rank <= n.of / 3 ? T('in the highest-need third', 'ضمن الثلث الأعلى احتياجاً') : n.rank <= 2 * n.of / 3 ? T('in the middle third', 'ضمن الثلث الأوسط') : T('in the lowest-need third', 'ضمن الثلث الأدنى احتياجاً')) : '';
     const rated = SECTORS.filter(s => s.level != null);
     const priorities = rated.filter(s => s.level <= 1).sort((a, b) => a.level - b.level || b.nSevere - a.nSevere);
     const overall = [
       n ? T(`${NAME} scores ${Math.round(n.score)}/100 on the need index* — ranking ${n.rank} of ${n.of} tracked countries, ${tierTxt}.`,
-            `تسجّل ${NAME} ${Math.round(n.score)} من 100 على مؤشر الاحتياج* — الترتيب ${n.rank} من ${n.of}، أي ${tierTxt} احتياجاً بين الدول المتابَعة.`) : null,
+            `تبلغ درجة ${NAME} ${Math.round(n.score)} من 100 على مؤشر الاحتياج*، وتحتل المرتبة ${n.rank} من أصل ${n.of} دولة، أي ${tierTxt} بين الدول المتابَعة.`) : null,
       priorities.length && priorities.length === rated.length ? T(`All ${rated.length} sectors are rated severe or high concern — needs are broad-based rather than confined to one area.`,
-                                                  `جميع القطاعات (${rated.length}) مصنّفة حرجة أو مقلقة — أي أن الاحتياجات واسعة ولا تقتصر على مجال واحد.`)
+                                                  `صُنّفت جميع القطاعات ${({ 2:'الاثنين', 3:'الثلاثة', 4:'الأربعة', 5:'الخمسة', 6:'الستة', 7:'السبعة', 8:'الثمانية' })[rated.length] || ''} بين حرجة ومقلقة، ما يعني أن الاحتياجات واسعة النطاق ولا تقتصر على مجال بعينه.`)
       : priorities.length ? T(`${priorities.length} of ${rated.length} sectors are rated severe or high concern: ${priorities.map(s => s.en.toLowerCase()).join(', ')}.`,
-                             `${priorities.length} من ${rated.length} قطاعات مصنّفة حرجة أو مقلقة: ${priorities.map(s => s.ar).join('، ')}.`)
+                             `صُنّف ${priorities.length} من أصل ${rated.length} قطاعات بين حرجة ومقلقة: ${priorities.map(s => s.ar).join('، ')}.`)
                         : T('No sector is rated severe or high concern on current data; the sectors below are furthest from their benchmarks.', 'لا يوجد قطاع مصنّف حرجاً أو مقلقاً وفق البيانات الحالية؛ والقطاعات أدناه هي الأبعد عن معاييرها.'),
     ].filter(Boolean);
     eyebrow(sl, T('Overall picture', 'الصورة العامة'), 0.5, 1.36, 12.33, C.SKY_DK);
@@ -695,7 +696,7 @@ function buildCountryDeck(opts){
       if (w) {
         const so = T(w.so[0], w.so[1]), sy = ctop + soY;
         sl.shape(p.ShapeType.line, { x:x + pad, y:sy, w:iw, h:0, line:{ color:C.HAIR, width:0.5 } });
-        sl.text(T('WHY IT MATTERS', 'لماذا يهم ذلك'), { x:x + pad, y:sy + 0.06, w:iw, h:0.2, fontFace:BODY, fontSize:7.2, bold:true, color:C.GOLD, charSpacing:1.2 });
+        sl.text(T('WHY IT MATTERS', 'أهمية ذلك'), { x:x + pad, y:sy + 0.06, w:iw, h:0.2, fontFace:BODY, fontSize:7.2, bold:true, color:C.GOLD, charSpacing:1.2 });
         sl.text(so, { x:x + pad, y:sy + 0.27, w:iw, h:ctop + ch - sy - 0.3, fontFace:BODY, fontSize: soSize, color:C.INK, valign:'top', wrap:true });
       }
     });
@@ -741,9 +742,9 @@ function buildCountryDeck(opts){
       const story = T(`It ranges from ${fv(best.v)} in ${best.name} to ${fv(worst.v)} in ${worst.name}` + (g2 && g2 >= 1.3 ? `, a ${g2.toFixed(1)}× gap` : '') + '.'
                 + (above != null ? ` ${above} of ${ranked.length} regions are worse than the national average.` : '')
                 + (act && ranked.length > 2 ? ` ${worst.name} and ${ranked[1].name} should be prioritised: ${act[2].charAt(0).toLowerCase() + act[2].slice(1)}` : ''),
-                `يتراوح بين ${fv(best.v)} في ${best.name} و${fv(worst.v)} في ${worst.name}` + (g2 && g2 >= 1.3 ? `، أي فجوة بمقدار ${g2.toFixed(1)} أضعاف` : '') + '.'
-                + (above != null ? ` ${above} من ${ranked.length} مناطق أسوأ من المتوسط الوطني.` : '')
-                + (act && ranked.length > 2 ? ` وتُعد ${worst.name} و${ranked[1].name} نقطة البداية: ${act[3]}` : ''));
+                `تتراوح النسبة بين ${fv(best.v)} في ${best.name} و${fv(worst.v)} في ${worst.name}` + (g2 && g2 >= 1.3 ? `، أي بفارق ${g2.toFixed(1)} ضعف` : '') + '.'
+                + (above != null ? ` ويقل أداء ${above} من أصل ${ranked.length} منطقة عن المتوسط الوطني.` : '')
+                + (act && ranked.length > 2 ? ` ويُوصى بالبدء بمنطقتي ${worst.name} و${ranked[1].name}: ${act[3]}` : ''));
       sl.text(story, { x:RX, y:2.46, w:RW, h:0.92, fontFace:BODY, fontSize:9, color:C.INK, valign:'top', wrap:true });
       // legend — five equal value bands, colour darkens with need
       eyebrow(sl, T('Legend', 'دليل الألوان'), RX, 3.42, RW, C.SKY_DK);
@@ -779,7 +780,7 @@ function buildCountryDeck(opts){
     const st = s.level == null ? T('not enough current data to rate this sector', 'لا تتوفر بيانات حديثة كافية لتصنيف هذا القطاع')
       : s.level === 0 ? T('severe gaps against benchmarks', 'فجوات حرجة مقارنةً بالمعايير')
       : s.level === 1 ? T('high concern on key indicators', 'قلق مرتفع في مؤشرات رئيسية')
-      : s.level === 2 ? T('progress made, still short of benchmarks', 'تقدّم ملحوظ لكن دون المعايير')
+      : s.level === 2 ? T('progress made, still short of benchmarks', 'تقدّم ملحوظ دون بلوغ المعايير')
       : T('key indicators meet their benchmarks', 'المؤشرات الرئيسية تحقق معاييرها');
     head(sl, T('Sector assessment', 'تقييم القطاع'), s.name, st);
     if (s.level != null) badge(sl, s.level, 11.53, 0.38, 1.3, 0.26);
@@ -952,7 +953,7 @@ function buildCountryDeck(opts){
     sl.shape(p.ShapeType.rect, { x:0.6, y:1.95, w:0.9, h:0.035, fill:{ color:C.GOLD }, line:{ type:'none' } });
     const blocks = [
       [T('How ratings work', 'آلية التصنيف'), T('Each indicator is rated Severe · High concern · Moderate · On track against SDG, WHO, UNESCO and IMF reference points — the same scale used on the dashboard. A sector takes the rating of its weakest current indicator.',
-        'يُصنَّف كل مؤشر (حرج · مقلق · متوسط · على المسار) وفق مرجعيات أهداف التنمية المستدامة ومنظمة الصحة العالمية واليونسكو وصندوق النقد — وهو المقياس نفسه المستخدم في اللوحة. ويأخذ القطاع تصنيف أضعف مؤشراته الحديثة.')],
+        'يُصنَّف كل مؤشر (حرج · مقلق · متوسط · على المسار الصحيح) وفق مرجعيات أهداف التنمية المستدامة ومنظمة الصحة العالمية واليونسكو وصندوق النقد — وهو المقياس نفسه المستخدم في اللوحة. ويأخذ القطاع تصنيف أضعف مؤشراته الحديثة.')],
       [T('Data quality rules', 'قواعد جودة البيانات'), T(`Only figures from the last ${DK.STALE_YEARS} years are shown, rated or used in the narrative. Indicators with no recent figure, or an implausible one (e.g. 0% spending), are left off the slides and named in a "Limited data" note; nothing is estimated.`,
         `لا تُعرض ولا تُصنَّف ولا تُستخدم في السرد إلا الأرقام الصادرة خلال آخر ${DK.STALE_YEARS} سنوات. وتُستبعد المؤشرات التي لا رقم حديثاً لها أو التي رقمها غير معقول (مثل إنفاق 0%) من الشرائح وتُذكر في ملاحظة «بيانات محدودة»؛ ولا يُقدَّر أي رقم.`)],
       [T('Need index', 'مؤشر الاحتياج'), T('A 0–100 score (higher = greater need). Combines under-5 and maternal mortality, undernourishment and lack of basic water, sanitation and electricity, each scaled across all tracked countries (0–100).',

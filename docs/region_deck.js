@@ -269,7 +269,7 @@ function buildRegionDeck(opts){
     [[T('Need index', 'مؤشر الاحتياج'), T('Combines under-5 and maternal mortality, undernourishment and lack of basic drinking water, sanitation and electricity. Each is scaled 0–100 across all countries the dashboard tracks and averaged; a country needs four of the six to be ranked.',
        'يجمع بين وفيات الأطفال دون الخامسة ووفيات الأمهات ونقص التغذية ونقص مياه الشرب الأساسية والصرف الصحي والكهرباء. يُقاس كل منها من 0 إلى 100 عبر جميع الدول المتابَعة ثم يُحسب المتوسط؛ ويلزم توفر أربعة من ستة مؤشرات للترتيب.')],
      [T('Severity colours', 'ألوان الحدّة'), T('Severe · High concern · Moderate · On track, against SDG / WHO reference points — the same scale as the dashboard. "People without" figures multiply national access rates by population and are estimates.',
-       'حرج · مقلق · متوسط · على المسار، وفق مرجعيات أهداف التنمية المستدامة ومنظمة الصحة — وهو مقياس اللوحة نفسه. أعداد السكان المحرومين تقديرية بضرب معدلات الوصول الوطنية في عدد السكان.')],
+       'حرج · مقلق · متوسط · على المسار الصحيح، وفق مرجعيات أهداف التنمية المستدامة ومنظمة الصحة — وهو مقياس اللوحة نفسه. أعداد السكان المحرومين تقديرية بضرب معدلات الوصول الوطنية في عدد السكان.')],
      [T('Data', 'البيانات'), SRC_LINE + '. ' + (opts.dataNote || '') + T(` Figures older than ${DK.STALE_YEARS} years are marked and excluded from ratings; missing values show as "—".`, ` تُميَّز الأرقام الأقدم من ${DK.STALE_YEARS} سنوات وتُستبعد من التصنيف، وتظهر القيم المفقودة بعلامة «—».`)]]
       .forEach(([h, t], i) => { const y = 2.3 + i * 1.45;
         sl.text(ar ? h : h.toUpperCase(), { x:0.6, y, w:12, h:0.26, fontFace:BODY, fontSize:9.5, bold:true, color:C.GOLD_LT, charSpacing:1.6 });

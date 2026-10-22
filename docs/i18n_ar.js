@@ -37,7 +37,7 @@ const AR_REGION = {
   'Sub-Saharan Africa':'أفريقيا جنوب الصحراء',
 };
 
-const AR_INCOME = { LIC:'منخفض الدخل', LMIC:'الشريحة الدنيا من الدخل المتوسط', UMIC:'الشريحة العليا من الدخل المتوسط' };
+const AR_INCOME = { LIC:'منخفضة الدخل', LMIC:'الشريحة الدنيا من الدخل المتوسط', UMIC:'الشريحة العليا من الدخل المتوسط' };
 
 // capital · currency · languages (Arabic), for report covers
 const AR_INFO = {

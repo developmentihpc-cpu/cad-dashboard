@@ -669,7 +669,7 @@ function buildCountryDeck(opts){
     sevKey(sl, 12.93, 6.86, false);   // bottom right, just above the footer line
     if (!top.length) sl.text(T('Key indicators in every sector meet their benchmarks on current data.', 'المؤشرات الرئيسية في جميع القطاعات تحقق معاييرها وفق البيانات الحالية.'),
       { x:0.5, y:cy + 0.4, w:12.33, h:0.4, fontFace:BODY, fontSize:10.5, color:C.MUTE });
-    const gapCol = 0.2, cw = top.length ? (12.33 - gapCol * (top.length - 1)) / top.length : 0, ctop = cy + 0.32, ch = (n ? 6.56 : 6.98) - ctop;
+    const gapCol = 0.2, cw = top.length ? (12.33 - gapCol * (top.length - 1)) / top.length : 0, ctop = cy + 0.32, ch = (n ? 6.56 : 6.78) - ctop;   // always ends above the colour key (bottom right, y 6.86)
     // "Why it matters": one font size for every column — the largest at which the longest text still fits
     // the block sits under the tallest gap list, at the same height in every column
     const maxG = Math.max(1, ...top.map(s => Math.min(3, s.ranked.filter(id => lvl(id) <= Math.max(1, s.level)).length)));

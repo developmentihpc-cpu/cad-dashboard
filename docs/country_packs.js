@@ -42,6 +42,46 @@ const COUNTRY_PACKS = {
       sources: ['UNHCR (data portal, 31 Oct 2026; funding update, mid-2026; returns update, Aug 2026) · UNRWA',
                 'المفوضية (بوابة البيانات، 31 أكتوبر 2026؛ تحديث التمويل منتصف 2026؛ تحديث العودة أغسطس 2026) · الأونروا'],
     },
+    // ── humanitarian aid (slide after the refugee situation); amounts in US$ million ──
+    aid: {
+      tagline: ['appeals are deeply underfunded as humanitarian money falls', 'نداءات تعاني نقصاً حاداً في التمويل مع تراجع الأموال الإنسانية'],
+      facts: [
+        [['US$73.9M', '73.9 مليون دولار'], ['Humanitarian funding reported for 2026', 'التمويل الإنساني المُبلَّغ عنه لعام 2026'], ['OCHA, mid-Aug 2026 · down 92% from US$936.9M in 2016', 'أوتشا، منتصف أغسطس 2026 · بانخفاض 92% عن 936.9 مليون دولار في 2016']],
+        ['2.2%', ['Jordan Response Plan 2026 funded', 'نسبة تمويل خطة الاستجابة الأردنية 2026'], ['US$62.9M of US$2.8B · mid-Aug 2026', '62.9 مليون من 2.8 مليار دولار · منتصف أغسطس 2026']],
+        [['US$21', '21 دولاراً'], ['WFP food aid per refugee a month', 'المساعدة الغذائية لكل لاجئ شهرياً'], ['Reduced; cash for refugees outside camps paused six months', 'مخفّضة؛ وعُلّقت المساعدات النقدية خارج المخيمات ستة أشهر']],
+        [['US$1.45B+', '1.45 مليار دولار+'], ['US aid a year (2022 MOU)', 'المساعدات الأمريكية سنوياً (مذكرة 2022)'], ['Largest bilateral donor · FY2023–2029, includes budget support', 'أكبر مانح ثنائي · 2023–2029، وتشمل دعم الموازنة']],
+      ],
+      appealsTitle: ['Share of each 2026 appeal funded', 'نسبة تمويل كل نداء لعام 2026'],
+      appeals: [   // [name, received, required] in US$ million
+        [['Jordan Response Plan (OCHA, Aug)', 'خطة الاستجابة الأردنية (أوتشا، أغسطس)'], 62.9, 2800],
+        [['UNHCR Jordan (mid-year)', 'المفوضية في الأردن (منتصف العام)'], 77.7, 280],
+        [['WFP Jordan (Sep)', 'برنامج الأغذية العالمي في الأردن (سبتمبر)'], 52.1, 170],
+        [['UNRWA appeal: Syria, Lebanon, Jordan (Jun)', 'نداء الأونروا: سوريا ولبنان والأردن (يونيو)'], 72, 170.2],
+      ],
+      donorsTitle: ['Largest humanitarian donors, 2026 (OCHA)', 'أكبر المانحين الإنسانيين، 2026 (أوتشا)'],
+      donors: [
+        [['European Commission', 'المفوضية الأوروبية'], 16.26], [['Japan', 'اليابان'], 15.8], [['Switzerland', 'سويسرا'], 8.2],
+        [['Canada', 'كندا'], 6.72], [['Qatar', 'قطر'], 5.62], [['Netherlands', 'هولندا'], 4.29],
+      ],
+      points: [
+        [['Food', 'الغذاء'], ['WFP has US$52.1M of the US$170M it needs. Cash food aid for refugees outside camps was suspended for six months and resumes from October 2026 only for the most vulnerable families, at a reduced US$21 a person a month.',
+          'حصل برنامج الأغذية العالمي على 52.1 مليون من 170 مليون دولار يحتاجها، وعُلّقت المساعدة الغذائية النقدية للاجئين خارج المخيمات ستة أشهر، وتُستأنف من أكتوبر 2026 للأسر الأشد ضعفاً فقط بمبلغ مخفّض قدره 21 دولاراً للفرد شهرياً.']],
+        [['Services', 'الخدمات'], ['UNHCR cut back health, cash and child-protection services in 2025, and UNRWA could not carry out some planned activities in Jordan in 2026.',
+          'قلّصت المفوضية خدمات الصحة والمساعدات النقدية وحماية الطفل في 2025، ولم تتمكن الأونروا من تنفيذ بعض الأنشطة المخططة في الأردن في 2026.']],
+        [['From relief to development', 'من الإغاثة إلى التنمية'], ['Humanitarian funding has fallen 92% since 2016, while development finance continues: US aid of at least US$1.45B a year and the EU’s €3B package for 2025–2027.',
+          'تراجع التمويل الإنساني بنسبة 92% منذ 2016، فيما يستمر التمويل التنموي: مساعدات أمريكية لا تقل عن 1.45 مليار دولار سنوياً، وحزمة أوروبية بقيمة 3 مليارات يورو للفترة 2025–2027.']],
+      ],
+      support: [
+        ['Fill the most urgent gaps — food and cash for the most vulnerable refugee and host families — while returns continue.',
+         'سدّ الفجوات الأكثر إلحاحاً، أي الغذاء والمساعدات النقدية للأسر الأشد ضعفاً من اللاجئين والمجتمع المضيف، مع استمرار العودة.'],
+        ['Work through national systems (schools, clinics, social protection) so services continue as humanitarian funding falls.',
+         'العمل عبر الأنظمة الوطنية (المدارس والعيادات والحماية الاجتماعية) لتستمر الخدمات مع تراجع التمويل الإنساني.'],
+        ['Align with the Jordan Response Plan and the largest donors (EU, Japan, US) to avoid duplication.',
+         'المواءمة مع خطة الاستجابة الأردنية وأكبر المانحين (الاتحاد الأوروبي واليابان والولايات المتحدة) لتفادي الازدواجية.'],
+      ],
+      sources: ['OCHA FTS (via Roya News, Aug 2026) · WFP (Sep 2026) · UNHCR · UNRWA (Jun 2026) · US CRS · EU',
+                'خدمة التتبع المالي لأوتشا (عبر رؤيا، 18 أغسطس 2026) · برنامج الأغذية العالمي (سبتمبر 2026) · المفوضية · الأونروا (يونيو 2026) · خدمة أبحاث الكونغرس · الاتحاد الأوروبي'],
+    },
     // ── context: what drives need ──
     drivers: {
       facts: [

@@ -853,6 +853,45 @@ function buildCountryDeck(opts){
       iy += ih + 0.05; });
     foot(sl, tx(RF.sources) + ' · ' + DATE);
   });
+  // ══ HUMANITARIAN AID (country pack `aid`) — key figures, how much of each appeal is funded, the largest donors,
+  //    what is happening on the ground and what it means for support ══
+  if (PK && PK.aid) S.push(() => {
+    const sl = newSlide(C.WHITE), A = PK.aid, money = v => v >= 1000 ? T(`US$${(v / 1000).toFixed(1)}B`, `${(v / 1000).toFixed(1)} مليار دولار`) : T(`US$${v >= 100 ? Math.round(v) : v.toFixed(1)}M`, `${v >= 100 ? Math.round(v) : v.toFixed(1)} مليون دولار`);
+    head(sl, T('Humanitarian aid', 'المساعدات الإنسانية'), NAME, tx(A.tagline));
+    factRow(sl, A.facts, 0.5, 1.35, 12.33, 1.3);
+    // left: appeal coverage, then the largest donors
+    const LX = 0.5, LW = 6.0, NW = 2.1, BX = LX + NW + 0.1, BW = 1.55, VX = BX + BW + 0.12, VW = LX + LW - VX;
+    eyebrow(sl, tx(A.appealsTitle), LX, 2.8, LW, C.SKY_DK);
+    A.appeals.forEach(([name, got, need], i) => {
+      const y = 3.12 + i * 0.44, pc = got / need * 100;
+      sl.text(tx(name), { x:LX, y, w:NW, h:0.36, fontFace:BODY, fontSize:8.2, color:C.INK, valign:'middle', wrap:true });
+      sl.shape(p.ShapeType.rect, { x:BX, y:y + 0.11, w:BW, h:0.15, fill:{ color:C.SKY_PALE }, line:{ type:'none' } });
+      sl.shape(p.ShapeType.rect, { x:BX, y:y + 0.11, w:Math.max(0.03, BW * Math.min(1, pc / 100)), h:0.15, fill:{ color: pc < 25 ? SEV.fill[0] : pc < 50 ? SEV.fill[1] : SEV.fill[2] }, line:{ type:'none' } });
+      sl.text([{ text:(pc < 10 ? pc.toFixed(1) : Math.round(pc)) + '%', options:{ bold:true, color:C.INK } }, { text:T(`  ${money(got)} of ${money(need)}`, `  ${money(got)} من ${money(need)}`), options:{ color:C.MUTE, fontSize:7.2 } }],
+        { x:VX, y, w:VW, h:0.36, fontFace:BODY, fontSize:8.6, valign:'middle' });
+    });
+    const dy = 3.12 + A.appeals.length * 0.44 + 0.12, top = Math.max(...A.donors.map(d => d[1]));
+    eyebrow(sl, tx(A.donorsTitle), LX, dy, LW, C.SKY_DK);
+    A.donors.forEach(([name, v], i) => {
+      const y = dy + 0.3 + i * 0.24;
+      sl.text(tx(name), { x:LX, y, w:NW, h:0.22, fontFace:BODY, fontSize:8.2, color:C.INK, valign:'middle' });
+      sl.shape(p.ShapeType.rect, { x:BX, y:y + 0.06, w:Math.max(0.03, BW * v / top), h:0.1, fill:{ color:C.SKY }, line:{ type:'none' } });
+      sl.text(money(v), { x:VX, y, w:VW, h:0.22, fontFace:BODY, fontSize:8.2, bold:true, color:C.INK, valign:'middle' });
+    });
+    // right: what is happening, then what it means for support
+    const RX = 6.83, RW = 6.0;
+    eyebrow(sl, T('What is happening', 'ما يحدث على الأرض'), RX, 2.8, RW, C.SKY_DK);
+    const ny = headedList(sl, A.points, RX, 3.1, RW, 8.6, 0.08);
+    const items = A.support.map(tx), by = ny + 0.1;
+    sl.shape(p.ShapeType.rect, { x:RX, y:by, w:RW, h:6.9 - by, fill:{ color:C.GOLD_PALE }, line:{ type:'none' } });
+    sl.shape(p.ShapeType.rect, { x:RX, y:by, w:0.06, h:6.9 - by, fill:{ color:C.GOLD }, line:{ type:'none' } });
+    eyebrow(sl, T('What it means for support', 'ما يعنيه ذلك للدعم'), RX + 0.22, by + 0.1, RW - 0.4);
+    let iy = by + 0.38;
+    items.forEach(t => { const ih = textH(t, RW - 0.5, 8.4);
+      sl.text([{ text:'▸  ', options:{ color:C.GOLD, bold:true } }, { text:t, options:{ color:C.INK } }], { x:RX + 0.22, y:iy, w:RW - 0.4, h:ih, fontFace:BODY, fontSize:8.4, valign:'top', wrap:true });
+      iy += ih + 0.05; });
+    foot(sl, tx(A.sources) + ' · ' + DATE);
+  });
   if (PK && PK.drivers) S.push(() => {
     const sl = newSlide(C.WHITE), D = PK.drivers;
     head(sl, T(`${country} in context`, `${NAME} في سياقها`), NAME, T('what drives need', 'ما الذي يحرّك الاحتياجات'));

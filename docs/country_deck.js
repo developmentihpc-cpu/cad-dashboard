@@ -73,8 +73,8 @@ function buildCountryDeck(opts){
     'AG.YLD.CREL.KG':    { en:'Cereal yield', ar:'إنتاجية الحبوب', f: r => F.num(r), u:[' kg/ha',' كغ/هكتار'] },
     'NV.AGR.TOTL.ZS':    { en:'Agriculture (% of GDP)', ar:'الزراعة (% من الناتج)', f: r => F.pct(r) },
     'SH.H2O.BASW.ZS':    { en:'Basic drinking water', ar:'مياه الشرب الأساسية', f: r => F.pct(r) },
-    'ER.H2O.INTR.PC':    { en:'Renewable freshwater per person', ar:'المياه العذبة المتجددة للفرد', f: r => F.num(r), u:[' m³ a year',' م³ سنوياً'] },
-    'ER.H2O.FWST.ZS':    { en:'Water stress (withdrawals as % of available supply)', ar:'الإجهاد المائي (السحب % من الموارد المتاحة)', f: r => F.pct(r) },
+    'ER.H2O.INTR.PC':    { en:'Renewable water per person', ar:'المياه المتجددة للفرد', f: r => F.num(r), u:[' m³ a year',' م³ سنوياً'] },
+    'ER.H2O.FWST.ZS':    { en:'Water stress (% of available supply)', ar:'الإجهاد المائي (% من الموارد المتاحة)', f: r => F.pct(r) },
     'uis:ROFST.1.CP':    { en:'Out of school (primary age)', ar:'خارج المدرسة (سن المرحلة الابتدائية)', f: r => F.pct(r, 1) },
     'uis:ROFST.2.CP':    { en:'Out of school (lower-secondary age)', ar:'خارج المدرسة (سن المرحلة الإعدادية)', f: r => F.pct(r, 1) },
     'SE.PRM.UNER':       { en:'Primary-age children out of school', ar:'الأطفال في سن الابتدائية خارج المدرسة', f: r => F.num(r), u:[' children',' طفل'] },
@@ -371,7 +371,7 @@ function buildCountryDeck(opts){
   // ── sectors ── acts: [indicator that triggers it, worst level it applies to, English, Arabic] (null = always)
   //               inv:  development-investment angles, only where the data makes them relevant
   const SECTORS = [
-    { key:'wash', en:'Water', ar:'المياه', short:['Water','المياه'], stats:['ER.H2O.INTR.PC','ER.H2O.FWST.ZS','SH.H2O.BASW.ZS','SH.H2O.SMDW.ZS','SH.STA.BASS.ZS','SH.STA.SMSS.ZS'], bars:['ER.H2O.INTR.PC','ER.H2O.FWST.ZS','SH.H2O.BASW.ZS','SH.H2O.SMDW.ZS','SH.STA.BASS.ZS','SH.STA.SMSS.ZS','SH.STA.ODFC.ZS'],
+    { key:'wash', en:'Water', ar:'المياه', short:['Water','المياه'], keep:['ER.H2O.INTR.PC','ER.H2O.FWST.ZS'], stats:['ER.H2O.INTR.PC','ER.H2O.FWST.ZS','SH.H2O.BASW.ZS','SH.H2O.SMDW.ZS','SH.STA.BASS.ZS','SH.STA.SMSS.ZS'], bars:['ER.H2O.INTR.PC','ER.H2O.FWST.ZS','SH.H2O.BASW.ZS','SH.H2O.SMDW.ZS','SH.STA.BASS.ZS','SH.STA.SMSS.ZS','SH.STA.ODFC.ZS'],
       acts:[ ['ER.H2O.FWST.ZS',1,'Cut water losses in the network, reuse treated wastewater in farming and expand desalination where renewable supply is exhausted.','خفض فاقد المياه في الشبكات، وإعادة استخدام المياه المعالجة في الزراعة، وتوسيع التحلية حيث استُنفدت الموارد المتجددة.'],
              ['SH.H2O.BASW.ZS',1,'Extend basic water points and piped supply to unserved communities.','توصيل مياه الشرب الأساسية والشبكات إلى المجتمعات غير المخدومة.'],
              ['SH.STA.BASS.ZS',1,'Fund household and school sanitation to end open defecation.','تمويل الصرف الصحي للمنازل والمدارس وإنهاء التغوط في العراء.'],
@@ -437,7 +437,7 @@ function buildCountryDeck(opts){
              'خطوط ائتمان وضمانات جزئية عبر البنوك المحلية لفتح الإقراض أمام المنشآت الصغيرة والمتوسطة.'],
             [() => off('BX.KLT.DINV.WD.GD.ZS', 2) || off('LP.LPI.OVRL.XQ', 2), 'Co-invest with private developers in special economic zones, industrial parks and logistics hubs.',
              'الاستثمار المشترك مع المطورين من القطاع الخاص في المناطق الاقتصادية الخاصة والمجمعات الصناعية والمراكز اللوجستية.'] ] },
-    { key:'trade', en:'Trade', ar:'التجارة', short:['Trade','التجارة'],
+    { key:'trade', en:'Trade', ar:'التجارة', short:['Trade','التجارة'], overview:true,   // a sector overview: shown, but not rated
       stats:['NE.EXP.GNFS.ZS','BN.CAB.XOKA.GD.ZS','TM.TAX.MRCH.WM.AR.ZS','TX.VAL.MANF.ZS.UN'], bars:['BN.CAB.XOKA.GD.ZS','TM.TAX.MRCH.WM.AR.ZS'],
       acts:[ ['TM.TAX.MRCH.WM.AR.ZS',1,'Support tariff reform and regional trade agreements that open neighbouring markets.','دعم إصلاح التعريفات واتفاقيات التجارة الإقليمية التي تفتح أسواق الجوار.'],
              ['BN.CAB.XOKA.GD.ZS',1,'Export promotion and diversification to reduce the trade deficit.','تشجيع الصادرات وتنويعها لتضييق الفجوة التجارية.'],
@@ -449,11 +449,13 @@ function buildCountryDeck(opts){
   const SUB_LINK = { CM_ECMR_C_U5M:'SH.DYN.MORT', CH_VACC_C_BAS:'SH.IMM.MEAS', ED_LITR_W_LIT:'SE.ADT.LITR.ZS', CN_NUTS_C_HA2:'SH.STA.STNT.ZS', WS_SRCE_H_IMP:'SH.H2O.BASW.ZS', WS_TLET_H_IMP:'SH.STA.BASS.ZS' };
   const SUBN = opts.subnational || {};
   // sector status = worst current level among its benchmarked indicators
+  const INPUTS = new Set(['SE.XPD.TOTL.GD.ZS', 'SH.XPD.CHEX.GD.ZS']);
   SECTORS.forEach(s => {
     const own = opts.pack && opts.pack.sectorStats && opts.pack.sectorStats[s.key];   // a country pack can choose the stat cards
     if (own) { s.bars = s.bars.filter(id => own.includes(id) || !s.stats.includes(id)); s.stats = own; }
     s.ids = [...new Set(s.stats.concat(s.bars))];
-    const lv = s.ids.map(lvl).filter(x => x != null);
+    // spending (% of GDP) is an input, not an outcome: on its own it can make a sector Moderate at most
+    const lv = s.overview ? [] : s.ids.map(id => { const l = lvl(id); return l != null && INPUTS.has(id) ? Math.max(l, 2) : l; }).filter(x => x != null);
     s.level = lv.length ? Math.min(...lv) : null;
     s.nSevere = lv.filter(x => x <= 1).length;
     s.ranked = s.ids.filter(id => lvl(id) != null).sort((a, b) => lvl(a) - lvl(b));   // worst first
@@ -861,7 +863,7 @@ function buildCountryDeck(opts){
   // ══ 4–10 · SECTOR SLIDES (incl. governance & stability) ══
   SECTORS.forEach(s => { S.push(() => {
     const sl = newSlide(C.WHITE);
-    const st = s.level == null ? T('not enough current data to rate this sector', 'لا تتوفر بيانات حديثة كافية لتصنيف هذا القطاع')
+    const st = s.overview ? T('sector overview', 'نظرة عامة على القطاع') : s.level == null ? T('not enough current data to rate this sector', 'لا تتوفر بيانات حديثة كافية لتصنيف هذا القطاع')
       : s.level === 0 ? T('severe gaps against benchmarks', 'فجوات حرجة مقارنةً بالمعايير')
       : s.level === 1 ? T('high concern on key indicators', 'قلق مرتفع في مؤشرات رئيسية')
       : s.level === 2 ? T('progress made, still short of benchmarks', 'تقدّم ملحوظ دون بلوغ المعايير')
@@ -871,7 +873,9 @@ function buildCountryDeck(opts){
     sevKey(sl, 12.93, 6.86, true);   // bottom right, just above the footer line: what the card bars, badge and insight markers mean
     // stat cards — only indicators with data, the most critical first; benchmark shown inside each card
     const LX = 0.5, LW = 7.0;
-    const cards = [...new Set(s.ranked.filter(id => s.stats.includes(id) || lvl(id) <= 1).concat(s.stats))].filter(id => R(id) && !R(id).stale).slice(0, 6);
+    let cards = [...new Set(s.ranked.filter(id => s.stats.includes(id) || lvl(id) <= 1).concat(s.stats))].filter(id => R(id) && !R(id).stale);
+    const keep = (s.keep || []).filter(id => cards.includes(id)), rest = cards.filter(id => !keep.includes(id)).slice(0, 6 - keep.length);
+    cards = cards.filter(id => keep.includes(id) || rest.includes(id));   // indicators every country's slide must show (e.g. water scarcity)
     const cols = cards.length > 4 ? 3 : 2, rows = Math.ceil(cards.length / cols), cw = (LW - 0.18 * (cols - 1)) / cols, ch = 1.4;
     cards.forEach((id, i) => statCard(sl, id, LX + (i % cols) * (cw + 0.18), 1.38 + Math.floor(i / cols) * (ch + 0.14), cw, ch, cols === 3));
     const cardsEnd = cards.length ? 1.38 + rows * (ch + 0.14) - 0.14 : 1.38;

@@ -3,8 +3,8 @@
   "generated": "2026-11-01T09:55:50+00:00",
   "source": "World Bank Open Data API (api.worldbank.org)",
   "countries": 131,
-  "indicators": 68,
-  "datapoints": 7943
+  "indicators": 71,
+  "datapoints": 8309
  },
  "_regions": {
   "East Asia & Pacific": [
@@ -407,6 +407,14 @@
   "IMF.GGXWDG_NGDP": {
    "value": 7.6,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 1161.93557223737,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 54.75701944,
+   "year": "2022"
   }
  },
  "Albania": {
@@ -681,6 +689,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 53.8,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 10972.2650507661,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 4.789663462,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 617,
+   "year": "2024"
   }
  },
  "Algeria": {
@@ -930,6 +950,18 @@
   },
   "IMF.GGXWDG_NGDP": {
    "value": 52.1,
+   "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 247.309712525493,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 144.8149712,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 78683.237066268,
    "year": "2025"
   }
  },
@@ -1189,6 +1221,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 52.9,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 4153.21676881475,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 1.871883289,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 2281912,
+   "year": "2023"
   }
  },
  "Argentina": {
@@ -1439,6 +1483,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 80.1,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 6430.59851430271,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 10.45666408,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 32815.761457759,
+   "year": "2023"
   }
  },
  "Armenia": {
@@ -1709,6 +1765,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 46.9,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 2310.04984507611,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 61.97296752,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 1710.18517620533,
+   "year": "2024"
   }
  },
  "Azerbaijan": {
@@ -1967,6 +2035,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 20.1,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 800.157290315405,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 57.52704791,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 152,
+   "year": "2024"
   }
  },
  "Bangladesh": {
@@ -2245,6 +2325,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 42,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 619.889977558035,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 5.723339482,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 918575.099977436,
+   "year": "2024"
   }
  },
  "Bolivia": {
@@ -2499,6 +2591,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 83.3,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 25130.0927354243,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 0.202979589,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 136027,
+   "year": "2024"
   }
  },
  "Botswana": {
@@ -2741,6 +2845,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 34,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 983.650095987855,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 2.230009819,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 1868.90972901735,
+   "year": "2022"
   }
  },
  "Burkina Faso": {
@@ -3011,6 +3127,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 53.2,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 555.332484666826,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 7.820267686,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 1363187,
+   "year": "2024"
   }
  },
  "Burundi": {
@@ -3244,6 +3372,18 @@
   },
   "IMF.GGXWDG_NGDP": {
    "value": 42,
+   "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 755.193059550576,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 10.19286754,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 661724,
    "year": "2025"
   }
  },
@@ -3511,6 +3651,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 25.5,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 7010.92518401063,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 1.036544851,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 76741.0456542969,
+   "year": "2024"
   }
  },
  "Cameroon": {
@@ -3769,6 +3921,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 40.5,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 9879.57378577776,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 1.560430108,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 173924,
+   "year": "2024"
   }
  },
  "Chad": {
@@ -4019,6 +4183,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 33.3,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 812.773945458317,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 4.294921875,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 855041,
+   "year": "2024"
   }
  },
  "Colombia": {
@@ -4293,6 +4469,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 59.9,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 41458.9338919227,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 3.632281437,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 289295,
+   "year": "2022"
   }
  },
  "Congo, Dem. Rep.": {
@@ -4559,6 +4747,14 @@
   "IMF.GGXWDG_NGDP": {
    "value": 20.4,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 8789.32274635319,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 0.226883505,
+   "year": "2022"
   }
  },
  "Côte d'Ivoire": {
@@ -4829,6 +5025,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 57.1,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 2528.04720986694,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 5.087565674,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 650800,
+   "year": "2024"
   }
  },
  "Ecuador": {
@@ -5103,6 +5311,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 54.5,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 24820.6102178441,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 6.782352941,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 86090,
+   "year": "2023"
   }
  },
  "Egypt": {
@@ -5373,6 +5593,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 86.8,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 8.8795554894522,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 141.1657559,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 559709,
+   "year": "2024"
   }
  },
  "El Salvador": {
@@ -5643,6 +5875,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 87.6,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 2488.72708535984,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 12.09309202,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 57338.9089499814,
+   "year": "2024"
   }
  },
  "Eritrea": {
@@ -5777,6 +6021,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 260.4,
    "year": "2019"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 821.247551289109,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 11.17511521,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 179166,
+   "year": "2022"
   }
  },
  "Ethiopia": {
@@ -6019,6 +6275,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 43.3,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 973.008683296975,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 32.25718654,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 4236782,
+   "year": "2024"
   }
  },
  "Ghana": {
@@ -6281,6 +6549,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 48.8,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 914.050531368042,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 6.314734089,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 235313,
+   "year": "2024"
   }
  },
  "Guatemala": {
@@ -6555,6 +6835,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 26.7,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 6118.37475123792,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 5.742097081,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 201342,
+   "year": "2024"
   }
  },
  "Guinea": {
@@ -6781,6 +7073,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 36.3,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 16079.5302102,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 1.369230769,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 308947,
+   "year": "2020"
   }
  },
  "Haiti": {
@@ -7007,6 +7311,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 12.3,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 1130.68893353962,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 13.38379177,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 3718.7949865954,
+   "year": "2016"
   }
  },
  "Honduras": {
@@ -7273,6 +7589,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 40.3,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 8664.09680852365,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 4.621268764,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 346452,
+   "year": "2024"
   }
  },
  "India": {
@@ -7547,6 +7875,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 84.3,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 1014.43556399726,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 66.49209283,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 134967.051573232,
+   "year": "2025"
   }
  },
  "Indonesia": {
@@ -7817,6 +8157,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 40.9,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 7239.88154109194,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 29.69654528,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 250574.853046648,
+   "year": "2025"
   }
  },
  "Iraq": {
@@ -8059,6 +8411,14 @@
   "IMF.GGXWDG_NGDP": {
    "value": 52.8,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 798.71930804768,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 59.58384831,
+   "year": "2022"
   }
  },
  "Jordan": {
@@ -8309,6 +8669,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 83.6,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 60.5884919355562,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 105.2021265,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 21351,
+   "year": "2024"
   }
  },
  "Kazakhstan": {
@@ -8562,6 +8934,18 @@
   },
   "IMF.GGXWDG_NGDP": {
    "value": 24.3,
+   "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 3211.94189514754,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 34.62690707,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 128155,
    "year": "2025"
   }
  },
@@ -8821,6 +9205,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 71.3,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 381.549511643352,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 33.23990107,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 468923,
+   "year": "2023"
   }
  },
  "Kosovo": {
@@ -9189,6 +9585,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 39.4,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 7014.83250707505,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 50.03895598,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 18854,
+   "year": "2025"
   }
  },
  "Laos": {
@@ -9442,6 +9850,18 @@
   },
   "IMF.GGXWDG_NGDP": {
    "value": 88.8,
+   "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 25188.4936738384,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 4.791395046,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 82273,
    "year": "2025"
   }
  },
@@ -9713,6 +10133,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 139.4,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 835.583460948398,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 58.79299156,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 146896,
+   "year": "2024"
   }
  },
  "Liberia": {
@@ -9939,6 +10371,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 55.1,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 37221.1161347211,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 0.264311594,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 327280,
+   "year": "2022"
   }
  },
  "Libya": {
@@ -10153,6 +10597,14 @@
   "IMF.GGXWDG_NGDP": {
    "value": 153.8,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 96.9018405120293,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 817.1428571,
+   "year": "2022"
   }
  },
  "Madagascar": {
@@ -10427,6 +10879,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 47.7,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 11071.9555218848,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 11.26150628,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 135620.714821936,
+   "year": "2024"
   }
  },
  "Malawi": {
@@ -10685,6 +11149,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 96.6,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 784.686345212985,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 17.50483809,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 70758.0297260471,
+   "year": "2022"
   }
  },
  "Mali": {
@@ -10939,6 +11415,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 40.3,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 2600.48264957976,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 8.00308642,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 1186892,
+   "year": "2023"
   }
  },
  "Mauritania": {
@@ -11193,6 +11681,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 40.4,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 82.040562084503,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 13.24621733,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 291098,
+   "year": "2024"
   }
  },
  "Mexico": {
@@ -11471,6 +11971,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 61.7,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 3180.07999137444,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 44.94514734,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 46859,
+   "year": "2024"
   }
  },
  "Moldova": {
@@ -11729,6 +12241,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 39.2,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 640.657045210614,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 12.56311256,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 587.994778622073,
+   "year": "2024"
   }
  },
  "Mongolia": {
@@ -12003,6 +12527,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 45,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 10134.6982946914,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 3.395007342,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 35208.9993896484,
+   "year": "2024"
   }
  },
  "Morocco": {
@@ -12253,6 +12789,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 66.6,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 776.874555440233,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 50.75121202,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 18988.0868574185,
+   "year": "2021"
   }
  },
  "Mozambique": {
@@ -12519,6 +13067,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 90.3,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 3071.3879360169,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 1.751486326,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 64247.3903273614,
+   "year": "2022"
   }
  },
  "Myanmar": {
@@ -12777,6 +13337,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 51.9,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 18654.3887007235,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 5.801501397,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 65967,
+   "year": "2010"
   }
  },
  "Namibia": {
@@ -13031,6 +13603,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 67.5,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 2131.73720663524,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 0.314668328,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 4230.20946880174,
+   "year": "2024"
   }
  },
  "Nepal": {
@@ -13301,6 +13885,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 47.4,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 6669.93410428169,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 8.311832662,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 21146,
+   "year": "2025"
   }
  },
  "Nicaragua": {
@@ -13515,6 +14111,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 34.6,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 23208.7401907749,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 2.220900209,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 53481,
+   "year": "2023"
   }
  },
  "Niger": {
@@ -13777,6 +14385,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 45.5,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 138.274483778882,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 11.02093771,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 1876779,
+   "year": "2024"
   }
  },
  "Nigeria": {
@@ -14023,6 +14643,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 36.1,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 990.36124865033,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 9.668217054,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 9070702,
+   "year": "2023"
   }
  },
  "Pakistan": {
@@ -14293,6 +14925,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 72.8,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 225.68670277788,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 109.9932519,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 5434995.81640625,
+   "year": "2024"
   }
  },
  "Palestine": {
@@ -14535,6 +15179,18 @@
   "TX.VAL.FOOD.ZS.UN": {
    "value": 21.3953024551424,
    "year": "2023"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 164.948487115634,
+   "year": "2021"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 47.7535301669,
+   "year": "2021"
+  },
+  "SE.PRM.UNER": {
+   "value": 53793,
+   "year": "2023"
   }
  },
  "Papua New Guinea": {
@@ -14765,6 +15421,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 51.6,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 78505.0213320979,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 0.132242833,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 53289.224709193,
+   "year": "2021"
   }
  },
  "Paraguay": {
@@ -15031,6 +15699,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 38.2,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 17306.5044056148,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 1.835399711,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 105859,
+   "year": "2024"
   }
  },
  "Peru": {
@@ -15305,6 +15985,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 30.1,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 49021.0165435326,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 4.82842772,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 5359,
+   "year": "2019"
   }
  },
  "Philippines": {
@@ -15583,6 +16275,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 59.1,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 4203.06920924684,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 27.83151711,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 1616165,
+   "year": "2024"
   }
  },
  "Rwanda": {
@@ -15845,6 +16549,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 64.7,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 695.918183463079,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 20.1986755,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 19504.1283484402,
+   "year": "2024"
   }
  },
  "Senegal": {
@@ -16119,6 +16835,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 127.7,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 1461.66503022502,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 16.2764487,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 675615,
+   "year": "2024"
   }
  },
  "Sierra Leone": {
@@ -16377,6 +17105,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 51.4,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 19331.1261214621,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 0.495794393,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 12746.3386713611,
+   "year": "2015"
   }
  },
  "Somalia": {
@@ -16489,7 +17229,7 @@
    "year": "2022"
   },
   "SE.XPD.TOTL.GD.ZS": {
-   "value": 8.14262404011e-06,
+   "value": 0.00000814262404011,
    "year": "2023"
   },
   "SE.ADT.1524.LT.ZS": {
@@ -16575,6 +17315,14 @@
   "IS.SHP.GOOD.TU": {
    "value": 92238,
    "year": "2019"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 337.042732018953,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 24.52774059,
+   "year": "2022"
   }
  },
  "South Africa": {
@@ -16845,6 +17593,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 78.4,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 718.197209579404,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 67.59526097,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 448146,
+   "year": "2023"
   }
  },
  "South Sudan": {
@@ -17007,6 +17767,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 64.2,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 2359.09467745596,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 4.226075787,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 1199083,
+   "year": "2024"
   }
  },
  "Sri Lanka": {
@@ -17281,6 +18053,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 96.8,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 2380.41567106983,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 90.78541374,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 157499.333935547,
+   "year": "2023"
   }
  },
  "Sudan": {
@@ -17445,7 +18229,7 @@
    "year": "2022"
   },
   "BX.KLT.DINV.WD.GD.ZS": {
-   "value": 3.15777394629957e-06,
+   "value": 0.00000315777394629957,
    "year": "2025"
   },
   "LP.LPI.OVRL.XQ": {
@@ -17491,6 +18275,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 204.4,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 80.9989667366808,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 118.6563877,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 3169356,
+   "year": "2019"
   }
  },
  "Syria": {
@@ -17693,6 +18489,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 30,
    "year": "2010"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 317.51157824312,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 124.3601389,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 581845,
+   "year": "2024"
   }
  },
  "Tajikistan": {
@@ -17959,6 +18767,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 18.6,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 6232.43138874796,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 69.94326428,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 33418,
+   "year": "2017"
   }
  },
  "Tanzania": {
@@ -18229,6 +19049,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 49.8,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 1298.06268316881,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 12.96324081,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 2011380,
+   "year": "2024"
   }
  },
  "Thailand": {
@@ -18503,6 +19335,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 64.7,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 3129.69917514423,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 23.01393518,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 36067,
+   "year": "2025"
   }
  },
  "Timor-Leste": {
@@ -18745,6 +19589,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 13.3,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 5999.43766682855,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 28.26821032,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 13085,
+   "year": "2023"
   }
  },
  "Togo": {
@@ -19019,6 +19875,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 64.9,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 1425.27541278455,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 3.391634981,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 9263.25802369975,
+   "year": "2024"
   }
  },
  "Tunisia": {
@@ -19281,6 +20149,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 81.7,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 346.141132837828,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 98.11339918,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 14015,
+   "year": "2023"
   }
  },
  "Turkey": {
@@ -19543,6 +20423,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 23.7,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 2671.21949159915,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 47.88653346,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 32563,
+   "year": "2023"
   }
  },
  "Turkmenistan": {
@@ -19761,6 +20653,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 3.1,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 194.323996607006,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 135.2138073,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 28415,
+   "year": "2024"
   }
  },
  "Uganda": {
@@ -20023,6 +20927,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 53.2,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 824.302657389021,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 5.82799634,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 310010,
+   "year": "2013"
   }
  },
  "Ukraine": {
@@ -20289,6 +21205,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 107.1,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 1342.30588076631,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 6.298134232,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 193775,
+   "year": "2024"
   }
  },
  "Uzbekistan": {
@@ -20559,6 +21487,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 28.6,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 467.672831084959,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 123.0283912,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 18501.3503015465,
+   "year": "2025"
   }
  },
  "Venezuela": {
@@ -20753,6 +21693,18 @@
   "IS.SHP.GOOD.TU": {
    "value": 221801,
    "year": "2021"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 28532.9286123494,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 7.540366667,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 17643,
+   "year": "2023"
   }
  },
  "Vietnam": {
@@ -21027,6 +21979,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 30.5,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 3605.71466951135,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 18.13031538,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 144562.454110111,
+   "year": "2024"
   }
  },
  "Yemen": {
@@ -21213,6 +22177,18 @@
   "IS.SHP.GOOD.TU": {
    "value": 380000,
    "year": "2024"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 54.9409207198328,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 169.7619048,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 1551489,
+   "year": "2016"
   }
  },
  "Zambia": {
@@ -21467,6 +22443,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 100.6,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 3979.56863659284,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 2.835497836,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 136539,
+   "year": "2024"
   }
  },
  "Zimbabwe": {
@@ -21729,6 +22717,18 @@
   "IMF.GGXWDG_NGDP": {
    "value": 38,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 762.957077254569,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 46.09162031,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 332314,
+   "year": "2024"
   }
  },
  "Benin": {
@@ -21999,6 +22999,18 @@
   "IS.SHP.GOOD.TU": {
    "value": 510895.6,
    "year": "2019"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 748.573658303452,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 0.975243811,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 213285,
+   "year": "2022"
   }
  },
  "Bosnia and Herzegovina": {
@@ -22253,6 +23265,18 @@
   "TX.VAL.FOOD.ZS.UN": {
    "value": 7.43011031860062,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 11077.1273857168,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 2.071713147,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 2933,
+   "year": "2023"
   }
  },
  "Belarus": {
@@ -22519,6 +23543,18 @@
   "TX.VAL.FOOD.ZS.UN": {
    "value": 16.6249564805082,
    "year": "2021"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 3684.41031717246,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 4.660514173,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 20600,
+   "year": "2024"
   }
  },
  "Belize": {
@@ -22765,6 +23801,18 @@
   "IS.SHP.GOOD.TU": {
    "value": 21279,
    "year": "2023"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 37891.1089977727,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 1.260294485,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 4953,
+   "year": "2024"
   }
  },
  "Brazil": {
@@ -23031,6 +24079,18 @@
   "IS.SHP.GOOD.TU": {
    "value": 13893906,
    "year": "2024"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 26917.8664854327,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 1.495816821,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 316818,
+   "year": "2024"
   }
  },
  "Bhutan": {
@@ -23281,6 +24341,18 @@
   "TX.VAL.FOOD.ZS.UN": {
    "value": 5.90394281632153,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 99882.9576624315,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 1.413807531,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 8385.0001449585,
+   "year": "2024"
   }
  },
  "Central African Republic": {
@@ -23515,6 +24587,18 @@
   "TX.VAL.FOOD.ZS.UN": {
    "value": 0.215221053015092,
    "year": "2024"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 27657.6934778255,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 0.335648148,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 306334,
+   "year": "2012"
   }
  },
  "China": {
@@ -23773,6 +24857,14 @@
   "IS.SHP.GOOD.TU": {
    "value": 299703800,
    "year": "2024"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 1991.89193973835,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 41.5185288,
+   "year": "2022"
   }
  },
  "Congo, Rep.": {
@@ -24003,6 +25095,18 @@
   "IS.SHP.GOOD.TU": {
    "value": 1046064,
    "year": "2024"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 36784.7844875581,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 0.027446301,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 171125,
+   "year": "2023"
   }
  },
  "Comoros": {
@@ -24257,6 +25361,18 @@
   "IS.SHP.GOOD.TU": {
    "value": 54358.54,
    "year": "2019"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 1438.52464911986,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 0.833333333,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 21743,
+   "year": "2024"
   }
  },
  "Cabo Verde": {
@@ -24495,6 +25611,18 @@
   "IS.SHP.GOOD.TU": {
    "value": 89382,
    "year": "2024"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 577.21057218884,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 59.68371,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 24851,
+   "year": "2022"
   }
  },
  "Cuba": {
@@ -24709,6 +25837,18 @@
   "IS.SHP.GOOD.TU": {
    "value": 281140,
    "year": "2023"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 3446.71070596086,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 23.93944607,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 33328,
+   "year": "2024"
   }
  },
  "Djibouti": {
@@ -24935,6 +26075,14 @@
   "IS.SHP.GOOD.TU": {
    "value": 1293000,
    "year": "2024"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 263.829966862956,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 6.333333333,
+   "year": "2022"
   }
  },
  "Dominica": {
@@ -25105,6 +26253,18 @@
   "IS.SHP.GOOD.TU": {
    "value": 7401,
    "year": "2020"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 2992.84709544189,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 10,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 230,
+   "year": "2023"
   }
  },
  "Dominican Republic": {
@@ -25379,6 +26539,18 @@
   "IS.SHP.GOOD.TU": {
    "value": 2110608,
    "year": "2024"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 2092.47231748165,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 39.55331412,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 56334,
+   "year": "2024"
   }
  },
  "Fiji": {
@@ -25625,6 +26797,18 @@
   "IS.SHP.GOOD.TU": {
    "value": 145782.4,
    "year": "2019"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 31052.1175260109,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 0.29737303,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 2470.57286587023,
+   "year": "2024"
   }
  },
  "Micronesia": {
@@ -25771,6 +26955,10 @@
   "IS.SHP.GOOD.TU": {
    "value": 25234.09,
    "year": "2019"
+  },
+  "SE.PRM.UNER": {
+   "value": 3301.00022315979,
+   "year": "2024"
   }
  },
  "Gabon": {
@@ -26009,6 +27197,18 @@
   "IS.SHP.GOOD.TU": {
    "value": 180878,
    "year": "2024"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 67468.9714725556,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 0.502166065,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 77438,
+   "year": "2019"
   }
  },
  "Georgia": {
@@ -26283,6 +27483,18 @@
   "IS.SHP.GOOD.TU": {
    "value": 636497,
    "year": "2024"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 15657.904022678,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 4.212964169,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 21241,
+   "year": "2024"
   }
  },
  "The Gambia": {
@@ -26545,6 +27757,18 @@
   "IS.SHP.GOOD.TU": {
    "value": 71469.72,
    "year": "2019"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 1137.88512670351,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 2.209656372,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 74577,
+   "year": "2025"
   }
  },
  "Guinea-Bissau": {
@@ -26771,6 +27995,18 @@
   "IS.SHP.GOOD.TU": {
    "value": 28699.98,
    "year": "2019"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 7599.04043116955,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 1.495726496,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 75097,
+   "year": "2010"
   }
  },
  "Equatorial Guinea": {
@@ -26957,6 +28193,18 @@
   "IS.SHP.GOOD.TU": {
    "value": 13851,
    "year": "2019"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 14416.052829289,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 0.183503244,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 128846,
+   "year": "2015"
   }
  },
  "Grenada": {
@@ -27159,6 +28407,18 @@
   "IS.SHP.GOOD.TU": {
    "value": 20299,
    "year": "2022"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 1710.67374885599,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 7.05,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 534.642772007492,
+   "year": "2024"
   }
  },
  "Iran": {
@@ -27397,6 +28657,18 @@
   "IS.SHP.GOOD.TU": {
    "value": 2921359,
    "year": "2024"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 1435.365342256,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 81.28908129,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 9163,
+   "year": "2023"
   }
  },
  "Jamaica": {
@@ -27647,6 +28919,18 @@
   "IS.SHP.GOOD.TU": {
    "value": 2349405,
    "year": "2024"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 3812.06448140707,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 12.38281888,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 9419,
+   "year": "2024"
   }
  },
  "Kiribati": {
@@ -27857,6 +29141,10 @@
   "IS.SHP.GOOD.TU": {
    "value": 52099.86,
    "year": "2019"
+  },
+  "SE.PRM.UNER": {
+   "value": 1596,
+   "year": "2024"
   }
  },
  "Saint Lucia": {
@@ -28059,6 +29347,18 @@
   "IS.SHP.GOOD.TU": {
    "value": 37054,
    "year": "2023"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 1678.03066321365,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 14.3,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 1033,
+   "year": "2024"
   }
  },
  "Lesotho": {
@@ -28312,6 +29612,18 @@
   },
   "TX.VAL.FOOD.ZS.UN": {
    "value": 23.3047025383273,
+   "year": "2024"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 2287.72893692779,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 2.565905097,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 124175,
    "year": "2024"
   }
  },
@@ -28567,6 +29879,18 @@
   "IS.SHP.GOOD.TU": {
    "value": 107728.2,
    "year": "2019"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 57.2403292463738,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 15.66666667,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 417.765304850174,
+   "year": "2024"
   }
  },
  "Marshall Islands": {
@@ -28737,6 +30061,10 @@
   "IS.SHP.GOOD.TU": {
    "value": 30711.22,
    "year": "2019"
+  },
+  "SE.PRM.UNER": {
+   "value": 77.8422018348629,
+   "year": "2024"
   }
  },
  "North Macedonia": {
@@ -28995,6 +30323,18 @@
   "TX.VAL.FOOD.ZS.UN": {
    "value": 11.8392142948501,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 2948.06170402334,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 52.55324298,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 4151,
+   "year": "2023"
   }
  },
  "Montenegro": {
@@ -29257,6 +30597,10 @@
   "IS.SHP.GOOD.TU": {
    "value": 17263,
    "year": "2024"
+  },
+  "SE.PRM.UNER": {
+   "value": 80,
+   "year": "2023"
   }
  },
  "Mauritius": {
@@ -29514,6 +30858,18 @@
   },
   "IS.SHP.GOOD.TU": {
    "value": 468254,
+   "year": "2024"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 2178.97020489924,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 22.97346419,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 618.430232269282,
    "year": "2024"
   }
  },
@@ -29781,6 +31137,18 @@
   "IS.SHP.GOOD.TU": {
    "value": 30659850,
    "year": "2024"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 16716.8686722509,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 3.43948718,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 404724,
+   "year": "2024"
   }
  },
  "North Korea": {
@@ -29915,6 +31283,14 @@
   "SL.EMP.VULN.ZS": {
    "value": 56.765621444692,
    "year": "2025"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 2544.73753026386,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 27.7404678,
+   "year": "2022"
   }
  },
  "Solomon Islands": {
@@ -30133,6 +31509,14 @@
   "IS.SHP.GOOD.TU": {
    "value": 128035.7,
    "year": "2019"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 57229.4786868203,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 36439.9963226318,
+   "year": "2024"
   }
  },
  "Serbia": {
@@ -30387,6 +31771,18 @@
   "TM.TAX.MRCH.WM.AR.ZS": {
    "value": 1.72,
    "year": "2021"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 1261.46962787171,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 5.737631015,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 8749,
+   "year": "2024"
   }
  },
  "São Tomé and Príncipe": {
@@ -30641,6 +32037,18 @@
   "IS.SHP.GOOD.TU": {
    "value": 49552.86,
    "year": "2019"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 9633.01738803827,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 1.876146789,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 969,
+   "year": "2017"
   }
  },
  "Suriname": {
@@ -30882,6 +32290,18 @@
   },
   "IS.SHP.GOOD.TU": {
    "value": 105949,
+   "year": "2024"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 158866.686779082,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 3.950609365,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 10696.8861039169,
    "year": "2024"
   }
  },
@@ -31125,6 +32545,18 @@
   "TX.VAL.FOOD.ZS.UN": {
    "value": 29.6977974071694,
    "year": "2023"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 2165.85706820071,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 77.55991285,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 7275,
+   "year": "2022"
   }
  },
  "Tonga": {
@@ -31363,6 +32795,10 @@
   "IS.SHP.GOOD.TU": {
    "value": 76853.95,
    "year": "2019"
+  },
+  "SE.PRM.UNER": {
+   "value": 354.147633744855,
+   "year": "2022"
   }
  },
  "Tuvalu": {
@@ -31521,6 +32957,10 @@
   "IS.SHP.GOOD.TU": {
    "value": 5150,
    "year": "2019"
+  },
+  "SE.PRM.UNER": {
+   "value": 7.06743185078903,
+   "year": "2024"
   }
  },
  "Saint Vincent and the Grenadines": {
@@ -31727,6 +33167,18 @@
   "IS.SHP.GOOD.TU": {
    "value": 24416,
    "year": "2024"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 979.950218528899,
+   "year": "2022"
+  },
+  "ER.H2O.FWST.ZS": {
+   "value": 7.9,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 68.0302932645845,
+   "year": "2017"
   }
  },
  "Vanuatu": {
@@ -31953,6 +33405,14 @@
   "IS.SHP.GOOD.TU": {
    "value": 77435.86,
    "year": "2019"
+  },
+  "ER.H2O.INTR.PC": {
+   "value": 31944.1871162705,
+   "year": "2022"
+  },
+  "SE.PRM.UNER": {
+   "value": 1260.99988174438,
+   "year": "2024"
   }
  },
  "Samoa": {
@@ -32182,6 +33642,10 @@
   },
   "IS.SHP.GOOD.TU": {
    "value": 53017,
+   "year": "2024"
+  },
+  "SE.PRM.UNER": {
+   "value": 625.999355316162,
    "year": "2024"
   }
  }

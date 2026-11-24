@@ -66,8 +66,8 @@ const COUNTRY_PACKS = {
         statement: ['unemployment peaks in the south and north; refugees concentrate in the north and centre', 'البطالة أعلى في الجنوب والشمال، واللاجئون يتركزون في الشمال والوسط'],
         maps: ['unemp', 'refugees'] },
       { title: ['Drinking water', 'مياه الشرب'],
-        statement: ['nearly half of households drink bottled water rather than the piped supply — most of all in Jerash and Madaba', 'نحو نصف الأسر تشرب المياه المعبأة بدلاً من مياه الشبكة، ولا سيما في جرش ومادبا'],
-        maps: ['piped', 'bottled'] },
+        statement: ['shortages are worst in Jerash and Mafraq, and nearly half of households rely on bottled water', 'النقص أشدّ في جرش والمفرق، ونحو نصف الأسر تعتمد على المياه المعبأة'],
+        maps: ['shortage', 'bottled'] },
       { title: ['Child health', 'صحة الطفل'],
         statement: ["vaccination gaps in Ma'an, Madaba and Aqaba; stunting highest in Mafraq and Ma'an", 'فجوات التحصين في معان ومادبا والعقبة، والتقزّم أعلى في المفرق ومعان'],
         maps: ['vacc', 'stunt'] },
@@ -86,6 +86,11 @@ const COUNTRY_PACKS = {
         values: { Amman: 122704, Irbid: 68225, Mafraq: 99418, Zarqa: 57222, Balqa: 10562, Madaba: 8122, "Ma'an": 5895, Karak: 4932, Jarash: 4478, Ajloun: 2902, Aqaba: 2746, Tafiela: 883 },
         reading: ['Amman (122,704), Mafraq (99,418, including Zaatari camp) and Irbid (68,225) host 75% of registered Syrian refugees; Zarqa includes Azraq camp.',
                   'تستضيف عمّان (122,704) والمفرق (99,418 بما فيها مخيم الزعتري) وإربد (68,225) 75% من اللاجئين السوريين المسجلين؛ وتشمل الزرقاء مخيم الأزرق.'] },
+      shortage: { name: ['Water stress: people without enough drinking water in the past month', 'الإجهاد المائي: السكان دون مياه شرب كافية خلال الشهر الماضي'], unit: '%', worse: 'high', national: 15.1,
+        source: ['Jordan Population and Family Health Survey (DHS) 2023', 'مسح السكان والصحة الأسرية (DHS) 2023'],
+        values: { Amman: 9.1, Balqa: 20.9, Zarqa: 13.7, Madaba: 28.9, Irbid: 11.7, Mafraq: 39.9, Jarash: 41.9, Ajloun: 24.0, Karak: 22.0, Tafiela: 7.8, "Ma'an": 21.8, Aqaba: 25.6 },
+        reading: ['About two in five people in Jerash (41.9%) and Mafraq (39.9%) did not have enough drinking water in the past month, against 15.1% nationally; Madaba (28.9%) and Aqaba (25.6%) follow.',
+                  'لم يحصل نحو اثنين من كل خمسة أشخاص في جرش (41.9%) والمفرق (39.9%) على مياه شرب كافية خلال الشهر الماضي، مقابل 15.1% على المستوى الوطني، وتليهما مادبا (28.9%) والعقبة (25.6%).'] },
       piped: { name: ['Households drinking piped water at home', 'الأسر التي تشرب مياه الشبكة في المنزل'], unit: '%', worse: 'low', national: 49.0,
         source: ['Jordan Population and Family Health Survey (DHS) 2023', 'مسح السكان والصحة الأسرية (DHS) 2023'],
         values: { Amman: 47.0, Balqa: 58.6, Zarqa: 55.4, Madaba: 34.7, Irbid: 33.0, Mafraq: 89.3, Jarash: 29.3, Ajloun: 40.4, Karak: 55.0, Tafiela: 43.1, "Ma'an": 70.1, Aqaba: 88.6 },
@@ -119,8 +124,8 @@ const COUNTRY_PACKS = {
     focusSectors: {
       aqaba: [
         // [sector EN/AR, rating 'strength'|'mixed'|'gap', text EN/AR]
-        [['Water', 'المياه'], 'strength', ['Hub of the National Water Carrier (50 million m³ a year reserved for Aqaba); every household uses an improved water source (DHS 2023).',
-          'مركز ناقل المياه الوطني (50 مليون م³ سنوياً مخصصة للعقبة)؛ وتستخدم جميع الأسر مصدر مياه محسّناً (2023).']],
+        [['Water', 'المياه'], 'mixed', ['Good access — every household uses an improved source and 89% have piped water at home — but one in four people (25.6%) lacked enough drinking water in the past month (national 15.1%, DHS 2023). Relief comes with the National Water Carrier (50 million m³ a year for Aqaba) from 2030.',
+          'وصول جيد، إذ تستخدم جميع الأسر مصدراً محسّناً و89% منها لديها مياه الشبكة في المنزل، لكن ربع السكان (25.6%) لم يحصلوا على مياه شرب كافية خلال الشهر الماضي (الوطني 15.1%، 2023). ويأتي الحل مع ناقل المياه الوطني (50 مليون م³ سنوياً للعقبة) اعتباراً من 2030.']],
         [['Energy', 'الطاقة'], 'strength', ['Jordan\'s green hydrogen hub: US$1 billion green ammonia plant (May 2026, up to 550 MW of solar) and EBRD technical support; the plant and port will need reliable clean power.',
           'مركز الأردن للهيدروجين الأخضر: مصنع أمونيا خضراء بقيمة مليار دولار (مايو 2026، حتى 550 ميغاواط شمسية) ودعم فني من البنك الأوروبي؛ ويحتاج المصنع والميناء إلى طاقة نظيفة موثوقة.']],
         [['Agriculture & food security', 'الزراعة والأمن الغذائي'], 'mixed', ['Little farmland — food arrives through the port; child stunting (8.8%) and child anaemia (33.1%) are slightly above the national rates (8.3%, 32.0%).',

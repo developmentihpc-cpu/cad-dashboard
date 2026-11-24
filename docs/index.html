@@ -9,15 +9,15 @@
 <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
 <link  href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
-<script src="i18n_ar.js?v=20261124a"></script>
-<script src="sub_ar.js?v=20261124a"></script>
-<script src="severity.js?v=20261124a"></script>
-<script src="ind_defs.js?v=20261124a"></script>
-<script src="deck_kit.js?v=20261124a"></script>
-<script src="hs_labels.js?v=20261124a"></script>
-<script src="country_deck.js?v=20261124a"></script>
-<script src="pdf_deck.js?v=20261124a"></script>
-<script src="region_deck.js?v=20261124a"></script>
+<script src="i18n_ar.js?v=20261124b"></script>
+<script src="sub_ar.js?v=20261124b"></script>
+<script src="severity.js?v=20261124b"></script>
+<script src="ind_defs.js?v=20261124b"></script>
+<script src="deck_kit.js?v=20261124b"></script>
+<script src="hs_labels.js?v=20261124b"></script>
+<script src="country_deck.js?v=20261124b"></script>
+<script src="pdf_deck.js?v=20261124b"></script>
+<script src="region_deck.js?v=20261124b"></script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -1835,7 +1835,9 @@ body {
 [dir="rtl"] .map-legend { direction:rtl; text-align:right; }
 
 /* Country panel: opens to about half the page; overview block on top */.drawer { height:56%; max-height:none !important; }.cd-ov { display:grid; grid-template-columns:minmax(240px, 34%) minmax(0, 1fr); gap:22px; align-items:start; }.cd-ov-map { position:relative; border-radius:12px; overflow:hidden; background:#EAF2F8; aspect-ratio:4 / 3; }.cd-ov-map img#cd-ov-map-img { width:100%; height:100%; object-fit:contain; display:block; opacity:0; transition:opacity .3s; }.cd-ov-map img#cd-ov-map-img.on { opacity:1; }.cd-ov-flag { position:absolute; top:10px; inset-inline-start:10px; background:#fff; padding:3px; border-radius:4px; box-shadow:0 2px 8px rgba(15,42,64,.18); line-height:0; }.cd-ov-flag img { height:30px; width:auto; display:block; border-radius:2px; }.cd-ov-body { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:18px; }.cd-ov-facts { display:grid; grid-template-columns:1fr 1fr; gap:12px 16px; align-content:start; }.cd-ov-k { font-size:10.5px; font-weight:600; letter-spacing:.8px; text-transform:uppercase; color:var(--ex-faint); }.cd-ov-v { font-size:13.5px; font-weight:600; color:var(--ex-ink); margin-top:3px; line-height:1.35; }
-.cd-ov-term { font-size:11px; font-weight:700; color:var(--ex-sky-dk, #1B6FA8); margin-top:2px; }.cd-ov-since, .cd-ov-wait { font-weight:400; color:var(--ex-mute); font-size:11.5px; }.cd-ov-pol { background:var(--ex-sky-pale); border-radius:12px; padding:12px 14px; }.cd-ov-pol-hd { font-size:11px; font-weight:700; letter-spacing:.8px; text-transform:uppercase; color:var(--ex-gold); margin-bottom:8px; }.cd-ov-pol-hd span { display:block; text-transform:none; letter-spacing:0; font-weight:500; color:var(--ex-mute); font-size:11px; margin-top:2px; }.cd-ov-wgi { display:grid; grid-template-columns:minmax(0,1.4fr) minmax(40px,1fr) 26px; gap:8px; align-items:center; padding:4px 0; font-size:12px; color:var(--ex-ink); }.cd-ov-wgi-t { height:6px; background:#fff; border-radius:3px; overflow:hidden; display:block; }.cd-ov-wgi-t i { display:block; height:100%; border-radius:3px; }.cd-ov-wgi-v { font-weight:700; text-align:end; font-variant-numeric:tabular-nums; }.cd-ov-src { font-size:10.5px; color:var(--ex-faint); margin-top:8px; }[dir="rtl"] .cd-ov-k, [dir="rtl"] .cd-ov-pol-hd { letter-spacing:0; text-transform:none; font-size:12px; }@media (max-width: 1100px) { .cd-ov-body { grid-template-columns:1fr; } }@media (max-width: 760px) { .cd-ov { grid-template-columns:1fr; } .drawer { height:70%; } }
+.cd-ov-term { font-size:11px; font-weight:700; color:var(--ex-sky-dk, #1B6FA8); margin-top:2px; }.cd-ov-since, .cd-ov-wait { font-weight:400; color:var(--ex-mute); font-size:11.5px; }.cd-ov-pol { background:var(--ex-sky-pale); border-radius:12px; padding:12px 14px; }.cd-ov-pol-hd { font-size:11px; font-weight:700; letter-spacing:.8px; text-transform:uppercase; color:var(--ex-gold); margin-bottom:8px; }.cd-ov-pol-hd span { display:block; text-transform:none; letter-spacing:0; font-weight:500; color:var(--ex-mute); font-size:11px; margin-top:2px; }.cd-ov-wgi { display:grid; grid-template-columns:minmax(0,1.5fr) minmax(0,1fr) auto; gap:8px; align-items:center; padding:4px 0; font-size:12px; color:var(--ex-ink); }.cd-ov-wgi-t { height:6px; background:#fff; border-radius:3px; overflow:hidden; display:block; }.cd-ov-wgi-t i { display:block; height:100%; border-radius:3px; }.cd-ov-wgi-v { font-weight:700; text-align:end; font-variant-numeric:tabular-nums; }.cd-ov-src { font-size:10.5px; color:var(--ex-faint); margin-top:8px; }[dir="rtl"] .cd-ov-k, [dir="rtl"] .cd-ov-pol-hd { letter-spacing:0; text-transform:none; font-size:12px; }@media (max-width: 1100px) { .cd-ov-body { grid-template-columns:1fr; } }@media (max-width: 760px) { .cd-ov { grid-template-columns:1fr; } .drawer { height:70%; } }
+.cd-ov-wgi-l small, .cd-ov-wgi-v small { display:block; font-size:10.5px; font-weight:400; color:var(--ex-faint); }
+.cd-ov-wgi-v b { font-weight:700; }
 @media (max-width: 1100px) {
   .ex-grid-map { grid-template-columns:1fr; }
   .ex-map { height:340px; }
@@ -1869,7 +1871,7 @@ body {
 <body>
 
 <header class="app-header">
-  <img src="logo.png?v=20261124a" alt="UAE Presidential Court · International Humanitarian and Philanthropic Council" style="height:52px;width:auto;display:block">
+  <img src="logo.png?v=20261124b" alt="UAE Presidential Court · International Humanitarian and Philanthropic Council" style="height:52px;width:auto;display:block">
   <div class="app-header-title" data-ar="لوحة احتياجات الدول">Country Needs Dashboard</div>
   <div class="hdr-search" role="search">
     <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
@@ -2579,10 +2581,22 @@ function cdOverviewHtml(c, data) {
   const hog = pol ? (pol.hog.length && polName(pol.hog) !== polName(pol.hos) ? leader(pol.hog, offTxt(pol.hogOffice), pol.hogSince, pol.hogUntil, pol.hogTerm)
     : (pol.hog.length ? tr('Same as head of state', 'يتولاها رئيس الدولة') : '—')) : waiting;
   const gov = pol ? (pol.gov.length ? exEsc(pol.gov.slice(0, 2).map(x => { const t = tr(x.en, x.ar); return t.charAt(0).toUpperCase() + t.slice(1); }).join(' · ')) : '—') : waiting;
-  const wgiRows = WGI_INDS.map(w => { const d = pol && pol.wgi[w.id], sv = d ? indSeverity(w.id, d.value) : null;
-    return `<div class="cd-ov-wgi" title="${sv ? exEsc(sv.why) : ''}"><span class="cd-ov-wgi-l">${tr(w.en, w.ar)}</span>
-      <span class="cd-ov-wgi-t"><i style="width:${d ? Math.max(3, Math.round(d.value)) : 0}%;background:${sv ? 'var(--sev' + sv.lvl + ')' : 'var(--ex-sky)'}"></i></span>
-      <span class="cd-ov-wgi-v">${d ? Math.round(d.value) : (pol ? '—' : '…')}</span></div>`; }).join('');
+  // Political situation: published indices (Fund for Peace, World Bank, Transparency International) — same set as the reports
+  const gd = govData(c), gm = GOV_META();
+  const POLI = [
+    { id:'GOV_FSI', en:'Fragile States Index', ar:'مؤشر الدول الهشة', src:tr('Fund for Peace', 'صندوق السلام'), max:120, d:gd.GOV_FSI },
+    { id:'GOV_WGI_PV.SC', en:'Political stability', ar:'الاستقرار السياسي', src:tr('World Bank', 'البنك الدولي'), max:100, d:pol && pol.wgi['GOV_WGI_PV.SC'] },
+    { id:'GOV_CPI', en:'Corruption Perceptions Index', ar:'مؤشر مدركات الفساد', src:tr('Transparency International', 'منظمة الشفافية الدولية'), max:100, d:gd.GOV_CPI },
+    { id:'GOV_WGI_GE.SC', en:'Government effectiveness', ar:'فعالية الحكومة', src:tr('World Bank', 'البنك الدولي'), max:100, d:pol && pol.wgi['GOV_WGI_GE.SC'] },
+    { id:'GOV_WGI_RL.SC', en:'Rule of law', ar:'سيادة القانون', src:tr('World Bank', 'البنك الدولي'), max:100, d:pol && pol.wgi['GOV_WGI_RL.SC'] },
+  ];
+  const wgiRows = POLI.map(w => { const d = w.d, sv = d ? indSeverity(w.id, d.value) : null;
+    const num = d ? (w.max === 120 ? Number(d.value).toFixed(1) : Math.round(d.value)) : null;
+    const rank = d && d.rank ? `<small>${tr('rank ' + d.rank + '/' + d.of, 'المرتبة ' + d.rank + ' من ' + d.of)}</small>` : '';
+    return `<div class="cd-ov-wgi" title="${sv ? exEsc(sv.why) : ''}"><span class="cd-ov-wgi-l">${tr(w.en, w.ar)}<small>${w.src}${d && d.year ? ' · ' + String(d.year).slice(0, 4) : ''}</small></span>
+      <span class="cd-ov-wgi-v">${num != null ? `<b>${num}</b>${tr(' / ' + w.max, ' من ' + w.max)}${rank}` : (w.id.startsWith('GOV_WGI') && !pol ? '…' : '—')}</span>
+      <span>${sv ? sevPill(sv) : ''}</span></div>`; }).join('');
+  if (!EXTRA.gov) loadExtras().then(() => { if (cdCountry === c && cdActiveTab === 'overview') cdRenderOverview(); });
   const wgiYear = pol && Object.values(pol.wgi)[0] ? Object.values(pol.wgi)[0].year : '';
   const mapSrc = CD_MAP[c] && CD_MAP[c] !== 'loading' && CD_MAP[c] !== 'none' ? CD_MAP[c] : '';
   return `<div class="cd-section cd-ov">
@@ -2598,9 +2612,11 @@ function cdOverviewHtml(c, data) {
         ${fact(tr('Need index', 'مؤشر الاحتياج'), (n.rank ? `<b>${Math.round(n.need)}</b>/100 · ${tr('Rank ' + n.rank + ' of ' + total + ' in terms of need (1 = greatest)', 'الترتيب ' + n.rank + ' من ' + total + ' من حيث الاحتياج (1 = الأكبر)')}` : '—') + `<button type="button" class="cd-ov-how" onclick="cdOpenNeedHow()">${tr('How is it calculated?', 'كيف يُحتسب؟')}</button>`)}
       </div>
       <div class="cd-ov-pol">
-        <div class="cd-ov-pol-hd">${tr('Political situation', 'الوضع السياسي')} <span>${tr('governance scores, 0–100 (higher is better)', 'مؤشرات الحوكمة، 0–100 (الأعلى أفضل)')}</span></div>
+        <div class="cd-ov-pol-hd">${tr('Political situation', 'الوضع السياسي')} <span>${tr('published indices, latest editions', 'مؤشرات دولية منشورة، أحدث الإصدارات')}</span></div>
         ${wgiRows}
-        <div class="cd-ov-src">${tr('World Bank Worldwide Governance Indicators', 'مؤشرات الحوكمة العالمية — البنك الدولي')}${wgiYear ? ' ' + wgiYear : ''} · ${tr('leaders: Wikidata (live)', 'القادة: ويكي بيانات (مباشر)')}</div>
+        <div class="cd-ov-src">${tr('Fragile States Index: 0–120, higher = more fragile, rank 1 = most fragile (The Fund for Peace' + (gm.fsi ? ', ' + gm.fsi.edition : '') + '). Corruption Perceptions Index: 0–100, higher = cleaner, rank 1 = least corrupt (Transparency International' + (gm.cpi ? ', ' + gm.cpi.edition : '') + '). Political stability, government effectiveness, rule of law: 0–100, higher is better (World Bank Worldwide Governance Indicators' + (wgiYear ? ', ' + wgiYear : '') + ').',
+          'مؤشر الدول الهشة: من 0 إلى 120، والأعلى أكثر هشاشة، والمرتبة 1 = الأكثر هشاشة (صندوق السلام' + (gm.fsi ? '، ' + gm.fsi.edition : '') + '). مؤشر مدركات الفساد: من 0 إلى 100، والأعلى أكثر نزاهة، والمرتبة 1 = الأقل فساداً (منظمة الشفافية الدولية' + (gm.cpi ? '، ' + gm.cpi.edition : '') + '). الاستقرار السياسي وفعالية الحكومة وسيادة القانون: من 0 إلى 100، والأعلى أفضل (مؤشرات الحوكمة العالمية للبنك الدولي' + (wgiYear ? '، ' + wgiYear : '') + ').')}
+          · ${tr('leaders: Wikidata (live)', 'القادة: ويكي بيانات (مباشر)')}</div>
       </div>
     </div>
   </div>`;
@@ -2695,9 +2711,9 @@ function cdSwitchIndTab(key, btn) {
 const EXTRA = { trade:null, env:null, uis:null, sme:null, power:null, products:null };
 let EXTRA_JOB = null;
 function loadExtras() {
-  if (!EXTRA_JOB) EXTRA_JOB = Promise.all(['trade_partners', 'environment', 'uis', 'sme_jobs', 'power_mix', 'trade_products'].map(f =>
+  if (!EXTRA_JOB) EXTRA_JOB = Promise.all(['trade_partners', 'environment', 'uis', 'sme_jobs', 'power_mix', 'trade_products', 'governance'].map(f =>
       fetch('data/' + f + '.json').then(r => r.ok ? r.json() : null).catch(() => null)))
-    .then(([t, e, u, s, pw, tp]) => { EXTRA.trade = t || {}; EXTRA.env = e || {}; EXTRA.uis = u || {}; EXTRA.sme = s || {}; EXTRA.power = pw || {}; EXTRA.products = tp || {};
+    .then(([t, e, u, s, pw, tp, g]) => { EXTRA.trade = t || {}; EXTRA.env = e || {}; EXTRA.uis = u || {}; EXTRA.sme = s || {}; EXTRA.power = pw || {}; EXTRA.products = tp || {}; EXTRA.gov = g || {};
       if (cdCountry && cdActiveTab === 'indicators') cdRenderIndicators(); });
   return EXTRA_JOB;
 }
@@ -3282,7 +3298,7 @@ function repImgRatio(src) {
 }
 let REP_LOGO = null;
 async function repLogo() {
-  if (!REP_LOGO) REP_LOGO = repFetchDataUrl('logo.png?v=20261124a', 4000)
+  if (!REP_LOGO) REP_LOGO = repFetchDataUrl('logo.png?v=20261124b', 4000)
     .then(data => data.replace(/^data:[^;,]*/, 'data:image/png'))   // always embedded as PNG
     .then(async data => ({ data, ratio: await repImgRatio(data) })).catch(() => null);
   return REP_LOGO;
@@ -3628,7 +3644,13 @@ function repDeckCtor(fmt) {
 }
 
 // Share of jobs in businesses under 50 workers (ILOSTAT, data/sme_jobs.json) as a report data point
-const smeData = country => { const s = (EXTRA.sme || {})[COUNTRY_ISO[country]]; return s ? { 'ILO.SME.U50': { value: s.under50, year: s.year } } : {}; };
+// Fragile States Index (Fund for Peace) and Corruption Perceptions Index (Transparency International) — data/governance.json
+const GOV_META = () => (EXTRA.gov || {})._meta || {};
+const govData = country => { const g = (EXTRA.gov || {})[COUNTRY_ISO[country]] || {}, m = GOV_META(), out = {};
+  if (g.fsi) out.GOV_FSI = { value: g.fsi.score, year: m.fsi ? m.fsi.edition : null, rank: g.fsi.rank, of: m.fsi ? m.fsi.of : null };
+  if (g.cpi) out.GOV_CPI = { value: g.cpi.score, year: m.cpi ? m.cpi.edition : null, rank: g.cpi.rank, of: m.cpi ? m.cpi.of : null };
+  return out; };
+const smeData = country =>{ const s = (EXTRA.sme || {})[COUNTRY_ISO[country]]; return s ? { 'ILO.SME.U50': { value: s.under50, year: s.year } } : {}; };
 // Main trading partners for the report's Trade slide (World Bank WITS file), names in the report language
 async function repTrade(country) {
   await Promise.race([loadExtras(), new Promise(r => setTimeout(r, 8000))]);
@@ -3648,7 +3670,7 @@ async function repBuildCountryBlob(country, setStatus, fmt) {
   const flagRatio = await repImgRatio(flagData);
   const need = needScores()[country] || {};
   const blob = await window.buildCountryDeck({
-    country, data: Object.assign({}, d, pol ? pol.wgi : {}, smeData(country)), sme: (EXTRA.sme || {})[COUNTRY_ISO[country]] || null, power: (EXTRA.power || {})[COUNTRY_ISO[country]] || null, products: (EXTRA.products || {})[COUNTRY_ISO[country]] || null, info: COUNTRY_INFO[country] || {}, iso2: (COUNTRY_ISO2[country] || '').toLowerCase(),
+    country, data: Object.assign({}, d, pol ? pol.wgi : {}, smeData(country), govData(country)), sme: (EXTRA.sme || {})[COUNTRY_ISO[country]] || null, power: (EXTRA.power || {})[COUNTRY_ISO[country]] || null, products: (EXTRA.products || {})[COUNTRY_ISO[country]] || null, info: COUNTRY_INFO[country] || {}, iso2: (COUNTRY_ISO2[country] || '').toLowerCase(),
     politics: pol && pol.ok ? { hos: pol.hos, hog: pol.hog, gov: pol.gov, office: pol.office, hogOffice: pol.hogOffice,
       hosSince: pol.hosSince, hosUntil: pol.hosUntil, hogSince: pol.hogSince, hogUntil: pol.hogUntil, hosTerm: pol.hosTerm, hogTerm: pol.hogTerm } : null,
     flagData, flagRatio, mapData, logo, subnational, dateStr: repDateStr(), PptxGenJS: repDeckCtor(fmt), output: 'blob', lang,

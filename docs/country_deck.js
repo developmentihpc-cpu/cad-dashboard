@@ -555,21 +555,30 @@ function buildCountryDeck(opts){
       sl.shape(p.ShapeType.rect, { x:f.x - 0.04, y:f.y - 0.04, w:f.w + 0.08, h:f.h + 0.08, fill:{ color:C.WHITE }, line:{ color:C.LINE, width:0.5 } });
       sl.image({ data:opts.flagData, x:f.x, y:f.y, w:f.w, h:f.h }); }
     sl.text(T('National borders: Natural Earth', 'الحدود الوطنية: ناتشورال إيرث'), { x:mx, y:my + M.h + 0.03, w:M.w, h:0.22, fontFace:BODY, fontSize:7.4, color:C.FAINT, valign:'middle' });
-    // reference for the political-situation scores (right column), under the map where there is room
-    // only the indicators shown on this slide are defined
-    const WGI_DEF = [
-      ['GOV_WGI_PV.SC', 'Political stability: likelihood of political instability or politically motivated violence.', 'الاستقرار السياسي: احتمال عدم الاستقرار السياسي أو العنف ذي الدوافع السياسية.'],
-      ['GOV_WGI_VA.SC', 'Voice & accountability: freedom to choose the government, and freedom of expression, association and the media.', 'المشاركة والمساءلة: حرية اختيار الحكومة وحرية التعبير وتكوين الجمعيات والإعلام.'],
-      ['GOV_WGI_GE.SC', 'Government effectiveness: quality of public services, the civil service and policy implementation.', 'فعالية الحكومة: جودة الخدمات العامة والجهاز الحكومي وتنفيذ السياسات.'],
-      ['GOV_WGI_RL.SC', 'Rule of law: confidence in contract enforcement, property rights, the police and the courts.', 'سيادة القانون: الثقة في إنفاذ العقود وحقوق الملكية والشرطة والمحاكم.'],
-      ['GOV_WGI_CC.SC', 'Control of corruption: extent to which public power is used for private gain.', 'مكافحة الفساد: مدى استغلال السلطة العامة لتحقيق مكاسب خاصة.'],
+    // political situation (right column): published indices, each with its own source and scale — never calculated by us.
+    // [id, name EN, name AR, short source EN, short source AR, scale max]
+    const yr = id => (R(id) || {}).y || '';
+    const POL = [
+      ['GOV_FSI', 'Fragile States Index', 'مؤشر الدول الهشة', 'FFP', 'صندوق السلام', 120,],
+      ['GOV_WGI_PV.SC', 'Political stability', 'الاستقرار السياسي', 'World Bank', 'البنك الدولي', 100,],
+      ['GOV_CPI', 'Corruption Perceptions Index', 'مؤشر مدركات الفساد', 'TI', 'الشفافية الدولية', 100,],
+      ['GOV_WGI_GE.SC', 'Government effectiveness', 'فعالية الحكومة', 'World Bank', 'البنك الدولي', 100,],
+      ['GOV_WGI_RL.SC', 'Rule of law', 'سيادة القانون', 'World Bank', 'البنك الدولي', 100,],
     ].filter(([id]) => R(id));
-    const wgiYear = WGI_DEF.length ? R(WGI_DEF[0][0]).y : '';
-    if (WGI_DEF.length) sl.text(
-      T(`* Political situation: World Bank, Worldwide Governance Indicators${wgiYear ? ' (' + wgiYear + ')' : ''} — scores from 0 to 100 (higher is better), compiled from surveys of households, firms and experts. `,
-        `* الوضع السياسي: مؤشرات الحوكمة العالمية، البنك الدولي${wgiYear ? ' (' + wgiYear + ')' : ''} — درجات من 0 إلى 100 (الأعلى أفضل)، مستمدة من مسوح الأسر والشركات وآراء الخبراء. `) +
-      WGI_DEF.map(([, en, a]) => T(en, a)).join(' '),
-      { x:mx, y:my + M.h + 0.26, w:M.w, h:0.78, fontFace:BODY, fontSize:6.8, color:C.MUTE, valign:'top', wrap:true });
+    // footnote: source, edition, scale and colour bands of each index shown (definitions are on the method slide)
+    const has = id => POL.some(x => x[0] === id), wgi = POL.filter(x => /^GOV_WGI/.test(x[0]));
+    const note = [
+      has('GOV_FSI') ? T(`Fragile States Index: The Fund for Peace (FFP), ${yr('GOV_FSI')}; 0–120, higher = more fragile, rank 1 = most fragile; 90+ severe, 80–90 high concern, 60–80 moderate.`,
+                         `مؤشر الدول الهشة: صندوق السلام، ${yr('GOV_FSI')}؛ من 0 إلى 120، والأعلى أكثر هشاشة، والمرتبة 1 = الأكثر هشاشة؛ 90 فأكثر حرج، و80–90 مقلق، و60–80 متوسط.`) : null,
+      has('GOV_CPI') ? T(`Corruption Perceptions Index: Transparency International (TI), ${yr('GOV_CPI')}; 0–100, higher = cleaner, rank 1 = least corrupt.`,
+                         `مؤشر مدركات الفساد: منظمة الشفافية الدولية، ${yr('GOV_CPI')}؛ من 0 إلى 100، والأعلى أكثر نزاهة، والمرتبة 1 = الأقل فساداً.`) : null,
+      wgi.length ? T(`${wgi.map(x => x[1]).join(', ')}: World Bank, Worldwide Governance Indicators, ${yr(wgi[0][0])}; 0–100, higher is better.`,
+                     `${wgi.map(x => x[2]).join('، ')}: البنك الدولي، مؤشرات الحوكمة العالمية، ${yr(wgi[0][0])}؛ من 0 إلى 100، والأعلى أفضل.`) : null,
+      has('GOV_CPI') || wgi.length ? T('Scores out of 100: below 25 severe, 25–40 high concern, 40–60 moderate, 60+ on track.',
+                                       'الدرجات من 100: أقل من 25 حرج، و25–40 مقلق، و40–60 متوسط، و60 فأكثر على المسار الصحيح.') : null,
+    ].filter(Boolean);
+    if (note.length) sl.text(T('* Political situation — ', '* الوضع السياسي — ') + note.join(' '),
+      { x:mx, y:my + M.h + 0.26, w:M.w, h:0.62, fontFace:BODY, fontSize:6.6, color:C.MUTE, valign:'top', wrap:true });
     // right column
     const RX = 6.85, RW = 13.333 - RX - 0.5, pol = opts.politics;
     const info = ar && typeof AR_INFO !== 'undefined' && AR_INFO[country] ? { capital:AR_INFO[country][0] } : (opts.info || {});
@@ -604,35 +613,25 @@ function buildCountryDeck(opts){
       if (s2 && s2[0]) sl.text(s2[0], { x:fx, y:fy + 0.39, w:fw, h:0.22, fontFace:BODY, fontSize:7.4, color:C.MUTE, valign:'top' });
       if (s2 && s2[1]) sl.text(s2[1], { x:fx, y:fy + (s2[0] ? 0.56 : 0.39), w:fw, h:0.22, fontFace:BODY, fontSize:7.6, bold:true, color:C.SKY_DK, valign:'top' });
     });
-    // political situation — WGI governance scores, coloured on the shared severity scale, with a colour key
-    const W5 = [['GOV_WGI_PV.SC', 'Political stability', 'الاستقرار السياسي'], ['GOV_WGI_VA.SC', 'Voice & accountability', 'المشاركة والمساءلة'],
-                ['GOV_WGI_GE.SC', 'Government effectiveness', 'فعالية الحكومة'], ['GOV_WGI_RL.SC', 'Rule of law', 'سيادة القانون'], ['GOV_WGI_CC.SC', 'Control of corruption', 'مكافحة الفساد']]
-      .filter(([id]) => R(id));
+    // political situation — published indices (Fund for Peace, World Bank, Transparency International), each with its
+    // score on its own scale, rank where the publisher ranks countries, and a severity badge (bands in the footnote)
     const py = 3.64, ph = 1.68;
     sl.shape(p.ShapeType.rect, { x:RX, y:py, w:RW, h:ph, fill:{ color:C.SKY_PALE }, line:{ type:'none' } });
-    sl.text(T('POLITICAL SITUATION', 'الوضع السياسي') + (WGI_DEF.length ? '*' : ''), { x:RX + 0.18, y:py + 0.08, w:RW * 0.5, h:0.22, fontFace:BODY, fontSize:8, bold:true, color:C.GOLD, charSpacing:1.4 });
-    sl.text(T('governance scores, 0–100 (higher is better)', 'مؤشرات الحوكمة، 0–100 (الأعلى أفضل)'), { x:RX + RW * 0.45, y:py + 0.08, w:RW * 0.55 - 0.18, h:0.22, fontFace:BODY, fontSize:7.4, color:C.MUTE, align:'right' });
-    const rowH = W5.length ? Math.min(0.24, 1.1 / W5.length) : 0.22;
-    W5.forEach(([id, en, a], i) => {
-      const r = R(id), L = DK.sevLvl(id, r.v), ry = py + 0.34 + i * rowH, lw = 2.3, bx = RX + 0.18 + lw, bw = RW - lw - 0.95;
-      sl.text(T(en, a), { x:RX + 0.18, y:ry, w:lw, h:0.2, fontFace:BODY, fontSize:8.6, color:C.INK, valign:'middle' });
-      sl.shape(p.ShapeType.rect, { x:bx, y:ry + 0.06, w:bw, h:0.09, fill:{ color:C.WHITE }, line:{ type:'none' } });
-      sl.shape(p.ShapeType.rect, { x:bx, y:ry + 0.06, w:Math.max(0.04, bw * Math.min(1, r.v / 100)), h:0.09, fill:{ color: L == null ? C.SKY : SEV.fill[L] }, line:{ type:'none' } });
-      sl.text(String(Math.round(r.v)) + (r.stale ? ' (' + r.y + ')' : ''), { x:bx + bw + 0.08, y:ry, w:0.7, h:0.2, fontFace:BODY, fontSize:9, bold:true, color: L != null && L <= 1 ? SEV.text[L] : C.INK, valign:'middle' });
+    sl.text(T('POLITICAL SITUATION', 'الوضع السياسي') + (POL.length ? '*' : ''), { x:RX + 0.18, y:py + 0.08, w:RW * 0.5, h:0.22, fontFace:BODY, fontSize:8, bold:true, color:C.GOLD, charSpacing:1.4 });
+    sl.text(T('published indices, latest editions', 'مؤشرات دولية منشورة، أحدث الإصدارات'), { x:RX + RW * 0.45, y:py + 0.08, w:RW * 0.55 - 0.18, h:0.22, fontFace:BODY, fontSize:7.4, color:C.MUTE, align:'right' });
+    const rowH = 0.255, nameW = 2.95, valW = 1.55, pillW = 1.12;
+    POL.forEach(([id, en, a, srcEn, srcAr, max], i) => {
+      const r = R(id), raw = (opts.data || {})[id] || {}, L = DK.sevLvl(id, r.v), ry = py + 0.36 + i * rowH;
+      sl.text([{ text:T(en, a), options:{ color:C.INK } }, { text:'  ' + T(srcEn, srcAr), options:{ color:C.FAINT, fontSize:6.6 } }],
+        { x:RX + 0.18, y:ry, w:nameW, h:0.22, fontFace:BODY, fontSize:8.4, valign:'middle' });
+      const num = max === 120 ? r.v.toFixed(1) : String(Math.round(r.v)), val = ar ? num + ' من ' + max : num + ' / ' + max;
+      const rank = raw.rank && raw.of ? T(`  rank ${raw.rank}/${raw.of}`, `  المرتبة ${raw.rank} من ${raw.of}`) : '';
+      sl.text([{ text:val, options:{ bold:true, color: L != null && L <= 1 ? SEV.text[L] : C.INK } }, { text:rank, options:{ color:C.MUTE, fontSize:7 } }],
+        { x:RX + 0.18 + nameW, y:ry, w:valW + 0.3, h:0.22, fontFace:BODY, fontSize:8.8, valign:'middle' });
+      badge(sl, L, RX + RW - 0.18 - pillW, ry + 0.035, pillW, 0.16);
     });
-    if (!W5.length) sl.text(T('Governance scores could not be retrieved when this report was built.', 'تعذّر استرجاع مؤشرات الحوكمة عند إعداد هذا التقرير.'),
+    if (!POL.length) sl.text(T('Political indicators could not be retrieved when this report was built.', 'تعذّر استرجاع المؤشرات السياسية عند إعداد هذا التقرير.'),
       { x:RX + 0.18, y:py + 0.45, w:RW - 0.36, h:0.4, fontFace:BODY, fontSize:9, color:C.MUTE, valign:'top' });
-    // colour key: the severity bands for a 0–100 governance score
-    const th = (rule('GOV_WGI_PV.SC') || { th:[25, 40, 60] }).th;
-    const bands = [T(`< ${th[0]}`, `أقل من ${th[0]}`), `${th[0]}–${th[1]}`, `${th[1]}–${th[2]}`, T(`${th[2]}+`, `${th[2]} فأكثر`)];
-    // the last band ("on track · 60+") has the longest label, so it gets more room
-    const ky = py + ph - 0.3, KW = RW - 0.36, share = [0.22, 0.22, 0.22, 0.34];
-    bands.forEach((b, L) => {
-      const kw = KW * share[L], kx = RX + 0.18 + KW * share.slice(0, L).reduce((a, s) => a + s, 0);
-      sl.shape(p.ShapeType.rect, { x:kx, y:ky + 0.07, w:0.14, h:0.1, fill:{ color:SEV.fill[L] }, line:{ type:'none' } });
-      sl.text([{ text:DK.sevLabelOf(L, ar), options:{ bold:true, color:C.INK } }, { text:'  ' + b, options:{ color:C.MUTE } }],
-        { x:kx + 0.18, y:ky, w:kw - 0.2, h:0.24, fontFace:BODY, fontSize:6.8, valign:'middle' });
-    });
     // status by sector — full width, two columns of up to four sectors
     const by = 5.4, shown = SECTORS.filter(s => s.level != null), colW = (RW - 0.3) / 2;
     sl.text(T('STATUS BY SECTOR', 'الوضع القطاعي'), { x:RX, y:by, w:RW, h:0.2, fontFace:BODY, fontSize:7.8, bold:true, color:C.GOLD, charSpacing:1.4 });
@@ -641,7 +640,7 @@ function buildCountryDeck(opts){
       sl.text(T(s.short[0], s.short[1]), { x:cx, y:yy, w:colW - 1.3, h:0.24, fontFace:BODY, fontSize:8.6, color:C.INK, valign:'middle' });
       badge(sl, s.level, cx + colW - 1.2, yy + 0.04, 1.2, 0.16);
     });
-    foot(sl, T('World Bank Open Data & WGI · Wikidata (leaders) · Natural Earth (borders) · ', 'بيانات البنك الدولي ومؤشرات الحوكمة · ويكي بيانات (القادة) · ناتشورال إيرث (الحدود) · ') + DATE);
+    foot(sl, T('World Bank Open Data & WGI · Fund for Peace · Transparency International · Wikidata (leaders) · Natural Earth (borders) · ', 'بيانات البنك الدولي ومؤشرات الحوكمة · صندوق السلام · منظمة الشفافية الدولية · ويكي بيانات (القادة) · ناتشورال إيرث (الحدود) · ') + DATE);
   });
 
   // ══ 3 · EXECUTIVE SUMMARY — overall picture, then each priority sector with its most urgent gaps ══
@@ -963,9 +962,10 @@ function buildCountryDeck(opts){
         'يُصنَّف كل مؤشر (حرج · مقلق · متوسط · على المسار الصحيح) وفق مرجعيات أهداف التنمية المستدامة ومنظمة الصحة العالمية واليونسكو وصندوق النقد — وهو المقياس نفسه المستخدم في اللوحة. ويأخذ القطاع تصنيف أضعف مؤشراته الحديثة.')],
       [T('Data quality rules', 'قواعد جودة البيانات'), T(`Only figures from the last ${DK.STALE_YEARS} years are shown, rated or used in the narrative. Indicators with no recent figure, or an implausible one (e.g. 0% spending), are left off the slides and named in a "Limited data" note; nothing is estimated.`,
         `لا تُعرض ولا تُصنَّف ولا تُستخدم في السرد إلا الأرقام الصادرة خلال آخر ${DK.STALE_YEARS} سنوات. وتُستبعد المؤشرات التي لا رقم حديثاً لها أو التي رقمها غير معقول (مثل إنفاق 0%) من الشرائح وتُذكر في ملاحظة «بيانات محدودة»؛ ولا يُقدَّر أي رقم.`)],
-      [T('Political situation', 'الوضع السياسي'), T('World Bank Worldwide Governance Indicators: political stability, voice and accountability, government effectiveness, rule of law and control of corruption, each scored 0–100 (higher is better) from surveys of households, firms and experts. Rated Severe below 25, High concern 25–40, Moderate 40–60 and On track 60 and above.',
-        'مؤشرات الحوكمة العالمية للبنك الدولي: الاستقرار السياسي، والمشاركة والمساءلة، وفعالية الحكومة، وسيادة القانون، ومكافحة الفساد، ولكلٍّ منها درجة من 0 إلى 100 (الأعلى أفضل) مستمدة من مسوح الأسر والشركات وآراء الخبراء. وتُصنَّف حرجة دون 25، ومقلقة بين 25 و40، ومتوسطة بين 40 و60، وعلى المسار الصحيح من 60 فأكثر.')],
-      [T('Sources', 'المصادر'), [T('World Bank Open Data', 'بيانات البنك الدولي المفتوحة'), T('World Bank Worldwide Governance Indicators', 'مؤشرات الحوكمة العالمية'), 'IMF', 'WHO', 'UN IGME (UNICEF/WHO)', 'UNESCO UIS', 'FAO', 'WHO/UNICEF JMP', 'IEA', T('ILO and ILOSTAT labour force surveys (jobs by business size)', 'منظمة العمل الدولية ومسوح القوى العاملة (الوظائف حسب حجم المنشأة)'),
+      [T('Political situation', 'الوضع السياسي'), T('Published indices, shown as released, never recalculated: the Fragile States Index (The Fund for Peace, 0–120, higher = more fragile), the Corruption Perceptions Index (Transparency International, 0–100, higher = cleaner) and the World Bank Worldwide Governance Indicators for political stability, government effectiveness and rule of law (0–100, higher is better). Colour bands are given in the footnote on the overview slide.',
+        'مؤشرات دولية منشورة تُعرض كما صدرت دون إعادة احتساب: مؤشر الدول الهشة (صندوق السلام، من 0 إلى 120، والأعلى أكثر هشاشة)، ومؤشر مدركات الفساد (منظمة الشفافية الدولية، من 0 إلى 100، والأعلى أكثر نزاهة)، ومؤشرات الحوكمة العالمية للبنك الدولي في الاستقرار السياسي وفعالية الحكومة وسيادة القانون (من 0 إلى 100، والأعلى أفضل). وتَرِد فئات الألوان في حاشية شريحة النظرة العامة.')],
+      [T('Sources', 'المصادر'), [T('World Bank Open Data', 'بيانات البنك الدولي المفتوحة'), T('World Bank Worldwide Governance Indicators', 'مؤشرات الحوكمة العالمية'),
+        T('The Fund for Peace — Fragile States Index', 'صندوق السلام — مؤشر الدول الهشة'), T('Transparency International — Corruption Perceptions Index', 'منظمة الشفافية الدولية — مؤشر مدركات الفساد'), 'IMF', 'WHO', 'UN IGME (UNICEF/WHO)', 'UNESCO UIS', 'FAO', 'WHO/UNICEF JMP', 'IEA', T('ILO and ILOSTAT labour force surveys (jobs by business size)', 'منظمة العمل الدولية ومسوح القوى العاملة (الوظائف حسب حجم المنشأة)'),
         T('World Bank Global Findex, Enterprise Surveys and Logistics Performance Index', 'مؤشر الشمول المالي ومسوح المؤسسات ومؤشر الأداء اللوجستي للبنك الدولي'),
         T('UN Comtrade (products and trading partners)', 'قاعدة بيانات الأمم المتحدة لإحصاءات التجارة (المنتجات والشركاء التجاريون)'), T('Ember via Our World in Data (electricity by source)', 'مركز إمبر للطاقة عبر منصة «عالمنا في البيانات» (الكهرباء حسب المصدر)'),
         T('The DHS Program (regional maps)', 'برنامج المسوح الديموغرافية والصحية DHS (الخرائط حسب المنطقة)'), T('Natural Earth (borders and capitals)', 'ناتشورال إيرث (الحدود والعواصم)'),

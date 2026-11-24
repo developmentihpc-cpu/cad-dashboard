@@ -1,0 +1,1258 @@
+{
+ "_meta": {
+  "fsi": {
+   "name": "Fragile States Index",
+   "publisher": "The Fund for Peace",
+   "edition": 2024,
+   "published": "2025-02",
+   "of": 179,
+   "scale": "0–120, higher = more fragile",
+   "url": "https://fragilestatesindex.org/global-data/",
+   "note": "Scores transcribed from the 2024 edition (the latest; the official spreadsheet download stops at 2023). Update when a new edition is published."
+  },
+  "cpi": {
+   "name": "Corruption Perceptions Index",
+   "publisher": "Transparency International",
+   "edition": 2025,
+   "published": "2026-02-10",
+   "of": 182,
+   "scale": "0–100, higher = cleaner",
+   "url": "https://www.transparency.org/en/cpi/2025",
+   "licence": "CC BY-ND 4.0 — scores shown unchanged, with attribution",
+   "note": "From CPI2025_Results.xlsx. Update each February."
+  },
+  "built": "2026-11-24"
+ },
+ "AFG": {
+  "fsi": {
+   "score": 103.9,
+   "rank": 7
+  },
+  "cpi": {
+   "score": 16,
+   "rank": 169
+  }
+ },
+ "ALB": {
+  "fsi": {
+   "score": 55.9,
+   "rank": 120
+  },
+  "cpi": {
+   "score": 39,
+   "rank": 91
+  }
+ },
+ "DZA": {
+  "fsi": {
+   "score": 68.6,
+   "rank": 87
+  },
+  "cpi": {
+   "score": 34,
+   "rank": 109
+  }
+ },
+ "AGO": {
+  "fsi": {
+   "score": 85.6,
+   "rank": 38
+  },
+  "cpi": {
+   "score": 32,
+   "rank": 120
+  }
+ },
+ "ARG": {
+  "fsi": {
+   "score": 44.2,
+   "rank": 142
+  },
+  "cpi": {
+   "score": 36,
+   "rank": 104
+  }
+ },
+ "ARM": {
+  "fsi": {
+   "score": 68.1,
+   "rank": 89
+  },
+  "cpi": {
+   "score": 46,
+   "rank": 65
+  }
+ },
+ "AZE": {
+  "fsi": {
+   "score": 72.8,
+   "rank": 72
+  },
+  "cpi": {
+   "score": 30,
+   "rank": 130
+  }
+ },
+ "BGD": {
+  "fsi": {
+   "score": 85.9,
+   "rank": 37
+  },
+  "cpi": {
+   "score": 24,
+   "rank": 150
+  }
+ },
+ "BOL": {
+  "fsi": {
+   "score": 69.4,
+   "rank": 81
+  },
+  "cpi": {
+   "score": 28,
+   "rank": 136
+  }
+ },
+ "BWA": {
+  "fsi": {
+   "score": 53.6,
+   "rank": 124
+  },
+  "cpi": {
+   "score": 58,
+   "rank": 41
+  }
+ },
+ "BFA": {
+  "fsi": {
+   "score": 94.2,
+   "rank": 21
+  },
+  "cpi": {
+   "score": 40,
+   "rank": 84
+  }
+ },
+ "BDI": {
+  "fsi": {
+   "score": 92.6,
+   "rank": 24
+  },
+  "cpi": {
+   "score": 17,
+   "rank": 167
+  }
+ },
+ "KHM": {
+  "fsi": {
+   "score": 78.6,
+   "rank": 55
+  },
+  "cpi": {
+   "score": 20,
+   "rank": 163
+  }
+ },
+ "CMR": {
+  "fsi": {
+   "score": 94.3,
+   "rank": 20
+  },
+  "cpi": {
+   "score": 26,
+   "rank": 142
+  }
+ },
+ "TCD": {
+  "fsi": {
+   "score": 102.7,
+   "rank": 10
+  },
+  "cpi": {
+   "score": 22,
+   "rank": 157
+  }
+ },
+ "COL": {
+  "fsi": {
+   "score": 75.6,
+   "rank": 63
+  },
+  "cpi": {
+   "score": 37,
+   "rank": 99
+  }
+ },
+ "COD": {
+  "fsi": {
+   "score": 106.7,
+   "rank": 5
+  },
+  "cpi": {
+   "score": 20,
+   "rank": 163
+  }
+ },
+ "CIV": {
+  "fsi": {
+   "score": 85.3,
+   "rank": 39
+  },
+  "cpi": {
+   "score": 43,
+   "rank": 76
+  }
+ },
+ "ECU": {
+  "fsi": {
+   "score": 68,
+   "rank": 90
+  },
+  "cpi": {
+   "score": 33,
+   "rank": 116
+  }
+ },
+ "EGY": {
+  "fsi": {
+   "score": 82.8,
+   "rank": 44
+  },
+  "cpi": {
+   "score": 30,
+   "rank": 130
+  }
+ },
+ "SLV": {
+  "fsi": {
+   "score": 68.7,
+   "rank": 85
+  },
+  "cpi": {
+   "score": 32,
+   "rank": 120
+  }
+ },
+ "ERI": {
+  "fsi": {
+   "score": 92.1,
+   "rank": 26
+  },
+  "cpi": {
+   "score": 13,
+   "rank": 177
+  }
+ },
+ "ETH": {
+  "fsi": {
+   "score": 98.1,
+   "rank": 12
+  },
+  "cpi": {
+   "score": 38,
+   "rank": 96
+  }
+ },
+ "GHA": {
+  "fsi": {
+   "score": 60.8,
+   "rank": 106
+  },
+  "cpi": {
+   "score": 43,
+   "rank": 76
+  }
+ },
+ "GTM": {
+  "fsi": {
+   "score": 74.9,
+   "rank": 65
+  },
+  "cpi": {
+   "score": 26,
+   "rank": 142
+  }
+ },
+ "GIN": {
+  "fsi": {
+   "score": 96.4,
+   "rank": 17
+  },
+  "cpi": {
+   "score": 26,
+   "rank": 142
+  }
+ },
+ "HTI": {
+  "fsi": {
+   "score": 103.5,
+   "rank": 9
+  },
+  "cpi": {
+   "score": 16,
+   "rank": 169
+  }
+ },
+ "HND": {
+  "fsi": {
+   "score": 78.1,
+   "rank": 56
+  },
+  "cpi": {
+   "score": 22,
+   "rank": 157
+  }
+ },
+ "IND": {
+  "fsi": {
+   "score": 72.3,
+   "rank": 75
+  },
+  "cpi": {
+   "score": 39,
+   "rank": 91
+  }
+ },
+ "IDN": {
+  "fsi": {
+   "score": 63.7,
+   "rank": 102
+  },
+  "cpi": {
+   "score": 34,
+   "rank": 109
+  }
+ },
+ "IRQ": {
+  "fsi": {
+   "score": 88.6,
+   "rank": 31
+  },
+  "cpi": {
+   "score": 28,
+   "rank": 136
+  }
+ },
+ "JOR": {
+  "fsi": {
+   "score": 74.3,
+   "rank": 69
+  },
+  "cpi": {
+   "score": 50,
+   "rank": 56
+  }
+ },
+ "KAZ": {
+  "fsi": {
+   "score": 57.8,
+   "rank": 115
+  },
+  "cpi": {
+   "score": 38,
+   "rank": 96
+  }
+ },
+ "KEN": {
+  "fsi": {
+   "score": 86.5,
+   "rank": 36
+  },
+  "cpi": {
+   "score": 30,
+   "rank": 130
+  }
+ },
+ "XKX": {
+  "cpi": {
+   "score": 43,
+   "rank": 76
+  }
+ },
+ "KGZ": {
+  "fsi": {
+   "score": 74.9,
+   "rank": 65
+  },
+  "cpi": {
+   "score": 26,
+   "rank": 142
+  }
+ },
+ "LAO": {
+  "fsi": {
+   "score": 73.8,
+   "rank": 71
+  },
+  "cpi": {
+   "score": 34,
+   "rank": 109
+  }
+ },
+ "LBN": {
+  "fsi": {
+   "score": 92.7,
+   "rank": 23
+  },
+  "cpi": {
+   "score": 23,
+   "rank": 153
+  }
+ },
+ "LBR": {
+  "fsi": {
+   "score": 86.9,
+   "rank": 35
+  },
+  "cpi": {
+   "score": 28,
+   "rank": 136
+  }
+ },
+ "LBY": {
+  "fsi": {
+   "score": 96.5,
+   "rank": 16
+  },
+  "cpi": {
+   "score": 13,
+   "rank": 177
+  }
+ },
+ "MDG": {
+  "fsi": {
+   "score": 79.8,
+   "rank": 53
+  },
+  "cpi": {
+   "score": 25,
+   "rank": 148
+  }
+ },
+ "MWI": {
+  "fsi": {
+   "score": 80.5,
+   "rank": 52
+  },
+  "cpi": {
+   "score": 34,
+   "rank": 109
+  }
+ },
+ "MLI": {
+  "fsi": {
+   "score": 97.3,
+   "rank": 14
+  },
+  "cpi": {
+   "score": 28,
+   "rank": 136
+  }
+ },
+ "MRT": {
+  "fsi": {
+   "score": 87,
+   "rank": 34
+  },
+  "cpi": {
+   "score": 30,
+   "rank": 130
+  }
+ },
+ "MEX": {
+  "fsi": {
+   "score": 69,
+   "rank": 83
+  },
+  "cpi": {
+   "score": 27,
+   "rank": 141
+  }
+ },
+ "MDA": {
+  "fsi": {
+   "score": 64.7,
+   "rank": 97
+  },
+  "cpi": {
+   "score": 42,
+   "rank": 80
+  }
+ },
+ "MNG": {
+  "fsi": {
+   "score": 50.7,
+   "rank": 132
+  },
+  "cpi": {
+   "score": 31,
+   "rank": 124
+  }
+ },
+ "MAR": {
+  "fsi": {
+   "score": 68.8,
+   "rank": 84
+  },
+  "cpi": {
+   "score": 39,
+   "rank": 91
+  }
+ },
+ "MOZ": {
+  "fsi": {
+   "score": 92.5,
+   "rank": 25
+  },
+  "cpi": {
+   "score": 21,
+   "rank": 161
+  }
+ },
+ "MMR": {
+  "fsi": {
+   "score": 100,
+   "rank": 11
+  },
+  "cpi": {
+   "score": 16,
+   "rank": 169
+  }
+ },
+ "NAM": {
+  "fsi": {
+   "score": 59.3,
+   "rank": 109
+  },
+  "cpi": {
+   "score": 46,
+   "rank": 65
+  }
+ },
+ "NPL": {
+  "fsi": {
+   "score": 78,
+   "rank": 57
+  },
+  "cpi": {
+   "score": 34,
+   "rank": 109
+  }
+ },
+ "NIC": {
+  "fsi": {
+   "score": 76.7,
+   "rank": 60
+  },
+  "cpi": {
+   "score": 14,
+   "rank": 175
+  }
+ },
+ "NER": {
+  "fsi": {
+   "score": 95.2,
+   "rank": 19
+  },
+  "cpi": {
+   "score": 31,
+   "rank": 124
+  }
+ },
+ "NGA": {
+  "fsi": {
+   "score": 96.6,
+   "rank": 15
+  },
+  "cpi": {
+   "score": 26,
+   "rank": 142
+  }
+ },
+ "PAK": {
+  "fsi": {
+   "score": 91.7,
+   "rank": 27
+  },
+  "cpi": {
+   "score": 28,
+   "rank": 136
+  }
+ },
+ "PSE": {
+  "fsi": {
+   "score": 97.8,
+   "rank": 13
+  }
+ },
+ "PNG": {
+  "fsi": {
+   "score": 78.8,
+   "rank": 54
+  },
+  "cpi": {
+   "score": 26,
+   "rank": 142
+  }
+ },
+ "PRY": {
+  "fsi": {
+   "score": 61.5,
+   "rank": 105
+  },
+  "cpi": {
+   "score": 24,
+   "rank": 150
+  }
+ },
+ "PER": {
+  "fsi": {
+   "score": 72,
+   "rank": 76
+  },
+  "cpi": {
+   "score": 30,
+   "rank": 130
+  }
+ },
+ "PHL": {
+  "fsi": {
+   "score": 75.1,
+   "rank": 64
+  },
+  "cpi": {
+   "score": 32,
+   "rank": 120
+  }
+ },
+ "RWA": {
+  "fsi": {
+   "score": 81.8,
+   "rank": 46
+  },
+  "cpi": {
+   "score": 58,
+   "rank": 41
+  }
+ },
+ "SEN": {
+  "fsi": {
+   "score": 74.2,
+   "rank": 70
+  },
+  "cpi": {
+   "score": 46,
+   "rank": 65
+  }
+ },
+ "SLE": {
+  "fsi": {
+   "score": 82.6,
+   "rank": 45
+  },
+  "cpi": {
+   "score": 34,
+   "rank": 109
+  }
+ },
+ "SOM": {
+  "fsi": {
+   "score": 111.3,
+   "rank": 1
+  },
+  "cpi": {
+   "score": 9,
+   "rank": 181
+  }
+ },
+ "ZAF": {
+  "fsi": {
+   "score": 69.6,
+   "rank": 80
+  },
+  "cpi": {
+   "score": 41,
+   "rank": 81
+  }
+ },
+ "SSD": {
+  "fsi": {
+   "score": 109,
+   "rank": 3
+  },
+  "cpi": {
+   "score": 9,
+   "rank": 181
+  }
+ },
+ "LKA": {
+  "fsi": {
+   "score": 88.2,
+   "rank": 33
+  },
+  "cpi": {
+   "score": 35,
+   "rank": 107
+  }
+ },
+ "SDN": {
+  "fsi": {
+   "score": 109.3,
+   "rank": 2
+  },
+  "cpi": {
+   "score": 14,
+   "rank": 175
+  }
+ },
+ "SYR": {
+  "fsi": {
+   "score": 108.1,
+   "rank": 4
+  },
+  "cpi": {
+   "score": 15,
+   "rank": 172
+  }
+ },
+ "TJK": {
+  "fsi": {
+   "score": 72.8,
+   "rank": 72
+  },
+  "cpi": {
+   "score": 19,
+   "rank": 166
+  }
+ },
+ "TZA": {
+  "fsi": {
+   "score": 75.7,
+   "rank": 62
+  },
+  "cpi": {
+   "score": 40,
+   "rank": 84
+  }
+ },
+ "THA": {
+  "fsi": {
+   "score": 66.2,
+   "rank": 95
+  },
+  "cpi": {
+   "score": 33,
+   "rank": 116
+  }
+ },
+ "TLS": {
+  "fsi": {
+   "score": 74.8,
+   "rank": 67
+  },
+  "cpi": {
+   "score": 44,
+   "rank": 73
+  }
+ },
+ "TGO": {
+  "fsi": {
+   "score": 81.1,
+   "rank": 51
+  },
+  "cpi": {
+   "score": 32,
+   "rank": 120
+  }
+ },
+ "TUN": {
+  "fsi": {
+   "score": 67.2,
+   "rank": 92
+  },
+  "cpi": {
+   "score": 39,
+   "rank": 91
+  }
+ },
+ "TUR": {
+  "fsi": {
+   "score": 84,
+   "rank": 41
+  },
+  "cpi": {
+   "score": 31,
+   "rank": 124
+  }
+ },
+ "TKM": {
+  "fsi": {
+   "score": 62.2,
+   "rank": 104
+  },
+  "cpi": {
+   "score": 17,
+   "rank": 167
+  }
+ },
+ "UGA": {
+  "fsi": {
+   "score": 91.1,
+   "rank": 28
+  },
+  "cpi": {
+   "score": 25,
+   "rank": 148
+  }
+ },
+ "UKR": {
+  "fsi": {
+   "score": 93.1,
+   "rank": 22
+  },
+  "cpi": {
+   "score": 36,
+   "rank": 104
+  }
+ },
+ "UZB": {
+  "fsi": {
+   "score": 64.8,
+   "rank": 96
+  },
+  "cpi": {
+   "score": 31,
+   "rank": 124
+  }
+ },
+ "VEN": {
+  "fsi": {
+   "score": 89,
+   "rank": 30
+  },
+  "cpi": {
+   "score": 10,
+   "rank": 180
+  }
+ },
+ "VNM": {
+  "fsi": {
+   "score": 56.2,
+   "rank": 119
+  },
+  "cpi": {
+   "score": 41,
+   "rank": 81
+  }
+ },
+ "YEM": {
+  "fsi": {
+   "score": 106.6,
+   "rank": 6
+  },
+  "cpi": {
+   "score": 13,
+   "rank": 177
+  }
+ },
+ "ZMB": {
+  "fsi": {
+   "score": 81.2,
+   "rank": 50
+  },
+  "cpi": {
+   "score": 37,
+   "rank": 99
+  }
+ },
+ "ZWE": {
+  "fsi": {
+   "score": 95.7,
+   "rank": 18
+  },
+  "cpi": {
+   "score": 22,
+   "rank": 157
+  }
+ },
+ "BEN": {
+  "fsi": {
+   "score": 72.5,
+   "rank": 74
+  },
+  "cpi": {
+   "score": 45,
+   "rank": 70
+  }
+ },
+ "BIH": {
+  "fsi": {
+   "score": 71,
+   "rank": 77
+  },
+  "cpi": {
+   "score": 34,
+   "rank": 109
+  }
+ },
+ "BLR": {
+  "fsi": {
+   "score": 68.7,
+   "rank": 85
+  },
+  "cpi": {
+   "score": 31,
+   "rank": 124
+  }
+ },
+ "BLZ": {
+  "fsi": {
+   "score": 57,
+   "rank": 117
+  },
+  "cpi": {
+   "score": 36,
+   "rank": 104
+  }
+ },
+ "BRA": {
+  "fsi": {
+   "score": 70.3,
+   "rank": 78
+  },
+  "cpi": {
+   "score": 35,
+   "rank": 107
+  }
+ },
+ "BTN": {
+  "fsi": {
+   "score": 64.5,
+   "rank": 98
+  },
+  "cpi": {
+   "score": 71,
+   "rank": 18
+  }
+ },
+ "CAF": {
+  "fsi": {
+   "score": 103.9,
+   "rank": 7
+  },
+  "cpi": {
+   "score": 24,
+   "rank": 150
+  }
+ },
+ "CHN": {
+  "fsi": {
+   "score": 64.4,
+   "rank": 99
+  },
+  "cpi": {
+   "score": 43,
+   "rank": 76
+  }
+ },
+ "COG": {
+  "fsi": {
+   "score": 90.2,
+   "rank": 29
+  },
+  "cpi": {
+   "score": 23,
+   "rank": 153
+  }
+ },
+ "COM": {
+  "fsi": {
+   "score": 81.7,
+   "rank": 47
+  },
+  "cpi": {
+   "score": 20,
+   "rank": 163
+  }
+ },
+ "CPV": {
+  "fsi": {
+   "score": 57.2,
+   "rank": 116
+  },
+  "cpi": {
+   "score": 62,
+   "rank": 35
+  }
+ },
+ "CUB": {
+  "fsi": {
+   "score": 59.1,
+   "rank": 112
+  },
+  "cpi": {
+   "score": 40,
+   "rank": 84
+  }
+ },
+ "DJI": {
+  "fsi": {
+   "score": 81.6,
+   "rank": 48
+  },
+  "cpi": {
+   "score": 31,
+   "rank": 124
+  }
+ },
+ "DMA": {
+  "cpi": {
+   "score": 60,
+   "rank": 37
+  }
+ },
+ "DOM": {
+  "fsi": {
+   "score": 60.2,
+   "rank": 108
+  },
+  "cpi": {
+   "score": 37,
+   "rank": 99
+  }
+ },
+ "FJI": {
+  "fsi": {
+   "score": 66.4,
+   "rank": 94
+  },
+  "cpi": {
+   "score": 55,
+   "rank": 49
+  }
+ },
+ "GAB": {
+  "fsi": {
+   "score": 70.2,
+   "rank": 79
+  },
+  "cpi": {
+   "score": 29,
+   "rank": 135
+  }
+ },
+ "GEO": {
+  "fsi": {
+   "score": 69.3,
+   "rank": 82
+  },
+  "cpi": {
+   "score": 50,
+   "rank": 56
+  }
+ },
+ "GMB": {
+  "fsi": {
+   "score": 76.1,
+   "rank": 61
+  },
+  "cpi": {
+   "score": 37,
+   "rank": 99
+  }
+ },
+ "GNB": {
+  "fsi": {
+   "score": 88.4,
+   "rank": 32
+  },
+  "cpi": {
+   "score": 21,
+   "rank": 161
+  }
+ },
+ "GNQ": {
+  "fsi": {
+   "score": 83.7,
+   "rank": 42
+  },
+  "cpi": {
+   "score": 15,
+   "rank": 172
+  }
+ },
+ "GRD": {
+  "fsi": {
+   "score": 51.9,
+   "rank": 127
+  },
+  "cpi": {
+   "score": 56,
+   "rank": 46
+  }
+ },
+ "IRN": {
+  "fsi": {
+   "score": 82.9,
+   "rank": 43
+  },
+  "cpi": {
+   "score": 23,
+   "rank": 153
+  }
+ },
+ "JAM": {
+  "fsi": {
+   "score": 59.3,
+   "rank": 109
+  },
+  "cpi": {
+   "score": 44,
+   "rank": 73
+  }
+ },
+ "LCA": {
+  "cpi": {
+   "score": 59,
+   "rank": 39
+  }
+ },
+ "LSO": {
+  "fsi": {
+   "score": 74.6,
+   "rank": 68
+  },
+  "cpi": {
+   "score": 37,
+   "rank": 99
+  }
+ },
+ "MDV": {
+  "fsi": {
+   "score": 60.3,
+   "rank": 107
+  },
+  "cpi": {
+   "score": 39,
+   "rank": 91
+  }
+ },
+ "MKD": {
+  "fsi": {
+   "score": 58.1,
+   "rank": 114
+  },
+  "cpi": {
+   "score": 40,
+   "rank": 84
+  }
+ },
+ "MNE": {
+  "fsi": {
+   "score": 56.9,
+   "rank": 118
+  },
+  "cpi": {
+   "score": 46,
+   "rank": 65
+  }
+ },
+ "MUS": {
+  "fsi": {
+   "score": 37.8,
+   "rank": 151
+  },
+  "cpi": {
+   "score": 48,
+   "rank": 61
+  }
+ },
+ "MYS": {
+  "fsi": {
+   "score": 53.1,
+   "rank": 126
+  },
+  "cpi": {
+   "score": 52,
+   "rank": 54
+  }
+ },
+ "PRK": {
+  "fsi": {
+   "score": 84.9,
+   "rank": 40
+  },
+  "cpi": {
+   "score": 15,
+   "rank": 172
+  }
+ },
+ "SLB": {
+  "fsi": {
+   "score": 77.6,
+   "rank": 58
+  },
+  "cpi": {
+   "score": 44,
+   "rank": 73
+  }
+ },
+ "SRB": {
+  "fsi": {
+   "score": 67.8,
+   "rank": 91
+  },
+  "cpi": {
+   "score": 33,
+   "rank": 116
+  }
+ },
+ "STP": {
+  "fsi": {
+   "score": 68.5,
+   "rank": 88
+  },
+  "cpi": {
+   "score": 45,
+   "rank": 70
+  }
+ },
+ "SUR": {
+  "fsi": {
+   "score": 58.8,
+   "rank": 113
+  },
+  "cpi": {
+   "score": 38,
+   "rank": 96
+  }
+ },
+ "SWZ": {
+  "fsi": {
+   "score": 77.6,
+   "rank": 58
+  },
+  "cpi": {
+   "score": 23,
+   "rank": 153
+  }
+ },
+ "VCT": {
+  "cpi": {
+   "score": 63,
+   "rank": 31
+  }
+ },
+ "VUT": {
+  "cpi": {
+   "score": 47,
+   "rank": 63
+  }
+ },
+ "WSM": {
+  "fsi": {
+   "score": 63.9,
+   "rank": 101
+  }
+ }
+}

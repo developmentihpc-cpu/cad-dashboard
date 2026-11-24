@@ -67,6 +67,8 @@ const SEV_RULES = {
   // Worldwide Governance Indicators (World Bank), score 0–100 — higher is better
   'IMF.GGXWDG_NGDP':    { dir: 1, th:[90, 70, 50],        ref:'IMF debt-risk ranges',              refAr:'نطاقات مخاطر الدين لصندوق النقد' },
   'GOV_WGI_PV.SC':      { dir:-1, th:[25, 40, 60],        ref:'WGI governance score (0–100)',      refAr:'مؤشر الحوكمة العالمي (0–100)' },
+  'GOV_FSI':            { dir: 1, th:[90, 80, 60],         ref:'Fund for Peace bands: Alert 90+, High warning 80–90, Warning 60–80 (of 120)', refAr:'فئات صندوق السلام: إنذار 90 فأكثر، تحذير مرتفع 80–90، تحذير 60–80 (من 120)' },
+  'GOV_CPI':            { dir:-1, th:[25, 40, 60],         ref:'CPI score 0–100 (100 = very clean)', refAr:'مؤشر مدركات الفساد 0–100 (100 = نزيه جداً)' },
   'GOV_WGI_VA.SC':      { dir:-1, th:[25, 40, 60],        ref:'WGI governance score (0–100)',      refAr:'مؤشر الحوكمة العالمي (0–100)' },
   'GOV_WGI_GE.SC':      { dir:-1, th:[25, 40, 60],        ref:'WGI governance score (0–100)',      refAr:'مؤشر الحوكمة العالمي (0–100)' },
   'GOV_WGI_RL.SC':      { dir:-1, th:[25, 40, 60],        ref:'WGI governance score (0–100)',      refAr:'مؤشر الحوكمة العالمي (0–100)' },

@@ -36,7 +36,8 @@ function buildCountryDeck(opts){
   const INCOME = opts.income ? (ar ? (typeof AR_INCOME !== 'undefined' ? AR_INCOME[opts.income] : '')
     : ({ LIC:'Low income', LMIC:'Lower-middle income', UMIC:'Upper-middle income' }[opts.income] || '')) : '';
   const DATE = opts.dateStr || new Date().toLocaleDateString('en-US', { month:'long', year:'numeric' });
-  const R = DK.reader(Object.assign({}, opts.data || {}, (opts.pack && opts.pack.data) || {}));   // a country pack can add figures (e.g. youth share)
+  const TBI = opts.tbi && opts.tbi.tbi ? opts.tbi : null;   // Trade Barrier Index (data/trade_barriers.json): pillars [score 0–10, rank of 122]
+  const R = DK.reader(Object.assign({}, opts.data || {}, (opts.pack && opts.pack.data) || {}, TBI ? { 'TBI': { value: TBI.tbi[0], year: TBI.year } } : {}));   // a country pack can add figures (e.g. youth share)
   const F = DK.fmt(ar);
   const HEAD = 'Lora', BODY = 'Montserrat';
   const SRC = { 'SP.POP.TOTL':'World Bank', 'NY.GDP.PCAP.PP.CD':'World Bank · IMF', 'NY.GDP.MKTP.KD.ZG':'World Bank', 'FP.CPI.TOTL.ZG':'World Bank · IMF',
@@ -45,7 +46,7 @@ function buildCountryDeck(opts){
     'SH.MED.PHYS.ZS':'WHO', 'SH.IMM.MEAS':'WHO · UNICEF', 'SH.STA.STNT.ZS':'UNICEF · WHO · World Bank', 'SN.ITK.DEFC.ZS':'FAO',
     'SE.ADT.LITR.ZS':'UNESCO UIS', 'SE.PRM.CMPT.ZS':'UNESCO UIS', 'SE.SEC.ENRR':'UNESCO UIS', 'SE.XPD.TOTL.GD.ZS':'UNESCO · World Bank', 'SE.PRM.ENRL.TC.ZS':'UNESCO UIS',
     'AG.YLD.CREL.KG':'FAO', 'NV.AGR.TOTL.ZS':'World Bank', 'SH.H2O.BASW.ZS':'WHO/UNICEF JMP', 'ER.H2O.INTR.PC':'FAO AQUASTAT', 'ER.H2O.FWST.ZS':'FAO AQUASTAT',
-    'uis:ROFST.1.CP':'UNESCO UIS', 'uis:ROFST.2.CP':'UNESCO UIS', 'SE.PRM.UNER':'UNESCO UIS', 'POP.YOUTH':'UN WPP · World Bank', 'SH.H2O.SMDW.ZS':'WHO/UNICEF JMP', 'SH.STA.BASS.ZS':'WHO/UNICEF JMP',
+    'uis:ROFST.1.CP':'UNESCO UIS', 'uis:ROFST.2.CP':'UNESCO UIS', 'SE.PRM.UNER':'UNESCO UIS', 'POP.YOUTH':'UN WPP · World Bank', 'TBI':'Trade Barrier Index (Tholos Foundation)', 'SH.H2O.SMDW.ZS':'WHO/UNICEF JMP', 'SH.STA.BASS.ZS':'WHO/UNICEF JMP',
     'SH.STA.SMSS.ZS':'WHO/UNICEF JMP', 'SH.STA.ODFC.ZS':'WHO/UNICEF JMP', 'EG.ELC.ACCS.ZS':'World Bank · IEA', 'EG.CFT.ACCS.ZS':'WHO', 'IT.NET.USER.ZS':'ITU',
     'EG.FEC.RNEW.ZS':'IEA · World Bank · Ember', 'GOV_WGI_PV.SC':'World Bank WGI', 'GOV_WGI_VA.SC':'World Bank WGI', 'GOV_WGI_GE.SC':'World Bank WGI',
     'GOV_WGI_RL.SC':'World Bank WGI', 'GOV_WGI_CC.SC':'World Bank WGI',
@@ -78,6 +79,8 @@ function buildCountryDeck(opts){
     'uis:ROFST.1.CP':    { en:'Out of school (primary age)', ar:'خارج المدرسة (سن المرحلة الابتدائية)', f: r => F.pct(r, 1) },
     'uis:ROFST.2.CP':    { en:'Out of school (lower-secondary age)', ar:'خارج المدرسة (سن المرحلة الإعدادية)', f: r => F.pct(r, 1) },
     'SE.PRM.UNER':       { en:'Primary-age children out of school', ar:'الأطفال في سن الابتدائية خارج المدرسة', f: r => F.num(r), u:[' children',' طفل'] },
+    'TBI':               { en: TBI ? `Trade Barrier Index · rank ${TBI.tbi[1]} of 122` : 'Trade Barrier Index', ar: TBI ? `مؤشر الحواجز التجارية · المرتبة ${TBI.tbi[1]} من 122` : 'مؤشر الحواجز التجارية',
+                           f: r => F.num(r, 2), u:[' / 10 (higher = more barriers)',' من 10 (الأعلى = حواجز أكثر)'] },
     'POP.YOUTH':         { en:'Young people aged 15–24 (% of population)', ar:'الشباب بعمر 15–24 (% من السكان)', f: r => F.pct(r, 1) },
     'SH.H2O.SMDW.ZS':    { en:'Safely managed water', ar:'المياه المُدارة بأمان', f: r => F.pct(r) },
     'SH.STA.BASS.ZS':    { en:'Basic sanitation', ar:'الصرف الصحي الأساسي', f: r => F.pct(r) },
@@ -159,6 +162,8 @@ function buildCountryDeck(opts){
   const POWER_SRC = [['solar','F5C518','Solar','الطاقة الشمسية',1], ['wind','3E9BD6','Wind','طاقة الرياح',1], ['hydro','1B6FA8','Hydropower','الطاقة الكهرومائية',1],
     ['other','13804C','Geothermal & other','الحرارية الجوفية وغيرها',1], ['bio','7FB069','Bioenergy','الطاقة الحيوية',1],
     ['gas','A9B7C4','Gas','الغاز',0], ['coal','4A4F57','Coal','الفحم',0], ['oil','8B5E3C','Oil','النفط',0], ['nuclear','9B7EBD','Nuclear','الطاقة النووية',0]];
+  // Trade Barrier Index pillar in the most restrictive third of the 122 countries
+  const tbiHigh = k => !!(TBI && TBI[k] && TBI[k][1] > 81);
   const fossilHeavy = () => { const r = R('EG.FEC.RNEW.ZS'); return !!(r && !r.stale && r.v < 40 && atLeast('EG.ELC.ACCS.ZS', 70)); };
 
   // ── "so what" analysis: for each problem indicator, the related indicators that are also off track in this
@@ -438,8 +443,11 @@ function buildCountryDeck(opts){
             [() => off('BX.KLT.DINV.WD.GD.ZS', 2) || off('LP.LPI.OVRL.XQ', 2), 'Co-invest with private developers in special economic zones, industrial parks and logistics hubs.',
              'الاستثمار المشترك مع المطورين من القطاع الخاص في المناطق الاقتصادية الخاصة والمجمعات الصناعية والمراكز اللوجستية.'] ] },
     { key:'trade', en:'Trade', ar:'التجارة', short:['Trade','التجارة'], overview:true,   // a sector overview: shown, but not rated
-      stats:['NE.EXP.GNFS.ZS','BN.CAB.XOKA.GD.ZS','TM.TAX.MRCH.WM.AR.ZS','TX.VAL.MANF.ZS.UN'], bars:['BN.CAB.XOKA.GD.ZS','TM.TAX.MRCH.WM.AR.ZS'],
+      stats:['TBI','NE.EXP.GNFS.ZS','BN.CAB.XOKA.GD.ZS','TM.TAX.MRCH.WM.AR.ZS','TX.VAL.MANF.ZS.UN'], bars:['BN.CAB.XOKA.GD.ZS','TM.TAX.MRCH.WM.AR.ZS'],
       acts:[ ['TM.TAX.MRCH.WM.AR.ZS',1,'Support tariff reform and regional trade agreements that open neighbouring markets.','دعم إصلاح التعريفات واتفاقيات التجارة الإقليمية التي تفتح أسواق الجوار.'],
+             [() => tbiHigh('services'),0,'Open up services trade: ease foreign-ownership limits and licensing rules in professional, financial, telecom and construction services, to attract investors in logistics and digital services.','فتح تجارة الخدمات: تخفيف قيود الملكية الأجنبية وشروط الترخيص في الخدمات المهنية والمالية والاتصالات والإنشاءات، لجذب المستثمرين في الخدمات اللوجستية والرقمية.'],
+             [() => tbiHigh('facilitation'),0,'Trade facilitation: a customs single window, risk-based inspections and faster border clearance to cut the time and cost of each shipment.','تيسير التجارة: نافذة جمركية موحدة وتفتيش قائم على المخاطر وتخليص أسرع على الحدود لخفض وقت كل شحنة وكلفتها.'],
+             [() => tbiHigh('ntb'),0,'Streamline import licensing, standards and sanitary checks that act as non-tariff barriers.','تبسيط تراخيص الاستيراد والمواصفات والفحوص الصحية التي تعمل كحواجز غير جمركية.'],
              ['BN.CAB.XOKA.GD.ZS',1,'Export promotion and diversification to reduce the trade deficit.','تشجيع الصادرات وتنويعها لتضييق الفجوة التجارية.'],
              [null,3,'Help exporters meet international standards and certification to reach new markets.','مساعدة المصدّرين على استيفاء المعايير والشهادات الدولية للوصول إلى أسواق جديدة.'] ],
       inv:[ [() => off('BN.CAB.XOKA.GD.ZS', 2) || (R('TX.VAL.MANF.ZS.UN') && !R('TX.VAL.MANF.ZS.UN').stale && R('TX.VAL.MANF.ZS.UN').v < 30), 'Co-invest in export-oriented processing (agro-processing, light manufacturing) and in port, storage and logistics capacity, including with UAE trade and logistics partners.',
@@ -973,6 +981,33 @@ function buildCountryDeck(opts){
           body: T(`Manufactured goods are ${m ? Math.round(m.v) + '%' : 'a small share'} of exports${fd ? ` and food ${Math.round(fd.v)}%` : ''}, so export earnings depend on a small number of primary products and are exposed to world prices and weather conditions.`,
                   `تشكّل السلع المصنّعة ${m ? Math.round(m.v) + '%' : 'نسبة صغيرة'} من الصادرات${fd ? ` والأغذية ${Math.round(fd.v)}%` : ''}، لذا تعتمد الإيرادات على عدد قليل من المنتجات الأولية وتتقلب مع الأسعار العالمية والطقس.`) + mk }]).slice(0, 3);
       }
+    }
+    // Trade: where the barriers to trade are (Trade Barrier Index pillars) and what they mean — the "so what"
+    if (s.key === 'trade' && TBI) {
+      const PIL = { tariffs:['tariffs','التعريفات الجمركية'], ntb:['non-tariff barriers','الحواجز غير الجمركية'], services:['barriers to services trade','قيود تجارة الخدمات'], facilitation:['trade facilitation gaps','فجوات تيسير التجارة'] };
+      const SV = { professional:['professional','المهنية'], financial:['financial','المالية'], telecom:['telecoms','الاتصالات'], construction:['construction','الإنشاءات'], transportation:['transport','النقل'], retail:['retail','التجزئة'], entertainment:['audiovisual','السمعية البصرية'] };
+      const band = r => r <= 41 ? T('low', 'منخفضة') : r <= 81 ? T('moderate', 'متوسطة') : T('high', 'مرتفعة');
+      const keys = ['tariffs', 'ntb', 'services', 'facilitation'].filter(k => TBI[k]);
+      const ord = n => n + (n % 100 >= 11 && n % 100 <= 13 ? 'th' : ['th', 'st', 'nd', 'rd'][n % 10] || 'th');
+      const parts = keys.map(k => T(`${PIL[k][0]} ${band(TBI[k][1]).toLowerCase()} (${ord(TBI[k][1])})`, `${PIL[k][1]} ${band(TBI[k][1])} (المرتبة ${TBI[k][1]} من 122)`));
+      const sub = TBI.sub || {}, svc = Object.keys(SV).filter(k => sub[k] != null).sort((a, b) => sub[b] - sub[a]).slice(0, 3);
+      const worst = keys.slice().sort((a, b) => TBI[b][1] - TBI[a][1])[0];
+      const SO = {
+        services: [`Restrictions are highest on ${andList(svc.map(k => SV[k][0]))} services, which raises costs for exporters and deters investment in logistics and digital services.`,
+                   `القيود أشدّ على الخدمات ${andList(svc.map(k => SV[k][1]))}، وهي ترفع التكاليف على كل مصدّر وتحدّ من الاستثمار في الخدمات التي تعتمد عليها الموانئ والمراكز اللوجستية والأعمال الرقمية، لذا يبقى فتح تجارة الخدمات الرافعة الأهم.`],
+        facilitation: ['Slow, costly border procedures and weak logistics add to the cost of every shipment, which hurts time-sensitive exports and links to regional supply chains.',
+                       'تضيف الإجراءات الحدودية البطيئة والمكلفة وضعف الخدمات اللوجستية إلى كلفة كل شحنة، مما يضر بالصادرات الحساسة للوقت وبالارتباط بسلاسل الإمداد الإقليمية.'],
+        ntb: ['Licensing, standards and quotas, more than tariffs, keep goods out, so reform has to target procedures rather than tariff rates alone.',
+              'تحدّ التراخيص والمواصفات والحصص من دخول السلع أكثر من التعريفات، لذا ينبغي أن يستهدف الإصلاح الإجراءات لا معدلات التعريفة وحدها.'],
+        tariffs: ['High tariffs raise the cost of imported inputs and everyday goods and limit integration into regional markets.',
+                  'ترفع التعريفات المرتفعة كلفة المدخلات المستوردة والسلع اليومية وتحدّ من الاندماج في الأسواق الإقليمية.'] };
+      const prev = TBI.prev && TBI.prev['2023'], trend = prev != null && Math.abs(TBI.tbi[0] - prev) >= 0.05
+        ? T(` Score ${TBI.tbi[0] > prev ? 'up' : 'down'} from ${prev.toFixed(2)} in 2023.`, ` و${TBI.tbi[0] > prev ? 'ارتفعت' : 'انخفضت'} الحواجز منذ 2023 (من ${prev.toFixed(2)} إلى ${TBI.tbi[0].toFixed(2)}).`) : '';
+      const item = { L: TBI[worst][1] > 81 ? 1 : 2, head: T(`Barriers to trade · ranked ${TBI.tbi[1]} of 122`, `الحواجز أمام التجارة · المرتبة ${TBI.tbi[1]} من 122`),
+        body: T(`Of 122 countries: ${andList(parts)}.`, `بين 122 دولة: ${andList(parts)}.`) + trend + ' ' + T(SO[worst][0], SO[worst][1]) };
+      const pi = ins.findIndex(x => x.head === T('Main products traded', 'أبرز المنتجات المتبادلة'));
+      ins.splice(pi >= 0 ? pi + 1 : 0, 0, item);
+      ins = ins.slice(0, opts.trade && (opts.trade.exports || opts.trade.imports) ? 2 : 3);   // leave room for the trading partners below
     }
     let y = 1.7;
     if (!ins.length) {

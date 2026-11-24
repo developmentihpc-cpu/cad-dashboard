@@ -36,7 +36,7 @@ function buildCountryDeck(opts){
   const INCOME = opts.income ? (ar ? (typeof AR_INCOME !== 'undefined' ? AR_INCOME[opts.income] : '')
     : ({ LIC:'Low income', LMIC:'Lower-middle income', UMIC:'Upper-middle income' }[opts.income] || '')) : '';
   const DATE = opts.dateStr || new Date().toLocaleDateString('en-US', { month:'long', year:'numeric' });
-  const R = DK.reader(opts.data || {});
+  const R = DK.reader(Object.assign({}, opts.data || {}, (opts.pack && opts.pack.data) || {}));   // a country pack can add figures (e.g. youth share)
   const F = DK.fmt(ar);
   const HEAD = 'Lora', BODY = 'Montserrat';
   const SRC = { 'SP.POP.TOTL':'World Bank', 'NY.GDP.PCAP.PP.CD':'World Bank · IMF', 'NY.GDP.MKTP.KD.ZG':'World Bank', 'FP.CPI.TOTL.ZG':'World Bank · IMF',
@@ -44,7 +44,8 @@ function buildCountryDeck(opts){
     'SH.DYN.MORT':'UN IGME (UNICEF/WHO)', 'SH.STA.MMRT':'WHO · UNICEF · UNFPA', 'SP.DYN.LE00.IN':'World Bank', 'SH.XPD.CHEX.GD.ZS':'WHO GHED',
     'SH.MED.PHYS.ZS':'WHO', 'SH.IMM.MEAS':'WHO · UNICEF', 'SH.STA.STNT.ZS':'UNICEF · WHO · World Bank', 'SN.ITK.DEFC.ZS':'FAO',
     'SE.ADT.LITR.ZS':'UNESCO UIS', 'SE.PRM.CMPT.ZS':'UNESCO UIS', 'SE.SEC.ENRR':'UNESCO UIS', 'SE.XPD.TOTL.GD.ZS':'UNESCO · World Bank', 'SE.PRM.ENRL.TC.ZS':'UNESCO UIS',
-    'AG.YLD.CREL.KG':'FAO', 'NV.AGR.TOTL.ZS':'World Bank', 'SH.H2O.BASW.ZS':'WHO/UNICEF JMP', 'SH.H2O.SMDW.ZS':'WHO/UNICEF JMP', 'SH.STA.BASS.ZS':'WHO/UNICEF JMP',
+    'AG.YLD.CREL.KG':'FAO', 'NV.AGR.TOTL.ZS':'World Bank', 'SH.H2O.BASW.ZS':'WHO/UNICEF JMP', 'ER.H2O.INTR.PC':'FAO AQUASTAT', 'ER.H2O.FWST.ZS':'FAO AQUASTAT',
+    'uis:ROFST.1.CP':'UNESCO UIS', 'uis:ROFST.2.CP':'UNESCO UIS', 'SE.PRM.UNER':'UNESCO UIS', 'POP.YOUTH':'UN WPP · World Bank', 'SH.H2O.SMDW.ZS':'WHO/UNICEF JMP', 'SH.STA.BASS.ZS':'WHO/UNICEF JMP',
     'SH.STA.SMSS.ZS':'WHO/UNICEF JMP', 'SH.STA.ODFC.ZS':'WHO/UNICEF JMP', 'EG.ELC.ACCS.ZS':'World Bank · IEA', 'EG.CFT.ACCS.ZS':'WHO', 'IT.NET.USER.ZS':'ITU',
     'EG.FEC.RNEW.ZS':'IEA · World Bank · Ember', 'GOV_WGI_PV.SC':'World Bank WGI', 'GOV_WGI_VA.SC':'World Bank WGI', 'GOV_WGI_GE.SC':'World Bank WGI',
     'GOV_WGI_RL.SC':'World Bank WGI', 'GOV_WGI_CC.SC':'World Bank WGI',
@@ -72,6 +73,12 @@ function buildCountryDeck(opts){
     'AG.YLD.CREL.KG':    { en:'Cereal yield', ar:'إنتاجية الحبوب', f: r => F.num(r), u:[' kg/ha',' كغ/هكتار'] },
     'NV.AGR.TOTL.ZS':    { en:'Agriculture (% of GDP)', ar:'الزراعة (% من الناتج)', f: r => F.pct(r) },
     'SH.H2O.BASW.ZS':    { en:'Basic drinking water', ar:'مياه الشرب الأساسية', f: r => F.pct(r) },
+    'ER.H2O.INTR.PC':    { en:'Renewable freshwater per person', ar:'المياه العذبة المتجددة للفرد', f: r => F.num(r), u:[' m³ a year',' م³ سنوياً'] },
+    'ER.H2O.FWST.ZS':    { en:'Water stress (withdrawals as % of available supply)', ar:'الإجهاد المائي (السحب % من الموارد المتاحة)', f: r => F.pct(r) },
+    'uis:ROFST.1.CP':    { en:'Out of school (primary age)', ar:'خارج المدرسة (سن المرحلة الابتدائية)', f: r => F.pct(r, 1) },
+    'uis:ROFST.2.CP':    { en:'Out of school (lower-secondary age)', ar:'خارج المدرسة (سن المرحلة الإعدادية)', f: r => F.pct(r, 1) },
+    'SE.PRM.UNER':       { en:'Primary-age children out of school', ar:'الأطفال في سن الابتدائية خارج المدرسة', f: r => F.num(r), u:[' children',' طفل'] },
+    'POP.YOUTH':         { en:'Young people aged 15–24 (% of population)', ar:'الشباب بعمر 15–24 (% من السكان)', f: r => F.pct(r, 1) },
     'SH.H2O.SMDW.ZS':    { en:'Safely managed water', ar:'المياه المُدارة بأمان', f: r => F.pct(r) },
     'SH.STA.BASS.ZS':    { en:'Basic sanitation', ar:'الصرف الصحي الأساسي', f: r => F.pct(r) },
     'SH.STA.SMSS.ZS':    { en:'Safely managed sanitation', ar:'الصرف الصحي المُدار بأمان', f: r => F.pct(r) },
@@ -98,7 +105,7 @@ function buildCountryDeck(opts){
     'SL.UEM.1524.ZS':    { en:'Youth unemployment (15–24)', ar:'بطالة الشباب (15–24)', f: r => F.pct(r, 1) },
     'SL.TLF.CACT.FE.ZS': { en:'Women in the labour force', ar:'مشاركة المرأة في القوى العاملة', f: r => F.pct(r) },
     'SL.EMP.VULN.ZS':    { en:'Vulnerable employment', ar:'العمالة الهشة', f: r => F.pct(r) },
-    'FX.OWN.TOTL.ZS':    { en:'Adults with an account', ar:'البالغون الذين لديهم حساب', f: r => F.pct(r) },
+    'FX.OWN.TOTL.ZS':    { en:'Adults with a bank or mobile-money account', ar:'البالغون الذين لديهم حساب مصرفي أو محفظة إلكترونية', f: r => F.pct(r) },
     'SI.POV.GINI':       { en:'Inequality (Gini index)', ar:'عدم المساواة (مؤشر جيني)', f: r => F.num(r, 1) },
     'SN.ITK.MSFI.ZS':    { en:'Moderate or severe food insecurity', ar:'انعدام الأمن الغذائي المتوسط أو الشديد', f: r => F.pct(r) },
     'FS.AST.PRVT.GD.ZS': { en:'Private-sector credit (% of GDP)', ar:'الائتمان للقطاع الخاص (% من الناتج)', f: r => F.pct(r) },
@@ -161,6 +168,8 @@ function buildCountryDeck(opts){
     'SH.MED.PHYS.ZS':    v => T(`only ${v} doctors per 1,000 people`, `${v} طبيب فقط لكل 1,000 نسمة`),
     'SH.IMM.MEAS':       v => T(`measles immunisation at ${v}`, `تحصين ضد الحصبة بنسبة ${v}`),
     'SH.XPD.CHEX.GD.ZS': v => T(`health spending of ${v} of GDP`, `إنفاق صحي لا يتجاوز ${v} من الناتج`),
+    'ER.H2O.INTR.PC':    v => T(`only ${v} of renewable freshwater per person`, `${v} فقط من المياه العذبة المتجددة للفرد`),
+    'ER.H2O.FWST.ZS':    v => T(`water withdrawals at ${v} of available supply`, `سحب للمياه يبلغ ${v} من الموارد المتاحة`),
     'SH.H2O.BASW.ZS':    (v, n) => n ? T(`${n} people without basic drinking water`, `${n} شخص بلا مياه شرب أساسية`) : T(`basic water access at ${v}`, `وصول إلى مياه الشرب الأساسية بنسبة ${v}`),
     'SH.STA.BASS.ZS':    (v, n) => n ? T(`${n} people without basic sanitation`, `${n} شخص بلا صرف صحي أساسي`) : T(`basic sanitation at ${v}`, `صرف صحي أساسي بنسبة ${v}`),
     'SH.STA.ODFC.ZS':    v => T(`${v} of people practising open defecation`, `${v} من السكان يمارسون التغوط في العراء`),
@@ -235,6 +244,18 @@ function buildCountryDeck(opts){
     'AG.YLD.CREL.KG': { d:['NV.AGR.TOTL.ZS','SN.ITK.DEFC.ZS','EG.ELC.ACCS.ZS'],
       so:['Low yields indicate limited irrigation, improved seed and mechanisation; as a large share of livelihoods depends on farming, raising productivity is the principal lever for both food security and income.',
           'تشير الإنتاجية المنخفضة إلى ضعف الري والبذور المحسّنة والميكنة؛ ومع اعتماد كثير من سبل العيش على الزراعة، تبقى الإنتاجية الرافعة الأهم للغذاء والدخل معاً.'] },
+    'ER.H2O.INTR.PC': { d:['ER.H2O.FWST.ZS','SH.H2O.SMDW.ZS'],
+      so:['Below 500 m³ per person a year is absolute water scarcity: there is too little renewable water for households, farming and industry, so supply is rationed, groundwater is over-pumped and new water must come from desalination and reuse.',
+          'يُعد ما دون 500 م³ للفرد سنوياً شحاً مطلقاً في المياه: فالمياه المتجددة لا تكفي الأسر والزراعة والصناعة، فتُقنَّن الإمدادات وتُستنزف المياه الجوفية، ويتعين توفير مياه جديدة من التحلية وإعادة الاستخدام.'] },
+    'ER.H2O.FWST.ZS': { d:['ER.H2O.INTR.PC'],
+      so:['Withdrawals close to or above the available supply mean aquifers are being depleted faster than they recharge; cutting losses, reusing treated wastewater and desalination are needed to keep supply secure.',
+          'يعني سحب المياه بما يقارب الموارد المتاحة أو يتجاوزها أن الطبقات الجوفية تُستنزف أسرع من تجددها؛ لذا يلزم خفض الفاقد وإعادة استخدام المياه المعالجة والتحلية لتأمين الإمدادات.'] },
+    'uis:ROFST.1.CP': { d:['SI.POV.DDAY','SE.XPD.TOTL.GD.ZS'],
+      so:['Children out of school at primary age rarely return; the usual barriers are cost, distance, disability and displacement.',
+          'نادراً ما يعود الأطفال المنقطعون عن المدرسة في سن المرحلة الابتدائية، والعوائق المعتادة هي الكلفة والبُعد والإعاقة والنزوح.'] },
+    'uis:ROFST.2.CP': { d:['uis:ROFST.1.CP','SI.POV.DDAY'],
+      so:['Adolescents leave school to work or, for girls, to marry early, which cuts their future earnings.',
+          'يترك المراهقون المدرسة للعمل، والفتيات للزواج المبكر، مما يخفض دخلهم مستقبلاً.'] },
     'SH.H2O.BASW.ZS': { d:['EG.ELC.ACCS.ZS','SI.POV.DDAY','SH.DYN.MORT'],
       so:['Women and girls spend many hours collecting water instead of working or studying, and unsafe sources spread diarrhoeal disease, a leading cause of death among young children.',
           'تقضي النساء والفتيات ساعات في جلب المياه بدلاً من العمل أو الدراسة، والمصادر غير الآمنة تنشر أمراض الإسهال، وهي من أبرز أسباب وفاة الأطفال الصغار.'] },
@@ -350,12 +371,13 @@ function buildCountryDeck(opts){
   // ── sectors ── acts: [indicator that triggers it, worst level it applies to, English, Arabic] (null = always)
   //               inv:  development-investment angles, only where the data makes them relevant
   const SECTORS = [
-    { key:'wash', en:'Water', ar:'المياه', short:['Water','المياه'], stats:['SH.H2O.BASW.ZS','SH.H2O.SMDW.ZS','SH.STA.BASS.ZS','SH.STA.SMSS.ZS'], bars:['SH.H2O.BASW.ZS','SH.H2O.SMDW.ZS','SH.STA.BASS.ZS','SH.STA.SMSS.ZS','SH.STA.ODFC.ZS'],
-      acts:[ ['SH.H2O.BASW.ZS',1,'Extend basic water points and piped supply to unserved communities.','توصيل مياه الشرب الأساسية والشبكات إلى المجتمعات غير المخدومة.'],
+    { key:'wash', en:'Water', ar:'المياه', short:['Water','المياه'], stats:['ER.H2O.INTR.PC','ER.H2O.FWST.ZS','SH.H2O.BASW.ZS','SH.H2O.SMDW.ZS','SH.STA.BASS.ZS','SH.STA.SMSS.ZS'], bars:['ER.H2O.INTR.PC','ER.H2O.FWST.ZS','SH.H2O.BASW.ZS','SH.H2O.SMDW.ZS','SH.STA.BASS.ZS','SH.STA.SMSS.ZS','SH.STA.ODFC.ZS'],
+      acts:[ ['ER.H2O.FWST.ZS',1,'Cut water losses in the network, reuse treated wastewater in farming and expand desalination where renewable supply is exhausted.','خفض فاقد المياه في الشبكات، وإعادة استخدام المياه المعالجة في الزراعة، وتوسيع التحلية حيث استُنفدت الموارد المتجددة.'],
+             ['SH.H2O.BASW.ZS',1,'Extend basic water points and piped supply to unserved communities.','توصيل مياه الشرب الأساسية والشبكات إلى المجتمعات غير المخدومة.'],
              ['SH.STA.BASS.ZS',1,'Fund household and school sanitation to end open defecation.','تمويل الصرف الصحي للمنازل والمدارس وإنهاء التغوط في العراء.'],
              ['SH.H2O.SMDW.ZS',2,'Upgrade water treatment so supply is safely managed.','تحسين معالجة المياه لتصبح مُدارة بأمان.'],
              [null,3,'Climate-proof water sources and utilities.','حماية مصادر المياه ومرافقها من آثار المناخ.'] ],
-      inv:[ [() => off('SH.H2O.BASW.ZS', 1) || off('SH.H2O.SMDW.ZS', 1), 'Results-based concessions or PPPs for water utilities, desalination or treatment plants and water-kiosk operators, using blended finance.',
+      inv:[ [() => off('SH.H2O.BASW.ZS', 1) || off('SH.H2O.SMDW.ZS', 1) || off('ER.H2O.FWST.ZS', 1), 'Results-based concessions or PPPs for water utilities, desalination or treatment plants and water-kiosk operators, using blended finance.',
              'امتيازات قائمة على النتائج أو شراكات بين القطاعين العام والخاص لمرافق المياه ومحطات التحلية أو المعالجة ومشغّلي أكشاك المياه، بتمويل مختلط.'] ] },
     { key:'energy', en:'Energy', ar:'الطاقة', short:['Energy','الطاقة'], stats:['EG.ELC.ACCS.ZS','EG.CFT.ACCS.ZS','EG.FEC.RNEW.ZS'], bars:['EG.ELC.ACCS.ZS','EG.CFT.ACCS.ZS'],
       acts:[ ['EG.ELC.ACCS.ZS',1,'Off-grid and mini-grid solar for rural households, clinics and schools.','الطاقة الشمسية خارج الشبكة والشبكات المصغّرة للأرياف والعيادات والمدارس.'],
@@ -375,7 +397,7 @@ function buildCountryDeck(opts){
              'اتفاقيات شراء مسبق للمحاصيل مع مشترين، منهم مستوردو الغذاء في الإمارات، تضمن لصغار المزارعين سوقاً لإنتاجهم، مدعومة بتمويل المدخلات ومراكز التجميع.'],
             [() => off('SN.ITK.DEFC.ZS', 1) || off('AG.YLD.CREL.KG', 1), 'Invest in storage, cold chain and agro-processing to reduce post-harvest losses and retain more value in the country.',
              'الاستثمار في التخزين وسلاسل التبريد والتصنيع الزراعي لخفض فاقد ما بعد الحصاد والإبقاء على قيمة أكبر داخل البلد.'] ] },
-    { key:'education', en:'Education', ar:'التعليم', short:['Education','التعليم'], stats:['SE.ADT.LITR.ZS','SE.PRM.CMPT.ZS','SE.SEC.ENRR','SE.XPD.TOTL.GD.ZS'], bars:['SE.ADT.LITR.ZS','SE.PRM.CMPT.ZS','SE.SEC.ENRR','SE.PRM.ENRL.TC.ZS','SE.XPD.TOTL.GD.ZS'],
+    { key:'education', en:'Education', ar:'التعليم', short:['Education','التعليم'], stats:['SE.ADT.LITR.ZS','SE.PRM.CMPT.ZS','uis:ROFST.1.CP','uis:ROFST.2.CP','SE.XPD.TOTL.GD.ZS','SE.PRM.UNER'], bars:['SE.ADT.LITR.ZS','SE.PRM.CMPT.ZS','SE.SEC.ENRR','uis:ROFST.1.CP','uis:ROFST.2.CP','SE.PRM.ENRL.TC.ZS','SE.XPD.TOTL.GD.ZS'],
       acts:[ ['SE.PRM.CMPT.ZS',1,'Support children to complete primary school (school feeding, fee support).','إبقاء الأطفال في المدرسة حتى إتمام المرحلة الابتدائية (التغذية المدرسية ودعم الرسوم).'],
              ['SE.SEC.ENRR',1,'Expand secondary places and support girls’ transition to secondary school.','زيادة مقاعد التعليم الثانوي ودعم انتقال الفتيات إليه.'],
              ['SE.ADT.LITR.ZS',1,'Fund adult and youth literacy programmes.','تمويل برامج محو الأمية للشباب والكبار.'],
@@ -428,6 +450,8 @@ function buildCountryDeck(opts){
   const SUBN = opts.subnational || {};
   // sector status = worst current level among its benchmarked indicators
   SECTORS.forEach(s => {
+    const own = opts.pack && opts.pack.sectorStats && opts.pack.sectorStats[s.key];   // a country pack can choose the stat cards
+    if (own) { s.bars = s.bars.filter(id => own.includes(id) || !s.stats.includes(id)); s.stats = own; }
     s.ids = [...new Set(s.stats.concat(s.bars))];
     const lv = s.ids.map(lvl).filter(x => x != null);
     s.level = lv.length ? Math.min(...lv) : null;
@@ -882,11 +906,19 @@ function buildCountryDeck(opts){
     eyebrow(sl, T('Key insights', 'أبرز الملاحظات'), RX, 1.38, RW, C.SKY_DK);
     let ins = s.ranked.filter(id => lvl(id) <= 2).map(id => insight(id, id === s.mapId)).filter(Boolean).slice(0, 3);
     // Economic empowerment: where people work — small businesses (ILOSTAT), shown second so it is never crowded out
-    if (s.key === 'econ' && opts.sme && opts.sme.under50 != null && !(R('ILO.SME.U50') || {}).stale) {
+    if (s.key === 'econ' && s.stats.includes('ILO.SME.U50') && opts.sme && opts.sme.under50 != null && !(R('ILO.SME.U50') || {}).stale) {
       const sm = opts.sme, micro = sm.s1_4 != null ? Math.round(sm.s1_4) : null;
       ins.splice(Math.min(1, ins.length), 0, { L: 2, head: T(`Small businesses · ${Math.round(sm.under50)}% of jobs`, `المنشآت الصغيرة · ${Math.round(sm.under50)}% من الوظائف`),
         body: T(`${Math.round(sm.under50)}% of workers are in businesses with fewer than 50 people${micro != null ? `, including ${micro}% in micro units of 1–4 people` : ''} (${sm.year}). As most people earn their living in small firms, support for their access to finance, skills and markets would reach the largest number of workers and households.`,
                 `${Math.round(sm.under50)}% من العاملين في منشآت يقل عدد عامليها عن 50${micro != null ? `، منهم ${micro}% في وحدات متناهية الصغر من 1–4 أشخاص` : ''} (${sm.year}). فالمنشآت الصغيرة هي مصدر رزق معظم الناس، لذا يصل التمويل والمهارات والنفاذ إلى الأسواق لها إلى أكبر عدد من الوظائف والأسر.`) });
+      ins = ins.slice(0, 3);
+    }
+    // Education: where almost every child is in school, say so — the gaps are then in quality and funding, not access
+    if (s.key === 'education' && lvl('uis:ROFST.1.CP') === 3 && lvl('uis:ROFST.2.CP') !== 0 && lvl('uis:ROFST.2.CP') !== 1) {
+      const o1 = R('uis:ROFST.1.CP'), o2 = R('uis:ROFST.2.CP'), n = R('SE.PRM.UNER');
+      ins.push({ L: 3, head: T('Almost every child is in school', 'معظم الأطفال ملتحقون بالمدرسة'),
+        body: T(`Only ${valShort('uis:ROFST.1.CP')} of primary-age children${n && !n.stale ? ` (${valShort('SE.PRM.UNER')})` : ''}${o2 ? ` and ${valShort('uis:ROFST.2.CP')} of lower-secondary-age adolescents` : ''} are out of school (${o1.y}), so the priority is the quality and funding of schooling rather than access.`,
+                `لا تتجاوز نسبة الأطفال في سن المرحلة الابتدائية خارج المدرسة ${valShort('uis:ROFST.1.CP')}${n && !n.stale ? ` (${valShort('SE.PRM.UNER')} طفل)` : ''}${o2 ? `، و${valShort('uis:ROFST.2.CP')} في سن المرحلة الإعدادية` : ''} (${o1.y})، لذا تكمن الأولوية في جودة التعليم وتمويله لا في الالتحاق.`) });
       ins = ins.slice(0, 3);
     }
     // Energy: a connected economy still running mostly on fossil fuels — the case for renewable power (structural, not a benchmark rating)
@@ -1081,14 +1113,19 @@ function buildCountryDeck(opts){
       let y = bullets(sl, a.overview.map(tx), RX, 3.08, RW, C.GOLD, 8.8);
       if (a.news && a.news.length) {
         y += 0.06;
+        // the largest font (8.2 down to 7) at which the announcements fit the box with a clear bottom margin
+        const room = 6.98 - y - 0.38 - 0.16;
+        const need = sz => a.news.reduce((t, [h, b]) => t + textH(tx(h) + ': ' + tx(b), RW - 0.54, sz) + 0.08, 0);
+        const fsz = [8.2, 7.8, 7.4, 7].find(sz => need(sz) <= room) || 7;
         sl.shape(p.ShapeType.rect, { x:RX, y, w:RW, h:6.98 - y, fill:{ color:C.SKY_PALE }, line:{ type:'none' } });
         eyebrow(sl, T('Announced in 2026', 'إعلانات عام 2026'), RX + 0.16, y + 0.1, RW - 0.32, C.SKY_DK);
-        headed(sl, a.news, RX + 0.16, y + 0.38, RW - 0.32, 8.2);
+        headed(sl, a.news, RX + 0.16, y + 0.38, RW - 0.32, fsz);
       }
       foot(sl, SRC);
     });
     // 1b · sector by sector (country pack): how the area performs in each of the eight sectors
-    const FS = PK && PK.focusSectors && PK.focusSectors[a.key];
+    const ORDER = { gap:0, mixed:1, strength:2 };   // greatest need first
+    const FS = PK && PK.focusSectors && PK.focusSectors[a.key] && PK.focusSectors[a.key].slice().sort((x, y) => ORDER[x[1]] - ORDER[y[1]]);
     if (FS) S.push(() => {
       const sl = newSlide(C.WHITE);
       head(sl, EB, AN, T('sector by sector', 'قطاعاً بقطاع'));

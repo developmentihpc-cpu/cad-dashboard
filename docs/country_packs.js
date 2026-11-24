@@ -1,7 +1,8 @@
 /* country_packs.js — extra, researched slides for selected countries (English + Arabic).
  * A pack adds: context (what drives need · development opportunities) after the executive summary; a governorate
  * atlas (two maps per slide) after the sector slides; a sector-by-sector view for each focus area (focus_areas.js);
- * and a recommendations slide before the method slide. Content is dated (asOf) — review it when sources update.
+ * optional extra figures (`data`) and per-sector stat cards (`sectorStats`); and, if given, a `recommendations` slide before
+ * the method slide. Content is dated (asOf) — review it when sources update.
  * Map values are keyed by the region names in data/subnational/{ISO3}.json (the outlines come from there).
  * Every text is [English, Arabic].
  */
@@ -21,8 +22,8 @@ const COUNTRY_PACKS = {
       points: [
         [['Jobs', 'فرص العمل'], ['One in five Jordanians in the labour force is unemployed, and one in three women; only one woman in seven is in the labour force. Unemployment is highest in Ma\'an (29.4%), Jerash (27.3%), Balqa (26.4%) and Irbid (24.9%).',
           'عاطل واحد من كل خمسة أردنيين في القوى العاملة، وواحدة من كل ثلاث نساء؛ ولا تشارك في سوق العمل سوى امرأة واحدة من كل سبع. وتبلغ البطالة أعلى مستوياتها في معان (29.4%) وجرش (27.3%) والبلقاء (26.4%) وإربد (24.9%).']],
-        [['Water', 'المياه'], ['Jordan is among the most water-scarce countries in the world, and close to half of piped water is lost to leaks, theft and metering errors; the National Water Carrier from Aqaba is due in 2030.',
-          'الأردن من أشد دول العالم شحاً في المياه، ويُفقد نحو نصف المياه المنقولة بالشبكات بسبب التسرب والسرقة وأخطاء القياس؛ ويُنتظر تشغيل ناقل المياه الوطني من العقبة في 2030.']],
+        [['Water', 'المياه'], ['Jordan is among the most water-scarce countries in the world, and close to half of piped water is lost to leaks, theft and metering errors. The National Water Carrier — a plant at Aqaba that will desalinate Red Sea water and pump it more than 400 km north to Amman and other governorates — is due in 2030.',
+          'الأردن من أشد دول العالم شحاً في المياه، ويُفقد نحو نصف المياه المنقولة بالشبكات بسبب التسرب والسرقة وأخطاء القياس. ويُنتظر في 2030 تشغيل ناقل المياه الوطني، وهو محطة في العقبة لتحلية مياه البحر الأحمر وضخّها أكثر من 400 كم شمالاً إلى عمّان والمحافظات الأخرى.']],
         [['Refugee hosting', 'استضافة اللاجئين'], ['Jordan hosts 388,505 registered Syrian refugees — nearly 80% in towns and cities, mostly Amman, Irbid, Mafraq and Zarqa — alongside about 2.4 million registered Palestine refugees, which stretches schools, clinics and water.',
           'يستضيف الأردن 388,505 لاجئين سوريين مسجلين، نحو 80% منهم في المدن والبلدات، ولا سيما عمّان وإربد والمفرق والزرقاء، إلى جانب نحو 2.4 مليون لاجئ فلسطيني مسجل، ما يضغط على المدارس والعيادات والمياه.']],
         [['Fiscal space', 'الحيّز المالي'], ['High public debt and an IMF Extended Fund Facility (reviews completed through mid-2026) limit public investment; growth is forecast at 2.7% in 2026 and 3.1% in 2027.',
@@ -64,6 +65,9 @@ const COUNTRY_PACKS = {
       { title: ['Jobs and refugee hosting', 'فرص العمل واستضافة اللاجئين'],
         statement: ['unemployment peaks in the south and north; refugees concentrate in the north and centre', 'البطالة أعلى في الجنوب والشمال، واللاجئون يتركزون في الشمال والوسط'],
         maps: ['unemp', 'refugees'] },
+      { title: ['Drinking water', 'مياه الشرب'],
+        statement: ['nearly half of households drink bottled water rather than the piped supply — most of all in Jerash and Madaba', 'نحو نصف الأسر تشرب المياه المعبأة بدلاً من مياه الشبكة، ولا سيما في جرش ومادبا'],
+        maps: ['piped', 'bottled'] },
       { title: ['Child health', 'صحة الطفل'],
         statement: ["vaccination gaps in Ma'an, Madaba and Aqaba; stunting highest in Mafraq and Ma'an", 'فجوات التحصين في معان ومادبا والعقبة، والتقزّم أعلى في المفرق ومعان'],
         maps: ['vacc', 'stunt'] },
@@ -82,6 +86,16 @@ const COUNTRY_PACKS = {
         values: { Amman: 122704, Irbid: 68225, Mafraq: 99418, Zarqa: 57222, Balqa: 10562, Madaba: 8122, "Ma'an": 5895, Karak: 4932, Jarash: 4478, Ajloun: 2902, Aqaba: 2746, Tafiela: 883 },
         reading: ['Amman (122,704), Mafraq (99,418, including Zaatari camp) and Irbid (68,225) host 75% of registered Syrian refugees; Zarqa includes Azraq camp.',
                   'تستضيف عمّان (122,704) والمفرق (99,418 بما فيها مخيم الزعتري) وإربد (68,225) 75% من اللاجئين السوريين المسجلين؛ وتشمل الزرقاء مخيم الأزرق.'] },
+      piped: { name: ['Households drinking piped water at home', 'الأسر التي تشرب مياه الشبكة في المنزل'], unit: '%', worse: 'low', national: 49.0,
+        source: ['Jordan Population and Family Health Survey (DHS) 2023', 'مسح السكان والصحة الأسرية (DHS) 2023'],
+        values: { Amman: 47.0, Balqa: 58.6, Zarqa: 55.4, Madaba: 34.7, Irbid: 33.0, Mafraq: 89.3, Jarash: 29.3, Ajloun: 40.4, Karak: 55.0, Tafiela: 43.1, "Ma'an": 70.1, Aqaba: 88.6 },
+        reading: ['Only 29% of households in Jerash, 33% in Irbid and 35% in Madaba drink water piped into the home, against 49% nationally; supply is intermittent in much of Jordan, so many households buy water instead.',
+                  'لا تشرب مياه الشبكة في المنزل سوى 29% من الأسر في جرش و33% في إربد و35% في مادبا، مقابل 49% على المستوى الوطني؛ إذ تصل الإمدادات بشكل متقطع في معظم أنحاء الأردن، فتشتري أسر كثيرة المياه بدلاً منها.'] },
+      bottled: { name: ['Households relying on bottled water', 'الأسر التي تعتمد على المياه المعبأة'], unit: '%', worse: 'high', national: 46.6,
+        source: ['Jordan Population and Family Health Survey (DHS) 2023', 'مسح السكان والصحة الأسرية (DHS) 2023'],
+        values: { Amman: 52.1, Balqa: 36.5, Zarqa: 43.7, Madaba: 61.7, Irbid: 53.0, Mafraq: 3.6, Jarash: 64.4, Ajloun: 42.8, Karak: 43.7, Tafiela: 56.7, "Ma'an": 28.7, Aqaba: 10.0 },
+        reading: ['Bottled water is the main drinking source for 64% of households in Jerash, 62% in Madaba and 57% in Tafiela (national 46.6%) — a recurring cost for families that the National Water Carrier and network repairs aim to reduce.',
+                  'المياه المعبأة هي المصدر الرئيسي للشرب لدى 64% من الأسر في جرش و62% في مادبا و57% في الطفيلة (الوطني 46.6%)، وهي كلفة متكررة على الأسر يسعى ناقل المياه الوطني وإصلاح الشبكات إلى خفضها.'] },
       vacc: { dhs: 'health', name: ['Children with all basic vaccinations', 'الأطفال الحاصلون على جميع التطعيمات الأساسية'], unit: '%', worse: 'low',
         source: ['Jordan Population and Family Health Survey (DHS) 2023', 'مسح السكان والصحة الأسرية (DHS) 2023'],
         reading: ["Ma'an (69.6%) and Madaba (80.8%) lag far behind the national 91.7%; Aqaba (84.1%) is third-lowest.",
@@ -123,28 +137,15 @@ const COUNTRY_PACKS = {
           'الميناء البحري الوحيد في الأردن: مليون حاوية نمطية في 2025 (بزيادة 22%)، وارتفاع الترانزيت إلى سوريا بنسبة 168%، وسكة حديد العقبة إلى المناجم.']],
       ],
     },
-    // ── recommendations ──
-    recommendations: {
-      priorities: [
-        [['Jobs for young people and women', 'فرص العمل للشباب والنساء'], ["Target Ma'an, Jerash, Balqa and Irbid (unemployment 24–29%). Link vocational training, wage subsidies and childcare to employers in the national projects; women's unemployment is 33.9%.",
-          'استهداف معان وجرش والبلقاء وإربد (بطالة 24–29%)، وربط التدريب المهني ودعم الأجور ورعاية الأطفال بأصحاب العمل في المشاريع الوطنية؛ إذ تبلغ بطالة النساء 33.9%.']],
-        [['Water security', 'الأمن المائي'], ['Back the National Water Carrier and cut non-revenue water (close to half of supply) in the north, where refugee hosting adds demand.',
-          'دعم ناقل المياه الوطني وخفض الفاقد المائي (نحو نصف الإمدادات) في الشمال، حيث تزيد استضافة اللاجئين الطلب.']],
-        [['Host communities', 'المجتمعات المضيفة'], ['Strengthen schools, clinics and municipal services in Amman, Irbid, Mafraq and Zarqa, which host most refugees, as humanitarian funding falls.',
-          'تعزيز المدارس والعيادات والخدمات البلدية في عمّان وإربد والمفرق والزرقاء التي تستضيف معظم اللاجئين، مع تراجع التمويل الإنساني.']],
-        [['Child health and nutrition', 'صحة الطفل والتغذية'], ["Close vaccination gaps in Ma'an, Madaba and Aqaba; tackle anaemia and stunting in Mafraq, Jerash and Ma'an through iron supplementation, fortification and maternal nutrition.",
-          'سدّ فجوات التحصين في معان ومادبا والعقبة، ومعالجة فقر الدم والتقزّم في المفرق وجرش ومعان عبر مكملات الحديد وتدعيم الأغذية وتغذية الأمهات.']],
-      ],
-      investment: [
-        ['Co-invest in the national projects with established UAE links: the Aqaba railway, the port and logistics, and green hydrogen and ammonia.',
-         'الاستثمار المشترك في المشاريع الوطنية ذات الروابط الإماراتية القائمة: سكة حديد العقبة، والميناء والخدمات اللوجستية، والهيدروجين والأمونيا الخضراء.'],
-        ['Blended finance alongside the National Water Carrier for distribution networks and leak reduction.',
-         'تمويل مختلط إلى جانب ناقل المياه الوطني لشبكات التوزيع والحد من التسرب.'],
-        ['Digital and data-centre investment around the Aqaba Digital Hub, with skills programmes for young Jordanians.',
-         'الاستثمار الرقمي ومراكز البيانات حول مركز العقبة الرقمي، مع برامج مهارات للشباب الأردني.'],
-      ],
-      sources: ['Jordan DoS · UNHCR · DHS 2023 · IMF · Ministry of Planning · AD Ports Group · EU · EBRD',
-                'الإحصاءات العامة · المفوضية · المسح الصحي 2023 · صندوق النقد · وزارة التخطيط · موانئ أبوظبي · الاتحاد الأوروبي · البنك الأوروبي'],
+    // ── extra national figures used by the sector slides (merged into the report data) ──
+    data: {
+      // young people aged 15–24 as a share of the population, 2025: UN World Population Prospects via World Bank
+      // (SP.POP.1519.MA/FE.5Y + SP.POP.2024.MA/FE.5Y weighted by SP.POP.TOTL.MA/FE.IN)
+      'POP.YOUTH': { value: 18.7, year: 2025 },
+    },
+    // sector stat cards that replace the defaults for this country
+    sectorStats: {
+      econ: ['SI.POV.DDAY', 'SL.UEM.TOTL.ZS', 'SL.UEM.1524.ZS', 'SL.TLF.CACT.FE.ZS', 'FX.OWN.TOTL.ZS', 'POP.YOUTH'],
     },
   },
 };

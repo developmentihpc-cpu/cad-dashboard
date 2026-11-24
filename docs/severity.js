@@ -37,6 +37,9 @@ const SEV_RULES = {
   'SH.STA.BASS.ZS':     { dir:-1, th:[40, 60, 85],        ref:'SDG 6.2 universal sanitation',      refAr:'الهدف 6.2 الصرف الصحي الشامل' },
   'SH.STA.SMSS.ZS':     { dir:-1, th:[20, 40, 65],        ref:'SDG 6.2 safely managed sanitation', refAr:'الهدف 6.2 الصرف الصحي المُدار بأمان' },
   'SH.STA.ODFC.ZS':     { dir: 1, th:[20, 10, 2],         ref:'SDG 6.2 end open defecation',       refAr:'الهدف 6.2 إنهاء التغوط في العراء' },
+  // water scarcity: Falkenmark thresholds (m³ per person a year) and FAO bands for SDG 6.4.2 water stress
+  'ER.H2O.INTR.PC':     { dir:-1, th:[500, 1000, 1700],   ref:'Falkenmark: below 1,700 m³ is water stress', refAr:'مؤشر فالكنمارك: أقل من 1,700 م³ إجهاد مائي' },
+  'ER.H2O.FWST.ZS':     { dir: 1, th:[100, 75, 25],       ref:'SDG 6.4.2: below 25% is no stress', refAr:'الهدف 6.4.2: أقل من 25% لا إجهاد' },
   'SH.STA.HYGN.ZS':     { dir:-1, th:[30, 50, 75],        ref:'SDG 6.2 basic hygiene',             refAr:'الهدف 6.2 النظافة الأساسية' },
   'SI.POV.DDAY':        { dir: 1, th:[30, 15, 5],         ref:'SDG 1.1 end extreme poverty',       refAr:'الهدف 1.1 القضاء على الفقر المدقع' },
   'SI.POV.GINI':        { dir: 1, th:[45, 40, 35],        ref:'Gini above 40 = high inequality',   refAr:'جيني فوق 40 = تفاوت مرتفع' },

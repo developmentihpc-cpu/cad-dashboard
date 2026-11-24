@@ -46,7 +46,7 @@ const COUNTRY_PACKS = {
     aid: {
       tagline: ['appeals are deeply underfunded as humanitarian money falls', 'نداءات تعاني نقصاً حاداً في التمويل مع تراجع الأموال الإنسانية'],
       facts: [
-        [['US$73.9M', '73.9 مليون دولار'], ['Humanitarian funding reported for 2026', 'التمويل الإنساني المُبلَّغ عنه لعام 2026'], ['OCHA, mid-Aug 2026 · down 92% from US$936.9M in 2016', 'أوتشا، منتصف أغسطس 2026 · بانخفاض 92% عن 936.9 مليون دولار في 2016']],
+        [['US$126.2M', '126.2 مليون دولار'], ['Humanitarian funding reported for 2026', 'التمويل الإنساني المُبلَّغ عنه لعام 2026'], ['OCHA FTS, 24 Nov 2026 · down 87% from US$936.9M in 2016', 'أوتشا، 24 نوفمبر 2026 · بانخفاض 87% عن 936.9 مليون دولار في 2016']],
         ['2.2%', ['Jordan Response Plan 2026 funded', 'نسبة تمويل خطة الاستجابة الأردنية 2026'], ['US$62.9M of US$2.8B · mid-Aug 2026', '62.9 مليون من 2.8 مليار دولار · منتصف أغسطس 2026']],
         [['US$21', '21 دولاراً'], ['WFP food aid per refugee a month', 'المساعدة الغذائية لكل لاجئ شهرياً'], ['Reduced; cash for refugees outside camps paused six months', 'مخفّضة؛ وعُلّقت المساعدات النقدية خارج المخيمات ستة أشهر']],
         [['US$1.45B+', '1.45 مليار دولار+'], ['US aid a year (2022 MOU)', 'المساعدات الأمريكية سنوياً (مذكرة 2022)'], ['Largest bilateral donor · FY2023–2029, includes budget support', 'أكبر مانح ثنائي · 2023–2029، وتشمل دعم الموازنة']],
@@ -58,18 +58,19 @@ const COUNTRY_PACKS = {
         [['WFP Jordan (Sep)', 'برنامج الأغذية العالمي في الأردن (سبتمبر)'], 52.1, 170],
         [['UNRWA appeal: Syria, Lebanon, Jordan (Jun)', 'نداء الأونروا: سوريا ولبنان والأردن (يونيو)'], 72, 170.2],
       ],
-      donorsTitle: ['Largest humanitarian donors, 2026 (OCHA)', 'أكبر المانحين الإنسانيين، 2026 (أوتشا)'],
-      donors: [
-        [['European Commission', 'المفوضية الأوروبية'], 16.26], [['Japan', 'اليابان'], 15.8], [['Switzerland', 'سويسرا'], 8.2],
-        [['Canada', 'كندا'], 6.72], [['Qatar', 'قطر'], 5.62], [['Netherlands', 'هولندا'], 4.29],
+      donorsTitle: ['Largest humanitarian donors, 2026 to date (OCHA)', 'أكبر المانحين الإنسانيين، 2026 حتى الآن (أوتشا)'],
+      donors: [   // [name, US$ million, note, highlight] — OCHA FTS, 24 Nov 2026
+        [['United States', 'الولايات المتحدة'], 22.2], [['Switzerland', 'سويسرا'], 17.5], [['European Union (ECHO)', 'الاتحاد الأوروبي (إيكو)'], 15.93],
+        [['Japan', 'اليابان'], 15.81], [['Germany', 'ألمانيا'], 13.13], [['Qatar Charity', 'قطر الخيرية'], 9.24],
+        [['UAE', 'الإمارات'], 0, ['none reported for 2025–26 · US$64.4M in 2024, 2nd largest', 'لا شيء مُبلَّغ عنه في 2025–2026 · 64.4 مليون دولار في 2024، ثاني أكبر مانح'], true],
       ],
       points: [
         [['Food', 'الغذاء'], ['WFP has US$52.1M of the US$170M it needs. Cash food aid for refugees outside camps was suspended for six months and resumes from October 2026 only for the most vulnerable families, at a reduced US$21 a person a month.',
           'حصل برنامج الأغذية العالمي على 52.1 مليون من 170 مليون دولار يحتاجها، وعُلّقت المساعدة الغذائية النقدية للاجئين خارج المخيمات ستة أشهر، وتُستأنف من أكتوبر 2026 للأسر الأشد ضعفاً فقط بمبلغ مخفّض قدره 21 دولاراً للفرد شهرياً.']],
         [['Services', 'الخدمات'], ['UNHCR cut back health, cash and child-protection services in 2025. UNRWA’s cuts in Jordan are about funding, not security: it began 2026 over US$220M short after two major donors suspended funding in 2024, and cut staff hours and pay by 20%, so its schools teach fewer hours with larger classes and its clinics open for less time.',
           'قلّصت المفوضية خدمات الصحة والمساعدات النقدية وحماية الطفل في 2025. أما تقليص خدمات الأونروا في الأردن فسببه التمويل لا الأمن: بدأت عام 2026 بعجز يتجاوز 220 مليون دولار بعد تعليق مانحَين رئيسيين تمويلهما في 2024، وخفّضت ساعات عمل موظفيها ورواتبهم بنسبة 20%، فقلّت ساعات التدريس في مدارسها وازداد حجم الصفوف وقصُرت ساعات عمل عياداتها.']],
-        [['From relief to development', 'من الإغاثة إلى التنمية'], ['Humanitarian funding has fallen 92% since 2016, while development finance continues: US aid of at least US$1.45B a year and the EU’s €3B package for 2025–2027.',
-          'تراجع التمويل الإنساني بنسبة 92% منذ 2016، فيما يستمر التمويل التنموي: مساعدات أمريكية لا تقل عن 1.45 مليار دولار سنوياً، وحزمة أوروبية بقيمة 3 مليارات يورو للفترة 2025–2027.']],
+        [['From relief to development', 'من الإغاثة إلى التنمية'], ['Humanitarian funding has fallen 87% since 2016, while development finance continues: US aid of at least US$1.45B a year and the EU’s €3B package for 2025–2027.',
+          'تراجع التمويل الإنساني بنسبة 87% منذ 2016، فيما يستمر التمويل التنموي: مساعدات أمريكية لا تقل عن 1.45 مليار دولار سنوياً، وحزمة أوروبية بقيمة 3 مليارات يورو للفترة 2025–2027.']],
       ],
       support: [
         ['Fill the most urgent food and cash gaps for the most vulnerable refugee and host families.',
@@ -79,8 +80,8 @@ const COUNTRY_PACKS = {
         ['Align with the Jordan Response Plan and the largest donors to avoid duplication.',
          'المواءمة مع خطة الاستجابة الأردنية وأكبر المانحين (الاتحاد الأوروبي واليابان والولايات المتحدة) لتفادي الازدواجية.'],
       ],
-      sources: ['OCHA FTS (via Roya News, Aug 2026) · WFP (Sep 2026) · UNHCR · UNRWA (Jun 2026) · ANERA · US CRS · EU',
-                'خدمة التتبع المالي لأوتشا (عبر رؤيا، 18 أغسطس 2026) · برنامج الأغذية العالمي (سبتمبر 2026) · المفوضية · الأونروا (يونيو 2026) · أنيرا · خدمة أبحاث الكونغرس · الاتحاد الأوروبي'],
+      sources: ['OCHA FTS (24 Nov 2026; JRP via Roya News, Aug) · WFP (Sep 2026) · UNHCR · UNRWA (Jun 2026) · ANERA · US CRS · EU',
+                'خدمة التتبع المالي لأوتشا (24 نوفمبر 2026؛ خطة الاستجابة عبر رؤيا، أغسطس) · برنامج الأغذية العالمي (سبتمبر 2026) · المفوضية · الأونروا (يونيو 2026) · أنيرا · خدمة أبحاث الكونغرس · الاتحاد الأوروبي'],
     },
     // ── context: what drives need ──
     drivers: {
@@ -93,15 +94,15 @@ const COUNTRY_PACKS = {
       ],
       points: [
         [['Jobs', 'فرص العمل'], ['One in five Jordanians in the labour force is unemployed, and one in three women; only one woman in seven is in the labour force. Unemployment is highest in Ma\'an (29.4%), Jerash (27.3%), Balqa (26.4%) and Irbid (24.9%).',
-          'عاطل واحد من كل خمسة أردنيين في القوى العاملة، وواحدة من كل ثلاث نساء؛ ولا تشارك في سوق العمل سوى امرأة واحدة من كل سبع. وتبلغ البطالة أعلى مستوياتها في معان (29.4%) وجرش (27.3%) والبلقاء (26.4%) وإربد (24.9%).']],
+          'عاطل واحد من كل خمسة أردنيين في القوى العاملة، وواحدة من كل ثلاث نساء؛ ولا تشارك في سوق العمل سوى امرأة واحدة من كل سبع. وتبلغ البطالة أعلى مستوياتها في معان (29.4%) وجرش (27.3%) والبلقاء (26.4%) وإربد (24.9%).'], 'briefcase'],
         [['Water', 'المياه'], ['Jordan is among the most water-scarce countries in the world, and close to half of piped water is lost to leaks, theft and metering errors. The National Water Carrier — a plant at Aqaba that will desalinate Red Sea water and pump it more than 400 km north to Amman and other governorates — is due in 2030.',
-          'الأردن من أشد دول العالم شحاً في المياه، ويُفقد نحو نصف المياه المنقولة بالشبكات بسبب التسرب والسرقة وأخطاء القياس. ويُنتظر في 2030 تشغيل ناقل المياه الوطني، وهو محطة في العقبة لتحلية مياه البحر الأحمر وضخّها أكثر من 400 كم شمالاً إلى عمّان والمحافظات الأخرى.']],
+          'الأردن من أشد دول العالم شحاً في المياه، ويُفقد نحو نصف المياه المنقولة بالشبكات بسبب التسرب والسرقة وأخطاء القياس. ويُنتظر في 2030 تشغيل ناقل المياه الوطني، وهو محطة في العقبة لتحلية مياه البحر الأحمر وضخّها أكثر من 400 كم شمالاً إلى عمّان والمحافظات الأخرى.'], 'droplet'],
         [['Refugee hosting', 'استضافة اللاجئين'], ['Jordan hosts 318,813 registered Syrian refugees — 77% in towns and cities, mostly Amman, Mafraq, Irbid and Zarqa — alongside about 2.4 million registered Palestine refugees, which stretches schools, clinics and water (see the refugee slide).',
-          'يستضيف الأردن 318,813 لاجئاً سورياً مسجلاً، 77% منهم في المدن والبلدات، ولا سيما عمّان والمفرق وإربد والزرقاء، إلى جانب نحو 2.4 مليون لاجئ فلسطيني مسجل، ما يضغط على المدارس والعيادات والمياه (انظر شريحة اللاجئين).']],
+          'يستضيف الأردن 318,813 لاجئاً سورياً مسجلاً، 77% منهم في المدن والبلدات، ولا سيما عمّان والمفرق وإربد والزرقاء، إلى جانب نحو 2.4 مليون لاجئ فلسطيني مسجل، ما يضغط على المدارس والعيادات والمياه (انظر شريحة اللاجئين).'], 'users'],
         [['Fiscal space', 'الحيّز المالي'], ['High public debt and an IMF Extended Fund Facility (reviews completed through mid-2026) limit public investment; growth is forecast at 2.7% in 2026 and 3.1% in 2027.',
-          'يحدّ ارتفاع الدين العام وبرنامج «تسهيل الصندوق الممدد» مع صندوق النقد الدولي (استُكملت مراجعاته حتى منتصف 2026) من الاستثمار العام؛ ويُتوقع نمو بنسبة 2.7% في 2026 و3.1% في 2027.']],
+          'يحدّ ارتفاع الدين العام وبرنامج «تسهيل الصندوق الممدد» مع صندوق النقد الدولي (استُكملت مراجعاته حتى منتصف 2026) من الاستثمار العام؛ ويُتوقع نمو بنسبة 2.7% في 2026 و3.1% في 2027.'], 'landmark'],
       ],
-      sources: ['Jordan DoS (Labour Force Survey Q3 2025) · UNHCR (Apr 2026) · IMF · Ministry of Water · UNRWA',
+      sources: ['Jordan DoS (Labour Force Survey Q3 2025) · UNHCR (Oct 2026) · IMF · Ministry of Water · UNRWA',
                 'دائرة الإحصاءات العامة (مسح القوى العاملة، الربع الثالث 2025) · المفوضية السامية لشؤون اللاجئين · صندوق النقد الدولي · وزارة المياه · الأونروا'],
     },
     // ── context: development opportunities ──

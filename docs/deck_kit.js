@@ -92,7 +92,14 @@ const DK = (() => {
 
   // Map slots (inches). The dashboard renders each map image at exactly this aspect ratio,
   // and the decks place it at exactly this size — so maps are never stretched.
-  const MAP_SLOTS = { country: { w:6.0, h:4.3 }, region: { w:7.55, h:5.35 }, sub: { w:7.3, h:5.08 }, focus: { w:4.6, h:5.0 }, atlas: { w:3.2, h:4.35 } };
+  // line icons (Lucide, ISC licence) — SVG bodies on a 24×24 grid; rasterised to PNG by the dashboard (repIcons)
+  const ICONS = {
+    briefcase: '<path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/>',
+    droplet: '<path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/>',
+    users: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+    landmark: '<line x1="3" x2="21" y1="22" y2="22"/><line x1="6" x2="6" y1="18" y2="11"/><line x1="10" x2="10" y1="18" y2="11"/><line x1="14" x2="14" y1="18" y2="11"/><line x1="18" x2="18" y1="18" y2="11"/><polygon points="12 2 20 7 4 7"/>',
+  };
+  const MAP_SLOTS = { country: { w:6.0, h:4.3 }, region: { w:7.55, h:5.35 }, sub: { w:7.3, h:5.08 }, focus: { w:4.6, h:5.3 }, atlas: { w:3.2, h:4.35 } };
   // Fit an image of the given width/height ratio inside a box, centred, without distortion
   const contain = (ratio, x, y, w, h) => {
     const r = ratio || w / h; let iw = w, ih = w / r;
@@ -100,7 +107,7 @@ const DK = (() => {
     return { x: x + (w - iw) / 2, y: y + (h - ih) / 2, w: iw, h: ih };
   };
 
-  return { W, C, SEV, sevLvl, sevLabelOf, reader, slide, fmt, pageLabel, STALE_YEARS, MAP_SLOTS, contain };
+  return { W, C, SEV, sevLvl, sevLabelOf, reader, slide, fmt, pageLabel, STALE_YEARS, MAP_SLOTS, ICONS, contain };
 })();
 
 if (typeof window !== 'undefined') window.DK = DK;

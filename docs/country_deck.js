@@ -863,18 +863,20 @@ function buildCountryDeck(opts){
     const LX = 0.5, LW = 6.0, NW = 2.1, BX = LX + NW + 0.1, BW = 1.55, VX = BX + BW + 0.12, VW = LX + LW - VX;
     eyebrow(sl, tx(A.appealsTitle), LX, 2.8, LW, C.SKY_DK);
     A.appeals.forEach(([name, got, need], i) => {
-      const y = 3.12 + i * 0.44, pc = got / need * 100;
+      const y = 3.1 + i * 0.42, pc = got / need * 100;
       sl.text(tx(name), { x:LX, y, w:NW, h:0.36, fontFace:BODY, fontSize:8.2, color:C.INK, valign:'middle', wrap:true });
       sl.shape(p.ShapeType.rect, { x:BX, y:y + 0.11, w:BW, h:0.15, fill:{ color:C.SKY_PALE }, line:{ type:'none' } });
       sl.shape(p.ShapeType.rect, { x:BX, y:y + 0.11, w:Math.max(0.03, BW * Math.min(1, pc / 100)), h:0.15, fill:{ color: pc < 25 ? SEV.fill[0] : pc < 50 ? SEV.fill[1] : SEV.fill[2] }, line:{ type:'none' } });
       sl.text([{ text:(pc < 10 ? pc.toFixed(1) : Math.round(pc)) + '%', options:{ bold:true, color:C.INK } }, { text:T(`  ${money(got)} of ${money(need)}`, `  ${money(got)} من ${money(need)}`), options:{ color:C.MUTE, fontSize:7.2 } }],
         { x:VX, y, w:VW, h:0.36, fontFace:BODY, fontSize:8.6, valign:'middle' });
     });
-    const dy = 3.12 + A.appeals.length * 0.44 + 0.12, top = Math.max(...A.donors.map(d => d[1]));
+    const dy = 3.1 + A.appeals.length * 0.42 + 0.1, top = Math.max(...A.donors.map(d => d[1]));
     eyebrow(sl, tx(A.donorsTitle), LX, dy, LW, C.SKY_DK);
-    A.donors.forEach(([name, v], i) => {
-      const y = dy + 0.3 + i * 0.24;
-      sl.text(tx(name), { x:LX, y, w:NW, h:0.22, fontFace:BODY, fontSize:8.2, color:C.INK, valign:'middle' });
+    A.donors.forEach(([name, v, note, hi], i) => {
+      const y = dy + 0.3 + i * 0.22;
+      if (hi) sl.shape(p.ShapeType.rect, { x:LX - 0.06, y:y - 0.01, w:LW + 0.06, h:0.24, fill:{ color:C.GOLD_PALE }, line:{ type:'none' } });
+      sl.text(tx(name), { x:LX, y, w:NW, h:0.22, fontFace:BODY, fontSize:8.2, bold:!!hi, color:C.INK, valign:'middle' });
+      if (note) { sl.text(tx(note), { x:BX, y, w:LX + LW - BX, h:0.22, fontFace:BODY, fontSize:7.4, color:C.INK, valign:'middle', fit:'shrink' }); return; }
       sl.shape(p.ShapeType.rect, { x:BX, y:y + 0.06, w:Math.max(0.03, BW * v / top), h:0.1, fill:{ color:C.SKY }, line:{ type:'none' } });
       sl.text(money(v), { x:VX, y, w:VW, h:0.22, fontFace:BODY, fontSize:8.2, bold:true, color:C.INK, valign:'middle' });
     });
@@ -897,11 +899,12 @@ function buildCountryDeck(opts){
     head(sl, T(`${country} in context`, `${NAME} في سياقها`), NAME, T('what drives need', 'ما الذي يحرّك الاحتياجات'));
     factRow(sl, D.facts, 0.5, 1.35, 12.33, 1.36);
     const cw = (12.33 - 0.3) / 2;
-    D.points.forEach(([h, t], i) => {
-      const x = 0.5 + (i % 2) * (cw + 0.3), y = 2.95 + Math.floor(i / 2) * 1.98;
+    D.points.forEach(([h, t, icon], i) => {
+      const x = 0.5 + (i % 2) * (cw + 0.3), y = 2.95 + Math.floor(i / 2) * 1.98, img = icon && opts.icons && opts.icons[icon], ix = img ? 0.46 : 0;
       sl.shape(p.ShapeType.rect, { x, y, w:cw, h:1.82, fill:{ color:C.SKY_PALE }, line:{ type:'none' } });
       sl.shape(p.ShapeType.rect, { x, y, w:0.06, h:1.82, fill:{ color:C.SKY_DK }, line:{ type:'none' } });
-      sl.text(tx(h), { x:x + 0.22, y:y + 0.12, w:cw - 0.4, h:0.32, fontFace:HEAD, fontSize:14, bold:true, color:C.INK, valign:'middle' });
+      if (img) sl.image({ data:img, x:x + 0.22, y:y + 0.12, w:0.32, h:0.32 });
+      sl.text(tx(h), { x:x + 0.22 + ix, y:y + 0.12, w:cw - 0.4 - ix, h:0.32, fontFace:HEAD, fontSize:14, bold:true, color:C.INK, valign:'middle' });
       sl.text(tx(t), { x:x + 0.22, y:y + 0.48, w:cw - 0.4, h:1.3, fontFace:BODY, fontSize:11.5, color:C.INK, valign:'top', wrap:true });
     });
     foot(sl, tx(D.sources) + ' · ' + DATE);
@@ -993,7 +996,7 @@ function buildCountryDeck(opts){
   }
 
   // ══ 4–10 · SECTOR SLIDES (incl. governance & stability) ══
-  SECTORS.forEach(s => { S.push(() => {
+  SECTORS.slice().sort((a, b) => (a.level ?? 9) - (b.level ?? 9) || b.nSevere - a.nSevere).forEach(s => { S.push(() => {   // most severe first
     const sl = newSlide(C.WHITE);
     const st = s.level == null ? T('not enough current data to rate this sector', 'لا تتوفر بيانات حديثة كافية لتصنيف هذا القطاع')
       : s.level === 0 ? T('severe gaps against benchmarks', 'فجوات حرجة مقارنةً بالمعايير')

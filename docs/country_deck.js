@@ -710,6 +710,60 @@ function buildCountryDeck(opts){
     foot(sl, T('SDG/WHO benchmarks · World Bank Open Data · ', 'معايير أهداف التنمية المستدامة · بيانات البنك الدولي · ') + DATE);
   });
 
+  // ══ COUNTRY PACK (country_packs.js) — researched context: what drives need · development opportunities ══
+  const PK = opts.pack || null, tx = v => T(v[0], v[1]);
+  // "Heading: text" bullets with a gold dot, sized to their content; returns the next y
+  const headedList = (sl, items, x, y, w, size, gapY) => {
+    items.forEach(([h, t]) => {
+      const txt = tx(t), th = textH(tx(h) + ': ' + txt, w - 0.22, size);
+      sl.shape(p.ShapeType.ellipse, { x:x + 0.02, y:y + 0.08, w:0.08, h:0.08, fill:{ color:C.GOLD }, line:{ type:'none' } });
+      sl.text([{ text:tx(h) + ': ', options:{ bold:true, color:C.INK } }, { text:txt, options:{ color:C.INK } }],
+        { x:x + 0.22, y, w:w - 0.22, h:th, fontFace:BODY, fontSize:size, valign:'top', wrap:true });
+      y += th + (gapY == null ? 0.1 : gapY);
+    });
+    return y;
+  };
+  const factRow = (sl, facts, x, y, w, h) => {
+    const gap = 0.14, cw = (w - gap * (facts.length - 1)) / facts.length;
+    facts.forEach(([v, l, s], i) => {
+      const fx = x + i * (cw + gap);
+      sl.shape(p.ShapeType.rect, { x:fx, y, w:cw, h, fill:{ color:C.CARD }, line:{ type:'none' } });
+      sl.shape(p.ShapeType.rect, { x:fx, y, w:cw, h:0.05, fill:{ color:C.GOLD }, line:{ type:'none' } });
+      sl.text(Array.isArray(v) ? tx(v) : v, { x:fx + 0.14, y:y + 0.1, w:cw - 0.28, h:0.42, fontFace:HEAD, fontSize:20, bold:true, color:C.INK, valign:'middle', fit:'shrink' });
+      sl.text(tx(l), { x:fx + 0.14, y:y + 0.52, w:cw - 0.28, h:0.32, fontFace:BODY, fontSize:8, bold:true, color:C.INK, valign:'top', wrap:true });
+      sl.text(tx(s), { x:fx + 0.14, y:y + 0.85, w:cw - 0.28, h:h - 0.9, fontFace:BODY, fontSize:6.8, color:C.MUTE, valign:'top', wrap:true });
+    });
+  };
+  if (PK && PK.drivers) S.push(() => {
+    const sl = newSlide(C.WHITE), D = PK.drivers;
+    head(sl, T(`${country} in context`, `${NAME} في سياقها`), NAME, T('what drives need', 'ما الذي يحرّك الاحتياجات'));
+    factRow(sl, D.facts, 0.5, 1.35, 12.33, 1.36);
+    const cw = (12.33 - 0.3) / 2;
+    D.points.forEach(([h, t], i) => {
+      const x = 0.5 + (i % 2) * (cw + 0.3), y = 2.95 + Math.floor(i / 2) * 1.98;
+      sl.shape(p.ShapeType.rect, { x, y, w:cw, h:1.82, fill:{ color:C.SKY_PALE }, line:{ type:'none' } });
+      sl.shape(p.ShapeType.rect, { x, y, w:0.06, h:1.82, fill:{ color:C.SKY_DK }, line:{ type:'none' } });
+      sl.text(tx(h), { x:x + 0.22, y:y + 0.12, w:cw - 0.4, h:0.32, fontFace:HEAD, fontSize:14, bold:true, color:C.INK, valign:'middle' });
+      sl.text(tx(t), { x:x + 0.22, y:y + 0.48, w:cw - 0.4, h:1.3, fontFace:BODY, fontSize:11.5, color:C.INK, valign:'top', wrap:true });
+    });
+    foot(sl, tx(D.sources) + ' · ' + DATE);
+  });
+  if (PK && PK.opportunities) S.push(() => {
+    const sl = newSlide(C.WHITE), O = PK.opportunities;
+    head(sl, T(`${country} in context`, `${NAME} في سياقها`), NAME, T('development opportunities', 'فرص التنمية'));
+    sl.shape(p.ShapeType.rect, { x:0.5, y:1.35, w:12.33, h:0.92, fill:{ color:C.GOLD_PALE }, line:{ type:'none' } });
+    sl.shape(p.ShapeType.rect, { x:0.5, y:1.35, w:0.06, h:0.92, fill:{ color:C.GOLD }, line:{ type:'none' } });
+    sl.text([{ text:tx(O.vision[0]) + '  ', options:{ bold:true, color:C.INK, fontFace:HEAD, fontSize:12 } }, { text:tx(O.vision[1]), options:{ color:C.INK } }],
+      { x:0.72, y:1.4, w:11.95, h:0.82, fontFace:BODY, fontSize:9.6, valign:'middle', wrap:true });
+    const LW = 7.75, RX = 0.5 + LW + 0.35, RW = 13.333 - RX - 0.5;
+    eyebrow(sl, T('National projects', 'المشاريع الوطنية'), 0.5, 2.5, LW, C.SKY_DK);
+    headedList(sl, O.projects, 0.5, 2.85, LW, 11, 0.16);
+    sl.shape(p.ShapeType.rect, { x:RX, y:2.5, w:RW, h:4.4, fill:{ color:C.SKY_PALE }, line:{ type:'none' } });
+    eyebrow(sl, T('Partners', 'الشركاء'), RX + 0.2, 2.62, RW - 0.4, C.SKY_DK);
+    headedList(sl, O.partners, RX + 0.2, 2.98, RW - 0.4, 11, 0.22);
+    foot(sl, tx(O.sources) + ' · ' + DATE);
+  });
+
   // ══ "Where the need is" — sub-national map after a sector slide. Only when an official DHS survey measured the
   //    indicator region by region AND it is one of the sector's most critical issues (s.mapId), so the map
   //    builds on the story of the sector slide rather than introducing a new one ══
@@ -951,6 +1005,44 @@ function buildCountryDeck(opts){
     foot(sl, srcs + ' · ' + DATE);
   }); subSlide(s); });
 
+  // ══ GOVERNORATE ATLAS (country pack) — two maps per slide, each with legend, the areas of greatest need and a reading ══
+  if (PK && PK.atlas && PK.built) PK.atlas.forEach(pg => {
+    const ms = pg.maps.map(k => PK.built[k]).filter(m => m && m.mapData); if (!ms.length) return;
+    S.push(() => {
+      const sl = newSlide(C.WHITE);
+      head(sl, T('Where the need is', 'أين تتركز الاحتياجات'), tx(pg.title), tx(pg.statement));
+      ms.forEach((m, j) => {
+        const PX = 0.5 + j * 6.33, M = DK.MAP_SLOTS.atlas, TX = PX + M.w + 0.18, TW = 6.0 - M.w - 0.18;
+        const fv = v => v == null ? '—' : m.unit === 'count' ? Math.round(v).toLocaleString('en-US') : F.pct({ v }, 1);
+        const lg = v => m.unit === 'count' ? Number(Number(v).toPrecision(v >= 1000 ? 2 : 1)).toLocaleString('en-US') : fv(v).replace(/\.0(%?)$/, '$1');   // legend: rounded
+        sl.text(tx(m.name), { x:PX, y:1.32, w:6.0, h:0.28, fontFace:HEAD, fontSize:12, bold:true, color:C.INK, valign:'middle', fit:'shrink' });
+        sl.text(tx(m.source), { x:PX, y:1.6, w:6.0, h:0.2, fontFace:BODY, fontSize:7.4, color:C.MUTE, valign:'middle' });
+        sl.image({ data:m.mapData, x:PX, y:1.88, w:M.w, h:M.h });
+        // legend (darker = greater need)
+        eyebrow(sl, T('Legend', 'دليل الألوان'), TX, 1.88, TW, C.SKY_DK);
+        const lgOrder = m.worse === 'high' ? [4, 3, 2, 1, 0] : [0, 1, 2, 3, 4];
+        lgOrder.forEach((b, i) => {
+          const col = m.cols[b], ly = 2.14 + i * 0.2;
+          sl.shape(p.ShapeType.rect, { x:TX, y:ly + 0.04, w:0.22, h:0.12, fill:{ color:col }, line:{ type:'none' } });
+          sl.text(lg(m.breaks[b]) + ' – ' + lg(m.breaks[b + 1]), { x:TX + 0.28, y:ly, w:TW - 0.28, h:0.2, fontFace:BODY, fontSize:7.4, color:C.MUTE, valign:'middle' });
+        });
+        // greatest need
+        const bad = v => m.worse === 'high' ? v : -v;
+        const ranked = m.regions.filter(r => r.v != null).sort((a, b) => bad(b.v) - bad(a.v));
+        eyebrow(sl, T('Greatest need', 'الاحتياج الأكبر'), TX, 3.28, TW, C.GOLD);
+        ranked.slice(0, 3).forEach((r, i) => {
+          sl.text(r.name, { x:TX, y:3.55 + i * 0.24, w:TW - 0.85, h:0.22, fontFace:BODY, fontSize:8.6, color:C.INK, valign:'middle', fit:'shrink' });
+          sl.text(fv(r.v), { x:TX + TW - 0.85, y:3.55 + i * 0.24, w:0.85, h:0.22, fontFace:BODY, fontSize:8.6, bold:true, color:C.INK, align:'right', valign:'middle' });
+        });
+        if (m.national != null) sl.text(T('National: ', 'المعدل الوطني: ') + fv(m.national), { x:TX, y:4.3, w:TW, h:0.2, fontFace:BODY, fontSize:8, bold:true, color:C.SKY_DK, valign:'middle' });
+        sl.text(tx(m.reading), { x:TX, y:4.58, w:TW, h:1.7, fontFace:BODY, fontSize:9.4, color:C.INK, valign:'top', wrap:true });
+      });
+      sl.text(T('Each governorate is shaded by its value; darker = greater need. Boundaries: DHS Spatial Data Repository.', 'تُلوَّن كل محافظة وفق قيمتها، والأغمق = الاحتياج الأكبر. الحدود: مستودع البيانات المكانية لبرنامج DHS.'),
+        { x:0.5, y:6.32, w:12.33, h:0.22, fontFace:BODY, fontSize:7.4, color:C.FAINT, valign:'middle' });
+      foot(sl, [...new Set(ms.map(m => tx(m.source)))].join(' · ') + ' · ' + DATE);
+    });
+  });
+
   // ══ FOCUS AREAS — e.g. Al Aqabah in the Jordan report (focus_areas.js): overview · sectors and priority needs ══
   (opts.focus || []).forEach(a => {
     const AN = T(a.name[0], a.name[1]), tx = v => T(v[0], v[1]);
@@ -995,6 +1087,24 @@ function buildCountryDeck(opts){
       }
       foot(sl, SRC);
     });
+    // 1b · sector by sector (country pack): how the area performs in each of the eight sectors
+    const FS = PK && PK.focusSectors && PK.focusSectors[a.key];
+    if (FS) S.push(() => {
+      const sl = newSlide(C.WHITE);
+      head(sl, EB, AN, T('sector by sector', 'قطاعاً بقطاع'));
+      const RATE = { strength:[SEV.fill[3], SEV.onFill[3], T('Strength', 'نقطة قوة')], mixed:[SEV.fill[2], SEV.onFill[2], T('Mixed', 'أداء متباين')], gap:[SEV.fill[1], SEV.onFill[1], T('Gap', 'فجوة')] };
+      const cw = (12.33 - 0.3) / 2, ch = 1.24;
+      FS.forEach(([name, rate, txt], i) => {
+        const x = 0.5 + (i % 2) * (cw + 0.3), y = 1.38 + Math.floor(i / 2) * (ch + 0.1), R0 = RATE[rate];
+        sl.shape(p.ShapeType.rect, { x, y, w:cw, h:ch, fill:{ color:C.CARD }, line:{ type:'none' } });
+        sl.shape(p.ShapeType.rect, { x, y, w:0.06, h:ch, fill:{ color:R0[0] }, line:{ type:'none' } });
+        sl.text(tx(name), { x:x + 0.22, y:y + 0.1, w:cw - 1.6, h:0.3, fontFace:HEAD, fontSize:12, bold:true, color:C.INK, valign:'middle' });
+        sl.shape(p.ShapeType.roundRect, { x:x + cw - 1.32, y:y + 0.13, w:1.15, h:0.22, rectRadius:0.06, fill:{ color:R0[0] }, line:{ type:'none' } });
+        sl.text(ar ? R0[2] : R0[2].toUpperCase(), { x:x + cw - 1.32, y:y + 0.13, w:1.15, h:0.22, fontFace:BODY, fontSize:7.2, bold:true, color:R0[1], align:'center', valign:'middle' });
+        sl.text(tx(txt), { x:x + 0.22, y:y + 0.44, w:cw - 0.4, h:ch - 0.5, fontFace:BODY, fontSize:10.2, color:C.INK, valign:'top', wrap:true });
+      });
+      foot(sl, tx(a.sources) + ' · ' + DATE);
+    });
     // 2 · key sectors and the priority needs
     S.push(() => {
       const sl = newSlide(C.WHITE);
@@ -1016,6 +1126,28 @@ function buildCountryDeck(opts){
       });
       foot(sl, SRC);
     });
+  });
+
+  // ══ RECOMMENDATIONS (country pack) — priorities, where to target, investment opportunities ══
+  if (PK && PK.recommendations) S.push(() => {
+    const sl = newSlide(C.WHITE), RC = PK.recommendations;
+    head(sl, T('Recommendations', 'التوصيات'), NAME, T('priorities, where to target and investment opportunities', 'الأولويات ومناطق الاستهداف وفرص الاستثمار'));
+    const LW = 7.85, RX = 0.5 + LW + 0.35, RW = 13.333 - RX - 0.5;
+    eyebrow(sl, T('Development priorities', 'أولويات التنمية'), 0.5, 1.38, LW, C.SKY_DK);
+    let y = 1.72;
+    RC.priorities.forEach(([h, t], i) => {
+      const txt = tx(t), th = textH(txt, LW - 0.5, 11);
+      sl.shape(p.ShapeType.ellipse, { x:0.5, y, w:0.32, h:0.32, fill:{ color:C.NAVY }, line:{ type:'none' } });
+      sl.text(String(i + 1), { x:0.5, y, w:0.32, h:0.32, fontFace:BODY, fontSize:10, bold:true, color:C.WHITE, align:'center', valign:'middle' });
+      sl.text(tx(h), { x:1.0, y:y - 0.02, w:LW - 0.5, h:0.32, fontFace:HEAD, fontSize:13.5, bold:true, color:C.INK, valign:'middle' });
+      sl.text(txt, { x:1.0, y:y + 0.34, w:LW - 0.5, h:th, fontFace:BODY, fontSize:11, color:C.INK, valign:'top', wrap:true });
+      y += 0.34 + th + 0.3;
+    });
+    const invH = RC.investment.reduce((s, t) => s + textH(tx(t), RW - 0.62, 11) + 0.08, 0) + 0.8;
+    sl.shape(p.ShapeType.rect, { x:RX, y:1.38, w:RW, h:invH, fill:{ color:C.SKY_PALE }, line:{ type:'none' } });
+    eyebrow(sl, T('Investment opportunities', 'فرص الاستثمار'), RX + 0.2, 1.5, RW - 0.4, C.SKY_DK);
+    bullets(sl, RC.investment.map(tx), RX + 0.2, 1.86, RW - 0.4, C.GOLD, 11);
+    foot(sl, tx(RC.sources) + ' · ' + DATE);
   });
 
   // ══ 11 · METHOD & SOURCES ══

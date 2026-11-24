@@ -1,9 +1,10 @@
 /* focus_areas.js — sub-national "focus areas" added to a country's report (English + Arabic).
- * A focus area is marked on the report's country map and gets its own slides (overview, sector snapshot,
- * where support is needed), placed after the sector slides. Content is researched and dated: review it when
- * the sources update. `dhs` names the area as it appears in data/subnational/{ISO3}.json, so the survey
- * figures (area vs national) come from the same data as the "where the need is" maps.
- * Every text is [English, Arabic].
+ * A focus area is marked on the report's country map and gets two slides after the sector slides:
+ *   1 · overview — area map, key facts, what the area is, and recent announcements
+ *   2 · sectors and priority needs — key sectors as bullets, then where support is needed
+ * Content is researched and dated (asOf): review it when the sources update. `dhs` names the area as it
+ * appears in data/subnational/{ISO3}.json (survey figures cited in the text come from there).
+ * Every text is [English, Arabic]; a sector or announcement is [[heading EN, AR], [text EN, AR]].
  */
 'use strict';
 const FOCUS_AREAS = {
@@ -17,55 +18,63 @@ const FOCUS_AREAS = {
     facts: [
       ['188,160', ['Population (2015 census)', 'عدد السكان (تعداد 2015)'], ['Aqaba governorate · new census due 2026', 'محافظة العقبة · تعداد جديد في 2026']],
       ['17.3%', ['Unemployment, 2024', 'معدل البطالة، 2024'], ['Lowest of the 12 governorates (national 21.4%)', 'الأدنى بين المحافظات الاثنتي عشرة (الوطني 21.4%)']],
-      [['1.0M TEU', '1.0 مليون حاوية'], ['Containers handled, 2025', 'الحاويات المناولة، 2025'], ['Aqaba ports · up 22% on 2024', 'موانئ العقبة · بزيادة 22% عن 2024']],
+      [['1.0M TEU', '1.0 مليون حاوية'], ['Containers handled, 2025', 'الحاويات المناولة، 2025'],
+       ['TEU = twenty-foot equivalent unit, the standard container size · up 22% on 2024', 'وحدة مكافئة لحاوية بطول عشرين قدماً · بزيادة 22% عن 2024']],
       ['61,000', ['Jobs in the economic zone', 'الوظائف في المنطقة الاقتصادية'], ['ASEZA, 2025 · 10,000+ private-sector jobs since 2018', 'سلطة المنطقة، 2025 · أكثر من 10,000 وظيفة في القطاع الخاص منذ 2018']],
     ],
     overview: [
-      ["Jordan's only seaport and its gateway to the Red Sea, handling most of the country's sea-borne trade and transit cargo for Iraq and, increasingly, Syria (transit containers rose 168% in 2025).",
-       'الميناء البحري الوحيد في الأردن وبوابته على البحر الأحمر، إذ يتولى معظم تجارة المملكة البحرية وبضائع الترانزيت المتجهة إلى العراق، وبصورة متزايدة إلى سوريا (ارتفعت حاويات الترانزيت بنسبة 168% في 2025).'],
-      ['Governed since 2001 as the Aqaba Special Economic Zone (ASEZ) by the Aqaba Special Economic Zone Authority, with tax and customs incentives; its priority sectors are industry, information technology and tourism.',
-       'تُدار منذ عام 2001 بوصفها منطقة العقبة الاقتصادية الخاصة تحت إشراف سلطة منطقة العقبة الاقتصادية الخاصة، مع حوافز ضريبية وجمركية؛ وقطاعاتها ذات الأولوية هي الصناعة وتقنية المعلومات والسياحة.'],
-      ['Anchor of the "Golden Triangle" of Aqaba, Petra and Wadi Rum: about 300,000 people visited Wadi Rum in 2025, and Aqaba\'s festivals and events drew more than one million visitors.',
-       'محور «المثلث الذهبي» الذي يضم العقبة والبتراء ووادي رم: زار وادي رم نحو 300,000 شخص في 2025، واستقطبت مهرجانات العقبة وفعالياتها أكثر من مليون زائر.'],
-      ['Hosts the national strategic water project: the Aqaba–Amman Water Desalination and Conveyance Project will desalinate Red Sea water at Aqaba and pump it 438 km north to Amman.',
-       'تحتضن المشروع الوطني الاستراتيجي للمياه: مشروع ناقل المياه الوطني (العقبة–عمّان) لتحلية مياه البحر الأحمر في العقبة وضخّها مسافة 438 كم شمالاً إلى عمّان.'],
+      ["Jordan's only seaport and its gateway to the Red Sea, carrying most of the country's sea trade and transit cargo for Iraq and, increasingly, Syria.",
+       'الميناء البحري الوحيد في الأردن وبوابته على البحر الأحمر، ويتولى معظم تجارة المملكة البحرية وبضائع الترانزيت المتجهة إلى العراق، وبصورة متزايدة إلى سوريا.'],
+      ['A special economic zone since 2001 (ASEZA), with tax and customs incentives; priority sectors are industry, IT and tourism, anchored by the Aqaba–Petra–Wadi Rum "Golden Triangle".',
+       'منطقة اقتصادية خاصة منذ عام 2001 تديرها سلطة منطقة العقبة الاقتصادية الخاصة، مع حوافز ضريبية وجمركية؛ وقطاعاتها ذات الأولوية الصناعة وتقنية المعلومات والسياحة، ومحورها «المثلث الذهبي» (العقبة والبتراء ووادي رم).'],
+      ["Key to solving Jordan's water scarcity: the Aqaba–Amman Water Desalination and Conveyance Project (National Water Carrier) will desalinate 300 million m³ a year at Aqaba — about 40% of the Kingdom's drinking water. Ground was broken in Aqaba on 18 November 2026; operations are due in late 2030.",
+       'ركيزة لمعالجة شحّ المياه في الأردن: سيُحلّي مشروع ناقل المياه الوطني (العقبة–عمّان) 300 مليون متر مكعب سنوياً في العقبة، أي نحو 40% من مياه الشرب في المملكة. ووُضع حجر الأساس في العقبة في 18 نوفمبر 2026، ويُتوقع بدء التشغيل في أواخر 2030.'],
+    ],
+    news: [   // 2026 announcements involving Aqaba and Jordan's partners
+      [['Jordan–EU Investment Conference, 19 Nov 2026', 'مؤتمر الاستثمار الأردني–الأوروبي، 19 نوفمبر 2026'],
+       ['The Aqaba Digital Hub joins the EBRD Blue Ribbon programme, with a €12 million EBRD loan and a €3 million EU guarantee; the EU is backing an extension of the Medusa submarine cable to Jordan, announced at the hub on 18 November.',
+        'انضمام مركز العقبة الرقمي إلى برنامج «الشريط الأزرق» التابع للبنك الأوروبي لإعادة الإعمار والتنمية، بقرض قدره 12 مليون يورو وضمان أوروبي بقيمة 3 ملايين يورو؛ ودعم أوروبي لمدّ كابل «ميدوسا» البحري إلى الأردن، أُعلن عنه في المركز في 18 نوفمبر.']],
+      [['UAE–Jordan Aqaba railway, 15 Apr 2026', 'سكة حديد العقبة بين الإمارات والأردن، 15 أبريل 2026'],
+       ['About US$2.3 billion of joint investment in a 360 km line linking Aqaba port to the phosphate and potash mines, carrying 16 million tonnes a year.',
+        'استثمار مشترك بنحو 2.3 مليار دولار في خط بطول 360 كم يربط ميناء العقبة بمناجم الفوسفات والبوتاس، بطاقة 16 مليون طن سنوياً.']],
+      [['AD Ports Group concession, 5 Feb 2026', 'امتياز مجموعة موانئ أبوظبي، 5 فبراير 2026'],
+       ['30-year concession to run the Aqaba Multipurpose Port (70/30 joint venture with the Aqaba Development Corporation, US$38 million), operating from August 2026.',
+        'امتياز لمدة 30 عاماً لتشغيل ميناء العقبة متعدد الأغراض (مشروع مشترك مع شركة تطوير العقبة بنسبة 70/30، باستثمار 38 مليون دولار)، يبدأ تشغيله في أغسطس 2026.']],
+      [['Jordan–Saudi economic zones MoU, Apr 2026', 'مذكرة تفاهم أردنية–سعودية للمناطق الاقتصادية، أبريل 2026'],
+       ["Memorandum between Jordan's Ministry of Investment and Saudi Arabia's Economic Cities and Special Zones Authority to develop economic zones; Saudi Arabia was Jordan's largest investor in 2025.",
+        'مذكرة بين وزارة الاستثمار الأردنية وهيئة المدن والمناطق الاقتصادية الخاصة السعودية لتطوير المناطق الاقتصادية؛ وكانت السعودية أكبر مستثمر في الأردن عام 2025.']],
     ],
     sectors: [
       [['Ports & logistics', 'الموانئ والخدمات اللوجستية'],
-       ['Record year in 2025: 1.0 million TEU of containers (+22%), 15.0 million tonnes of dry bulk (+4%) and 6.2 million tonnes of liquid bulk. AD Ports Group (UAE) signed a 30-year concession for the Aqaba Multipurpose Port in February 2026 — a 70/30 joint venture with the Aqaba Development Corporation, AED 141 million (US$38 million) of investment, operations from August 2026, capacity 11 million tonnes a year.',
-        'عام قياسي في 2025: مليون حاوية نمطية (بزيادة 22%)، و15.0 مليون طن من البضائع السائبة الجافة (بزيادة 4%)، و6.2 مليون طن من السوائب السائلة. ووقّعت مجموعة موانئ أبوظبي في فبراير 2026 امتيازاً لمدة 30 عاماً لتشغيل ميناء العقبة متعدد الأغراض، عبر مشروع مشترك مع شركة تطوير العقبة بنسبة 70/30 واستثمار قدره 141 مليون درهم (38 مليون دولار)، على أن يبدأ التشغيل في أغسطس 2026 بطاقة 11 مليون طن سنوياً.']],
+       ['Record 2025: 1.0 million TEU of containers (+22%), 15.0 million tonnes of dry bulk and 6.2 million tonnes of liquid bulk; new UAE-backed port and rail investment.',
+        'عام قياسي في 2025: مليون حاوية نمطية (بزيادة 22%)، و15.0 مليون طن من السوائب الجافة، و6.2 مليون طن من السوائب السائلة؛ مع استثمارات إماراتية جديدة في الميناء وسكة الحديد.']],
       [['Water', 'المياه'],
-       ['Jordan is among the most water-scarce countries in the world. The National Water Carrier will desalinate 300 million m³ a year at Aqaba — 250 million for Amman and 50 million for Aqaba — powered partly by a 281 MW solar plant. A 30-year concession was signed in January 2025 (Meridiam and SUEZ); financing approved in 2025–26 includes the Green Climate Fund, AIIB and a US grant.',
-        'الأردن من أكثر دول العالم شحّاً في المياه. وسيُحلّي ناقل المياه الوطني 300 مليون متر مكعب سنوياً في العقبة، منها 250 مليوناً لعمّان و50 مليوناً للعقبة، بالاعتماد جزئياً على محطة طاقة شمسية بقدرة 281 ميغاواط. ووُقّع امتياز لمدة 30 عاماً في يناير 2025 (ميريديام وسويز)، ويشمل التمويل المعتمد في 2025–2026 صندوق المناخ الأخضر والبنك الآسيوي للاستثمار في البنية التحتية ومنحة أمريكية.']],
+       ['Hosts the National Water Carrier: 250 million m³ a year for Amman and 50 million for Aqaba, partly solar-powered (281 MW).',
+        'تحتضن ناقل المياه الوطني: 250 مليون متر مكعب سنوياً لعمّان و50 مليوناً للعقبة، يعمل جزئياً بالطاقة الشمسية (281 ميغاواط).']],
       [['Tourism', 'السياحة'],
-       ['Red Sea coast, diving and the Wadi Rum desert make tourism a major employer, but visitor numbers are sensitive to regional conflict; ASEZA waived rent and licence fees for certified desert camps in 2024–25 and introduced new investment incentives in 2026.',
-        'يجعل ساحل البحر الأحمر والغوص وصحراء وادي رم السياحة من أكبر مصادر التشغيل، غير أن أعداد الزوار تتأثر بالنزاعات الإقليمية؛ وقد أعفت سلطة المنطقة المخيمات الصحراوية الحاصلة على الشهادة الخضراء من الإيجار ورسوم الترخيص في 2024–2025، وأطلقت حوافز استثمارية جديدة في 2026.']],
+       ['Red Sea coast, diving and Wadi Rum (about 300,000 visitors in 2025); visitor numbers are sensitive to regional conflict.',
+        'ساحل البحر الأحمر والغوص ووادي رم (نحو 300,000 زائر في 2025)؛ وتتأثر أعداد الزوار بالنزاعات الإقليمية.']],
+      [['Digital', 'الاقتصاد الرقمي'],
+       ['The Aqaba Digital Hub (data centre and connectivity) is expanding with EBRD and EU support.',
+        'يتوسع مركز العقبة الرقمي (مركز بيانات واتصال) بدعم من البنك الأوروبي لإعادة الإعمار والتنمية والاتحاد الأوروبي.']],
       [['Jobs', 'فرص العمل'],
-       ['Unemployment of 17.3% (2024) is the lowest in Jordan but still high; growth in ports, logistics and tourism needs a matching supply of skilled local workers.',
-        'تبلغ البطالة 17.3% (2024)، وهي الأدنى في الأردن لكنها لا تزال مرتفعة؛ ويتطلب نمو الموانئ والخدمات اللوجستية والسياحة توفير أيدٍ عاملة محلية ماهرة بما يكفي.']],
+       ['Unemployment of 17.3% (2024) is the lowest in Jordan but still high, and higher among women and young people.',
+        'تبلغ البطالة 17.3% (2024)، وهي الأدنى في الأردن لكنها لا تزال مرتفعة، وترتفع أكثر بين النساء والشباب.']],
     ],
     needs: [
-      ['Child immunisation: 84% of children have all basic vaccinations, against 92% nationally — the third-lowest of the 12 governorates (2023). Outreach to mobile and migrant-worker families and to remote desert communities (Wadi Rum, Al Quwayrah).',
+      ['Child immunisation: 84% of children have all basic vaccinations, against 92% nationally — the third-lowest of the 12 governorates (2023). Outreach to mobile and migrant-worker families and remote desert communities (Wadi Rum, Al Quwayrah).',
        'تحصين الأطفال: 84% من الأطفال تلقّوا جميع اللقاحات الأساسية مقابل 92% على المستوى الوطني، وهي ثالث أدنى نسبة بين المحافظات الاثنتي عشرة (2023). ويُوصى بالوصول إلى الأسر المتنقلة وأسر العمال الوافدين والمجتمعات الصحراوية النائية (وادي رم والقويرة).'],
-      ['Skills for the special economic zone: technical and vocational training linked to employers in ports, logistics, tourism and IT, with places reserved for young people and women.',
-       'المهارات لخدمة المنطقة الاقتصادية الخاصة: تدريب تقني ومهني مرتبط بأصحاب العمل في الموانئ والخدمات اللوجستية والسياحة وتقنية المعلومات، مع تخصيص مقاعد للشباب والنساء.'],
-      ['Coast and water: protect the Gulf of Aqaba\'s coral reefs and marine environment as desalination and port capacity expand, and make sure Aqaba\'s own supply benefits from the National Water Carrier.',
+      ['Skills for the new investment: technical and vocational training linked to employers in ports, rail, logistics, tourism and digital services, with places reserved for young people and women.',
+       'المهارات لخدمة الاستثمارات الجديدة: تدريب تقني ومهني مرتبط بأصحاب العمل في الموانئ وسكك الحديد والخدمات اللوجستية والسياحة والخدمات الرقمية، مع تخصيص مقاعد للشباب والنساء.'],
+      ["Coast and water: protect the Gulf of Aqaba's coral reefs and marine environment as desalination and port capacity expand, and ensure Aqaba's own supply benefits from the National Water Carrier.",
        'الساحل والمياه: حماية الشعاب المرجانية والبيئة البحرية في خليج العقبة مع توسع طاقة التحلية والموانئ، وضمان استفادة العقبة نفسها من ناقل المياه الوطني.'],
       ['Tourism livelihoods: small-business finance and diversification for tour operators, desert camps and guides, so incomes withstand regional shocks.',
        'سبل العيش السياحية: تمويل المشروعات الصغيرة وتنويع الأنشطة لمنظمي الرحلات والمخيمات الصحراوية والأدلّاء، لتصمد الدخول أمام الصدمات الإقليمية.'],
     ],
-    invest: [
-      ['Ports and logistics: build on AD Ports Group\'s concession with logistics parks, Ro-Ro and cold-chain facilities for transit trade to Iraq and Syria.',
-       'الموانئ والخدمات اللوجستية: البناء على امتياز مجموعة موانئ أبوظبي عبر مجمّعات لوجستية ومرافق للدحرجة وسلاسل التبريد لخدمة تجارة الترانزيت إلى العراق وسوريا.'],
-      ['Water and energy: co-investment alongside the National Water Carrier — solar generation, water storage and distribution in Aqaba.',
-       'المياه والطاقة: الاستثمار المشترك إلى جانب ناقل المياه الوطني في توليد الطاقة الشمسية وتخزين المياه وتوزيعها في العقبة.'],
-      ['Tourism: coastal hospitality and eco-tourism in Wadi Rum, with local-employment commitments.',
-       'السياحة: الضيافة الساحلية والسياحة البيئية في وادي رم، مع التزامات بتشغيل أبناء المنطقة.'],
-    ],
-    verdict: ['Al Aqabah is one of Jordan\'s better-performing governorates — the lowest unemployment and near-universal water and literacy — so support should target the specific gaps below rather than broad-based need.',
-              'تُعد العقبة من أفضل المحافظات أداءً في الأردن، إذ تسجّل أدنى معدل للبطالة وتغطية شبه شاملة لمياه الشرب ومعرفة القراءة والكتابة؛ لذا ينبغي أن يستهدف الدعم الفجوات المحددة أدناه لا الاحتياجات العامة.'],
-    sources: ['Jordan DoS · ASEZA · Jordan Shipping Association · APM Terminals · AD Ports Group · GCF · AIIB · DHS 2023 · Petra',
-              'الإحصاءات العامة · سلطة العقبة الاقتصادية · جمعية ملاحة الأردن · إيه بي إم تيرمينالز · موانئ أبوظبي · صندوق المناخ الأخضر · البنك الآسيوي · المسح الصحي 2023 · بترا'],
+    verdict: ["Al Aqabah is one of Jordan's better-performing governorates and a national growth hub — support should target the specific gaps below rather than broad-based need.",
+              'تُعد العقبة من أفضل المحافظات أداءً في الأردن ومحركاً وطنياً للنمو؛ لذا ينبغي أن يستهدف الدعم الفجوات المحددة أدناه لا الاحتياجات العامة.'],
+    sources: ['Jordan DoS · ASEZA · Jordan Shipping Association · AD Ports Group · EU/EBRD · Petra · DHS 2023',
+              'الإحصاءات العامة · سلطة العقبة الاقتصادية · جمعية ملاحة الأردن · موانئ أبوظبي · الاتحاد الأوروبي · بترا · المسح الصحي 2023'],
   }],
 };
 if (typeof window !== 'undefined') window.FOCUS_AREAS = FOCUS_AREAS;

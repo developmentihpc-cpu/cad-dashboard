@@ -442,7 +442,7 @@ function buildCountryDeck(opts){
              'خطوط ائتمان وضمانات جزئية عبر البنوك المحلية لفتح الإقراض أمام المنشآت الصغيرة والمتوسطة.'],
             [() => off('BX.KLT.DINV.WD.GD.ZS', 2) || off('LP.LPI.OVRL.XQ', 2), 'Co-invest with private developers in special economic zones, industrial parks and logistics hubs.',
              'الاستثمار المشترك مع المطورين من القطاع الخاص في المناطق الاقتصادية الخاصة والمجمعات الصناعية والمراكز اللوجستية.'] ] },
-    { key:'trade', en:'Trade', ar:'التجارة', short:['Trade','التجارة'], overview:true,   // a sector overview: shown, but not rated
+    { key:'trade', en:'Trade', ar:'التجارة', short:['Trade','التجارة'], noPriority:true,   // rated, but never one of the executive summary's priority sectors
       stats:['TBI','NE.EXP.GNFS.ZS','BN.CAB.XOKA.GD.ZS','TM.TAX.MRCH.WM.AR.ZS','TX.VAL.MANF.ZS.UN'], bars:['BN.CAB.XOKA.GD.ZS','TM.TAX.MRCH.WM.AR.ZS'],
       acts:[ ['TM.TAX.MRCH.WM.AR.ZS',1,'Support tariff reform and regional trade agreements that open neighbouring markets.','دعم إصلاح التعريفات واتفاقيات التجارة الإقليمية التي تفتح أسواق الجوار.'],
              [() => tbiHigh('services'),0,'Open up services trade: ease foreign-ownership limits and licensing rules in professional, financial, telecom and construction services, to attract investors in logistics and digital services.','فتح تجارة الخدمات: تخفيف قيود الملكية الأجنبية وشروط الترخيص في الخدمات المهنية والمالية والاتصالات والإنشاءات، لجذب المستثمرين في الخدمات اللوجستية والرقمية.'],
@@ -463,7 +463,7 @@ function buildCountryDeck(opts){
     if (own) { s.bars = s.bars.filter(id => own.includes(id) || !s.stats.includes(id)); s.stats = own; }
     s.ids = [...new Set(s.stats.concat(s.bars))];
     // spending (% of GDP) is an input, not an outcome: on its own it can make a sector Moderate at most
-    const lv = s.overview ? [] : s.ids.map(id => { const l = lvl(id); return l != null && INPUTS.has(id) ? Math.max(l, 2) : l; }).filter(x => x != null);
+    const lv = s.ids.map(id => { const l = lvl(id); return l != null && INPUTS.has(id) ? Math.max(l, 2) : l; }).filter(x => x != null);
     s.level = lv.length ? Math.min(...lv) : null;
     s.nSevere = lv.filter(x => x <= 1).length;
     s.ranked = s.ids.filter(id => lvl(id) != null).sort((a, b) => lvl(a) - lvl(b));   // worst first
@@ -683,7 +683,7 @@ function buildCountryDeck(opts){
     head(sl, T('Executive summary', 'الملخص التنفيذي'), NAME, T('priority sectors and their most urgent gaps', 'القطاعات ذات الأولوية وأكثر فجواتها إلحاحاً'));
     const n = null;   // the need index is not shown in reports (dashboard only)
     const tierTxt = n ? (n.rank <= n.of / 3 ? T('in the highest-need third', 'ضمن الثلث الأعلى احتياجاً') : n.rank <= 2 * n.of / 3 ? T('in the middle third', 'ضمن الثلث الأوسط') : T('in the lowest-need third', 'ضمن الثلث الأدنى احتياجاً')) : '';
-    const rated = SECTORS.filter(s => s.level != null);
+    const rated = SECTORS.filter(s => s.level != null && !s.noPriority);
     const priorities = rated.filter(s => s.level <= 1).sort((a, b) => a.level - b.level || b.nSevere - a.nSevere);
     const overall = [
       n ? T(`${NAME} scores ${Math.round(n.score)}/100 on the need index* — ranking ${n.rank} of ${n.of} tracked countries, ${tierTxt}.`,
@@ -800,7 +800,7 @@ function buildCountryDeck(opts){
     const ms = pg.maps.map(k => PK.built[k]).filter(m => m && m.mapData); if (!ms.length) return;
     S.push(() => {
       const sl = newSlide(C.WHITE);
-      head(sl, T('Where the need is', 'أين تتركز الاحتياجات'), tx(pg.title), tx(pg.statement));
+      head(sl, T('Sector assessment', 'تقييم القطاع'), tx(pg.title), tx(pg.statement));
       ms.forEach((m, j) => atlasMap(sl, m, 0.5 + j * 6.33));
       // a one-map page: what the map means, on the right
       if (ms.length === 1 && pg.points) {
@@ -898,7 +898,7 @@ function buildCountryDeck(opts){
       const bad = v => e.worse === 'high' ? v : -v;                       // larger = greater need
       const ranked = e.regions.filter(r => r.v != null).sort((a, b) => bad(b.v) - bad(a.v));
       const worst = ranked[0], best = ranked[ranked.length - 1];
-      head(sl, T('Where the need is', 'أين تتركز الاحتياجات'), s.name, T(`${e.en.toLowerCase()} is worst in ${worst.name}`, `${e.ar}: الأسوأ في ${worst.name}`));
+      head(sl, T('Sector assessment', 'تقييم القطاع'), s.name, T(`${e.en.toLowerCase()} is worst in ${worst.name}`, `${e.ar}: الأسوأ في ${worst.name}`));
       // map — rendered at the slot's exact aspect ratio
       const M = DK.MAP_SLOTS.sub, mx = 0.5, my = 1.68;
       mapTitle(sl, T(e.en.charAt(0).toUpperCase() + e.en.slice(1) + ' by area', e.ar + ' حسب المنطقة'), svy, mx, M.w);
@@ -956,7 +956,7 @@ function buildCountryDeck(opts){
   // ══ 4–10 · SECTOR SLIDES (incl. governance & stability) ══
   SECTORS.forEach(s => { S.push(() => {
     const sl = newSlide(C.WHITE);
-    const st = s.overview ? T('sector overview', 'نظرة عامة على القطاع') : s.level == null ? T('not enough current data to rate this sector', 'لا تتوفر بيانات حديثة كافية لتصنيف هذا القطاع')
+    const st = s.level == null ? T('not enough current data to rate this sector', 'لا تتوفر بيانات حديثة كافية لتصنيف هذا القطاع')
       : s.level === 0 ? T('severe gaps against benchmarks', 'فجوات حرجة مقارنةً بالمعايير')
       : s.level === 1 ? T('high concern on key indicators', 'قلق مرتفع في مؤشرات رئيسية')
       : s.level === 2 ? T('progress made, still short of benchmarks', 'تقدّم ملحوظ دون بلوغ المعايير')

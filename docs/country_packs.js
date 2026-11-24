@@ -15,10 +15,10 @@ const COUNTRY_PACKS = {
       tagline: ['a large host country, now seeing returns to Syria', 'بلد مضيف كبير يشهد الآن عودة اللاجئين إلى سوريا'],
       map: 'refugees',
       facts: [
-        ['341,598', ['Registered refugees and asylum-seekers', 'اللاجئون وطالبو اللجوء المسجلون'], ['UNHCR, 31 Oct 2026 · 93% Syrian; also Iraqi 11,982, Yemeni 5,980, Sudanese 4,155', 'المفوضية، 31 أكتوبر 2026 · 93% سوريون؛ وعراقيون 11,982 ويمنيون 5,980 وسودانيون 4,155']],
+        ['341,598', ['Refugees and asylum-seekers registered with UNHCR', 'اللاجئون وطالبو اللجوء المسجلون لدى المفوضية'], ['31 Oct 2026 · 93% Syrian, plus Iraqi, Yemeni and Sudanese · excludes Palestine refugees', '31 أكتوبر 2026 · 93% سوريون، إضافة إلى عراقيين ويمنيين وسودانيين · لا يشمل لاجئي فلسطين']],
         ['318,813', ['Registered Syrian refugees', 'اللاجئون السوريون المسجلون'], ['Down from 611,473 in Dec 2024 · 23% in camps', 'انخفاضاً من 611,473 في ديسمبر 2024 · 23% في المخيمات']],
         [['~220,000', '~220,000'], ['Syrians returned since Dec 2024', 'السوريون العائدون منذ ديسمبر 2024'], ['UNHCR, to late Aug 2026', 'المفوضية، حتى أواخر أغسطس 2026']],
-        [['2.4 million', '2.4 مليون'], ['Registered Palestine refugees', 'لاجئو فلسطين المسجلون'], ['UNRWA · most hold Jordanian citizenship', 'الأونروا · يحمل معظمهم الجنسية الأردنية']],
+        [['2.4 million', '2.4 مليون'], ['Palestine refugees registered with UNRWA', 'لاجئو فلسطين المسجلون لدى الأونروا'], ['A separate group: displaced in 1948 and 1967, and their descendants · most are Jordanian citizens', 'فئة منفصلة: هُجّروا في 1948 و1967 وذريتهم · ومعظمهم مواطنون أردنيون']],
         ['28%', ["UNHCR's 2026 appeal funded", 'نسبة تمويل نداء المفوضية لعام 2026'], ['US$280 million required · mid-2026', '280 مليون دولار مطلوبة · منتصف 2026']],
       ],
       points: [

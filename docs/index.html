@@ -9,17 +9,17 @@
 <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
 <link  href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
-<script src="i18n_ar.js?v=20261124w"></script>
-<script src="sub_ar.js?v=20261124w"></script>
-<script src="focus_areas.js?v=20261124w"></script>
-<script src="country_packs.js?v=20261124w"></script>
-<script src="severity.js?v=20261124w"></script>
-<script src="ind_defs.js?v=20261124w"></script>
-<script src="deck_kit.js?v=20261124w"></script>
-<script src="hs_labels.js?v=20261124w"></script>
-<script src="country_deck.js?v=20261124w"></script>
-<script src="pdf_deck.js?v=20261124w"></script>
-<script src="region_deck.js?v=20261124w"></script>
+<script src="i18n_ar.js?v=20261124x"></script>
+<script src="sub_ar.js?v=20261124x"></script>
+<script src="focus_areas.js?v=20261124x"></script>
+<script src="country_packs.js?v=20261124x"></script>
+<script src="severity.js?v=20261124x"></script>
+<script src="ind_defs.js?v=20261124x"></script>
+<script src="deck_kit.js?v=20261124x"></script>
+<script src="hs_labels.js?v=20261124x"></script>
+<script src="country_deck.js?v=20261124x"></script>
+<script src="pdf_deck.js?v=20261124x"></script>
+<script src="region_deck.js?v=20261124x"></script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -1873,7 +1873,7 @@ body {
 <body>
 
 <header class="app-header">
-  <img src="logo.png?v=20261124w" alt="UAE Presidential Court · International Humanitarian and Philanthropic Council" style="height:52px;width:auto;display:block">
+  <img src="logo.png?v=20261124x" alt="UAE Presidential Court · International Humanitarian and Philanthropic Council" style="height:52px;width:auto;display:block">
   <div class="app-header-title" data-ar="لوحة احتياجات الدول">Country Needs Dashboard</div>
   <div class="hdr-search" role="search">
     <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
@@ -3303,7 +3303,7 @@ function repImgRatio(src) {
 }
 let REP_LOGO = null;
 async function repLogo() {
-  if (!REP_LOGO) REP_LOGO = repFetchDataUrl('logo.png?v=20261124w', 4000)
+  if (!REP_LOGO) REP_LOGO = repFetchDataUrl('logo.png?v=20261124x', 4000)
     .then(data => data.replace(/^data:[^;,]*/, 'data:image/png'))   // always embedded as PNG
     .then(async data => ({ data, ratio: await repImgRatio(data) })).catch(() => null);
   return REP_LOGO;

@@ -9,15 +9,15 @@
 <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
 <link  href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
-<script src="i18n_ar.js?v=20261022c"></script>
-<script src="sub_ar.js?v=20261022c"></script>
-<script src="severity.js?v=20261022c"></script>
-<script src="ind_defs.js?v=20261022c"></script>
-<script src="deck_kit.js?v=20261022c"></script>
-<script src="hs_labels.js?v=20261022c"></script>
-<script src="country_deck.js?v=20261022c"></script>
-<script src="pdf_deck.js?v=20261022c"></script>
-<script src="region_deck.js?v=20261022c"></script>
+<script src="i18n_ar.js?v=20261124a"></script>
+<script src="sub_ar.js?v=20261124a"></script>
+<script src="severity.js?v=20261124a"></script>
+<script src="ind_defs.js?v=20261124a"></script>
+<script src="deck_kit.js?v=20261124a"></script>
+<script src="hs_labels.js?v=20261124a"></script>
+<script src="country_deck.js?v=20261124a"></script>
+<script src="pdf_deck.js?v=20261124a"></script>
+<script src="region_deck.js?v=20261124a"></script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -1869,7 +1869,7 @@ body {
 <body>
 
 <header class="app-header">
-  <img src="logo.png?v=20261022c" alt="UAE Presidential Court · International Humanitarian and Philanthropic Council" style="height:52px;width:auto;display:block">
+  <img src="logo.png?v=20261124a" alt="UAE Presidential Court · International Humanitarian and Philanthropic Council" style="height:52px;width:auto;display:block">
   <div class="app-header-title" data-ar="لوحة احتياجات الدول">Country Needs Dashboard</div>
   <div class="hdr-search" role="search">
     <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
@@ -3282,7 +3282,7 @@ function repImgRatio(src) {
 }
 let REP_LOGO = null;
 async function repLogo() {
-  if (!REP_LOGO) REP_LOGO = repFetchDataUrl('logo.png?v=20261022c', 4000)
+  if (!REP_LOGO) REP_LOGO = repFetchDataUrl('logo.png?v=20261124a', 4000)
     .then(data => data.replace(/^data:[^;,]*/, 'data:image/png'))   // always embedded as PNG
     .then(async data => ({ data, ratio: await repImgRatio(data) })).catch(() => null);
   return REP_LOGO;
@@ -3739,7 +3739,8 @@ async function repRunRegion(region) {
     const flags = await Promise.all(members.map(repFlag));
     const flagRatios = await Promise.all(flags.map(repImgRatio));
     const logo = await repLogo();
-    const fill = {}; members.forEach(c => { fill[c] = NEED_SHADES[needTier(c)]; });
+    const INC_SHADES = { LIC:'0A6FD1', LMIC:'2EA0F2', UMIC:'9ED6FA' };   // the regional map shows income groups (reports carry no need index)
+    const fill = {}; members.forEach(c => { fill[c] = '#' + (INC_SHADES[COUNTRY_INCOME[c]] || 'C3CDD6'); });
     const mapData = await repMapImage({ focus: members, fill, labels: true, slot: DK.MAP_SLOTS.region });
     const countries = members.map((c, i) => ({
       name: c, iso2: COUNTRY_ISO2[c] || '', income: COUNTRY_INCOME[c] || '', flagData: flags[i], flagRatio: flagRatios[i],
@@ -3752,7 +3753,7 @@ async function repRunRegion(region) {
       : tr('Figures come from the dashboard’s World Bank snapshot' + (repSnapshotStr() ? ' of ' + repSnapshotStr() : '') + ' (the live API could not be reached).',
            'الأرقام مأخوذة من النسخة المحفوظة من بيانات البنك الدولي' + (repSnapshotStr() ? ' بتاريخ ' + repSnapshotStr() : '') + ' (تعذّر الوصول إلى البيانات المباشرة).');
     const blob = await window.buildRegionDeck({ region, countries, dateStr: repDateStr(), dataNote, PptxGenJS: repDeckCtor(fmt), output: 'blob', lang, mapData, logo,
-      needShades: { hi: NEED_SHADES.hi.slice(1), mid: NEED_SHADES.mid.slice(1), lo: NEED_SHADES.lo.slice(1), none: NEED_SHADES.none.slice(1) } });
+      incomeShades: INC_SHADES });
     const fileName = repFileSafe(region) + '_Regional_Assessment' + repLangSuffix() + '_' + repStamp() + repExt(fmt);
     const saved = await repSave({ id: repId(), kind: 'region', title: region + ' — Regional Assessment', region, countries: members,
       createdAt: new Date().toISOString(), fileName, size: blob.size, data: live.live ? 'live' : 'snapshot', blob, lang, fmt });

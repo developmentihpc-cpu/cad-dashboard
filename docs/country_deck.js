@@ -555,7 +555,21 @@ function buildCountryDeck(opts){
       sl.shape(p.ShapeType.rect, { x:f.x - 0.04, y:f.y - 0.04, w:f.w + 0.08, h:f.h + 0.08, fill:{ color:C.WHITE }, line:{ color:C.LINE, width:0.5 } });
       sl.image({ data:opts.flagData, x:f.x, y:f.y, w:f.w, h:f.h }); }
     sl.text(T('National borders: Natural Earth', 'الحدود الوطنية: ناتشورال إيرث'), { x:mx, y:my + M.h + 0.03, w:M.w, h:0.22, fontFace:BODY, fontSize:7.4, color:C.FAINT, valign:'middle' });
-    if (opts.need) needNote(sl, mx, my + M.h + 0.27, M.w);
+    // reference for the political-situation scores (right column), under the map where there is room
+    // only the indicators shown on this slide are defined
+    const WGI_DEF = [
+      ['GOV_WGI_PV.SC', 'Political stability: likelihood of political instability or politically motivated violence.', 'الاستقرار السياسي: احتمال عدم الاستقرار السياسي أو العنف ذي الدوافع السياسية.'],
+      ['GOV_WGI_VA.SC', 'Voice & accountability: freedom to choose the government, and freedom of expression, association and the media.', 'المشاركة والمساءلة: حرية اختيار الحكومة وحرية التعبير وتكوين الجمعيات والإعلام.'],
+      ['GOV_WGI_GE.SC', 'Government effectiveness: quality of public services, the civil service and policy implementation.', 'فعالية الحكومة: جودة الخدمات العامة والجهاز الحكومي وتنفيذ السياسات.'],
+      ['GOV_WGI_RL.SC', 'Rule of law: confidence in contract enforcement, property rights, the police and the courts.', 'سيادة القانون: الثقة في إنفاذ العقود وحقوق الملكية والشرطة والمحاكم.'],
+      ['GOV_WGI_CC.SC', 'Control of corruption: extent to which public power is used for private gain.', 'مكافحة الفساد: مدى استغلال السلطة العامة لتحقيق مكاسب خاصة.'],
+    ].filter(([id]) => R(id));
+    const wgiYear = WGI_DEF.length ? R(WGI_DEF[0][0]).y : '';
+    if (WGI_DEF.length) sl.text(
+      T(`* Political situation: World Bank, Worldwide Governance Indicators${wgiYear ? ' (' + wgiYear + ')' : ''} — scores from 0 to 100 (higher is better), compiled from surveys of households, firms and experts. `,
+        `* الوضع السياسي: مؤشرات الحوكمة العالمية، البنك الدولي${wgiYear ? ' (' + wgiYear + ')' : ''} — درجات من 0 إلى 100 (الأعلى أفضل)، مستمدة من مسوح الأسر والشركات وآراء الخبراء. `) +
+      WGI_DEF.map(([, en, a]) => T(en, a)).join(' '),
+      { x:mx, y:my + M.h + 0.26, w:M.w, h:0.78, fontFace:BODY, fontSize:6.8, color:C.MUTE, valign:'top', wrap:true });
     // right column
     const RX = 6.85, RW = 13.333 - RX - 0.5, pol = opts.politics;
     const info = ar && typeof AR_INFO !== 'undefined' && AR_INFO[country] ? { capital:AR_INFO[country][0] } : (opts.info || {});
@@ -596,7 +610,7 @@ function buildCountryDeck(opts){
       .filter(([id]) => R(id));
     const py = 3.64, ph = 1.68;
     sl.shape(p.ShapeType.rect, { x:RX, y:py, w:RW, h:ph, fill:{ color:C.SKY_PALE }, line:{ type:'none' } });
-    sl.text(T('POLITICAL SITUATION', 'الوضع السياسي'), { x:RX + 0.18, y:py + 0.08, w:RW * 0.5, h:0.22, fontFace:BODY, fontSize:8, bold:true, color:C.GOLD, charSpacing:1.4 });
+    sl.text(T('POLITICAL SITUATION', 'الوضع السياسي') + (WGI_DEF.length ? '*' : ''), { x:RX + 0.18, y:py + 0.08, w:RW * 0.5, h:0.22, fontFace:BODY, fontSize:8, bold:true, color:C.GOLD, charSpacing:1.4 });
     sl.text(T('governance scores, 0–100 (higher is better)', 'مؤشرات الحوكمة، 0–100 (الأعلى أفضل)'), { x:RX + RW * 0.45, y:py + 0.08, w:RW * 0.55 - 0.18, h:0.22, fontFace:BODY, fontSize:7.4, color:C.MUTE, align:'right' });
     const rowH = W5.length ? Math.min(0.24, 1.1 / W5.length) : 0.22;
     W5.forEach(([id, en, a], i) => {
@@ -619,20 +633,13 @@ function buildCountryDeck(opts){
       sl.text([{ text:DK.sevLabelOf(L, ar), options:{ bold:true, color:C.INK } }, { text:'  ' + b, options:{ color:C.MUTE } }],
         { x:kx + 0.18, y:ky, w:kw - 0.2, h:0.24, fontFace:BODY, fontSize:6.8, valign:'middle' });
     });
-    // need index + status by sector
-    const by = 5.36, bh = 1.62;
-    sl.shape(p.ShapeType.rect, { x:RX, y:by, w:1.6, h:bh, fill:{ color:C.GOLD_PALE }, line:{ type:'none' } });
-    sl.text(T('NEED INDEX' + (opts.need ? '*' : ''), 'مؤشر الاحتياج' + (opts.need ? '*' : '')), { x:RX + 0.14, y:by + 0.12, w:1.4, h:0.22, fontFace:BODY, fontSize:7.8, bold:true, color:C.GOLD, charSpacing:1.4 });
-    if (opts.need) {
-      sl.text(String(Math.round(opts.need.score)), { x:RX + 0.14, y:by + 0.38, w:1.4, h:0.62, fontFace:HEAD, fontSize:32, bold:true, color:C.INK, valign:'middle' });
-      sl.text(T('of 100 · Rank* ' + opts.need.rank + '/' + opts.need.of, 'من 100 · الترتيب* ' + opts.need.rank + ' من ' + opts.need.of), { x:RX + 0.14, y:by + 1.06, w:1.4, h:0.4, fontFace:BODY, fontSize:8, color:C.MUTE, valign:'top' });
-    } else sl.text(T('Not ranked', 'غير مصنّفة'), { x:RX + 0.14, y:by + 0.5, w:1.4, h:0.4, fontFace:BODY, fontSize:10, color:C.MUTE });
-    const sx = RX + 1.78, sw = RW - 1.78, shown = SECTORS.filter(s => s.level != null);
-    sl.text(T('STATUS BY SECTOR', 'الوضع القطاعي'), { x:sx, y:by - 0.02, w:sw, h:0.2, fontFace:BODY, fontSize:7.8, bold:true, color:C.GOLD, charSpacing:1.4 });
+    // status by sector — full width, two columns of up to four sectors
+    const by = 5.4, shown = SECTORS.filter(s => s.level != null), colW = (RW - 0.3) / 2;
+    sl.text(T('STATUS BY SECTOR', 'الوضع القطاعي'), { x:RX, y:by, w:RW, h:0.2, fontFace:BODY, fontSize:7.8, bold:true, color:C.GOLD, charSpacing:1.4 });
     shown.forEach((s, i) => {
-      const yy = by + 0.21 + i * Math.min(0.205, 1.42 / Math.max(1, shown.length));   // up to eight sectors fit
-      sl.text(T(s.short[0], s.short[1]), { x:sx, y:yy, w:sw - 1.3, h:0.19, fontFace:BODY, fontSize:8.2, color:C.INK, valign:'middle' });
-      badge(sl, s.level, sx + sw - 1.2, yy + 0.015, 1.2, 0.15);
+      const cx = RX + (i % 2) * (colW + 0.3), yy = by + 0.3 + Math.floor(i / 2) * 0.34;
+      sl.text(T(s.short[0], s.short[1]), { x:cx, y:yy, w:colW - 1.3, h:0.24, fontFace:BODY, fontSize:8.6, color:C.INK, valign:'middle' });
+      badge(sl, s.level, cx + colW - 1.2, yy + 0.04, 1.2, 0.16);
     });
     foot(sl, T('World Bank Open Data & WGI · Wikidata (leaders) · Natural Earth (borders) · ', 'بيانات البنك الدولي ومؤشرات الحوكمة · ويكي بيانات (القادة) · ناتشورال إيرث (الحدود) · ') + DATE);
   });
@@ -641,7 +648,7 @@ function buildCountryDeck(opts){
   S.push(() => {
     const sl = newSlide(C.WHITE);
     head(sl, T('Executive summary', 'الملخص التنفيذي'), NAME, T('priority sectors and their most urgent gaps', 'القطاعات ذات الأولوية وأكثر فجواتها إلحاحاً'));
-    const n = opts.need;
+    const n = null;   // the need index is not shown in reports (dashboard only)
     const tierTxt = n ? (n.rank <= n.of / 3 ? T('in the highest-need third', 'ضمن الثلث الأعلى احتياجاً') : n.rank <= 2 * n.of / 3 ? T('in the middle third', 'ضمن الثلث الأوسط') : T('in the lowest-need third', 'ضمن الثلث الأدنى احتياجاً')) : '';
     const rated = SECTORS.filter(s => s.level != null);
     const priorities = rated.filter(s => s.level <= 1).sort((a, b) => a.level - b.level || b.nSevere - a.nSevere);
@@ -701,7 +708,7 @@ function buildCountryDeck(opts){
       }
     });
     if (n) needNote(sl, 0.5, 6.64, 7.6);   // narrower, so the colour key fits at the bottom right
-    foot(sl, T('Need index and SDG/WHO benchmarks · World Bank Open Data · ', 'مؤشر الاحتياج ومعايير أهداف التنمية المستدامة · بيانات البنك الدولي · ') + DATE);
+    foot(sl, T('SDG/WHO benchmarks · World Bank Open Data · ', 'معايير أهداف التنمية المستدامة · بيانات البنك الدولي · ') + DATE);
   });
 
   // ══ "Where the need is" — sub-national map after a sector slide. Only when an official DHS survey measured the
@@ -956,8 +963,8 @@ function buildCountryDeck(opts){
         'يُصنَّف كل مؤشر (حرج · مقلق · متوسط · على المسار الصحيح) وفق مرجعيات أهداف التنمية المستدامة ومنظمة الصحة العالمية واليونسكو وصندوق النقد — وهو المقياس نفسه المستخدم في اللوحة. ويأخذ القطاع تصنيف أضعف مؤشراته الحديثة.')],
       [T('Data quality rules', 'قواعد جودة البيانات'), T(`Only figures from the last ${DK.STALE_YEARS} years are shown, rated or used in the narrative. Indicators with no recent figure, or an implausible one (e.g. 0% spending), are left off the slides and named in a "Limited data" note; nothing is estimated.`,
         `لا تُعرض ولا تُصنَّف ولا تُستخدم في السرد إلا الأرقام الصادرة خلال آخر ${DK.STALE_YEARS} سنوات. وتُستبعد المؤشرات التي لا رقم حديثاً لها أو التي رقمها غير معقول (مثل إنفاق 0%) من الشرائح وتُذكر في ملاحظة «بيانات محدودة»؛ ولا يُقدَّر أي رقم.`)],
-      [T('Need index', 'مؤشر الاحتياج'), T('A 0–100 score (higher = greater need). Combines under-5 and maternal mortality, undernourishment and lack of basic water, sanitation and electricity, each scaled across all tracked countries (0–100).',
-        'درجة من 0 إلى 100 (الأعلى = احتياج أكبر). تجمع بين وفيات الأطفال دون الخامسة ووفيات الأمهات ونقص التغذية ونقص مياه الشرب الأساسية والصرف الصحي والكهرباء، مع قياس كل منها عبر جميع الدول المتابَعة (0–100).')],
+      [T('Political situation', 'الوضع السياسي'), T('World Bank Worldwide Governance Indicators: political stability, voice and accountability, government effectiveness, rule of law and control of corruption, each scored 0–100 (higher is better) from surveys of households, firms and experts. Rated Severe below 25, High concern 25–40, Moderate 40–60 and On track 60 and above.',
+        'مؤشرات الحوكمة العالمية للبنك الدولي: الاستقرار السياسي، والمشاركة والمساءلة، وفعالية الحكومة، وسيادة القانون، ومكافحة الفساد، ولكلٍّ منها درجة من 0 إلى 100 (الأعلى أفضل) مستمدة من مسوح الأسر والشركات وآراء الخبراء. وتُصنَّف حرجة دون 25، ومقلقة بين 25 و40، ومتوسطة بين 40 و60، وعلى المسار الصحيح من 60 فأكثر.')],
       [T('Sources', 'المصادر'), [T('World Bank Open Data', 'بيانات البنك الدولي المفتوحة'), T('World Bank Worldwide Governance Indicators', 'مؤشرات الحوكمة العالمية'), 'IMF', 'WHO', 'UN IGME (UNICEF/WHO)', 'UNESCO UIS', 'FAO', 'WHO/UNICEF JMP', 'IEA', T('ILO and ILOSTAT labour force surveys (jobs by business size)', 'منظمة العمل الدولية ومسوح القوى العاملة (الوظائف حسب حجم المنشأة)'),
         T('World Bank Global Findex, Enterprise Surveys and Logistics Performance Index', 'مؤشر الشمول المالي ومسوح المؤسسات ومؤشر الأداء اللوجستي للبنك الدولي'),
         T('UN Comtrade (products and trading partners)', 'قاعدة بيانات الأمم المتحدة لإحصاءات التجارة (المنتجات والشركاء التجاريون)'), T('Ember via Our World in Data (electricity by source)', 'مركز إمبر للطاقة عبر منصة «عالمنا في البيانات» (الكهرباء حسب المصدر)'),

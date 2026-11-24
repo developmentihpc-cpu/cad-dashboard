@@ -768,6 +768,91 @@ function buildCountryDeck(opts){
       sl.text(tx(s), { x:fx + 0.14, y:y + 0.85, w:cw - 0.28, h:h - 0.9, fontFace:BODY, fontSize:6.8, color:C.MUTE, valign:'top', wrap:true });
     });
   };
+  // ══ GOVERNORATE ATLAS (country pack) — map pages, each map with legend, the areas of greatest need and a reading.
+  //    A page with `after: sectorKey` follows that sector's slide; the others come after the sector slides.
+  const atlasMap = (sl, m, PX) => {
+    const M = DK.MAP_SLOTS.atlas, TX = PX + M.w + 0.18, TW = 6.0 - M.w - 0.18;
+    const fv = v => v == null ? '—' : m.unit === 'count' ? Math.round(v).toLocaleString('en-US') : F.pct({ v }, 1);
+    const lg = v => m.unit === 'count' ? Number(Number(v).toPrecision(v >= 1000 ? 2 : 1)).toLocaleString('en-US') : fv(v).replace(/\.0(%?)$/, '$1');   // legend: rounded
+    sl.text(tx(m.name), { x:PX, y:1.32, w:6.0, h:0.28, fontFace:HEAD, fontSize:12, bold:true, color:C.INK, valign:'middle', fit:'shrink' });
+    sl.text(tx(m.source), { x:PX, y:1.6, w:6.0, h:0.2, fontFace:BODY, fontSize:7.4, color:C.MUTE, valign:'middle' });
+    sl.image({ data:m.mapData, x:PX, y:1.88, w:M.w, h:M.h });
+    // legend (darker = greater need)
+    eyebrow(sl, T('Legend', 'دليل الألوان'), TX, 1.88, TW, C.SKY_DK);
+    const lgOrder = m.worse === 'high' ? [4, 3, 2, 1, 0] : [0, 1, 2, 3, 4];
+    lgOrder.forEach((b, i) => {
+      const col = m.cols[b], ly = 2.14 + i * 0.2;
+      sl.shape(p.ShapeType.rect, { x:TX, y:ly + 0.04, w:0.22, h:0.12, fill:{ color:col }, line:{ type:'none' } });
+      sl.text(lg(m.breaks[b]) + ' – ' + lg(m.breaks[b + 1]), { x:TX + 0.28, y:ly, w:TW - 0.28, h:0.2, fontFace:BODY, fontSize:7.4, color:C.MUTE, valign:'middle' });
+    });
+    // greatest need
+    const bad = v => m.worse === 'high' ? v : -v;
+    const ranked = m.regions.filter(r => r.v != null).sort((a, b) => bad(b.v) - bad(a.v));
+    eyebrow(sl, T('Greatest need', 'الاحتياج الأكبر'), TX, 3.28, TW, C.GOLD);
+    ranked.slice(0, 3).forEach((r, i) => {
+      sl.text(r.name, { x:TX, y:3.55 + i * 0.24, w:TW - 0.85, h:0.22, fontFace:BODY, fontSize:8.6, color:C.INK, valign:'middle', fit:'shrink' });
+      sl.text(fv(r.v), { x:TX + TW - 0.85, y:3.55 + i * 0.24, w:0.85, h:0.22, fontFace:BODY, fontSize:8.6, bold:true, color:C.INK, align:'right', valign:'middle' });
+    });
+    if (m.national != null) sl.text(T('National: ', 'المعدل الوطني: ') + fv(m.national), { x:TX, y:4.3, w:TW, h:0.2, fontFace:BODY, fontSize:8, bold:true, color:C.SKY_DK, valign:'middle' });
+    sl.text(tx(m.reading), { x:TX, y:4.58, w:TW, h:1.7, fontFace:BODY, fontSize:9.4, color:C.INK, valign:'top', wrap:true });;
+  };
+  const atlasPage = pg => {
+    const ms = pg.maps.map(k => PK.built[k]).filter(m => m && m.mapData); if (!ms.length) return;
+    S.push(() => {
+      const sl = newSlide(C.WHITE);
+      head(sl, T('Where the need is', 'أين تتركز الاحتياجات'), tx(pg.title), tx(pg.statement));
+      ms.forEach((m, j) => atlasMap(sl, m, 0.5 + j * 6.33));
+      // a one-map page: what the map means, on the right
+      if (ms.length === 1 && pg.points) {
+        eyebrow(sl, T('What it means', 'ماذا يعني ذلك'), 6.83, 1.38, 6.0, C.SKY_DK);
+        headedList(sl, pg.points, 6.83, 1.72, 6.0, 10, 0.2);
+      }
+      sl.text(T('Each governorate is shaded by its value; darker = greater need. Boundaries: DHS Spatial Data Repository.', 'تُلوَّن كل محافظة وفق قيمتها، والأغمق = الاحتياج الأكبر. الحدود: مستودع البيانات المكانية لبرنامج DHS.'),
+        { x:0.5, y:6.32, w:12.33, h:0.22, fontFace:BODY, fontSize:7.4, color:C.FAINT, valign:'middle' });
+      foot(sl, [...new Set(ms.map(m => tx(m.source)))].join(' · ') + ' · ' + DATE);
+    });
+  };
+  // ══ REFUGEE SITUATION (country pack `refugees`) — key figures, where refugees live (map), the situation and what it means for support ══
+  if (PK && PK.refugees) S.push(() => {
+    const sl = newSlide(C.WHITE), RF = PK.refugees, m = PK.built && PK.built[RF.map];
+    head(sl, T('Refugee situation', 'وضع اللاجئين'), NAME, tx(RF.tagline));
+    factRow(sl, RF.facts, 0.5, 1.35, 12.33, 1.3);
+    // left: the map, with its legend, the governorates hosting most and a reading
+    const LX = 0.5, MW = 2.78, MH = MW * DK.MAP_SLOTS.atlas.h / DK.MAP_SLOTS.atlas.w, TX = LX + MW + 0.16, TW = 6.0 - MW - 0.16;
+    if (m && m.mapData) {
+      const fv = v => v == null ? '—' : m.unit === 'count' ? Math.round(v).toLocaleString('en-US') : F.pct({ v }, 1);
+      const lg = v => m.unit === 'count' ? Number(Number(v).toPrecision(v >= 1000 ? 2 : 1)).toLocaleString('en-US') : fv(v);
+      sl.text(tx(m.name), { x:LX, y:2.8, w:6.0, h:0.26, fontFace:HEAD, fontSize:11.5, bold:true, color:C.INK, valign:'middle', fit:'shrink' });
+      sl.image({ data:m.mapData, x:LX, y:3.1, w:MW, h:MH });
+      eyebrow(sl, T('Legend', 'دليل الألوان'), TX, 3.1, TW, C.SKY_DK);
+      const lgOrder = m.worse === 'high' ? [4, 3, 2, 1, 0] : [0, 1, 2, 3, 4];
+      lgOrder.forEach((b, i) => {
+        const ly = 3.34 + i * 0.19;
+        sl.shape(p.ShapeType.rect, { x:TX, y:ly + 0.04, w:0.22, h:0.11, fill:{ color:m.cols[b] }, line:{ type:'none' } });
+        sl.text(lg(m.breaks[b]) + ' – ' + lg(m.breaks[b + 1]), { x:TX + 0.28, y:ly, w:TW - 0.28, h:0.19, fontFace:BODY, fontSize:7.2, color:C.MUTE, valign:'middle' });
+      });
+      eyebrow(sl, T('Hosting most', 'الأكثر استضافة'), TX, 4.4, TW, C.GOLD);
+      m.regions.filter(r => r.v != null).sort((a, b) => b.v - a.v).slice(0, 4).forEach((r, i) => {
+        sl.text(r.name, { x:TX, y:4.64 + i * 0.22, w:TW - 0.8, h:0.2, fontFace:BODY, fontSize:8.4, color:C.INK, valign:'middle', fit:'shrink' });
+        sl.text(fv(r.v), { x:TX + TW - 0.8, y:4.64 + i * 0.22, w:0.8, h:0.2, fontFace:BODY, fontSize:8.4, bold:true, color:C.INK, align:'right', valign:'middle' });
+      });
+      sl.text(tx(m.reading), { x:TX, y:5.58, w:TW, h:1.3, fontFace:BODY, fontSize:8.2, color:C.INK, valign:'top', wrap:true });
+    }
+    // right: the situation, then what it means for support
+    const RX = 6.83, RW = 6.0;
+    eyebrow(sl, T('The situation', 'الوضع الراهن'), RX, 2.8, RW, C.SKY_DK);
+    const ny = headedList(sl, RF.points, RX, 3.1, RW, 8.6, 0.08);
+    const items = RF.support.map(tx), bh = 0.42 + items.reduce((t, x) => t + textH(x, RW - 0.5, 8.4) + 0.05, 0);
+    const by = ny + 0.1;   // always under the points; the items sit at the top of the box
+    sl.shape(p.ShapeType.rect, { x:RX, y:by, w:RW, h:6.9 - by, fill:{ color:C.GOLD_PALE }, line:{ type:'none' } });
+    sl.shape(p.ShapeType.rect, { x:RX, y:by, w:0.06, h:6.9 - by, fill:{ color:C.GOLD }, line:{ type:'none' } });
+    eyebrow(sl, T('What it means for support', 'ما يعنيه ذلك للدعم'), RX + 0.22, by + 0.1, RW - 0.4);
+    let iy = by + 0.38;
+    items.forEach(t => { const ih = textH(t, RW - 0.5, 8.4);
+      sl.text([{ text:'▸  ', options:{ color:C.GOLD, bold:true } }, { text:t, options:{ color:C.INK } }], { x:RX + 0.22, y:iy, w:RW - 0.4, h:ih, fontFace:BODY, fontSize:8.4, valign:'top', wrap:true });
+      iy += ih + 0.05; });
+    foot(sl, tx(RF.sources) + ' · ' + DATE);
+  });
   if (PK && PK.drivers) S.push(() => {
     const sl = newSlide(C.WHITE), D = PK.drivers;
     head(sl, T(`${country} in context`, `${NAME} في سياقها`), NAME, T('what drives need', 'ما الذي يحرّك الاحتياجات'));
@@ -1074,45 +1159,10 @@ function buildCountryDeck(opts){
     }
     const srcs = [...new Set(s.ids.map(id => SRC[id]).filter(Boolean).flatMap(x => x.split(' · ')))].slice(0, 5).map(srcTxt).join(' · ');
     foot(sl, srcs + ' · ' + DATE);
-  }); subSlide(s); });
+  }); subSlide(s); if (PK && PK.atlas && PK.built) PK.atlas.filter(pg => pg.after === s.key).forEach(atlasPage); });
 
   // ══ GOVERNORATE ATLAS (country pack) — two maps per slide, each with legend, the areas of greatest need and a reading ══
-  if (PK && PK.atlas && PK.built) PK.atlas.forEach(pg => {
-    const ms = pg.maps.map(k => PK.built[k]).filter(m => m && m.mapData); if (!ms.length) return;
-    S.push(() => {
-      const sl = newSlide(C.WHITE);
-      head(sl, T('Where the need is', 'أين تتركز الاحتياجات'), tx(pg.title), tx(pg.statement));
-      ms.forEach((m, j) => {
-        const PX = 0.5 + j * 6.33, M = DK.MAP_SLOTS.atlas, TX = PX + M.w + 0.18, TW = 6.0 - M.w - 0.18;
-        const fv = v => v == null ? '—' : m.unit === 'count' ? Math.round(v).toLocaleString('en-US') : F.pct({ v }, 1);
-        const lg = v => m.unit === 'count' ? Number(Number(v).toPrecision(v >= 1000 ? 2 : 1)).toLocaleString('en-US') : fv(v).replace(/\.0(%?)$/, '$1');   // legend: rounded
-        sl.text(tx(m.name), { x:PX, y:1.32, w:6.0, h:0.28, fontFace:HEAD, fontSize:12, bold:true, color:C.INK, valign:'middle', fit:'shrink' });
-        sl.text(tx(m.source), { x:PX, y:1.6, w:6.0, h:0.2, fontFace:BODY, fontSize:7.4, color:C.MUTE, valign:'middle' });
-        sl.image({ data:m.mapData, x:PX, y:1.88, w:M.w, h:M.h });
-        // legend (darker = greater need)
-        eyebrow(sl, T('Legend', 'دليل الألوان'), TX, 1.88, TW, C.SKY_DK);
-        const lgOrder = m.worse === 'high' ? [4, 3, 2, 1, 0] : [0, 1, 2, 3, 4];
-        lgOrder.forEach((b, i) => {
-          const col = m.cols[b], ly = 2.14 + i * 0.2;
-          sl.shape(p.ShapeType.rect, { x:TX, y:ly + 0.04, w:0.22, h:0.12, fill:{ color:col }, line:{ type:'none' } });
-          sl.text(lg(m.breaks[b]) + ' – ' + lg(m.breaks[b + 1]), { x:TX + 0.28, y:ly, w:TW - 0.28, h:0.2, fontFace:BODY, fontSize:7.4, color:C.MUTE, valign:'middle' });
-        });
-        // greatest need
-        const bad = v => m.worse === 'high' ? v : -v;
-        const ranked = m.regions.filter(r => r.v != null).sort((a, b) => bad(b.v) - bad(a.v));
-        eyebrow(sl, T('Greatest need', 'الاحتياج الأكبر'), TX, 3.28, TW, C.GOLD);
-        ranked.slice(0, 3).forEach((r, i) => {
-          sl.text(r.name, { x:TX, y:3.55 + i * 0.24, w:TW - 0.85, h:0.22, fontFace:BODY, fontSize:8.6, color:C.INK, valign:'middle', fit:'shrink' });
-          sl.text(fv(r.v), { x:TX + TW - 0.85, y:3.55 + i * 0.24, w:0.85, h:0.22, fontFace:BODY, fontSize:8.6, bold:true, color:C.INK, align:'right', valign:'middle' });
-        });
-        if (m.national != null) sl.text(T('National: ', 'المعدل الوطني: ') + fv(m.national), { x:TX, y:4.3, w:TW, h:0.2, fontFace:BODY, fontSize:8, bold:true, color:C.SKY_DK, valign:'middle' });
-        sl.text(tx(m.reading), { x:TX, y:4.58, w:TW, h:1.7, fontFace:BODY, fontSize:9.4, color:C.INK, valign:'top', wrap:true });
-      });
-      sl.text(T('Each governorate is shaded by its value; darker = greater need. Boundaries: DHS Spatial Data Repository.', 'تُلوَّن كل محافظة وفق قيمتها، والأغمق = الاحتياج الأكبر. الحدود: مستودع البيانات المكانية لبرنامج DHS.'),
-        { x:0.5, y:6.32, w:12.33, h:0.22, fontFace:BODY, fontSize:7.4, color:C.FAINT, valign:'middle' });
-      foot(sl, [...new Set(ms.map(m => tx(m.source)))].join(' · ') + ' · ' + DATE);
-    });
-  });
+  if (PK && PK.atlas && PK.built) PK.atlas.filter(pg => !pg.after).forEach(atlasPage);   // pages not tied to a sector
 
   // ══ FOCUS AREAS — e.g. Al Aqabah in the Jordan report (focus_areas.js): overview · sectors and priority needs ══
   (opts.focus || []).forEach(a => {

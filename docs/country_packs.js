@@ -66,21 +66,21 @@ const COUNTRY_PACKS = {
       points: [
         [['Food', 'الغذاء'], ['WFP has US$52.1M of the US$170M it needs. Cash food aid for refugees outside camps was suspended for six months and resumes from October 2026 only for the most vulnerable families, at a reduced US$21 a person a month.',
           'حصل برنامج الأغذية العالمي على 52.1 مليون من 170 مليون دولار يحتاجها، وعُلّقت المساعدة الغذائية النقدية للاجئين خارج المخيمات ستة أشهر، وتُستأنف من أكتوبر 2026 للأسر الأشد ضعفاً فقط بمبلغ مخفّض قدره 21 دولاراً للفرد شهرياً.']],
-        [['Services', 'الخدمات'], ['UNHCR cut back health, cash and child-protection services in 2025, and UNRWA could not carry out some planned activities in Jordan in 2026.',
-          'قلّصت المفوضية خدمات الصحة والمساعدات النقدية وحماية الطفل في 2025، ولم تتمكن الأونروا من تنفيذ بعض الأنشطة المخططة في الأردن في 2026.']],
+        [['Services', 'الخدمات'], ['UNHCR cut back health, cash and child-protection services in 2025. UNRWA’s cuts in Jordan are about funding, not security: it began 2026 over US$220M short after two major donors suspended funding in 2024, and cut staff hours and pay by 20%, so its schools teach fewer hours with larger classes and its clinics open for less time.',
+          'قلّصت المفوضية خدمات الصحة والمساعدات النقدية وحماية الطفل في 2025. أما تقليص خدمات الأونروا في الأردن فسببه التمويل لا الأمن: بدأت عام 2026 بعجز يتجاوز 220 مليون دولار بعد تعليق مانحَين رئيسيين تمويلهما في 2024، وخفّضت ساعات عمل موظفيها ورواتبهم بنسبة 20%، فقلّت ساعات التدريس في مدارسها وازداد حجم الصفوف وقصُرت ساعات عمل عياداتها.']],
         [['From relief to development', 'من الإغاثة إلى التنمية'], ['Humanitarian funding has fallen 92% since 2016, while development finance continues: US aid of at least US$1.45B a year and the EU’s €3B package for 2025–2027.',
           'تراجع التمويل الإنساني بنسبة 92% منذ 2016، فيما يستمر التمويل التنموي: مساعدات أمريكية لا تقل عن 1.45 مليار دولار سنوياً، وحزمة أوروبية بقيمة 3 مليارات يورو للفترة 2025–2027.']],
       ],
       support: [
-        ['Fill the most urgent gaps — food and cash for the most vulnerable refugee and host families — while returns continue.',
+        ['Fill the most urgent food and cash gaps for the most vulnerable refugee and host families.',
          'سدّ الفجوات الأكثر إلحاحاً، أي الغذاء والمساعدات النقدية للأسر الأشد ضعفاً من اللاجئين والمجتمع المضيف، مع استمرار العودة.'],
         ['Work through national systems (schools, clinics, social protection) so services continue as humanitarian funding falls.',
          'العمل عبر الأنظمة الوطنية (المدارس والعيادات والحماية الاجتماعية) لتستمر الخدمات مع تراجع التمويل الإنساني.'],
-        ['Align with the Jordan Response Plan and the largest donors (EU, Japan, US) to avoid duplication.',
+        ['Align with the Jordan Response Plan and the largest donors to avoid duplication.',
          'المواءمة مع خطة الاستجابة الأردنية وأكبر المانحين (الاتحاد الأوروبي واليابان والولايات المتحدة) لتفادي الازدواجية.'],
       ],
-      sources: ['OCHA FTS (via Roya News, Aug 2026) · WFP (Sep 2026) · UNHCR · UNRWA (Jun 2026) · US CRS · EU',
-                'خدمة التتبع المالي لأوتشا (عبر رؤيا، 18 أغسطس 2026) · برنامج الأغذية العالمي (سبتمبر 2026) · المفوضية · الأونروا (يونيو 2026) · خدمة أبحاث الكونغرس · الاتحاد الأوروبي'],
+      sources: ['OCHA FTS (via Roya News, Aug 2026) · WFP (Sep 2026) · UNHCR · UNRWA (Jun 2026) · ANERA · US CRS · EU',
+                'خدمة التتبع المالي لأوتشا (عبر رؤيا، 18 أغسطس 2026) · برنامج الأغذية العالمي (سبتمبر 2026) · المفوضية · الأونروا (يونيو 2026) · أنيرا · خدمة أبحاث الكونغرس · الاتحاد الأوروبي'],
     },
     // ── context: what drives need ──
     drivers: {

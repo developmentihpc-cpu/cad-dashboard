@@ -951,6 +951,91 @@ function buildCountryDeck(opts){
     foot(sl, srcs + ' · ' + DATE);
   }); subSlide(s); });
 
+  // ══ FOCUS AREAS — e.g. Al Aqabah in the Jordan report (focus_areas.js): overview · sector snapshot · where support is needed ══
+  (opts.focus || []).forEach(a => {
+    const AN = T(a.name[0], a.name[1]), tx = v => T(v[0], v[1]);
+    const SRC = tx(a.sources) + ' · ' + DATE;
+    const EB = T('Focus area', 'منطقة تركيز');
+    // 1 · overview: the area on the country map, key facts, what it is
+    S.push(() => {
+      const sl = newSlide(C.WHITE);
+      head(sl, EB, AN, tx(a.tagline));
+      const M = DK.MAP_SLOTS.focus, mx = 0.5, my = 1.68;
+      mapTitle(sl, T(`${a.name[0]} governorate within ${NAME}`, `محافظة ${a.name[1]} ضمن ${NAME}`), '', mx, M.w);
+      if (a.mapData) sl.image({ data:a.mapData, x:mx, y:my, w:M.w, h:M.h });
+      else { sl.shape(p.ShapeType.rect, { x:mx, y:my, w:M.w, h:M.h, fill:{ color:C.SKY_PALE }, line:{ type:'none' } });
+        sl.text(T('Map unavailable', 'الخريطة غير متاحة'), { x:mx, y:my + M.h / 2 - 0.2, w:M.w, h:0.4, fontFace:BODY, fontSize:11, color:C.FAINT, align:'center' }); }
+      const RX = 5.45, RW = 13.333 - RX - 0.5, n = a.facts.length, gap = 0.14, cw = (RW - gap * (n - 1)) / n;
+      a.facts.forEach(([v, l, s], i) => {
+        const x = RX + i * (cw + gap), y = 1.35, h = 1.32;
+        sl.shape(p.ShapeType.rect, { x, y, w:cw, h, fill:{ color:C.CARD }, line:{ type:'none' } });
+        sl.shape(p.ShapeType.rect, { x, y, w:cw, h:0.05, fill:{ color:C.GOLD }, line:{ type:'none' } });
+        sl.text(Array.isArray(v) ? tx(v) : v, { x:x + 0.14, y:y + 0.12, w:cw - 0.28, h:0.42, fontFace:HEAD, fontSize:19, bold:true, color:C.INK, valign:'middle', fit:'shrink' });
+        sl.text(tx(l), { x:x + 0.14, y:y + 0.55, w:cw - 0.28, h:0.34, fontFace:BODY, fontSize:8, bold:true, color:C.INK, valign:'top', wrap:true });
+        sl.text(tx(s), { x:x + 0.14, y:y + 0.88, w:cw - 0.28, h:0.4, fontFace:BODY, fontSize:6.8, color:C.MUTE, valign:'top', wrap:true });
+      });
+      eyebrow(sl, T('Overview', 'نظرة عامة'), RX, 2.92, RW, C.SKY_DK);
+      bullets(sl, a.overview.map(tx), RX, 3.24, RW, C.GOLD, 9.6);
+      foot(sl, SRC);
+    });
+    // 2 · sector snapshot: survey figures for the area vs the country, then the main sectors
+    S.push(() => {
+      const sl = newSlide(C.WHITE);
+      head(sl, EB, AN, T('sector snapshot', 'لمحة قطاعية'));
+      const LW = 5.3, sv = a.survey || [];
+      if (sv.length) {
+        eyebrow(sl, T(`${a.name[0]} compared with ${country}`, `${a.name[1]} مقارنةً بـ${NAME}`), 0.5, 1.35, LW, C.SKY_DK);
+        sl.text(T(`Household survey (${sv[0].survey ? 'DHS ' + sv[0].year : sv[0].year}) · rank among governorates, 1 = greatest need`,
+                  `المسح الأسري (${sv[0].year}) · الترتيب بين المحافظات، 1 = الاحتياج الأكبر`), { x:0.5, y:1.62, w:LW, h:0.22, fontFace:BODY, fontSize:7.6, color:C.MUTE });
+        sv.forEach((s, i) => {
+          const y = 1.98 + i * 1.02, bw = LW - 1.2, worse = s.worse === 'high' ? s.v > s.national + 0.5 : s.v < s.national - 0.5;
+          sl.text(T(s.en, s.ar), { x:0.5, y, w:LW, h:0.24, fontFace:BODY, fontSize:9.2, bold:true, color:C.INK, valign:'middle' });
+          [[AN, s.v, worse ? SEV.fill[1] : C.SKY_DK], [NAME, s.national, 'B8C7D6']].forEach(([lab, v, col], j) => {
+            const by = y + 0.3 + j * 0.24;
+            sl.text(lab, { x:0.5, y:by, w:1.1, h:0.2, fontFace:BODY, fontSize:7.8, color:C.MUTE, valign:'middle' });
+            sl.shape(p.ShapeType.rect, { x:1.6, y:by + 0.05, w:bw - 0.5, h:0.11, fill:{ color:C.SKY_PALE }, line:{ type:'none' } });
+            sl.shape(p.ShapeType.rect, { x:1.6, y:by + 0.05, w:Math.max(0.04, (bw - 0.5) * Math.min(1, v / 100)), h:0.11, fill:{ color:col }, line:{ type:'none' } });
+            sl.text(v.toFixed(1) + '%', { x:1.6 + bw - 0.45, y:by, w:0.7, h:0.2, fontFace:BODY, fontSize:8.4, bold:true, color:C.INK, valign:'middle' });
+          });
+          sl.text(s.best && s.tie ? T('Joint best', 'ضمن الأفضل') : s.best ? T('Best', 'الأفضل') : T(`Rank ${s.pos}${s.tie ? '=' : ''} of ${s.of}`, `المرتبة ${s.pos}${s.tie ? ' (بالتساوي)' : ''} من ${s.of}`), { x:0.5 + LW - 1.2, y, w:1.2, h:0.24, fontFace:BODY, fontSize:7.8, bold:true, color: worse ? SEV.text[1] : C.MUTE, align:'right', valign:'middle' });
+        });
+      }
+      const RX = 6.2, RW = 13.333 - RX - 0.5;
+      eyebrow(sl, T('Key sectors', 'أبرز القطاعات'), RX, 1.35, RW, C.SKY_DK);
+      let y = 1.68;
+      a.sectors.forEach(([h, t]) => {
+        sl.text(tx(h), { x:RX, y, w:RW, h:0.24, fontFace:BODY, fontSize:9.4, bold:true, color:C.GOLD, valign:'middle' });
+        const th = textH(tx(t), RW, 8.8);
+        sl.text(tx(t), { x:RX, y:y + 0.25, w:RW, h:th, fontFace:BODY, fontSize:8.8, color:C.INK, valign:'top', wrap:true });
+        y += 0.25 + th + 0.12;
+      });
+      foot(sl, SRC);
+    });
+    // 3 · where support is needed, and the development-investment angle
+    S.push(() => {
+      const sl = newSlide(C.WHITE);
+      head(sl, EB, AN, T('where support is needed', 'أين يلزم الدعم'));
+      sl.shape(p.ShapeType.rect, { x:0.5, y:1.35, w:12.33, h:0.66, fill:{ color:C.GOLD_PALE }, line:{ type:'none' } });
+      sl.shape(p.ShapeType.rect, { x:0.5, y:1.35, w:0.06, h:0.66, fill:{ color:C.GOLD }, line:{ type:'none' } });
+      sl.text(tx(a.verdict), { x:0.72, y:1.39, w:11.95, h:0.58, fontFace:BODY, fontSize:10.2, color:C.INK, valign:'middle', wrap:true });
+      const LW = 6.4, RX = 0.5 + LW + 0.35, RW = 13.333 - RX - 0.5;
+      eyebrow(sl, T('Priority needs', 'الاحتياجات ذات الأولوية'), 0.5, 2.25, LW, C.SKY_DK);
+      let y = 2.6;
+      a.needs.forEach((t, i) => {
+        const txt = tx(t), th = textH(txt, LW - 0.45, 9.4);
+        sl.shape(p.ShapeType.ellipse, { x:0.5, y:y + 0.01, w:0.28, h:0.28, fill:{ color:C.NAVY }, line:{ type:'none' } });
+        sl.text(String(i + 1), { x:0.5, y:y + 0.01, w:0.28, h:0.28, fontFace:BODY, fontSize:9, bold:true, color:C.WHITE, align:'center', valign:'middle' });
+        sl.text(txt, { x:0.95, y, w:LW - 0.45, h:th, fontFace:BODY, fontSize:9.4, color:C.INK, valign:'top', wrap:true });
+        y += th + 0.16;
+      });
+      const invH = a.invest.reduce((h, t) => h + textH(tx(t), RW - 0.62, 9.4) + 0.08, 0) + 0.75;   // box sized to its content
+      sl.shape(p.ShapeType.rect, { x:RX, y:2.25, w:RW, h:invH, fill:{ color:C.SKY_PALE }, line:{ type:'none' } });
+      eyebrow(sl, T('Development-investment angle', 'زاوية الاستثمار التنموي'), RX + 0.2, 2.4, RW - 0.4, C.SKY_DK);
+      bullets(sl, a.invest.map(tx), RX + 0.2, 2.78, RW - 0.4, C.GOLD, 9.4);
+      foot(sl, SRC);
+    });
+  });
+
   // ══ 11 · METHOD & SOURCES ══
   S.push(() => {
     const sl = newSlide(C.NAVY);

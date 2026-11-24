@@ -178,6 +178,13 @@ const COUNTRY_PACKS = {
       'POP.YOUTH': { value: 18.7, year: 2025 },
     },
     // sector stat cards that replace the defaults for this country
+    // researched interventions added to a sector slide (shown first)
+    sectorActs: {
+      health: [
+        ["Close child vaccination gaps: only 69.6% of children in Ma'an, 80.8% in Madaba and 84.1% in Aqaba have all basic vaccinations (national 91.7%, DHS 2023) — outreach and mobile teams for remote, Bedouin and migrant-worker families, and catch-up campaigns.",
+         'سدّ فجوات تحصين الأطفال: لم يتلقَّ جميع اللقاحات الأساسية سوى 69.6% من الأطفال في معان و80.8% في مادبا و84.1% في العقبة (الوطني 91.7%، 2023)، عبر فرق ميدانية ومتنقلة للأسر النائية والبدوية وأسر العمال الوافدين، وحملات تحصين استدراكية.'],
+      ],
+    },
     sectorStats: {
       econ: ['SI.POV.DDAY', 'SL.UEM.TOTL.ZS', 'SL.UEM.1524.ZS', 'SL.TLF.CACT.FE.ZS', 'FX.OWN.TOTL.ZS', 'POP.YOUTH'],
     },

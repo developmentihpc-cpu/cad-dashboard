@@ -976,6 +976,9 @@ function buildCountryDeck(opts){
     const iy = cardsEnd + 0.2, room = 6.98 - iy;
     // one list: aid interventions triggered by off-track indicators, then development-investment options where the data makes them relevant
     let acts = s.acts.filter(([id, maxL]) => id === null ? false : typeof id === 'function' ? id() : off(id, maxL)).map(a => T(a[2], a[3]));
+    // a country pack can add researched interventions for a sector (shown first)
+    const packActs = opts.pack && opts.pack.sectorActs && opts.pack.sectorActs[s.key];
+    if (packActs) acts = packActs.map(a => T(a[0], a[1])).concat(acts);
     if (acts.length < 3) acts = acts.concat(s.acts.filter(a => a[0] === null).map(a => T(a[2], a[3])));   // round out a short list with the sector-wide action
     const inv = (s.inv || []).filter(([cond]) => cond()).map(a => T(a[1], a[2])).slice(0, 2);
     const items = [], itemH = t => Math.max(0.29, textH(t, LW - 0.62, 8.8) + 0.04);

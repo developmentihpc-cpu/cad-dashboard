@@ -10,6 +10,7 @@
 const COUNTRY_PACKS = {
   Jordan: {
     asOf: '2026-11',
+    noExecSummary: true,   // the sector overview slide replaces the executive summary
     // ── refugee situation (slide after the executive summary) ──
     refugees: {
       tagline: ['a large host country, now seeing returns to Syria', 'بلد مضيف كبير يشهد الآن عودة اللاجئين إلى سوريا'],

@@ -936,7 +936,7 @@ function buildCountryDeck(opts){
     sevKey(sl, 12.93, 6.86, true);
     foot(sl, T('SDG/WHO benchmarks · World Bank Open Data · ', 'معايير أهداف التنمية المستدامة · بيانات البنك الدولي · ') + DATE);
   });
-  S.push(execSummary);
+  if (!(PK && PK.noExecSummary)) S.push(execSummary);   // a country pack can drop it (the sector overview covers it)
   if (PK && PK.drivers) S.push(() => {
     const sl = newSlide(C.WHITE), D = PK.drivers;
     head(sl, T(`${country} in context`, `${NAME} في سياقها`), NAME, T('what drives need', 'ما الذي يحرّك الاحتياجات'));

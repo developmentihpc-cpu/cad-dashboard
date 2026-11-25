@@ -9,17 +9,17 @@
 <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
 <link  href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/pptxgenjs@3.12.0/dist/pptxgen.bundle.js"></script>
-<script src="i18n_ar.js?v=20261125e"></script>
-<script src="sub_ar.js?v=20261125e"></script>
-<script src="focus_areas.js?v=20261125e"></script>
-<script src="country_packs.js?v=20261125e"></script>
-<script src="severity.js?v=20261125e"></script>
-<script src="ind_defs.js?v=20261125e"></script>
-<script src="deck_kit.js?v=20261125e"></script>
-<script src="hs_labels.js?v=20261125e"></script>
-<script src="country_deck.js?v=20261125e"></script>
-<script src="pdf_deck.js?v=20261125e"></script>
-<script src="region_deck.js?v=20261125e"></script>
+<script src="i18n_ar.js?v=20261125g"></script>
+<script src="sub_ar.js?v=20261125g"></script>
+<script src="focus_areas.js?v=20261125g"></script>
+<script src="country_packs.js?v=20261125g"></script>
+<script src="severity.js?v=20261125g"></script>
+<script src="ind_defs.js?v=20261125g"></script>
+<script src="deck_kit.js?v=20261125g"></script>
+<script src="hs_labels.js?v=20261125g"></script>
+<script src="country_deck.js?v=20261125g"></script>
+<script src="pdf_deck.js?v=20261125g"></script>
+<script src="region_deck.js?v=20261125g"></script>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -1873,7 +1873,7 @@ body {
 <body>
 
 <header class="app-header">
-  <img src="logo.png?v=20261125e" alt="UAE Presidential Court · International Humanitarian and Philanthropic Council" style="height:52px;width:auto;display:block">
+  <img src="logo.png?v=20261125g" alt="UAE Presidential Court · International Humanitarian and Philanthropic Council" style="height:52px;width:auto;display:block">
   <div class="app-header-title" data-ar="لوحة احتياجات الدول">Country Needs Dashboard</div>
   <div class="hdr-search" role="search">
     <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
@@ -3303,7 +3303,7 @@ function repImgRatio(src) {
 }
 let REP_LOGO = null;
 async function repLogo() {
-  if (!REP_LOGO) REP_LOGO = repFetchDataUrl('logo.png?v=20261125e', 4000)
+  if (!REP_LOGO) REP_LOGO = repFetchDataUrl('logo.png?v=20261125g', 4000)
     .then(data => data.replace(/^data:[^;,]*/, 'data:image/png'))   // always embedded as PNG
     .then(async data => ({ data, ratio: await repImgRatio(data) })).catch(() => null);
   return REP_LOGO;
@@ -3726,16 +3726,16 @@ async function repTrade(country) {
   return { exports: side(t.exports), imports: side(t.imports) };
 }
 // line icons for the reports (DK.ICONS, Lucide) as PNG data URLs, drawn in the deck's blue
-let REP_ICONS = null;
+const REP_ICONS = {};   // one set per colour
 function repIcons(color) {
-  if (!REP_ICONS) REP_ICONS = Promise.all(Object.entries(DK.ICONS || {}).map(([k, body]) => new Promise(res => {
+  if (!REP_ICONS[color]) REP_ICONS[color] = Promise.all(Object.entries(DK.ICONS || {}).map(([k, body]) => new Promise(res => {
     const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 24 24" fill="none" stroke="#${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${body}</svg>`;
     const img = new Image();
     img.onload = () => { const c = document.createElement('canvas'); c.width = c.height = 128; c.getContext('2d').drawImage(img, 0, 0, 128, 128); res([k, c.toDataURL('image/png')]); };
     img.onerror = () => res([k, null]);
     img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
   }))).then(es => Object.fromEntries(es.filter(e => e[1])));
-  return REP_ICONS;
+  return REP_ICONS[color];
 }
 async function repBuildCountryBlob(country, setStatus, fmt) {
   repLibsReady();
@@ -3751,7 +3751,7 @@ async function repBuildCountryBlob(country, setStatus, fmt) {
   const flagRatio = await repImgRatio(flagData);
   const need = needScores()[country] || {};
   const blob = await window.buildCountryDeck({
-    country, data: Object.assign({}, d, pol ? pol.wgi : {}, smeData(country), govData(country), uisData(country)), sme: (EXTRA.sme || {})[COUNTRY_ISO[country]] || null, power: (EXTRA.power || {})[COUNTRY_ISO[country]] || null, products: (EXTRA.products || {})[COUNTRY_ISO[country]] || null, tbi: (EXTRA.tbi || {})[COUNTRY_ISO[country]] || null, icons: await repIcons('1B6FA8').catch(() => ({})), info: COUNTRY_INFO[country] || {}, iso2: (COUNTRY_ISO2[country] || '').toLowerCase(),
+    country, data: Object.assign({}, d, pol ? pol.wgi : {}, smeData(country), govData(country), uisData(country)), sme: (EXTRA.sme || {})[COUNTRY_ISO[country]] || null, power: (EXTRA.power || {})[COUNTRY_ISO[country]] || null, products: (EXTRA.products || {})[COUNTRY_ISO[country]] || null, tbi: (EXTRA.tbi || {})[COUNTRY_ISO[country]] || null, icons: await repIcons('1B6FA8').catch(() => ({})), iconsW: await repIcons('FFFFFF').catch(() => ({})), info: COUNTRY_INFO[country] || {}, iso2: (COUNTRY_ISO2[country] || '').toLowerCase(),
     politics: pol && pol.ok ? { hos: pol.hos, hog: pol.hog, gov: pol.gov, office: pol.office, hogOffice: pol.hogOffice,
       hosSince: pol.hosSince, hosUntil: pol.hosUntil, hogSince: pol.hogSince, hogUntil: pol.hogUntil, hosTerm: pol.hosTerm, hogTerm: pol.hogTerm } : null,
     flagData, flagRatio, mapData, logo, subnational, focus, pack, dateStr: repDateStr(), PptxGenJS: repDeckCtor(fmt), output: 'blob', lang,

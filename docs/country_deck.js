@@ -80,7 +80,7 @@ function buildCountryDeck(opts){
     'uis:ROFST.2.CP':    { en:'Out of school (lower-secondary age)', ar:'خارج المدرسة (سن المرحلة الإعدادية)', f: r => F.pct(r, 1) },
     'SE.PRM.UNER':       { en:'Primary-age children out of school', ar:'الأطفال في سن الابتدائية خارج المدرسة', f: r => F.num(r), u:[' children',' طفل'] },
     'TBI':               { en: TBI ? `Trade Barrier Index · rank ${TBI.tbi[1]} of 122` : 'Trade Barrier Index', ar: TBI ? `مؤشر الحواجز التجارية · المرتبة ${TBI.tbi[1]} من 122` : 'مؤشر الحواجز التجارية',
-                           f: r => F.num(r, 2), u:[' / 10 (higher = more barriers)',' من 10 (الأعلى = حواجز أكثر)'] },
+                           f: r => F.num(r, 2), u:[' / 10 (higher = more barriers)',' من 10 (الأعلى = حواجز أكثر)'], us:[' / 10',' من 10'], ls:['Trade Barrier Index','مؤشر الحواجز التجارية'] },
     'POP.YOUTH':         { en:'Young people aged 15–24 (% of population)', ar:'الشباب بعمر 15–24 (% من السكان)', f: r => F.pct(r, 1) },
     'SH.H2O.SMDW.ZS':    { en:'Safely managed water', ar:'المياه المُدارة بأمان', f: r => F.pct(r) },
     'SH.STA.BASS.ZS':    { en:'Basic sanitation', ar:'الصرف الصحي الأساسي', f: r => F.pct(r) },
@@ -677,8 +677,8 @@ function buildCountryDeck(opts){
     foot(sl, T('World Bank Open Data & WGI · Fund for Peace · Transparency International · Wikidata (leaders) · Natural Earth (borders) · ', 'بيانات البنك الدولي ومؤشرات الحوكمة · صندوق السلام · منظمة الشفافية الدولية · ويكي بيانات (القادة) · ناتشورال إيرث (الحدود) · ') + DATE);
   });
 
-  // ══ 3 · EXECUTIVE SUMMARY — overall picture, then each priority sector with its most urgent gaps ══
-  S.push(() => {
+  // ══ EXECUTIVE SUMMARY — overall picture, then each priority sector with its most urgent gaps (pushed after the sector overview) ══
+  const execSummary = () => {
     const sl = newSlide(C.WHITE);
     head(sl, T('Executive summary', 'الملخص التنفيذي'), NAME, T('priority sectors and their most urgent gaps', 'القطاعات ذات الأولوية وأكثر فجواتها إلحاحاً'));
     const n = null;   // the need index is not shown in reports (dashboard only)
@@ -742,7 +742,7 @@ function buildCountryDeck(opts){
     });
     if (n) needNote(sl, 0.5, 6.64, 7.6);   // narrower, so the colour key fits at the bottom right
     foot(sl, T('SDG/WHO benchmarks · World Bank Open Data · ', 'معايير أهداف التنمية المستدامة · بيانات البنك الدولي · ') + DATE);
-  });
+  };
 
   // ══ COUNTRY PACK (country_packs.js) — researched context: what drives need · development opportunities ══
   const PK = opts.pack || null, tx = v => T(v[0], v[1]);
@@ -894,6 +894,49 @@ function buildCountryDeck(opts){
       iy += ih + 0.05; });
     foot(sl, tx(A.sources) + ' · ' + DATE);
   });
+  // ══ SECTOR OVERVIEW — one column per sector, most severe first: status, key indicators, recommended intervention ══
+  const SICON = { wash:'droplet', energy:'zap', food:'sprout', education:'graduation', health:'heartPulse', econ:'briefcase', business:'building', trade:'ship' };
+  S.push(() => {
+    const sl = newSlide(C.WHITE);
+    head(sl, T('Sector overview', 'نظرة عامة على القطاعات'), NAME, T('key indicators and recommended interventions by sector', 'أبرز المؤشرات والتدخلات الموصى بها حسب القطاع'));
+    const list = SECTORS.slice().sort((a, b) => (a.level ?? 9) - (b.level ?? 9) || b.nSevere - a.nSevere);
+    const gap = 0.1, cw = (12.33 - gap * (list.length - 1)) / list.length, top = 1.38, bot = 6.72, recY = 5.02;
+    list.forEach((s, i) => {
+      const x = 0.5 + i * (cw + gap), pad = 0.09, iw = cw - 2 * pad;
+      sl.shape(p.ShapeType.rect, { x, y:top, w:cw, h:bot - top, fill:{ color:C.CARD }, line:{ type:'none' } });
+      sl.shape(p.ShapeType.rect, { x, y:top, w:cw, h:0.5, fill:{ color:C.NAVY }, line:{ type:'none' } });
+      sl.shape(p.ShapeType.rect, { x, y:top, w:cw, h:0.04, fill:{ color:C.GOLD }, line:{ type:'none' } });
+      const ic = opts.iconsW && opts.iconsW[SICON[s.key]], ix = ic ? 0.28 : 0;
+      if (ic) sl.image({ data:ic, x:x + pad, y:top + 0.15, w:0.22, h:0.22 });
+      sl.text(T(s.short[0], s.short[1]), { x:x + pad + ix, y:top + 0.06, w:iw - ix, h:0.42, fontFace:BODY, fontSize:7.8, bold:true, color:C.WHITE, valign:'middle', wrap:true, fit:'shrink' });
+      badge(sl, s.level, x + pad, top + 0.6, iw, 0.17);
+      // key indicators: the furthest from their benchmarks first, then the sector's headline figures
+      const ids = [...new Set(s.ranked.concat(s.stats))].filter(id => R(id) && !R(id).stale && I[id]);
+      let y = top + 0.92;
+      ids.slice(0, 4).forEach(id => {
+        const D = I[id], u = D.us || D.u, t = (D.ls ? T(D.ls[0], D.ls[1]) : lbl(id)) + ': ' + D.f(R(id)) + (u ? u[ar ? 1 : 0] : ''), h = textH(t, iw - 0.14, 7.2);
+        if (y + h > recY - 0.08) return;
+        const L = lvl(id);
+        sl.shape(p.ShapeType.ellipse, { x:x + pad, y:y + 0.06, w:0.07, h:0.07, fill:{ color: L == null ? C.GOLD : SEV.fill[L] }, line:{ type:'none' } });
+        sl.text(t, { x:x + pad + 0.13, y, w:iw - 0.13, h, fontFace:BODY, fontSize:7.2, color:C.INK, valign:'top', wrap:true });
+        y += h + 0.06;
+      });
+      // recommended: the sector slide's first interventions (researched country actions, then those the data triggers)
+      let acts = s.acts.filter(([id, maxL]) => id === null ? false : typeof id === 'function' ? id() : off(id, maxL)).map(a => T(a[2], a[3]));
+      const packActs = opts.pack && opts.pack.sectorActs && opts.pack.sectorActs[s.key];
+      if (packActs) acts = packActs.map(a => a[2] ? T(a[2], a[3]) : T(a[0], a[1])).concat(acts);
+      if (!acts.length) acts = s.acts.filter(a => a[0] === null).map(a => T(a[2], a[3]));
+      sl.shape(p.ShapeType.rect, { x:x + 0.05, y:recY, w:cw - 0.1, h:bot - recY - 0.05, fill:{ color:C.GOLD_PALE }, line:{ type:'none' } });
+      sl.shape(p.ShapeType.rect, { x:x + 0.05, y:recY, w:cw - 0.1, h:0.03, fill:{ color:C.GOLD }, line:{ type:'none' } });
+      sl.text(T('RECOMMENDED', 'التدخل الموصى به'), { x:x + pad, y:recY + 0.08, w:iw, h:0.2, fontFace:BODY, fontSize:6.8, bold:true, color:C.GOLD, charSpacing: ar ? 0 : 1 });
+      let ry = recY + 0.32;
+      acts.slice(0, 2).forEach(t => { const h = textH(t, iw, 7.2); if (ry + h > bot - 0.08) return;
+        sl.text(t, { x:x + pad, y:ry, w:iw, h, fontFace:BODY, fontSize:7.2, color:C.INK, valign:'top', wrap:true }); ry += h + 0.06; });
+    });
+    sevKey(sl, 12.93, 6.86, true);
+    foot(sl, T('SDG/WHO benchmarks · World Bank Open Data · ', 'معايير أهداف التنمية المستدامة · بيانات البنك الدولي · ') + DATE);
+  });
+  S.push(execSummary);
   if (PK && PK.drivers) S.push(() => {
     const sl = newSlide(C.WHITE), D = PK.drivers;
     head(sl, T(`${country} in context`, `${NAME} في سياقها`), NAME, T('what drives need', 'ما الذي يحرّك الاحتياجات'));

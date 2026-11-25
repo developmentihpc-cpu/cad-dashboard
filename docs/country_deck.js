@@ -812,6 +812,8 @@ function buildCountryDeck(opts){
       foot(sl, [...new Set(ms.map(m => tx(m.source)))].join(' · ') + ' · ' + DATE);
     });
   };
+  // development opportunities first — right after the country overview
+  if (PK && PK.opportunities) S.push(() => oppSlide());
   // ══ REFUGEE SITUATION (country pack `refugees`) — key figures, where refugees live (map), the situation and what it means for support ══
   if (PK && PK.refugees) S.push(() => {
     const sl = newSlide(C.WHITE), RF = PK.refugees, m = PK.built && PK.built[RF.map];
@@ -952,7 +954,7 @@ function buildCountryDeck(opts){
     });
     foot(sl, tx(D.sources) + ' · ' + DATE);
   });
-  if (PK && PK.opportunities) S.push(() => {
+  const oppSlide = () => {   // pushed earlier, right after the country overview
     const sl = newSlide(C.WHITE), O = PK.opportunities;
     head(sl, T(`${country} in context`, `${NAME} في سياقها`), NAME, T('development opportunities', 'فرص التنمية'));
     sl.shape(p.ShapeType.rect, { x:0.5, y:1.35, w:12.33, h:0.92, fill:{ color:C.GOLD_PALE }, line:{ type:'none' } });
@@ -966,7 +968,7 @@ function buildCountryDeck(opts){
     eyebrow(sl, T('Partners', 'الشركاء'), RX + 0.2, 2.62, RW - 0.4, C.SKY_DK);
     headedList(sl, O.partners, RX + 0.2, 2.98, RW - 0.4, 11, 0.22);
     foot(sl, tx(O.sources) + ' · ' + DATE);
-  });
+  };
 
   // ══ "Where the need is" — sub-national map after a sector slide. Only when an official DHS survey measured the
   //    indicator region by region AND it is one of the sector's most critical issues (s.mapId), so the map
